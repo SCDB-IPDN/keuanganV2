@@ -9,7 +9,8 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a href="index.php?m=user&s=user_add" target="_blank" class="btn btn-icon btn-sm btn-inverse"><i class="fa fa-plus-square"></i></a>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
+            <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -37,20 +38,21 @@
             </thead>
             <tbody>
             <?php
-                $no = 1;
+                $no = 0;
                 foreach($data as $row){
+                $no++;
             ?>
-            <tr>
+              <tr>
                 <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
                 <td><?= $row->nip == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nip ?></td>
                 <td><?= $row->nama_user == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_user ?></td>
                 <td><?= $row->role == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->role ?></td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-primary"><i class="fa fas fa-edit"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editpeg<?php echo $row->id_user;?>"><i class="fa fas fa-edit"></i></a>
+                    <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapuspeg<?php echo $row->id_user;?>"><i class="fa fas fa-trash"></i></a>
                     <!-- <a href="#" class="btn btn-sm btn-secondary"><i class="fa fas fa-lock"></i></a> -->
-                    <a onclick="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer"><i class="fa fas fa-trash"></i></a>
                 </td>
-            </tr>
+              </tr>
             <?php } ?>
             </tbody>
           </table>
@@ -61,4 +63,124 @@
     </div>
     <!-- end col-10 -->
   </div>
+  
+  <!-- Modal ADD PEGAWAI -->
+  <div class="modal fade" id="addpeg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pegawai</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="pegawai/tambah_pegawai" method="POST">
+            <div class="form-group">
+              <label for="nip" class="col-form-label">Nip:</label>
+              <input type="text" class="form-control" id="nip" name="nip" placeholder="Nip Pegawai.." required>
+            </div>
+            <div class="form-group">
+              <label for="nama_user" class="col-form-label">Nama Lengkap:</label>
+              <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Nama Lengkap.." required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-form-label">Password:</label>
+              <input type="password" class="form-control" id="password" name="password" length="6" placeholder="****" required>
+            </div>
+            <div class="form-group">
+              <label for="role" class="col-form-label">Akses:</label>
+                <select class="form-control" name="role" id="role" required>
+                  <option disabled selected> Pilih Akses </option>
+                  <?php
+                  foreach($role as $row){
+                  ?>
+                    <option value="<?php echo $row->role_name ?>"><?php echo $row->role_name ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <?php
+    foreach($data as $row){
+  ?>
+  <!-- Modal EDIT PEGAWAI -->
+  <div class="modal fade" id="editpeg<?php echo $row->id_user;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Data Pegawai</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="pegawai/edit_pegawai" method="POST">
+            <div class="form-group">
+              <label for="role" class="col-form-label">Akses:</label>
+                <select class="form-control" name="role" id="role" required>
+                  <?php
+                  foreach($role as $row){
+                  ?>
+                    <?php if($row->role_name == $row->role_name){?>
+                      <option value="<?php echo $row->role_name ?>" selected><?php echo $row->role_name ?></option>
+                    <?php }else{ ?>
+                      <option value="<?php echo $row->role_name ?>"><?php echo $row->role_name ?></option>
+                    <?php } ?>
+                  <?php
+                  }
+                  ?>
+                </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php } ?>
+
+  <?php
+    foreach($data as $row){
+  ?>
+  <!-- Modal HAPUS PEGAWAI -->
+  <div class="modal fade" id="hapuspeg<?php echo $row->id_user;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Data Pegawai</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" method="post" action="pegawai/hapus_pegawai">
+            <div class="modal-body">
+              <p>Anda yakin mau menghapus Pegawai <b><?php echo $row->nama_user;?></b></p>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id_user" value="<?php echo $row->id_user;?>">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+              <button class="btn btn-danger">Hapus</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php } ?>
+
 </div>

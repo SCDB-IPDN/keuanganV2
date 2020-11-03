@@ -13,7 +13,6 @@ class Profil_model extends CI_Model {
     {       
         
         $nip = $this->session->userdata('nip');
-        
         $hasil = $this->db->where('nip', $nip)->update('tbl_users', $input_data);
         
         return $hasil;       

@@ -50,10 +50,10 @@
                             <label class="col-lg-4 col-form-label">Password Baru</label>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                    <input type="Password" class="form-control" name="password" placeholder="Password..."/>
-                                    <div class="input-group-addon">
+                                    <input type="Password" class="form-control" name="password" placeholder="Password..." data-toggle="password"/>
+                                    <!-- <div class="input-group-addon">
                                         <i class="fa fa-key"></i>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -70,3 +70,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
+
+<script type="text/javascript">
+	$("#password").password('toggle');
+</script>

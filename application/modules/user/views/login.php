@@ -41,7 +41,7 @@
 								<input type="text" class="form-control form-control-lg inverse-mode" name="nip" placeholder="nip" required />
 							</div>
 							<div class="form-group m-b-20">
-								<input type="password" class="form-control form-control-lg inverse-mode" name="password" placeholder="Password" required />
+								<input type="password" class="form-control form-control-lg inverse-mode" name="password" placeholder="Password" data-toggle="password" required />
 							</div>
 							<center><b><?php echo $this->session->flashdata('error') ?></b></center>
 							<br>
@@ -66,3 +66,9 @@
 	<script src="assets/js/theme/default.min.js"></script> -->
 </body>
 </html>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
+
+<script type="text/javascript">
+	$("#password").password('toggle');
+</script>
