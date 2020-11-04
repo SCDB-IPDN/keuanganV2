@@ -1,7 +1,7 @@
 <div id="content" class="content">
     <ol class="breadcrumb float-xl-right">
         <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="javascript:;">Data Pegawai</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;">Profil Pegawai</a></li>
         <li class="breadcrumb-item active">Update Profil <?php echo $data->nama_user;?></li>
     </ol>
     <h1 class="page-header">Update Profil <b><?php echo $data->nama_user;?></b></h1>
@@ -9,7 +9,7 @@
         <div class="col-xl-12">
             <div class="panel panel-inverse" data-sortable-id="form-plugins-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Data Pegawai</h4>
+                    <h4 class="panel-title">Profil Pegawai</h4>
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>

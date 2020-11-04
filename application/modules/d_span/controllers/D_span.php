@@ -8,13 +8,13 @@ class D_span extends CI_Controller{
 
     function index(){
           $data = $this->d_span_model->get_all_dashboard()->result();
-          $keuangan = $this->d_span_model->jumlah_pagu()->result();
+          // $keuangan = $this->d_span_model->jumlah_pagu()->result();
 
-          $hitung= $keuangan[0]->realisasi/$keuangan[0]->pagu*100;
-          $persentase = round($hitung,2);
+          // $hitung= $keuangan[0]->realisasi/$keuangan[0]->pagu*100;
+          // $persentase = round($hitung,2);
 
           $tanggal = $this->d_span_model->get_tanggal()->result();
-          $hasil_tgl = date('d F Y', strtotime($tanggal[0]->created_at));
+          $hasil_tgl = date('d F Y', strtotime($tanggal[0]->created_date));
 
           if($hasil_tgl == '01 January 1970'){
                $hasil_tanggal = '--------';
@@ -22,13 +22,12 @@ class D_span extends CI_Controller{
                $hasil_tanggal = $hasil_tgl;
           }
 
-
           $x['data'] = $data;
           $x['chart'] = json_encode($data);
-          $x['pagu'] = number_format($keuangan[0]->pagu);
-          $x['realisasi'] = number_format($keuangan[0]->realisasi);
-          $x['sisa_pagu'] = number_format($keuangan[0]->sisa_pagu);
-          $x['persentase'] = $persentase;
+          // $x['pagu'] = number_format($keuangan[0]->pagu);
+          // $x['realisasi'] = number_format($keuangan[0]->realisasi);
+          // $x['sisa_pagu'] = number_format($keuangan[0]->sisa_pagu);
+          // $x['persentase'] = $persentase;
           $x['tanggal'] = $hasil_tanggal;
      
           $this->load->view("include/head");

@@ -50,13 +50,36 @@
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
               <tr>
+                <td rowspan="2">Kode Satker</td>
+                <td rowspan="2">Nama Satker</td>
+                <td colspan="3">Belanja Pegawai</td>
+                <td colspan="3">Belanja Barang</td>
+                <td colspan="3">Belanja Modal</td>
+                <td colspan="3">Total</td>
+                <td rowspan="2">Sisa</td>
+                <td rowspan="2">Detail</td>
+              </tr>
+              <tr>
+                <td>Pagu BP</td>
+                <td>Realisasi BP</td>
+                <td>% BP</td>
+                <td>Pagu BB</td>
+                <td>Realisasi BB</td>
+                <td>% BB</td>
+                <td>Pagu BM</td>
+                <td>Realisasi BM</td>
+                <td>% BM</td>
+                <td>Pagu T</td>
+                <td>Realisasi T</td>
+                <td>% T</td>
+              </tr>
+              <!-- <tr>
                 <th width="1%" class="text-nowrap">Kampus</th>
                 <th width="1%" class="text-nowrap">Pagu</th>
                 <th width="1%" class="text-nowrap">Realisasi</th>
-                <th width="1%" class="text-nowrap">Sisa Pagu</th>
                 <th width="1%" class="text-nowrap">Persentase</th>
                 <th width="1%" class="text-nowrap">Detail</th>
-              </tr>
+              </tr> -->
             </thead>
             <tbody>
             <?php
@@ -65,12 +88,27 @@
                 $no++;
             ?>
               <tr class="gradeA">
-                <td width="1%"><?= $row->kampus == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->kampus ?></td>
-                <td width="1%"><?= number_format($row->pagu) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu) ?></td>
-                <td width="1%"><?= number_format($row->realisasi) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi) ?></td>
-                <td width="1%"><?= number_format($row->sisa_pagu) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->sisa_pagu) ?></td>
-                <td width="1%"><?= $row->persentase == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase ?></td>
-                <?php if($row->kampus == 'IPDN KAMPUS JATINANGOR'){?>
+                <td width="1%"><?= $row->kode_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->kode_satker ?></td>
+                <td width="1%"><?= $row->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_satker ?></td>
+
+                <td width="1%"><?= number_format($row->pagu_bp ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bp ) ?></td>
+                <td width="1%"><?= number_format($row->realisasi_bp) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bp) ?></td>
+                <td width="1%"><?= $row->persentase_bp == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bp?></td>
+
+                <td width="1%"><?= number_format($row->pagu_bb ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bb ) ?></td>
+                <td width="1%"><?= number_format($row->realisasi_bb) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bb) ?></td>
+                <td width="1%"><?= $row->persentase_bb == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bb?></td>
+
+                <td width="1%"><?= number_format($row->pagu_bm ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bm ) ?></td>
+                <td width="1%"><?= number_format($row->realisasi_bm) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bm) ?></td>
+                <td width="1%"><?= $row->persentase_bm == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bm?></td>
+
+                <td width="1%"><?= number_format($row->pagu_t ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_t ) ?></td>
+                <td width="1%"><?= number_format($row->realisasi_t) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_t) ?></td>
+                <td width="1%"><?= $row->persentase_t == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_t?></td>
+
+                <td width="1%"><?= number_format($row->sisa) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->sisa) ?></td>
+                <?php if($row->nama_satker == 'IPDN KAMPUS JATINANGOR'){?>
                 <td width="1%"><?= "<a href='home' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a>"?></td>
                 <?php }else{ ?>
                 <td width="1%">Tidak ada detail</td>
@@ -97,9 +135,9 @@
   Morris.Bar({
     element: 'graph',
     data: <?php echo $chart;?>,
-    xkey: 'kampus',
-    ykeys: ['pagu', 'realisasi'],
-    labels: ['pagu', 'realisasi'],
+    xkey: 'alias',
+    ykeys: ['pagu_t', 'realisasi_t'],
+    labels: ['pagu_t', 'realisasi_t'],
     barRatio: 0.4,
     pointSize: 2.5,
     xLabelAngle: 4,
@@ -108,5 +146,4 @@
     hideHover: 'auto',
     gridTextSize: 9
   });
-  
 </script>
