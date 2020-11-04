@@ -23,15 +23,25 @@
         </ul>
         <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span_biro"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-th-large"></i> 
                     <span>Dashboard</span>
                 </a>
                 <ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="home">Home</a></li>
-					<li class="<?php echo $this->uri->segment(1)=="d_span"?"active":"";?>"><a href="d_span">SPAN</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="home">HOME</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span_biro"?"active":"";?> has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            SPAN
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="<?php echo $this->uri->segment(1)=="d_span"?"active":"";?>"><a href="d_span">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(1)=="d_span_biro"?"active":"";?>"><a href="d_span_biro">KAMPUS JATINANGOR</a></li>
+						</ul>
+                    </li>
+
                     <li><a href="home">POK</a></li>
                     <li><a href="home">SAS</a></li>
 				</ul>

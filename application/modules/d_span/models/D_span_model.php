@@ -3,8 +3,9 @@ class D_span_model extends CI_Model{
 
   public function get_all_dashboard()
 	{	
-		$result = $this->db->query("SELECT a.*, b.alias as alias FROM tbl_span as a JOIN tbl_satker as b ON a.kode_satker=b.kode_satker ORDER BY created_date DESC limit 8 ");
-        
+		// $result = $this->db->query("SELECT a.*, CONCAT(b.alias, ' ', a.persentase_t) as alias FROM tbl_span as a JOIN tbl_satker as b ON a.kode_satker=b.kode_satker ORDER BY created_date DESC limit 8");
+    $result = $this->db->query("SELECT a.*, b.alias as alias FROM tbl_span as a JOIN tbl_satker as b ON a.kode_satker=b.kode_satker ORDER BY created_date DESC limit 8 ");
+
 		return $result;
   }
 

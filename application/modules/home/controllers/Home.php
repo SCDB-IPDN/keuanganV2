@@ -4,7 +4,7 @@ class Home extends CI_Controller {
 
   function __construct() {
     parent::__construct();
-    // $this->load->model('User_model');
+    $this->load->model('home_model');
   }
 
   /**
@@ -15,18 +15,31 @@ class Home extends CI_Controller {
   {
     if($_SESSION['nip'])
     {
-        $this->load->view("include/head");
-        $this->load->view("include/top-header");
-        $this->load->view('home');
-        $this->load->view("include/sidebar");
-        $this->load->view("include/panel");
-        $this->load->view("include/footer");         
+      // SPAN JATINANGOR
+      $persentase_jatinangor = $this->home_model->get_span_jatinangor();
+
+      // BIRO
+      $biro = $this->home_model->get_all_span_biro();
+
+      // SPAN
+      $span = $this->home_model->get_span()->result();
+      $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
+      $persentase_span = round($hitung_span,2);
+
+      $x['biro'] = $biro;
+      $x['persentase_span'] = $persentase_span;
+      $x['persentase_jatinangor'] = $persentase_jatinangor;
+
+      $this->load->view("include/head");
+      $this->load->view("include/top-header");
+      $this->load->view('home', $x);
+      $this->load->view("include/sidebar");
+      $this->load->view("include/panel");
+      $this->load->view("include/footer");         
 
     }else{
-
         //jika session belum terdaftar, maka redirect ke halaman login
         redirect("user");
-
     }
 	
   }

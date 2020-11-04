@@ -2,9 +2,9 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="javascript:;">SPAN</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;">SPAN BIRO</a></li>
   </ol>
-  <h1 class="page-header">SPAN</h1>
+  <h1 class="page-header">SPAN BIRO</h1>
   <div class="row">
     <div class="col-xl-12">
 					<!-- begin panel -->
@@ -20,7 +20,7 @@
             </div>
 						<div class="panel-body">
             <div class="table-responsive">
-							<h4 class="text-center">Laporan progress realisasi anggaran IPDN <?php echo date("Y") ?> Berdasarkan SPAN</h4>
+							<h4 class="text-center">Laporan progress realisasi anggaran BIRO IPDN JATINANGOR <?php echo date("Y") ?> Berdasarkan SPAN</h4>
               <div id="graph" class="height-sm width-xl"></div>
             </div>
             </div>
@@ -30,7 +30,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
-            <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
+            <a href="d_span" class="btn btn-icon btn-sm btn-warning"> KEMBALI</a>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -39,12 +39,12 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
-        <!-- <div class="alert alert-warning fade show">
+        <div class="alert alert-warning fade show">
           <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
           </button>
-          <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
-        </div> -->
+          <p>Untuk kembali ke data SPAN IPDN Click Button Kembali</p>
+        </div>
         <div class ="table-responsive">
         <div class="panel-body">
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
@@ -66,15 +66,7 @@
                 <th>Realisasi T</th>
                 <th>% T</th>
                 <th>Sisa</th>
-                <th>Detail</th>
               </tr>
-              <!-- <tr>
-                <th width="1%" class="text-nowrap">Kampus</th>
-                <th width="1%" class="text-nowrap">Pagu</th>
-                <th width="1%" class="text-nowrap">Realisasi</th>
-                <th width="1%" class="text-nowrap">Persentase</th>
-                <th width="1%" class="text-nowrap">Detail</th>
-              </tr> -->
             </thead>
             <tbody>
             <?php
@@ -84,8 +76,8 @@
             ?>
               <tr class="gradeA">
                 <td width="1%"><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
-                <td width="1%"><?= $row->kode_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->kode_satker ?></td>
-                <td width="1%"><?= $row->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_satker ?></td>
+                <td width="1%"><?= $row->kode_satker_biro == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->kode_satker_biro ?></td>
+                <td width="1%"><?= $row->nama_satker_biro == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_satker_biro ?></td>
 
                 <td width="1%"><?= number_format($row->pagu_bp ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bp ) ?></td>
                 <td width="1%"><?= number_format($row->realisasi_bp) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bp) ?></td>
@@ -104,11 +96,6 @@
                 <td width="1%"><?= $row->persentase_t == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_t?></td>
 
                 <td width="1%"><?= number_format($row->sisa) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->sisa) ?></td>
-                <?php if($row->nama_satker == 'IPDN KAMPUS JATINANGOR'){?>
-                <td width="1%"><?= "<a href='d_span_biro' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a>"?></td>
-                <?php }else{ ?>
-                <td width="1%">Tidak ada detail</td>
-                <?php } ?>
               </tr>
             <?php } ?>
             </tbody>
@@ -136,7 +123,7 @@
     labels: ['pagu_t', 'realisasi_t'],
     barRatio: 0.4,
     pointSize: 2.5,
-    xLabelAngle: 4,
+    // xLabelAngle: 4,  
     resize: true,
     parseTime: false,
     hideHover: 'auto',

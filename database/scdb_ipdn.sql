@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2020 at 03:40 AM
+-- Generation Time: Nov 04, 2020 at 08:07 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -71,6 +71,29 @@ INSERT INTO `tbl_satker` (`id_satker`, `kode_satker`, `nama_satker`, `alias`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_satker_biro`
+--
+
+CREATE TABLE `tbl_satker_biro` (
+  `id_satker_biro` int(11) NOT NULL,
+  `kode_satker_biro` varchar(150) NOT NULL,
+  `nama_satker_biro` varchar(150) NOT NULL,
+  `alias` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_satker_biro`
+--
+
+INSERT INTO `tbl_satker_biro` (`id_satker_biro`, `kode_satker_biro`, `nama_satker_biro`, `alias`) VALUES
+(1, '1292', 'Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan', 'BIRO I'),
+(2, '1294', 'Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan', 'BIRO II'),
+(3, '1293', 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan', 'BIRO III'),
+(4, '1286', 'Penyelenggaraan Administrasi Kerjasama dan Hukum', 'BIRO IV');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_span`
 --
 
@@ -101,6 +124,39 @@ CREATE TABLE `tbl_span` (
 INSERT INTO `tbl_span` (`id_span`, `kode_satker`, `nama_satker`, `pagu_bp`, `realisasi_bp`, `persentase_bp`, `pagu_bb`, `realisasi_bb`, `persentase_bb`, `pagu_bm`, `realisasi_bm`, `persentase_bm`, `pagu_t`, `realisasi_t`, `persentase_t`, `sisa`, `created_date`) VALUES
 (1, '448302', 'IPDN KAMPUS JATINANGOR', '112930090000', '94138695189', '83,36%', '201633066000', '133014436771', '65,97%', '17860660000', '4591617484', '25,71%', '332423816000', '231744749444', '69,71%', '100679066556', '2020-11-04'),
 (2, '352593', 'IPDN KAMPUS JAKARTA', '23313047000', '19910872044', '85,41%', '22141734000', '15486861127', '69,94%', '1482844000', '939691500', '63,37%', '46937625000', '36337424671', '77,42%', '10600200329', '2020-11-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_span_biro`
+--
+
+CREATE TABLE `tbl_span_biro` (
+  `id_span_biro` int(11) NOT NULL,
+  `kode_satker_biro` varchar(150) NOT NULL,
+  `nama_satker_biro` varchar(150) NOT NULL,
+  `pagu_bp` varchar(150) NOT NULL,
+  `realisasi_bp` varchar(150) NOT NULL,
+  `persentase_bp` varchar(150) NOT NULL,
+  `pagu_bb` varchar(150) NOT NULL,
+  `realisasi_bb` varchar(150) NOT NULL,
+  `persentase_bb` varchar(150) NOT NULL,
+  `pagu_bm` varchar(150) NOT NULL,
+  `realisasi_bm` varchar(150) NOT NULL,
+  `persentase_bm` varchar(150) NOT NULL,
+  `pagu_t` varchar(150) NOT NULL,
+  `realisasi_t` varchar(150) NOT NULL,
+  `persentase_t` varchar(150) NOT NULL,
+  `sisa` varchar(150) NOT NULL,
+  `created_date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_span_biro`
+--
+
+INSERT INTO `tbl_span_biro` (`id_span_biro`, `kode_satker_biro`, `nama_satker_biro`, `pagu_bp`, `realisasi_bp`, `persentase_bp`, `pagu_bb`, `realisasi_bb`, `persentase_bb`, `pagu_bm`, `realisasi_bm`, `persentase_bm`, `pagu_t`, `realisasi_t`, `persentase_t`, `sisa`, `created_date`) VALUES
+(1, '1286', 'Penyelenggaraan Administrasi Kerjasama dan Hukum', '0', '0', '0,00%', '2030457000', '1756528114', '86,51%', '0', '0', '0,00%', '2030457000', '1756528114', '86,51%', '273928886', '2020-11-04');
 
 -- --------------------------------------------------------
 
@@ -142,10 +198,22 @@ ALTER TABLE `tbl_satker`
   ADD PRIMARY KEY (`id_satker`);
 
 --
+-- Indexes for table `tbl_satker_biro`
+--
+ALTER TABLE `tbl_satker_biro`
+  ADD PRIMARY KEY (`id_satker_biro`);
+
+--
 -- Indexes for table `tbl_span`
 --
 ALTER TABLE `tbl_span`
   ADD PRIMARY KEY (`id_span`);
+
+--
+-- Indexes for table `tbl_span_biro`
+--
+ALTER TABLE `tbl_span_biro`
+  ADD PRIMARY KEY (`id_span_biro`);
 
 --
 -- Indexes for table `tbl_users`
@@ -170,10 +238,22 @@ ALTER TABLE `tbl_satker`
   MODIFY `id_satker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `tbl_satker_biro`
+--
+ALTER TABLE `tbl_satker_biro`
+  MODIFY `id_satker_biro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT for table `tbl_span`
 --
 ALTER TABLE `tbl_span`
   MODIFY `id_span` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_span_biro`
+--
+ALTER TABLE `tbl_span_biro`
+  MODIFY `id_span_biro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

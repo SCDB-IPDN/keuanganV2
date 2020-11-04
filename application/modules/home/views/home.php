@@ -4,14 +4,14 @@
 		<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
 	</ol>
 	<h1 class="page-header mb-3">Dashboard</h1>
-	<div class="d-sm-flex align-items-center mb-3">
+	<!-- <div class="d-sm-flex align-items-center mb-3">
 		<a href="#" class="btn btn-inverse mr-2 text-truncate" id="daterange-filter">
 			<i class="fa fa-calendar fa-fw text-white-transparent-5 ml-n1"></i> 
 			<span>1 Jun 2019 - 7 Jun 2019</span>
 			<b class="caret"></b>
 		</a>
 		<div class="text-muted f-w-600 mt-2 mt-sm-0">compared to <span id="daterange-prev-date">24 Mar-30 Apr 2019</span></div>
-	</div>
+	</div> -->
 	<div class="row">
 		<div class="col-xl-6">
 			<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
@@ -19,29 +19,32 @@
 					<div class="row">
 						<div class="col-xl-7 col-lg-8">
 							<div class="mb-3 text-grey">
-								<b>TOTAL SALES</b>
+								<b>PERSENTASE SPAN</b>
 								<span class="ml-2">
-									<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Total sales" data-placement="top" data-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i>
+									<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
 								</span>
 							</div>
 							<div class="d-flex mb-1">
-								<h2 class="mb-0">$<span data-animation="number" data-value="64559.25">0.00</span></h2>
+								<h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2>
 								<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
 							</div>
 							<div class="mb-3 text-grey">
-								<i class="fa fa-caret-up"></i> <span data-animation="number" data-value="33.21">0.00</span>% compare to last week
+								<!-- <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="33.21">0.00</span>% compare to last week -->
+							</div>
+							<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+								<div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="<?php echo $persentase_span ?>%" style="width: 0%"></div>
 							</div>
 							<hr class="bg-white-transparent-2" />
 							<div class="row text-truncate">
 								<div class="col-6">
-									<div class="f-s-12 text-grey">Total sales order</div>
+									<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
 									<div class="f-s-18 m-b-5 f-w-600 p-b-1" data-animation="number" data-value="1568">0</div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
 										<div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="55%" style="width: 0%"></div>
 									</div>
 								</div>
 								<div class="col-6">
-									<div class="f-s-12 text-grey">Avg. sales per order</div>
+									<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
 									<div class="f-s-18 m-b-5 f-w-600 p-b-1">$<span data-animation="number" data-value="41.20">0.00</span></div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
 										<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%" style="width: 0%"></div>
@@ -62,29 +65,33 @@
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="card-body">
 							<div class="mb-3 text-grey">
-								<b class="mb-3">CONVERSION RATE</b> 
-								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+								<b class="mb-3">TOTAL KAMPUS JATINANGOR BERDASARKAN SPAN</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
 							</div>
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="2.19">0.00</span>%</h2>
+								<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2>
 								<div class="ml-auto">
 									<div id="conversion-rate-sparkline"></div>
 								</div>
 							</div>
 							<div class="mb-4 text-grey">
-								<i class="fa fa-caret-down"></i> <span data-animation="number" data-value="0.50">0.00</span>% compare to last week
+								<i class="fa fa-caret-down"></i> Detail berdasarkan Biro
 							</div>
+							<?php
+								foreach($biro as $row){
+							?>
 							<div class="d-flex mb-2">
 								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-									Added to cart
+									<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+									<?php echo $row->alias; ?>
 								</div>
 								<div class="d-flex align-items-center ml-auto">
-									<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div>
-									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="3.79">0.00</span>%</div>
+									<!-- <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div> -->
+									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?php echo $row->persentase_t; ?>"><?php echo $row->persentase_t; ?></span></div>
 								</div>
 							</div>
-							<div class="d-flex mb-2">
+							<?php } ?>
+							<!-- <div class="d-flex mb-2">
 								<div class="d-flex align-items-center">
 									<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
 									Reached checkout
@@ -96,18 +103,18 @@
 							</div>
 							<div class="d-flex">
 								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
 									Sessions converted
 								</div>
 								<div class="d-flex align-items-center ml-auto">
 									<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="57">0</span>%</div>
 									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="2.19">0.00</span>%</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<!-- <div class="col-sm-6">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="card-body">
 							<div class="mb-3 text-grey">
@@ -155,11 +162,11 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-xl-4 col-lg-6">
 			<div class="card border-0 bg-dark-darker text-white mb-3">
 				<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 60%;">
@@ -228,8 +235,8 @@
 					</a>
 				</div>
 			</div>
-		</div>
-		<div class="col-xl-4 col-lg-6">
+		</div> -->
+		<!-- <div class="col-xl-4 col-lg-6">
 			<div class="card border-0 bg-dark text-white mb-3">
 				<div class="card-body">
 					<div class="mb-3 text-grey">
@@ -303,8 +310,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-xl-4 col-lg-6">
+		</div> -->
+		<!-- <div class="col-xl-4 col-lg-6">
 			<div class="card border-0 bg-dark text-white mb-3">
 				<div class="card-body">
 					<div class="mb-3 text-grey">
@@ -360,6 +367,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>

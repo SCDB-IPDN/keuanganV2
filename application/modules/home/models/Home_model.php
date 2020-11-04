@@ -1,0 +1,27 @@
+<?php
+class Home_model extends CI_Model{
+
+  public function get_span()
+	{	
+    $result = $this->db->query("SELECT SUM(pagu_t) AS pagu, sum(realisasi_t) as realisasi
+              FROM tbl_span
+              GROUP BY created_date
+              ORDER BY created_date DESC LIMIT 1");
+        
+		return $result;
+  }
+
+  public function get_span_jatinangor(){
+    $result = $this->db->query("SELECT persentase_t FROM tbl_span WHERE kode_satker = 448302 ORDER BY created_date DESC LIMIT 1")->result();
+
+    return $result;
+  }
+
+  public function get_all_span_biro()
+	{	
+		$result = $this->db->query("SELECT a.*, b.alias as alias FROM tbl_span_biro as a JOIN tbl_satker_biro as b ON a.kode_satker_biro=b.kode_satker_biro ORDER BY created_date DESC limit 8")->result();
+
+		return $result;
+  }
+  
+}
