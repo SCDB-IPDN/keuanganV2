@@ -13,7 +13,7 @@ class Profil extends CI_Controller {
 	{
 		if($this->session->userdata('nip') == NULL)
 		{
-			$this->load->view('login');
+			redirect("");
 		}else{
             
             $data = $this->profil_model->get_data();

@@ -7,7 +7,7 @@
             </nav>
             <div class="credits ml-auto">
               <span class="copyright">
-                Development By <a href="#" target="_blank">TIM IT IPDN</a> © Copyright
+                Development By <a href="#">TIM IT IPDN</a> © Copyright
                 <script>
                   document.write(new Date().getFullYear())
                 </script>

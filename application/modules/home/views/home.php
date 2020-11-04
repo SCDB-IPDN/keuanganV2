@@ -61,7 +61,7 @@
 		</div>
 		<div class="col-xl-6">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="card-body">
 							<div class="mb-3 text-grey">
