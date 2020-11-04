@@ -25,7 +25,7 @@
 								</span>
 							</div>
 							<div class="d-flex mb-1">
-								<h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2>
+								<a href="<?php echo base_url('d_span');?>"><h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2></a>
 								<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
 							</div>
 							<div class="mb-3 text-grey">
@@ -69,13 +69,14 @@
 								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
 							</div>
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2>
+								<a href="<?php echo base_url('d_span/biro');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
 								<div class="ml-auto">
 									<div id="conversion-rate-sparkline"></div>
 								</div>
 							</div>
+							<br>
 							<div class="mb-4 text-grey">
-								<i class="fa fa-caret-down"></i> Detail berdasarkan Biro
+								<i class=""></i> Detail berdasarkan Biro
 							</div>
 							<?php
 								foreach($biro as $row){
@@ -114,9 +115,9 @@
 						</div>
 					</div>
 				</div>
-				<!-- <div class="col-sm-6">
+				<div class="col-sm-6">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
-						<div class="card-body">
+						<!-- <div class="card-body">
 							<div class="mb-3 text-grey">
 								<b class="mb-3">STORE SESSIONS</b> 
 								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Store Sessions" data-placement="top" data-content="Number of sessions on your online store. A session is a period of continuous activity from a visitor." data-original-title="" title=""></i></span>
@@ -160,15 +161,15 @@
 									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="5545">0</span></div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- <div class="row">
+	<div class="row">
 		<div class="col-xl-4 col-lg-6">
-			<div class="card border-0 bg-dark-darker text-white mb-3">
+			<!-- <div class="card border-0 bg-dark-darker text-white mb-3">
 				<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 60%;">
 					<div class="mb-3 text-grey">
 						<b>SALES BY SOCIAL SOURCE</b>
@@ -234,10 +235,10 @@
 						</div>
 					</a>
 				</div>
-			</div>
-		</div> -->
-		<!-- <div class="col-xl-4 col-lg-6">
-			<div class="card border-0 bg-dark text-white mb-3">
+			</div> -->
+		</div>
+		<div class="col-xl-4 col-lg-6">
+			<!-- <div class="card border-0 bg-dark text-white mb-3">
 				<div class="card-body">
 					<div class="mb-3 text-grey">
 						<b>TOP PRODUCTS BY UNITS SOLD</b>
@@ -309,10 +310,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div> -->
-		<!-- <div class="col-xl-4 col-lg-6">
-			<div class="card border-0 bg-dark text-white mb-3">
+			</div> -->
+		</div>
+		<div class="col-xl-4 col-lg-6">
+			<!-- <div class="card border-0 bg-dark text-white mb-3">
 				<div class="card-body">
 					<div class="mb-3 text-grey">
 						<b>MARKETING CAMPAIGN</b>
@@ -366,7 +367,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div> -->
+			</div> -->
+		</div>
 	</div>
 </div>

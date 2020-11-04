@@ -35,4 +35,24 @@ class D_span extends CI_Controller{
                redirect("user");
           }
     }
+
+    function biro()
+    {
+          if($_SESSION['nip'])
+          {
+               $data = $this->d_span_model->get_all_dashboard_biro()->result();
+
+               $x['data'] = $data;
+               $x['chart'] = json_encode($data);
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_span_biro', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+    }
 }

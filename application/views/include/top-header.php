@@ -1,6 +1,6 @@
 <div id="header" class="header navbar-default">
     <div class="navbar-header">
-        <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>SCDB</b> IPDN</a>
+        <a href="<?php echo base_url('home');?>" class="navbar-brand"><span class="navbar-logo"></span> <b>SCDB</b> IPDN</a>
         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -17,7 +17,7 @@
                 <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> -->
                 <!-- <a href="javascript:;" class="dropdown-item">Calendar</a> -->
                 <div class="dropdown-divider"></div>
-                <a href="<?php echo base_url(); ?>index.php/user/logout" class="dropdown-item">Log Out</a>
+                <a href="<?php echo base_url(); ?>user/logout" class="dropdown-item">Log Out</a>
             </div>
         </li>
     </ul>

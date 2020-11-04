@@ -17,7 +17,7 @@
             </li>
             <li>
                 <ul class="nav nav-profile">
-                    <li class="<?php echo $this->uri->segment(1)=="profil"?"active":"";?>"><a href="profil"><i class="fa fa-cog"></i> Edit Profile</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="profil"?"active":"";?>"><a href="<?php echo base_url('profil');?>"><i class="fa fa-cog"></i> Edit Profile</a></li>
                 </ul>
             </li>
         </ul>
@@ -30,26 +30,26 @@
                     <span>Dashboard</span>
                 </a>
                 <ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="home">HOME</a></li>
-					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span_biro"?"active":"";?> has-sub">
+					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="<?php echo base_url('home');?>">HOME</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
                             SPAN
                         </a>
                         <ul class="sub-menu">
-                            <li class="<?php echo $this->uri->segment(1)=="d_span"?"active":"";?>"><a href="d_span">UTAMA</a></li>
-							<li class="<?php echo $this->uri->segment(1)=="d_span_biro"?"active":"";?>"><a href="d_span_biro">KAMPUS JATINANGOR</a></li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
 						</ul>
                     </li>
 
-                    <li><a href="home">POK</a></li>
-                    <li><a href="home">SAS</a></li>
+                    <li><a href="#">POK</a></li>
+                    <li><a href="#">SAS</a></li>
 				</ul>
             </li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
             
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
-                <a href="pegawai"><i class="fa fa-users"></i> <span>Pegawai</span></a>
+                <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>Pegawai</span></a>
             </li>
 
             <?php } ?>
