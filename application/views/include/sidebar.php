@@ -23,7 +23,7 @@
         </ul>
         <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span_biro"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="dashboard_pok"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-th-large"></i> 
@@ -42,7 +42,7 @@
 						</ul>
                     </li>
 
-                    <li><a href="#">POK</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="dashboard_pok" ?"active":"";?>"><a href="<?php echo base_url('dashboard_pok');?>">POK</a></li>
                     <li><a href="#">SAS</a></li>
 				</ul>
             </li>
@@ -50,6 +50,11 @@
             
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
                 <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>Pegawai</span></a>
+            </li>
+
+            <li class="nav-header">Upload Data</li>
+            <li class="<?php echo $this->uri->segment(1)=="uploads"?"active":"";?>">
+                <a href="<?php echo base_url('uploads');?>"><i class="fa fa-upload"></i> <span>Excel</span></a>
             </li>
 
             <?php } ?>
