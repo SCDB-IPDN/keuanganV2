@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-xl-12">
 			<!-- begin panel -->
-			<div class="panel panel-inverse" data-sortable-id="morris-chart-3">
+			<div class="panel panel-inverse" data-sortable-id="morris-chart-2">
 				<div class="panel-heading">
 					<h4 class="panel-title"></h4>
           <div class="panel-heading-btn">
