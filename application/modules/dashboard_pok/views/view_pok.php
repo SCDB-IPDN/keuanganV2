@@ -70,7 +70,7 @@
                 <td><?= number_format($x['pagu']-$x['realisasi'], 0, ',', '.'); ?></td>
                 <td><?= round((100/$x['pagu']*$x['realisasi']), 2)."%"; ?></td>
                 <?php if (isset($x['idx'])){ ?>
-                  <td><a href='<?= '/portal/dashboard_pok/det/'.$x['idx'] ?>' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a></td>
+                  <td><a href='<?= 'dashboard_pok/'.$x['idx'] ?>' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a></td>
                 <?php } else { ?>
                   <td>Tidak ada detail</td>
                 <?php } ?>
