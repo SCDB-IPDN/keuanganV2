@@ -136,7 +136,6 @@
     labels: ['pagu_t', 'realisasi_t'],
     barRatio: 0.4,
     pointSize: 2.5,
-    xLabelAngle: 4,
     resize: true,
     parseTime: false,
     hideHover: 'auto',
