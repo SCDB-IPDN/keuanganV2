@@ -1,7 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require('./application/third_party/phpoffice/vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Uploads extends CI_Controller {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index()
     {
@@ -15,6 +25,35 @@ class Uploads extends CI_Controller {
             $this->load->view("include/footer"); 
         }else{
             redirect("user");
+        }
+    }
+
+    public function tes(){
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['berkas_excel']['name']);
+            $extension = end($arr_file);
+        
+            if('csv' == $extension) {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $spreadsheet = $reader->load($_FILES['berkas_excel']['tmp_name']);
+            
+            $sheetData = $spreadsheet->getActiveSheet()->toArray();
+            $data = array();
+            for($i = 1;$i < count($sheetData);$i++)
+            {
+                array_push($data, array(
+                    'nama'      => $sheetData[$i]['1'],
+                    'umur'      => $sheetData[$i]['2'],
+                ));
+            }
+            $this->db->insert_batch('pengguna', $data);
+            redirect("uploads"); 
         }
     }
 
@@ -123,7 +162,7 @@ class Uploads extends CI_Controller {
                                     echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
                                     array_push($data, array(
                                         'id_u'      => $unit,
-                                        'nama'      => str_replace("_x000D_", "",$row['B']),
+                                        'nama'      => str_replace("[Base Line]", "", str_replace("_x000D_", "",$row['B'])),
                                         'pagu'      => preg_replace("/[^0-9]/", "", $row['C']),
                                         'realisasi' => preg_replace("/[^0-9]/", "", $row['D']),
                                         'kembali'   => preg_replace("/[^0-9]/", "", $row['E']),
@@ -198,7 +237,9 @@ class Uploads extends CI_Controller {
 
                     // setting table unit kalo belum ada isinya
                     // $this->db->truncate('unit_pok');
-                    $this->db->insert_batch('unit_pok', $unitList);
+
+                    // untuk unit_pok yang kosong
+                    // $this->db->insert_batch('unit_pok', $unitList);
                 }
             }
             echo "<br>";
