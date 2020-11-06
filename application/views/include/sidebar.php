@@ -47,15 +47,28 @@
 				</ul>
             </li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
+
+            <!-- <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas"?"active":"";?> has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>    
+                    <i class="fa fa-upload"></i> 
+                    <span>Upload</span>
+                </a>
+                <ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="v_pok"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pok');?>">POK</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
+				</ul>
+            </li> -->
             
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
                 <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>Pegawai</span></a>
             </li>
 
-            <li class="nav-header">Upload Data</li>
+            <!-- <li class="nav-header">Upload Data</li>
             <li class="<?php echo $this->uri->segment(1)=="uploads"?"active":"";?>">
                 <a href="<?php echo base_url('uploads');?>"><i class="fa fa-upload"></i> <span>Excel</span></a>
-            </li>
+            </li> -->
 
             <?php } ?>
             <!-- <li class="nav-header">Section Kehadiran</li>
@@ -65,8 +78,8 @@
             <li class="nav-header">Section Keuangan</li>
             <li class="">
                 <a href="#"><i class="fa fa-chart-pie"></i> <span>Keuangan Pegawai</span></a>
-            </li>
-            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li> -->
+            </li> -->
+            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
         </ul>
     </div>
 </div>

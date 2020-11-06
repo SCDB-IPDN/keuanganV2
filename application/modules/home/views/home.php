@@ -44,7 +44,7 @@
 									</div>
 								</div>
 								<div class="col-6">
-									<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
+									<div class="f-s-12 text-grey"><b>PERSENTASE POK IPDN JATINANGOR</b></div>
 									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('dashboard_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
 										<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
@@ -65,7 +65,7 @@
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="card-body">
 							<div class="mb-3 text-grey">
-								<b class="mb-3">TOTAL KAMPUS JATINANGOR BERDASARKAN SPAN</b> 
+								<b class="mb-3">TOTAL PERSENTASE KAMPUS JATINANGOR BERDASARKAN SPAN</b> 
 								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
 							</div>
 							<div class="d-flex align-items-center mb-1">

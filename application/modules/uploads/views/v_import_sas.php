@@ -21,14 +21,17 @@
                     <br>
                     <div class="row">
                         <div class="col-md-2 offset-1">
-                            <!-- <?php echo $this->session->flashdata('notifbiroN') ?> -->
-                            <form method="POST" action="<?php echo base_url() ?>uploads/tes" enctype="multipart/form-data">
+                            <?php echo $this->session->flashdata('sas') ?>
+                            <form method="POST" action="<?php echo base_url() ?>uploads/sas" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail2">UNGGAH FILE EXCEL POK</label>
-                                    <input for="biroN" type="file" name="berkas_excel" class="form-control">
+                                    <label for="exampleInputEmail2">UNGGAH FILE EXCEL SAS</label>
+                                    <span class="ml-2">
+                                        <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
+                                    </span>
+                                    <input for="biroN" type="file" name="sas" class="form-control">
                                 </div>
 
-                                <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP BIRO NEXT</button>
+                                <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SAS</button>
                             </form>
                         </div>
                     </div>

@@ -17,9 +17,35 @@ class Uploads extends CI_Controller {
     {
         if($_SESSION['nip'])
         {
+            redirect("home"); 
+        }else{
+            redirect("user");
+        }
+    }
+
+    public function v_span()
+    {
+        if($_SESSION['nip'])
+        {
+            redirect("home");
+            // $this->load->view("include/head");
+            // $this->load->view("include/top-header");
+            // $this->load->view('v_import_span');
+            // $this->load->view("include/sidebar");
+            // $this->load->view("include/panel");
+            // $this->load->view("include/footer"); 
+        }else{
+            redirect("user");
+        }
+    }
+
+    public function v_pok()
+    {
+        if($_SESSION['nip'])
+        {
             $this->load->view("include/head");
             $this->load->view("include/top-header");
-            $this->load->view('v_import');
+            $this->load->view('v_import_pok');
             $this->load->view("include/sidebar");
             $this->load->view("include/panel");
             $this->load->view("include/footer"); 
@@ -28,32 +54,104 @@ class Uploads extends CI_Controller {
         }
     }
 
-    public function tes(){
+    public function v_sas()
+    {
+        if($_SESSION['nip'])
+        {
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('v_import_sas');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer"); 
+        }else{
+            redirect("user");
+        }
+    }
+
+    public function span(){
         $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        if(isset($_FILES['berkas_excel']['name']) && in_array($_FILES['berkas_excel']['type'], $file_mimes)) {
+        if(isset($_FILES['span']['name']) && in_array($_FILES['span']['type'], $file_mimes)) {
         
-            $arr_file = explode('.', $_FILES['berkas_excel']['name']);
+            $arr_file = explode('.', $_FILES['span']['name']);
             $extension = end($arr_file);
-        
-            if('csv' == $extension) {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+           
+                redirect("uploads/v_span"); 
             } else {
                 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             }
         
-            $spreadsheet = $reader->load($_FILES['berkas_excel']['tmp_name']);
-            
-            $sheetData = $spreadsheet->getActiveSheet()->toArray();
+            $spreadsheet = $reader->load($_FILES['span']['tmp_name']);
+
+            $list_sheet = $spreadsheet->getSheetNames();
+
+            $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
+
             $data = array();
-            for($i = 1;$i < count($sheetData);$i++)
+            $biro = array();
+
+            $date = new DateTime();
+            $datee = $date->format('Y-m-d');
+
+            for($i = 10;$i < 23;$i++)
             {
-                array_push($data, array(
-                    'nama'      => $sheetData[$i]['1'],
-                    'umur'      => $sheetData[$i]['2'],
+                // var_dump($sheetData[$i]['2'] != 1286);
+                if($sheetData[$i]['2'] != NULL && $sheetData[$i]['2'] != 1286 && $sheetData[$i]['2'] != 1292 && $sheetData[$i]['2'] != 1293 && $sheetData[$i]['2'] != 1294 && $sheetData[$i]['2'] != 1295){
+                    array_push($data, array(
+                        'kode_satker'      => $sheetData[$i]['2'],
+                        'nama_satker'      => $sheetData[$i]['3'],
+                        'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
+                        'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
+                        'persentase_bp'      => $sheetData[$i]['7'],
+                        'pagu_bb'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['8']),
+                        'realisasi_bb'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['9']),
+                        'persentase_bb'   => $sheetData[$i]['11'],
+                        'pagu_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['12']),
+                        'realisasi_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['13']),
+                        'persentase_bm'   => $sheetData[$i]['15'],
+                        'pagu_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['16']),
+                        'realisasi_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['17']),
+                        'persentase_t'   => $sheetData[$i]['19'],
+                        'sisa'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['20']),
+                        'created_date' => $datee,
+                    ));
+                }
+            }
+
+            for($i = 11;$i < 15;$i++)
+            {
+                array_push($biro, array(
+                    'kode_satker_biro'      => $sheetData[$i]['2'],
+                    'nama_satker_biro'      => $sheetData[$i]['3'],
+                    'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
+                    'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
+                    'persentase_bp'      => $sheetData[$i]['7'],
+                    'pagu_bb'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['8']),
+                    'realisasi_bb'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['9']),
+                    'persentase_bb'   => $sheetData[$i]['11'],
+                    'pagu_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['12']),
+                    'realisasi_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['13']),
+                    'persentase_bm'   => $sheetData[$i]['15'],
+                    'pagu_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['16']),
+                    'realisasi_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['17']),
+                    'persentase_t'   => $sheetData[$i]['19'],
+                    'sisa'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['20']),
+                    'created_date' => $datee,
                 ));
             }
-            $this->db->insert_batch('pengguna', $data);
-            redirect("uploads"); 
+            // exit;
+            $this->db->truncate('tbl_span_biro');
+            $this->db->insert_batch('tbl_span_biro', $biro);
+            $this->db->truncate('tbl_span');
+            $this->db->insert_batch('tbl_span', $data);
+
+            //upload success
+            $this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+           
+            redirect("uploads/v_span"); 
         }
     }
 
@@ -116,7 +214,7 @@ class Uploads extends CI_Controller {
                 // echo $shit."<br>";
                 $es = explode(".", $shit);
 
-                if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit'))) {
+                if ((is_numeric($es[0]) && ($shit == "PASCA") && ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit'))) {
                     echo "<br><br>=============================<br><br>";
                     echo $shit."<br>";
 
