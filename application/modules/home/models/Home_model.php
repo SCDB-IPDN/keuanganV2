@@ -19,7 +19,7 @@ class Home_model extends CI_Model{
 
   public function get_all_span_biro()
 	{	
-		$result = $this->db->query("SELECT a.*, b.alias as alias FROM tbl_span_biro as a JOIN tbl_satker_biro as b ON a.kode_satker_biro=b.kode_satker_biro ORDER BY created_date DESC limit 8")->result();
+		$result = $this->db->query("SELECT a.*, b.alias as alias FROM tbl_span_biro as a JOIN tbl_satker_biro as b ON a.kode_satker_biro=b.kode_satker_biro ORDER BY alias ASC")->result();
 
 		return $result;
   }
