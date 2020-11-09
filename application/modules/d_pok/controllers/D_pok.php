@@ -28,9 +28,12 @@ class D_pok extends CI_Controller{
           $x['page'] = $id;
           if (strlen($id) == 3) {
             $data = $this->d_pok_model->get_out_data($id)->result();
+            $q = $this->d_pok_model->get_unit_name($id);
+            $x['biro'] = $q['alias'];
+            $x['unit'] = $q['nama'];
           } else {
             $data = $this->d_pok_model->get_unit_data($id)->result();
-            $x['biro'] = $this->d_pok_model->get_unit_name($id);
+            $x['biro'] = $this->d_pok_model->get_biro_name($id);
           }
         }
 

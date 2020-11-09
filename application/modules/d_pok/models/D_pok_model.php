@@ -28,10 +28,18 @@ class D_pok_model extends CI_Model{
 		return $this->db->query("SELECT unit_pok.id_b, unit_pok.id as idx, unit_pok.nama, unit_pok.nama as alias, sum(out_pok.pagu) as pagu, sum(out_pok.realisasi) as realisasi, sum(out_pok.kembali) as kembali, MAX(out_pok.tgl) as tgl from out_pok JOIN unit_pok on out_pok.id_u = unit_pok.id where unit_pok.id_b = $id GROUP BY unit_pok.id");
   }
 
-  public function get_unit_name($id) {
+  public function get_biro_name($id) {
 		$query = $this->db->get_where('tbl_satker_biro', array('kode_satker_biro' => $id));
 		$res = $query->row_array();
 		return $res['alias'];
+  }
+
+  public function get_unit_name($id) {
+		// $query = $this->db->get_where('unit_pok', array('id' => $id));
+  		$query = $this->db->query('SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id');
+		// $res = $query->row_array();
+		// return $res['nama'];
+		return $this->db->query('SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id');
   }
 
   public function get_out_data($id) {	
