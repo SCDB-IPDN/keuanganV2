@@ -53,3 +53,4 @@ $route['default_controller'] = 'user';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['d_pok/(:any)'] = 'd_pok/index/$1';
+$route['d_sas/(:any)'] = 'd_sas/index/$1';

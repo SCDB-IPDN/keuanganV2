@@ -362,6 +362,667 @@ class Uploads extends CI_Controller {
         }
     }
 
+    public function uploadPagu()
+    {
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['pagu']['name']) && in_array($_FILES['pagu']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['pagu']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('pagu', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+           
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
+
+            $sheet             = $loadexcel->getSheetByName("pagu ipdn")->toArray(null, true, true ,true);
+            $dataunit = array();
+            $dataoutput = array();
+            $numrow = 1;
+            $bag = '';
+            $satker_biro = 0;
+            $id_c = 0;
+            $satker_jatinangor = 448302;
+
+            foreach($sheet as $row){
+                if($numrow > 1){
+                    if ($row['A'] == 2){
+                      $cunit = 0;
+                      $coutput = 0;
+                        if (strpos($row['AI'], 'Perencanaan')) {
+                            $cbiro = 1;
+                            $id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+                            // echo "ID BIRO : ".$id_b." <br>";
+                        }elseif (strpos($row['AI'], 'Keuangan')) {
+                            $cbiro = 2;
+                            $id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+                            // echo "ID BIRO : ".$id_b." <br>";
+                        }elseif (strpos($row['AI'], 'Alumni')) {
+                            $cbiro = 3;
+                            $id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+                            // echo "ID BIRO : ".$id_b." <br>";
+                        }elseif (strpos($row['AI'], 'Hukum')) {
+                            $cbiro = 4;
+                            $id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+                            // echo "ID BIRO : ".$id_b." <br>";
+                        }
+                        // $sql = "INSERT INTO biro values (".$id_b.",'".trim($row['AI'])."')";
+                        // $this->db->truncate($sql);
+                        // $this->db->query($sql);
+
+                    } elseif ($row['A'] == 3) {
+
+                    // if ($row['A'] == 3) {
+                        $cunit++;
+                        $unit = $id_b."<br>".(($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit).$row['AI']."<br>";
+                        $temp = explode(".", $row['AI']);
+                        $satker_biro = $temp[0];
+                        // echo $unit;
+
+                        $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                        // echo $id_c;
+                        $ket = trim($row['AI']);
+                        $temp = explode(".", $ket);
+                        $satker_biro = $temp[0];
+                        $ket = substr($ket, 9);
+                        echo "<br><br>";
+
+                        array_push($dataunit, array(
+                            'kode_satker' => $satker_jatinangor,
+                            'id_b'      => $satker_biro,
+                            'id_c'      =>$id_c,
+                            'ket'      => $ket
+                        ));
+                        // echo "$satker_biro $id_c -- $ket1<br>";
+                        // $this->db->truncate('output');
+                        // $this->db->insert_batch('output', $data);
+
+
+                        // $sql1 = "INSERT INTO unit values (".$satker_biro.",".$id_c.",'".$ket."')";
+                        // // echo $sql1."<br><br>";
+                        // // $this->db->truncate($sql1);
+                        // $this->db->query($sql1);
+
+                    } elseif ($row['A'] ==5) {
+                        $coutput++;                        
+                        $ket1 = trim($row['AI']);
+                        $ket1 = substr($ket1, 4);
+                        array_push($dataoutput, array(
+                            'kode_satker' => $satker_jatinangor,
+                            'id_b'      => $satker_biro,
+                            'id_c'      =>$id_c,
+                            // 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
+                            'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+                            'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+                            'ket'      => $ket1
+                        ));
+                        // echo "$satker_biro $id_c -- $ket1<br>";
+                        // $this->db->truncate('output');
+                        // $this->db->insert_batch('output', $data);
+
+                    }
+                }
+                $numrow++;
+            }
+            echo "<br>";
+            // var_dump($data);
+
+            echo "</pre>";
+            // exit();
+
+            // $this->db->truncate('unit');
+            $this->db->insert_batch('unit', $dataunit);
+            // $this->db->truncate('output');
+            $this->db->insert_batch('output', $dataoutput);
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+
+        }
+    }
+    
+    public function uploadRealisasiSulsel()
+    {
+        // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['sulsel']['name']) && in_array($_FILES['sulsel']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['sulsel']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('sulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+           
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['sulsel']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("PAGU_677024")->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_sulsel = 677024;
+            $satker = $satker_biro[0];
+
+            foreach($sheet as $row){
+                if($numrow > 7){
+                    $ket1 = trim($row['A']);
+                    // echo "$ket1<br>";
+                    $ket = substr($ket1, 9);
+                    $temp = explode(" ", $ket1);
+                    $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                    if (preg_match($regex, $temp[0])) {
+                        $cunit++;
+                        $satker_biro = explode(".", $temp[0]);
+                        
+                        echo $satker."<br>";
+                         $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                         $sql1 = "INSERT INTO unit values (".$satker_sulsel.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                         echo "$sql1";
+                         echo "<br>";
+                         $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                    }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                       $ket1 = trim($row['A']);
+                       $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                       $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                       $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                       $sql2 = "INSERT INTO output values (NULL,".$satker_sulsel.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       echo "$sql2";
+                       echo "<br>";
+                       $this->db->query($sql2);
+                    }
+                   
+    
+                }
+                $numrow++;
+            }
+
+            exit();
+            // $this->db->truncate('unit');
+            $this->db->insert_batch('output', $dataoutput);
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
+    public function uploadRealisasiKalbar()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['kalbar']['name']) && in_array($_FILES['kalbar']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['kalbar']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('kalbar', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['kalbar']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_kalbar = 683070;
+            $satker = $satker_biro[0];
+
+            foreach($sheet as $row){
+                if($numrow > 4){
+                    $ket1 = trim($row['A']);
+                    // echo "$ket1<br>";
+                    $ket = substr($ket1, 9);
+                    $temp = explode(" ", $ket1);
+                    $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                    if (preg_match($regex, $temp[0])) {
+                        $cunit++;
+                        $satker_biro = explode(".", $temp[0]);
+                        
+                        echo $satker."<br>";
+                         $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                         $sql1 = "INSERT INTO unit values (".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                         echo "$sql1";
+                         echo "<br>";
+                         $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                    }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                       $ket1 = trim($row['A']);
+                       $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                       $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                       $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                       $sql2 = "INSERT INTO output values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       echo "$sql2";
+                       echo "<br>";
+                       $this->db->query($sql2);
+                    }
+                    
+                }
+                $numrow++;
+            }
+            // $this->db->truncate('realisasi_kalbar');
+            // $this->db->insert_batch('realisasi_kalbar', $data);
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifkalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
+    public function uploadRealisasiNTB()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['ntb']['name']) && in_array($_FILES['ntb']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['ntb']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('ntb', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['ntb']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("IPDN NTB")->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_ntb = 683084;
+            $satker = $satker_biro[0];
+
+            foreach($sheet as $row){
+                if($numrow > 6){
+                  $ket1 = trim($row['AB']);
+                    // echo "$ket1<br>";
+                  $ket = substr($ket1, 9);
+                  $temp = explode(" ", $ket1);
+                  $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                  if (preg_match($regex, $temp[0])) {
+                    $cunit++;
+                    $satker_biro = explode(".", $temp[0]);
+
+                    echo $satker."<br>";
+                    $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                    $sql1 = "INSERT INTO unit values (".$satker_ntb.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                    echo "$sql1";
+                    echo "<br>";
+                    $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                 $ket1 = trim($row['AB']);
+                 $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                 $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                 $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                 $sql2 = "INSERT INTO output values (NULL,".$satker_ntb.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
+                 echo "$sql2";
+                 echo "<br>";
+                 $this->db->query($sql2);
+             }
+                    
+                }
+                $numrow++;
+            }
+            // $this->db->truncate('realisasi_ntb');
+            // $this->db->insert_batch('realisasi_ntb', $data);
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
+    public function uploadRealisasiPapua()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['papua']['name']) && in_array($_FILES['papua']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['papua']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('papua', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['papua']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_papua = 683091;
+            $satker = $satker_biro[0];
+
+            foreach($sheet as $row){
+                if($numrow > 6){
+                    $ket1 = trim($row['A']);
+                    // echo "$ket1<br>";
+                    $ket = substr($ket1, 9);
+                    $temp = explode(" ", $ket1);
+                    $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                    if (preg_match($regex, $temp[0])) {
+                        $cunit++;
+                        $satker_biro = explode(".", $temp[0]);
+
+                        echo $satker."<br>";
+                        $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                        $sql1 = "INSERT INTO unit values (".$satker_papua.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                        echo "$sql1";
+                        echo "<br>";
+                        $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                    }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                       $ket1 = trim($row['A']);
+                       $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                       $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                       $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                       $sql2 = "INSERT INTO output values (NULL,".$satker_papua.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       echo "$sql2";
+                       echo "<br>";
+                       $this->db->query($sql2);
+                   }
+                    
+                }
+                $numrow++;
+            }
+            // $this->db->truncate('realisasi_papua');
+            // $this->db->insert_batch('realisasi_papua', $data);
+
+
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifpapua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
+    public function uploadRealisasiSulut()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['sulut']['name']) && in_array($_FILES['sulut']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['sulut']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('sulut', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['sulut']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_sulut = 677010;
+            $satker = $satker_biro[0];
+
+            foreach($sheet as $row){
+                if($numrow > 1){
+                  $ket1 = trim($row['A']);
+                    // echo "$ket1<br>";
+                  $ket = substr($ket1, 9);
+                  $temp = explode(" ", $ket1);
+                  $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                  if (preg_match($regex, $temp[0])) {
+                    $cunit++;
+                    $satker_biro = explode(".", $temp[0]);
+
+                    echo $satker."<br>";
+                    $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                    $sql1 = "INSERT INTO unit values (".$satker_sulut.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                    echo "$sql1";
+                    echo "<br>";
+                    $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                 $ket1 = trim($row['A']);
+                 $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                 $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                 $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                 $sql2 = "INSERT INTO output values (NULL,".$satker_sulut.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                 echo "$sql2";
+                 echo "<br>";
+                 $this->db->query($sql2);
+             }
+                }
+                $numrow++;
+            }
+            // $this->db->truncate('realisasi_sulut');
+            // $this->db->insert_batch('realisasi_sulut', $data);
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifsulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
+    public function uploadRealisasiSumbar()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['sumbar']['name']) && in_array($_FILES['sumbar']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['sumbar']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('sumbar', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_sas"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['sumbar']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
+            $data = array();
+            $numrow = 1;
+            $cbiro = 1;
+            $cunit = 0;
+            $satker_sumbar = 677045;
+            $satker = $satker_biro[0];
+
+
+            foreach($sheet as $row){
+                if($numrow > 1){
+                    $ket1 = trim($row['A']);
+                    // echo "$ket1<br>";
+                    $ket = substr($ket1, 9);
+                    $temp = explode(" ", $ket1);
+                    $regex = '/^[0-9]{4}\.[0-9]{3}$/';
+                    if (preg_match($regex, $temp[0])) {
+                        $cunit++;
+                        $satker_biro = explode(".", $temp[0]);
+
+                        echo $satker."<br>";
+                        $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                         // echo "kode ".$id_c."<br>";
+                         // echo "kode satker ".$satker_sulsel."<br>";
+                         // echo "<br>";
+
+                        $sql1 = "INSERT INTO unit values (".$satker_sumbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                        echo "$sql1";
+                        echo "<br>";
+                        $this->db->query($sql1);
+
+                        //  array_push($dataunit, array(
+                        //     'kode_satker' => $satker_sulsel,
+                        //     'id_c'      =>$id_c,
+                        //     'id_b'      => $satker_biro,
+                        //     'ket'      => $ket1
+                        // ));
+                        // echo $id_c;
+                    }elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
+                       $ket1 = trim($row['A']);
+                       $ket1 = substr($ket1, 4);
+                       // echo "$ket1<br>";
+
+                       $pagu = $row['B'];
+                       // echo "pagunya"."$pagu";
+                       $realisasi = $row['C'];
+                       // echo "realisasi"."$realisasi";
+                       // echo $row['A']."<br>" ;
+
+                       $sql2 = "INSERT INTO output values (NULL,".$satker_sumbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       echo "$sql2";
+                       echo "<br>";
+                       $this->db->query($sql2);
+                   }
+                    
+                }
+                $numrow++;
+            }
+            // $this->db->truncate('realisasi_sumbar');
+            // $this->db->insert_batch('realisasi_sumbar', $data);
+
+            //delete file from server
+            unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifsumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/');
+        }
+    }
+
     function rti($s) {
         $romans = array(
             'M' => 1000,

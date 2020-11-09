@@ -23,7 +23,7 @@
         </ul>
         <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="dashboard_pok"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="dashboard_pok" || $this->uri->segment(1)=="d_sas"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-th-large"></i> 
@@ -56,23 +56,23 @@
                         </ul>
                     </li>
 
-                    <li><a href="#">SAS</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="d_sas"?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">SAS</a></li>
 				</ul>
             </li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
 
-            <!-- <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-upload"></i> 
                     <span>Upload</span>
                 </a>
                 <ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li>
+					<!-- <li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li> -->
                     <li class="<?php echo $this->uri->segment(2)=="v_pok"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pok');?>">POK</a></li>
                     <li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
 				</ul>
-            </li> -->
+            </li>
             
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
                 <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>Pegawai</span></a>
