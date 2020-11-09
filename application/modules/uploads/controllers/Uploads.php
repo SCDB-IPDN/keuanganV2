@@ -155,8 +155,9 @@ class Uploads extends CI_Controller {
         }
     }
 
-    public function uploadNext()
+    public function pok()
     {
+        error_reporting(E_ERROR | E_PARSE);
         // satker kampus
         // 448302 IPDN KAMPUS JATINANGOR
         // 352593 IPDN KAMPUS JAKARTA
@@ -168,39 +169,30 @@ class Uploads extends CI_Controller {
         // 683091 IPDN KAMPUS PAPUA
 
         // Load plugin PHPExcel nya
-        include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['pok']['name']) && in_array($_FILES['pok']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['pok']['name']);
+            $extension = end($arr_file);
 
-        $config['upload_path'] = realpath('excel');
-        $config['allowed_types'] = 'xlsx|xls|csv';
-        $config['max_size'] = '10000';
-        $config['encrypt_name'] = true;
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+           
+                redirect("uploads/v_pok"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel = $reader->load($_FILES['pok']['tmp_name']);
 
-        $this->load->library('upload', $config);
-
-        // var_dump($config['upload_path']);exit;
-
-        if (!$this->upload->do_upload()) {
-
-            //upload gagal
-            $this->session->set_flashdata('notifbiroN', '<div class="alert alert-danger"><b>PROSES IMPORT GAGAL!</b> '.$this->upload->display_errors().'</div>');
-            //redirect halaman
-            redirect('uploads/');
-
-        } else {
-
-            $data_upload = $this->upload->data();
-
-            $excelreader       = new PHPExcel_Reader_Excel2007();
-
-            // Load file yang telah diupload ke folder excel
-            $loadexcel         = $excelreader->load('excel/'.$data_upload['file_name']);
-
-            // get all list of sheet
             $list_sheet = $loadexcel->getSheetNames();
+
+            // $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
+
 
             $biro = "";
             $set = false;
-            $data = array();
+            $data_out = array();
 
             foreach ($list_sheet as $shit) {
 
@@ -214,7 +206,7 @@ class Uploads extends CI_Controller {
                 // echo $shit."<br>";
                 $es = explode(".", $shit);
 
-                if ((is_numeric($es[0]) && ($shit == "PASCA") && ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit'))) {
+                if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit'))) {
                     echo "<br><br>=============================<br><br>";
                     echo $shit."<br>";
 
@@ -235,7 +227,7 @@ class Uploads extends CI_Controller {
 
                     $rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
                     $stop = false;
-                    $num = 0;
+                    $num = 1;
                     $nullcc = 0;
                     while(!$stop) {
                         $row = $rows[$num++];
@@ -258,7 +250,7 @@ class Uploads extends CI_Controller {
                                 $regex = '/^[0-9]{4}\.[0-9]{3}$/';
                                 if (preg_match($regex, $row['A'])) {
                                     echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
-                                    array_push($data, array(
+                                    array_push($data_out, array(
                                         'id_u'      => $unit,
                                         'nama'      => str_replace("[Base Line]", "", str_replace("_x000D_", "",$row['B'])),
                                         'pagu'      => preg_replace("/[^0-9]/", "", $row['C']),
@@ -288,6 +280,20 @@ class Uploads extends CI_Controller {
 
                     // khusus IPDN Jatinangor
                     $id_b = ($biro<10)?"10".$biro:"1".$biro;
+                    switch ($biro) {
+                        case '1':
+                            $id_b = 1292;
+                            break;
+                        case '2':
+                            $id_b = 1294;
+                            break;
+                        case '3':
+                            $id_b = 1293;
+                            break;
+                        case '4':
+                            $id_b = 1286;
+                            break;
+                    }
 
                     echo $shit."<br>";
                     echo "ID BIRO : ".$id_b."<br>";
@@ -295,7 +301,7 @@ class Uploads extends CI_Controller {
                     // read data pada sheet REKAP BIRO
                     $rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
                     $stop = false;
-                    $num = 0;
+                    $num = 1;
                     $nullcc = 0;
                     while(!$stop) {
                         // echo $row['A']."<br>";
@@ -313,7 +319,7 @@ class Uploads extends CI_Controller {
                             $nullcc = 0;
                             $id_u = ($row['A']<10)?$biro."0".$row['A']:"1".$row['A'];
                             echo $id_u."=".$row['B']."<br>";
-                            // echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
+                            echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
                             array_push($unitList, array(
                                 'id'    =>  $id_u , // 301, 411, 103, ... id unit
                                 'id_b'  =>  $id_b,  // 101, 102, 103, 104, ... id biro
@@ -337,22 +343,79 @@ class Uploads extends CI_Controller {
                     // $this->db->truncate('unit_pok');
 
                     // untuk unit_pok yang kosong
-                    // $this->db->insert_batch('unit_pok', $unitList);
+                    $this->db->insert_batch('unit_pok', $unitList); // PENTING
                 }
             }
             echo "<br>";
-            // var_dump($data);
+            // var_dump($data_out);
             // exit();
 
             // $this->db->truncate('out_pok');
-            $this->db->insert_batch('out_pok', $data);
+            $this->db->insert_batch('out_pok', $data_out);  // PENTING
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
-            //upload success
-            $this->session->set_flashdata('notifbiroN', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            // //upload success
+            $this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect("uploads/v_pok"); 
         }
+    }
+
+    function rti($s) {
+        $romans = array(
+            'M' => 1000,
+            'CM' => 900,
+            'D' => 500,
+            'CD' => 400,
+            'C' => 100,
+            'XC' => 90,
+            'L' => 50,
+            'XL' => 40,
+            'X' => 10,
+            'IX' => 9,
+            'V' => 5,
+            'IV' => 4,
+            'I' => 1,
+        );
+
+        // $roman = 'MMMCMXCIX';
+        $result = 0;
+
+        foreach ($romans as $key => $value) {
+            while (strpos($s, $key) === 0) {
+                $result += $value;
+                $s = substr($s, strlen($key));
+            }
+        }
+        return $result;
+    }
+
+    function ite($s) {
+        $months = array(
+            'Jan' => "Januari",
+            'Feb' => "Februari",
+            'Mar' => "Maret",
+            'Apr' => "April",
+            'May' => "Mei",
+            'Jun' => "Juni",
+            'Jul' => "Juli",
+            'Aug' => "Agustus",
+            'Sep' => "September",
+            'Oct' => "Oktober",
+            'Nov' => "November",
+            'Dec' => "Desember"
+        );
+
+        $result = "";
+
+        $bi = explode(" ", $s);
+        // echo "file: ".$s."<br>";
+        foreach ($months as $en => $in) {
+            if (strpos(strtoupper($in), strtoupper($bi[1])) === 0) {
+                $result = str_replace($bi[1],$en,$s);
+            }
+        }
+        return strtoupper($result);
     }
 }

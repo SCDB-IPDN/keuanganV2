@@ -31,6 +31,7 @@
                 </a>
                 <ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="<?php echo base_url('home');?>">HOME</a></li>
+
 					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
@@ -42,7 +43,19 @@
 						</ul>
                     </li>
 
-                    <li class="<?php echo $this->uri->segment(1)=="dashboard_pok" ?"active":"";?>"><a href="<?php echo base_url('dashboard_pok');?>">POK</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            POK
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
+                            <?php if(isset($pok) && $this->uri->segment(2)!="biro") { ?>
+                                <li class="<?php echo $this->uri->segment(1)=="d_pok" && strlen($this->uri->segment(2))>0 ?"active":"";?>"><a href="<?php echo base_url('d_pok')."/".$this->uri->segment(2);?>"><?php echo $this->uri->segment(2) ?></a></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+
                     <li><a href="#">SAS</a></li>
 				</ul>
             </li>

@@ -22,7 +22,8 @@
                     <div class="row">
                         <div class="col-md-2 offset-1">
                             <?php echo $this->session->flashdata('pok') ?>
-                            <form method="POST" action="<?php echo base_url() ?>uploads/pok" enctype="multipart/form-data">
+                            
+                                <?php echo form_open_multipart('uploads/pok'); ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">UNGGAH FILE EXCEL POK</label>
                                     <span class="ml-2">

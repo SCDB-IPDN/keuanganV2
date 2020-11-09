@@ -52,4 +52,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'user';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['dashboard_pok/(:any)'] = 'dashboard_pok/index/$1';
+$route['d_pok/(:any)'] = 'd_pok/index/$1';
