@@ -18,8 +18,13 @@ class Home extends CI_Controller {
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
 
+      // POK
       $persen_pok = $this->home_model->get_all_pok_biro();
       $persentase_pok = round($persen_pok[0]->persen,2);
+
+      // SAS
+      $persen_sas= $this->home_model->get_all_sas();
+      $persentase_sas = round($persen_sas[0]->persen,2);
 
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
@@ -31,6 +36,7 @@ class Home extends CI_Controller {
 
       $x['biro'] = $biro;
       $x['persentase_span'] = $persentase_span;
+      $x['persentase_sas'] = $persentase_sas;
       $x['persentase_jatinangor'] = $persentase_jatinangor;
       $x['persentase_pok'] = $persentase_pok;
 

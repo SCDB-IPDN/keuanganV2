@@ -38,14 +38,14 @@
 							<div class="row text-truncate">
 								<div class="col-6">
 									<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
-									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</div>
+									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php echo $persentase_sas ?>"><?php echo $persentase_sas ?></span>%</div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-										<div class="progress-bar progress-bar-striped rounded-right bg-yellow" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
+										<div class="progress-bar progress-bar-striped rounded-right bg-yellow" data-animation="width" data-value="<?php echo $persentase_sas ?>%" style="width: 0%"></div>
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="f-s-12 text-grey"><b>PERSENTASE POK IPDN JATINANGOR</b></div>
-									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('dashboard_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
+									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
 										<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
 									</div>

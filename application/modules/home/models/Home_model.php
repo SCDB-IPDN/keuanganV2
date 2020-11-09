@@ -30,6 +30,13 @@ class Home_model extends CI_Model{
 
     return $result;
   }
+
+  public function get_all_sas()
+	{	
+		$result = $this->db->query("SELECT (100*sum(output_sas.realisasi)/sum(output_sas.pagu)) as persen FROM output_sas JOIN tbl_satker ON output_sas.kode_satker = tbl_satker.kode_satker")->result();
+
+    return $result;
+  }
   
   
 }
