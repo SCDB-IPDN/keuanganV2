@@ -476,9 +476,9 @@ class Uploads extends CI_Controller {
             // exit();
 
             // $this->db->truncate('unit');
-            $this->db->insert_batch('unit', $dataunit);
+            $this->db->insert_batch('unit_sas', $dataunit);
             // $this->db->truncate('output');
-            $this->db->insert_batch('output', $dataoutput);
+            $this->db->insert_batch('output_sas', $dataoutput);
             //delete file from server
             unlink(realpath('excel/'.$data_upload['file_name']));
 
@@ -515,6 +515,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sulsel = 677024;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
             foreach($sheet as $row){
@@ -534,7 +535,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                         $sql1 = "INSERT INTO unit values (".$satker_sulsel.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                         $sql1 = "INSERT INTO unit_sas values (".$satker_sulsel.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                          echo "$sql1";
                          echo "<br>";
                          $this->db->query($sql1);
@@ -557,7 +558,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                       $sql2 = "INSERT INTO output values (NULL,".$satker_sulsel.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sulsel.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
                        echo "$sql2";
                        echo "<br>";
                        $this->db->query($sql2);
@@ -606,6 +607,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_kalbar = 683070;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
             foreach($sheet as $row){
@@ -625,7 +627,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                         $sql1 = "INSERT INTO unit values (".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                         $sql1 = "INSERT INTO unit_sas values (".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                          echo "$sql1";
                          echo "<br>";
                          $this->db->query($sql1);
@@ -648,7 +650,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                       $sql2 = "INSERT INTO output values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       $sql2 = "INSERT INTO output_sas values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
                        echo "$sql2";
                        echo "<br>";
                        $this->db->query($sql2);
@@ -694,6 +696,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_ntb = 683084;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
             foreach($sheet as $row){
@@ -713,7 +716,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                    $sql1 = "INSERT INTO unit values (".$satker_ntb.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                    $sql1 = "INSERT INTO unit_sas values (".$satker_ntb.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                     echo "$sql1";
                     echo "<br>";
                     $this->db->query($sql1);
@@ -736,7 +739,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                 $sql2 = "INSERT INTO output values (NULL,".$satker_ntb.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
+                 $sql2 = "INSERT INTO output_sas values (NULL,".$satker_ntb.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
                  echo "$sql2";
                  echo "<br>";
                  $this->db->query($sql2);
@@ -782,6 +785,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_papua = 683091;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
             foreach($sheet as $row){
@@ -801,7 +805,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                        $sql1 = "INSERT INTO unit values (".$satker_papua.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                        $sql1 = "INSERT INTO unit_sas values (".$satker_papua.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                         echo "$sql1";
                         echo "<br>";
                         $this->db->query($sql1);
@@ -824,7 +828,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                       $sql2 = "INSERT INTO output values (NULL,".$satker_papua.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       $sql2 = "INSERT INTO output_sas values (NULL,".$satker_papua.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
                        echo "$sql2";
                        echo "<br>";
                        $this->db->query($sql2);
@@ -872,6 +876,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sulut = 677010;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
             foreach($sheet as $row){
@@ -891,7 +896,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                    $sql1 = "INSERT INTO unit values (".$satker_sulut.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                    $sql1 = "INSERT INTO unit_sas values (".$satker_sulut.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                     echo "$sql1";
                     echo "<br>";
                     $this->db->query($sql1);
@@ -914,7 +919,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                 $sql2 = "INSERT INTO output values (NULL,".$satker_sulut.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                 $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sulut.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
                  echo "$sql2";
                  echo "<br>";
                  $this->db->query($sql2);
@@ -958,6 +963,7 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sumbar = 677045;
+            $satker_biro = 0;
             $satker = $satker_biro[0];
 
 
@@ -978,7 +984,7 @@ class Uploads extends CI_Controller {
                          // echo "kode satker ".$satker_sulsel."<br>";
                          // echo "<br>";
 
-                        $sql1 = "INSERT INTO unit values (".$satker_sumbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                        $sql1 = "INSERT INTO unit_sas values (".$satker_sumbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
                         echo "$sql1";
                         echo "<br>";
                         $this->db->query($sql1);
@@ -1001,7 +1007,7 @@ class Uploads extends CI_Controller {
                        // echo "realisasi"."$realisasi";
                        // echo $row['A']."<br>" ;
 
-                       $sql2 = "INSERT INTO output values (NULL,".$satker_sumbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+                       $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sumbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
                        echo "$sql2";
                        echo "<br>";
                        $this->db->query($sql2);
