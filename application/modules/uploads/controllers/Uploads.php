@@ -385,7 +385,6 @@ class Uploads extends CI_Controller {
             $dataoutput = array();
             $numrow = 1;
             $bag = '';
-            $satker_biro = 0;
             $id_c = 0;
             $satker_jatinangor = 448302;
 
@@ -515,8 +514,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sulsel = 677024;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
             foreach($sheet as $row){
                 if($numrow > 7){
@@ -529,7 +526,7 @@ class Uploads extends CI_Controller {
                         $cunit++;
                         $satker_biro = explode(".", $temp[0]);
                         
-                        echo $satker."<br>";
+                        
                          $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
                          // echo "kode ".$id_c."<br>";
                          // echo "kode satker ".$satker_sulsel."<br>";
@@ -607,8 +604,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_kalbar = 683070;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
             foreach($sheet as $row){
                 if($numrow > 4){
@@ -621,16 +616,25 @@ class Uploads extends CI_Controller {
                         $cunit++;
                         $satker_biro = explode(".", $temp[0]);
                         
-                        echo $satker."<br>";
-                         $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
-                         // echo "kode ".$id_c."<br>";
-                         // echo "kode satker ".$satker_sulsel."<br>";
-                         // echo "<br>";
+                        $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+                        // echo "kode ".$id_c."<br>";
+                        // echo "kode satker ".$satker_sulsel."<br>";
+                        // echo "<br>";
 
-                         $sql1 = "INSERT INTO unit_sas values (".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-                         echo "$sql1";
-                         echo "<br>";
-                         $this->db->query($sql1);
+                        // $sql1 = "INSERT INTO unit_sas values (NULL,".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+                        // echo "$sql1";
+                        // echo "<br>";
+                        // $this->db->query($sql1);
+
+                        $kalbarr = array();
+                        array_push($kalbarr, array(
+                            'kode_satker'      => $satker_kalbar,
+                            'id_c'      => $id_c,
+                            'id_b'      => $satker_biro[0],
+                            'ket'      => $ket
+                        ));
+                        // exit;
+                        $this->db->insert_batch('unit_sas', $kalbarr);
 
                         //  array_push($dataunit, array(
                         //     'kode_satker' => $satker_sulsel,
@@ -696,8 +700,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_ntb = 683084;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
             foreach($sheet as $row){
                 if($numrow > 6){
@@ -710,7 +712,7 @@ class Uploads extends CI_Controller {
                     $cunit++;
                     $satker_biro = explode(".", $temp[0]);
 
-                    echo $satker."<br>";
+                    
                     $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
                          // echo "kode ".$id_c."<br>";
                          // echo "kode satker ".$satker_sulsel."<br>";
@@ -785,8 +787,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_papua = 683091;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
             foreach($sheet as $row){
                 if($numrow > 6){
@@ -799,7 +799,7 @@ class Uploads extends CI_Controller {
                         $cunit++;
                         $satker_biro = explode(".", $temp[0]);
 
-                        echo $satker."<br>";
+                        
                         $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
                          // echo "kode ".$id_c."<br>";
                          // echo "kode satker ".$satker_sulsel."<br>";
@@ -876,8 +876,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sulut = 677010;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
             foreach($sheet as $row){
                 if($numrow > 1){
@@ -890,7 +888,7 @@ class Uploads extends CI_Controller {
                     $cunit++;
                     $satker_biro = explode(".", $temp[0]);
 
-                    echo $satker."<br>";
+                    
                     $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
                          // echo "kode ".$id_c."<br>";
                          // echo "kode satker ".$satker_sulsel."<br>";
@@ -963,8 +961,6 @@ class Uploads extends CI_Controller {
             $cbiro = 1;
             $cunit = 0;
             $satker_sumbar = 677045;
-            $satker_biro = 0;
-            $satker = $satker_biro[0];
 
 
             foreach($sheet as $row){
@@ -978,7 +974,7 @@ class Uploads extends CI_Controller {
                         $cunit++;
                         $satker_biro = explode(".", $temp[0]);
 
-                        echo $satker."<br>";
+                        
                         $id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
                          // echo "kode ".$id_c."<br>";
                          // echo "kode satker ".$satker_sulsel."<br>";
