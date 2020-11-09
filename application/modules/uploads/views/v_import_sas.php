@@ -21,7 +21,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-2 offset-1">
-                            <?php echo $this->session->flashdata('pagu') ?>
+                            <?php echo $this->session->flashdata('notifpagu') ?>
                             <form method="POST" action="<?php echo base_url() ?>uploads/uploadPagu" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">UNGGAH FILE EXCEL PAGU</label>

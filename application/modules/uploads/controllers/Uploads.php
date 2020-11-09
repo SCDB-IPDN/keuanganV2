@@ -480,12 +480,12 @@ class Uploads extends CI_Controller {
             // $this->db->truncate('output');
             $this->db->insert_batch('output_sas', $dataoutput);
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
 
         }
     }
@@ -573,12 +573,12 @@ class Uploads extends CI_Controller {
             // $this->db->truncate('unit');
             $this->db->insert_batch('output', $dataoutput);
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
@@ -662,12 +662,12 @@ class Uploads extends CI_Controller {
             // $this->db->truncate('realisasi_kalbar');
             // $this->db->insert_batch('realisasi_kalbar', $data);
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifkalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
@@ -751,12 +751,12 @@ class Uploads extends CI_Controller {
             // $this->db->truncate('realisasi_ntb');
             // $this->db->insert_batch('realisasi_ntb', $data);
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
@@ -842,12 +842,12 @@ class Uploads extends CI_Controller {
 
 
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifpapua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
@@ -930,12 +930,12 @@ class Uploads extends CI_Controller {
             // $this->db->truncate('realisasi_sulut');
             // $this->db->insert_batch('realisasi_sulut', $data);
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifsulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
@@ -1020,12 +1020,12 @@ class Uploads extends CI_Controller {
             // $this->db->insert_batch('realisasi_sumbar', $data);
 
             //delete file from server
-            unlink(realpath('excel/'.$data_upload['file_name']));
+            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifsumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
-            redirect('uploads/');
+            redirect('uploads/v_sas');
         }
     }
 
