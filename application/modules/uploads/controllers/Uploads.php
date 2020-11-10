@@ -43,12 +43,13 @@ class Uploads extends CI_Controller {
     {
         if($_SESSION['nip'])
         {
+            $x['title'] = "pok";
             $this->load->view("include/head");
             $this->load->view("include/top-header");
-            $this->load->view('v_import_pok');
+            $this->load->view('v_import', $x);
             $this->load->view("include/sidebar");
-            $this->load->view("include/panel");
-            $this->load->view("include/footer"); 
+            // $this->load->view("include/panel");
+            $this->load->view("include/footer");  
         }else{
             redirect("user");
         }
@@ -63,6 +64,22 @@ class Uploads extends CI_Controller {
             $this->load->view('v_import_sas');
             $this->load->view("include/sidebar");
             $this->load->view("include/panel");
+            $this->load->view("include/footer"); 
+        }else{
+            redirect("user");
+        }
+    }
+
+    public function v_sarpras()
+    {
+        if($_SESSION['nip'])
+        {
+            $x['title'] = "sarpras";
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('v_import', $x);
+            $this->load->view("include/sidebar");
+            // $this->load->view("include/panel");
             $this->load->view("include/footer"); 
         }else{
             redirect("user");
@@ -157,7 +174,10 @@ class Uploads extends CI_Controller {
 
     public function pok()
     {
-        error_reporting(E_ERROR | E_PARSE);
+        // error_reporting(E_ERROR | E_PARSE);
+        // error_reporting(E_ALL);
+        // ini_set('display_errors', TRUE);
+        // ini_set('display_startup_errors', TRUE);
         // satker kampus
         // 448302 IPDN KAMPUS JATINANGOR
         // 352593 IPDN KAMPUS JAKARTA
@@ -171,18 +191,18 @@ class Uploads extends CI_Controller {
         // Load plugin PHPExcel nya
         $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         if(isset($_FILES['pok']['name']) && in_array($_FILES['pok']['type'], $file_mimes)) {
-        
+
             $arr_file = explode('.', $_FILES['pok']['name']);
             $extension = end($arr_file);
 
             if($extension != 'xlsx') {
                 $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-           
+
                 redirect("uploads/v_pok"); 
             } else {
                 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             }
-        
+
             $loadexcel = $reader->load($_FILES['pok']['tmp_name']);
 
             $list_sheet = $loadexcel->getSheetNames();
@@ -206,7 +226,7 @@ class Uploads extends CI_Controller {
                 // echo $shit."<br>";
                 $es = explode(".", $shit);
 
-                if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit'))) {
+                if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit') === 0)) {
                     echo "<br><br>=============================<br><br>";
                     echo $shit."<br>";
 
@@ -249,7 +269,7 @@ class Uploads extends CI_Controller {
                             } else if ($num > 6) {
                                 $regex = '/^[0-9]{4}\.[0-9]{3}$/';
                                 if (preg_match($regex, $row['A'])) {
-                                    echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
+                                    // echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
                                     array_push($data_out, array(
                                         'id_u'      => $unit,
                                         'nama'      => str_replace("[Base Line]", "", str_replace("_x000D_", "",$row['B'])),
@@ -282,17 +302,17 @@ class Uploads extends CI_Controller {
                     $id_b = ($biro<10)?"10".$biro:"1".$biro;
                     switch ($biro) {
                         case '1':
-                            $id_b = 1292;
-                            break;
+                        $id_b = 1292;
+                        break;
                         case '2':
-                            $id_b = 1294;
-                            break;
+                        $id_b = 1294;
+                        break;
                         case '3':
-                            $id_b = 1293;
-                            break;
+                        $id_b = 1293;
+                        break;
                         case '4':
-                            $id_b = 1286;
-                            break;
+                        $id_b = 1286;
+                        break;
                     }
 
                     echo $shit."<br>";
@@ -319,7 +339,7 @@ class Uploads extends CI_Controller {
                             $nullcc = 0;
                             $id_u = ($row['A']<10)?$biro."0".$row['A']:"1".$row['A'];
                             echo $id_u."=".$row['B']."<br>";
-                            echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
+                            // echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
                             array_push($unitList, array(
                                 'id'    =>  $id_u , // 301, 411, 103, ... id unit
                                 'id_b'  =>  $id_b,  // 101, 102, 103, 104, ... id biro
@@ -343,7 +363,7 @@ class Uploads extends CI_Controller {
                     // $this->db->truncate('unit_pok');
 
                     // untuk unit_pok yang kosong
-                    $this->db->insert_batch('unit_pok', $unitList); // PENTING
+                    // $this->db->insert_batch('unit_pok', $unitList); // PENTING
                 }
             }
             echo "<br>";
@@ -356,11 +376,112 @@ class Uploads extends CI_Controller {
             // unlink(realpath('excel/'.$data_upload['file_name']));
 
             // //upload success
-            $this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
             redirect("uploads/v_pok"); 
         }
     }
+
+    public function sarpras() {
+
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['sarpras']['name']) && in_array($_FILES['sarpras']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['sarpras']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+                redirect("uploads/v_pok"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $loadexcel = $reader->load($_FILES['sarpras']['tmp_name']);
+
+            $list_sheet = $loadexcel->getSheetNames();
+
+            // $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
+
+
+            $table = "";
+            $set = false;
+            $data = array();
+            echo "<pre>";
+
+            foreach ($list_sheet as $shit) {
+                $table = strtolower(str_replace(" ", "_", trim($shit)));
+                echo "====================<br>";
+                echo "tabel: $table<br>";
+                echo "====================<br>";
+                $rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+                $stop = false;
+                $num = 1;
+                $nullcc = 0;
+                while(!$stop) {
+                    $row = $rows[$num++];
+                    // print("<pre>".print_r($row,true)."</pre>");
+                    if ($row['A'] == NULL) {
+                        $nullcc++;
+                        if ($nullcc == 4) {
+                            $stop = true;
+                        }
+                    } else {
+                        $nullcc = 0;
+                            // echo $row['A']."<br>";
+                        if (strpos(strtoupper($row['A']), 'PER') === 0) {
+                            // echo $row['A']."<br>";
+                            $tgl = explode("PER ", $row['A']);
+                            $tgl_last = count($tgl)-1;
+                            $tgl = $this->ite($tgl[$tgl_last]);
+                            $newDate = date("Y-m-d", strtotime($tgl));
+                            echo "tanggal: $newDate<br>";
+                        } else if ($num > 6) {
+                            if (is_numeric($row['A']) && strlen($row['A'] > 4)) {
+                                echo "Kode: $row[A]<br>";
+                                echo "Uraian: $row[B]<br>";
+                                echo "NUP: $row[C]<br>";
+                                echo "Merk: $row[D]<br>";
+                                echo "Tahun: $row[E]<br>";
+                                echo "Jumlah: $row[F]<br>";
+                                echo "Jumlah: ".$this->ktt($row['F'])."<br>";
+                                if ($row['M'] != NULL) {
+                                    // punya luas
+                                    echo "Luas: $row[G]<br>";
+                                    echo "Luas: ".$this->ktt($row['G'])."<br>";
+                                    echo "Harga Satuan Perolehan: $row[H]<br>";
+                                    echo "Harga Satuan Perolehan: ".$this->ktt($row['H'])."<br>";
+                                    echo "Harga Satuan Revaluasi: $row[J]<br>";
+                                    echo "Harga Satuan Revaluasi: ".$this->ktt($row['J'])."<br>";
+                                    echo "Asal: $row[L]<br>";
+                                    echo "Kondisi: $row[M]<br>";
+                                } else {
+                                    echo "Harga Satuan Perolehan: $row[G]<br>";
+                                    echo "Harga Satuan Perolehan: ".$this->ktt($row['G'])."<br>";
+                                    echo "Harga Satuan Revaluasi: $row[I]<br>";
+                                    echo "Harga Satuan Revaluasi: ".$this->ktt($row['I'])."<br>";
+                                    echo "Asal: $row[K]<br>";
+                                    echo "Kondisi: $row[L]<br>";
+                                }
+                                echo "<br>";
+                            }
+                        }
+                    }
+                }
+                echo "<br>";
+                echo "<br>";
+                echo "<br>";
+            }
+            echo "</pre>";
+            exit;
+        }
+
+        //upload success
+        $this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+        redirect("uploads/v_sarpras"); 
+    }    
 
     public function uploadPagu()
     {
@@ -1125,5 +1246,17 @@ class Uploads extends CI_Controller {
             }
         }
         return strtoupper($result);
+    }
+
+    function ktt($s) {
+        $temp = trim($s);
+        $res = $temp;
+        $temp = explode(",", $temp);
+        $temp_last = count($temp)-1;
+        if ((strlen($temp[$temp_last]) < 3) && count($temp) > 1) {
+            // berarti koma
+            $res = substr_replace($s, ".", -3, 1);
+        }
+        return str_replace(",", "", $res);
     }
 }
