@@ -1,20 +1,35 @@
 <?php
 class D_sas_model extends CI_Model{
 
-  public function get_all_kampus()
+  	public function get_all_kampus()
 	{	
 		$result = $this->db->query("SELECT tbl_satker.kode_satker,tbl_satker.alias,tbl_satker.nama_satker as nama , SUM(output_sas.pagu) AS pagu , SUM(output_sas.realisasi) AS realisasi FROM tbl_satker JOIN output_sas ON tbl_satker.kode_satker = output_sas.kode_satker GROUP BY tbl_satker.kode_satker");
 
 		return $result;
-  }
+	}
 
-  public function get_all_biro($kode_satker)
+	public function get_kampus($link)
+	{	
+		$result = $this->db->query("SELECT tbl_satker.kode_satker,tbl_satker.alias,tbl_satker.nama_satker as nama , SUM(output_sas.pagu) AS pagu , SUM(output_sas.realisasi) AS realisasi FROM tbl_satker JOIN output_sas ON tbl_satker.kode_satker = output_sas.kode_satker WHERE tbl_satker.kode_satker = $link GROUP BY tbl_satker.kode_satker");
+
+		return $result;
+  	}
+
+	public function get_all_biro($kode_satker)
 	{	
 
 		$result = $this->db->query("SELECT tbl_satker_biro.kode_satker_biro , output_sas.id_b, tbl_satker_biro.nama_satker_biro as nama, tbl_satker_biro.alias as alias, SUM(output_sas.pagu) AS pagu , SUM(output_sas.realisasi) AS realisasi FROM tbl_satker_biro JOIN output_sas ON tbl_satker_biro.kode_satker_biro = output_sas.id_b WHERE output_sas.kode_satker = $kode_satker GROUP BY tbl_satker_biro.kode_satker_biro ");
-        
+			
 		return $result;
-  }
+	}
+
+	public function get_biro($link)
+	{
+
+		$result = $this->db->query("SELECT nama_satker_biro as nama FROM tbl_satker_biro WHERE kode_satker_biro = $link");
+			
+		return $result;
+	}
 
 
   public function get_all_unit($unit_sas)

@@ -1,8 +1,15 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
-    <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="javascript:;">SAS</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">SAS ALL KAMPUS</a></li>
+    <?php if(isset($page)) { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>"><?= $page ?></a></li>
+    <?php } else { ?>
+      <?php if($link != NULL) { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>">OUTPUT</a></li>
+      <?php } ?>
+    <?php } ?>
   </ol>
   <h1 class="page-header">SAS</h1>
   <div class="row">

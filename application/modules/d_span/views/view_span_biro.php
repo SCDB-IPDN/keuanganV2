@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
-    <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="javascript:;">SPAN BIRO</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('d_span');?>">SPAN ALL KAMPUS</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('d_span/biro');?>">SPAN JATINANGOR</a></li>
   </ol>
   <h1 class="page-header">SPAN BIRO</h1>
   <div class="row">

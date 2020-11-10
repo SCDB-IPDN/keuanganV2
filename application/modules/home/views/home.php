@@ -1,7 +1,6 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
 	</ol>
 	<h1 class="page-header mb-3">Dashboard</h1>
 	<!-- <div class="d-sm-flex align-items-center mb-3">
