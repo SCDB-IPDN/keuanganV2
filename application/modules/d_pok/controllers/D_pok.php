@@ -28,12 +28,18 @@ class D_pok extends CI_Controller{
           $x['page'] = $id;
           if (strlen($id) == 3) {
             $data = $this->d_pok_model->get_out_data($id)->result();
-            $q = $this->d_pok_model->get_unit_name($id);
+            $q = (array) $this->d_pok_model->get_unit_name($id)->result()[0];
+            // print("<pre>".print_r($q,true)."</pre>");exit;
             $x['biro'] = $q['alias'];
+            $x['blink'] = $q['kode_satker_biro'];
             $x['unit'] = $q['nama'];
+            $x['ulink'] = $q['id'];
           } else {
             $data = $this->d_pok_model->get_unit_data($id)->result();
-            $x['biro'] = $this->d_pok_model->get_biro_name($id);
+            $q = $this->d_pok_model->get_biro_name($id);
+            // print("<pre>".print_r($q,true)."</pre>");exit;
+            $x['biro'] = $q['alias'];
+            $x['blink'] = $q['kode_satker_biro'];
           }
         }
 
@@ -55,8 +61,9 @@ class D_pok extends CI_Controller{
         $this->load->view("include/head");
         $this->load->view("include/top-header");
         $this->load->view("view_pok",$x);
-        $this->load->view("include/sidebar",$y);
-        $this->load->view("include/panel");
+        // $this->load->view("include/sidebar",$y);
+        $this->load->view("include/sidebar");
+        // $this->load->view("include/panel");
         $this->load->view("include/footer");
       
     }else{

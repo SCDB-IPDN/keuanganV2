@@ -23,7 +23,7 @@
         </ul>
         <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="dashboard_pok" || $this->uri->segment(1)=="d_sas"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-th-large"></i> 
@@ -50,9 +50,6 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
-                            <?php if(isset($pok) && $this->uri->segment(2)!="biro") { ?>
-                                <li class="<?php echo $this->uri->segment(1)=="d_pok" && strlen($this->uri->segment(2))>0 ?"active":"";?>"><a href="<?php echo base_url('d_pok')."/".$this->uri->segment(2);?>"><?php echo $this->uri->segment(2) ?></a></li>
-                            <?php } ?>
                         </ul>
                     </li>
 
@@ -61,7 +58,7 @@
             </li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
 
-            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-upload"></i> 
@@ -71,6 +68,7 @@
 					<!-- <li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li> -->
                     <li class="<?php echo $this->uri->segment(2)=="v_pok"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pok');?>">POK</a></li>
                     <li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="v_sarpras"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras');?>">SARPRAS</a></li>
 				</ul>
             </li>
             
