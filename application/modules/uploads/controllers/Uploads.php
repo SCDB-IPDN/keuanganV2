@@ -213,6 +213,7 @@ class Uploads extends CI_Controller {
             $biro = "";
             $set = false;
             $data_out = array();
+            $unitList = array();
 
             foreach ($list_sheet as $shit) {
 
@@ -293,7 +294,7 @@ class Uploads extends CI_Controller {
                     $set = true;
                     $temp = explode(" ", $shit);
                     $biro = $temp[2];
-                    $unitList = array();
+                    // $unitList = array();
                     if (!is_numeric($biro)) {
                         $biro = $this->rti($biro);
                     }
@@ -370,6 +371,7 @@ class Uploads extends CI_Controller {
             // var_dump($data_out);
             // exit();
 
+            $this->db->insert_batch('unit_pok', $unitList); // PENTING
             // $this->db->truncate('out_pok');
             $this->db->insert_batch('out_pok', $data_out);  // PENTING
             //delete file from server
