@@ -27,13 +27,13 @@ class Uploads extends CI_Controller {
     {
         if($_SESSION['nip'])
         {
-            redirect("home");
-            // $this->load->view("include/head");
-            // $this->load->view("include/top-header");
-            // $this->load->view('v_import_span');
-            // $this->load->view("include/sidebar");
-            // $this->load->view("include/panel");
-            // $this->load->view("include/footer"); 
+            // redirect("home");
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('v_import_span');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer"); 
         }else{
             redirect("user");
         }
@@ -160,9 +160,9 @@ class Uploads extends CI_Controller {
                 ));
             }
             // exit;
-            $this->db->truncate('tbl_span_biro');
+            // $this->db->truncate('tbl_span_biro');
             $this->db->insert_batch('tbl_span_biro', $biro);
-            $this->db->truncate('tbl_span');
+            // $this->db->truncate('tbl_span');
             $this->db->insert_batch('tbl_span', $data);
 
             //upload success
