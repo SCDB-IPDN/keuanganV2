@@ -195,6 +195,9 @@ class Uploads extends CI_Controller {
             $arr_file = explode('.', $_FILES['pok']['name']);
             $extension = end($arr_file);
 
+            // echo $_FILES['pok']['name'];
+            // echo "<br><br>=============================<br><br>";
+
             if($extension != 'xlsx') {
                 $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
@@ -368,17 +371,22 @@ class Uploads extends CI_Controller {
                 }
             }
             echo "<br>";
+            // var_dump($unitList);
+            // print("<pre>".print_r($unitList,true)."</pre>");
             // var_dump($data_out);
+            // print("<pre>".print_r($data_out,true)."</pre>");
             // exit();
 
-            $this->db->insert_batch('unit_pok', $unitList); // PENTING
+            if (!empty($unitList)) {
+                $this->db->insert_batch('unit_pok', $unitList); // PENTING    
+            }
             // $this->db->truncate('out_pok');
             $this->db->insert_batch('out_pok', $data_out);  // PENTING
             //delete file from server
             // unlink(realpath('excel/'.$data_upload['file_name']));
 
             // //upload success
-            $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            $this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['pok']['name'].' berhasil diimport!</div>');
             //redirect halaman
             redirect("uploads/v_pok"); 
         }
