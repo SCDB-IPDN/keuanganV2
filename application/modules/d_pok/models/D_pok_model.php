@@ -30,16 +30,17 @@ class D_pok_model extends CI_Model{
 
   public function get_biro_name($id) {
 		$query = $this->db->get_where('tbl_satker_biro', array('kode_satker_biro' => $id));
-		$res = $query->row_array();
-		return $res['alias'];
+		// $res = $query->row_array();
+		// return $res['alias'];
+		return $query->row_array();
   }
 
   public function get_unit_name($id) {
 		// $query = $this->db->get_where('unit_pok', array('id' => $id));
-  		$query = $this->db->query('SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id');
+  		// $query = $this->db->query('SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id');
 		// $res = $query->row_array();
 		// return $res['nama'];
-		return $this->db->query('SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id');
+  	return $this->db->query("SELECT * FROM unit_pok JOIN tbl_satker_biro ON id_b = kode_satker_biro WHERE id = $id");
   }
 
   public function get_out_data($id) {	
