@@ -30,31 +30,63 @@
                     <span>Dashboard</span>
                 </a>
                 <ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="<?php echo base_url('home');?>">HOME</a></li>
-
-					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
+                    <li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="<?php echo base_url('home');?>">HOME</a></li>
+                    <!-- KEUANGAN -->
+                    <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
-                            SPAN
+                            KEUANGAN
                         </a>
                         <ul class="sub-menu">
-                            <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
-							<li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
-						</ul>
-                    </li>
-
-                    <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            POK
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    SPAN
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
+                                    <li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
+                                </ul>
+                            </li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    POK
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
+                                </ul>
+                            </li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_sas"?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">SAS</a></li>
                         </ul>
                     </li>
+                    <!-- END KEUANGAN -->
 
-                    <li class="<?php echo $this->uri->segment(1)=="d_sas"?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">SAS</a></li>
-				</ul>
+                    <!-- KEPAGAWAIAN -->
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            KEPAGAWAIAN
+                        </a>
+                        <ul class="sub-menu">
+                            <li class=""><a href="#">PNS</a></li>
+                            <li class=""><a href="#">NON-PNS</a></li>
+                        </ul>
+                    </li>
+                    <!-- END KEPAGAWAIAN -->
+
+                    <!-- KEPRAJAAN -->
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            KEPRAJAAN
+                        </a>
+                        <ul class="sub-menu">
+                            <li class=""><a href="#">PRAJA</a></li>
+                        </ul>
+                    </li>
+                    <!-- END KEPRAJAAN -->
+                </ul>
             </li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
 
@@ -73,7 +105,7 @@
             </li>
             
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
-                <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>Pegawai</span></a>
+                <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>User</span></a>
             </li>
 
             <!-- <li class="nav-header">Upload Data</li>
