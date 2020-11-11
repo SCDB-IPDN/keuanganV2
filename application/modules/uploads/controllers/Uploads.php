@@ -86,6 +86,22 @@ class Uploads extends CI_Controller {
         }
     }
 
+    public function v_praja()
+    {
+        if($_SESSION['nip'])
+        {
+            $x['title'] = "praja";
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('v_import', $x);
+            $this->load->view("include/sidebar");
+            // $this->load->view("include/panel");
+            $this->load->view("include/footer"); 
+        }else{
+            redirect("user");
+        }
+    }
+
     public function span(){
         $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         if(isset($_FILES['span']['name']) && in_array($_FILES['span']['type'], $file_mimes)) {
@@ -1198,6 +1214,125 @@ class Uploads extends CI_Controller {
             $this->session->set_flashdata('notifsumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
             //redirect halaman
             redirect('uploads/v_sas');
+        }
+    }
+
+    public function praja()
+    {
+                // Load plugin PHPExcel nya
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['praja']['name']) && in_array($_FILES['praja']['type'], $file_mimes)) {
+        
+            $arr_file = explode('.', $_FILES['praja']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('praja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+            
+                redirect("uploads/v_praja"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+        
+            $loadexcel  = $reader->load($_FILES['praja']['tmp_name']);
+            $sheet             = $loadexcel->getSheetByName("data")->toArray(null, true, true ,true);
+
+            $unitpraja = array();
+            $unitortu = array();
+            $unitwali = array();
+            $numrow = 1;
+         
+
+            foreach($sheet as $row){
+                if($numrow > 1){
+                  
+                    $unitpraja = array();
+                    array_push($unitpraja, array(
+                        'no_spcp'      => $row['B'],
+                        'nama'      => $row['C'],
+                        'jk'      => $row['D'],
+                        'nisn'      => $row['E'],
+                        'npwp'      => $row['F'],
+                        'nik_praja'      => $row['G'],
+                        'tmpt_lahir'      => $row['H'],
+                        'tgl_lahir'      => $row['I'],
+                        'agama'      => $row['J'],
+                        'alamat'      => $row['K'],
+                        'rt'      => $row['L'],
+                        'rw'      => $row['M'],
+                        'nama_dusun'      => $row['N'],
+                        'kelurahan'      => $row['O'],
+                        'kecamatan'      => $row['P'],
+                        'kode_pos'      => preg_replace("/[^0-9]/", "", $row['Q']),
+                        'kab/kota'      => $row['R'],
+                        'provinsi'      => $row['S'],
+                        'jenis_tinggal'      => $row['T'],
+                        'alat_transport'      => $row['U'],
+                        'tlp_rumah'      => $row['V'],
+                        'tlp_pribadi'      => $row['W'],
+                        'email'      => $row['X'],
+                        'kewarganegaraan'      => $row['AM'],
+                        'penerima_pks'      => $row['AN'],
+                        'no_pks'      => $row['AO'],
+                        'kode_prodi'      => $row['AW'],
+                        'jenis_pendaftaran'      =>  $row['AX'],
+                        'tgl_masuk_kuliah'      =>  $row['AY'],
+                        'tahun_masuk_kuliah'      => $row['AZ'],
+                        'pembiayaan'      => $row['BA'],
+                        'jalur_masuk'      => $row['BB']
+                    ));
+                     $this->db->insert_batch('praja', $unitpraja);
+
+                     $unitortu = array();
+                     array_push($unitortu, array(
+                        'nik_praja'      => $row['G'],
+                        'nik_ayah'      => $row['Y'],
+                        'nama_ayah'      => $row['Z'],
+                        'tgllahir_ayah'      => $row['AA'],
+                        'pendidikan_ayah'      => $row['AB'],
+                        'pekerjaan_ayah'      => $row['AC'],
+                        'penghasilan_ayah'      => $row['AD'],
+                        'tlp_ayah'      => $row['AE'],
+                        'nik_ibu'      => $row['AF'],
+                        'nama_ibu'      => $row['AG'],
+                        'tgllahir_ibu'      => $row['AH'],
+                        'pendidikan_ibu'      => $row['AI'],
+                        'pekerjaan_ibu'      => $row['AJ'],
+                        'penghasilan_ibu'      => $row['AK'],
+                        'tlp_ibu'      => $row['AL']
+                        
+                    ));
+                     $this->db->insert_batch('orangtua', $unitortu);
+
+                     $unitwali = array();
+                     array_push($unitwali, array(
+                        'nik_praja'      => $row['G'],
+                        'nik_wali'      => $row['AP'],
+                        'nama_wali'      => $row['AQ'],
+                        'tgllahir_wali'      => $row['AR'],
+                        'pendidikan_wali'      => $row['AS'],
+                        'pekerjaan_wali'      => $row['AT'],
+                        'penghasilan_wali'      => $row['AU'],
+                        'tlp_wali'      => $row['AV']
+                        
+                    ));
+                     $this->db->insert_batch('wali', $unitwali);
+                        // exit;
+                    
+             }
+                $numrow++;
+            }
+
+           
+            // $this->db->truncate('realisasi_ntb');
+            // $this->db->insert_batch('realisasi_ntb', $data);
+            //delete file from server
+            // unlink(realpath('excel/'.$data_upload['file_name']));
+
+            //upload success
+            $this->session->set_flashdata('notifpraja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            //redirect halaman
+            redirect('uploads/v_praja');
         }
     }
 
