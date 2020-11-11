@@ -19,6 +19,12 @@ class Pegawai_model extends CI_Model {
         return $add_peg;
     }
 
+    function cek_pegawai($nip)
+	{   
+        $cek_peg = $this->db->query("SELECT * FROM tbl_users WHERE nip='$nip'")->result();
+        return $cek_peg;
+    }
+
     function hapus_pegawai($id_user){
         $hasil=$this->db->query("DELETE FROM tbl_users WHERE id_user='$id_user'");
         return $hasil;

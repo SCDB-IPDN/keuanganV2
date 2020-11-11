@@ -43,28 +43,37 @@ class Pegawai extends CI_Controller {
         $input_data['role'] = $this->input->post('role', true);
         $input_data['created_at'] = date("Y-m-d H:i:s");
 
-        $result = $this->pegawai_model->tambah_pegawai($input_data);
+        $cek_peg = $this->pegawai_model->cek_pegawai($input_data['nip']);
+        
+        if(!$cek_peg){
+            $result = $this->pegawai_model->tambah_pegawai($input_data);
+        }else{
+            $this->session->set_flashdata('pegawai', 'NIP PEGAWAI SUDAH TERDAFTAR.');
+            $x['alert'] = 'ada';			
+            redirect('pegawai',$x);
+        }
 
         if (!$result) { 							
-            $this->session->set_flashdata('notif_tambah', 'Data Pegawai Gagal ditambahkan.'); 				
+            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI GAGAL DITAMBAHKAN.'); 				
             redirect('pegawai'); 			
         } else { 								
-            $this->session->set_flashdata('notif_tambah', 'Data Pegawai Berhasil ditambahkan.');			
+            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI BERHASIL DITAMBAHKAN.');			
             redirect('pegawai'); 			
         }
     }
 
     public function edit_pegawai()
 	{
+        $input_data['nip'] = $this->input->post('nip', true);
         $input_data['role'] = $this->input->post('role', true);
 
         $result = $this->pegawai_model->edit_pegawai($input_data);
 
         if (!$result) { 							
-            $this->session->set_flashdata('notif_tambah', 'Data Pegawai Gagal ditambahkan.'); 				
+            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI GAGAL DIUBAH.');		
             redirect('pegawai'); 			
         } else { 								
-            $this->session->set_flashdata('notif_tambah', 'Data Pegawai Berhasil ditambahkan.');			
+            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI BERHASIL DIUBAH.');			
             redirect('pegawai'); 			
         }
     }

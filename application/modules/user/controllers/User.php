@@ -30,7 +30,7 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			$this->session->set_flashdata('error','nip atau Password salah.');
+			$this->session->set_flashdata('error','NIP ATAU PASSWORD SALAH !!!');
 			redirect('');
 		}
     }

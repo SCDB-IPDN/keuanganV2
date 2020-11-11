@@ -25,6 +25,12 @@
           </button>
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div>
+        <?php if($this->session->flashdata('pegawai') != NULL){ ?>
+        <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Notif!</strong> <?php echo $this->session->flashdata('pegawai') ?>
+        </div>
+        <?php } ?>
         <div class="panel-body">
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
@@ -86,7 +92,11 @@
             </div>
             <div class="form-group">
               <label for="password" class="col-form-label">Password:</label>
-              <input type="password" class="form-control" id="password" name="password" length="6" placeholder="****" required>
+              <input type="password" class="form-control" id="password" name="password" placeholder="****" required>
+            </div>
+            <div class="form-group">
+              <label for="konfirmasi_password" class="col-form-label">Konfirmasi Password:</label>
+              <input type="password" class="form-control" id="konfirmasi_password" name="konfirmasi_password" placeholder="****" required>
             </div>
             <div class="form-group">
               <label for="role" class="col-form-label">Akses:</label>
@@ -103,7 +113,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
+              <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
             </div>
           </form>
         </div>
@@ -126,6 +136,7 @@
         </div>
         <div class="modal-body">
           <form action="pegawai/edit_pegawai" method="POST">
+            <input type="hidden" class="form-control" id="nip" name="nip" placeholder="Nama Lengkap.." value="<?php echo $row->nip;?>">
             <div class="form-group">
               <label for="role" class="col-form-label">Akses:</label>
                 <select class="form-control" name="role" id="role" required>
@@ -184,3 +195,29 @@
   <?php } ?>
 
 </div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("password").onchange = validatePassword;
+        document.getElementById("konfirmasi_password").onchange = validatePassword;
+    }
+
+    function validatePassword(){
+      var pass2=document.getElementById("konfirmasi_password").value;
+      var pass1=document.getElementById("password").value;
+      console.log(pass2);
+      console.log(pass1);
+      console.log(pass1!=pass2);
+      
+      if(pass1.length >= 6)
+        document.getElementById("password").setCustomValidity('');
+      else
+        document.getElementById("password").setCustomValidity("Password Kurang dari 6 character");
+      
+
+      if(pass1!=pass2)
+          document.getElementById("konfirmasi_password").setCustomValidity("Password Tidak Sama, Coba Lagi");
+      else
+          document.getElementById("konfirmasi_password").setCustomValidity('');
+    }
+</script>

@@ -34,5 +34,20 @@
 	<script src="<?php echo base_url('assets/plugins/pdfmake/build/vfs_fonts.js');?>"></script>
 	<script src="<?php echo base_url('assets/plugins/jszip/dist/jszip.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/demo/table-manage-buttons.demo.js');?>"></script>
+
+	<!-- v1 -->
+	<script src="<?php echo base_url('assets/plugins/flot/jquery.flot.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/flot/jquery.flot.time.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/flot/jquery.flot.resize.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/flot/jquery.flot.pie.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/jquery-sparkline/jquery.sparkline.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/jvectormap-next/jquery-jvectormap.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/jvectormap-next/jquery-jvectormap-world-mill.js');?>"></script>
+	<script src="<?php echo base_url('assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/demo/dashboard.js');?>"></script>
+
+	<!-- icons  -->
+	<script src="<?php echo base_url('assets/plugins/highlight.js/highlight.min.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/demo/render.highlight.js');?>"></script>
 </body>
 </html>
