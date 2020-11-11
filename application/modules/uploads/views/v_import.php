@@ -1,8 +1,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Upload File Excel</a></li>
-		<li class="breadcrumb-item active">Upload</li>
+		<li class="breadcrumb-item"><a href="javascript:;">Upload</a></li>
+		<li class="breadcrumb-item active">POK/SAPRAS</li>
 	</ol>
 	<h1 class="page-header">Upload</b></h1>
 	<div class="row">
