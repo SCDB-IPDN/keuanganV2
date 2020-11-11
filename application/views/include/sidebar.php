@@ -23,73 +23,74 @@
         </ul>
         <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li class="<?php echo $this->uri->segment(1)=="home" || $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_span/biro" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas"?"active":"";?> has-sub">
-                <a href="javascript:;">
-                    <b class="caret"></b>    
+            <li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?> has-sub">
+                <a href="<?php echo base_url('home');?>">  
                     <i class="fa fa-th-large"></i> 
                     <span>Dashboard</span>
                 </a>
+            </li>
+
+            <!-- KEUANGAN -->
+            <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-money-bill-alt"></i> 
+                    Keuangan
+                </a>
                 <ul class="sub-menu">
-                    <li class="<?php echo $this->uri->segment(1)=="home"?"active":"";?>"><a href="<?php echo base_url('home');?>">HOME</a></li>
-                    <!-- KEUANGAN -->
-                    <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
+                    <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
-                            KEUANGAN
+                            SPAN
                         </a>
                         <ul class="sub-menu">
-                            <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    SPAN
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
-                                    <li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
-                                </ul>
-                            </li>
-                            <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    POK
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
-                                </ul>
-                            </li>
-                            <li class="<?php echo $this->uri->segment(1)=="d_sas"?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">SAS</a></li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
+                            <li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
                         </ul>
                     </li>
-                    <!-- END KEUANGAN -->
-
-                    <!-- KEPAGAWAIAN -->
-                    <li class="has-sub">
+                    <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
-                            KEPAGAWAIAN
+                            POK
                         </a>
                         <ul class="sub-menu">
-                            <li class=""><a href="#">PNS</a></li>
-                            <li class=""><a href="#">NON-PNS</a></li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?>"><a href="<?php echo base_url('d_pok');?>">JATINANGOR</a></li>
                         </ul>
                     </li>
-                    <!-- END KEPAGAWAIAN -->
-
-                    <!-- KEPRAJAAN -->
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            KEPRAJAAN
-                        </a>
-                        <ul class="sub-menu">
-                            <li class=""><a href="#">PRAJA</a></li>
-                        </ul>
-                    </li>
-                    <!-- END KEPRAJAAN -->
+                    <li class="<?php echo $this->uri->segment(1)=="d_sas"?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">SAS</a></li>
                 </ul>
             </li>
-            <?php if($this->session->userdata('role') == 'Admin'){?>
+            <!-- END KEUANGAN -->
 
+            <!-- KEPEGAWAIAN -->
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-building"></i>
+                    Kepegawaian
+                </a>
+                <ul class="sub-menu">
+                    <li class=""><a href="#">PNS</a></li>
+                    <li class=""><a href="#">NON-PNS</a></li>
+                </ul>
+            </li>
+            <!-- END KEPEGAWAIAN -->
+
+            <!-- KEPRAJAAN -->
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-graduation-cap"></i>
+                    Keprajaan
+                </a>
+                <ul class="sub-menu">
+                    <li class=""><a href="#">PRAJA</a></li>
+                </ul>
+            </li>
+            <!-- END KEPRAJAAN -->
+
+            <li class="nav-header">Section Full Akses</li>
+            <?php if($this->session->userdata('role') == 'Admin'){?>
             <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
@@ -107,21 +108,8 @@
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
                 <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>User</span></a>
             </li>
-
-            <!-- <li class="nav-header">Upload Data</li>
-            <li class="<?php echo $this->uri->segment(1)=="uploads"?"active":"";?>">
-                <a href="<?php echo base_url('uploads');?>"><i class="fa fa-upload"></i> <span>Excel</span></a>
-            </li> -->
-
             <?php } ?>
-            <!-- <li class="nav-header">Section Kehadiran</li>
-            <li class="">
-                <a href="#"><i class="fa fa-calendar"></i> <span>Kehadiran Pegawai</span></a>
-            </li>
-            <li class="nav-header">Section Keuangan</li>
-            <li class="">
-                <a href="#"><i class="fa fa-chart-pie"></i> <span>Keuangan Pegawai</span></a>
-            </li> -->
+
             <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
         </ul>
     </div>
