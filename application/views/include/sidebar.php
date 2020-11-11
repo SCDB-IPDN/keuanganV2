@@ -35,7 +35,7 @@
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-money-bill-alt"></i> 
-                    Keuangan
+                    <span>Keuangan</span>
                 </a>
                 <ul class="sub-menu">
                     <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
@@ -67,7 +67,7 @@
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-building"></i>
-                    Kepegawaian
+                    <span>Kepegawaian</span>
                 </a>
                 <ul class="sub-menu">
                     <li class=""><a href="#">PNS</a></li>
@@ -81,7 +81,7 @@
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-graduation-cap"></i>
-                    Keprajaan
+                    <span>Keprajaan</span>
                 </a>
                 <ul class="sub-menu">
                     <li class=""><a href="#">PRAJA</a></li>
