@@ -488,7 +488,7 @@ class Uploads extends CI_Controller {
         }
 
         //upload success
-        $this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+        $this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras']['name'].' berhasil diimport!</div>');
             //redirect halaman
         redirect("uploads/v_sarpras"); 
     }    
