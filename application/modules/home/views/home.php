@@ -12,122 +12,120 @@
 		<div class="text-muted f-w-600 mt-2 mt-sm-0">compared to <span id="daterange-prev-date">24 Mar-30 Apr 2019</span></div>
 	</div> -->
 	<div class="row">
-		<div class="col-xl-6">
-			<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-xl-7 col-lg-8">
-							<div class="mb-3 text-grey">
-								<b>PERSENTASE SPAN</b>
-								<span class="ml-2">
-									<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
-								</span>
-							</div>
-							<div class="d-flex mb-1">
-								<a href="<?php echo base_url('d_span');?>"><h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2></a>
-								<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
-							</div>
-							<div class="mb-3 text-grey">
-								<!-- <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="33.21">0.00</span>% compare to last week -->
-							</div>
-							<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-								<div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="<?php echo $persentase_span ?>%" style="width: 0%"></div>
-							</div>
-							<hr class="bg-white-transparent-2" />
-							<br><br>
-							<div class="row text-truncate">
-								<div class="col-6">
-									<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
-									<div class="text-grey">
-										<i class=""></i> IPDN
+		<div class="col-sm-6">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">KAMPUS</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-xl-7 col-lg-8">
+									<div class="mb-3 text-grey">
+										<b>PERSENTASE SPAN</b>
+										<span class="ml-2">
+											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
+										</span>
 									</div>
-									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php echo $persentase_sas ?>"><?php echo $persentase_sas ?></span>%</div>
+									<div class="d-flex mb-1">
+										<a href="<?php echo base_url('d_span');?>"><h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2></a>
+										<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
+									</div>
+									<div class="mb-3 text-grey">
+										<!-- <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="33.21">0.00</span>% compare to last week -->
+									</div>
 									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-										<div class="progress-bar progress-bar-striped rounded-right bg-yellow" data-animation="width" data-value="<?php echo $persentase_sas ?>%" style="width: 0%"></div>
+										<div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="<?php echo $persentase_span ?>%" style="width: 0%"></div>
+									</div>
+									<hr class="bg-white-transparent-2" />
+									<div class="row text-truncate">
+										<div class="col-6">
+											<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
+											<div class="text-grey">
+												<i class=""></i> IPDN
+											</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php echo $persentase_sas ?>"><?php echo $persentase_sas ?></span>%</div>
+											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+												<div class="progress-bar progress-bar-striped rounded-right bg-yellow" data-animation="width" data-value="<?php echo $persentase_sas ?>%" style="width: 0%"></div>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
+											<div class="text-grey">
+												<i class=""></i> JATINANGOR
+											</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
+											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+												<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
+											</div>
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
-									<div class="text-grey">
-										<i class=""></i> JATINANGOR
-									</div>
-									<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
-									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-										<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
-									</div>
+								<div class="col-xl-5 col-lg-4 align-items-center d-flex justify-content-center">
+									<img src="assets/img/svg/img-1.svg" height="150px" class="d-none d-lg-block" />
 								</div>
 							</div>
-						</div>
-						<div class="col-xl-5 col-lg-4 align-items-center d-flex justify-content-center">
-							<img src="assets/img/svg/img-1.svg" height="150px" class="d-none d-lg-block" />
 						</div>
 					</div>
 				</div>
-				<br><br>
 			</div>
 		</div>
 		<div class="col-xl-6">
 			<div class="row">
 				<div class="col-sm-6">
-					<div class="card border-0 bg-dark text-white text-truncate mb-3">
-						<div class="card-body">
-							<div class="mb-3 text-grey">
-								<b class="mb-3">TOTAL PERSENTASE</b> 
-								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
-								<div class="text-grey">
-									<i class=""></i>  KAMPUS JATINANGOR BERDASARKAN SPAN
-								</div>
+					<div class="panel panel-inverse">
+						<div class="panel-heading">
+							<h4 class="panel-title">SPAN JATINANGOR</h4>
+							<div class="panel-heading-btn">
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 							</div>
-							<div class="d-flex align-items-center mb-1">
-								<a href="<?php echo base_url('d_span/biro');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
-								<div class="ml-auto">
-									<div id="conversion-rate-sparkline"></div>
+						</div>
+						<div class="panel-body bg-dark">
+							<div class="card border-0 bg-dark text-white text-truncate mb-3">
+								<div class="mb-3 text-grey">
+									<b class="mb-3">TOTAL PERSENTASE</b> 
+									<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
+									<div class="text-grey">
+										<i class=""></i> JATINANGOR (SPAN)
+									</div>
 								</div>
+								<div class="d-flex align-items-center mb-1">
+									<a href="<?php echo base_url('d_span/biro');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+									<div class="ml-auto">
+										<div id="conversion-rate-sparkline"></div>
+									</div>
+								</div>
+								<br><br>
+								<?php
+									foreach($biro as $row){
+								?>
+								<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+										<?php echo $row->alias; ?>
+									</div>
+									<div class="d-flex align-items-center ml-auto">
+										<!-- <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div> -->
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?php echo $row->persentase_t; ?>"><?php echo $row->persentase_t; ?></span></div>
+									</div>
+								</div>
+								<?php } ?>
 							</div>
-							<br>
-							<div class="mb-4 text-grey">
-								<i class=""></i> Detail berdasarkan Biro
-							</div>
-							<?php
-								foreach($biro as $row){
-							?>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
-									<?php echo $row->alias; ?>
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<!-- <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div> -->
-									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?php echo $row->persentase_t; ?>"><?php echo $row->persentase_t; ?></span></div>
-								</div>
-							</div>
-							<?php } ?>
-							<br>
-							<!-- <div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
-									Reached checkout
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="11">0</span>%</div>
-									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="3.85">0.00</span>%</div>
-								</div>
-							</div>
-							<div class="d-flex">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-									Sessions converted
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="57">0</span>%</div>
-									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="2.19">0.00</span>%</div>
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="panel panel-inverse" data-sortable-id="index-10">
+					<div class="panel panel-inverse">
 						<div class="panel-heading">
 							<h4 class="panel-title">Kalender</h4>
 							<div class="panel-heading-btn">
@@ -195,50 +193,62 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xl-4 col-lg-6">
-			<div class="card border-0 bg-dark-darker text-white mb-3">
-				<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 60%;">
-					<div class="mb-3 text-grey">
-						<b>NAVIGATION</b>
+		<div class="col-sm-6">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">NAVIGATION</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
-				<div class="widget-list widget-list-rounded inverse-mode">
-					<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
-						<div class="widget-list-media icon">
-							<i class="fab fas fa-lg fa-fw  fa-university bg-white text-black"></i>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white mb-3">
+						<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 100%;"></div>
+						<div class="widget-list widget-list-rounded inverse-mode">
+							<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
+								<div class="widget-list-media icon">
+									<i class="fab fas fa-lg fa-fw  fa-university bg-white text-black"></i>
+								</div>
+								<div class="widget-list-content">
+									<div class="widget-list-title">IPDN</div>
+								</div>
+							</a>
+							<a href="<?php echo base_url('d_span');?>" class="widget-list-item rounded-0 p-t-3">
+								<div class="widget-list-media icon">
+									<i class="fab fas fa-lg fa-fw  fa-money-bill-alt bg-green text-white"></i>
+								</div>
+								<div class="widget-list-content">
+									<div class="widget-list-title">Keuangan</div>
+								</div>
+							</a>
+							<a href="#" class="widget-list-item rounded-0 p-t-3">
+								<div class="widget-list-media icon">
+									<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
+								</div>
+								<div class="widget-list-content">
+									<div class="widget-list-title">Kepegawaian</div>
+								</div>
+							</a>
+							<a href="#" class="widget-list-item rounded-0 p-t-3">
+								<div class="widget-list-media icon">
+									<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
+								</div>
+								<div class="widget-list-content">
+									<div class="widget-list-title">Keprajaan</div>
+								</div>
+							</a>
+							<br>
 						</div>
-						<div class="widget-list-content">
-							<div class="widget-list-title">IPDN</div>
-						</div>
-					</a>
-					<a href="<?php echo base_url('d_span');?>" class="widget-list-item rounded-0 p-t-3">
-						<div class="widget-list-media icon">
-							<i class="fab fas fa-lg fa-fw  fa-money-bill-alt bg-green text-white"></i>
-						</div>
-						<div class="widget-list-content">
-							<div class="widget-list-title">Keuangan</div>
-						</div>
-					</a>
-					<a href="#" class="widget-list-item rounded-0 p-t-3">
-						<div class="widget-list-media icon">
-							<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
-						</div>
-						<div class="widget-list-content">
-							<div class="widget-list-title">Kepegawaian</div>
-						</div>
-					</a>
-					<a href="#" class="widget-list-item rounded-0 p-t-3">
-						<div class="widget-list-media icon">
-							<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
-						</div>
-						<div class="widget-list-content">
-							<div class="widget-list-title">Keprajaan</div>
-						</div>
-					</a>
-					<br>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- <div class="col-xl-4 col-lg-6">
+			
+		</div> -->
 		<div class="col-xl-4 col-lg-6">
 			<!-- <div class="card border-0 bg-dark-darker text-white mb-3">
 				<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 60%;">
