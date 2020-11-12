@@ -2,14 +2,8 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">SAS ALL KAMPUS</a></li>
-    <?php if(isset($page)) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>"><?= $page ?></a></li>
-    <?php } else { ?>
-      <?php if($link != NULL) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>">OUTPUT</a></li>
-      <?php } ?>
-    <?php } ?>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">IPDN</a></li>
+
   </ol>
   <h1 class="page-header">SAS</h1>
   <div class="row">
@@ -57,13 +51,13 @@
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
               <tr>
-                <th>No</th>
-                <th>Detail</th>
+                <th>#</th>
                 <th>Kampus</th>
                 <th>Pagu</th>
                 <th>Realiasasi</th>
                 <th>Sisa Pagu</th>
                 <th>Persentase</th>
+                <th>Detail</th>
               </tr>
             </thead>
             <tbody>
@@ -71,20 +65,22 @@
                 <?php foreach (json_decode($data, true) as $x): ?>
                   <tr>
                     <td><?php echo $no++; ?></td>
-                    <?php if (isset($x['id_c']))  { ?>
-                      <td><a href="<?= base_url().'d_sas/'.$x['id_c']; ?>" class='btn btn-primary mr-1'>DETAIL C</a></td>
-                    <?php } elseif (isset($x['id_b'])) { ?>
-                      <td><a href="<?= base_url().'d_sas/'.$x['id_b']; ?>" class='btn btn-primary mr-1'>DETAIL B</a></td>
-                    <?php } elseif (isset($x['kode_satker'])){ ?>
-                      <td><a href="<?= base_url().'d_sas/'.$x['kode_satker']; ?>" class='btn btn-primary mr-1'>DETAIL K</a></td>
-                    <?php }else{ ?>
-                       <td></td>
-                     <?php } ?>
                     <td><?= $x['nama']; ?></td>
                     <td><?= number_format($x['pagu'], 0, ',', '.'); ?></td>
                     <td><?= number_format($x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= number_format($x['pagu']-$x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= round((100/$x['pagu']*$x['realisasi']), 2)."%"; ?></td>
+                    <?php if (isset($x['id_c']))  { ?>
+                      <!-- unit -->
+                      <td><a href="<?= base_url().'d_sas/'.$x['url']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+                    <?php } elseif (isset($x['id_b'])) { ?>
+                      <!-- biro -->
+                      <td><a href="<?= base_url().'d_sas/'.$x['id_b']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+                    <?php } elseif (isset($x['kode_satker'])){ ?>
+                      <td><a href="<?= base_url().'d_sas/'.$x['kode_satker']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+                    <?php }else{ ?>
+                       <td></td>
+                    <?php } ?>
                   </tr>
                 <?php endforeach; ?>
             </tbody>
