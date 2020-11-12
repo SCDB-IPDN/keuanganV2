@@ -71,8 +71,10 @@
                     <td><?= number_format($x['pagu']-$x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= round((100/$x['pagu']*$x['realisasi']), 2)."%"; ?></td>
                     <?php if (isset($x['id_c']))  { ?>
-                      <td><a href="<?= base_url().'d_sas/'.$x['id_c']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+                      <!-- unit -->
+                      <td><a href="<?= base_url().'d_sas/'.$x['url']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php } elseif (isset($x['id_b'])) { ?>
+                      <!-- biro -->
                       <td><a href="<?= base_url().'d_sas/'.$x['id_b']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php } elseif (isset($x['kode_satker'])){ ?>
                       <td><a href="<?= base_url().'d_sas/'.$x['kode_satker']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>

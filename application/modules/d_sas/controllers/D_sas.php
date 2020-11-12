@@ -24,7 +24,7 @@ class D_sas extends CI_Controller{
       // 6 : show biro (jtngr)
       $data = array();
       switch (strlen($link)) {
-        case 3:
+        case 15:
           $data = $this->d_sas_model->get_all_output($link)->result();
           break;
         case 4:
@@ -36,7 +36,7 @@ class D_sas extends CI_Controller{
           // kalo jatinangor, show biro
           // kalo regional, show unit/bagian
           if ($link != 448302) {
-            // regional
+            // regional ke unit
             $data = $this->d_sas_model->get_all_unit_satker($link)->result();
           } else {
             $data = $this->d_sas_model->get_all_biro($link)->result();
