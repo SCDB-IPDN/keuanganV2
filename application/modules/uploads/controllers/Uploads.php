@@ -386,7 +386,7 @@ class Uploads extends CI_Controller {
 							// $this->db->insert_batch('unit_pok', $unitList); // PENTING
 						}
 					}
-					echo "<br>";
+					// echo "<br>";
 					// var_dump($unitList);
 					// print("<pre>".print_r($unitList,true)."</pre>");
 					// var_dump($data_out);
@@ -417,7 +417,7 @@ class Uploads extends CI_Controller {
 			//redirect halaman
 			redirect("uploads/v_pok");
 		} else {
-			echo "kosong";
+			// echo "kosong";
 			$this->session->set_flashdata('pok', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
 			redirect("uploads/v_pok");
 		}

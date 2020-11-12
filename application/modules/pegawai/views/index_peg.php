@@ -1,9 +1,8 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
-    <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="javascript:;">Pegawai</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('pegawai');?>">User</a></li>
   </ol>
-  <h1 class="page-header">Data Pegawai</h1>
+  <h1 class="page-header">Data User</h1>
   <div class="row">
     <div class="col-xl-12">
       <div class="panel panel-inverse">
@@ -23,7 +22,7 @@
           <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
           </button>
-          <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
+          <p>Silahkan input <b>Data User</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div>
         <?php if($this->session->flashdata('pegawai') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
@@ -70,12 +69,12 @@
     <!-- end col-10 -->
   </div>
   
-  <!-- Modal ADD PEGAWAI -->
+  <!-- Modal ADD USER -->
   <div class="modal fade" id="addpeg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pegawai</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -84,7 +83,7 @@
           <form action="pegawai/tambah_pegawai" method="POST">
             <div class="form-group">
               <label for="nip" class="col-form-label">Nip:</label>
-              <input type="text" class="form-control" id="nip" name="nip" placeholder="Nip Pegawai.." required>
+              <input type="text" class="form-control" id="nip" name="nip" placeholder="Nip User.." required>
             </div>
             <div class="form-group">
               <label for="nama_user" class="col-form-label">Nama Lengkap:</label>
@@ -124,12 +123,12 @@
   <?php
     foreach($data as $row){
   ?>
-  <!-- Modal EDIT PEGAWAI -->
+  <!-- Modal EDIT USER -->
   <div class="modal fade" id="editpeg<?php echo $row->id_user;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Data Pegawai</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -167,12 +166,12 @@
   <?php
     foreach($data as $row){
   ?>
-  <!-- Modal HAPUS PEGAWAI -->
+  <!-- Modal HAPUS USER -->
   <div class="modal fade" id="hapuspeg<?php echo $row->id_user;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Hapus Data Pegawai</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -180,7 +179,7 @@
         <div class="modal-body">
           <form class="form-horizontal" method="post" action="pegawai/hapus_pegawai">
             <div class="modal-body">
-              <p>Anda yakin mau menghapus Pegawai <b><?php echo $row->nama_user;?></b></p>
+              <p>Anda yakin mau menghapus User <b><?php echo $row->nama_user;?></b></p>
             </div>
             <div class="modal-footer">
               <input type="hidden" name="id_user" value="<?php echo $row->id_user;?>">
