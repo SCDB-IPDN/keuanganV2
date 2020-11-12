@@ -18,7 +18,7 @@ class D_sas_model extends CI_Model{
 	public function get_all_biro($kode_satker)
 	{	
 
-		$result = $this->db->query("SELECT tbl_satker_biro.kode_satker_biro , output_sas.id_b, tbl_satker_biro.nama_satker_biro as nama, tbl_satker_biro.alias as alias, SUM(output_sas.pagu) AS pagu , SUM(output_sas.realisasi) AS realisasi FROM tbl_satker_biro JOIN output_sas ON tbl_satker_biro.kode_satker_biro = output_sas.id_b WHERE output_sas.kode_satker = $kode_satker GROUP BY tbl_satker_biro.kode_satker_biro ");
+		$result = $this->db->query("SELECT tbl_satker_biro.kode_satker_biro , output_sas.id_b, tbl_satker_biro.nama_satker_biro as nama, tbl_satker_biro.alias as alias, SUM(output_sas.pagu) AS pagu , SUM(output_sas.realisasi) AS realisasi FROM tbl_satker_biro JOIN output_sas ON tbl_satker_biro.kode_satker_biro = output_sas.id_b WHERE output_sas.kode_satker = $kode_satker GROUP BY tbl_satker_biro.kode_satker_biro ORDER BY tbl_satker_biro.id_satker_biro");
 			
 		return $result;
 	}

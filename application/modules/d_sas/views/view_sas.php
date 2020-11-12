@@ -2,14 +2,8 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">SAS ALL KAMPUS</a></li>
-    <?php if(isset($page)) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>"><?= $page ?></a></li>
-    <?php } else { ?>
-      <?php if($link != NULL) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$link;?>">OUTPUT</a></li>
-      <?php } ?>
-    <?php } ?>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">IPDN</a></li>
+
   </ol>
   <h1 class="page-header">SAS</h1>
   <div class="row">
@@ -57,7 +51,7 @@
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
               <tr>
-                <th>No</th>
+                <th>#</th>
                 <th>Kampus</th>
                 <th>Pagu</th>
                 <th>Realiasasi</th>
