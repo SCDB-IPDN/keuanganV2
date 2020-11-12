@@ -70,12 +70,12 @@
                 <?php $no = 1; ?>
                 <?php foreach (json_decode($data, true) as $x): ?>
                   <tr>
+                    <td><?php echo $no++; ?></td>
                     <td><?= $x['nama']; ?></td>
                     <td><?= number_format($x['pagu'], 0, ',', '.'); ?></td>
                     <td><?= number_format($x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= number_format($x['pagu']-$x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= round((100/$x['pagu']*$x['realisasi']), 2)."%"; ?></td>
-                    <td><?php echo $no++; ?></td>
                     <?php if (isset($x['id_c']))  { ?>
                       <td><a href="<?= base_url().'d_sas/'.$x['id_c']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php } elseif (isset($x['id_b'])) { ?>
