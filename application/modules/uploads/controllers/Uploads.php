@@ -188,8 +188,7 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-	public function pok()
-	{
+	public function pok() {
 		// error_reporting(E_ERROR | E_PARSE);
 		// error_reporting(E_ALL);
 		// ini_set('display_errors', TRUE);
@@ -206,205 +205,237 @@ class Uploads extends CI_Controller {
 
 		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['pok']['name']) && in_array($_FILES['pok']['type'], $file_mimes)) {
+		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && $_FILES['pok']['tmp_name'][0] != "") {
+			// ada isinya
+			$count = count($_FILES['pok']['name']);
 
-			$arr_file = explode('.', $_FILES['pok']['name']);
-			$extension = end($arr_file);
-
-			// echo $_FILES['pok']['name'];
-			// echo "<br><br>=============================<br><br>";
-
-			if($extension != 'xlsx') {
-				$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
-				redirect("uploads/v_pok"); 
-			} else {
-				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-			}
-
-			$loadexcel = $reader->load($_FILES['pok']['tmp_name']);
-
-			$list_sheet = $loadexcel->getSheetNames();
-
-			// $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
-
-
-			$biro = "";
-			$set = false;
+			// echo $count."<br>";
+			// var_dump($_FILES);
+			// print("<pre>".print_r($_FILES,true)."</pre>");
 			$data_out = array();
 			$unitList = array();
 
-			foreach ($list_sheet as $shit) {
+			foreach($_FILES[ 'pok' ][ 'tmp_name' ] as $index => $tmpName) {
+				// echo $_FILES['pok']['name'][$index]."<br>";
+				// echo $index."<br>";
 
-				// pisahkan cara membaca sheet, antara rekap dan nama bagian / unit
-				// sheet yang biasanya nama bagian
-				// 1. TU BIRO..
-				// 2. AKADEMIK
-				// ...
-				// PASCA*
-				// PROFESI*
-				// echo $shit."<br>";
-				$es = explode(".", $shit);
+				if(isset($_FILES['pok']['name'][$index]) && in_array($_FILES['pok']['type'][$index], $file_mimes)) {
 
-				if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit') === 0)) {
-					echo "<br><br>=============================<br><br>";
-					echo $shit."<br>";
+					$arr_file = explode('.', $_FILES['pok']['name'][$index]);
+					$extension = end($arr_file);
 
-					// set unit, biro ke berapa, unit ke berapa
-					switch ($shit) {
-						case "PASCA":
-						$unit = 115;
-						break;
-						case "PROFESI":
-						$unit = 116;
-						break;
-						default:
-						$unit = ($es[0]<10)?$biro."0".$es[0]:$biro.$es[0];
-						break;
+					// echo $_FILES['pok']['name'][$index];
+					// echo "<br><br>=============================<br><br>";
+
+					if($extension != 'xlsx') {
+						$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+						redirect("uploads/v_pok"); 
+					} else {
+						$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 					}
 
-					echo "<br>".$unit."<br>";
+					$loadexcel = $reader->load($_FILES['pok']['tmp_name'][$index]);
 
-					$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
-					$stop = false;
-					$num = 1;
-					$nullcc = 0;
-					while(!$stop) {
-						$row = $rows[$num++];
-						if ($row['A'] == NULL) {
-							$nullcc++;
-							if ($nullcc == 4) {
-								$stop = true;    
+					$list_sheet = $loadexcel->getSheetNames();
+
+					// print("<pre>".print_r($list_sheet,true)."</pre>");
+
+					// $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
+
+
+					$biro = "";
+					$set = false;
+					// $data_out = array();
+					// $unitList = array();
+
+					foreach ($list_sheet as $shit) {
+
+						// pisahkan cara membaca sheet, antara rekap dan nama bagian / unit
+						// sheet yang biasanya nama bagian
+						// 1. TU BIRO..
+						// 2. AKADEMIK
+						// ...
+						// PASCA*
+						// PROFESI*
+						// echo $shit."<br>";
+						$es = explode(".", $shit);
+
+						if ((is_numeric($es[0]) || ($shit == "PASCA") || ($shit == "PROFESI")) && !(strpos(strtolower($shit), 'edit') === 0)) {
+							// echo "<br><br>=============================<br><br>";
+							// echo $shit."<br>";
+
+							// set unit, biro ke berapa, unit ke berapa
+							switch ($shit) {
+								case "PASCA":
+								$unit = 115;
+								break;
+								case "PROFESI":
+								$unit = 116;
+								break;
+								default:
+								$unit = ($es[0]<10)?$biro."0".$es[0]:$biro.$es[0];
+								break;
 							}
-						} else {
+
+							// echo "<br>".$unit."<br>";
+
+							$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+							$stop = false;
+							$num = 1;
 							$nullcc = 0;
-							// echo $row['A']."<br>";
-							if (strpos($row['A'], 'tgl')) {
-								// echo $row['A']."<br>";
-								$tgl = explode("tgl. ", $row['A']);
-								$tgl_last = count($tgl)-1;
-								$tgl = $this->ite($tgl[$tgl_last]);
-								$newDate = date("Y-m-d", strtotime($tgl));
-								echo $newDate."<br>";
-							} else if ($num > 6) {
-								$regex = '/^[0-9]{4}\.[0-9]{3}$/';
-								if (preg_match($regex, $row['A'])) {
-									// echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
-									array_push($data_out, array(
-										'id_u'      => $unit,
-										'nama'      => str_replace("[Base Line]", "", str_replace("_x000D_", "",$row['B'])),
-										'pagu'      => preg_replace("/[^0-9]/", "", $row['C']),
-										'realisasi' => preg_replace("/[^0-9]/", "", $row['D']),
-										'kembali'   => preg_replace("/[^0-9]/", "", $row['E']),
-										'tgl'       => $newDate
-									));
+							while(!$stop) {
+								$row = $rows[$num++];
+								if ($row['A'] == NULL) {
+									$nullcc++;
+									if ($nullcc == 4) {
+										$stop = true;    
+									}
+								} else {
+									$nullcc = 0;
+									// echo $row['A']."<br>";
+									if (strpos($row['A'], 'tgl')) {
+										// echo $row['A']."<br>";
+										$tgl = explode("tgl. ", $row['A']);
+										$tgl_last = count($tgl)-1;
+										$tgl = $this->ite($tgl[$tgl_last]);
+										$newDate = date("Y-m-d", strtotime($tgl));
+										// echo $newDate."<br>";
+									} else if ($num > 6) {
+										$regex = '/^[0-9]{4}\.[0-9]{3}$/';
+										if (preg_match($regex, $row['A'])) {
+											// echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
+											// echo $row['A']." ".str_replace("_x000D_", "",$row['B'])."<br>";
+											array_push($data_out, array(
+												'id_u'      => $unit,
+												'nama'      => str_replace("[Base Line]", "", str_replace("_x000D_", "",$row['B'])),
+												'pagu'      => preg_replace("/[^0-9]/", "", $row['C']),
+												'realisasi' => preg_replace("/[^0-9]/", "", $row['D']),
+												'kembali'   => preg_replace("/[^0-9]/", "", $row['E']),
+												'tgl'       => $newDate
+											));
+										}
+									}
 								}
 							}
-						}
-					}
 
-				// sheet rekap
-				// bukan nama bagian / unit
-				// REKAP IPDN
-				// REKAP BIRO I
-				// REKAP BIRO 2
-				} else if (strpos($shit, 'REKAP BIRO') === 0 && !$set) {
-					// get nomer biro untuk id biro
-					$set = true;
-					$temp = explode(" ", $shit);
-					$biro = $temp[2];
-					// $unitList = array();
-					if (!is_numeric($biro)) {
-						$biro = $this->rti($biro);
-					}
-
-					// khusus IPDN Jatinangor
-					$id_b = ($biro<10)?"10".$biro:"1".$biro;
-					switch ($biro) {
-						case '1':
-						$id_b = 1292;
-						break;
-						case '2':
-						$id_b = 1294;
-						break;
-						case '3':
-						$id_b = 1293;
-						break;
-						case '4':
-						$id_b = 1286;
-						break;
-					}
-
-					echo $shit."<br>";
-					echo "ID BIRO : ".$id_b."<br>";
-
-					// read data pada sheet REKAP BIRO
-					$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
-					$stop = false;
-					$num = 1;
-					$nullcc = 0;
-					while(!$stop) {
-						// echo $row['A']."<br>";
-						$row = $rows[$num++];
-
-						// cek eof
-						if ($row['A'] == NULL) {
-							$nullcc++;
-							if ($nullcc == 6) {
-								$stop = true;
+						// sheet rekap
+						// bukan nama bagian / unit
+						// REKAP IPDN
+						// REKAP BIRO I
+						// REKAP BIRO 2
+						} else if (strpos($shit, 'REKAP BIRO') === 0 && !$set) {
+							// get nomer biro untuk id biro
+							$set = true;
+							$temp = explode(" ", $shit);
+							$biro = $temp[2];
+							// $unitList = array();
+							if (!is_numeric($biro)) {
+								$biro = $this->rti($biro);
 							}
-						} else if (is_numeric($row['A']) && strlen($row['B']) > 3) {
-							// harusnya konten, bukan header table
-							// list nama bagian / unit
+
+							// khusus IPDN Jatinangor
+							$id_b = ($biro<10)?"10".$biro:"1".$biro;
+							switch ($biro) {
+								case '1':
+								$id_b = 1292;
+								break;
+								case '2':
+								$id_b = 1294;
+								break;
+								case '3':
+								$id_b = 1293;
+								break;
+								case '4':
+								$id_b = 1286;
+								break;
+							}
+
+							// echo $shit."<br>";
+							// echo "ID BIRO : ".$id_b."<br>";
+
+							// read data pada sheet REKAP BIRO
+							$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+							$stop = false;
+							$num = 1;
 							$nullcc = 0;
-							$id_u = ($row['A']<10)?$biro."0".$row['A']:"1".$row['A'];
-							echo $id_u."=".$row['B']."<br>";
-							// echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
-							array_push($unitList, array(
-								'id'    =>  $id_u , // 301, 411, 103, ... id unit
-								'id_b'  =>  $id_b,  // 101, 102, 103, 104, ... id biro
-								'nama'  =>  $row['B'] // LAB, TU BIRO
-							));
-							echo "<br>";
-						} else if (strpos($row['A'], 'tgl')) {
-							// echo $row['A']."<br>";
-							$tgl = explode("tgl. ", $row['A']);
-							$tgl_last = count($tgl)-1;
-							$tgl = $this->ite($tgl[$tgl_last]);
-							$newDate = date("Y-m-d", strtotime($tgl));
-							echo $newDate."<br>";
+							while(!$stop) {
+								// echo $row['A']."<br>";
+								$row = $rows[$num++];
+
+								// cek eof
+								if ($row['A'] == NULL) {
+									$nullcc++;
+									if ($nullcc == 6) {
+										$stop = true;
+									}
+								} else if (is_numeric($row['A']) && strlen($row['B']) > 3) {
+									// harusnya konten, bukan header table
+									// list nama bagian / unit
+									$nullcc = 0;
+									$id_u = ($row['A']<10)?$biro."0".$row['A']:"1".$row['A'];
+									// echo $id_u."=".$row['B']."<br>";
+									// echo "INSERT INTO unit values (".$id_u.", ".$id_b.", '".$row['B']."')";
+									array_push($unitList, array(
+										'id'    =>  $id_u , // 301, 411, 103, ... id unit
+										'id_b'  =>  $id_b,  // 101, 102, 103, 104, ... id biro
+										'nama'  =>  $row['B'] // LAB, TU BIRO
+									));
+									// echo "<br>";
+								} else if (strpos($row['A'], 'tgl')) {
+									// echo $row['A']."<br>";
+									$tgl = explode("tgl. ", $row['A']);
+									$tgl_last = count($tgl)-1;
+									$tgl = $this->ite($tgl[$tgl_last]);
+									$newDate = date("Y-m-d", strtotime($tgl));
+									// echo $newDate."<br>";
+								}
+							}
+							// echo "<br>";
+							// var_dump($unitList);
+							// echo "<br>";
+
+							// setting table unit kalo belum ada isinya
+							// $this->db->truncate('unit_pok');
+
+							// untuk unit_pok yang kosong
+							// $this->db->insert_batch('unit_pok', $unitList); // PENTING
 						}
 					}
-					echo "<br>";
+					// echo "<br>";
 					// var_dump($unitList);
-					echo "<br>";
+					// print("<pre>".print_r($unitList,true)."</pre>");
+					// var_dump($data_out);
+					// print("<pre>".print_r($data_out,true)."</pre>");
+					// exit();
 
-					// setting table unit kalo belum ada isinya
-					// $this->db->truncate('unit_pok');
-
-					// untuk unit_pok yang kosong
-					// $this->db->insert_batch('unit_pok', $unitList); // PENTING
+					// if (!empty($unitList)) {
+					// 	$this->db->insert_batch('unit_pok', $unitList); // PENTING    
+					// }
+					// $this->db->truncate('out_pok');
+					// $this->db->insert_batch('out_pok', $data_out);  // PENTING
+					//delete file from server
+					// unlink(realpath('excel/'.$data_upload['file_name'])); 
 				}
+
 			}
-			echo "<br>";
 			// var_dump($unitList);
 			// print("<pre>".print_r($unitList,true)."</pre>");
+			$this->db->truncate('unit_pok');
+			$this->db->insert_batch('unit_pok', $unitList); // PENTING 
 			// var_dump($data_out);
 			// print("<pre>".print_r($data_out,true)."</pre>");
-			// exit();
-
-			if (!empty($unitList)) {
-				$this->db->insert_batch('unit_pok', $unitList); // PENTING    
-			}
-			// $this->db->truncate('out_pok');
+			$this->db->truncate('out_pok');
 			$this->db->insert_batch('out_pok', $data_out);  // PENTING
-			//delete file from server
-			// unlink(realpath('excel/'.$data_upload['file_name']));
-
+			// exit;
 			// //upload success
-			$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['pok']['name'].' berhasil diimport!</div>');
+			$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
-			redirect("uploads/v_pok"); 
+			redirect("uploads/v_pok");
+		} else {
+			// echo "kosong";
+			$this->session->set_flashdata('pok', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
+			redirect("uploads/v_pok");
 		}
 	}
 
@@ -432,19 +463,23 @@ class Uploads extends CI_Controller {
 
 
 			$table = "";
+			$kategori = "";
 			$set = false;
 			$data = array();
-			echo "<pre>";
+			$kode_satker = 448302;
+			// echo "<pre>";
 
 			foreach ($list_sheet as $shit) {
 				$table = strtolower(str_replace(" ", "_", trim($shit)));
-				echo "====================<br>";
-				echo "tabel: $table<br>";
-				echo "====================<br>";
+				$kategori = trim($shit);
+				// echo "====================<br>";
+				// echo "tabel: $table<br>";
+				// echo "====================<br>";
 				$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
 				$stop = false;
 				$num = 1;
 				$nullcc = 0;
+				$luas = 0;
 				while(!$stop) {
 					$row = $rows[$num++];
 					// print("<pre>".print_r($row,true)."</pre>");
@@ -462,45 +497,63 @@ class Uploads extends CI_Controller {
 							$tgl_last = count($tgl)-1;
 							$tgl = $this->ite($tgl[$tgl_last]);
 							$newDate = date("Y-m-d", strtotime($tgl));
-							echo "tanggal: $newDate<br>";
+							// echo "tanggal: $newDate<br>";
 						} else if ($num > 6) {
 							if (is_numeric($row['A']) && strlen($row['A'] > 4)) {
-								echo "Kode: $row[A]<br>";
-								echo "Uraian: $row[B]<br>";
-								echo "NUP: $row[C]<br>";
-								echo "Merk: $row[D]<br>";
-								echo "Tahun: $row[E]<br>";
-								echo "Jumlah: $row[F]<br>";
-								echo "Jumlah: ".$this->ktt($row['F'])."<br>";
+								$harga_beli = $harga_baru = $asal = $kondisi = "";
+								$jumlah = $this->ktt($row['F']);
 								if ($row['M'] != NULL) {
 									// punya luas
-									echo "Luas: $row[G]<br>";
-									echo "Luas: ".$this->ktt($row['G'])."<br>";
-									echo "Harga Satuan Perolehan: $row[H]<br>";
-									echo "Harga Satuan Perolehan: ".$this->ktt($row['H'])."<br>";
-									echo "Harga Satuan Revaluasi: $row[J]<br>";
-									echo "Harga Satuan Revaluasi: ".$this->ktt($row['J'])."<br>";
-									echo "Asal: $row[L]<br>";
-									echo "Kondisi: $row[M]<br>";
+									$luas = $this->ktt($row['G']);
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$asal = $row['L'];
+									$kondisi = $row['M'];
 								} else {
-									echo "Harga Satuan Perolehan: $row[G]<br>";
-									echo "Harga Satuan Perolehan: ".$this->ktt($row['G'])."<br>";
-									echo "Harga Satuan Revaluasi: $row[I]<br>";
-									echo "Harga Satuan Revaluasi: ".$this->ktt($row['I'])."<br>";
-									echo "Asal: $row[K]<br>";
-									echo "Kondisi: $row[L]<br>";
+									$harga_beli = $this->ktt($row['G']);
+									$harga_baru = $this->ktt($row['I']);
+									$asal = $row['K'];
+									$kondisi = $row['L'];
 								}
-								echo "<br>";
+								// echo "Kode: $row[A]<br>";
+								// echo "Uraian: $row[B]<br>";
+								// echo "NUP: $row[C]<br>";
+								// echo "Merk: $row[D]<br>";
+								// echo "Tahun: $row[E]<br>";
+								// echo "Luas: $luas<br>";
+								// echo "Jumlah: $jumlah<br>";
+								// echo "Harga Satuan Perolehan: $harga_beli<br>";
+								// echo "Harga Satuan Revaluasi: $harga_baru<br>";
+								// echo "Asal: $asal<br>";
+								// echo "Kondisi: $kondisi<br>";
+
+								// echo "<br>";
+								array_push($data, array(
+									'kode_satker'    =>  $kode_satker,
+									'kode'  =>  $row['A'],
+									'uraian' => $row['B'],
+									'nup' => $row['C'],
+									'merk' => $row['D'],
+									'tahun' => $row['E'],
+									'jumlah' => $jumlah,
+									'harga_beli' => $harga_beli,
+									'harga_baru' => $harga_baru,
+									'asal' => $asal,
+									'kondisi' => $kondisi,
+									'luas' => $luas,
+									'kategori' => $kategori
+								));
 							}
 						}
 					}
 				}
-				echo "<br>";
-				echo "<br>";
-				echo "<br>";
+				// echo "<br>";
+				// echo "<br>";
+				// echo "<br>";
 			}
-			echo "</pre>";
-			exit;
+			// echo "</pre>";
+			$this->db->insert_batch('sarpras', $data);
+			// exit;
 		}
 
 		//upload success
@@ -672,7 +725,6 @@ class Uploads extends CI_Controller {
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
 						$satker_biro = explode(".", $temp[0]);
-
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 
@@ -851,7 +903,7 @@ class Uploads extends CI_Controller {
 
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('ntb', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-				
+
 				redirect("uploads/v_sas"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -970,7 +1022,6 @@ class Uploads extends CI_Controller {
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
 						$satker_biro = explode(".", $temp[0]);
-
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitpapua = array();
@@ -1158,7 +1209,6 @@ class Uploads extends CI_Controller {
 						$cunit++;
 						$satker_biro = explode(".", $temp[0]);
 
-
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitsumbar = array();
 						array_push($unitsumbar, array(
@@ -1342,8 +1392,6 @@ class Uploads extends CI_Controller {
 			redirect('uploads/v_praja');
 		}
 	}
-
-
 
 	function rti($s) {
 		$romans = array(

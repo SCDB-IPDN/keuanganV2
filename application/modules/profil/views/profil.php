@@ -50,10 +50,15 @@
                             <label class="col-lg-4 col-form-label">Password Baru</label>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                    <input type="Password" class="form-control" name="password" placeholder="Password..." data-toggle="password"/>
-                                    <!-- <div class="input-group-addon">
-                                        <i class="fa fa-key"></i>
-                                    </div> -->
+                                    <input type="Password" class="form-control" name="password" id="password" placeholder="****" data-toggle="password"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-4 col-form-label">Konfirmasi Password Baru</label>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <input type="Password" class="form-control" name="password" id="konfirmasi_password" placeholder="****"/>
                                 </div>
                             </div>
                         </div>
@@ -77,4 +82,30 @@
 
 <script type="text/javascript">
 	$("#password").password('toggle');
+</script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("password").onchange = validatePassword;
+        document.getElementById("konfirmasi_password").onchange = validatePassword;
+    }
+
+    function validatePassword(){
+      var pass2=document.getElementById("konfirmasi_password").value;
+      var pass1=document.getElementById("password").value;
+      console.log(pass2);
+      console.log(pass1);
+      console.log(pass1!=pass2);
+      
+      if(pass1.length >= 6)
+        document.getElementById("password").setCustomValidity('');
+      else
+        document.getElementById("password").setCustomValidity("Password Kurang dari 6 character");
+      
+
+      if(pass1!=pass2)
+          document.getElementById("konfirmasi_password").setCustomValidity("Password Tidak Sama, Coba Lagi");
+      else
+          document.getElementById("konfirmasi_password").setCustomValidity('');
+    }
 </script>

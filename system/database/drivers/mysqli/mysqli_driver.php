@@ -543,4 +543,26 @@ class CI_DB_mysqli_driver extends CI_DB {
 		$this->conn_id->close();
 	}
 
+	// --------------------------------------------------------------------
+
+	/**
+	* Insert_on_duplicate_update_batch statement
+	*
+	* Generates a platform-specific insert string from the supplied data
+	* MODIFIED to include ON DUPLICATE UPDATE
+	*
+	* @access public
+	* @param string the table name
+	* @param array the insert keys
+	* @param array the insert values
+	* @return string
+	*/
+	function _insert_on_duplicate_update_batch($table, $keys, $values)
+	{
+		foreach($keys as $key)
+			$update_fields[] = $key.'=VALUES('.$key.')';
+
+		return "INSERT INTO ".$table." (".implode(', ', $keys).") VALUES ".implode(', ', $values)." ON DUPLICATE KEY UPDATE ".implode(', ', $update_fields);
+	}
+
 }

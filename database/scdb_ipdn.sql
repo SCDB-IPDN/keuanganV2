@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 08:17 AM
+-- Generation Time: Nov 11, 2020 at 11:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -42,252 +42,110 @@ CREATE TABLE `output_sas` (
 --
 
 INSERT INTO `output_sas` (`No`, `kode_satker`, `id_b`, `id_c`, `pagu`, `realisasi`, `ket`) VALUES
-(1, '448302', '1286', '401', 54457000, 54399400, 'Kerjasama Dengan Pemerintah Daerah'),
-(2, '448302', '1286', '401', 68193000, 67923100, 'Kerjasama Dengan Perguruan Tinggi (PTN/PTS)'),
-(3, '448302', '1286', '401', 232804000, 208550160, 'Kerjasama Dengan Lembaga Lainnya'),
-(4, '448302', '1286', '402', 188468000, 166625402, 'Peraturan Menteri Dalam Negeri Terkait IPDN'),
-(5, '448302', '1286', '402', 4545000, 4504750, 'Peraturan Rektor Terkait Tindak Lanjut dari permendagri Nomor 42 dan 43 Tahun 2018'),
-(6, '448302', '1286', '403', 64121000, 56654000, 'Pelaksanaan Bantuan Hukum'),
-(7, '448302', '1286', '404', 164512000, 141507300, 'Pengelolaan Informasi dan Pengaduan'),
-(8, '448302', '1286', '404', 389440000, 326544994, 'Dokumentasi dan Publikasi'),
-(9, '448302', '1286', '405', 408580000, 325996000, 'Pelaksanaan Reformasi Birokrasi'),
-(10, '448302', '1286', '405', 87800000, 79410900, 'Pemantauan dan Evaluasi Reformasi Birokrasi'),
-(11, '448302', '1286', '406', 367537000, 317781608, 'Pengelolaan kepegawaian'),
-(12, '448302', '1292', '101', 1214627000, 855953707, 'Penyelenggaraan Administrasi Keakademikan'),
-(13, '448302', '1292', '101', 1956559000, 1420923626, 'Penyelenggaraan Fakultas Politik Pemerintahan'),
-(14, '448302', '1292', '101', 2031386000, 1012734367, 'Penyelenggaraan Fakultas Manajemen Pemerintahan'),
-(15, '448302', '1292', '101', 1143371000, 865487844, 'Penyelenggaraan Pelatihan'),
-(16, '448302', '1292', '101', 3339757000, 2782739451, 'Evaluasi Penyelenggaraan Pendidikan'),
-(17, '448302', '1292', '101', 555534000, 310998113, 'Penyelenggaraan Fakultas Hukum Tata Pemerintahan'),
-(18, '448302', '1292', '101', 21633000, 21632400, 'Peningkatan  dan Pengembangan Kualitas dan Kompetensi Tenaga Pendidik'),
-(19, '448302', '1292', '101', 2924290000, 1645632679, 'Penyelenggaraan Administrasi Keakademikan Program Pasca Sarjana'),
-(20, '448302', '1292', '101', 2421356000, 1043963251, 'Penyelenggaraan Pendidikan Program Magister (S2)'),
-(21, '448302', '1292', '101', 3557269000, 2263101266, 'Penyelenggaraan Pendidikan Program Doktoral (S3)'),
-(22, '448302', '1292', '101', 529068000, 508162671, 'Evaluasi Penyelenggaraan Pendidikan'),
-(23, '448302', '1292', '101', 648440000, 136395797, 'Penyelenggaraan Administrasi Keakademikan Program Profesi Kepamongprajaan'),
-(24, '448302', '1292', '101', 320345000, 33240000, 'Penyelenggaraan Pendidikan Program Profesi Kepamongprajaan'),
-(25, '448302', '1292', '101', 48290000, 0, 'Evaluasi Penyelenggaraan Pendidikan'),
-(26, '448302', '1292', '102', 673561000, 358446990, 'Akreditasi Pendidikan Kepamongprajaan'),
-(27, '448302', '1292', '102', 589438000, 345223979, 'Audit Mutu Internal'),
-(28, '448302', '1292', '103', 304425000, 187275709, 'Rencana Aksi, Kaji Tindak, Evaluasi, dan Seminar Hasil Pelaksanaan Pengabdian Masyarakat'),
-(29, '448302', '1292', '103', 8800000, 8794500, 'Pelaksanaan Program Pengabdian Masyarakat Desa Binaan Berbasis Interdisipliner'),
-(30, '448302', '1292', '103', 89957000, 44105000, 'Pelaksanaan Pengabdian Masyarakat Desa Binaan Berbasis Program Studi'),
-(31, '448302', '1292', '103', 205930000, 71439500, 'Pelaksanaan Pengabdian Masyarakat Berbasis Riset dan Kajian'),
-(32, '448302', '1292', '103', 87073000, 85779000, 'Pelaksanaan Pengabdian Masyarakat Bersinergi dengan Praktek Lapangan'),
-(33, '448302', '1292', '103', 218110000, 216983020, 'Pelaksanaan Kajian Pemerintahan'),
-(34, '448302', '1292', '103', 1204811000, 1058767940, 'Pelaksanaan Penelitian Mandiri, Kelompok dan Unggulan'),
-(35, '448302', '1292', '103', 52679000, 0, 'Seminar Hasil Kajian dan Penelitian'),
-(36, '448302', '1292', '103', 119160000, 27367980, 'Evaluasi, Rencana Aksi, dan Publikasi Hasil Pelaksanaan Penelitian'),
-(37, '448302', '1292', '104', 194025000, 143584000, 'Administrasi Dan Layanan Perpustakaan'),
-(38, '448302', '1292', '105', 609930000, 255767200, 'Pengelolaan Data dan Informasi'),
-(39, '448302', '1292', '106', 473952000, 247736950, 'Jurnal Lembaga'),
-(40, '448302', '1292', '106', 207391000, 54285000, 'Jurnal Fakultas'),
-(41, '448302', '1292', '106', 531818000, 176765000, 'Jurnal Program Diploma'),
-(42, '448302', '1292', '107', 254253000, 253529850, 'Laboratorium Bahasa'),
-(43, '448302', '1292', '107', 141188000, 94499217, 'Laboratorium dan Museum Sejarah Pemerintahan'),
-(44, '448302', '1292', '108', 39850000, 39597600, 'PENETAPAN TEMA LITERATUR, PENULISAN, EDITOR, SELEKSI PROPOSAL PENULISAN DAN KOMPILASI DATA'),
-(45, '448302', '1292', '108', 642850000, 463862000, 'PENYUSUNAN LITERATUR'),
-(46, '448302', '1292', '108', 76250000, 26963400, 'WORKSHOP PENYUSUNAN LITERATUR'),
-(47, '448302', '1292', '108', 150000000, 0, 'PENCETAKAN BUKU LITERATUR'),
-(48, '448302', '1292', '108', 500000, 0, 'PELAPORAN KEGIATAN'),
-(49, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULISAN  RPS DAN RTM PENGAJARAN'),
-(50, '448302', '1292', '109', 136462000, 136012000, 'PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(51, '448302', '1292', '109', 302229000, 76548800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(52, '448302', '1292', '109', 112500000, 111441600, 'PENCETAKAN BUKU RPS DAN RTM PENGAJARAN'),
-(53, '448302', '1292', '109', 500000, 500000, 'PELAPORAN KEGIATAN'),
-(54, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULIS RPS DAN RTM PELATIHAN'),
-(55, '448302', '1292', '109', 56145000, 53145000, 'PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(56, '448302', '1292', '109', 88275000, 45448800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(57, '448302', '1292', '109', 90000000, 0, 'PENCETAKAN BUKU RPS DAN RTM PELATIHAN'),
-(58, '448302', '1292', '109', 500000, 500000, 'LAPORAN KEGIATAN'),
-(59, '448302', '1292', '110', 126966000, 92648050, 'Persiapan'),
-(60, '448302', '1292', '110', 391079000, 225181850, 'Pelaksanaan'),
-(61, '448302', '1292', '110', 28000000, 8232400, 'Pelaporan'),
-(62, '448302', '1292', '110', 22015000, 16461700, 'Kompilasi'),
-(63, '448302', '1292', '110', 50449000, 6375000, 'Persiapan'),
-(64, '448302', '1292', '110', 63860000, 30631000, 'Pelaksanaan'),
-(65, '448302', '1292', '110', 31250000, 16165000, 'Pelaporan'),
-(66, '448302', '1292', '110', 65740000, 63740000, 'Kompilasi'),
-(67, '448302', '1292', '111', 454024000, 284125050, 'Penyusunan rencana program dan Penyusunan rencana anggaran'),
-(68, '448302', '1292', '111', 711833000, 514530800, 'Pelaksanaan pemantauan dan evaluasi'),
-(69, '448302', '1293', '301', 1078416000, 677040835, 'Penyelenggaraan Bimbingan dan Pengawasan Praja'),
-(70, '448302', '1293', '301', 1179297000, 1000668139, 'Penyelenggaraan Kegiatan Ekstrakurikuler Praja'),
-(71, '448302', '1293', '301', 647269000, 329341160, 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan'),
-(72, '448302', '1293', '301', 11907913000, 11004183431, 'Penerimaan Calon Praja IPDN'),
-(73, '448302', '1293', '301', 87370000, 42257000, 'Pengelolaan Data Alumni'),
-(74, '448302', '1293', '301', 84711000, 49457690, 'Survei Tingkat Kepuasan Stakeholder Terhadap Alumni Pendidikan Tinggi Kepamongprajaan'),
-(75, '448302', '1293', '301', 1162541000, 51496200, 'Penyelenggaraan Penegakan Disiplin Praja'),
-(76, '448302', '1294', '201', 3302144000, 2291115484, 'Pengadaan perangkat pengolah data dan komunikasi'),
-(77, '448302', '1294', '201', 7361566000, 1386505000, 'Pengadaan peralatan fasilitas perkantoran'),
-(78, '448302', '1294', '201', 1126100000, 677497000, 'Pembangunan/renovasi gedung dan bangunan'),
-(79, '448302', '1294', '202', 457706000, 327236756, 'Pengelolaan keuangan dan perbendaharaan'),
-(80, '448302', '1294', '202', 12012263000, 9295163234, 'Pelayanan umum, Pelayanan rumah tangga dan perlengkapan'),
-(81, '448302', '1294', '203', 121863240000, 93656799482, 'Gaji dan Tunjangan'),
-(82, '448302', '1294', '203', 130307746000, 87856768412, 'Operasional dan Pemeliharaan Kantor'),
-(83, '448302', '1286', '401', 54457000, 54399400, 'Kerjasama Dengan Pemerintah Daerah'),
-(84, '448302', '1286', '401', 68193000, 67923100, 'Kerjasama Dengan Perguruan Tinggi (PTN/PTS)'),
-(85, '448302', '1286', '401', 232804000, 208550160, 'Kerjasama Dengan Lembaga Lainnya'),
-(86, '448302', '1286', '402', 188468000, 166625402, 'Peraturan Menteri Dalam Negeri Terkait IPDN'),
-(87, '448302', '1286', '402', 4545000, 4504750, 'Peraturan Rektor Terkait Tindak Lanjut dari permendagri Nomor 42 dan 43 Tahun 2018'),
-(88, '448302', '1286', '403', 64121000, 56654000, 'Pelaksanaan Bantuan Hukum'),
-(89, '448302', '1286', '404', 164512000, 141507300, 'Pengelolaan Informasi dan Pengaduan'),
-(90, '448302', '1286', '404', 389440000, 326544994, 'Dokumentasi dan Publikasi'),
-(91, '448302', '1286', '405', 408580000, 325996000, 'Pelaksanaan Reformasi Birokrasi'),
-(92, '448302', '1286', '405', 87800000, 79410900, 'Pemantauan dan Evaluasi Reformasi Birokrasi'),
-(93, '448302', '1286', '406', 367537000, 317781608, 'Pengelolaan kepegawaian'),
-(94, '448302', '1292', '101', 1214627000, 855953707, 'Penyelenggaraan Administrasi Keakademikan'),
-(95, '448302', '1292', '101', 1956559000, 1420923626, 'Penyelenggaraan Fakultas Politik Pemerintahan'),
-(96, '448302', '1292', '101', 2031386000, 1012734367, 'Penyelenggaraan Fakultas Manajemen Pemerintahan'),
-(97, '448302', '1292', '101', 1143371000, 865487844, 'Penyelenggaraan Pelatihan'),
-(98, '448302', '1292', '101', 3339757000, 2782739451, 'Evaluasi Penyelenggaraan Pendidikan'),
-(99, '448302', '1292', '101', 555534000, 310998113, 'Penyelenggaraan Fakultas Hukum Tata Pemerintahan'),
-(100, '448302', '1292', '101', 21633000, 21632400, 'Peningkatan  dan Pengembangan Kualitas dan Kompetensi Tenaga Pendidik'),
-(101, '448302', '1292', '101', 2924290000, 1645632679, 'Penyelenggaraan Administrasi Keakademikan Program Pasca Sarjana'),
-(102, '448302', '1292', '101', 2421356000, 1043963251, 'Penyelenggaraan Pendidikan Program Magister (S2)'),
-(103, '448302', '1292', '101', 3557269000, 2263101266, 'Penyelenggaraan Pendidikan Program Doktoral (S3)'),
-(104, '448302', '1292', '101', 529068000, 508162671, 'Evaluasi Penyelenggaraan Pendidikan'),
-(105, '448302', '1292', '101', 648440000, 136395797, 'Penyelenggaraan Administrasi Keakademikan Program Profesi Kepamongprajaan'),
-(106, '448302', '1292', '101', 320345000, 33240000, 'Penyelenggaraan Pendidikan Program Profesi Kepamongprajaan'),
-(107, '448302', '1292', '101', 48290000, 0, 'Evaluasi Penyelenggaraan Pendidikan'),
-(108, '448302', '1292', '102', 673561000, 358446990, 'Akreditasi Pendidikan Kepamongprajaan'),
-(109, '448302', '1292', '102', 589438000, 345223979, 'Audit Mutu Internal'),
-(110, '448302', '1292', '103', 304425000, 187275709, 'Rencana Aksi, Kaji Tindak, Evaluasi, dan Seminar Hasil Pelaksanaan Pengabdian Masyarakat'),
-(111, '448302', '1292', '103', 8800000, 8794500, 'Pelaksanaan Program Pengabdian Masyarakat Desa Binaan Berbasis Interdisipliner'),
-(112, '448302', '1292', '103', 89957000, 44105000, 'Pelaksanaan Pengabdian Masyarakat Desa Binaan Berbasis Program Studi'),
-(113, '448302', '1292', '103', 205930000, 71439500, 'Pelaksanaan Pengabdian Masyarakat Berbasis Riset dan Kajian'),
-(114, '448302', '1292', '103', 87073000, 85779000, 'Pelaksanaan Pengabdian Masyarakat Bersinergi dengan Praktek Lapangan'),
-(115, '448302', '1292', '103', 218110000, 216983020, 'Pelaksanaan Kajian Pemerintahan'),
-(116, '448302', '1292', '103', 1204811000, 1058767940, 'Pelaksanaan Penelitian Mandiri, Kelompok dan Unggulan'),
-(117, '448302', '1292', '103', 52679000, 0, 'Seminar Hasil Kajian dan Penelitian'),
-(118, '448302', '1292', '103', 119160000, 27367980, 'Evaluasi, Rencana Aksi, dan Publikasi Hasil Pelaksanaan Penelitian'),
-(119, '448302', '1292', '104', 194025000, 143584000, 'Administrasi Dan Layanan Perpustakaan'),
-(120, '448302', '1292', '105', 609930000, 255767200, 'Pengelolaan Data dan Informasi'),
-(121, '448302', '1292', '106', 473952000, 247736950, 'Jurnal Lembaga'),
-(122, '448302', '1292', '106', 207391000, 54285000, 'Jurnal Fakultas'),
-(123, '448302', '1292', '106', 531818000, 176765000, 'Jurnal Program Diploma'),
-(124, '448302', '1292', '107', 254253000, 253529850, 'Laboratorium Bahasa'),
-(125, '448302', '1292', '107', 141188000, 94499217, 'Laboratorium dan Museum Sejarah Pemerintahan'),
-(126, '448302', '1292', '108', 39850000, 39597600, 'PENETAPAN TEMA LITERATUR, PENULISAN, EDITOR, SELEKSI PROPOSAL PENULISAN DAN KOMPILASI DATA'),
-(127, '448302', '1292', '108', 642850000, 463862000, 'PENYUSUNAN LITERATUR'),
-(128, '448302', '1292', '108', 76250000, 26963400, 'WORKSHOP PENYUSUNAN LITERATUR'),
-(129, '448302', '1292', '108', 150000000, 0, 'PENCETAKAN BUKU LITERATUR'),
-(130, '448302', '1292', '108', 500000, 0, 'PELAPORAN KEGIATAN'),
-(131, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULISAN  RPS DAN RTM PENGAJARAN'),
-(132, '448302', '1292', '109', 136462000, 136012000, 'PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(133, '448302', '1292', '109', 302229000, 76548800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(134, '448302', '1292', '109', 112500000, 111441600, 'PENCETAKAN BUKU RPS DAN RTM PENGAJARAN'),
-(135, '448302', '1292', '109', 500000, 500000, 'PELAPORAN KEGIATAN'),
-(136, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULIS RPS DAN RTM PELATIHAN'),
-(137, '448302', '1292', '109', 56145000, 53145000, 'PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(138, '448302', '1292', '109', 88275000, 45448800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(139, '448302', '1292', '109', 90000000, 0, 'PENCETAKAN BUKU RPS DAN RTM PELATIHAN'),
-(140, '448302', '1292', '109', 500000, 500000, 'LAPORAN KEGIATAN'),
-(141, '448302', '1292', '110', 126966000, 92648050, 'Persiapan'),
-(142, '448302', '1292', '110', 391079000, 225181850, 'Pelaksanaan'),
-(143, '448302', '1292', '110', 28000000, 8232400, 'Pelaporan'),
-(144, '448302', '1292', '110', 22015000, 16461700, 'Kompilasi'),
-(145, '448302', '1292', '110', 50449000, 6375000, 'Persiapan'),
-(146, '448302', '1292', '110', 63860000, 30631000, 'Pelaksanaan'),
-(147, '448302', '1292', '110', 31250000, 16165000, 'Pelaporan'),
-(148, '448302', '1292', '110', 65740000, 63740000, 'Kompilasi'),
-(149, '448302', '1292', '111', 454024000, 284125050, 'Penyusunan rencana program dan Penyusunan rencana anggaran'),
-(150, '448302', '1292', '111', 711833000, 514530800, 'Pelaksanaan pemantauan dan evaluasi'),
-(151, '448302', '1293', '301', 1078416000, 677040835, 'Penyelenggaraan Bimbingan dan Pengawasan Praja'),
-(152, '448302', '1293', '301', 1179297000, 1000668139, 'Penyelenggaraan Kegiatan Ekstrakurikuler Praja'),
-(153, '448302', '1293', '301', 647269000, 329341160, 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan'),
-(154, '448302', '1293', '301', 11907913000, 11004183431, 'Penerimaan Calon Praja IPDN'),
-(155, '448302', '1293', '301', 87370000, 42257000, 'Pengelolaan Data Alumni'),
-(156, '448302', '1293', '301', 84711000, 49457690, 'Survei Tingkat Kepuasan Stakeholder Terhadap Alumni Pendidikan Tinggi Kepamongprajaan'),
-(157, '448302', '1293', '301', 1162541000, 51496200, 'Penyelenggaraan Penegakan Disiplin Praja'),
-(158, '448302', '1294', '201', 3302144000, 2291115484, 'Pengadaan perangkat pengolah data dan komunikasi'),
-(159, '448302', '1294', '201', 7361566000, 1386505000, 'Pengadaan peralatan fasilitas perkantoran'),
-(160, '448302', '1294', '201', 1126100000, 677497000, 'Pembangunan/renovasi gedung dan bangunan'),
-(161, '448302', '1294', '202', 457706000, 327236756, 'Pengelolaan keuangan dan perbendaharaan'),
-(162, '448302', '1294', '202', 12012263000, 9295163234, 'Pelayanan umum, Pelayanan rumah tangga dan perlengkapan'),
-(163, '448302', '1294', '203', 121863240000, 93656799482, 'Gaji dan Tunjangan'),
-(164, '448302', '1294', '203', 130307746000, 87856768412, 'Operasional dan Pemeliharaan Kantor'),
-(165, '448302', '1286', '401', 54457000, 54399400, 'Kerjasama Dengan Pemerintah Daerah'),
-(166, '448302', '1286', '401', 68193000, 67923100, 'Kerjasama Dengan Perguruan Tinggi (PTN/PTS)'),
-(167, '448302', '1286', '401', 232804000, 208550160, 'Kerjasama Dengan Lembaga Lainnya'),
-(168, '448302', '1286', '402', 188468000, 166625402, 'Peraturan Menteri Dalam Negeri Terkait IPDN'),
-(169, '448302', '1286', '402', 4545000, 4504750, 'Peraturan Rektor Terkait Tindak Lanjut dari permendagri Nomor 42 dan 43 Tahun 2018'),
-(170, '448302', '1286', '403', 64121000, 56654000, 'Pelaksanaan Bantuan Hukum'),
-(171, '448302', '1286', '404', 164512000, 141507300, 'Pengelolaan Informasi dan Pengaduan'),
-(172, '448302', '1286', '404', 389440000, 326544994, 'Dokumentasi dan Publikasi'),
-(173, '448302', '1286', '405', 408580000, 325996000, 'Pelaksanaan Reformasi Birokrasi'),
-(174, '448302', '1286', '405', 87800000, 79410900, 'Pemantauan dan Evaluasi Reformasi Birokrasi'),
-(175, '448302', '1286', '406', 367537000, 317781608, 'Pengelolaan kepegawaian'),
-(176, '448302', '1292', '101', 1214627000, 855953707, 'Penyelenggaraan Administrasi Keakademikan'),
-(177, '448302', '1292', '101', 1956559000, 1420923626, 'Penyelenggaraan Fakultas Politik Pemerintahan'),
-(178, '448302', '1292', '101', 2031386000, 1012734367, 'Penyelenggaraan Fakultas Manajemen Pemerintahan'),
-(179, '448302', '1292', '101', 1143371000, 865487844, 'Penyelenggaraan Pelatihan'),
-(180, '448302', '1292', '101', 3339757000, 2782739451, 'Evaluasi Penyelenggaraan Pendidikan'),
-(181, '448302', '1292', '101', 555534000, 310998113, 'Penyelenggaraan Fakultas Hukum Tata Pemerintahan'),
-(182, '448302', '1292', '101', 21633000, 21632400, 'Peningkatan  dan Pengembangan Kualitas dan Kompetensi Tenaga Pendidik'),
-(183, '448302', '1292', '101', 2924290000, 1645632679, 'Penyelenggaraan Administrasi Keakademikan Program Pasca Sarjana'),
-(184, '448302', '1292', '101', 2421356000, 1043963251, 'Penyelenggaraan Pendidikan Program Magister (S2)'),
-(185, '448302', '1292', '101', 3557269000, 2263101266, 'Penyelenggaraan Pendidikan Program Doktoral (S3)'),
-(186, '448302', '1292', '101', 529068000, 508162671, 'Evaluasi Penyelenggaraan Pendidikan'),
-(187, '448302', '1292', '101', 648440000, 136395797, 'Penyelenggaraan Administrasi Keakademikan Program Profesi Kepamongprajaan'),
-(188, '448302', '1292', '101', 320345000, 33240000, 'Penyelenggaraan Pendidikan Program Profesi Kepamongprajaan'),
-(189, '448302', '1292', '101', 48290000, 0, 'Evaluasi Penyelenggaraan Pendidikan'),
-(190, '448302', '1292', '102', 673561000, 358446990, 'Akreditasi Pendidikan Kepamongprajaan'),
-(191, '448302', '1292', '102', 589438000, 345223979, 'Audit Mutu Internal'),
-(192, '448302', '1292', '103', 304425000, 187275709, 'Rencana Aksi, Kaji Tindak, Evaluasi, dan Seminar Hasil Pelaksanaan Pengabdian Masyarakat'),
-(193, '448302', '1292', '103', 8800000, 8794500, 'Pelaksanaan Program Pengabdian Masyarakat Desa Binaan Berbasis Interdisipliner'),
-(194, '448302', '1292', '103', 89957000, 44105000, 'Pelaksanaan Pengabdian Masyarakat Desa Binaan Berbasis Program Studi'),
-(195, '448302', '1292', '103', 205930000, 71439500, 'Pelaksanaan Pengabdian Masyarakat Berbasis Riset dan Kajian'),
-(196, '448302', '1292', '103', 87073000, 85779000, 'Pelaksanaan Pengabdian Masyarakat Bersinergi dengan Praktek Lapangan'),
-(197, '448302', '1292', '103', 218110000, 216983020, 'Pelaksanaan Kajian Pemerintahan'),
-(198, '448302', '1292', '103', 1204811000, 1058767940, 'Pelaksanaan Penelitian Mandiri, Kelompok dan Unggulan'),
-(199, '448302', '1292', '103', 52679000, 0, 'Seminar Hasil Kajian dan Penelitian'),
-(200, '448302', '1292', '103', 119160000, 27367980, 'Evaluasi, Rencana Aksi, dan Publikasi Hasil Pelaksanaan Penelitian'),
-(201, '448302', '1292', '104', 194025000, 143584000, 'Administrasi Dan Layanan Perpustakaan'),
-(202, '448302', '1292', '105', 609930000, 255767200, 'Pengelolaan Data dan Informasi'),
-(203, '448302', '1292', '106', 473952000, 247736950, 'Jurnal Lembaga'),
-(204, '448302', '1292', '106', 207391000, 54285000, 'Jurnal Fakultas'),
-(205, '448302', '1292', '106', 531818000, 176765000, 'Jurnal Program Diploma'),
-(206, '448302', '1292', '107', 254253000, 253529850, 'Laboratorium Bahasa'),
-(207, '448302', '1292', '107', 141188000, 94499217, 'Laboratorium dan Museum Sejarah Pemerintahan'),
-(208, '448302', '1292', '108', 39850000, 39597600, 'PENETAPAN TEMA LITERATUR, PENULISAN, EDITOR, SELEKSI PROPOSAL PENULISAN DAN KOMPILASI DATA'),
-(209, '448302', '1292', '108', 642850000, 463862000, 'PENYUSUNAN LITERATUR'),
-(210, '448302', '1292', '108', 76250000, 26963400, 'WORKSHOP PENYUSUNAN LITERATUR'),
-(211, '448302', '1292', '108', 150000000, 0, 'PENCETAKAN BUKU LITERATUR'),
-(212, '448302', '1292', '108', 500000, 0, 'PELAPORAN KEGIATAN'),
-(213, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULISAN  RPS DAN RTM PENGAJARAN'),
-(214, '448302', '1292', '109', 136462000, 136012000, 'PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(215, '448302', '1292', '109', 302229000, 76548800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PENGAJARAN'),
-(216, '448302', '1292', '109', 112500000, 111441600, 'PENCETAKAN BUKU RPS DAN RTM PENGAJARAN'),
-(217, '448302', '1292', '109', 500000, 500000, 'PELAPORAN KEGIATAN'),
-(218, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULIS RPS DAN RTM PELATIHAN'),
-(219, '448302', '1292', '109', 56145000, 53145000, 'PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(220, '448302', '1292', '109', 88275000, 45448800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PELATIHAN'),
-(221, '448302', '1292', '109', 90000000, 0, 'PENCETAKAN BUKU RPS DAN RTM PELATIHAN'),
-(222, '448302', '1292', '109', 500000, 500000, 'LAPORAN KEGIATAN'),
-(223, '448302', '1292', '110', 126966000, 92648050, 'Persiapan'),
-(224, '448302', '1292', '110', 391079000, 225181850, 'Pelaksanaan'),
-(225, '448302', '1292', '110', 28000000, 8232400, 'Pelaporan'),
-(226, '448302', '1292', '110', 22015000, 16461700, 'Kompilasi'),
-(227, '448302', '1292', '110', 50449000, 6375000, 'Persiapan'),
-(228, '448302', '1292', '110', 63860000, 30631000, 'Pelaksanaan'),
-(229, '448302', '1292', '110', 31250000, 16165000, 'Pelaporan'),
-(230, '448302', '1292', '110', 65740000, 63740000, 'Kompilasi'),
-(231, '448302', '1292', '111', 454024000, 284125050, 'Penyusunan rencana program dan Penyusunan rencana anggaran'),
-(232, '448302', '1292', '111', 711833000, 514530800, 'Pelaksanaan pemantauan dan evaluasi'),
-(233, '448302', '1293', '301', 1078416000, 677040835, 'Penyelenggaraan Bimbingan dan Pengawasan Praja'),
-(234, '448302', '1293', '301', 1179297000, 1000668139, 'Penyelenggaraan Kegiatan Ekstrakurikuler Praja'),
-(235, '448302', '1293', '301', 647269000, 329341160, 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan'),
-(236, '448302', '1293', '301', 11907913000, 11004183431, 'Penerimaan Calon Praja IPDN'),
-(237, '448302', '1293', '301', 87370000, 42257000, 'Pengelolaan Data Alumni'),
-(238, '448302', '1293', '301', 84711000, 49457690, 'Survei Tingkat Kepuasan Stakeholder Terhadap Alumni Pendidikan Tinggi Kepamongprajaan'),
-(239, '448302', '1293', '301', 1162541000, 51496200, 'Penyelenggaraan Penegakan Disiplin Praja'),
-(240, '448302', '1294', '201', 3302144000, 2291115484, 'Pengadaan perangkat pengolah data dan komunikasi'),
-(241, '448302', '1294', '201', 7361566000, 1386505000, 'Pengadaan peralatan fasilitas perkantoran'),
-(242, '448302', '1294', '201', 1126100000, 677497000, 'Pembangunan/renovasi gedung dan bangunan'),
-(243, '448302', '1294', '202', 457706000, 327236756, 'Pengelolaan keuangan dan perbendaharaan'),
-(244, '448302', '1294', '202', 12012263000, 9295163234, 'Pelayanan umum, Pelayanan rumah tangga dan perlengkapan'),
-(245, '448302', '1294', '203', 121863240000, 93656799482, 'Gaji dan Tunjangan'),
-(246, '448302', '1294', '203', 130307746000, 87856768412, 'Operasional dan Pemeliharaan Kantor');
+(1, '677024', '1295', '101', 404205000, 190124350, 'Tanpa Sub Output'),
+(2, '677024', '1295', '102', 36800000, 14670000, 'Pengabdian Masyarakat'),
+(3, '677024', '1295', '102', 126205000, 118575000, 'Kajian dan Penelitian'),
+(4, '677024', '1295', '103', 268973000, 120650700, 'Tanpa Sub Output'),
+(5, '677024', '1295', '104', 23698000, 8160000, 'Tanpa Sub Output'),
+(6, '677024', '1295', '105', 10456000, 477000, 'Tanpa Sub Output'),
+(7, '677024', '1295', '106', 225000000, 198500000, 'Tanpa Sub Output'),
+(8, '677024', '1295', '107', 848068000, 536661100, 'Tanpa Sub Output'),
+(9, '677024', '1295', '108', 30000413000, 23519053778, 'Tanpa Sub Output'),
+(10, '677024', '1295', '108', 9581416000, 6985955843, 'Gaji dan Tunjangan'),
+(11, '677024', '1295', '108', 20418997000, 16533097935, 'Operasional dan Pemeliharaan Kantor'),
+(12, '683070', '1295', '101', 434336000, 237219096, ' Sub Output'),
+(13, '683070', '1295', '102', 69480000, 2550000, 'bdian Masyarakat'),
+(14, '683070', '1295', '102', 102492000, 46609300, 'n dan Penelitian'),
+(15, '683070', '1295', '103', 360324000, 219366550, ' Sub Output'),
+(16, '683070', '1295', '104', 16446000, 10425200, ' Sub Output'),
+(17, '683070', '1295', '105', 15890000, 0, ' Sub Output'),
+(18, '683070', '1295', '106', 7328062000, 4996394500, ' Sub Output'),
+(19, '683070', '1295', '107', 610961000, 352682707, ' Sub Output'),
+(20, '683070', '1295', '108', 18706797000, 13470324330, ' Sub Output'),
+(21, '683070', '1295', '108', 5887800000, 3853031703, 'dan Tunjangan'),
+(22, '683070', '1295', '108', 12818997000, 9617292627, 'sional dan Pemeliharaan Kantor'),
+(23, '448302', '1286', '401', 54457000, 54399400, 'Kerjasama Dengan Pemerintah Daerah'),
+(24, '448302', '1286', '401', 68193000, 67923100, 'Kerjasama Dengan Perguruan Tinggi (PTN/PTS)'),
+(25, '448302', '1286', '401', 232804000, 208550160, 'Kerjasama Dengan Lembaga Lainnya'),
+(26, '448302', '1286', '402', 188468000, 166625402, 'Peraturan Menteri Dalam Negeri Terkait IPDN'),
+(27, '448302', '1286', '402', 4545000, 4504750, 'Peraturan Rektor Terkait Tindak Lanjut dari permendagri Nomor 42 dan 43 Tahun 2018'),
+(28, '448302', '1286', '403', 64121000, 56654000, 'Pelaksanaan Bantuan Hukum'),
+(29, '448302', '1286', '404', 164512000, 141507300, 'Pengelolaan Informasi dan Pengaduan'),
+(30, '448302', '1286', '404', 389440000, 326544994, 'Dokumentasi dan Publikasi'),
+(31, '448302', '1286', '405', 408580000, 325996000, 'Pelaksanaan Reformasi Birokrasi'),
+(32, '448302', '1286', '405', 87800000, 79410900, 'Pemantauan dan Evaluasi Reformasi Birokrasi'),
+(33, '448302', '1286', '406', 367537000, 317781608, 'Pengelolaan kepegawaian'),
+(34, '448302', '1292', '101', 1214627000, 855953707, 'Penyelenggaraan Administrasi Keakademikan'),
+(35, '448302', '1292', '101', 1956559000, 1420923626, 'Penyelenggaraan Fakultas Politik Pemerintahan'),
+(36, '448302', '1292', '101', 2031386000, 1012734367, 'Penyelenggaraan Fakultas Manajemen Pemerintahan'),
+(37, '448302', '1292', '101', 1143371000, 865487844, 'Penyelenggaraan Pelatihan'),
+(38, '448302', '1292', '101', 3339757000, 2782739451, 'Evaluasi Penyelenggaraan Pendidikan'),
+(39, '448302', '1292', '101', 555534000, 310998113, 'Penyelenggaraan Fakultas Hukum Tata Pemerintahan'),
+(40, '448302', '1292', '101', 21633000, 21632400, 'Peningkatan  dan Pengembangan Kualitas dan Kompetensi Tenaga Pendidik'),
+(41, '448302', '1292', '101', 2924290000, 1645632679, 'Penyelenggaraan Administrasi Keakademikan Program Pasca Sarjana'),
+(42, '448302', '1292', '101', 2421356000, 1043963251, 'Penyelenggaraan Pendidikan Program Magister (S2)'),
+(43, '448302', '1292', '101', 3557269000, 2263101266, 'Penyelenggaraan Pendidikan Program Doktoral (S3)'),
+(44, '448302', '1292', '101', 529068000, 508162671, 'Evaluasi Penyelenggaraan Pendidikan'),
+(45, '448302', '1292', '101', 648440000, 136395797, 'Penyelenggaraan Administrasi Keakademikan Program Profesi Kepamongprajaan'),
+(46, '448302', '1292', '101', 320345000, 33240000, 'Penyelenggaraan Pendidikan Program Profesi Kepamongprajaan'),
+(47, '448302', '1292', '101', 48290000, 0, 'Evaluasi Penyelenggaraan Pendidikan'),
+(48, '448302', '1292', '102', 673561000, 358446990, 'Akreditasi Pendidikan Kepamongprajaan'),
+(49, '448302', '1292', '102', 589438000, 345223979, 'Audit Mutu Internal'),
+(50, '448302', '1292', '103', 304425000, 187275709, 'Rencana Aksi, Kaji Tindak, Evaluasi, dan Seminar Hasil Pelaksanaan Pengabdian Masyarakat'),
+(51, '448302', '1292', '103', 8800000, 8794500, 'Pelaksanaan Program Pengabdian Masyarakat Desa Binaan Berbasis Interdisipliner'),
+(52, '448302', '1292', '103', 89957000, 44105000, 'Pelaksanaan Pengabdian Masyarakat Desa Binaan Berbasis Program Studi'),
+(53, '448302', '1292', '103', 205930000, 71439500, 'Pelaksanaan Pengabdian Masyarakat Berbasis Riset dan Kajian'),
+(54, '448302', '1292', '103', 87073000, 85779000, 'Pelaksanaan Pengabdian Masyarakat Bersinergi dengan Praktek Lapangan'),
+(55, '448302', '1292', '103', 218110000, 216983020, 'Pelaksanaan Kajian Pemerintahan'),
+(56, '448302', '1292', '103', 1204811000, 1058767940, 'Pelaksanaan Penelitian Mandiri, Kelompok dan Unggulan'),
+(57, '448302', '1292', '103', 52679000, 0, 'Seminar Hasil Kajian dan Penelitian'),
+(58, '448302', '1292', '103', 119160000, 27367980, 'Evaluasi, Rencana Aksi, dan Publikasi Hasil Pelaksanaan Penelitian'),
+(59, '448302', '1292', '104', 194025000, 143584000, 'Administrasi Dan Layanan Perpustakaan'),
+(60, '448302', '1292', '105', 609930000, 255767200, 'Pengelolaan Data dan Informasi'),
+(61, '448302', '1292', '106', 473952000, 247736950, 'Jurnal Lembaga'),
+(62, '448302', '1292', '106', 207391000, 54285000, 'Jurnal Fakultas'),
+(63, '448302', '1292', '106', 531818000, 176765000, 'Jurnal Program Diploma'),
+(64, '448302', '1292', '107', 254253000, 253529850, 'Laboratorium Bahasa'),
+(65, '448302', '1292', '107', 141188000, 94499217, 'Laboratorium dan Museum Sejarah Pemerintahan'),
+(66, '448302', '1292', '108', 39850000, 39597600, 'PENETAPAN TEMA LITERATUR, PENULISAN, EDITOR, SELEKSI PROPOSAL PENULISAN DAN KOMPILASI DATA'),
+(67, '448302', '1292', '108', 642850000, 463862000, 'PENYUSUNAN LITERATUR'),
+(68, '448302', '1292', '108', 76250000, 26963400, 'WORKSHOP PENYUSUNAN LITERATUR'),
+(69, '448302', '1292', '108', 150000000, 0, 'PENCETAKAN BUKU LITERATUR'),
+(70, '448302', '1292', '108', 500000, 0, 'PELAPORAN KEGIATAN'),
+(71, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULISAN  RPS DAN RTM PENGAJARAN'),
+(72, '448302', '1292', '109', 136462000, 136012000, 'PENYUSUNAN RPS DAN RTM PENGAJARAN'),
+(73, '448302', '1292', '109', 302229000, 76548800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PENGAJARAN'),
+(74, '448302', '1292', '109', 112500000, 111441600, 'PENCETAKAN BUKU RPS DAN RTM PENGAJARAN'),
+(75, '448302', '1292', '109', 500000, 500000, 'PELAPORAN KEGIATAN'),
+(76, '448302', '1292', '109', 1800000, 1800000, 'PENETAPAN PENULIS RPS DAN RTM PELATIHAN'),
+(77, '448302', '1292', '109', 56145000, 53145000, 'PENYUSUNAN RPS DAN RTM PELATIHAN'),
+(78, '448302', '1292', '109', 88275000, 45448800, 'WORKSHOP PENYUSUNAN RPS DAN RTM PELATIHAN'),
+(79, '448302', '1292', '109', 90000000, 0, 'PENCETAKAN BUKU RPS DAN RTM PELATIHAN'),
+(80, '448302', '1292', '109', 500000, 500000, 'LAPORAN KEGIATAN'),
+(81, '448302', '1292', '110', 126966000, 92648050, 'Persiapan'),
+(82, '448302', '1292', '110', 391079000, 225181850, 'Pelaksanaan'),
+(83, '448302', '1292', '110', 28000000, 8232400, 'Pelaporan'),
+(84, '448302', '1292', '110', 22015000, 16461700, 'Kompilasi'),
+(85, '448302', '1292', '110', 50449000, 6375000, 'Persiapan'),
+(86, '448302', '1292', '110', 63860000, 30631000, 'Pelaksanaan'),
+(87, '448302', '1292', '110', 31250000, 16165000, 'Pelaporan'),
+(88, '448302', '1292', '110', 65740000, 63740000, 'Kompilasi'),
+(89, '448302', '1292', '111', 454024000, 284125050, 'Penyusunan rencana program dan Penyusunan rencana anggaran'),
+(90, '448302', '1292', '111', 711833000, 514530800, 'Pelaksanaan pemantauan dan evaluasi'),
+(91, '448302', '1293', '301', 1078416000, 677040835, 'Penyelenggaraan Bimbingan dan Pengawasan Praja'),
+(92, '448302', '1293', '301', 1179297000, 1000668139, 'Penyelenggaraan Kegiatan Ekstrakurikuler Praja'),
+(93, '448302', '1293', '301', 647269000, 329341160, 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan'),
+(94, '448302', '1293', '301', 11907913000, 11004183431, 'Penerimaan Calon Praja IPDN'),
+(95, '448302', '1293', '301', 87370000, 42257000, 'Pengelolaan Data Alumni'),
+(96, '448302', '1293', '301', 84711000, 49457690, 'Survei Tingkat Kepuasan Stakeholder Terhadap Alumni Pendidikan Tinggi Kepamongprajaan'),
+(97, '448302', '1293', '301', 1162541000, 51496200, 'Penyelenggaraan Penegakan Disiplin Praja'),
+(98, '448302', '1294', '201', 3302144000, 2291115484, 'Pengadaan perangkat pengolah data dan komunikasi'),
+(99, '448302', '1294', '201', 7361566000, 1386505000, 'Pengadaan peralatan fasilitas perkantoran'),
+(100, '448302', '1294', '201', 1126100000, 677497000, 'Pembangunan/renovasi gedung dan bangunan'),
+(101, '448302', '1294', '202', 457706000, 327236756, 'Pengelolaan keuangan dan perbendaharaan'),
+(102, '448302', '1294', '202', 12012263000, 9295163234, 'Pelayanan umum, Pelayanan rumah tangga dan perlengkapan'),
+(103, '448302', '1294', '203', 121863240000, 93656799482, 'Gaji dan Tunjangan'),
+(104, '448302', '1294', '203', 130307746000, 87856768412, 'Operasional dan Pemeliharaan Kantor');
 
 -- --------------------------------------------------------
 
@@ -399,62 +257,44 @@ INSERT INTO `out_pok` (`id`, `id_u`, `nama`, `pagu`, `realisasi`, `kembali`, `tg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengguna`
+-- Table structure for table `tbl_pelatihan`
 --
 
-CREATE TABLE `pengguna` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `umur` varchar(3) NOT NULL
+CREATE TABLE `tbl_pelatihan` (
+  `id_pelatihan` int(11) NOT NULL,
+  `nama_pelatihan` varchar(100) NOT NULL,
+  `tanggal_pelatihan` date NOT NULL,
+  `jumlah_jam` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pengguna`
+-- Table structure for table `tbl_pns`
 --
 
-INSERT INTO `pengguna` (`id`, `nama`, `umur`) VALUES
-(1, 'Apa', '0'),
-(2, 'aku', '0'),
-(3, 'Kamu', '0'),
-(4, 'Apa', '0'),
-(5, 'aku', '0'),
-(6, 'Kamu', '0'),
-(7, 'Apa', 'L'),
-(8, 'aku', 'L'),
-(9, 'Kamu', 'L'),
-(10, '', ''),
-(11, '', ''),
-(12, '', ''),
-(13, 'INSTITUT PEMERINTAHAN DALAM NEGERI', ''),
-(14, 'BERDASARKAN DATA SPAN', ''),
-(15, '', ''),
-(16, '', ''),
-(17, '', ''),
-(18, '', ''),
-(19, 'No.', 'Kod'),
-(20, '', ''),
-(21, '010.01.12.', ''),
-(22, '1', '448'),
-(23, '', '128'),
-(24, '', '129'),
-(25, '', '129'),
-(26, '', '129'),
-(27, '', '129'),
-(28, '2', '352'),
-(29, '3', '677'),
-(30, '4', '677'),
-(31, '5', '677'),
-(32, '6', '683'),
-(33, '7', '683'),
-(34, '8', '683'),
-(35, '', ''),
-(36, '', ''),
-(37, 'Sumber', ''),
-(38, 'Data Sistem Perbendaharaan dan Anggaran Negara ( S', ''),
-(39, '', ''),
-(40, '', ''),
-(41, '', ''),
-(42, '', '');
+CREATE TABLE `tbl_pns` (
+  `no` int(50) NOT NULL,
+  `nip` int(50) NOT NULL,
+  `nama_lengkap` varchar(500) NOT NULL,
+  `bagian` varchar(500) NOT NULL,
+  `tempat_lahir` varchar(100) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `no_urut_pangkat` int(11) NOT NULL,
+  `pangkat` varchar(100) NOT NULL,
+  `gol_ruang` varchar(500) NOT NULL,
+  `tmt_pangkat` date NOT NULL,
+  `jabatan` varchar(500) NOT NULL,
+  `tmt_jabatan` date NOT NULL,
+  `jurusan` varchar(500) NOT NULL,
+  `nama_pt` varchar(500) NOT NULL,
+  `tahun_lulus` int(100) NOT NULL,
+  `tingkat_pendidikan` varchar(100) NOT NULL,
+  `usia` int(100) NOT NULL,
+  `masa_kerja` int(100) NOT NULL,
+  `catatan_mutasi` varchar(500) NOT NULL,
+  `no_kapreg` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -557,14 +397,22 @@ CREATE TABLE `tbl_span` (
 --
 
 INSERT INTO `tbl_span` (`id_span`, `kode_satker`, `nama_satker`, `pagu_bp`, `realisasi_bp`, `persentase_bp`, `pagu_bb`, `realisasi_bb`, `persentase_bb`, `pagu_bm`, `realisasi_bm`, `persentase_bm`, `pagu_t`, `realisasi_t`, `persentase_t`, `sisa`, `created_date`) VALUES
-(1, '448302', 'IPDN KAMPUS JATINANGOR', 112930090000, 94138695189, '83.36%', 201633066000, 133014436771, '65.97%', 17860660000, 4591617484, '25.71%', 332423816000, 231744749444, '69.71%', 100679066556, '2020-11-06'),
-(2, '352593', 'IPDN KAMPUS JAKARTA', 23313047000, 19910872044, '85.41%', 22141734000, 15486861127, '69.94%', 1482844000, 939691500, '63.37%', 46937625000, 36337424671, '77.42%', 10600200329, '2020-11-06'),
-(3, '677010', 'IPDN KAMPUS SULAWESI UTARA', 6758697000, 5645353721, '83.53%', 25101764000, 19423902649, '77.38%', 322000000, 58560000, '18.19%', 32182461000, 25127816370, '78.08%', 7054644630, '2020-11-06'),
-(4, '677024', 'IPDN KAMPUS SULAWESI SELATAN', 8374205000, 7212784549, '86.13%', 23132225000, 17522416082, '75.75%', 253500000, 198500000, '78.30%', 31759930000, 24933700631, '78.51%', 6826229369, '2020-11-06'),
-(5, '677045', 'IPDN KAMPUS SUMATERA BARAT', 7285747000, 6094496495, '83.65%', 23053939000, 16927697439, '73.43%', 279920000, 245863000, '87.83%', 30619606000, 23268056934, '75.99%', 7351549066, '2020-11-06'),
-(6, '683070', 'IPDN KAMPUS KALIMANTAN BARAT', 4756188000, 3970708811, '83.49%', 14462094000, 10603599670, '73.32%', 7073478000, 4996394500, '70.64%', 26291760000, 19570702981, '74.44%', 6721057019, '2020-11-06'),
-(7, '683084', 'IPDN KAMPUS NUSA TENGGARA BARAT', 9856653000, 8430873717, '85.53%', 19481863000, 14151013920, '72.64%', 461417000, 180714350, '39.17%', 29799933000, 22762601987, '76.38%', 7037331013, '2020-11-06'),
-(8, '683091', 'IPDN KAMPUS PAPUA', 5078831000, 4035796375, '79.46%', 25156863000, 19405458730, '77.14%', 1216600000, 750000000, '61.65%', 31452294000, 24191255105, '76.91%', 7261038895, '2020-11-06');
+(1, '448302', 'IPDN KAMPUS JATINANGOR', 112930090000, 94146054905, '83.37%', 201633066000, 136976848300, '67.93%', 17860660000, 4591617484, '25.71%', 332423816000, 235714520689, '70.91%', 96709295311, '2020-11-10'),
+(2, '352593', 'IPDN KAMPUS JAKARTA', 23313047000, 20042609305, '85.97%', 22141734000, 16643278561, '75.17%', 1482844000, 1384867000, '93.39%', 46937625000, 38070754866, '81.11%', 8866870134, '2020-11-10'),
+(3, '677010', 'IPDN KAMPUS SULAWESI UTARA', 6758697000, 5939761124, '87.88%', 25101764000, 19728244342, '78.59%', 322000000, 107886200, '33.51%', 32182461000, 25775891666, '80.09%', 6406569334, '2020-11-10'),
+(4, '677024', 'IPDN KAMPUS SULAWESI SELATAN', 8374205000, 7645098861, '91.29%', 23132225000, 18353631505, '79.34%', 253500000, 198500000, '78.30%', 31759930000, 26197230366, '82.49%', 5562699634, '2020-11-10'),
+(5, '677045', 'IPDN KAMPUS SUMATERA BARAT', 7285747000, 6141781780, '84.30%', 23053939000, 17266916839, '74.90%', 279920000, 245863000, '87.83%', 30619606000, 23654561619, '77.25%', 6965044381, '2020-11-10'),
+(6, '683070', 'IPDN KAMPUS KALIMANTAN BARAT', 4756188000, 4222615623, '88.78%', 14462094000, 10950252652, '75.72%', 7073478000, 4996394500, '70.64%', 26291760000, 20169262775, '76.71%', 6122497225, '2020-11-10'),
+(7, '683084', 'IPDN KAMPUS NUSA TENGGARA BARAT', 9856653000, 8911963776, '90.42%', 19481863000, 14474528733, '74.30%', 461417000, 180714350, '39.17%', 29799933000, 23567206859, '79.08%', 6232726141, '2020-11-10'),
+(8, '683091', 'IPDN KAMPUS PAPUA', 5078831000, 4045150181, '79.65%', 25156863000, 19550500730, '77.71%', 1216600000, 750000000, '61.65%', 31452294000, 24345650911, '77.41%', 7106643089, '2020-11-10'),
+(9, '448302', 'IPDN KAMPUS JATINANGOR', 112930090000, 94146054905, '83.37%', 201633066000, 136976848300, '67.93%', 17860660000, 4591617484, '25.71%', 332423816000, 235714520689, '70.91%', 96709295311, '2020-11-10'),
+(10, '352593', 'IPDN KAMPUS JAKARTA', 23313047000, 20042609305, '85.97%', 22141734000, 16643278561, '75.17%', 1482844000, 1384867000, '93.39%', 46937625000, 38070754866, '81.11%', 8866870134, '2020-11-10'),
+(11, '677010', 'IPDN KAMPUS SULAWESI UTARA', 6758697000, 5939761124, '87.88%', 25101764000, 19728244342, '78.59%', 322000000, 107886200, '33.51%', 32182461000, 25775891666, '80.09%', 6406569334, '2020-11-10'),
+(12, '677024', 'IPDN KAMPUS SULAWESI SELATAN', 8374205000, 7645098861, '91.29%', 23132225000, 18353631505, '79.34%', 253500000, 198500000, '78.30%', 31759930000, 26197230366, '82.49%', 5562699634, '2020-11-10'),
+(13, '677045', 'IPDN KAMPUS SUMATERA BARAT', 7285747000, 6141781780, '84.30%', 23053939000, 17266916839, '74.90%', 279920000, 245863000, '87.83%', 30619606000, 23654561619, '77.25%', 6965044381, '2020-11-10'),
+(14, '683070', 'IPDN KAMPUS KALIMANTAN BARAT', 4756188000, 4222615623, '88.78%', 14462094000, 10950252652, '75.72%', 7073478000, 4996394500, '70.64%', 26291760000, 20169262775, '76.71%', 6122497225, '2020-11-10'),
+(15, '683084', 'IPDN KAMPUS NUSA TENGGARA BARAT', 9856653000, 8911963776, '90.42%', 19481863000, 14474528733, '74.30%', 461417000, 180714350, '39.17%', 29799933000, 23567206859, '79.08%', 6232726141, '2020-11-10'),
+(16, '683091', 'IPDN KAMPUS PAPUA', 5078831000, 4045150181, '79.65%', 25156863000, 19550500730, '77.71%', 1216600000, 750000000, '61.65%', 31452294000, 24345650911, '77.41%', 7106643089, '2020-11-10');
 
 -- --------------------------------------------------------
 
@@ -597,10 +445,28 @@ CREATE TABLE `tbl_span_biro` (
 --
 
 INSERT INTO `tbl_span_biro` (`id_span_biro`, `kode_satker_biro`, `nama_satker_biro`, `pagu_bp`, `realisasi_bp`, `persentase_bp`, `pagu_bb`, `realisasi_bb`, `persentase_bb`, `pagu_bm`, `realisasi_bm`, `persentase_bm`, `pagu_t`, `realisasi_t`, `persentase_t`, `sisa`, `created_date`) VALUES
-(1, '1286', 'Penyelenggaraan Administrasi Kerjasama dan Hukum', '0', 0, '0.00%', 2030457000, 1756528114, '86.51%', 0, 0, '0.00%', 2030457000, 1756528114, '86.51%', '273928886', '2020-11-06'),
-(2, '1292', 'Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan', '0', 0, '0.00%', 28215394000, 18849927193, '66.81%', 180000000, 178000000, '98.89%', 28395394000, 19027927193, '67.01%', '9367466807', '2020-11-06'),
-(3, '1293', 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan', '0', 0, '0.00%', 16147517000, 13347590682, '82.66%', 0, 0, '0.00%', 16147517000, 13347590682, '82.66%', '2799926318', '2020-11-06'),
-(4, '1294', 'Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan', '112930090000', 94138695189, '83.36%', 155239698000, 99060390782, '63.81%', 17680660000, 4413617484, '24.96%', 285850448000, 197612703455, '69.13%', '88237744545', '2020-11-06');
+(1, '1286', 'Penyelenggaraan AdministrasinKerjasama dan Hukum', '0', 0, '0.00%', 2030457000, 1770049414, '87.17%', 0, 0, '0.00%', 2030457000, 1770049414, '87.17%', '260407586', '2020-11-10'),
+(2, '1292', 'Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan', '0', 0, '0.00%', 28215394000, 19478824653, '69.04%', 180000000, 178000000, '98.89%', 28395394000, 19656824653, '69.23%', '8738569347', '2020-11-10'),
+(3, '1293', 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaa', '0', 0, '0.00%', 16147517000, 14053572682, '87.03%', 0, 0, '0.00%', 16147517000, 14053572682, '87.03%', '2093944318', '2020-11-10'),
+(4, '1294', 'Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan', '112930090000', 94146054905, '83.37%', 155239698000, 101674401551, '65.50%', 17680660000, 4413617484, '24.96%', 285850448000, 200234073940, '70.05%', '85616374060', '2020-11-10'),
+(5, '1286', 'Penyelenggaraan AdministrasinKerjasama dan Hukum', '0', 0, '0.00%', 2030457000, 1770049414, '87.17%', 0, 0, '0.00%', 2030457000, 1770049414, '87.17%', '260407586', '2020-11-10'),
+(6, '1292', 'Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan', '0', 0, '0.00%', 28215394000, 19478824653, '69.04%', 180000000, 178000000, '98.89%', 28395394000, 19656824653, '69.23%', '8738569347', '2020-11-10'),
+(7, '1293', 'Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaa', '0', 0, '0.00%', 16147517000, 14053572682, '87.03%', 0, 0, '0.00%', 16147517000, 14053572682, '87.03%', '2093944318', '2020-11-10'),
+(8, '1294', 'Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan', '112930090000', 94146054905, '83.37%', 155239698000, 101674401551, '65.50%', 17680660000, 4413617484, '24.96%', 285850448000, 200234073940, '70.05%', '85616374060', '2020-11-10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_thl`
+--
+
+CREATE TABLE `tbl_thl` (
+  `id_thl` int(11) NOT NULL,
+  `nama` varchar(500) NOT NULL,
+  `tempat_lahir` varchar(500) NOT NULL,
+  `tanggal_lahir` varchar(500) NOT NULL,
+  `penugasan` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -623,7 +489,7 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`id_user`, `nip`, `nama_user`, `password`, `role`, `created_at`) VALUES
 (1, 'admin', 'Administrator', '202cb962ac59075b964b07152d234b70', 'Admin', '2020-11-02 04:14:16'),
-(2, 'apa', 'apa', '21232f297a57a5a743894a0e4a801fc3', 'Biro 1', '2020-11-03 09:06:59');
+(20, '1105011207970006', 'Maulyanda', 'e10adc3949ba59abbe56e057f20f883e', 'Biro 1', '2020-11-11 06:17:41');
 
 -- --------------------------------------------------------
 
@@ -645,10 +511,10 @@ CREATE TABLE `unit_pok` (
 
 CREATE TABLE `unit_sas` (
   `id` int(11) NOT NULL,
-  `kode_satker` varchar(50) DEFAULT NULL,
-  `id_c` varchar(50) DEFAULT NULL,
-  `id_b` varchar(50) DEFAULT NULL,
-  `ket` varchar(200) DEFAULT NULL
+  `kode_satker` varchar(50) NOT NULL,
+  `id_c` varchar(50) NOT NULL,
+  `id_b` varchar(50) NOT NULL,
+  `ket` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -677,48 +543,67 @@ INSERT INTO `unit_sas` (`id`, `kode_satker`, `id_c`, `id_b`, `ket`) VALUES
 (19, '448302', '201', '1294', 'Layanan Sarana dan Prasarana Internal'),
 (20, '448302', '202', '1294', 'Layanan Dukungan Manajemen Satker'),
 (21, '448302', '203', '1294', 'Layanan Perkantoran'),
-(22, '448302', '401', '1286', 'Kerjasama IPDN'),
-(23, '448302', '402', '1286', 'Kebijakan/Regulasi Lingkup IPDN yang ditetapkan'),
-(24, '448302', '403', '1286', 'Penanganan Sengketa Hukum Terkait IPDN'),
-(25, '448302', '404', '1286', 'Publikasi Informasi dan Penanganan Pengaduan Lingkup IPDN'),
-(26, '448302', '405', '1286', 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN'),
-(27, '448302', '406', '1286', 'Layanan Dukungan Manajemen Satker'),
-(28, '448302', '101', '1292', 'Penyelenggaraan Pendidikan Kepamongprajaan'),
-(29, '448302', '102', '1292', 'Audit Mutu Pendidikan/Akreditasi'),
-(30, '448302', '103', '1292', 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN'),
-(31, '448302', '104', '1292', 'Pengelolaan Layanan Perpustakaan'),
-(32, '448302', '105', '1292', 'Pengelolaan Teknologi Informasi Kelembagaan Pendidikan Kepamongprajaan'),
-(33, '448302', '106', '1292', 'Jurnal'),
-(34, '448302', '107', '1292', 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan'),
-(35, '448302', '108', '1292', 'Literatur'),
-(36, '448302', '109', '1292', 'RPS/RTM'),
-(37, '448302', '110', '1292', 'Perencanaan [SBKU]'),
-(38, '448302', '111', '1292', 'Layanan Dukungan Manajemen Satker'),
-(39, '448302', '301', '1293', 'Pengelolaan Administrasi Keprajaan dan Alumni'),
-(40, '448302', '201', '1294', 'Layanan Sarana dan Prasarana Internal'),
-(41, '448302', '202', '1294', 'Layanan Dukungan Manajemen Satker'),
-(42, '448302', '203', '1294', 'Layanan Perkantoran'),
-(43, '448302', '401', '1286', 'Kerjasama IPDN'),
-(44, '448302', '402', '1286', 'Kebijakan/Regulasi Lingkup IPDN yang ditetapkan'),
-(45, '448302', '403', '1286', 'Penanganan Sengketa Hukum Terkait IPDN'),
-(46, '448302', '404', '1286', 'Publikasi Informasi dan Penanganan Pengaduan Lingkup IPDN'),
-(47, '448302', '405', '1286', 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN'),
-(48, '448302', '406', '1286', 'Layanan Dukungan Manajemen Satker'),
-(49, '448302', '101', '1292', 'Penyelenggaraan Pendidikan Kepamongprajaan'),
-(50, '448302', '102', '1292', 'Audit Mutu Pendidikan/Akreditasi'),
-(51, '448302', '103', '1292', 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN'),
-(52, '448302', '104', '1292', 'Pengelolaan Layanan Perpustakaan'),
-(53, '448302', '105', '1292', 'Pengelolaan Teknologi Informasi Kelembagaan Pendidikan Kepamongprajaan'),
-(54, '448302', '106', '1292', 'Jurnal'),
-(55, '448302', '107', '1292', 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan'),
-(56, '448302', '108', '1292', 'Literatur'),
-(57, '448302', '109', '1292', 'RPS/RTM'),
-(58, '448302', '110', '1292', 'Perencanaan [SBKU]'),
-(59, '448302', '111', '1292', 'Layanan Dukungan Manajemen Satker'),
-(60, '448302', '301', '1293', 'Pengelolaan Administrasi Keprajaan dan Alumni'),
-(61, '448302', '201', '1294', 'Layanan Sarana dan Prasarana Internal'),
-(62, '448302', '202', '1294', 'Layanan Dukungan Manajemen Satker'),
-(63, '448302', '203', '1294', 'Layanan Perkantoran');
+(22, '677024', '101', '1295', 'Pengelolaan Pendidikan Kepamongprajaan Kampus Daerah'),
+(23, '677024', '102', '1295', 'Pengabdian Masyarakat, Kajian dan Penelitian'),
+(24, '677024', '103', '1295', 'Pengelolaan Administrasi Keprajaan dan Kemahasiswaaan'),
+(25, '677024', '104', '1295', 'Pengelolaan Unit Perpustakaan'),
+(26, '677024', '105', '1295', 'Penyelenggaraan Kerjasama'),
+(27, '677024', '106', '1295', 'Layanan Sarana dan Prasarana Internal'),
+(28, '677024', '107', '1295', 'Layanan Dukungan Manajemen Satker'),
+(29, '677024', '108', '1295', 'Layanan Perkantoran'),
+(30, '683070', '101', '1295', 'Pengelolaan Pendidikan Kepamongprajaan Kampus Daerah'),
+(31, '683070', '102', '1295', 'Pengabdian Masyarakat, Kajian dan Penelitian'),
+(32, '683070', '103', '1295', 'Pengelolaan Administrasi Keprajaan dan Kemahasiswaaan'),
+(33, '683070', '104', '1295', 'Pengelolaan Unit Perpustakaan'),
+(34, '683070', '105', '1295', 'Penyelenggaraan Kerjasama'),
+(35, '683070', '106', '1295', 'Layanan Sarana dan Prasarana Internal'),
+(36, '683070', '107', '1295', 'Layanan Dukungan Manajemen Satker'),
+(37, '683070', '108', '1295', 'Layanan Perkantoran'),
+(38, '677024', '101', '1295', 'Pengelolaan Pendidikan Kepamongprajaan Kampus Daerah'),
+(39, '677024', '102', '1295', 'Pengabdian Masyarakat, Kajian dan Penelitian'),
+(40, '677024', '103', '1295', 'Pengelolaan Administrasi Keprajaan dan Kemahasiswaaan'),
+(41, '677024', '104', '1295', 'Pengelolaan Unit Perpustakaan'),
+(42, '677024', '105', '1295', 'Penyelenggaraan Kerjasama'),
+(43, '677024', '106', '1295', 'Layanan Sarana dan Prasarana Internal'),
+(44, '677024', '107', '1295', 'Layanan Dukungan Manajemen Satker'),
+(45, '677024', '108', '1295', 'Layanan Perkantoran'),
+(46, '677024', '101', '1295', 'Pengelolaan Pendidikan Kepamongprajaan Kampus Daerah'),
+(47, '677024', '102', '1295', 'Pengabdian Masyarakat, Kajian dan Penelitian'),
+(48, '677024', '103', '1295', 'Pengelolaan Administrasi Keprajaan dan Kemahasiswaaan'),
+(49, '677024', '104', '1295', 'Pengelolaan Unit Perpustakaan'),
+(50, '677024', '105', '1295', 'Penyelenggaraan Kerjasama'),
+(51, '677024', '106', '1295', 'Layanan Sarana dan Prasarana Internal'),
+(52, '677024', '107', '1295', 'Layanan Dukungan Manajemen Satker'),
+(53, '677024', '108', '1295', 'Layanan Perkantoran'),
+(54, '683070', '101', '1295', 'Pengelolaan Pendidikan Kepamongprajaan Kampus Daerah'),
+(55, '683070', '102', '1295', 'Pengabdian Masyarakat, Kajian dan Penelitian'),
+(56, '683070', '103', '1295', 'Pengelolaan Administrasi Keprajaan dan Kemahasiswaaan'),
+(57, '683070', '104', '1295', 'Pengelolaan Unit Perpustakaan'),
+(58, '683070', '105', '1295', 'Penyelenggaraan Kerjasama'),
+(59, '683070', '106', '1295', 'Layanan Sarana dan Prasarana Internal'),
+(60, '683070', '107', '1295', 'Layanan Dukungan Manajemen Satker'),
+(61, '683070', '108', '1295', 'Layanan Perkantoran'),
+(62, '448302', '401', '1286', 'Kerjasama IPDN'),
+(63, '448302', '402', '1286', 'Kebijakan/Regulasi Lingkup IPDN yang ditetapkan'),
+(64, '448302', '403', '1286', 'Penanganan Sengketa Hukum Terkait IPDN'),
+(65, '448302', '404', '1286', 'Publikasi Informasi dan Penanganan Pengaduan Lingkup IPDN'),
+(66, '448302', '405', '1286', 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN'),
+(67, '448302', '406', '1286', 'Layanan Dukungan Manajemen Satker'),
+(68, '448302', '101', '1292', 'Penyelenggaraan Pendidikan Kepamongprajaan'),
+(69, '448302', '102', '1292', 'Audit Mutu Pendidikan/Akreditasi'),
+(70, '448302', '103', '1292', 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN'),
+(71, '448302', '104', '1292', 'Pengelolaan Layanan Perpustakaan'),
+(72, '448302', '105', '1292', 'Pengelolaan Teknologi Informasi Kelembagaan Pendidikan Kepamongprajaan'),
+(73, '448302', '106', '1292', 'Jurnal'),
+(74, '448302', '107', '1292', 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan'),
+(75, '448302', '108', '1292', 'Literatur'),
+(76, '448302', '109', '1292', 'RPS/RTM'),
+(77, '448302', '110', '1292', 'Perencanaan [SBKU]'),
+(78, '448302', '111', '1292', 'Layanan Dukungan Manajemen Satker'),
+(79, '448302', '301', '1293', 'Pengelolaan Administrasi Keprajaan dan Alumni'),
+(80, '448302', '201', '1294', 'Layanan Sarana dan Prasarana Internal'),
+(81, '448302', '202', '1294', 'Layanan Dukungan Manajemen Satker'),
+(82, '448302', '203', '1294', 'Layanan Perkantoran');
 
 --
 -- Indexes for dumped tables
@@ -737,10 +622,16 @@ ALTER TABLE `out_pok`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pengguna`
+-- Indexes for table `tbl_pelatihan`
 --
-ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tbl_pelatihan`
+  ADD PRIMARY KEY (`id_pelatihan`);
+
+--
+-- Indexes for table `tbl_pns`
+--
+ALTER TABLE `tbl_pns`
+  ADD PRIMARY KEY (`nip`);
 
 --
 -- Indexes for table `tbl_role`
@@ -773,6 +664,12 @@ ALTER TABLE `tbl_span_biro`
   ADD PRIMARY KEY (`id_span_biro`);
 
 --
+-- Indexes for table `tbl_thl`
+--
+ALTER TABLE `tbl_thl`
+  ADD PRIMARY KEY (`id_thl`);
+
+--
 -- Indexes for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
@@ -798,7 +695,7 @@ ALTER TABLE `unit_sas`
 -- AUTO_INCREMENT for table `output_sas`
 --
 ALTER TABLE `output_sas`
-  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `out_pok`
@@ -807,10 +704,10 @@ ALTER TABLE `out_pok`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
 
 --
--- AUTO_INCREMENT for table `pengguna`
+-- AUTO_INCREMENT for table `tbl_pelatihan`
 --
-ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+ALTER TABLE `tbl_pelatihan`
+  MODIFY `id_pelatihan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
@@ -834,25 +731,31 @@ ALTER TABLE `tbl_satker_biro`
 -- AUTO_INCREMENT for table `tbl_span`
 --
 ALTER TABLE `tbl_span`
-  MODIFY `id_span` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_span` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_span_biro`
 --
 ALTER TABLE `tbl_span_biro`
-  MODIFY `id_span_biro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_span_biro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_thl`
+--
+ALTER TABLE `tbl_thl`
+  MODIFY `id_thl` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `unit_sas`
 --
 ALTER TABLE `unit_sas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
