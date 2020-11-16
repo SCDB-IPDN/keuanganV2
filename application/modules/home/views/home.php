@@ -224,7 +224,7 @@
 									<div class="widget-list-title">Keuangan</div>
 								</div>
 							</a>
-							<a href="#" class="widget-list-item rounded-0 p-t-3">
+							<a href="<?php echo base_url('kepegawaian');?>" class="widget-list-item rounded-0 p-t-3">
 								<div class="widget-list-media icon">
 									<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
 								</div>
