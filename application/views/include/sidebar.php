@@ -63,15 +63,23 @@
             <!-- END KEUANGAN -->
 
             <!-- KEPEGAWAIAN -->
-            <li class="has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-building"></i>
                     <span>Kepegawaian</span>
                 </a>
                 <ul class="sub-menu">
-                    <li class=""><a href="#">PNS</a></li>
-                    <li class=""><a href="#">NON-PNS</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            NON-PNS
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="<?php echo $this->uri->segment(2)=="thl"?"active":"";?>"><a href="<?php echo base_url('kepegawaian/thl');?>">THL</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <!-- END KEPEGAWAIAN -->
