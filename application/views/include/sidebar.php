@@ -91,7 +91,7 @@
 
             <li class="nav-header">Data</li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
-            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-upload"></i> 
