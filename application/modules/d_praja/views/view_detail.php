@@ -34,7 +34,6 @@
               <h6> Nama : <?= $x['nama']; ?>  </h6>
               <div class="row">
                 <div class="col-4">
-
                   <label for="basic-url">NIK</label>
                   <input type="text" class="form-control" value="<?= $x['nik_praja']; ?>" readonly>
                 </div>
@@ -47,17 +46,17 @@
                  <input type="text" class="form-control" value="<?= $x['nisn']; ?>" readonly>
                </div>
 
-               <div class="col-4">
+               <div class="col-2">
                 <br>
                 <label for="basic-url">Tempat Lahir</label>
                 <input type="text" class="form-control" value="<?= $x['tmpt_lahir']; ?>" readonly>
               </div>
-              <div class="col-4">
+              <div class="col-2">
                <br>
                <label for="basic-url">Tanggal Lahir</label>
                <input type="date" class="form-control" value="<?= $x['tgl_lahir']; ?>" readonly>
              </div>
-             <div class="col-4">
+             <div class="col-2">
                <br>
                <label for="basic-url">Agama</label>
                <input type="text" class="form-control" value="<?= $x['agama']; ?>" readonly>
@@ -67,70 +66,244 @@
                <label for="basic-url">Alamat</label>
                <input type="text" class="form-control" value="<?= $x['alamat']; ?>" readonly>
              </div>
-              <div class="col-1">
+             <div class="col-1">
                <br>
                <label for="basic-url">RT</label>
                <input type="text" class="form-control" value="<?= $x['rt']; ?>" readonly>
              </div>
-              <div class="col-1">
+             <div class="col-1">
                <br>
                <label for="basic-url">RW</label>
                <input type="text" class="form-control" value="<?= $x['rw']; ?>" readonly>
              </div>
-              <div class="col-2">
+             <div class="col-2">
                <br>
                <label for="basic-url">Nama Dusun</label>
                <input type="text" class="form-control" value="<?= $x['nama_dusun']; ?>" readonly>
              </div>
-              <div class="col-2">
+             <div class="col-2">
                <br>
                <label for="basic-url">Kelurahan</label>
                <input type="text" class="form-control" value="<?= $x['kelurahan']; ?>" readonly>
              </div>
-              <div class="col-2">
+             <div class="col-2">
                <br>
                <label for="basic-url">Kecamatan</label>
                <input type="text" class="form-control" value="<?= $x['kecamatan']; ?>" readonly>
              </div>
-
-
+             <div class="col-1">
+               <br>
+               <label for="basic-url">Kode Pos</label>
+               <input type="text" class="form-control" value="<?= $x['kode_pos']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Kab/Kota</label>
+               <input type="text" class="form-control" value="<?= $x['kab/kota']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Provinsi</label>
+               <input type="text" class="form-control" value="<?= $x['provinsi']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Jenis Tinggal</label>
+               <input type="text" class="form-control" value="<?= $x['jenis_tinggal']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Alat Transportasi</label>
+               <input type="text" class="form-control" value="<?= $x['alat_transport']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">TLP Rumah</label>
+               <input type="text" class="form-control" value="<?= $x['tlp_rumah']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">TLP Pribadi</label>
+               <input type="text" class="form-control" value="<?= $x['tlp_pribadi']; ?>" readonly>
+             </div>
+             <div class="col-3">
+               <br>
+               <label for="basic-url">Email</label>
+               <input type="text" class="form-control" value="<?= $x['email']; ?>" readonly>
+             </div>
+             <div class="col-1">
+               <br>
+               <label for="basic-url">Kewarganegaraan</label>
+               <input type="text" class="form-control" value="<?= $x['kewarganegaraan']; ?>" readonly>
+             </div>
+             <div class="col-3">
+               <br>
+               <label for="basic-url">Email</label>
+               <input type="text" class="form-control" value="<?= $x['email']; ?>" readonly>
+             </div>
+             <div class="col-1">
+               <br>
+               <label for="basic-url">Penerima PKS</label>
+               <input type="text" class="form-control" value="<?= $x['penerima_pks']; ?>" readonly>
+             </div>
+             <div class="col-3">
+               <br>
+               <label for="basic-url">No PKS</label>
+               <input type="text" class="form-control" value="<?= $x['no_pks']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Kode Prodi</label>
+               <input type="text" class="form-control" value="<?= $x['kode_prodi']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Jenis Pendaftaran</label>
+               <input type="text" class="form-control" value="<?= $x['jenis_pendaftaran']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Tanggal Masuk Kuliah</label>
+               <input type="date" class="form-control" value="<?= $x['tgl_masuk_kuliah']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Pembiayaan</label>
+               <input type="text" class="form-control" value="<?= $x['pembiayaan']; ?>" readonly>
+             </div>
+             <div class="col-2">
+               <br>
+               <label for="basic-url">Jalur Masuk</label>
+               <input type="text" class="form-control" value="<?= $x['jalur_masuk']; ?>" readonly>
+             </div>
            </div>
            <br>
-         </form>
-
-       <?php endforeach; ?>
+           <br>
+           <h3> DATA ORANG TUA  </h3>
+           <br>
+           <div class="row">
+            <div class="col-2">
+              <label for="basic-url">Nama Ayah</label>
+              <input type="text" class="form-control" value="<?= $x['nama_ayah']; ?>" readonly>
+            </div>
+            <div class="col-2">
+             <label for="basic-url">NIK Ayah</label>
+             <input type="text" class="form-control" value="<?= $x['nik_ayah']; ?>" readonly>
+           </div>
+           <div class="col-2">
+             <label for="basic-url">Tanggal Lahir Ayah </label>
+             <input type="date" class="form-control" value="<?= $x['tgllahir_ayah']; ?>" readonly>
+           </div>
+           <div class="col-2">
+            <label for="basic-url">Pekerjaan Ayah</label>
+            <input type="text" class="form-control" value="<?= $x['pekerjaan_ayah']; ?>" readonly>
+          </div>
+          <div class="col-2">
+           <label for="basic-url">Pengahasilan Ayah</label>
+           <input type="text" class="form-control" value="<?= $x['penghasilan_ayah']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <label for="basic-url">No Tlp Ayah</label>
+           <input type="text" class="form-control" value="<?= $x['tlp_ayah']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Nama Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['nama_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">NIK Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['nik_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Tanggal Lahir Ibu </label>
+           <input type="date" class="form-control" value="<?= $x['tgllahir_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Pekerjaan Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['pekerjaan_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Pengahasilan Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['penghasilan_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">No Tlp Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['tlp_ibu']; ?>" readonly>
+         </div>
+       </div>
+        <h3> DATA ORANG TUA  </h3>
+           <br>
+           <div class="row">
+            <div class="col-2">
+              <label for="basic-url">Nama Ayah</label>
+              <input type="text" class="form-control" value="<?= $x['nama_ayah']; ?>" readonly>
+            </div>
+            <div class="col-2">
+             <label for="basic-url">NIK Ayah</label>
+             <input type="text" class="form-control" value="<?= $x['nik_ayah']; ?>" readonly>
+           </div>
+           <div class="col-2">
+             <label for="basic-url">Tanggal Lahir Ayah </label>
+             <input type="date" class="form-control" value="<?= $x['tgllahir_ayah']; ?>" readonly>
+           </div>
+           <div class="col-2">
+            <label for="basic-url">Pekerjaan Ayah</label>
+            <input type="text" class="form-control" value="<?= $x['pekerjaan_ayah']; ?>" readonly>
+          </div>
+          <div class="col-2">
+           <label for="basic-url">Pengahasilan Ayah</label>
+           <input type="text" class="form-control" value="<?= $x['penghasilan_ayah']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <label for="basic-url">No Tlp Ayah</label>
+           <input type="text" class="form-control" value="<?= $x['tlp_ayah']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Nama Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['nama_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">NIK Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['nik_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Tanggal Lahir Ibu </label>
+           <input type="date" class="form-control" value="<?= $x['tgllahir_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Pekerjaan Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['pekerjaan_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">Pengahasilan Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['penghasilan_ibu']; ?>" readonly>
+         </div>
+         <div class="col-2">
+           <br>
+           <label for="basic-url">No Tlp Ibu</label>
+           <input type="text" class="form-control" value="<?= $x['tlp_ibu']; ?>" readonly>
+         </div>
        <br>
-       <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+     </form>
 
-        <thead>
-          <tr>
+   <?php endforeach; ?>
+   <br>
 
-            <th>No</th>
-            <TH>NIK</TH>
-            <th>NO SPCP</th>
-            <th>NISN</th>
-            <th>NPWP</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          <?php $no = 1; ?>
-          <?php foreach (json_decode($data, true) as $x): ?>
-            <tr>
-              <td><?php echo $no++; ?></td>
-              <td><?= $x['nik_praja']; ?></td>
-              <td><?= $x['no_spcp'];?></td>
-              <td><?= $x['nisn'];?></td>
-              <td><?= $x['npwp'];?></td> 
-              <!-- <td><a href='' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a></td> -->
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-  <!-- end panel-body -->
+ </div>
+</div>
+<!-- end panel-body -->
 </div>
 <!-- end panel -->
 </div>
