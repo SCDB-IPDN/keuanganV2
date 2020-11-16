@@ -31,7 +31,7 @@
              <form>
               <h3> DATA DIRI  </h3>
               <br>
-              <h6> Nama : <?= $x['nama']; ?>  </h6>
+              <h5> Nama : <?= $x['nama']; ?>  </h5>
               <div class="row">
                 <div class="col-4">
                   <label for="basic-url">NIK</label>
