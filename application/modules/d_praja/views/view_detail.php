@@ -33,31 +33,28 @@
               <br>
               <h5> Nama : <?= $x['nama']; ?>  </h5>
               <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                   <label for="basic-url">NIK</label>
                   <input type="text" class="form-control" value="<?= $x['nik_praja'] == NULL ? "-" : $x['nik_praja'] ?>"readonly>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                  <label for="basic-url">No SPCP</label>
                  <input type="text" class="form-control" value="<?= $x['no_spcp'] == NULL ? "-" : $x['no_spcp'] ?>" readonly>
                </div>
-               <div class="col-4">
+               <div class="col-2">
                  <label for="basic-url">NISN</label>
                  <input type="text" class="form-control" value="<?= $x['nisn'] == NULL ? "-" : $x['nisn'] ?>" readonly>
                </div>
 
                <div class="col-2">
-                <br>
                 <label for="basic-url">Tempat Lahir</label>
                 <input type="text" class="form-control" value="<?= $x['tmpt_lahir'] == NULL ? "-" : $x['tmpt_lahir'] ?>" readonly>
               </div>
               <div class="col-2">
-               <br>
                <label for="basic-url">Tanggal Lahir</label>
                <input type="date" class="form-control" value="<?= $x['tgl_lahir'] == NULL ? "-" : $x['tgl_lahir'] ?>" readonly>
              </div>
              <div class="col-2">
-               <br>
                <label for="basic-url">Agama</label>
                <input type="text" class="form-control" value="<?= $x['agama'] == NULL ? "-" : $x['agama'] ?>" readonly>
              </div>
@@ -96,7 +93,7 @@
                <label for="basic-url">Kode Pos</label>
                <input type="text" class="form-control" value="<?= $x['kode_pos'] == NULL ? "-" : $x['kode_pos'] ?>" readonly>
              </div>
-             <div class="col-2">
+             <div class="col-1">
                <br>
                <label for="basic-url">Kab/Kota</label>
                <input type="text" class="form-control" value="<?= $x['kab/kota'] == NULL ? "-" : $x['kab/kota'] ?>" readonly>
@@ -111,17 +108,17 @@
                <label for="basic-url">Jenis Tinggal</label>
                <input type="text" class="form-control" value="<?= $x['jenis_tinggal'] == NULL ? "-" : $x['jenis_tinggal'] ?>" readonly>
              </div>
-             <div class="col-2">
+             <div class="col-1">
                <br>
                <label for="basic-url">Alat Transportasi</label>
                <input type="text" class="form-control" value="<?= $x['alat_transport'] == NULL ? "-" : $x['alat_transport'] ?>" readonly>
              </div>
-             <div class="col-2">
+             <div class="col-1">
                <br>
                <label for="basic-url">TLP Rumah</label>
                <input type="text" class="form-control" value="<?= $x['tlp_rumah'] == NULL ? "-" : $x['tlp_rumah'] ?>" readonly>
              </div>
-             <div class="col-2">
+             <div class="col-1">
                <br>
                <label for="basic-url">TLP Pribadi</label>
                <input type="text" class="form-control" value="<?= $x['tlp_pribadi'] == NULL ? "-" : $x['tlp_pribadi'] ?>" readonly>
@@ -136,17 +133,12 @@
                <label for="basic-url">Kewarganegaraan</label>
                <input type="text" class="form-control" value="<?= $x['kewarganegaraan'] == NULL ? "-" : $x['kewarganegaraan'] ?>" readonly>
              </div>
-             <div class="col-3">
-               <br>
-               <label for="basic-url">Email</label>
-               <input type="text" class="form-control" value="<?= $x['email'] == NULL ? "-" : $x['email'] ?>" readonly>
-             </div>
              <div class="col-1">
                <br>
                <label for="basic-url">Penerima PKS</label>
                <input type="text" class="form-control" value="<?= $x['kode_prodi'] == NULL ? "-" : $x['kode_prodi'] ?>" readonly>
              </div>
-             <div class="col-3">
+             <div class="col-2">
                <br>
                <label for="basic-url">No PKS</label>
                <input type="text" class="form-control" value="<?= $x['no_pks'] == NULL ? "-" : $x['no_pks'] ?>" readonly>
@@ -165,6 +157,11 @@
                <br>
                <label for="basic-url">Tanggal Masuk Kuliah</label>
                <input type="date" class="form-control" value="<?= $x['tgl_masuk_kuliah'] == NULL ? "-" : $x['tgl_masuk_kuliah'] ?>" readonly>
+             </div>
+             <div class="col-1">
+               <br>
+               <label for="basic-url">Tahun Masuk Kuliah</label>
+               <input type="text" class="form-control" value="<?= $x['tahun_masuk_kuliah'] == NULL ? "-" : $x['tahun_masuk_kuliah'] ?>" readonly>
              </div>
              <div class="col-2">
                <br>
@@ -202,7 +199,7 @@
            <label for="basic-url">Pengahasilan Ayah</label>
            <input type="text" class="form-control" value="<?= $x['penghasilan_ayah'] == NULL ? "-" : $x['penghasilan_ayah'] ?>" readonly>
          </div>
-         <div class="col-2">
+         <div class="col-1">
            <label for="basic-url">No Tlp Ayah</label>
            <input type="text" class="form-control" value="<?= $x['tlp_ayah'] == NULL ? "-" : $x['tlp_ayah'] ?>" readonly>
          </div>
@@ -231,7 +228,7 @@
            <label for="basic-url">Pengahasilan Ibu</label>
            <input type="text" class="form-control" value="<?= $x['penghasilan_ibu'] == NULL ? "-" : $x['penghasilan_ibu'] ?>" readonly>
          </div>
-         <div class="col-2">
+         <div class="col-1">
            <br>
            <label for="basic-url">No Tlp Ibu</label>
            <input type="text" class="form-control" value="<?= $x['tlp_ibu'] == NULL ? "-" : $x['tlp_ibu'] ?>" readonly>
@@ -267,6 +264,7 @@
        <input type="text" class="form-control" value="<?= $x['penghasilan_wali'] == NULL ? "-" : $x['penghasilan_wali'] ?>" readonly>
      </div>
      <div class="col-2">
+      <br>
        <label for="basic-url">No Tlp Wali</label>
        <input type="text" class="form-control" value="<?= $x['tlp_wali'] == NULL ? "-" : $x['tlp_wali'] ?>" readonly>
      </div>
