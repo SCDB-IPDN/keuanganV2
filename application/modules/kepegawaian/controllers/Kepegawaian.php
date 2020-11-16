@@ -36,6 +36,10 @@ class Kepegawaian extends CI_Controller{
           $usia = $y . " Thn " . $m . " Bln";
           //END USIA
 
+          $thn = $this->input->post('thn', true);
+          $bln = $this->input->post('bln', true);
+          $masa_kerja = $thn . " Thn " . $bln . " Bln";
+
           $nip = str_replace(' ', '', $this->input->post('nip', true));
 
           $input_data['nip'] = $nip;
@@ -54,7 +58,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['tahun_lulus'] = $this->input->post('tahun_lulus', true);
           $input_data['tingkat_pendidikan'] = $this->input->post('tingkat_pendidikan', true);
           $input_data['usia'] = $usia;
-          $input_data['masa_kerja'] = $this->input->post('masa_kerja', true);
+          $input_data['masa_kerja'] = $masa_kerja;
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
 

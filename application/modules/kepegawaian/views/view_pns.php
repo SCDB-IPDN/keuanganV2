@@ -193,9 +193,15 @@
                   <label for="tingkat_pendidikan" class="col-form-label">Tingkat Pendidikan Terakhir:</label>
                   <input type="text" class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" placeholder="Tingkat Pendidikan Terakhir.." required>
                 </div>
+                
+                <label for="masa_kerja" class="col-form-label">Masa Kerja:</label>
                 <div class="col-sm">
-                  <label for="masa_kerja" class="col-form-label">Masa Kerja:</label>
-                  <input type="text" class="form-control" id="masa_kerja" name="masa_kerja" placeholder="Masa Kerja.." required>
+                  <div class="form-group">
+                    <input type="number" class="form-control" id="thn" name="thn" placeholder="Tahun.." required>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control" id="bln" name="bln" max="12" placeholder="Bulan.." required>
+                  </div>
                 </div>
               </div>
             </div>
