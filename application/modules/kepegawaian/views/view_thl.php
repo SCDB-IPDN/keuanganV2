@@ -86,12 +86,16 @@
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
-                            <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir.." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
-                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir.." required>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
+                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="penugasan" class="col-form-label">Penugasan:</label>
@@ -128,12 +132,16 @@
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row->nama;?>" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
-                            <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir;?>" placeholder="Tempat Lahir.." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
-                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
+                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir;?>" placeholder="Tempat Lahir.." required>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
+                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="penugasan" class="col-form-label">Penugasan:</label>
