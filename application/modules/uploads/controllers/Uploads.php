@@ -93,7 +93,7 @@ class Uploads extends CI_Controller {
 			$x['title'] = "praja";
 			$this->load->view("include/head");
 			$this->load->view("include/top-header");
-			$this->load->view('v_import', $x);
+			$this->load->view('v_import_praja', $x);
 			$this->load->view("include/sidebar");
 			// $this->load->view("include/panel");
 			$this->load->view("include/footer"); 
@@ -1336,7 +1336,7 @@ class Uploads extends CI_Controller {
 						'no_pks'      => $row['AO'],
 						'kode_prodi'      => $row['AW'],
 						'jenis_pendaftaran'      =>  $row['AX'],
-						'tgl_masuk_kuliah'      =>  $row['AY'],
+						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
 						'tahun_masuk_kuliah'      => $row['AZ'],
 						'pembiayaan'      => $row['BA'],
 						'jalur_masuk'      => $row['BB']
