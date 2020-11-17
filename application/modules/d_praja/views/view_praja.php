@@ -37,7 +37,7 @@
                 <tr>
                   <th>No</th>
                   <th>NAMA</th>
-                  <TH>JK</TH>
+                  <TH>JENIS KELAMIN</TH>
                   <th>TINGKAT</th>
 		  <th>ASAL</th>
                   <th>OPSI</th>
