@@ -30,7 +30,7 @@
           </button>
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div> -->
-        <div class ="table-responsive">
+       <div class ="table-responsive">
           <div class="panel-body">
             <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
               <thead>
@@ -39,8 +39,7 @@
                   <th>NAMA</th>
                   <TH>JK</TH>
                   <th>TINGKAT</th>
-                  <th>DETAIL</th>
-
+                  <th>OPSI</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,7 +51,11 @@
                    <td><?= $x['jk']; ?></td>
                    <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
                    <?php if (isset($x['nik_praja'])){ ?>
-                    <td><a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a></td>
+                    <td>
+                  <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
+                  <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editpraja<?php echo $x['id_praja'];?>"><i class="fa fas fa-edit"></i></a>
+                  <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapuspraja<?php echo $x['id_praja'];?>"><i class="fa fas fa-trash"></i></a>
+                  </td>
                   <?php } else { ?>
                     <td>Tidak ada detail</td>
                   <?php } ?>
@@ -67,6 +70,78 @@
     <!-- end panel -->
   </div>
   <!-- end col-10 -->
+		 <?php foreach(json_decode($data, true) as $x){?>
+    <!-- Modal EDIT PRAJA -->
+    <div class="modal fade" id="editpraja<?php echo $x['id_praja'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">EDIT PRAJA <?php echo $x['nama'];?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="edit_praja" method="POST">
+                        <input type="hidden" class="form-control" id="id_praja" name="id_praja" value="<?php echo $x['id_praja'];?>">
+                        <div class="form-group">
+                            <label for="nama" class="col-form-label">Nama:</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $x['nama'];?>" placeholder="Nama Lengkap.." required>
+                        </div>
+                        <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Tempat Lahir:</label>
+                              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $x['tmpt_lahir'];?>" placeholder="Tempat Lahir.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat" class="col-form-label">Alamat:</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $x['alamat'];?>" placeholder="Alamat.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tlp_pribadi" class="col-form-label">telpon pribadi:</label>
+                            <input type="text" class="form-control" id="tlp_pribadi" name="tlp_pribadi" value="<?php echo $x['tlp_pribadi'];?>" placeholder="tlp_pribadi.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $x['email'];?>" placeholder="Email.." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php foreach(json_decode($data, true) as $x){?>
+    <!-- Modal HAPUS PRAJA -->
+    <div class="modal fade" id="hapuspraja<?php echo $x['id_praja'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">HAPUS DATA PRAJA <?php echo $x['nama'];?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="hapus_praja">
+                        <div class="modal-body">
+                            <p>Anda yakin mau menghapus Data PRAJA? <b><?php echo $x['nama'];?></b></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_praja" value="<?php echo $x['id_praja'];?>">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                            <button class="btn btn-danger">Hapus</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>
 </div>
 
