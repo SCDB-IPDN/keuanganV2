@@ -33,14 +33,14 @@ class D_praja extends CI_Controller{
     $this->load->view("include/footer");
   }
 	
-	public function edit_praja()
+  public function edit_praja()
      {
-          $input_data['id_praja'] = $this->input->post('id_praja', true);
-          $input_data['nama'] = $this->input->post('nama', true);
-          $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
-          $input_data['alamat'] = $this->input->post('alamat', true);
-          $input_data['tlp_pribadi'] = $this->input->post('tanggal_lahir', true);
-          $input_data['email'] = $this->input->post('email', true);
+     $input_data['id_praja'] = $this->input->post('id_praja', true);
+     $input_data['nama'] = $this->input->post('nama', true);
+     $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
+     $input_data['alamat'] = $this->input->post('alamat', true);
+     $input_data['tlp_pribadi'] = $this->input->post('tanggal_lahir', true);
+     $input_data['email'] = $this->input->post('email', true);
 
           $result = $this->D_praja_model->edit_praja($input_data);
 
