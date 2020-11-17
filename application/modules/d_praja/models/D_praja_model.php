@@ -14,4 +14,18 @@ class D_praja_model extends CI_Model{
 
 		return $result;
 	}
+	
+	public function edit_praja($input_data)
+  	{     
+
+    	$id_praja = $input_data['id_praja'];
+    	$hasil = $this->db->where('id_praja', $id_praja)->update('praja', $input_data);
+        return $hasil;    
+	}
+	
+	public function hapus_praja($id_praja)
+	{
+		$hasil=$this->db->query("DELETE FROM praja WHERE id_praja='$id_praja'");
+		return $hasil;
+	}
 }
