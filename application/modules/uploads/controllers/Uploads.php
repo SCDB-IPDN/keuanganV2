@@ -1336,7 +1336,7 @@ class Uploads extends CI_Controller {
 						'no_pks'      => $row['AO'],
 						'kode_prodi'      => $row['AW'],
 						'jenis_pendaftaran'      =>  $row['AX'],
-						'tgl_masuk_kuliah'      =>  $row['AY'],
+						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
 						'tahun_masuk_kuliah'      => $row['AZ'],
 						'pembiayaan'      => $row['BA'],
 						'jalur_masuk'      => $row['BB']
