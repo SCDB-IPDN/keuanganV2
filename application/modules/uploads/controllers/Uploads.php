@@ -668,10 +668,10 @@ class Uploads extends CI_Controller {
 				}
 				$numrow++;
 			}
-			echo "<br>";
+			// echo "<br>";
 			// var_dump($data);
 
-			echo "</pre>";
+			// echo "</pre>";
 			// exit();
 
 			// $this->db->truncate('unit');
