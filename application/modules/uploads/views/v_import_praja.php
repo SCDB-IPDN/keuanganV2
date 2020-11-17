@@ -20,7 +20,7 @@
                 <div class="panel-body bg-white">
                     <div class="card border-0 bg-white text-black text-truncate mb-4">
                         <div class="card-body">
-							<div class="row">
+							    <div class="row">
                                 <div class="col-xl-7 col-lg-8">
                                     <?php echo $this->session->flashdata('praja') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/praja" enctype="multipart/form-data">
