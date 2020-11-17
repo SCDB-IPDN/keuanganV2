@@ -197,9 +197,13 @@
               <div class="row">
                 <div class="col-sm">
                   <label for="tingkat_pendidikan" class="col-form-label">Tingkat Pendidikan Terakhir:</label>
-                  <input type="text" class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" placeholder="Pendidikan Terakhir.." required>
+                  <select class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" required>
+                      <option disabled selected> Pilih </option>
+                      <?php foreach($tp as $rows){?>
+                          <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
+                      <?php } ?>
+                  </select>
                 </div>
-                
                 <label for="masa_kerja" class="col-form-label">Masa Kerja:</label>
                 <div class="col-sm">
                   <div class="form-group">
@@ -244,11 +248,12 @@
           </div>
           <div class="modal-body">
             <form action="kepegawaian/edit_pns" method="POST">
+              <input type="hidden" class="form-control" id="no" name="no" value="<?php echo $row->no;?>">
               <div class="form-group">
                 <div class="row">
                   <div class="col-sm-4">
                     <label for="nip" class="col-form-label">Nip:</label>
-                    <input type="text" class="form-control" id="nip" name="nip" value="<?php echo $row->nip;?>" placeholder="Nip.." required>
+                    <input type="text" class="form-control" id="nip" name="nip" value="<?php echo $row->nip?>" placeholder="Nip.." required>
                   </div>
                   <div class="col-sm-8">
                     <label for="nama_lengkap" class="col-form-label">Nama Lengkap:</label>
@@ -324,7 +329,16 @@
                 <div class="row">
                   <div class="col-sm">
                     <label for="tingkat_pendidikan" class="col-form-label">Tingkat Pendidikan Terakhir:</label>
-                    <input type="text" class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" placeholder="Pendidikan Terakhir.." value="<?php echo $row->tingkat_pendidikan;?>" required>
+                    <select class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" required>
+                      <option disabled selected> Pilih </option>
+                      <?php foreach($tp as $rows){ ?>
+                        <?php if($rows->tingkat_pendidikan == $row->tingkat_pendidikan){?>
+                        <option value="<?php echo $rows->tingkat_pendidikan ?>" selected><?php echo $rows->tingkat_pendidikan ?></option>
+                        <?php }else{ ?>
+                        <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
+                        <?php } ?>
+                      <?php } ?>
+                    </select>
                   </div>
                   <div class="col-sm">
                     <label for="masa_kerja" class="col-form-label">Masa Kerja:</label>
