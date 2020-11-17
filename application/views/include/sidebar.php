@@ -63,15 +63,23 @@
             <!-- END KEUANGAN -->
 
             <!-- KEPEGAWAIAN -->
-            <li class="has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-building"></i>
                     <span>Kepegawaian</span>
                 </a>
                 <ul class="sub-menu">
-                    <li class=""><a href="#">PNS</a></li>
-                    <li class=""><a href="#">NON-PNS</a></li>
+                    <li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            NON-PNS
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="<?php echo $this->uri->segment(2)=="thl"?"active":"";?>"><a href="<?php echo base_url('kepegawaian/thl');?>">THL</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <!-- END KEPEGAWAIAN -->
@@ -91,7 +99,7 @@
 
             <li class="nav-header">Data</li>
             <?php if($this->session->userdata('role') == 'Admin'){?>
-            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
                     <i class="fa fa-upload"></i> 
