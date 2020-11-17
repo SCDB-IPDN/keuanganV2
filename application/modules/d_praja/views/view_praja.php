@@ -39,6 +39,7 @@
                   <th>NAMA</th>
                   <TH>JK</TH>
                   <th>TINGKAT</th>
+		  <th>ASAL</th>
                   <th>OPSI</th>
                 </tr>
               </thead>
@@ -49,6 +50,7 @@
                    <td><?php echo $no++; ?></td>
                    <td><?= $x['nama']; ?></td>
                    <td><?= $x['jk']; ?></td>
+		   <td><?= $x['kab/kota']; ?></td>
                    <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
                    <?php if (isset($x['nik_praja'])){ ?>
                     <td>
