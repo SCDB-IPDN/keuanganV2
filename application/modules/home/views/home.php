@@ -232,7 +232,7 @@
 									<div class="widget-list-title">Kepegawaian</div>
 								</div>
 							</a>
-							<a href="#" class="widget-list-item rounded-0 p-t-3">
+							<a href="<?php echo base_url('d_praja');?>" class="widget-list-item rounded-0 p-t-3">
 								<div class="widget-list-media icon">
 									<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
 								</div>
