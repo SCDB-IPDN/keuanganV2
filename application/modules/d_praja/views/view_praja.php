@@ -131,7 +131,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="hapus_praja">
                         <div class="modal-body">
-                            <p>Anda yakin mau menghapus Data PRAJA? <b><?php echo $x['nama'];?></b></p>
+                            <p>Anda yakin mau menghapus Data PRAJA? <b><?php echo $x['nama'];?> ? </b></p>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_praja" value="<?php echo $x['id_praja'];?>">
