@@ -73,6 +73,7 @@ class D_sas extends CI_Controller{
             if ($link != 448302) {
               // regional ke unit
               $data = $this->d_sas_model->get_all_unit_satker($link)->result();
+              $x['bag'] = "unit";
             } else {
               // masuk ke biro jatinangor
               $data = $this->d_sas_model->get_all_biro($link)->result();
