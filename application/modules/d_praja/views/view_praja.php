@@ -31,7 +31,7 @@
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div> -->
         <div class ="table-responsive">
-					<?php if($this->session->flashdata('praja') != NULL){ ?>
+	<?php if($this->session->flashdata('praja') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
