@@ -92,13 +92,13 @@
                     <span>Keprajaan</span>
                 </a>
                 <ul class="sub-menu">
-                    <li class=""><a href="#">PRAJA</a></li>
+                     <li class="<?php echo $this->uri->segment(1)=="d_praja"?"active":"";?>"><a href="<?php echo base_url('d_praja');?>">PRAJA</a></li>
                 </ul>
             </li>
             <!-- END KEPRAJAAN -->
 
             <li class="nav-header">Data</li>
-            <?php if($this->session->userdata('role') == 'Admin'){?>
+            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Khusus'){?>
             <li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>    
@@ -115,7 +115,9 @@
                     <li class="<?php echo $this->uri->segment(2)=="v_thl"?"active":"";?>"><a href="<?php echo base_url('uploads/v_thl');?>">THL</a></li>
 				</ul>
             </li>
-            
+            <?php } ?>
+
+            <?php if($this->session->userdata('role') == 'Admin'){?>
             <li class="<?php echo $this->uri->segment(1)=="pegawai"?"active":"";?>">
                 <a href="<?php echo base_url('pegawai');?>"><i class="fa fa-users"></i> <span>User</span></a>
             </li>

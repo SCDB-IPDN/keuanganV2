@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2020 at 11:01 AM
+-- Generation Time: Nov 17, 2020 at 06:06 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -168,91 +168,93 @@ CREATE TABLE `out_pok` (
 --
 
 INSERT INTO `out_pok` (`id`, `id_u`, `nama`, `pagu`, `realisasi`, `kembali`, `tgl`) VALUES
-(343, 116, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1017075000, 159487797, 0, '2020-10-16'),
-(344, 116, 'Layanan Perkantoran', 119000000, 109738000, 0, '2020-10-16'),
-(340, 115, 'Penyelenggaraan Pendidikan Kepamongprajaan', 9431983000, 5037697396, 0, '2020-10-16'),
-(341, 115, 'Jurnal', 100000000, 0, 0, '2020-10-16'),
-(342, 115, 'Layanan Perkantoran', 19000000, 19000000, 0, '2020-10-16'),
-(339, 404, 'Layanan Perkantoran', 22800000, 22795000, 0, '2020-10-19'),
-(338, 404, 'Layanan Dukungan Manajemen Satker', 367537000, 317781608, 0, '2020-10-19'),
-(336, 403, 'Layanan Perkantoran', 15200000, 10200000, 0, '2020-10-19'),
-(337, 404, 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN', 0, 0, 0, '2020-10-19'),
-(335, 403, 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN', 496380000, 405406900, 2440000, '2020-10-19'),
-(334, 403, 'Penanganan Sengketa Hukum Terkait IPDN', 64121000, 56654000, 0, '2020-10-19'),
-(332, 402, 'Layanan Perkantoran', 622900000, 211640000, 0, '2020-10-19'),
-(333, 403, 'Kebijakan/Regulasi Lingkup IPDN yang ditetapkan', 193013000, 171130152, 0, '2020-10-19'),
-(331, 402, 'Publikasi Informasi dan Penanganan Pengaduan Lingkup IPDN', 553952000, 468052294, 0, '2020-10-19'),
-(327, 307, 'Layanan Perkantoran', 19000000, 14244700, 0, '2020-10-16'),
-(328, 401, 'Kerjasama IPDN', 171280000, 125098160, 0, '2020-10-19'),
-(329, 401, 'Layanan Perkantoran', 250000000, 237020927, 0, '2020-10-19'),
-(330, 402, 'Kerjasama IPDN', 184174000, 178842500, 0, '2020-10-19'),
-(326, 307, 'Pengelolaan Administrasi Keprajaan dan Alumni', 69757000, 36450000, 0, '2020-10-16'),
-(325, 306, 'Layanan Perkantoran', 19000000, 9250000, 0, '2020-10-16'),
-(324, 306, 'Pengelolaan Administrasi Keprajaan dan Alumni', 111397000, 36877200, 0, '2020-10-16'),
-(322, 304, 'Pengelolaan Administrasi Keprajaan dan Alumni', 821956000, 14619000, 0, '2020-10-16'),
-(323, 304, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
-(321, 305, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
-(320, 305, 'Revolusi Mental Di Lingkungan IPDN', 0, 0, 0, '2020-10-16'),
-(319, 305, 'Pengelolaan Administrasi Keprajaan dan Alumni', 1179297000, 996889139, 1850000, '2020-10-16'),
-(317, 303, 'Pengelolaan Administrasi Keprajaan dan Alumni', 835009000, 637689335, 0, '2020-10-16'),
-(318, 303, 'Layanan Perkantoran', 72800000, 11400000, 0, '2020-10-16'),
-(316, 302, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
-(315, 302, 'Pengelolaan Administrasi Keprajaan dan Alumni', 12955101000, 10721831424, 0, '2020-10-16'),
-(314, 301, 'Layanan Perkantoran', 250000000, 196372718, 0, '2020-10-16'),
-(313, 301, 'Pengelolaan Administrasi Keprajaan dan Alumni', 175000000, 108112500, 0, '2020-10-16'),
-(311, 206, 'Layanan Dukungan Manajemen Satker', 576985000, 93858230, 0, '2020-10-16'),
-(312, 206, 'Layanan Perkantoran', 1515380000, 1095468299, 0, '2020-10-16'),
-(310, 205, 'Layanan Perkantoran', 2401862000, 2287569986, 0, '2020-10-16'),
-(308, 204, 'Layanan Perkantoran', 41073979000, 24177711532, 0, '2020-10-16'),
-(309, 205, 'Layanan Dukungan Manajemen Satker', 414697000, 247658556, 0, '2020-10-16'),
-(307, 204, 'Layanan Dukungan Manajemen Satker', 1266142000, 1227206045, 0, '2020-10-16'),
-(306, 204, 'Layanan Sarana dan Prasarana Internal', 11789810000, 4355117484, 0, '2020-10-16'),
-(305, 204, 'Pengelolaan Administrasi Keprajaan dan Alumni', 0, 0, 0, '2020-10-16'),
-(303, 203, 'Layanan Perkantoran', 157450665000, 115550209697, 8344000, '2020-10-16'),
-(304, 204, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1876416000, 1819445281, 0, '2020-10-16'),
-(301, 202, 'Layanan Perkantoran', 45401634000, 31359904854, 0, '2020-10-16'),
-(302, 203, 'Layanan Dukungan Manajemen Satker', 457706000, 317959956, 0, '2020-10-16'),
-(299, 201, 'Layanan Perkantoran', 275000000, 272790839, 0, '2020-10-16'),
-(300, 202, 'Layanan Dukungan Manajemen Satker', 9654439000, 7607938533, 27982000, '2020-10-16'),
-(298, 201, 'Layanan Dukungan Manajemen Satker', 100000000, 92966069, 0, '2020-10-16'),
-(297, 114, 'Layanan Perkantoran', 15200000, 12300000, 0, '0000-00-00'),
-(294, 113, 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan', 254253000, 233506850, 0, '0000-00-00'),
-(295, 113, 'Layanan Perkantoran', 15200000, 15199000, 0, '0000-00-00'),
-(296, 114, 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan', 141188000, 94499217, 0, '0000-00-00'),
-(292, 112, 'Pengelolaan Layanan Perpustakaan', 194025000, 143584000, 0, '0000-00-00'),
-(293, 112, 'Layanan Perkantoran', 495386000, 420306000, 0, '0000-00-00'),
-(290, 111, 'Pengelolaan Teknologi Informasi Kelembagaan Pendidikan Kepamongprajaan', 609930000, 251787200, 0, '0000-00-00'),
-(291, 111, 'Layanan Perkantoran', 15200000, 15200000, 0, '0000-00-00'),
-(289, 110, 'Layanan Perkantoran', 19000000, 15561200, 0, '0000-00-00'),
-(287, 110, 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN', 1594760000, 1243442040, 0, '0000-00-00'),
-(288, 110, 'Jurnal', 373952000, 213042550, 0, '0000-00-00'),
-(286, 109, 'Layanan Perkantoran', 19000000, 4874500, 0, '0000-00-00'),
-(285, 109, 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN', 696185000, 390422709, 0, '0000-00-00'),
-(284, 108, 'Layanan Perkantoran', 19000000, 10905000, 0, '0000-00-00'),
-(283, 108, 'Audit Mutu Pendidikan/Akreditasi', 1262999000, 572979569, 0, '0000-00-00'),
-(281, 107, 'Penyelenggaraan Pendidikan Kepamongprajaan', 549054000, 298020900, 0, '0000-00-00'),
-(282, 107, 'Layanan Perkantoran', 15200000, 13583000, 0, '0000-00-00'),
-(280, 106, 'Layanan Perkantoran', 361496000, 279546802, 0, '0000-00-00'),
-(279, 106, 'Modul', 0, 0, 0, '0000-00-00'),
-(278, 106, 'Jurnal', 193400000, 88750000, 0, '0000-00-00'),
-(277, 106, 'Penyelenggaraan Pendidikan Kepamongprajaan', 839240000, 492590165, 0, '0000-00-00'),
-(276, 105, 'Layanan Perkantoran', 546008000, 335430438, 0, '0000-00-00'),
-(275, 105, 'Modul', 0, 0, 0, '0000-00-00'),
-(273, 105, 'Penyelenggaraan Pendidikan Kepamongprajaan', 2648004000, 1405180354, 0, '0000-00-00'),
-(274, 105, 'Jurnal', 325671000, 96663000, 0, '0000-00-00'),
-(271, 104, 'Modul', 0, 0, 0, '0000-00-00'),
-(272, 104, 'Layanan Perkantoran', 670476000, 582101172, 0, '0000-00-00'),
-(270, 104, 'Jurnal', 220138000, 46890000, 0, '0000-00-00'),
-(268, 103, 'Layanan Perkantoran', 34200000, 17100000, 0, '0000-00-00'),
-(269, 104, 'Penyelenggaraan Pendidikan Kepamongprajaan', 2540049000, 1914281526, 0, '0000-00-00'),
-(267, 103, 'Layanan Dukungan Manajemen Satker', 1165857000, 814495850, 0, '0000-00-00'),
-(266, 103, 'Perencanaan [SBKU]', 779359000, 449590000, 0, '0000-00-00'),
-(265, 102, 'Layanan Perkantoran', 19000000, 19000000, 0, '0000-00-00'),
-(263, 102, 'Literatur', 909450000, 449583000, 0, '0000-00-00'),
-(264, 102, 'RPS/RTM', 790211000, 385246800, 0, '0000-00-00'),
-(261, 101, 'Layanan Perkantoran', 330000000, 243848021, 0, '0000-00-00'),
-(262, 102, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1353410000, 946259907, 0, '0000-00-00'),
-(260, 101, 'Penyelenggaraan Pendidikan Kepamongprajaan', 456694000, 429567400, 0, '0000-00-00');
+(1, 101, 'Penyelenggaraan Pendidikan Kepamongprajaan', 456694000, 429567400, 0, '2020-10-19'),
+(2, 101, 'Layanan Perkantoran', 330000000, 243848021, 0, '2020-10-19'),
+(3, 102, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1353410000, 946259907, 0, '2020-10-19'),
+(4, 102, 'Literatur', 909450000, 449583000, 0, '2020-10-19'),
+(5, 102, 'RPS/RTM', 790211000, 385246800, 0, '2020-10-19'),
+(6, 102, 'Layanan Perkantoran', 19000000, 19000000, 0, '2020-10-19'),
+(7, 103, 'Perencanaan [SBKU]', 779359000, 449590000, 0, '2020-10-19'),
+(8, 103, 'Layanan Dukungan Manajemen Satker', 1165857000, 814495850, 0, '2020-10-19'),
+(9, 103, 'Layanan Perkantoran', 34200000, 17100000, 0, '2020-10-19'),
+(10, 104, 'Penyelenggaraan Pendidikan Kepamongprajaan', 2540049000, 1914281526, 0, '2020-10-19'),
+(11, 104, 'Jurnal', 220138000, 46890000, 0, '2020-10-19'),
+(12, 104, 'Modul', 0, 0, 0, '2020-10-19'),
+(13, 104, 'Layanan Perkantoran', 670476000, 582101172, 0, '2020-10-19'),
+(14, 105, 'Penyelenggaraan Pendidikan Kepamongprajaan', 2648004000, 1405180354, 0, '2020-10-19'),
+(15, 105, 'Jurnal', 325671000, 96663000, 0, '2020-10-19'),
+(16, 105, 'Modul', 0, 0, 0, '2020-10-19'),
+(17, 105, 'Layanan Perkantoran', 546008000, 335430438, 0, '2020-10-19'),
+(18, 106, 'Penyelenggaraan Pendidikan Kepamongprajaan', 839240000, 492590165, 0, '2020-10-19'),
+(19, 106, 'Jurnal', 193400000, 88750000, 0, '2020-10-19'),
+(20, 106, 'Modul', 0, 0, 0, '2020-10-19'),
+(21, 106, 'Layanan Perkantoran', 361496000, 279546802, 0, '2020-10-19'),
+(22, 107, 'Penyelenggaraan Pendidikan Kepamongprajaan', 549054000, 298020900, 0, '2020-10-19'),
+(23, 107, 'Layanan Perkantoran', 15200000, 13583000, 0, '2020-10-19'),
+(24, 108, 'Audit Mutu Pendidikan/Akreditasi', 1262999000, 572979569, 0, '2020-10-19'),
+(25, 108, 'Layanan Perkantoran', 19000000, 10905000, 0, '2020-10-19'),
+(26, 109, 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN', 696185000, 390422709, 0, '2020-10-19'),
+(27, 109, 'Layanan Perkantoran', 19000000, 4874500, 0, '2020-10-19'),
+(28, 110, 'Kajian, Penelitian dan Pengabdian Masyarakat Lingkup IPDN', 1594760000, 1243442040, 0, '2020-10-19'),
+(29, 110, 'Jurnal', 373952000, 213042550, 0, '2020-10-19'),
+(30, 110, 'Layanan Perkantoran', 19000000, 15561200, 0, '2020-10-19'),
+(31, 111, 'Pengelolaan Teknologi Informasi Kelembagaan Pendidikan Kepamongprajaan', 609930000, 251787200, 0, '2020-10-19'),
+(32, 111, 'Layanan Perkantoran', 15200000, 15200000, 0, '2020-10-19'),
+(33, 112, 'Pengelolaan Layanan Perpustakaan', 194025000, 143584000, 0, '2020-10-19'),
+(34, 112, 'Layanan Perkantoran', 495386000, 420306000, 0, '2020-10-19'),
+(35, 113, 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan', 254253000, 233506850, 0, '2020-10-19'),
+(36, 113, 'Layanan Perkantoran', 15200000, 15199000, 0, '2020-10-19'),
+(37, 114, 'Pengelolaan Laboratorium Pendidikan Kepamongprajaan', 141188000, 94499217, 0, '2020-10-19'),
+(38, 114, 'Layanan Perkantoran', 15200000, 12300000, 0, '2020-10-19'),
+(39, 201, 'Layanan Dukungan Manajemen Satker', 100000000, 92966069, 0, '2020-10-16'),
+(40, 201, 'Layanan Perkantoran', 275000000, 272790839, 0, '2020-10-16'),
+(41, 202, 'Layanan Dukungan Manajemen Satker', 9654439000, 7607938533, 27982000, '2020-10-16'),
+(42, 202, 'Layanan Perkantoran', 45401634000, 31359904854, 0, '2020-10-16'),
+(43, 203, 'Layanan Dukungan Manajemen Satker', 457706000, 317959956, 0, '2020-10-16'),
+(44, 203, 'Layanan Perkantoran', 157450665000, 115550209697, 8344000, '2020-10-16'),
+(45, 203, 'Layanan Dukungan Manajemen Satker', 527706000, 302714956, 0, '2020-10-16'),
+(46, 203, 'Layanan Perkantoran', 157240665000, 115550209697, 8344000, '2020-10-16'),
+(47, 204, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1876416000, 1819445281, 0, '2020-10-16'),
+(48, 204, 'Pengelolaan Administrasi Keprajaan dan Alumni', 0, 0, 0, '2020-10-16'),
+(49, 204, 'Layanan Sarana dan Prasarana Internal', 11789810000, 4355117484, 0, '2020-10-16'),
+(50, 204, 'Layanan Dukungan Manajemen Satker', 1266142000, 1227206045, 0, '2020-10-16'),
+(51, 204, 'Layanan Perkantoran', 41073979000, 24177711532, 0, '2020-10-16'),
+(52, 205, 'Layanan Dukungan Manajemen Satker', 414697000, 247658556, 0, '2020-10-16'),
+(53, 205, 'Layanan Perkantoran', 2401862000, 2287569986, 0, '2020-10-16'),
+(54, 206, 'Layanan Dukungan Manajemen Satker', 576985000, 93858230, 0, '2020-10-16'),
+(55, 206, 'Layanan Perkantoran', 1515380000, 1095468299, 0, '2020-10-16'),
+(56, 301, 'Pengelolaan Administrasi Keprajaan dan Alumni', 175000000, 108112500, 0, '2020-10-16'),
+(57, 301, 'Layanan Perkantoran', 250000000, 196372718, 0, '2020-10-16'),
+(58, 302, 'Pengelolaan Administrasi Keprajaan dan Alumni', 12955101000, 10721831424, 0, '2020-10-16'),
+(59, 302, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
+(60, 303, 'Pengelolaan Administrasi Keprajaan dan Alumni', 835009000, 637689335, 0, '2020-10-16'),
+(61, 303, 'Layanan Perkantoran', 72800000, 11400000, 0, '2020-10-16'),
+(62, 305, 'Pengelolaan Administrasi Keprajaan dan Alumni', 1179297000, 996889139, 1850000, '2020-10-16'),
+(63, 305, 'Revolusi Mental Di Lingkungan IPDN', 0, 0, 0, '2020-10-16'),
+(64, 305, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
+(65, 304, 'Pengelolaan Administrasi Keprajaan dan Alumni', 821956000, 14619000, 0, '2020-10-16'),
+(66, 304, 'Layanan Perkantoran', 22800000, 11400000, 0, '2020-10-16'),
+(67, 306, 'Pengelolaan Administrasi Keprajaan dan Alumni', 111397000, 36877200, 0, '2020-10-16'),
+(68, 306, 'Layanan Perkantoran', 19000000, 9250000, 0, '2020-10-16'),
+(69, 307, 'Pengelolaan Administrasi Keprajaan dan Alumni', 69757000, 36450000, 0, '2020-10-16'),
+(70, 307, 'Layanan Perkantoran', 19000000, 14244700, 0, '2020-10-16'),
+(71, 401, 'Kerjasama IPDN', 171280000, 125098160, 0, '2020-10-19'),
+(72, 401, 'Layanan Perkantoran', 250000000, 237020927, 0, '2020-10-19'),
+(73, 402, 'Kerjasama IPDN', 184174000, 178842500, 0, '2020-10-19'),
+(74, 402, 'Publikasi Informasi dan Penanganan Pengaduan Lingkup IPDN', 553952000, 468052294, 0, '2020-10-19'),
+(75, 402, 'Layanan Perkantoran', 622900000, 211640000, 0, '2020-10-19'),
+(76, 403, 'Kebijakan/Regulasi Lingkup IPDN yang ditetapkan', 193013000, 171130152, 0, '2020-10-19'),
+(77, 403, 'Penanganan Sengketa Hukum Terkait IPDN', 64121000, 56654000, 0, '2020-10-19'),
+(78, 403, 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN', 496380000, 405406900, 2440000, '2020-10-19'),
+(79, 403, 'Layanan Perkantoran', 15200000, 10200000, 0, '2020-10-19'),
+(80, 404, 'Nilai Capaian Kinerja Reformasi Birokrasi lingkup IPDN', 0, 0, 0, '2020-10-19'),
+(81, 404, 'Layanan Dukungan Manajemen Satker', 367537000, 317781608, 0, '2020-10-19'),
+(82, 404, 'Layanan Perkantoran', 22800000, 22795000, 0, '2020-10-19'),
+(83, 115, 'Penyelenggaraan Pendidikan Kepamongprajaan', 9431983000, 5037697396, 0, '2020-10-16'),
+(84, 115, 'Jurnal', 100000000, 0, 0, '2020-10-16'),
+(85, 115, 'Layanan Perkantoran', 19000000, 19000000, 0, '2020-10-16'),
+(86, 116, 'Penyelenggaraan Pendidikan Kepamongprajaan', 1017075000, 159487797, 0, '2020-10-16'),
+(87, 116, 'Layanan Perkantoran', 119000000, 109738000, 0, '2020-10-16');
 
 -- --------------------------------------------------------
 
@@ -270,12 +272,48 @@ CREATE TABLE `tbl_pelatihan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_pendidikan`
+--
+
+CREATE TABLE `tbl_pendidikan` (
+  `id_pendidikan` int(11) NOT NULL,
+  `tingkat_pendidikan` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pendidikan`
+--
+
+INSERT INTO `tbl_pendidikan` (`id_pendidikan`, `tingkat_pendidikan`) VALUES
+(1, 'SD'),
+(2, 'SMP'),
+(3, 'SMA'),
+(4, 'SMK'),
+(5, 'SLTA KEJURUAN'),
+(6, 'SLTA UMUM'),
+(7, 'DI'),
+(8, 'DII'),
+(9, 'DIII'),
+(10, 'DIV'),
+(11, 'SARJANA'),
+(12, 'PASCA SARJANA'),
+(13, 'S1'),
+(14, 'S2'),
+(15, 'S2 / MAGISTER / MASTER (DN)'),
+(16, 'S2 / MASTER (LN)'),
+(17, 'S3'),
+(18, 'S3 / DOKTOR (DN)'),
+(19, 'S3 / DOKTOR (LN)');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_pns`
 --
 
 CREATE TABLE `tbl_pns` (
-  `no` int(50) NOT NULL,
-  `nip` int(50) NOT NULL,
+  `no` int(11) NOT NULL,
+  `nip` bigint(50) NOT NULL,
   `nama_lengkap` varchar(500) NOT NULL,
   `bagian` varchar(500) NOT NULL,
   `tempat_lahir` varchar(100) NOT NULL,
@@ -290,11 +328,18 @@ CREATE TABLE `tbl_pns` (
   `nama_pt` varchar(500) NOT NULL,
   `tahun_lulus` int(100) NOT NULL,
   `tingkat_pendidikan` varchar(100) NOT NULL,
-  `usia` int(100) NOT NULL,
-  `masa_kerja` int(100) NOT NULL,
+  `usia` varchar(100) NOT NULL,
+  `masa_kerja` varchar(100) NOT NULL,
   `catatan_mutasi` varchar(500) NOT NULL,
   `no_kapreg` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pns`
+--
+
+INSERT INTO `tbl_pns` (`no`, `nip`, `nama_lengkap`, `bagian`, `tempat_lahir`, `tanggal_lahir`, `no_urut_pangkat`, `pangkat`, `gol_ruang`, `tmt_pangkat`, `jabatan`, `tmt_jabatan`, `jurusan`, `nama_pt`, `tahun_lulus`, `tingkat_pendidikan`, `usia`, `masa_kerja`, `catatan_mutasi`, `no_kapreg`) VALUES
+(2, 1105011207970007, 'Maulyanda', 'Tes', 'Meulaboh', '1997-08-24', 12, '12', '12', '2020-11-16', '12', '2020-11-16', '12', '12', 2019, 'DIV', '23 Thn 2 Bln', '23 Thn 2 Bln', '12', 12);
 
 -- --------------------------------------------------------
 
@@ -464,9 +509,18 @@ CREATE TABLE `tbl_thl` (
   `id_thl` int(11) NOT NULL,
   `nama` varchar(500) NOT NULL,
   `tempat_lahir` varchar(500) NOT NULL,
-  `tanggal_lahir` varchar(500) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `dik` varchar(100) NOT NULL,
   `penugasan` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_thl`
+--
+
+INSERT INTO `tbl_thl` (`id_thl`, `nama`, `tempat_lahir`, `tanggal_lahir`, `dik`, `penugasan`) VALUES
+(1, 'Maulyanda', 'Meulaboh', '1997-08-24', 'DIV', 'Staff Ahli IT'),
+(3, 'Nunu', 'Bontang', '2020-11-10', 'S2 / MAGISTER / MASTER (DN)', 'Staff Ahli IT');
 
 -- --------------------------------------------------------
 
@@ -488,7 +542,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `nip`, `nama_user`, `password`, `role`, `created_at`) VALUES
-(1, 'admin', 'Administrator', '202cb962ac59075b964b07152d234b70', 'Admin', '2020-11-02 04:14:16'),
+(1, 'admin', 'Administrator', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', '2020-11-02 04:14:16'),
 (20, '1105011207970006', 'Maulyanda', 'e10adc3949ba59abbe56e057f20f883e', 'Biro 1', '2020-11-11 06:17:41');
 
 -- --------------------------------------------------------
@@ -502,6 +556,45 @@ CREATE TABLE `unit_pok` (
   `id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `unit_pok`
+--
+
+INSERT INTO `unit_pok` (`id_b`, `id`, `nama`) VALUES
+(1292, 101, 'TU BIRO I'),
+(1292, 102, 'BAGIAN AKADEMIK '),
+(1292, 103, 'BAGIAN PERENCANAAN '),
+(1292, 104, 'FAKULTAS POLITIK PEMERINTAHAN '),
+(1292, 105, 'FAKULTAS MANAJEMEN PEMERINTAHAN '),
+(1292, 106, 'FAKULTAS HUKUM DAN PEMERINTAHAN '),
+(1292, 107, 'SENAT INSTITUT '),
+(1292, 108, 'LEMBAGA RISET DAN PENGKAJIAN STRATEGI PEMERINTAHAN '),
+(1292, 109, 'LEMBAGA PENGABDIAN MASYARAKAT '),
+(1292, 110, 'LEMBAGA PENGAWASAN DAN PENJAMINAN MUTU INTERNAL'),
+(1292, 111, 'TEKNOLOGI PENDIDIKAN'),
+(1292, 112, 'UNIT PERPUSTAKAAN'),
+(1292, 113, 'LABORATORIUM BAHASA'),
+(1292, 114, 'LABORATORIUM MUSEUM'),
+(1292, 115, 'PROGRAM PASCASARJANA'),
+(1292, 116, 'PROGRAM PROFESI KEPAMONGPRAJAAN'),
+(1294, 201, 'TU BIRO II'),
+(1294, 202, 'BAGIAN UMUM '),
+(1294, 203, 'BAGIAN KEUANGAN '),
+(1294, 204, 'BAGIAN PERLENGKAPAN DAN PENGELOLAAN BMN'),
+(1294, 205, 'BAGIAN ADM. PIMPINAN DAN PROTOKOL'),
+(1294, 206, 'UNIT POLIKLINIK'),
+(1293, 301, 'TU BIRO III'),
+(1293, 302, 'BAGIAN KEPRAJAAN'),
+(1293, 303, 'BAGIAN PENGASUHAN PRAJA'),
+(1293, 304, 'BAGIAN DISIPLIN PRAJA'),
+(1293, 305, 'BAGIAN EKSTRAKURIKULER PRAJA'),
+(1293, 306, 'KOMISI DISIPLIN PRAJA'),
+(1293, 307, 'UNIT BIMBINGAN DAN KONSELING PRAJA'),
+(1286, 401, 'TU BIRO IV'),
+(1286, 402, 'BAGIAN KERJA SAMA DAN HUMAS'),
+(1286, 403, 'BAGIAN HUKUM, ORGANISASI DAN TATA LAKSANA'),
+(1286, 404, 'BAGIAN KEPEGAWAIAN');
 
 -- --------------------------------------------------------
 
@@ -628,10 +721,16 @@ ALTER TABLE `tbl_pelatihan`
   ADD PRIMARY KEY (`id_pelatihan`);
 
 --
+-- Indexes for table `tbl_pendidikan`
+--
+ALTER TABLE `tbl_pendidikan`
+  ADD PRIMARY KEY (`id_pendidikan`);
+
+--
 -- Indexes for table `tbl_pns`
 --
 ALTER TABLE `tbl_pns`
-  ADD PRIMARY KEY (`nip`);
+  ADD PRIMARY KEY (`no`);
 
 --
 -- Indexes for table `tbl_role`
@@ -701,13 +800,25 @@ ALTER TABLE `output_sas`
 -- AUTO_INCREMENT for table `out_pok`
 --
 ALTER TABLE `out_pok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `tbl_pelatihan`
 --
 ALTER TABLE `tbl_pelatihan`
   MODIFY `id_pelatihan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_pendidikan`
+--
+ALTER TABLE `tbl_pendidikan`
+  MODIFY `id_pendidikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tbl_pns`
+--
+ALTER TABLE `tbl_pns`
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_role`
@@ -743,7 +854,7 @@ ALTER TABLE `tbl_span_biro`
 -- AUTO_INCREMENT for table `tbl_thl`
 --
 ALTER TABLE `tbl_thl`
-  MODIFY `id_thl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_thl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
