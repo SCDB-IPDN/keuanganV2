@@ -1,21 +1,20 @@
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	</div>
 	<footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                Development By <a href="#">TIM IT IPDN</a> © Copyright
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+		<div class="container-fluid">
+			<div class="row">
+				<nav class="footer-nav"></nav>
+				<div class="credits ml-auto">
+					<span class="copyright">
+					Development By <a href="#">TIM IT IPDN</a> © Copyright
+					<script>
+						document.write(new Date().getFullYear())
+					</script>
+					</span>
+				</div>
+			</div>
+		</div>
+	</footer>
   	<script src="<?php echo base_url('assets/js/app.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/theme/default.min.js');?>"></script>
 	<!-- ================== END BASE JS ================== -->

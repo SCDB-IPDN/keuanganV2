@@ -139,13 +139,14 @@
             <div class="form-group">
               <label for="role" class="col-form-label">Akses:</label>
                 <select class="form-control" name="role" id="role" required>
+                  <option disabled selected> Pilih Akses </option>
                   <?php
-                  foreach($role as $row){
+                  foreach($role as $rows){
                   ?>
-                    <?php if($row->role_name == $row->role_name){?>
-                      <option value="<?php echo $row->role_name ?>" selected><?php echo $row->role_name ?></option>
+                    <?php if($row->role == $rows->role_name){?>
+                      <option value="<?php echo $rows->role_name ?>" selected><?php echo $rows->role_name ?></option>
                     <?php }else{ ?>
-                      <option value="<?php echo $row->role_name ?>"><?php echo $row->role_name ?></option>
+                      <option value="<?php echo $rows->role_name ?>"><?php echo $rows->role_name ?></option>
                     <?php } ?>
                   <?php
                   }
