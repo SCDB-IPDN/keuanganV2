@@ -241,6 +241,9 @@
 								</div>
 							</a>
 							<br>
+							<div class="col-sm-2">
+								<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> Detail</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -515,4 +518,76 @@
 			</div> -->
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Aplikasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  	<div class="panel-body bg-light">
+			<div data-scrollbar="true" data-height="225px">
+				<div class="widget-list widget-list-rounded ">
+					<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw  fa-university bg-white text-black"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">IPDN</div>
+						</div>
+					</a>
+					<a href="<?php echo base_url('d_span');?>" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw  fa-money-bill-alt bg-green text-white"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">Keuangan</div>
+						</div>
+					</a>
+					<a href="<?php echo base_url('kepegawaian');?>" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">Kepegawaian</div>
+						</div>
+					</a>
+					<a href="#" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">Keprajaan</div>
+						</div>
+					</a>
+					<a href="http://sika.ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw fa-users bg-lime text-white"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">SIKA</div>
+						</div>
+					</a>
+					<a href="https://spcp.ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
+						<div class="widget-list-media icon">
+							<i class="fab fas fa-lg fa-fw fa-child bg-red text-white"></i>
+						</div>
+						<div class="widget-list-content">
+							<div class="widget-list-title">SPCP</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
