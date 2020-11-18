@@ -9,7 +9,9 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
+            <?php if($this->session->userdata('role') == 'Admin'){?>
             <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addthl"><i class="fa fa-plus-square"></i></a>
+            <?php } ?>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -18,12 +20,14 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
+        <?php if($this->session->userdata('role') == 'Admin'){?>
         <div class="alert alert-warning fade show">
           <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
           </button>
           <p>Tambah <b>Data THL</b> Click icon "<i class="fa fa-plus-square"></i>"</p>
         </div>
+        <?php } ?>
         <?php if($this->session->flashdata('thl') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -38,6 +42,7 @@
                 <th class="text-nowrap">Nama</th>
                 <th class="text-nowrap">Tempat Lahir</th>
                 <th class="text-nowrap">Tanggal Lahir</th>
+                <th class="text-nowrap">Dik</th>
                 <th class="text-nowrap">Penugasan</th>
                 <th class="text-nowrap">Aksi</th>
               </tr>
@@ -53,11 +58,16 @@
                 <td><?= $row->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama ?></td>
                 <td><?= $row->tempat_lahir == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->tempat_lahir ?></td>
                 <td><?= date('d/m/Y', strtotime($row->tanggal_lahir)) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : date('d/m/Y', strtotime($row->tanggal_lahir)) ?></td>
+                <td><?= $row->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->dik ?></td>
                 <td><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
+                <?php if($this->session->userdata('role') == 'Admin'){?>
                 <td>
                     <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editthl<?php echo $row->id_thl;?>"><i class="fa fas fa-edit"></i></a>
                     <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapusthl<?php echo $row->id_thl;?>"><i class="fa fas fa-trash"></i></a>
                 </td>
+                <?php }else{?>
+                    <td>-</td>
+                <?php } ?>
               </tr>
             <?php } ?>
             </tbody>
@@ -94,6 +104,15 @@
                                 <div class="col-sm">
                                     <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
                                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="dik" class="col-form-label">DIK:</label>
+                                    <select class="form-control" id="dik" name="dik" required>
+                                        <option disabled selected> Pilih </option>
+                                        <?php foreach($tp as $rows){?>
+                                            <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -140,6 +159,19 @@
                                 <div class="col-sm">
                                     <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
                                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="dik" class="col-form-label">DIK:</label>
+                                    <select class="form-control" id="dik" name="dik" required>
+                                        <option disabled selected> Pilih </option>
+                                        <?php foreach($tp as $rows){ ?>
+                                            <?php if($rows->tingkat_pendidikan == $row->dik){?>
+                                            <option value="<?php echo $rows->tingkat_pendidikan ?>" selected><?php echo $rows->tingkat_pendidikan ?></option>
+                                            <?php }else{ ?>
+                                            <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>

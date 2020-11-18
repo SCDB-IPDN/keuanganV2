@@ -12,8 +12,10 @@ class Kepegawaian extends CI_Controller{
           if($_SESSION['nip'])
           {
                $data = $this->kepegawaian_model->get_all_pns()->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
 
                $x['data'] = $data;
+               $x['tp'] = $tp;
           
                $this->load->view("include/head");
                $this->load->view("include/top-header");
@@ -94,6 +96,7 @@ class Kepegawaian extends CI_Controller{
 
           $nip = str_replace(' ', '', $this->input->post('nip', true));
 
+          $input_data['no'] = $this->input->post('no', true);
           $input_data['nip'] = $nip;
           $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
           $input_data['bagian'] = $this->input->post('bagian', true);
@@ -114,7 +117,15 @@ class Kepegawaian extends CI_Controller{
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
 
-          $result = $this->kepegawaian_model->edit_pns($input_data);
+          $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
+        
+          if(!$cek_peg){
+               $result = $this->kepegawaian_model->edit_pns($input_data);
+          }else{
+               $this->session->set_flashdata('pns', 'NIP PEGAWAI SUDAH TERDAFTAR.');
+               $x['alert'] = 'ada';			
+               redirect('kepegawaian',$x);
+          }
 
           if (!$result) { 							
                $this->session->set_flashdata('pns', 'DATA PNS GAGAL DIUBAH.');		
@@ -139,8 +150,10 @@ class Kepegawaian extends CI_Controller{
           if($_SESSION['nip'])
           {
                $data = $this->kepegawaian_model->get_all_thl()->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
 
                $x['data'] = $data;
+               $x['tp'] = $tp;
           
                $this->load->view("include/head");
                $this->load->view("include/top-header");
@@ -158,6 +171,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['nama'] = $this->input->post('nama', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
 
           $result = $this->kepegawaian_model->tambah_thl($input_data);
@@ -177,6 +191,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['nama'] = $this->input->post('nama', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
 
           $result = $this->kepegawaian_model->edit_thl($input_data);

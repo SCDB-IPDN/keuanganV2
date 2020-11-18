@@ -48,16 +48,16 @@ class Pegawai extends CI_Controller {
         if(!$cek_peg){
             $result = $this->pegawai_model->tambah_pegawai($input_data);
         }else{
-            $this->session->set_flashdata('pegawai', 'NIP PEGAWAI SUDAH TERDAFTAR.');
+            $this->session->set_flashdata('pegawai', 'NIP USER SUDAH TERDAFTAR.');
             $x['alert'] = 'ada';			
             redirect('pegawai',$x);
         }
 
         if (!$result) { 							
-            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI GAGAL DITAMBAHKAN.'); 				
+            $this->session->set_flashdata('pegawai', 'DATA USER GAGAL DITAMBAHKAN.'); 				
             redirect('pegawai'); 			
         } else { 								
-            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI BERHASIL DITAMBAHKAN.');			
+            $this->session->set_flashdata('pegawai', 'DATA USER BERHASIL DITAMBAHKAN.');			
             redirect('pegawai'); 			
         }
     }
@@ -70,10 +70,10 @@ class Pegawai extends CI_Controller {
         $result = $this->pegawai_model->edit_pegawai($input_data);
 
         if (!$result) { 							
-            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI GAGAL DIUBAH.');		
+            $this->session->set_flashdata('pegawai', 'DATA USER GAGAL DIUBAH.');		
             redirect('pegawai'); 			
         } else { 								
-            $this->session->set_flashdata('pegawai', 'DATA PEGAWAI BERHASIL DIUBAH.');			
+            $this->session->set_flashdata('pegawai', 'DATA USER BERHASIL DIUBAH.');			
             redirect('pegawai'); 			
         }
     }
