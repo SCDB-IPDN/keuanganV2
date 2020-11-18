@@ -1453,7 +1453,8 @@ class Uploads extends CI_Controller {
                 $ttl = $excel->getCellByColumnAndRow(3, $i)->getValue();
                 $ttl2 = explode(',', $ttl);
                 $tempat_lahir = $ttl2[0];
-                $tanggal_lahir = $ttl2[1];
+				$tanggal_lahir = date_create($ttl2[1]);
+				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
                 $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
                 $penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
                 $data = array(
