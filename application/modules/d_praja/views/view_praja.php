@@ -46,6 +46,7 @@
                   <TH>JENIS KELAMIN</TH>
                   <th>TINGKAT</th>
                   <th>ASAL</th>
+                  <th>STATUS</th>
                   <th>OPSI</th>
                 </tr>
               </thead>
@@ -58,6 +59,7 @@
                    <td><?= $x['jk']; ?></td>
                    <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
                    <td><?= $x['kab/kota']; ?></td>
+                   <td><?= $x['status']; ?></td>
                    <?php if (isset($x['nik_praja'])){ ?>
                     <td>
                       <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
@@ -78,7 +80,7 @@
   </div>
   <!-- end col-10 -->
     <?php foreach(json_decode($data, true) as $x){?>
-    <!-- Modal EDIT THL -->
+    <!-- Modal edit praja -->
     <div class="modal fade" id="editpraja<?php echo $x['nik_praja'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -90,6 +92,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="d_praja/edit_praja" method="post">
+
                         <input type="hidden" class="form-control" id="nik_praja" name="nik_praja" value="<?php echo $x['nik_praja'];?>">
                         <div class="form-group">
                             <label for="nama" class="col-form-label">Nama:</label>
@@ -110,6 +113,14 @@
                         <div class="form-group">
                             <label for="email" class="col-form-label">Email:</label>
                             <input type="text" class="form-control" id="email" name="email" value="<?php echo $x['email'];?>" placeholder="Email.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status" class="col-form-label">Status sebelumnya: <?php echo $x['status'];?> </label>
+                            <select class="form-control" name="status" id="status" required="">
+                             <option value="aktif">Aktif</option>
+                             <option value="cuti">Cuti</option>
+                           </select>
+                             
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

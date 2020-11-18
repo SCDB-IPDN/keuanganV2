@@ -41,6 +41,7 @@ class D_praja extends CI_Controller{
    $input_data['alamat'] = $this->input->post('alamat', true);
    $input_data['tlp_pribadi'] = $this->input->post('tlp_pribadi', true);
    $input_data['email'] = $this->input->post('email', true);
+   $input_data['status'] = $this->input->post('status', true);
 
    $result = $this->D_praja_model->edit_praja($input_data);
 

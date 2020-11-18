@@ -1271,6 +1271,8 @@ class Uploads extends CI_Controller {
 	{
 				// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+
 		if(isset($_FILES['praja']['name']) && in_array($_FILES['praja']['type'], $file_mimes)) {
 
 			$arr_file = explode('.', $_FILES['praja']['name']);
@@ -1291,6 +1293,7 @@ class Uploads extends CI_Controller {
 			$unitortu = array();
 			$unitwali = array();
 			$numrow = 1;
+			$stat = 'aktif';
 			// $date = STR_TO_DATE($row['AY'], '%d.%m.%y');
 
 			$stop = false;
@@ -1339,7 +1342,8 @@ class Uploads extends CI_Controller {
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
 						'tahun_masuk_kuliah'      => $row['AZ'],
 						'pembiayaan'      => $row['BA'],
-						'jalur_masuk'      => $row['BB']
+						'jalur_masuk'      => $row['BB'],
+						'status' => $stat
 					));
 
 
