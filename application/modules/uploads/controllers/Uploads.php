@@ -5,6 +5,7 @@ require('./application/third_party/phpoffice/vendor/autoload.php');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Uploads extends CI_Controller {
 
@@ -101,6 +102,39 @@ class Uploads extends CI_Controller {
 			redirect("user");
 		}
 	}
+
+	public function v_pns()
+	{
+		if($_SESSION['nip'])
+		{
+			// redirect("home");
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import_pns');
+			$this->load->view("include/sidebar");
+			$this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+	public function v_thl()
+	{
+		if($_SESSION['nip'])
+		{
+			// redirect("home");
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import_thl');
+			$this->load->view("include/sidebar");
+			$this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+
+
 
 	public function span(){
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -1392,6 +1426,207 @@ class Uploads extends CI_Controller {
 			redirect('uploads/v_praja');
 		}
 	}
+
+	
+	public function thl()
+    {
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['thl']['name']) && in_array($_FILES['thl']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['thl']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('thl','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
+                redirect('uploads/v_thl'); 
+            }
+            else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            
+            $loadexcel  = $reader->load($_FILES['thl']['tmp_name']);
+            $excel = $loadexcel->getActiveSheet();
+            $rowCount = $excel->getHighestDataRow();
+            $saveData   = array();
+            for ($i=7; $i<=$rowCount; $i++){
+                $nama = $excel->getCellByColumnAndRow(2, $i)->getValue();
+                $ttl = $excel->getCellByColumnAndRow(3, $i)->getValue();
+                $ttl2 = explode(',', $ttl);
+                $tempat_lahir = $ttl2[0];
+                $tanggal_lahir = $ttl2[1];
+                $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
+                $penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
+                $data = array(
+                    'nama' => $nama,
+                    'tempat_lahir' => $tempat_lahir,
+                    'tanggal_lahir' => $tanggal_lahir,
+                    'dik' => $dik,
+                    'penugasan' => $penugasan
+                );
+                array_push($saveData, $data);
+            }
+            $this->db->insert_batch('tbl_thl', $saveData);
+			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
+			redirect('uploads/v_thl'); 
+		}
+	}
+
+    public function pns()
+    {       
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['pns']['name']) && in_array($_FILES['pns']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['pns']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('pns','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
+                redirect('uploads/v_pns'); 
+            }
+            else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+            
+            $loadexcel  = $reader->load($_FILES['pns']['tmp_name']);
+
+            $excel = $loadexcel->getActiveSheet();
+            $rowCount = $excel->getHighestDataRow();
+            $saveData  = array();
+            $savedDataTrain = array();
+            $lineLimitNo = array();
+            for ($i=9; $i <=$rowCount; $i++) { 
+                $cellA = $excel->getCellByColumnAndRow(1, $i);
+                $limitA = $i+2;
+                if($cellA->isInMergeRange() || $cellA->isMergeRangeValueCell()) {
+                    if($cellA->getMergeRange() == "A$i:A$limitA") {
+                        $colNo = $cellA->getMergeRange();
+                        $limitNo = explode("A", $colNo);
+                        $limitNo = $limitNo[1];
+                        $limitNo = explode(":", $limitNo);
+                        $limitNo = $limitNo[0];
+                        array_push($lineLimitNo, $limitNo);
+                    }
+                }
+            }
+            $keepBagian = array();
+            foreach ($lineLimitNo as $col) {
+                $lineBagian = $col - 1;
+                $rowBagian = $excel->getCellByColumnAndRow(1, $lineBagian);
+                if($rowBagian->getMergeRange() != "A$lineBagian:R$lineBagian") {
+                    $bagian = array_pop($keepBagian);
+                }
+                else {
+                    $bagian = $excel->getCellByColumnAndRow(1, $lineBagian)->getValue();
+                }            
+                $no = $excel->getCellByColumnAndRow(1, $col)->getValue();
+                $nip = $excel->getCellByColumnAndRow(2, $col+1)->getValue();
+                $nip = str_replace(' ', '', $nip);
+                $nama_lengkap = $excel->getCellByColumnAndRow(2, $col)->getValue();
+                $ttl = $excel->getCellByColumnAndRow(2, $col+2)->getValue();
+                $ttl = explode(', ', $ttl);
+                $tempat_lahir = $ttl[0];
+                $tanggal_lahir = explode('/', $ttl[1]);
+                $tanggal_lahir = date_create("$tanggal_lahir[1]/$tanggal_lahir[0]/$tanggal_lahir[2]");
+                $tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
+                $no_urut_pangkat = $excel->getCellByColumnAndRow(3, $col)->getValue();
+                $pangkat_gol = $excel->getCellByColumnAndRow(4, $col)->getValue();
+                $pangkat_gol = explode("(", $pangkat_gol);
+                $pangkat = $pangkat_gol[0];
+                $gol_ruang = trim($pangkat_gol[1], ")");
+                $tmt_pangkat = $excel->getCellByColumnAndRow(4, $col+1)->getValue();
+                $tmt_pangkat = Date::excelToDateTimeObject($tmt_pangkat)->format('Y-m-d');
+                $jabatan = $excel->getCellByColumnAndRow(5, $col)->getValue();
+                $eselon = $excel->getCellByColumnAndRow(5, $col+1)->getValue();
+                $tmt_jabatan = $excel->getCellByColumnAndRow(6, $col)->getValue();
+                $tmt_jabatan = Date::excelToDateTimeObject($tmt_jabatan)->format('Y-m-d');
+                $jurusan = $excel->getCellByColumnAndRow(12, $col)->getValue();
+                $nama_pt = $excel->getCellByColumnAndRow(13, $col)->getValue();
+                $tahun_lulus = $excel->getCellByColumnAndRow(14, $col)->getValue();
+                $tingkat_pendidikan = $excel->getCellByColumnAndRow(15, $col)->getValue();
+                $usia = $excel->getCellByColumnAndRow(16, $col)->getValue();
+                $masa_kerja = $excel->getCellByColumnAndRow(16, $col+1)->getValue();
+                $catatan_mutasi = $excel->getCellByColumnAndRow(17, $col)->getValue();
+                $no_kapreg = $excel->getCellByColumnAndRow(18, $col)->getValue();
+
+                for($j=0; $j<3;$j++){
+                    $col2 = $col+2;
+                    $nama_pelatihan = $excel->getCellByColumnAndRow(8, $col+$j)->getValue();
+                    $cellBln = $excel->getCellByColumnAndRow(9, $col+$j);
+
+                    if($cellBln->isInMergeRange() && $cellBln->getMergeRange() == "I$col:I$col2" && $nama_pelatihan != null) {
+                        $bln_pelatihan = $excel->getCellByColumnAndRow(9, $col)->getValue();
+                    }
+                    else {
+                        $bln_pelatihan = $excel->getCellByColumnAndRow(9, $col+$j)->getValue();
+                    }
+
+                    $cellThn = $excel->getCellByColumnAndRow(10, $col+$j);
+                    if($cellThn->isInMergeRange() && $cellThn->getMergeRange() == "J$col:J$col2" && $nama_pelatihan != null) {
+                        $thn_pelatihan = $excel->getCellByColumnAndRow(10, $col)->getValue();
+                    }
+                    else {
+                        $thn_pelatihan = $excel->getCellByColumnAndRow(10, $col+$j)->getValue();
+                    }
+
+                    $cellJam = $excel->getCellByColumnAndRow(11, $col+$j);
+                    if($cellJam->isInMergeRange() && $cellJam->getMergeRange() == "K$col:K$col2" && $nama_pelatihan != null) {
+                        $jumlah_jam = $excel->getCellByColumnAndRow(11, $col)->getValue();
+                    }
+                    else {
+                        $jumlah_jam = $excel->getCellByColumnAndRow(11, $col+$j)->getValue();
+                    }
+
+                    if($bln_pelatihan == '') {
+                        $bln_pelatihan = 0;
+                    }
+
+                    if($thn_pelatihan == '') {
+                        $thn_pelatihan = 0;
+                    }
+                    $tanggal_pelatihan = "$bln_pelatihan-$thn_pelatihan";
+        
+                    $dataTrain = array(
+                        'nip' => $nip,
+                        'nama_pelatihan' => $nama_pelatihan,
+                        'tanggal_pelatihan' => $tanggal_pelatihan,
+                        'jumlah_jam'=> $jumlah_jam
+                    );
+                    array_push($savedDataTrain, $dataTrain);
+                }
+                array_push($keepBagian, $bagian);
+
+                $data = array(
+                    'no' => $no,
+                    'nip' => $nip,
+                    'nama_lengkap' => $nama_lengkap,
+                    'bagian' => $bagian,
+                    'tempat_lahir' => $tempat_lahir,
+                    'tanggal_lahir' => $tanggal_lahir,
+                    'no_urut_pangkat' => $no_urut_pangkat,
+                    'pangkat' => $pangkat,
+                    'gol_ruang' => $gol_ruang,
+                    'tmt_pangkat' => $tmt_pangkat,
+                    'jabatan' => $jabatan,
+                    'tmt_jabatan' => $tmt_jabatan,
+                    'jurusan' => $jurusan,
+                    'nama_pt' => $nama_pt,
+                    'tahun_lulus' => $tahun_lulus,
+                    'tingkat_pendidikan' => $tingkat_pendidikan,
+                    'usia' => $usia,
+                    'masa_kerja' => $masa_kerja,
+                    'catatan_mutasi' => $catatan_mutasi,
+                    'no_kapreg' => $no_kapreg,
+                    'eselon' => $eselon
+                );
+                array_push($saveData, $data);
+            }
+            $this->db->insert_batch('tbl_pns', $saveData);
+            $this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
+			$this->session->set_flashdata('pns',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
+			redirect('uploads/v_pns'); 
+		}
+	}
+
 
 	function rti($s) {
 		$romans = array(

@@ -111,6 +111,8 @@
                     <li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
                     <li class="<?php echo $this->uri->segment(2)=="v_sarpras"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras');?>">SARPRAS</a></li>
                     <li class="<?php echo $this->uri->segment(2)=="v_praja"?"active":"";?>"><a href="<?php echo base_url('uploads/v_praja');?>">PRAJA</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="v_pns"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pns');?>">PNS</a></li>
+                    <li class="<?php echo $this->uri->segment(2)=="v_thl"?"active":"";?>"><a href="<?php echo base_url('uploads/v_thl');?>">THL</a></li>
 				</ul>
             </li>
             
