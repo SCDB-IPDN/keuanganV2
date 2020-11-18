@@ -62,7 +62,6 @@
                     <td>
                       <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
                       <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editpraja<?php echo $x['nik_praja'];?>"><i class="fa fas fa-edit"></i></a>
-                      <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapuspraja<?php echo $x['nik_praja'];?>"><i class="fa fas fa-trash"></i></a>
                     </td>
                   <?php } else { ?>
                     <td>Tidak ada detail</td>
