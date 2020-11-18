@@ -97,15 +97,7 @@
 			</li>
 			<!-- END KEPRAJAAN -->
 
-			<!-- SARPRAS -->
-			<li class="has-sub">
-				<a href="javascript:;">
-					<b class="caret"></b>
-					<i class="fas fa-building"></i>
-					<span>Sarpras</span>
-				</a>
-				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="d_sarpras"?"active":"";?>"><a href="<?php echo base_url('d_sarpras');?>">JATINANGOR</a></li>
+
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
