@@ -45,6 +45,13 @@ class Home_model extends CI_Model{
 
     return $result;
   }
+
+   public function get_praja()
+  { 
+    $result = $this->db->query("SELECT * FROM praja")->result();
+
+    return $result;
+  }
   
   
 }

@@ -18,8 +18,8 @@ class D_praja_model extends CI_Model{
 	public function edit_praja($input_data)
   	{     
 
-    	$id_praja = $input_data['id_praja'];
-    	$hasil = $this->db->where('id_praja', $id_praja)->update('praja', $input_data);
+    	$id_praja = $input_data['nik_praja'];
+    	$hasil = $this->db->where('nik_praja', $id_praja)->update('praja', $input_data);
         return $hasil;    
 	}
 	

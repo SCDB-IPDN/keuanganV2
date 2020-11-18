@@ -22,8 +22,8 @@ class D_praja extends CI_Controller{
 
   function detail($nik)
   {
-      $data = $this->D_praja_model->get_detail($nik)->result();
-      $x['data'] = json_encode($data);
+    $data = $this->D_praja_model->get_detail($nik)->result();
+    $x['data'] = json_encode($data);
     
     $this->load->view("include/head");
     $this->load->view("include/top-header");
@@ -32,31 +32,33 @@ class D_praja extends CI_Controller{
     $this->load->view("include/panel");
     $this->load->view("include/footer");
   }
-	
-  public function edit_praja()
-     {
-     $input_data['id_praja'] = $this->input->post('id_praja', true);
-     $input_data['nama'] = $this->input->post('nama', true);
-     $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
-     $input_data['alamat'] = $this->input->post('alamat', true);
-     $input_data['tlp_pribadi'] = $this->input->post('tanggal_lahir', true);
-     $input_data['email'] = $this->input->post('email', true);
 
-          $result = $this->D_praja_model->edit_praja($input_data);
+  function edit_praja()
+  {
+    $input_data['nik_praja'] = $this->input->post('nik_praja', true);
+   $input_data['nama'] = $this->input->post('nama', true);
+   $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
+   $input_data['alamat'] = $this->input->post('alamat', true);
+   $input_data['tlp_pribadi'] = $this->input->post('tlp_pribadi', true);
+   $input_data['email'] = $this->input->post('email', true);
+   $input_data['status'] = $this->input->post('status', true);
 
-          if (!$result) { 							
-               $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');		
-               redirect('d_praja/praja'); 			
-          } else { 								
-               $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');			
-               redirect('d_praja/praja'); 			
-          }
-     }
+   $result = $this->D_praja_model->edit_praja($input_data);
 
-     function hapus_praja()
-     {
-          $id_praja = $this->input->post('id_praja');
-          $this->D_praja_model->hapus_praja($id_praja);
-          redirect('d_praja/praja');
-     }
+   if (!$result) { 							
+     $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');		
+     redirect('d_praja'); 			
+   } else { 								
+     $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');			
+     redirect('d_praja'); 			
+   }
+
+ }
+
+ function hapus_praja()
+ {
+  $id_praja = $this->input->post('id_praja');
+  $this->D_praja_model->hapus_praja($id_praja);
+  redirect('d_praja/praja');
+}
 }
