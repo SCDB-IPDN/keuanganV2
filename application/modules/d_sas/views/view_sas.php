@@ -60,7 +60,15 @@
             <thead>
               <tr>
                 <th>#</th>
+                <?php if (isset($unit)) { ?>
+                  <th>Output</th>
+                <?php } elseif (isset($biro) || isset($bag)) { ?>
+                  <th>Bagian/Unit/Lembaga</th>
+                <?php } elseif (isset($kampus)) { ?>
+                  <th>Biro</th>
+                <?php } else { ?>
                 <th>Kampus</th>
+                <?php } ?>
                 <th>Pagu</th>
                 <th>Realiasasi</th>
                 <th>Sisa Pagu</th>
