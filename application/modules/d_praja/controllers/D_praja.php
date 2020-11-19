@@ -12,6 +12,12 @@ class D_praja extends CI_Controller{
     $data = $this->D_praja_model->get_praja()->result();
     $x['data'] = json_encode($data);
 
+    $prov = $this->D_praja_model->get_provinsi()->result();
+    $x['prov'] = json_encode($prov);
+
+    $status = $this->D_praja_model->get_status()->result();
+    $x['status'] = json_encode($status);
+
     $this->load->view("include/head");
     $this->load->view("include/top-header");
     $this->load->view("view_praja",$x);
@@ -61,10 +67,10 @@ class D_praja extends CI_Controller{
 
  }
 
- function hapus_praja()
- {
-  $id_praja = $this->input->post('id_praja');
-  $this->D_praja_model->hapus_praja($id_praja);
-  redirect('d_praja/praja');
-}
+//  function hapus_praja()
+//  {
+//   $id_praja = $this->input->post('id_praja');
+//   $this->D_praja_model->hapus_praja($id_praja);
+//   redirect('d_praja/praja');
+// }
 }
