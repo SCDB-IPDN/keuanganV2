@@ -61,15 +61,16 @@
               <?php $no = 1; ?>
               <?php foreach (json_decode($data, true) as $x): ?>
                 <?php $kurangtahun = 2020 - $x['tahun_masuk_kuliah']; ?>
+                 <?php $hasil = 0; ?>
                 <tr>
                  <td><?php echo $no++; ?></td>
                  <td><?= $x['nama']; ?></td>
                  <td><?= $x['jk']; ?></td>
                  <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
                  <?php if ($x['tahun_masuk_kuliah'] == 2020)  { ?>
-                      <td> <?= $angkatan;?> </td>
+                      <td> <?= $hasil = $angkatan;?> </td>
                     <?php }elseif($x['tahun_masuk_kuliah'] < 2020 || $x['tahun_masuk_kuliah'] > 2020 ){ ?>
-                       <td><?= $angkatan-$kurangtahun;?> </td>
+                       <td><?= $hasil= $angkatan-$kurangtahun;?> </td>
                     <?php }else{ ?>
                        <td></td>
                     <?php } ?>

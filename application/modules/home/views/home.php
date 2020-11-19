@@ -313,6 +313,21 @@
 				</div>
 			</div>
 		</div>
+
+		<?php
+		foreach($data as $row){
+			?>
+			<div class="d-flex mb-2">
+				<div class="d-flex align-items-center">
+					<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+					<?php echo $row->alias; ?>
+				</div>
+				<div class="d-flex align-items-center ml-auto">
+					<!-- <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div> -->
+					<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?php echo $row->persentase_t; ?>"><?php echo $row->persentase_t; ?></span></div>
+				</div>
+			</div>
+		<?php } ?>
 		
 		<!-- <div class="col-xl-4 col-lg-6">
 			
