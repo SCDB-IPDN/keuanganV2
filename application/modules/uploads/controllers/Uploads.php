@@ -1484,7 +1484,7 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-	public function pns2() {
+	public function pns() {
 
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['pns']['name']) && in_array($_FILES['pns']['type'], $file_mimes)) {
@@ -1544,10 +1544,11 @@ class Uploads extends CI_Controller {
 							// baris pertama
 							$nama_lengkap = $row['B'];
 							$no_urut_pangkat = $row['C'];
-							$pangkat_t = preg_split('/\(([^"]+)\)/', $row['D']);
+							// $pangkat_t = preg_split('/\(([^"]+)\)/', $row['D']);
+							$pangkat_t = preg_split('/( \(|\))/', $row['D']);
 							$pangkat = trim($pangkat_t[0]);
-							preg_match('/\(([^"]+)\)/', $row['D'], $gol_t);
-							$gol_ruang = $gol_t[1];
+							# preg_match('/\(([^"]+)\)/', $row['D'], $gol_t);
+							$gol_ruang = trim($pangkat_t[1]);
 							$jabatan = $row['E'];
 							$tmt_jabatan = date("Y-m-d", strtotime($row['F']));
 							$jurusan = $row['L'];
@@ -1620,7 +1621,6 @@ class Uploads extends CI_Controller {
 							}
 
 							array_push($data, array(
-								'no' => $no,
 								'nip' => $nip,
 								'nama_lengkap' => $nama_lengkap,
 								'bagian' => $bagian,
@@ -1677,7 +1677,7 @@ class Uploads extends CI_Controller {
 
 	}
 
-    public function pns()
+    public function pns2()
     {       
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         if(isset($_FILES['pns']['name']) && in_array($_FILES['pns']['type'], $file_mimes)) {
