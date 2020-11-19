@@ -32,7 +32,6 @@ class D_praja extends CI_Controller{
     $this->load->view("include/panel");
     $this->load->view("include/footer");
   }
-
   function praja()
      {
             $data = $this->D_praja_model->get_praja()->result();
@@ -49,24 +48,24 @@ class D_praja extends CI_Controller{
                redirect("d_praja/praja");
           
      }
-
-    public function edit_praja()
+	
+  public function edit_praja()
      {
-          $input_data['id_praja'] = $this->input->post('id_praja', true);
-          $input_data['nama'] = $this->input->post('nama', true);
-          $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
-          $input_data['alamat'] = $this->input->post('alamat', true);
-          $input_data['tlp_pribadi'] = $this->input->post('tanggal_lahir', true);
-          $input_data['email'] = $this->input->post('email', true);
+     $input_data['id_praja'] = $this->input->post('id_praja', true);
+     $input_data['nama'] = $this->input->post('nama', true);
+     $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
+     $input_data['alamat'] = $this->input->post('alamat', true);
+     $input_data['tlp_pribadi'] = $this->input->post('tanggal_lahir', true);
+     $input_data['email'] = $this->input->post('email', true);
 
           $result = $this->D_praja_model->edit_praja($input_data);
 
           if (!$result) { 							
                $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');		
-               redirect('d_praja'); 			
+               redirect('d_praja/praja'); 			
           } else { 								
                $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');			
-               redirect('d_praja'); 			
+               redirect('d_praja/praja'); 			
           }
      }
 
@@ -76,5 +75,4 @@ class D_praja extends CI_Controller{
           $this->D_praja_model->hapus_praja($id_praja);
           redirect('d_praja/praja');
      }
-
 }

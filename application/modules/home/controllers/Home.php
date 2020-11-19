@@ -15,6 +15,10 @@ class Home extends CI_Controller {
   {
     if($_SESSION['nip'])
     {
+      // KEPEGAWAIAN
+      $peg = $this->home_model->jumlah_peg();
+      $total_peg = $peg[0]->pns + $peg[0]->thl;
+
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
 
@@ -39,6 +43,8 @@ class Home extends CI_Controller {
 
       $x['praja'] = $praja;
       $x['biro'] = $biro;
+      $x['peg'] = $peg;
+      $x['total_peg'] = $total_peg;
       $x['persentase_span'] = $persentase_span;
       $x['persentase_sas'] = $persentase_sas; 
       $x['persentase_jatinangor'] = $persentase_jatinangor;

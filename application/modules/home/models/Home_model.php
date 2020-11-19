@@ -1,6 +1,14 @@
 <?php
 class Home_model extends CI_Model{
 
+  // Kepegawaian
+  public function jumlah_peg()
+  {
+    $peg = $this->db->query("SELECT pns, thl FROM (SELECT count(*) as pns FROM tbl_pns) as pns, (SELECT count(*) as thl FROM tbl_thl) as thl")->result();
+
+    return $peg;
+  }
+
   public function get_span()
 	{	
     $result = $this->db->query("SELECT SUM(pagu_t) AS pagu, sum(realisasi_t) as realisasi

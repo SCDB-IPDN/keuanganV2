@@ -7,6 +7,12 @@ class Kepegawaian_model extends CI_Model{
     return $cek_peg;
   }
 
+  function get_pendidikan()
+	{   
+    $tingkat = $this->db->query("SELECT * FROM tbl_pendidikan")->result();
+    return $tingkat;
+  }
+
   // PNS
   public function get_all_pns()
 	{	
@@ -22,9 +28,9 @@ class Kepegawaian_model extends CI_Model{
   }
 
   function edit_pns($input_data)
-  {       
-    $nip = $input_data['nip'];
-    $hasil = $this->db->where('nip', $nip)->update('tbl_pns', $input_data);
+  { 
+    $no = $input_data['no'];
+    $hasil = $this->db->where('no', $no)->update('tbl_pns', $input_data);
     
     return $hasil;    
   }

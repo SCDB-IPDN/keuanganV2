@@ -30,6 +30,7 @@
           </button>
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div> -->
+
         <div class ="table-responsive">
         <?php if($this->session->flashdata('praja') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
@@ -43,11 +44,9 @@
                 <tr>
                   <th>No</th>
                   <th>NAMA</th>
-                  <TH>JENIS KELAMIN</TH>
+                  <TH>JK</TH>
                   <th>TINGKAT</th>
-                  <th>ASAL</th>
                   <th>OPSI</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -58,11 +57,11 @@
                    <td><?= $x['nama']; ?></td>
                    <td><?= $x['jk']; ?></td>
                    <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
-                   <td><?= $x['kab/kota']; ?></td>
                    <?php if (isset($x['nik_praja'])){ ?>
-                  <td>
+                    <td>
                   <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
                   <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editpraja<?php echo $x['id_praja'];?>"><i class="fa fas fa-edit"></i></a>
+                  <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapuspraja<?php echo $x['id_praja'];?>"><i class="fa fas fa-trash"></i></a>
                   </td>
                   <?php } else { ?>
                     <td>Tidak ada detail</td>
@@ -78,9 +77,8 @@
     <!-- end panel -->
   </div>
   <!-- end col-10 -->
-
-  <?php foreach(json_decode($data, true) as $x){?>
-    <!-- Modal EDIT THL -->
+		 <?php foreach(json_decode($data, true) as $x){?>
+    <!-- Modal EDIT PRAJA -->
     <div class="modal fade" id="editpraja<?php echo $x['id_praja'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -91,7 +89,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="d_praja/edit_praja" method="post">
+                    <form action="edit_praja" method="POST">
                         <input type="hidden" class="form-control" id="id_praja" name="id_praja" value="<?php echo $x['id_praja'];?>">
                         <div class="form-group">
                             <label for="nama" class="col-form-label">Nama:</label>
@@ -125,7 +123,7 @@
     <?php } ?>
 
     <?php foreach(json_decode($data, true) as $x){?>
-    <!-- Modal HAPUS THL -->
+    <!-- Modal HAPUS PRAJA -->
     <div class="modal fade" id="hapuspraja<?php echo $x['id_praja'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -136,9 +134,9 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="d_praja/hapus_praja">
+                    <form class="form-horizontal" method="post" action="hapus_praja">
                         <div class="modal-body">
-                            <p>Anda yakin mau menghapus Data PRAJA <b><?php echo $x['nama'];?> ? </b></p>
+                            <p>Anda yakin mau menghapus Data PRAJA? <b><?php echo $x['nama'];?></b></p>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id_praja" value="<?php echo $x['id_praja'];?>">
