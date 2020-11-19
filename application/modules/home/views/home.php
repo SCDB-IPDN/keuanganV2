@@ -242,7 +242,7 @@
 							</a>
 							<br>
 							<div class="col-sm-2">
-								<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> All Apps</a>
+								<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> More</a>
 							</div>
 						</div>
 					</div>
@@ -313,7 +313,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<!-- <div class="col-xl-4 col-lg-6">
 			
 		</div> -->
@@ -517,8 +516,218 @@
 					</div>
 				</div>
 			</div> -->
-
-
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Aplikasi</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			
+				<div data-scrollbar="true" data-height="600px">
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PERPUSTAKAAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($perpustakaan as $perpus){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $perpus->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $perpus->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $perpus->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">AKADEMIK</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($akademik as $akade){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $akade->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $akade->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $akade->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KEUANGAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($keuangan as $keu){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $keu->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $keu->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $keu->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">RISET</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($riset as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">TP</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($tp as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KEPRAJAAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($keprajaan as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PASCASARJANA</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($pascasarjana as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PDDIKTI</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($pddikti as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+  	</div>
 </div>
