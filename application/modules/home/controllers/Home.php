@@ -22,6 +22,9 @@ class Home extends CI_Controller {
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
 
+      // SPAN JATINANGOR
+      $praja = $this->home_model->get_all_praja_jatinangor();
+
       // POK
       $persen_pok = $this->home_model->get_all_pok_biro();
       $persentase_pok = round($persen_pok[0]->persen,2);
@@ -32,17 +35,18 @@ class Home extends CI_Controller {
 
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
-
+      
       // SPAN
       $span = $this->home_model->get_span()->result();
       $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
       $persentase_span = round($hitung_span,2);
 
+      $x['praja'] = $praja;
       $x['biro'] = $biro;
       $x['peg'] = $peg;
       $x['total_peg'] = $total_peg;
       $x['persentase_span'] = $persentase_span;
-      $x['persentase_sas'] = $persentase_sas;
+      $x['persentase_sas'] = $persentase_sas; 
       $x['persentase_jatinangor'] = $persentase_jatinangor;
       $x['persentase_pok'] = $persentase_pok;
 

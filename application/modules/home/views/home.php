@@ -124,6 +124,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="col-sm-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
@@ -232,7 +233,7 @@
 									<div class="widget-list-title">Kepegawaian</div>
 								</div>
 							</a>
-							<a href="#" class="widget-list-item rounded-0 p-t-3">
+							<a href="<?php echo base_url('d_praja');?>" class="widget-list-item rounded-0 p-t-3">
 								<div class="widget-list-media icon">
 									<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
 								</div>
@@ -313,6 +314,51 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-sm-6">
+					<div class="panel panel-inverse">
+						<div class="panel-heading">
+							<h4 class="panel-title">PRAJA</h4>
+							<div class="panel-heading-btn">
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+							</div>
+						</div>
+						<div class="panel-body bg-dark">
+							<div class="card border-0 bg-dark text-white text-truncate mb-3">
+								<div class="mb-3 text-grey">
+									<b class="mb-3">TOTAL</b> 
+									<div class="text-grey">
+										<i class=""></i> JENIS KELAMIN PRAJA IPDN
+									</div>
+								</div>
+									<div class="row text-truncate">
+										<div class="col-6">
+											<div class="f-s-12 text-grey"><b>PRAJA LAKI LAKI</b></div>
+											<div class="text-grey">
+												<i class=""></i> IPDN
+											</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_praja');?>"><span data-animation="number" data-value="<?php echo $praja[0]->jumlahL ?>"><?php echo $praja[0]->jumlahL ?></span></div>
+											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+												<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="f-s-12 text-grey"><b>PRAJA PEREMPUAN</b></div>
+											<div class="text-grey">
+												<i class=""></i> IPDN
+											</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_praja');?>"><span data-animation="number" data-value="<?php echo $praja[0]->jumlahP ?>"><?php echo $praja[0]->jumlahP ?></span></a></div>
+											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
+												<div class="progress-bar progress-bar-striped rounded-right bg-pink" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
 		<!-- <div class="col-xl-4 col-lg-6">
 			
 		</div> -->
