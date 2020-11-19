@@ -66,7 +66,7 @@
 			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
-					<i class="fas fa-building"></i>
+					<i class="fas fa-id-card"></i>
 					<span>Kepegawaian</span>
 				</a>
 				<ul class="sub-menu">
