@@ -99,21 +99,45 @@
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $x['nama'];?>" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
-                              <label for="tmpt_lahir" class="col-form-label">Tempat Lahir:</label>
-                              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $x['tmpt_lahir'];?>" placeholder="Tempat Lahir.." required>
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $x['email'];?>" placeholder="Email.." required>
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="col-form-label">Alamat:</label>
                             <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $x['alamat'];?>" placeholder="Alamat.." required>
                         </div>
-                        <div class="form-group">
-                            <label for="tlp_pribadi" class="col-form-label">telpon pribadi:</label>
-                            <input type="text" class="form-control" id="tlp_pribadi" name="tlp_pribadi" value="<?php echo $x['tlp_pribadi'];?>" placeholder="tlp_pribadi.." required>
+                          <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">RT:</label>
+                              <input type="text" class="form-control" id="rt" name="rt" value="<?php echo $x['rt'];?>" placeholder="RT.." required>
+                        </div>
+                          <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">RW :</label>
+                              <input type="text" class="form-control" id="rw" name="rw" value="<?php echo $x['rw'];?>" placeholder="RW.." required>
+                        </div>
+                          <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Nama Dusun :</label>
+                              <input type="text" class="form-control" id="nama_dusun" name="nama_dusun" value="<?php echo $x['nama_dusun'];?>" placeholder="Nama Dusun.." required>
+                        </div>
+                          <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Kelurahan :</label>
+                              <input type="text" class="form-control" id="kelurahan" name="kelurahan" value="<?php echo $x['kelurahan'];?>" placeholder="kelurahan.." required>
+                        </div>
+                         <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Kecamatan :</label>
+                              <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?php echo $x['kecamatan'];?>" placeholder="Kecamatan.." required>
+                        </div>
+                         <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Kab/Kota :</label>
+                              <input type="text" class="form-control" id="kab/kota" name="kab/kota" value="<?php echo $x['kab/kota'];?>" placeholder="Kabupaten/Kota.." required>
+                        </div>
+                         <div class="form-group">
+                              <label for="tmpt_lahir" class="col-form-label">Kode Pos :</label>
+                              <input type="text" class="form-control" id="kode_pos" name="kode_pos" value="<?php echo $x['kode_pos'];?>" placeholder="Kode Pos.." required>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="col-form-label">Email:</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?php echo $x['email'];?>" placeholder="Email.." required>
-                        </div>
+                            <label for="tlp_pribadi" class="col-form-label">Telpon Pribadi:</label>
+                            <input type="text" class="form-control" id="tlp_pribadi" name="tlp_pribadi" value="<?php echo $x['tlp_pribadi'];?>" placeholder="Telepon Pribadi.." required>
+                        </div>                  
                         <div class="form-group">
                             <label for="status" class="col-form-label">Status sebelumnya: <?php echo $x['status'];?> </label>
                             <select class="form-control" name="status" id="status" required="">

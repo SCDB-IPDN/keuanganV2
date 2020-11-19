@@ -36,14 +36,20 @@ class D_praja extends CI_Controller{
   function edit_praja()
   {
     $input_data['nik_praja'] = $this->input->post('nik_praja', true);
-   $input_data['nama'] = $this->input->post('nama', true);
-   $input_data['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
-   $input_data['alamat'] = $this->input->post('alamat', true);
-   $input_data['tlp_pribadi'] = $this->input->post('tlp_pribadi', true);
-   $input_data['email'] = $this->input->post('email', true);
-   $input_data['status'] = $this->input->post('status', true);
+    $input_data['nama'] = $this->input->post('nama', true);
+    $input_data['email'] = $this->input->post('email', true);
+    $input_data['alamat'] = $this->input->post('alamat', true);
+    $input_data['rt'] = $this->input->post('rt', true);
+    $input_data['rw'] = $this->input->post('rw', true);
+    $input_data['nama_dusun'] = $this->input->post('nama_dusun', true);
+    $input_data['kelurahan'] = $this->input->post('kelurahan', true);
+    $input_data['kecamatan'] = $this->input->post('kecamatan', true);
+    $input_data['kab/kota'] = $this->input->post('kab/kota', true);
+    $input_data['kode_pos'] = $this->input->post('kode_pos', true);
+    $input_data['tlp_pribadi'] = $this->input->post('tlp_pribadi', true);
+    $input_data['status'] = $this->input->post('status', true);
 
-   $result = $this->D_praja_model->edit_praja($input_data);
+    $result = $this->D_praja_model->edit_praja($input_data);
 
    if (!$result) { 							
      $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');		
