@@ -28,4 +28,16 @@ class D_praja_model extends CI_Model{
 		$hasil=$this->db->query("DELETE FROM praja WHERE id_praja='$id_praja'");
 		return $hasil;
 	}
+
+	public function get_status()
+	{
+		$prov=$this->db->query("SELECT status from praja ");
+		return $prov;
+	}
+
+	public function get_provinsi()
+	{
+		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
+		return $prov;
+	}
 }
