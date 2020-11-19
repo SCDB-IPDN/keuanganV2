@@ -853,6 +853,7 @@ class Uploads extends CI_Controller {
 					$ket1 = trim($row['A']);
 					// echo "$ket1<br>";
 					$ket = substr($ket1, 9);
+					// echo "$ket<br>";
 					$temp = explode(" ", $ket1);
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
@@ -860,10 +861,7 @@ class Uploads extends CI_Controller {
 						$satker_biro = explode(".", $temp[0]);
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
-						// $sql1 = "INSERT INTO unit_sas values (NULL,".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-						// echo "$sql1";
-						// echo "<br>";
-						// $this->db->query($sql1);
+
 
 						$unitkalbar = array();
 						array_push($unitkalbar, array(
@@ -875,17 +873,11 @@ class Uploads extends CI_Controller {
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitkalbar);
 
-						//  array_push($dataunit, array(
-						//     'kode_satker' => $satker_sulsel,
-						//     'id_c'      =>$id_c,
-						//     'id_b'      => $satker_biro,
-						//     'ket'      => $ket1
-						// ));
-						// echo $id_c;
+
 					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
 						$ket1 = trim($row['A']);
 						$ket1 = substr($ket1, 4);
-					   // echo "$ket1<br>";
+					    // echo "$ket1<br>";
 
 						$pagu = $row['B'];
 					   // echo "pagunya"."$pagu";
@@ -900,7 +892,7 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket
+							'ket'      => $ket1
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputkalbar);
@@ -1305,6 +1297,8 @@ class Uploads extends CI_Controller {
 	{
 				// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+
 		if(isset($_FILES['praja']['name']) && in_array($_FILES['praja']['type'], $file_mimes)) {
 
 			$arr_file = explode('.', $_FILES['praja']['name']);
@@ -1325,6 +1319,7 @@ class Uploads extends CI_Controller {
 			$unitortu = array();
 			$unitwali = array();
 			$numrow = 1;
+			$stat = 'aktif';
 			// $date = STR_TO_DATE($row['AY'], '%d.%m.%y');
 
 			$stop = false;
@@ -1373,7 +1368,8 @@ class Uploads extends CI_Controller {
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
 						'tahun_masuk_kuliah'      => $row['AZ'],
 						'pembiayaan'      => $row['BA'],
-						'jalur_masuk'      => $row['BB']
+						'jalur_masuk'      => $row['BB'],
+						'status' => $stat
 					));
 
 

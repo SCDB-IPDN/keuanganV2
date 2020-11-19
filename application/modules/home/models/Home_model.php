@@ -9,6 +9,62 @@ class Home_model extends CI_Model{
     return $peg;
   }
 
+  public function app_perpus()
+  {
+    $perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
+
+    return $perpus;
+  }
+
+  public function app_akademik()
+  {
+    $akademik = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 2 AND status= 1")->result();
+
+    return $akademik;
+  }
+
+  public function app_keuangan()
+  {
+    $keuangan = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 3 AND status= 1")->result();
+
+    return $keuangan;
+  }
+
+  public function app_riset()
+  {
+    $riset = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 4 AND status= 1")->result();
+
+    return $riset;
+  }
+
+  public function app_tp()
+  {
+    $tp = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 5 AND status= 1")->result();
+
+    return $tp;
+  }
+
+  public function app_keprajaan()
+  {
+    $keprajaan = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 6 AND status= 1")->result();
+
+    return $keprajaan;
+  }
+
+  public function app_pascasarjana()
+  {
+    $pascasarjana = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 7 AND status= 1")->result();
+
+    return $pascasarjana;
+  }
+
+  public function app_pddikti()
+  {
+    $pddikti = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 8 AND status= 1")->result();
+
+    return $pddikti;
+  }
+
   public function get_span()
 	{	
     $result = $this->db->query("SELECT SUM(pagu_t) AS pagu, sum(realisasi_t) as realisasi
@@ -42,6 +98,13 @@ class Home_model extends CI_Model{
   public function get_all_sas()
 	{	
 		$result = $this->db->query("SELECT (100*sum(output_sas.realisasi)/sum(output_sas.pagu)) as persen FROM output_sas JOIN tbl_satker ON output_sas.kode_satker = tbl_satker.kode_satker")->result();
+
+    return $result;
+  }
+
+   public function get_praja()
+  { 
+    $result = $this->db->query("SELECT * FROM praja")->result();
 
     return $result;
   }
