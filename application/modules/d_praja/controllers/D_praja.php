@@ -32,22 +32,6 @@ class D_praja extends CI_Controller{
     $this->load->view("include/panel");
     $this->load->view("include/footer");
   }
-  function praja()
-     {
-            $data = $this->D_praja_model->get_praja()->result();
-
-            $x['data'] = json_encode($data);
-
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('view_thl', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
-
-               redirect("d_praja/praja");
-          
-     }
 	
   public function edit_praja()
      {

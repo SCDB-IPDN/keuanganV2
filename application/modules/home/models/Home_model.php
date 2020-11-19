@@ -32,13 +32,6 @@ class Home_model extends CI_Model{
 		return $result;
   }
 
-  public function get_all_praja_jatinangor()
-	{	
-		$result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja")->result();
-
-		return $result;
-  }
-
   public function get_all_pok_biro()
 	{	
 		$result = $this->db->query("SELECT (100*sum(realisasi)/sum(pagu)) as persen FROM out_pok")->result();
