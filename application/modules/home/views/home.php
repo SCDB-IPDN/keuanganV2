@@ -208,6 +208,7 @@
 					<div class="card border-0 bg-dark text-white mb-3">
 						<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 100%;"></div>
 						<div class="widget-list widget-list-rounded inverse-mode">
+							<br><br>
 							<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
 								<div class="widget-list-media icon">
 									<i class="fab fas fa-lg fa-fw  fa-university bg-white text-black"></i>
@@ -244,6 +245,7 @@
 							<div class="col-sm-2">
 								<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> More</a>
 							</div>
+							<br><br>
 						</div>
 					</div>
 				</div>
@@ -278,11 +280,46 @@
 						<br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
 								PNS
 							</div>
 							<div class="d-flex align-items-center ml-auto">
 								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+								Eselon I
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-pink f-s-8 mr-2"></i>
+								Eselon II
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lightgrey f-s-8 mr-2"></i>
+								Eselon III
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								Eselon IV
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?></span></div>
 							</div>
 						</div>
 						<br>
