@@ -18,4 +18,23 @@ class D_sarpras_model extends CI_Model{
 		return $result;
 	}
 
+	public function get_belanja_tahun() {
+		$this->db->select('SUM((jumlah*harga_beli)+(luas*harga_beli)) AS total, tahun, kategori');
+		$this->db->group_by(array("kategori", "tahun"));
+		$this->db->order_by('kategori', 'ASC');
+		$result = $this->db->get('sarpras');
+
+		return $result;
+	}
+
+	public function get_kategori() {
+
+		$this->db->distinct();
+		$this->db->select('kategori');
+		$this->db->order_by('kategori', 'ASC');
+		$result = $this->db->get('sarpras');
+
+		return $result;
+	}
+
 }
