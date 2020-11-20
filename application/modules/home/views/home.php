@@ -272,7 +272,7 @@
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span></h4>
+							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span> PEGAWAI</h4>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
@@ -283,7 +283,7 @@
 								PNS
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -292,7 +292,7 @@
 								Eselon I
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -301,7 +301,7 @@
 								Eselon II
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -310,7 +310,7 @@
 								Eselon III
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -319,7 +319,7 @@
 								Eselon IV
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<br>
@@ -334,7 +334,7 @@
 								TENAGA KONTRAK
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -343,7 +343,7 @@
 								TENAGA AHLI
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+								<div class="text-right pl-2 f-w-600"><span>-</span></div>
 							</div>
 						</div>
 					</div>
