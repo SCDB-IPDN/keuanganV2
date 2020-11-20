@@ -50,6 +50,9 @@ class Home extends CI_Controller {
       $keprajaan = $this->home_model->app_keprajaan();
       $pascasarjana = $this->home_model->app_pascasarjana();
       $pddikti = $this->home_model->app_pddikti();
+      $kepegawaian = $this->home_model->app_kepegawaian();
+      $kerjasama = $this->home_model->app_kerjasama();
+      $pengasuhan = $this->home_model->app_pengasuhan();
 
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
@@ -60,6 +63,9 @@ class Home extends CI_Controller {
       $x['keprajaan'] = $keprajaan;
       $x['pascasarjana'] = $pascasarjana;
       $x['pddikti'] = $pddikti;
+      $x['kepegawaian'] = $kepegawaian;
+      $x['kerjasama'] = $kerjasama;
+      $x['pengasuhan'] = $pengasuhan;
 
       $x['biro'] = $biro;
       $x['peg'] = $peg;
