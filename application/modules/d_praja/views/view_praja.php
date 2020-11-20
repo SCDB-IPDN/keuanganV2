@@ -30,14 +30,7 @@
           </button>
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div> -->
-
-        <div class ="table-responsive">
-        <?php if($this->session->flashdata('praja') != NULL){ ?>
-        <div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
-        </div>
-        <?php } ?>
+       <div class ="table-responsive">
           <div class="panel-body">
             <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
               <thead>
@@ -149,6 +142,7 @@
         </div>
     </div>
     <?php } ?>
+</div>
 </div>
 
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>

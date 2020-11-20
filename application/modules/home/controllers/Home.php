@@ -39,7 +39,7 @@ class Home extends CI_Controller {
 
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
-
+      
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
 
@@ -67,7 +67,7 @@ class Home extends CI_Controller {
       $x['keprajaan'] = $keprajaan;
       $x['pascasarjana'] = $pascasarjana;
       $x['pddikti'] = $pddikti;
-
+      
       $x['biro'] = $biro;
       $x['peg'] = $peg;
       $x['total_praja'] = $total_praja;
