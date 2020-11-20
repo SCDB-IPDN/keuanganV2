@@ -9,6 +9,13 @@ class Home_model extends CI_Model{
     return $peg;
   }
 
+  public function jum_eselon()
+  {
+    $result = $this->db->query("SELECT SUM(eselon LIKE 'I.%') as I, SUM(eselon LIKE 'II.%') as II, SUM(eselon LIKE 'III.%') as III, SUM(eselon LIKE 'IV.%') as IV FROM tbl_pns")->result();
+
+    return $result;
+  }
+
   public function app_perpus()
   {
     $perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
