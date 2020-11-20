@@ -42,6 +42,7 @@
             <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
           </div>
         <?php } ?>
+        <?php $angkatan = 31; ?>
         <div class="panel-body">
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
@@ -50,6 +51,7 @@
                 <th>NAMA</th>
                 <TH>JENIS KELAMIN</TH>
                 <th>TINGKAT</th>
+                <th>ANGKATAN</th>
                 <th>PROVINSI</th>
                 <th>STATUS</th>
                 <th>OPSI</th>
@@ -58,11 +60,21 @@
             <tbody>
               <?php $no = 1; ?>
               <?php foreach (json_decode($data, true) as $x): ?>
+                <?php $kurangtahun = 2020 - $x['tahun_masuk_kuliah']; ?>
+                 <?php $hasil = 0; ?>
                 <tr>
                  <td><?php echo $no++; ?></td>
                  <td><?= $x['nama']; ?></td>
                  <td><?= $x['jk']; ?></td>
                  <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
+                 <?php if ($x['tahun_masuk_kuliah'] == 2020)  { ?>
+                      <td> <?= $hasil = $angkatan;?> </td>
+                    <?php }elseif($x['tahun_masuk_kuliah'] < 2020 || $x['tahun_masuk_kuliah'] > 2020 ){ ?>
+                       <td><?= $hasil= $angkatan-$kurangtahun;?> </td>
+                    <?php }else{ ?>
+                       <td></td>
+                    <?php } ?>
+                 <!-- <td><?= $x['tahun_masuk_kuliah'] = 31 ;?></td> -->
                  <td><?= $x['provinsi']; ?></td>
                  <td><?= $x['status']; ?></td>
                  <?php if (isset($x['nik_praja'])){ ?>

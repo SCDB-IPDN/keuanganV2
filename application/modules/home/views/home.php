@@ -350,6 +350,7 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- <div class="col-xl-4 col-lg-6">
 			
 		</div> -->
