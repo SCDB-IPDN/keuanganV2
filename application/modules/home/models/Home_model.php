@@ -65,6 +65,27 @@ class Home_model extends CI_Model{
     return $pddikti;
   }
 
+  public function app_kepegawaian()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 9 AND status= 1")->result();
+
+    return $result;
+  }
+  
+  public function app_kerjasama()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 10 AND status= 1")->result();
+
+    return $result;
+  }
+
+  public function app_pengasuhan()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 11 AND status= 1")->result();
+
+    return $result;
+  }
+
   public function get_span()
 	{	
     $result = $this->db->query("SELECT SUM(pagu_t) AS pagu, sum(realisasi_t) as realisasi
