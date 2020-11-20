@@ -365,7 +365,16 @@
 								AKTIF
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->sp; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->aktif; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								TURUN TINGKAT
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->tt; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -374,7 +383,7 @@
 								CUTI
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->cuti; ?></span></div>
 							</div>
 						</div>
 						<br>
@@ -389,7 +398,7 @@
 								ANGKATAN 31
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $total_praja; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $total_praja ?></span></div>
 							</div>
 						</div>
 						<!-- <div class="d-flex mb-2">

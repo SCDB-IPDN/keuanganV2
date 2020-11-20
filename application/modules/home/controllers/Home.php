@@ -40,13 +40,16 @@ class Home extends CI_Controller {
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
 
-      //prajajk
-      $jkpraja = $this->home_model->get_jk_praja();
-
       // SPAN
       $span = $this->home_model->get_span()->result();
       $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
       $persentase_span = round($hitung_span,2);
+
+      //prajajk
+      $jkpraja = $this->home_model->get_jk_praja();
+
+      //tahunpraja
+      $tahun = $this->home_model->get_tahun();
 
       // App
       $perpustakaan = $this->home_model->app_perpus();
@@ -78,6 +81,7 @@ class Home extends CI_Controller {
       $x['persentase_jatinangor'] = $persentase_jatinangor;
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
+      $x['tahun'] = $tahun;
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
