@@ -58,6 +58,7 @@
                 <th class="text-nowrap">Masa Kerja</th>
                 <th class="text-nowrap">Catatan Mutasi</th>
                 <th class="text-nowrap">No Kapreg</th>
+                <th class="text-nowrap">Eselon</th>
                 <th class="text-nowrap">Aksi</th>
               </tr>
             </thead>
@@ -88,6 +89,7 @@
                 <td><?= $row->masa_kerja == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->masa_kerja ?></td>
                 <td><?= $row->catatan_mutasi == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->catatan_mutasi ?></td>
                 <td><?= $row->no_kapreg == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->no_kapreg ?></td>
+                <td><?= $row->eselon == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->eselon ?></td>
                 <?php if($this->session->userdata('role') == 'Admin'){?>
                 <td>
                     <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editpns<?php echo $row->no;?>"><i class="fa fas fa-edit"></i></a>
@@ -224,11 +226,19 @@
             </div>
             <div class="form-group">
               <label for="catatan_mutasi" class="col-form-label">Catatan Mutasi:</label>
-              <input type="text" class="form-control" id="catatan_mutasi" name="catatan_mutasi" placeholder="Catatan Mutasi.." required>
+              <input type="text" class="form-control" id="catatan_mutasi" name="catatan_mutasi" placeholder="Catatan Mutasi..">
             </div>
             <div class="form-group">
-              <label for="no_kapreg" class="col-form-label">No.Karpeg:</label>
-              <input type="text" class="form-control" id="no_kapreg" name="no_kapreg" placeholder="No.Karpeg.." required>
+              <div class="row">
+                <div class="col-sm">
+                  <label for="no_kapreg" class="col-form-label">No.Karpeg:</label>
+                  <input type="text" class="form-control" id="no_kapreg" name="no_kapreg" placeholder="No.Karpeg.." required>
+                </div>
+                <div class="col-sm">
+                  <label for="eselon" class="col-form-label">Eselon:</label>
+                  <input type="text" class="form-control" id="eselon" name="eselon" placeholder="Eselon..">
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -248,14 +258,14 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit PNS <?php echo $row->nip;?></h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit PNS <?php echo $row->nama_lengkap;?></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
               </button>
           </div>
           <div class="modal-body">
             <form action="kepegawaian/edit_pns" method="POST">
-              <input type="hidden" class="form-control" id="no" name="no" value="<?php echo $row->no;?>">
+              <input type="hidden" class="form-control" id="no" name="no" value="<?php echo $row->no?>">
               <div class="form-group">
                 <div class="row">
                   <div class="col-sm-4">
@@ -355,11 +365,19 @@
               </div>
               <div class="form-group">
                 <label for="catatan_mutasi" class="col-form-label">Catatan Mutasi:</label>
-                <input type="text" class="form-control" id="catatan_mutasi" name="catatan_mutasi" placeholder="Catatan Mutasi.." value="<?php echo $row->catatan_mutasi;?>" required>
+                <input type="text" class="form-control" id="catatan_mutasi" name="catatan_mutasi" placeholder="Catatan Mutasi.." value="<?php echo $row->catatan_mutasi;?>">
               </div>
               <div class="form-group">
-                <label for="no_kapreg" class="col-form-label">No.Karpeg:</label>
-                <input type="text" class="form-control" id="no_kapreg" name="no_kapreg" placeholder="No.Karpeg.." value="<?php echo $row->no_kapreg;?>" required>
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="no_kapreg" class="col-form-label">No.Karpeg:</label>
+                    <input type="text" class="form-control" id="no_kapreg" name="no_kapreg" placeholder="No.Karpeg.." value="<?php echo $row->no_kapreg;?>" required>
+                  </div>
+                  <div class="col-sm">
+                    <label for="eselon" class="col-form-label">Eselon:</label>
+                    <input type="text" class="form-control" id="eselon" name="eselon" placeholder="Eselon.." value="<?php echo $row->eselon;?>">
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

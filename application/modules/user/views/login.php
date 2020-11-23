@@ -55,14 +55,12 @@
 					</div>
 					<center><b><?php echo $this->session->flashdata('error') ?></b></center>
 					<br>
-					<!-- <div class="checkbox checkbox-css m-b-20">
-						<input type="checkbox" id="remember_checkbox" /> 
-						<label for="remember_checkbox">
-							Remember Me
-						</label>
-					</div> -->
 					<div class="login-buttons">
 						<button type="submit" class="btn btn-success btn-block btn-lg">Login</button>
+					</div>
+					<div class="m-t-20">
+						<!-- Not a member yet? Click <a href="http://ipdn.ac.id/tiket/">here</a> to register. -->
+						Tidak memiliki akun? Click <a href="http://ipdn.ac.id/tiket/" target="_blank">disini</a> untuk mendaftar.
 					</div>
 				</form>
 			</div>

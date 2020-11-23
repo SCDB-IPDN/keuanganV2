@@ -29,10 +29,10 @@
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="biroN" type="file" name="span" class="form-control">
+                                            <input for="praja" type="file" name="praja" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP PRAJA</button>
+                                        <button id="praja" type="submit" class="btn btn-success">UPLOAD REKAP PRAJA</button>
                                     </form>
                                 </div>
                             </div>
