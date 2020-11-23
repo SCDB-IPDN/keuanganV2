@@ -117,7 +117,7 @@ class Home_model extends CI_Model{
   
   public function jumlah_praja()
   {
-    $praja = $this->db->query("SELECT praja FROM (SELECT count(*) as praja FROM praja) as praja")->result();
+    $praja = $this->db->query("SELECT count(*) as praja from praja where tahun_masuk_kuliah = case when month(now()) >= 6 then year(now()) else date_add(year(now()), interval -1 year) END")->result();
 
     return $praja;
   }
