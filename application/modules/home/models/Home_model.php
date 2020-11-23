@@ -136,6 +136,27 @@ class Home_model extends CI_Model{
 
     return $result;
   }
+
+   public function get_jk_praja()
+  { 
+    $result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja")->result();
+
+    return $result;
+  }
+  
+  public function jumlah_praja()
+  {
+    $praja = $this->db->query("SELECT praja FROM (SELECT count(*) as praja FROM praja) as praja")->result();
+
+    return $praja;
+  }
+
+  public function status_praja()
+  {
+    $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
+
+    return $result;
+  }
   
   
 }
