@@ -16,6 +16,12 @@ class Home_model extends CI_Model{
     return $result;
   }
 
+  public function dosen()
+  {
+    $result = $this->db->query("SELECT SUM(jabatan LIKE '%ASISTEN AHLI%') as asisten_ahli, SUM(jabatan LIKE '%GURU BESAR%') as guru_besar, SUM(jabatan LIKE '%LEKTOR%') as lektor, SUM(jabatan LIKE '%LEKTOR KEPALA%') as lektor_kepala FROM tbl_pns")->result();
+    return $result;
+  }
+
   public function app_perpus()
   {
     $perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
