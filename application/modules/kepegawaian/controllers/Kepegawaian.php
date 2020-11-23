@@ -63,6 +63,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['masa_kerja'] = $masa_kerja;
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
+          $input_data['eselon'] = $this->input->post('eselon', true);
 
           $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
         
@@ -116,16 +117,9 @@ class Kepegawaian extends CI_Controller{
           $input_data['masa_kerja'] = $this->input->post('masa_kerja', true);
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
+          $input_data['eselon'] = $this->input->post('eselon', true);
 
-          $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
-        
-          if(!$cek_peg){
-               $result = $this->kepegawaian_model->edit_pns($input_data);
-          }else{
-               $this->session->set_flashdata('pns', 'NIP PEGAWAI SUDAH TERDAFTAR.');
-               $x['alert'] = 'ada';			
-               redirect('kepegawaian',$x);
-          }
+          $result = $this->kepegawaian_model->edit_pns($input_data);
 
           if (!$result) { 							
                $this->session->set_flashdata('pns', 'DATA PNS GAGAL DIUBAH.');		
