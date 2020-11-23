@@ -31,6 +31,7 @@ class D_sarpras extends CI_Controller {
 					}
 					array_push($tmp, array(
 						'total'			=>  $z['total'],
+						'perolehan'			=>  $z['perolehan'],
 						'tahun'			=>	$z['tahun'],
 						'kategori'	=>	$z['kategori']
 					));
