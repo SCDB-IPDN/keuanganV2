@@ -35,43 +35,45 @@
         </div>
         <?php } ?>
         <div class="panel-body">
-          <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
-            <thead>
-              <tr>
-                <th class="text-nowrap">No</th>
-                <th class="text-nowrap">Nama</th>
-                <th class="text-nowrap">Tempat Lahir</th>
-                <th class="text-nowrap">Tanggal Lahir</th>
-                <th class="text-nowrap">Dik</th>
-                <th class="text-nowrap">Penugasan</th>
-                <th class="text-nowrap">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php
-                $no = 0;
-                foreach($data as $row){
-                $no++;
-            ?>
-              <tr>
-                <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
-                <td><?= $row->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama ?></td>
-                <td><?= $row->tempat_lahir == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->tempat_lahir ?></td>
-                <td><?= date('d/m/Y', strtotime($row->tanggal_lahir)) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : date('d/m/Y', strtotime($row->tanggal_lahir)) ?></td>
-                <td><?= $row->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->dik ?></td>
-                <td><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
-                <?php if($this->session->userdata('role') == 'Admin'){?>
-                <td>
-                    <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editthl<?php echo $row->id_thl;?>"><i class="fa fas fa-edit"></i></a>
-                    <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapusthl<?php echo $row->id_thl;?>"><i class="fa fas fa-trash"></i></a>
-                </td>
-                <?php }else{?>
-                    <td>-</td>
-                <?php } ?>
-              </tr>
-            <?php } ?>
-            </tbody>
-          </table>
+            <div class ="table-responsive">
+                <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Dik</th>
+                        <th>Penugasan</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        $no = 0;
+                        foreach($data as $row){
+                        $no++;
+                    ?>
+                    <tr>
+                        <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
+                        <td><?= $row->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama ?></td>
+                        <td><?= $row->tempat_lahir == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->tempat_lahir ?></td>
+                        <td><?= date('d/m/Y', strtotime($row->tanggal_lahir)) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : date('d/m/Y', strtotime($row->tanggal_lahir)) ?></td>
+                        <td><?= $row->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->dik ?></td>
+                        <td><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
+                        <?php if($this->session->userdata('role') == 'Admin'){?>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editthl<?php echo $row->id_thl;?>"><i class="fa fas fa-edit"></i></a>
+                            <a href="#" class="btn btn-sm btn-danger" style="color:#fff;cursor:pointer" data-toggle="modal" data-target="#hapusthl<?php echo $row->id_thl;?>"><i class="fa fas fa-trash"></i></a>
+                        </td>
+                        <?php }else{?>
+                            <td>-</td>
+                        <?php } ?>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- end panel-body -->
       </div>
@@ -80,11 +82,11 @@
     <!-- end col-10 -->
 
     <!-- Modal ADD THL -->
-    <div class="modal fade" id="addthl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addthl" tabindex="-1" role="dialog" aria-labelledby="addthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah THL</h5>
+                    <h5 class="modal-title" id="addthll">Tambah THL</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -92,21 +94,21 @@
                 <div class="modal-body">
                     <form action="tambah_thl" method="POST">
                         <div class="form-group">
-                            <label for="nama" class="col-form-label">Nama:</label>
+                            <label class="col-form-label">Nama:</label>
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm">
-                                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
+                                    <label class="col-form-label">Tempat Lahir:</label>
                                     <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir.." required>
                                 </div>
                                 <div class="col-sm">
-                                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
+                                    <label class="col-form-label">Tanggal Lahir:</label>
                                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
                                 </div>
                                 <div class="col-sm">
-                                    <label for="dik" class="col-form-label">DIK:</label>
+                                    <label class="col-form-label">DIK:</label>
                                     <select class="form-control" id="dik" name="dik" required>
                                         <option disabled selected> Pilih </option>
                                         <?php foreach($tp as $rows){?>
@@ -117,7 +119,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="penugasan" class="col-form-label">Penugasan:</label>
+                            <label class="col-form-label">Penugasan:</label>
                             <input type="text" class="form-control" id="penugasan" name="penugasan" placeholder="Penugasan.." required>
                         </div>
                         <div class="modal-footer">
@@ -134,11 +136,11 @@
     foreach($data as $row){
     ?>
     <!-- Modal EDIT THL -->
-    <div class="modal fade" id="editthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="editthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit THL <?php echo $row->nama;?></h5>
+                <h5 class="modal-title" id="editthll">Edit THL <?php echo $row->nama;?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -147,21 +149,21 @@
                     <form action="edit_thl" method="POST">
                         <input type="hidden" class="form-control" id="id_thl" name="id_thl" value="<?php echo $row->id_thl;?>">
                         <div class="form-group">
-                            <label for="nama" class="col-form-label">Nama:</label>
+                            <label class="col-form-label">Nama:</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row->nama;?>" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm">
-                                    <label for="tempat_lahir" class="col-form-label">Tempat Lahir:</label>
+                                    <label class="col-form-label">Tempat Lahir:</label>
                                     <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir;?>" placeholder="Tempat Lahir.." required>
                                 </div>
                                 <div class="col-sm">
-                                    <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir:</label>
+                                    <label class="col-form-label">Tanggal Lahir:</label>
                                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
                                 </div>
                                 <div class="col-sm">
-                                    <label for="dik" class="col-form-label">DIK:</label>
+                                    <label class="col-form-label">DIK:</label>
                                     <select class="form-control" id="dik" name="dik" required>
                                         <option disabled selected> Pilih </option>
                                         <?php foreach($tp as $rows){ ?>
@@ -176,7 +178,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="penugasan" class="col-form-label">Penugasan:</label>
+                            <label class="col-form-label">Penugasan:</label>
                             <input type="text" class="form-control" id="penugasan" name="penugasan" value="<?php echo $row->penugasan;?>" placeholder="Penugasan.." required>
                         </div>
                         <div class="modal-footer">
@@ -194,11 +196,11 @@
     foreach($data as $row){
     ?>
     <!-- Modal HAPUS THL -->
-    <div class="modal fade" id="hapusthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="hapusthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="hapusthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Data THL</h5>
+                <h5 class="modal-title" id="hapusthll">Hapus Data THL</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

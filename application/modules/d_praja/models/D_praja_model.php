@@ -3,7 +3,8 @@ class D_praja_model extends CI_Model{
 
   	public function get_praja()
 	{	
-		$result = $this->db->query("SELECT * FROM praja GROUP BY nik_praja");
+
+		$result = $this->db->query("SELECT *, tahun_masuk_kuliah FROM praja GROUP BY nik_praja");
 
 		return $result;
 	}
@@ -39,5 +40,11 @@ class D_praja_model extends CI_Model{
 	{
 		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
 		return $prov;
+	}
+
+	public function get_tahun()
+	{
+		$tahun=$this->db->query("SELECT tahun_masuk_kuliah from praja ");
+		return $tahun;
 	}
 }

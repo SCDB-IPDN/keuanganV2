@@ -15,7 +15,7 @@
 		<div class="col-sm-6">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
-					<h4 class="panel-title">KAMPUS</h4>
+					<h4 class="panel-title">KEUANGAN</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -193,10 +193,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
-					<h4 class="panel-title">NAVIGATION</h4>
+					<h4 class="panel-title">APLIKASI</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -208,6 +208,7 @@
 					<div class="card border-0 bg-dark text-white mb-3">
 						<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 100%;"></div>
 						<div class="widget-list widget-list-rounded inverse-mode">
+							<br><br>
 							<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
 								<div class="widget-list-media icon">
 									<i class="fab fas fa-lg fa-fw  fa-university bg-white text-black"></i>
@@ -241,9 +242,10 @@
 								</div>
 							</a>
 							<br>
-							<div class="col-sm-2">
+							<div class="col-sm-6">
 								<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> More</a>
 							</div>
+							<br><br>
 						</div>
 					</div>
 				</div>
@@ -264,13 +266,13 @@
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="mb-3 text-grey">
 							<b class="mb-3">TOTAL PEGAWAI</b> 
-							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
+							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
 							<div class="text-grey">
 								<i class=""></i> KAMPUS IPDN
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span></h4>
+							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span> PEGAWAI</h4>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
@@ -278,11 +280,46 @@
 						<br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
 								PNS
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?> PEGAWAI</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+								Eselon I
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?> PEGAWAI</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-pink f-s-8 mr-2"></i>
+								Eselon II
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lightgrey f-s-8 mr-2"></i>
+								Eselon III
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?> PEGAWAI</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								Eselon IV
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<br>
@@ -297,7 +334,7 @@
 								TENAGA KONTRAK
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -306,13 +343,199 @@
 								TENAGA AHLI
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+								<div class="text-right pl-2 f-w-600"><span>-</span></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="col-sm-3">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">DOSEN</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white text-truncate mb-3">
+						<div class="mb-3 text-grey">
+							<b class="mb-3">TOTAL DOSEN</b> 
+							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data DOSEN Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
+							<div class="text-grey">
+								<i class=""></i> KAMPUS IPDN
+							</div>
+						</div>
+						<div class="d-flex align-items-center mb-1">
+							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_dosen ?>"><?php echo $total_dosen ?></span> DOSEN</h4>
+							<div class="ml-auto">
+								<div id="conversion-rate-sparkline"></div>
+							</div>
+						</div>
+						<br>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								ASISTEN AHLI
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->asisten_ahli; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								LEKTOR
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
+								LEKTOR KEPALA
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor_kepala; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								GURU BESAR
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">KEPRAJAAN</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white text-truncate mb-3">
+						<div class="mb-3 text-grey">
+							<b class="mb-3">TOTAL PRAJA</b> 
+							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
+							<div class="text-grey">
+								<i class=""></i> KAMPUS IPDN
+							</div>
+						</div>
+						<div class="d-flex align-items-center mb-1">
+							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_praja ?>"><?php echo $total_praja ?></span></h4>
+							<div class="ml-auto">
+								<div id="conversion-rate-sparkline"></div>
+							</div>
+						</div>
+						<br>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								LAKI LAKI
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jkpraja[0]->jumlahL; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-pink f-s-8 mr-2"></i>
+								PEREMPUAN
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jkpraja[0]->jumlahP; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+								AKTIF
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->aktif; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								TURUN TINGKAT
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->tt; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-grey f-s-8 mr-2"></i>
+								CUTI
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->cuti; ?></span></div>
+							</div>
+						</div>
+						<br>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								ANGKATAN
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								ANGKATAN 31
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $total_praja ?></span></div>
+							</div>
+						</div>
+						<!-- <div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								TINGKAT 2
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								TINGKAT 3
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								TINGKAT 4
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>-</span></div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- <div class="col-xl-4 col-lg-6">
 			
 		</div> -->
@@ -532,174 +755,8 @@
 			<div class="modal-body">
 			
 				<div data-scrollbar="true" data-height="600px">
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">PERPUSTAKAAN</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($perpustakaan as $perpus){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $perpus->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $perpus->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $perpus->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">AKADEMIK</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($akademik as $akade){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $akade->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $akade->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $akade->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">KEUANGAN</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($keuangan as $keu){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $keu->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $keu->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $keu->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">RISET</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($riset as $ris){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $ris->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">TP</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($tp as $ris){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $ris->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">KEPRAJAAN</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($keprajaan as $ris){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $ris->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="m-b-10 f-s-10 m-t-10">
-							<b class="text-inverse">PASCASARJANA</b>
-						</div>
-						<div class="card-body">
-							<div class="form-row">
-							<?php foreach($pascasarjana as $ris){?>
-								<div class="col-4">
-									<div class="form-group">
-										<div class="text-center">
-											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
-												<div class="app-box">
-													<img src="<?php echo $ris->image_url ?>" width="60%" >
-													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-							</div>
-						</div>
-					</div>
-
+					
+					<?php if($pddikti != NULL){ ?>	
 					<div class="col-lg-12">
 						<div class="m-b-10 f-s-10 m-t-10">
 							<b class="text-inverse">PDDIKTI</b>
@@ -723,6 +780,267 @@
 							</div>
 						</div>
 					</div>
+					<?php } ?>
+
+					<?php if($perpustakaan != NULL){ ?>
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PERPUSTAKAAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($perpustakaan as $perpus){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $perpus->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $perpus->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $perpus->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					<?php if($akademik != NULL){ ?>			
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">AKADEMIK</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($akademik as $akade){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $akade->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $akade->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $akade->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($keuangan != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KEUANGAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($keuangan as $keu){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $keu->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $keu->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $keu->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($riset != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">RISET</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($riset as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($tp != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">TP</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($tp as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($keprajaan != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KEPRAJAAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($keprajaan as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($pascasarjana != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PASCASARJANA</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($pascasarjana as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+
+					<?php if($kepegawaian != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KEPEGAWAIAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($kepegawaian as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+
+					<?php if($kerjasama != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">KERJASAMA</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($kerjasama as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+					
+					<?php if($pengasuhan != NULL){ ?>	
+					<div class="col-lg-12">
+						<div class="m-b-10 f-s-10 m-t-10">
+							<b class="text-inverse">PENGASUHAN</b>
+						</div>
+						<div class="card-body">
+							<div class="form-row">
+							<?php foreach($pengasuhan as $ris){?>
+								<div class="col-4">
+									<div class="form-group">
+										<div class="text-center">
+											<a href="<?php echo $ris->link_apps ?>" target="_blank" >
+												<div class="app-box">
+													<img src="<?php echo $ris->image_url ?>" width="60%" >
+													<div class="app-name" title=""><?php echo $ris->nama_apps ?></div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+
 				</div>
 			</div>
 			<div class="modal-footer">
