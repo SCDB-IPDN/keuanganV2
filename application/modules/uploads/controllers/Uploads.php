@@ -16,7 +16,7 @@ class Uploads extends CI_Controller {
 
 	public function index()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			redirect("home"); 
 		}else{
@@ -26,7 +26,7 @@ class Uploads extends CI_Controller {
 
 	public function v_span()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			// redirect("home");
 			$this->load->view("include/head");
@@ -42,7 +42,7 @@ class Uploads extends CI_Controller {
 
 	public function v_pok()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			$x['title'] = "pok";
 			$this->load->view("include/head");
@@ -58,7 +58,7 @@ class Uploads extends CI_Controller {
 
 	public function v_sas()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			$this->load->view("include/head");
 			$this->load->view("include/top-header");
@@ -73,7 +73,7 @@ class Uploads extends CI_Controller {
 
 	public function v_sarpras()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			$x['title'] = "sarpras";
 			$this->load->view("include/head");
@@ -89,7 +89,7 @@ class Uploads extends CI_Controller {
 
 	public function v_praja()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			$x['title'] = "praja";
 			$this->load->view("include/head");
@@ -105,7 +105,7 @@ class Uploads extends CI_Controller {
 
 	public function v_pns()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			// redirect("home");
 			$this->load->view("include/head");
@@ -120,7 +120,7 @@ class Uploads extends CI_Controller {
 	}
 	public function v_thl()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip') != NULL)
 		{
 			// redirect("home");
 			$this->load->view("include/head");
