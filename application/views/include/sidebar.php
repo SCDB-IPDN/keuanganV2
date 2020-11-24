@@ -31,21 +31,21 @@
             </li>
 
             <!-- KEUANGAN -->
-            <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="satker"?"active":"";?> has-sub">
+            <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
                     <i class="fas fa-money-bill-alt"></i> 
                     <span>Keuangan</span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="satker"?"active":"";?> has-sub">
+                    <li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
                             SPAN
                         </a>
                         <ul class="sub-menu">
-                            <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="satker" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
-                            <li class="<?php echo $this->uri->segment(2)=="satker"?"active":"";?>"><a href="<?php echo base_url('d_span/satker');?>">SATKER</a></li>
+                            <li class="<?php echo $this->uri->segment(1)=="d_span" && $this->uri->segment(2)!="biro" ?"active":"";?>"><a href="<?php echo base_url('d_span');?>">UTAMA</a></li>
+                            <li class="<?php echo $this->uri->segment(2)=="biro"?"active":"";?>"><a href="<?php echo base_url('d_span/biro');?>">KAMPUS JATINANGOR</a></li>
                         </ul>
                     </li>
                     <li class="<?php echo $this->uri->segment(1)=="d_pok"?"active":"";?> has-sub">
