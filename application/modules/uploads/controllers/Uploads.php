@@ -621,6 +621,7 @@ class Uploads extends CI_Controller {
 			$bag = '';
 			$id_c = 0;
 			$satker_jatinangor = 448302;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 1){
@@ -663,13 +664,16 @@ class Uploads extends CI_Controller {
 						$temp = explode(".", $ket);
 						$satker_biro = $temp[0];
 						$ket = substr($ket, 9);
+
+						
 						echo "<br><br>";
 
 						array_push($dataunit, array(
 							'kode_satker' => $satker_jatinangor,
 							'id_b'      => $satker_biro,
 							'id_c'      =>$id_c,
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// echo "$satker_biro $id_c -- $ket1<br>";
 						// $this->db->truncate('output');
@@ -692,7 +696,8 @@ class Uploads extends CI_Controller {
 							// 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// echo "$satker_biro $id_c -- $ket1<br>";
 						// $this->db->truncate('output');
@@ -748,6 +753,7 @@ class Uploads extends CI_Controller {
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_sulsel = 677024;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 7){
@@ -766,13 +772,14 @@ class Uploads extends CI_Controller {
 						 // echo "$sql1";
 						 // echo "<br>";
 						 // $this->db->query($sql1);
-
+						
 						$unitsulsel = array();
 						array_push($unitsulsel, array(
 							'kode_satker'      => $satker_sulsel,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitsulsel);
@@ -795,7 +802,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsulsel);
@@ -846,6 +854,7 @@ class Uploads extends CI_Controller {
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_kalbar = 683070;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 4){
@@ -867,7 +876,8 @@ class Uploads extends CI_Controller {
 							'kode_satker'      => $satker_kalbar,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitkalbar);
@@ -891,7 +901,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputkalbar);
@@ -941,6 +952,7 @@ class Uploads extends CI_Controller {
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_ntb = 683084;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 6){
@@ -960,7 +972,8 @@ class Uploads extends CI_Controller {
 							'kode_satker'      => $satker_ntb,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitntb);
@@ -985,7 +998,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['AC']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AD']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputntb);
@@ -1034,6 +1048,7 @@ class Uploads extends CI_Controller {
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_papua = 683091;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 6){
@@ -1052,7 +1067,8 @@ class Uploads extends CI_Controller {
 							'kode_satker'      => $satker_papua,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitpapua);
@@ -1076,7 +1092,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputpapua);
@@ -1127,6 +1144,7 @@ class Uploads extends CI_Controller {
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_sulut = 677010;
+			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
 				if($numrow > 1){
@@ -1146,7 +1164,8 @@ class Uploads extends CI_Controller {
 							'kode_satker'  => $satker_sulut,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitsulut);
@@ -1170,7 +1189,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsulut);
@@ -1212,13 +1232,13 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['sumbar']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);$data = array();
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_sumbar = 677045;
-
-
+			$tgl = date('Y-m-d');
 			foreach($sheet as $row){
 				if($numrow > 1){
 					$ket1 = trim($row['A']);
@@ -1236,7 +1256,8 @@ class Uploads extends CI_Controller {
 							'kode_satker'  => $satker_sumbar,
 							'id_c'      => $id_c,
 							'id_b'      => $satker_biro[0],
-							'ket'      => $ket
+							'ket'      => $ket,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitsumbar);
@@ -1262,7 +1283,8 @@ class Uploads extends CI_Controller {
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1
+							'ket'      => $ket1,
+							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsumbar);
@@ -1421,204 +1443,397 @@ class Uploads extends CI_Controller {
 
 	
 	public function thl()
-    {
-        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        if(isset($_FILES['thl']['name']) && in_array($_FILES['thl']['type'], $file_mimes)) {
+	{
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['thl']['name']) && in_array($_FILES['thl']['type'], $file_mimes)) {
 
-            $arr_file = explode('.', $_FILES['thl']['name']);
-            $extension = end($arr_file);
+			$arr_file = explode('.', $_FILES['thl']['name']);
+			$extension = end($arr_file);
 
-            if($extension != 'xlsx') {
-                $this->session->set_flashdata('thl','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
-                redirect('uploads/v_thl'); 
-            }
-            else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-            
-            $loadexcel  = $reader->load($_FILES['thl']['tmp_name']);
-            $excel = $loadexcel->getActiveSheet();
-            $rowCount = $excel->getHighestDataRow();
-            $saveData   = array();
-            for ($i=7; $i<=$rowCount; $i++){
-                $nama = $excel->getCellByColumnAndRow(2, $i)->getValue();
-                $ttl = $excel->getCellByColumnAndRow(3, $i)->getValue();
-                $ttl2 = explode(',', $ttl);
-                $tempat_lahir = $ttl2[0];
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('thl','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
+				redirect('uploads/v_thl'); 
+			}
+			else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel  = $reader->load($_FILES['thl']['tmp_name']);
+			$excel = $loadexcel->getActiveSheet();
+			$rowCount = $excel->getHighestDataRow();
+			$saveData   = array();
+			for ($i=7; $i<=$rowCount; $i++){
+				$nama = $excel->getCellByColumnAndRow(2, $i)->getValue();
+				$ttl = $excel->getCellByColumnAndRow(3, $i)->getValue();
+				$ttl2 = explode(',', $ttl);
+				$tempat_lahir = $ttl2[0];
 				$tanggal_lahir = date_create($ttl2[1]);
 				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
-                $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
-                $penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
-                $data = array(
-                    'nama' => $nama,
-                    'tempat_lahir' => $tempat_lahir,
-                    'tanggal_lahir' => $tanggal_lahir,
-                    'dik' => $dik,
-                    'penugasan' => $penugasan
-                );
-                array_push($saveData, $data);
-            }
-            $this->db->insert_batch('tbl_thl', $saveData);
+				$dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
+				$penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
+				$data = array(
+					'nama' => $nama,
+					'tempat_lahir' => $tempat_lahir,
+					'tanggal_lahir' => $tanggal_lahir,
+					'dik' => $dik,
+					'penugasan' => $penugasan
+				);
+				array_push($saveData, $data);
+			}
+			$this->db->insert_batch('tbl_thl', $saveData);
 			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_thl'); 
 		}
 	}
 
-    public function pns()
-    {       
+	public function pns()
+	{       
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        if(isset($_FILES['pns']['name']) && in_array($_FILES['pns']['type'], $file_mimes)) {
+		if(isset($_FILES['pns']['name']) && in_array($_FILES['pns']['type'], $file_mimes)) {
 
-            $arr_file = explode('.', $_FILES['pns']['name']);
-            $extension = end($arr_file);
+			$arr_file = explode('.', $_FILES['pns']['name']);
+			$extension = end($arr_file);
 
-            if($extension != 'xlsx') {
-                $this->session->set_flashdata('pns','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
-                redirect('uploads/v_pns'); 
-            }
-            else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-            
-            $loadexcel  = $reader->load($_FILES['pns']['tmp_name']);
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('pns','<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>'); 
+				redirect('uploads/v_pns'); 
+			}
+			else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
 
-            $excel = $loadexcel->getActiveSheet();
-            $rowCount = $excel->getHighestDataRow();
-            $saveData  = array();
-            $savedDataTrain = array();
-            $lineLimitNo = array();
-            for ($i=9; $i <=$rowCount; $i++) { 
-                $cellA = $excel->getCellByColumnAndRow(1, $i);
-                $limitA = $i+2;
-                if($cellA->isInMergeRange() || $cellA->isMergeRangeValueCell()) {
-                    if($cellA->getMergeRange() == "A$i:A$limitA") {
-                        $colNo = $cellA->getMergeRange();
-                        $limitNo = explode("A", $colNo);
-                        $limitNo = $limitNo[1];
-                        $limitNo = explode(":", $limitNo);
-                        $limitNo = $limitNo[0];
-                        array_push($lineLimitNo, $limitNo);
-                    }
-                }
-            }
-            $keepBagian = array();
-            foreach ($lineLimitNo as $col) {
-                $lineBagian = $col - 1;
-                $rowBagian = $excel->getCellByColumnAndRow(1, $lineBagian);
-                if($rowBagian->getMergeRange() != "A$lineBagian:R$lineBagian") {
-                    $bagian = array_pop($keepBagian);
-                }
-                else {
-                    $bagian = $excel->getCellByColumnAndRow(1, $lineBagian)->getValue();
-                }            
-                $no = $excel->getCellByColumnAndRow(1, $col)->getValue();
-                $nip = $excel->getCellByColumnAndRow(2, $col+1)->getValue();
-                $nip = str_replace(' ', '', $nip);
-                $nama_lengkap = $excel->getCellByColumnAndRow(2, $col)->getValue();
-                $ttl = $excel->getCellByColumnAndRow(2, $col+2)->getValue();
-                $ttl = explode(', ', $ttl);
-                $tempat_lahir = $ttl[0];
-                $tanggal_lahir = explode('/', $ttl[1]);
-                $tanggal_lahir = date_create("$tanggal_lahir[1]/$tanggal_lahir[0]/$tanggal_lahir[2]");
-                $tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
-                $no_urut_pangkat = $excel->getCellByColumnAndRow(3, $col)->getValue();
-                $pangkat_gol = $excel->getCellByColumnAndRow(4, $col)->getValue();
-                $pangkat_gol = explode("(", $pangkat_gol);
-                $pangkat = $pangkat_gol[0];
-                $gol_ruang = trim($pangkat_gol[1], ")");
-                $tmt_pangkat = $excel->getCellByColumnAndRow(4, $col+1)->getValue();
-                $tmt_pangkat = Date::excelToDateTimeObject($tmt_pangkat)->format('Y-m-d');
-                $jabatan = $excel->getCellByColumnAndRow(5, $col)->getValue();
-                $eselon = $excel->getCellByColumnAndRow(5, $col+1)->getValue();
-                $tmt_jabatan = $excel->getCellByColumnAndRow(6, $col)->getValue();
-                $tmt_jabatan = Date::excelToDateTimeObject($tmt_jabatan)->format('Y-m-d');
-                $jurusan = $excel->getCellByColumnAndRow(12, $col)->getValue();
-                $nama_pt = $excel->getCellByColumnAndRow(13, $col)->getValue();
-                $tahun_lulus = $excel->getCellByColumnAndRow(14, $col)->getValue();
-                $tingkat_pendidikan = $excel->getCellByColumnAndRow(15, $col)->getValue();
-                $usia = $excel->getCellByColumnAndRow(16, $col)->getValue();
-                $masa_kerja = $excel->getCellByColumnAndRow(16, $col+1)->getValue();
-                $catatan_mutasi = $excel->getCellByColumnAndRow(17, $col)->getValue();
-                $no_kapreg = $excel->getCellByColumnAndRow(18, $col)->getValue();
+			$loadexcel  = $reader->load($_FILES['pns']['tmp_name']);
 
-                for($j=0; $j<3;$j++){
-                    $col2 = $col+2;
-                    $nama_pelatihan = $excel->getCellByColumnAndRow(8, $col+$j)->getValue();
-                    $cellBln = $excel->getCellByColumnAndRow(9, $col+$j);
+			$excel = $loadexcel->getActiveSheet();
+			$rowCount = $excel->getHighestDataRow();
+			$saveData  = array();
+			$savedDataTrain = array();
+			$lineLimitNo = array();
+			for ($i=9; $i <=$rowCount; $i++) { 
+				$cellA = $excel->getCellByColumnAndRow(1, $i);
+				$limitA = $i+2;
+				if($cellA->isInMergeRange() || $cellA->isMergeRangeValueCell()) {
+					if($cellA->getMergeRange() == "A$i:A$limitA") {
+						$colNo = $cellA->getMergeRange();
+						$limitNo = explode("A", $colNo);
+						$limitNo = $limitNo[1];
+						$limitNo = explode(":", $limitNo);
+						$limitNo = $limitNo[0];
+						array_push($lineLimitNo, $limitNo);
+					}
+				}
+			}
+			$keepBagian = array();
+			foreach ($lineLimitNo as $col) {
+				$lineBagian = $col - 1;
+				$rowBagian = $excel->getCellByColumnAndRow(1, $lineBagian);
+				if($rowBagian->getMergeRange() != "A$lineBagian:R$lineBagian") {
+					$bagian = array_pop($keepBagian);
+				}
+				else {
+					$bagian = $excel->getCellByColumnAndRow(1, $lineBagian)->getValue();
+				}            
+				$no = $excel->getCellByColumnAndRow(1, $col)->getValue();
+				$nip = $excel->getCellByColumnAndRow(2, $col+1)->getValue();
+				$nip = str_replace(' ', '', $nip);
+				$nama_lengkap = $excel->getCellByColumnAndRow(2, $col)->getValue();
+				$ttl = $excel->getCellByColumnAndRow(2, $col+2)->getValue();
+				$ttl = explode(', ', $ttl);
+				$tempat_lahir = $ttl[0];
+				$tanggal_lahir = explode('/', $ttl[1]);
+				$tanggal_lahir = date_create("$tanggal_lahir[1]/$tanggal_lahir[0]/$tanggal_lahir[2]");
+				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
+				$no_urut_pangkat = $excel->getCellByColumnAndRow(3, $col)->getValue();
+				$pangkat_gol = $excel->getCellByColumnAndRow(4, $col)->getValue();
+				$pangkat_gol = explode("(", $pangkat_gol);
+				$pangkat = $pangkat_gol[0];
+				$gol_ruang = trim($pangkat_gol[1], ")");
+				$tmt_pangkat = $excel->getCellByColumnAndRow(4, $col+1)->getValue();
+				$tmt_pangkat = Date::excelToDateTimeObject($tmt_pangkat)->format('Y-m-d');
+				$jabatan = $excel->getCellByColumnAndRow(5, $col)->getValue();
+				$eselon = $excel->getCellByColumnAndRow(5, $col+1)->getValue();
+				$tmt_jabatan = $excel->getCellByColumnAndRow(6, $col)->getValue();
+				$tmt_jabatan = Date::excelToDateTimeObject($tmt_jabatan)->format('Y-m-d');
+				$jurusan = $excel->getCellByColumnAndRow(12, $col)->getValue();
+				$nama_pt = $excel->getCellByColumnAndRow(13, $col)->getValue();
+				$tahun_lulus = $excel->getCellByColumnAndRow(14, $col)->getValue();
+				$tingkat_pendidikan = $excel->getCellByColumnAndRow(15, $col)->getValue();
+				$usia = $excel->getCellByColumnAndRow(16, $col)->getValue();
+				$masa_kerja = $excel->getCellByColumnAndRow(16, $col+1)->getValue();
+				$catatan_mutasi = $excel->getCellByColumnAndRow(17, $col)->getValue();
+				$no_kapreg = $excel->getCellByColumnAndRow(18, $col)->getValue();
 
-                    if($cellBln->isInMergeRange() && $cellBln->getMergeRange() == "I$col:I$col2" && $nama_pelatihan != null) {
-                        $bln_pelatihan = $excel->getCellByColumnAndRow(9, $col)->getValue();
-                    }
-                    else {
-                        $bln_pelatihan = $excel->getCellByColumnAndRow(9, $col+$j)->getValue();
-                    }
+				for($j=0; $j<3;$j++){
+					$col2 = $col+2;
+					$nama_pelatihan = $excel->getCellByColumnAndRow(8, $col+$j)->getValue();
+					$cellBln = $excel->getCellByColumnAndRow(9, $col+$j);
 
-                    $cellThn = $excel->getCellByColumnAndRow(10, $col+$j);
-                    if($cellThn->isInMergeRange() && $cellThn->getMergeRange() == "J$col:J$col2" && $nama_pelatihan != null) {
-                        $thn_pelatihan = $excel->getCellByColumnAndRow(10, $col)->getValue();
-                    }
-                    else {
-                        $thn_pelatihan = $excel->getCellByColumnAndRow(10, $col+$j)->getValue();
-                    }
+					if($cellBln->isInMergeRange() && $cellBln->getMergeRange() == "I$col:I$col2" && $nama_pelatihan != null) {
+						$bln_pelatihan = $excel->getCellByColumnAndRow(9, $col)->getValue();
+					}
+					else {
+						$bln_pelatihan = $excel->getCellByColumnAndRow(9, $col+$j)->getValue();
+					}
 
-                    $cellJam = $excel->getCellByColumnAndRow(11, $col+$j);
-                    if($cellJam->isInMergeRange() && $cellJam->getMergeRange() == "K$col:K$col2" && $nama_pelatihan != null) {
-                        $jumlah_jam = $excel->getCellByColumnAndRow(11, $col)->getValue();
-                    }
-                    else {
-                        $jumlah_jam = $excel->getCellByColumnAndRow(11, $col+$j)->getValue();
-                    }
+					$cellThn = $excel->getCellByColumnAndRow(10, $col+$j);
+					if($cellThn->isInMergeRange() && $cellThn->getMergeRange() == "J$col:J$col2" && $nama_pelatihan != null) {
+						$thn_pelatihan = $excel->getCellByColumnAndRow(10, $col)->getValue();
+					}
+					else {
+						$thn_pelatihan = $excel->getCellByColumnAndRow(10, $col+$j)->getValue();
+					}
 
-                    if($bln_pelatihan == '') {
-                        $bln_pelatihan = 0;
-                    }
+					$cellJam = $excel->getCellByColumnAndRow(11, $col+$j);
+					if($cellJam->isInMergeRange() && $cellJam->getMergeRange() == "K$col:K$col2" && $nama_pelatihan != null) {
+						$jumlah_jam = $excel->getCellByColumnAndRow(11, $col)->getValue();
+					}
+					else {
+						$jumlah_jam = $excel->getCellByColumnAndRow(11, $col+$j)->getValue();
+					}
 
-                    if($thn_pelatihan == '') {
-                        $thn_pelatihan = 0;
-                    }
-                    $tanggal_pelatihan = "$bln_pelatihan-$thn_pelatihan";
-        
-                    $dataTrain = array(
-                        'nip' => $nip,
-                        'nama_pelatihan' => $nama_pelatihan,
-                        'tanggal_pelatihan' => $tanggal_pelatihan,
-                        'jumlah_jam'=> $jumlah_jam
-                    );
-                    array_push($savedDataTrain, $dataTrain);
-                }
-                array_push($keepBagian, $bagian);
+					if($bln_pelatihan == '') {
+						$bln_pelatihan = 0;
+					}
 
-                $data = array(
-                    'no' => $no,
-                    'nip' => $nip,
-                    'nama_lengkap' => $nama_lengkap,
-                    'bagian' => $bagian,
-                    'tempat_lahir' => $tempat_lahir,
-                    'tanggal_lahir' => $tanggal_lahir,
-                    'no_urut_pangkat' => $no_urut_pangkat,
-                    'pangkat' => $pangkat,
-                    'gol_ruang' => $gol_ruang,
-                    'tmt_pangkat' => $tmt_pangkat,
-                    'jabatan' => $jabatan,
-                    'tmt_jabatan' => $tmt_jabatan,
-                    'jurusan' => $jurusan,
-                    'nama_pt' => $nama_pt,
-                    'tahun_lulus' => $tahun_lulus,
-                    'tingkat_pendidikan' => $tingkat_pendidikan,
-                    'usia' => $usia,
-                    'masa_kerja' => $masa_kerja,
-                    'catatan_mutasi' => $catatan_mutasi,
-                    'no_kapreg' => $no_kapreg,
-                    'eselon' => $eselon
-                );
-                array_push($saveData, $data);
-            }
-            $this->db->insert_batch('tbl_pns', $saveData);
-            $this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
+					if($thn_pelatihan == '') {
+						$thn_pelatihan = 0;
+					}
+					$tanggal_pelatihan = "$bln_pelatihan-$thn_pelatihan";
+
+					$dataTrain = array(
+						'nip' => $nip,
+						'nama_pelatihan' => $nama_pelatihan,
+						'tanggal_pelatihan' => $tanggal_pelatihan,
+						'jumlah_jam'=> $jumlah_jam
+					);
+					array_push($savedDataTrain, $dataTrain);
+				}
+				array_push($keepBagian, $bagian);
+
+				$data = array(
+					'no' => $no,
+					'nip' => $nip,
+					'nama_lengkap' => $nama_lengkap,
+					'bagian' => $bagian,
+					'tempat_lahir' => $tempat_lahir,
+					'tanggal_lahir' => $tanggal_lahir,
+					'no_urut_pangkat' => $no_urut_pangkat,
+					'pangkat' => $pangkat,
+					'gol_ruang' => $gol_ruang,
+					'tmt_pangkat' => $tmt_pangkat,
+					'jabatan' => $jabatan,
+					'tmt_jabatan' => $tmt_jabatan,
+					'jurusan' => $jurusan,
+					'nama_pt' => $nama_pt,
+					'tahun_lulus' => $tahun_lulus,
+					'tingkat_pendidikan' => $tingkat_pendidikan,
+					'usia' => $usia,
+					'masa_kerja' => $masa_kerja,
+					'catatan_mutasi' => $catatan_mutasi,
+					'no_kapreg' => $no_kapreg,
+					'eselon' => $eselon
+				);
+				array_push($saveData, $data);
+			}
+			$this->db->insert_batch('tbl_pns', $saveData);
+			$this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
 			$this->session->set_flashdata('pns',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_pns'); 
 		}
 	}
+
+
+	public function uploadJatinangor()
+	{
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['nangor']['name']) && in_array($_FILES['nangor']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['nangor']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('nangor', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/v_sas"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel  = $reader->load($_FILES['nangor']['tmp_name']);
+
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);			
+			$dataoutput = array();
+			$datasuboutput = array();
+			$datakomponen = array();
+			$datasubkomponen = array();
+			$dataakun = array();
+			$numrow = 1;
+			$bag = '';
+			$id_c = 0;
+			$id_d = 0;
+			$id_e = 0;
+			$satker_jatinangor = 448302;
+			$tgl = date('Y-m-d');
+
+			foreach($sheet as $row){
+				if($numrow > 1){
+					if ($row['A'] == 2){
+						$coutput = 0;
+						$csuboutput = 0;
+						$ckomponen =0;
+						$csubkomponen =0;
+						$cakun =0;
+						$csubunit =0;
+						if (strpos($row['AI'], 'Perencanaan')) {
+							$cbiro = 1;
+							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+							// echo "ID BIRO : ".$id_b." <br>";
+						}elseif (strpos($row['AI'], 'Keuangan')) {
+							$cbiro = 2;
+							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+							// echo "ID BIRO : ".$id_b." <br>";
+						}elseif (strpos($row['AI'], 'Alumni')) {
+							$cbiro = 3;
+							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+							// echo "ID BIRO : ".$id_b." <br>";
+						}elseif (strpos($row['AI'], 'Hukum')) {
+							$cbiro = 4;
+							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
+
+							// echo "ID BIRO : ".$id_b." <br>";
+						}
+					} elseif ($row['A'] == 3) {
+						$coutput++;
+						$output = (($coutput<10)?$cbiro."0".$coutput:$cbiro.$coutput).$row['AI']."<br>";
+						// echo("$output");
+						$temp = explode(".", $row['AI']);
+						$satker_biro = $temp[0];
+
+						// $id_c = ($cunit<10)?$cbiro."0".$coutput:$cbiro.$coutput;
+						$id_c = ($coutput<20)?"1".$cbiro."0".$coutput:$cbiro.$coutput;
+						// echo "$id_c ";
+						$ket = trim($row['AI']);
+						$temp = explode(".", $ket);
+						$satker_biro = $temp[0];
+						// echo "$satker_biro";
+						$ket = substr($ket, 9);
+						// echo "$ket";
+						// echo "<br><br>";
+
+						array_push($dataoutput, array(
+							'kode_satker' => $satker_jatinangor,
+							'id_b'      => $satker_biro,
+							'id_c'      =>$id_c,
+							'ket'      => $ket,
+							'tanggal' => $tgl
+						));
+
+					}  elseif ($row['A'] == 4) {
+						$csuboutput++;   
+						$id_d = ($csuboutput<20)?"2".$cbiro."0".$csuboutput:$csuboutput.$cbiro;      
+						// echo "$id_d ";               
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 4);
+						// echo "$ket1<br>";
+						array_push($datasuboutput, array(
+							'kode_satker' => $satker_jatinangor,
+							'id_b'      => $satker_biro,
+							'id_c'      =>$id_c,
+							'id_d'		=> $id_d,
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+					}  elseif ($row['A'] == 5) {
+						$ckomponen++;  
+						$id_e = ($ckomponen<20)?"3".$cbiro."0".$ckomponen:$ckomponen.$cbiro;   
+						// echo "$id_e ";                    
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 4);
+						// echo "$ket1 <br>"; 
+						array_push($datakomponen, array(
+							'kode_satker' => $satker_jatinangor,
+							'id_b'      => $satker_biro,
+							'id_c'      =>$id_c,
+							'id_d'      =>$id_d,
+							'id_e'		=> $id_e,
+							// 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+
+					}  elseif ($row['A'] == 6) {
+						$csubkomponen++;                        
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 2);
+						$id_f = ($csubkomponen<20)?"4".$cbiro."0".$csubkomponen:$csubkomponen.$cbiro;   
+						// echo "$id_f ";
+						// echo "$ket1 <br>";
+						array_push($datasubkomponen, array(
+							'kode_satker' => $satker_jatinangor,
+							'id_b'      => $satker_biro,
+							'id_c'      =>$id_c,
+							'id_d'      =>$id_d,
+							'id_e'		=> $id_e,
+							'id_f'		=> $id_f,
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+					}  elseif ($row['A'] == 7) {
+						$cakun++;                        
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 33);
+
+						$id_g = ($cakun<20)?"5".$cbiro."0".$cakun:$cakun.$cbiro;   
+						// echo "$id_g ";
+						// echo "$ket1 <br>";
+
+						array_push($dataakun, array(
+							'kode_satker' => $satker_jatinangor,
+							'id_b'      => $satker_biro,
+							'id_c'      =>$id_c,
+							'id_d'      =>$id_d,
+							'id_e'		=> $id_e,
+							'id_f'		=> $id_f,
+							'id_g'		=> $id_g,
+							// 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
+							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+
+					}
+				}
+				$numrow++;
+			}
+			// echo "<br>";
+			// var_dump($data);
+
+			// echo "</pre>";
+			// exit();
+
+			$this->db->truncate('outputnya_sas');
+			$this->db->insert_batch('outputnya_sas', $dataoutput);
+			$this->db->truncate('suboutput_sas');
+			$this->db->insert_batch('suboutput_sas', $datasuboutput);
+
+			$this->db->truncate('komponen_sas');
+			$this->db->insert_batch('komponen_sas', $datakomponen);
+			$this->db->truncate('subkomponen_sas');
+			$this->db->insert_batch('subkomponen_sas', $datasubkomponen);
+			$this->db->truncate('akun_sas');
+			$this->db->insert_batch('akun_sas', $dataakun);
+			//delete file from server
+			// unlink(realpath('excel/'.$data_upload['file_name']));
+
+			//upload success
+			$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect('uploads/v_sas');
+
+		}
+	}
+
 
 
 	function rti($s) {

@@ -125,4 +125,24 @@ class D_sas extends CI_Controller{
       redirect("user");
     }
   }
+
+  function coba()
+    {
+          if($_SESSION['nip'])
+          {
+               $data = $this->d_sas_model->kampusnyaa()->result();
+
+               $x['data'] = $data;
+               $x['chart'] = json_encode($data);
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_sas_nangor', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+    }
 }
