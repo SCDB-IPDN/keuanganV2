@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.203.152',
+	'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',
 	// 'database' => 'scdb_ipdn',
-	'username' => 'ipdnacid_scdb',
-	'password' => 'yellowminicooper',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'ipdnacid_scdb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
