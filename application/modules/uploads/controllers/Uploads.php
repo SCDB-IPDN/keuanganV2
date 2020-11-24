@@ -614,7 +614,7 @@ class Uploads extends CI_Controller {
 
 			$loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
 
-			$sheet             = $loadexcel->getSheetByName("pagu ipdn")->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);			
 			$dataunit = array();
 			$dataoutput = array();
 			$numrow = 1;
@@ -741,7 +741,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['sulsel']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("PAGU_677024")->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
 			$data = array();
 			$numrow = 1;
@@ -840,8 +840,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['kalbar']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
-
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -936,8 +935,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['ntb']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("IPDN NTB")->toArray(null, true, true ,true);
-
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -1030,8 +1028,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['papua']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
-
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -1124,8 +1121,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['sulut']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
-
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -1216,8 +1212,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['sumbar']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("Sheet1")->toArray(null, true, true ,true);
-			$data = array();
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);$data = array();
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
@@ -1313,7 +1308,8 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['praja']['tmp_name']);
-			$sheet             = $loadexcel->getSheetByName("data")->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+
 			$data = array();
 			$unitpraja = array();
 			$unitortu = array();
