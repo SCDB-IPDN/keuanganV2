@@ -13,7 +13,7 @@ class Home extends CI_Controller {
      */
   public function index()
   {
-    if($_SESSION['nip'])
+    if($this->session->userdata('nip') != NULL)
     {
       // KEPEGAWAIAN
       $peg = $this->home_model->jumlah_peg();
