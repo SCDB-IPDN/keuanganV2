@@ -626,7 +626,7 @@ class Uploads extends CI_Controller {
 
 			$loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
 
-			$sheet             = $loadexcel->getSheetByName("pagu ipdn")->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$dataunit = array();
 			$dataoutput = array();
 			$numrow = 1;
