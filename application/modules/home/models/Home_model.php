@@ -152,7 +152,7 @@ class Home_model extends CI_Model{
   
   public function jumlah_praja()
   {
-    $praja = $this->db->query("SELECT praja FROM (SELECT count(*) as praja FROM praja) as praja")->result();
+    $praja = $this->db->query("SELECT count(*) as praja from praja")->result();
 
     return $praja;
   }
