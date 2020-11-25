@@ -41,8 +41,8 @@
 									<div class="mb-3 text-grey">
 										<!-- <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="33.21">0.00</span>% compare to last week -->
 									</div>
-									<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-										<div class="progress-bar progress-bar-striped rounded-right bg-teal" data-animation="width" data-value="<?php echo $persentase_span ?>%" style="width: 0%"></div>
+									<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
+										<div class="progress-bar bg-teal progress-bar-striped rounded-right progress-bar-animated" style="width: <?php echo $persentase_span ?>%"></div>
 									</div>
 									<hr class="bg-white-transparent-2" />
 									<div class="row text-truncate">
@@ -52,8 +52,8 @@
 												<i class=""></i> IPDN
 											</div>
 											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php echo $persentase_sas ?>"><?php echo $persentase_sas ?></span>%</div>
-											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-												<div class="progress-bar progress-bar-striped rounded-right bg-yellow" data-animation="width" data-value="<?php echo $persentase_sas ?>%" style="width: 0%"></div>
+											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
+												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php echo $persentase_sas ?>%"></div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -62,8 +62,8 @@
 												<i class=""></i> JATINANGOR
 											</div>
 											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
-											<div class="progress progress-xs rounded-lg bg-dark-darker m-b-5">
-												<div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="<?php echo $persentase_pok ?>%" style="width: 0%"></div>
+											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
+												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php echo $persentase_pok ?>%"></div>
 											</div>
 										</div>
 									</div>
