@@ -87,6 +87,22 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+	public function v_rank()
+	{
+		if($_SESSION['nip'])
+		{
+			$x['title'] = "rank";
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import', $x);
+			$this->load->view("include/sidebar");
+			// $this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+
 	public function v_praja()
 	{
 		if($this->session->userdata('nip') != NULL)
@@ -613,7 +629,129 @@ class Uploads extends CI_Controller {
 		$this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras"); 
-	}    
+	}
+
+	public function rank() {
+
+		// Load plugin PHPExcel nya
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && $_FILES['rank']['tmp_name'][0] != "") {
+
+			// hitung ada berapa file yg di upload bersamaan, buat cek doang
+			// $count = count($_FILES['rank']['name']);
+
+			// echo $count."<br>";
+			// var_dump($_FILES);
+			// print("<pre>".print_r($_FILES,true)."</pre>");
+			$data = array();
+			$nf = true; // tanda file aja, kalo file pertama eselon 1 brarti true
+
+			foreach($_FILES[ 'rank' ][ 'tmp_name' ] as $index => $tmpName) {
+				$f_name = $_FILES['rank']['name'][$index];
+				// echo $f_name."<br>";
+				if (strpos(strtolower($f_name), 'satker')) {
+					$nf = false;
+				}
+
+				if(isset($_FILES['rank']['name'][$index]) && in_array($_FILES['rank']['type'][$index], $file_mimes)) {
+
+					$arr_file = explode('.', $_FILES['rank']['name'][$index]);
+					$extension = end($arr_file);
+
+					if($extension != 'xlsx') {
+						$this->session->set_flashdata('rank', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+						redirect("uploads/v_rank");
+					}
+
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$loadexcel = $reader->load($_FILES['rank']['tmp_name'][$index]);
+					$shit = $loadexcel->getActiveSheet();
+					$rows = $shit->toArray(null, true, true ,true);
+
+					if ($nf) {
+						// file eselon 1
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								if ($tmp[0] != "01001") {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $txt[0],
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
+								}
+							}
+						}
+						$nf = false;
+					} else {
+						// file satker
+						foreach ($rows as $row) {
+							$add = false;
+							$nama = "";
+							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+								$nama = $txt[0];
+
+								switch ($tmp[0]) {
+									case 403200:
+										// SETJEN
+										$add = true;
+										break;
+									case 448302:
+										// IPDN
+										$add = true;
+										break;
+									case 483005:
+										// DKPP
+										$add = true;
+										break;
+								}
+								if ($add) {
+									array_push($data, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $nama,
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
+								}
+							}
+						}
+						$nf = true;	
+					}			
+				}
+
+			}
+			// var_dump($data_out);
+			// print("<pre>".print_r($data,true)."</pre>");
+			// $this->db->truncate('peringkat');
+			// $this->db->insert_batch('peringkat', $data);  // PENTING
+			$this->db->truncate('tbl_rank');
+			$this->db->insert_batch('tbl_rank', $data); 
+			// exit;
+			// //upload success
+			$this->session->set_flashdata('rank', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect("uploads/v_rank");
+		} else {
+			// echo "kosong";
+			$this->session->set_flashdata('rank', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
+			redirect("uploads/v_rank");
+		}
+	}
 
 	public function uploadPagu()
 	{

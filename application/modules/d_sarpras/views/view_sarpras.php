@@ -124,9 +124,13 @@
 		var labels<?php echo $cc; ?> = <?php echo $ch;?>.map(function(e) {
 			return e.tahun;
 		});
-		var data<?php echo $cc;?> = <?php echo $ch;?>.map(function(e) {
+		var data1_<?php echo $cc;?> = <?php echo $ch;?>.map(function(e) {
 			return e.total;
-		});;
+		});
+
+		var data2_<?php echo $cc;?> = <?php echo $ch;?>.map(function(e) {
+			return e.perolehan;
+		});
 
 		var ctx<?php echo $cc; ?> = document.getElementById("myChart<?php echo $cc; ?>").getContext('2d');
 		var config = {
@@ -135,8 +139,19 @@
 				labels: labels<?php echo $cc;?>,
 				datasets: [{
 					label: 'Total Belanja',
-					data: data<?php echo $cc;?>,
-					backgroundColor: 'rgba(0, 119, 204, 0.3)'
+					data: data1_<?php echo $cc;?>,
+					pointBackgroundColor: 'white',
+					pointBorderWidth: 2,
+					backgroundColor: 'rgba(153, 102, 255, 0.2)',
+					borderColor: 'rgba(153, 102, 255, 1)'
+				},
+				{
+					label: 'Total Revaluasi',
+					data: data2_<?php echo $cc;?>,
+					pointBackgroundColor: 'white',
+					pointBorderWidth: 2,
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					borderColor: 'rgba(75, 192, 192, 1)'
 				}]
 			},
 
@@ -156,7 +171,7 @@
 						}
 					}]
 				},
-				responsive: true,
+				responsive: true
 			}
 		};
 
