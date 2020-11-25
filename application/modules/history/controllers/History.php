@@ -39,6 +39,8 @@ class History extends CI_Controller {
             }else{
 
                 $x['data'] = "Tidak";
+                $x['fromDate'] = $fromDate;
+                $x['endDate'] = $endDate;
 
                 $this->load->view("include/head");
                 $this->load->view("include/top-header");
