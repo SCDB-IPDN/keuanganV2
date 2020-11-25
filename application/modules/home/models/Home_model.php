@@ -16,6 +16,12 @@ class Home_model extends CI_Model{
     return $result;
   }
 
+  public function dosen()
+  {
+    $result = $this->db->query("SELECT SUM(jabatan LIKE '%ASISTEN AHLI%') as asisten_ahli, SUM(jabatan LIKE '%GURU BESAR%') as guru_besar, SUM(jabatan LIKE '%LEKTOR%') as lektor, SUM(jabatan LIKE '%LEKTOR KEPALA%') as lektor_kepala FROM tbl_pns")->result();
+    return $result;
+  }
+
   public function app_perpus()
   {
     $perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
@@ -133,6 +139,27 @@ class Home_model extends CI_Model{
    public function get_praja()
   { 
     $result = $this->db->query("SELECT * FROM praja")->result();
+
+    return $result;
+  }
+
+   public function get_jk_praja()
+  { 
+    $result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja")->result();
+
+    return $result;
+  }
+  
+  public function jumlah_praja()
+  {
+    $praja = $this->db->query("SELECT count(*) as praja from praja")->result();
+
+    return $praja;
+  }
+
+  public function status_praja()
+  {
+    $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
 
     return $result;
   }
