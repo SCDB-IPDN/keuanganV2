@@ -350,6 +350,150 @@
 				</div>
 			</div>
 		</div>
+		<!-- begin col-6 -->
+		<div class="col-xl-6">
+			<!-- begin tabs -->
+			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
+				<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">List Aplikasi</span></a></li>
+				<li class="nav-item"><a href="#purchase" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">Detail Aplikasi</span></a></li>
+			</ul>
+			<div class="tab-content" data-sortable-id="index-3">
+				<div class="tab-pane fade active show" id="latest-post">
+					<div class="height-sm" data-scrollbar="true">
+						<div class="panel-body">
+							<div class="card border-0 bg-white text-black text-truncate mb-3">
+								<div class="mb-3 text-black">
+									<b class="mb-3">TOTAL APLIKASI</b> 
+									<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="" data-original-title="" title=""></i></span>
+									<div class="text-black">
+										<i class=""></i> KAMPUS IPDN
+									</div>
+								</div>
+								<div class="d-flex align-items-center mb-1">
+									<h4 class="text-black mb-0"><span data-animation="number" data-value="<?php echo $apps[0]->total ?>"><?php echo $apps[0]->total ?></span> Aplikasi</h4>
+									<div class="ml-auto">
+										<div id="conversion-rate-sparkline"></div>
+									</div>
+								</div>
+								<br>
+								<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+										Aktif, Digunakan
+									</div>
+									<div class="d-flex align-items-center ml-auto">
+										<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->aktif; ?></span></div>
+									</div>
+								</div>
+								<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+										Aktif, Tidak Digunakan
+									</div>
+									<div class="d-flex align-items-center ml-auto">
+										<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_digunakan; ?></span></div>
+									</div>
+								</div>
+								<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+										Tidak Aktif
+									</div>
+									<div class="d-flex align-items-center ml-auto">
+										<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_aktif; ?></span></div>
+									</div>
+								</div>					
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="purchase">
+					<div class="height-sm" data-scrollbar="true">
+						<div class="table-responsive">
+							<table class="table table-valign-middle table-panel mb-0">
+								<thead>
+									<tr>	
+										<th>Unit</th>
+										<th>Aktif, Digunakan</th>
+										<th>Aktif, Tidak Digunakan</th>
+										<th>Tidak Aktif</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label class="label label-danger"><?php echo $apps[0]->nama_1; ?></label></td>
+										<td><?php echo $apps[0]->app1_1; ?></td>
+										<td><?php echo $apps[0]->app1_2; ?></td>
+										<td><?php echo $apps[0]->app1_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-warning"><?php echo $apps[0]->nama_2; ?></label></td>
+										<td><?php echo $apps[0]->app2_1; ?></td>
+										<td><?php echo $apps[0]->app2_2; ?></td>
+										<td><?php echo $apps[0]->app2_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-success"><?php echo $apps[0]->nama_3; ?></label></td>
+										<td><?php echo $apps[0]->app3_1; ?></td>
+										<td><?php echo $apps[0]->app3_2; ?></td>
+										<td><?php echo $apps[0]->app3_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-primary"><?php echo $apps[0]->nama_4; ?></label></td>
+										<td><?php echo $apps[0]->app4_1; ?></td>
+										<td><?php echo $apps[0]->app4_2; ?></td>
+										<td><?php echo $apps[0]->app4_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-default"><?php echo $apps[0]->nama_5; ?></label></td>
+										<td><?php echo $apps[0]->app5_1; ?></td>
+										<td><?php echo $apps[0]->app5_2; ?></td>
+										<td><?php echo $apps[0]->app5_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-lime"><?php echo $apps[0]->nama_6; ?></label></td>
+										<td><?php echo $apps[0]->app6_1; ?></td>
+										<td><?php echo $apps[0]->app6_2; ?></td>
+										<td><?php echo $apps[0]->app6_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-pink"><?php echo $apps[0]->nama_7; ?></label></td>
+										<td><?php echo $apps[0]->app7_1; ?></td>
+										<td><?php echo $apps[0]->app7_2; ?></td>
+										<td><?php echo $apps[0]->app7_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-green"><?php echo $apps[0]->nama_8; ?></label></td>
+										<td><?php echo $apps[0]->app8_1; ?></td>
+										<td><?php echo $apps[0]->app8_2; ?></td>
+										<td><?php echo $apps[0]->app8_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-red"><?php echo $apps[0]->nama_9; ?></label></td>
+										<td><?php echo $apps[0]->app9_1; ?></td>
+										<td><?php echo $apps[0]->app9_2; ?></td>
+										<td><?php echo $apps[0]->app9_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-warning"><?php echo $apps[0]->nama_10; ?></label></td>
+										<td><?php echo $apps[0]->app10_1; ?></td>
+										<td><?php echo $apps[0]->app10_2; ?></td>
+										<td><?php echo $apps[0]->app10_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-default"><?php echo $apps[0]->nama_11; ?></label></td>
+										<td><?php echo $apps[0]->app11_1; ?></td>
+										<td><?php echo $apps[0]->app11_2; ?></td>
+										<td><?php echo $apps[0]->app11_3; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end tabs -->
+		</div>
 		<div class="col-sm-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -376,7 +520,7 @@
 								<div id="conversion-rate-sparkline"></div>
 							</div>
 						</div>
-						<br>
+						<br><br><br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
@@ -413,6 +557,7 @@
 								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
 							</div>
 						</div>
+						<br><br><br><br>
 					</div>
 				</div>
 			</div>
@@ -535,10 +680,7 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="col-xl-4 col-lg-6">
 			
-		</div> -->
 		<div class="col-xl-4 col-lg-6">
 			<!-- <div class="card border-0 bg-dark-darker text-white mb-3">
 				<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 60%;">

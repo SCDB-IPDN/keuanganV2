@@ -3,7 +3,7 @@ class Apps_model extends CI_Model {
 
     function get_data()
 	{
-        $query = $this->db->query("SELECT a.*,b.nama_unit, CASE WHEN a.status = 1 THEN 'Aktif, digunakan' WHEN a.status = 2 THEN 'Aktif, tidak digunakan' WHEN a.status = 3 THEN 'Tidak Aktif' END AS status FROM tbl_apps as a JOIN kategori_app as b ON b.id_app = a.kategori_apps WHERE a.status = 1 ORDER BY a.id_apps DESC");
+        $query = $this->db->query("SELECT a.*,b.nama_unit, CASE WHEN a.status = 1 THEN 'Aktif, digunakan' WHEN a.status = 2 THEN 'Aktif, tidak digunakan' WHEN a.status = 3 THEN 'Tidak Aktif' END AS status FROM tbl_apps as a JOIN kategori_app as b ON b.id_app = a.kategori_apps ORDER BY a.status ASC");
         return $query;
     }
 

@@ -4,7 +4,7 @@
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
 		<li class="breadcrumb-item"><a href="<?php echo base_url('d_pok');?>">KEMENTERIAN DALAM NEGERI</a></li>
 	</ol>
-<!-- 	<h2 class="page-header">URUTAN REALISASI SERAPAN ANGGARAN KEMENTERIAN DALAM NEGERI</h2> -->
+	<h2 class="page-header">&nbsp;</h2>
 	<div class="row">
 		<div class="col-xl-12">
 			<div class="panel panel-inverse">
