@@ -64,6 +64,8 @@ class Home extends CI_Controller {
       $kerjasama = $this->home_model->app_kerjasama();
       $pengasuhan = $this->home_model->app_pengasuhan();
 
+      $apps = $this->home_model->apps();
+
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
       $x['keuangan'] = $keuangan;
@@ -76,6 +78,8 @@ class Home extends CI_Controller {
       $x['kepegawaian'] = $kepegawaian;
       $x['kerjasama'] = $kerjasama;
       $x['pengasuhan'] = $pengasuhan;
+
+      $x['apps'] = $apps;
 
       $x['biro'] = $biro;
       $x['eselon'] = $eselon;
