@@ -378,7 +378,7 @@
 								<br>
 								<div class="d-flex mb-2">
 									<div class="d-flex align-items-center">
-										<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+										<i class="fa fa-circle text-green f-s-8 mr-2"></i>
 										Aktif, Digunakan
 									</div>
 									<div class="d-flex align-items-center ml-auto">
@@ -396,7 +396,7 @@
 								</div>
 								<div class="d-flex mb-2">
 									<div class="d-flex align-items-center">
-										<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+										<i class="fa fa-circle text-red f-s-8 mr-2"></i>
 										Tidak Aktif
 									</div>
 									<div class="d-flex align-items-center ml-auto">
@@ -410,20 +410,30 @@
 				<div class="tab-pane fade" id="purchase">
 					<div class="height-sm" data-scrollbar="true">
 						<div class="table-responsive">
-							<table class="table table-valign-middle table-panel mb-0">
+							<table class="table table-valign-middle table-panel mb-0" width="100%">
 								<thead>
-									<tr>	
-										<th>Unit</th>
-										<th>Aktif, Digunakan</th>
-										<th>Aktif, Tidak Digunakan</th>
-										<th>Tidak Aktif</th>
+									<tr>
+										<div class="progress rounded-corner">
+											<div class="progress-bar bg-dark" style="width: 25%">
+											Unit
+											</div>
+											<div class="progress-bar bg-lime" style="width: 25%">
+											Aktif, Digunakan
+											</div>
+											<div class="progress-bar bg-warning" style="width: 25%">
+											Tidak Digunakan
+											</div>
+											<div class="progress-bar bg-red" style="width: 25%">
+											Tidak Aktif
+											</div>
+										</div>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><label class="label label-danger"><?php echo $apps[0]->nama_1; ?></label></td>
-										<td><?php echo $apps[0]->app1_1; ?></td>
-										<td><?php echo $apps[0]->app1_2; ?></td>
+										<td width="35%"><label class="label label-danger"><?php echo $apps[0]->nama_1; ?></label></td>
+										<td width="26%"><?php echo $apps[0]->app1_1; ?></td>
+										<td width="24%"><?php echo $apps[0]->app1_2; ?></td>
 										<td><?php echo $apps[0]->app1_3; ?></td>
 									</tr>
 									<tr>
