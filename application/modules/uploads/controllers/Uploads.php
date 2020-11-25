@@ -134,8 +134,6 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-
-
 	public function span(){
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['span']['name']) && in_array($_FILES['span']['type'], $file_mimes)) {
@@ -210,11 +208,20 @@ class Uploads extends CI_Controller {
 				));
 			}
 			// exit;
-			// $this->db->truncate('tbl_span_biro');
-			$this->db->insert_batch('tbl_span_biro', $biro);
-			// $this->db->truncate('tbl_span');
-			$this->db->insert_batch('tbl_span', $data);
 
+			$span = $this->db->query("SELECT created_date FROM tbl_span WHERE created_date = '$datee'")->result();
+			$biroo = $this->db->query("SELECT created_date FROM tbl_span_biro WHERE created_date = '$datee'")->result();
+			
+			if(!$span && !$biroo){
+				$this->db->insert_batch('tbl_span_biro', $biro);
+				$this->db->insert_batch('tbl_span', $data);
+			}else{
+				$this->db->query("DELETE FROM tbl_span_biro WHERE created_date='$datee'");
+				$this->db->insert_batch('tbl_span_biro', $biro);
+				$this->db->query("DELETE FROM tbl_span WHERE created_date='$datee'");
+				$this->db->insert_batch('tbl_span', $data);
+			}
+			
 			//upload success
 			$this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 

@@ -97,6 +97,27 @@
 			</li>
 			<!-- END KEPRAJAAN -->
 
+			<!-- PERENCANAAN -->
+			<li class="<?php echo $this->uri->segment(2)=="span" || $this->uri->segment(2)=="span_jatinangor"?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-chart-line"></i>
+					<span>Perencanaan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(2)=="span" || $this->uri->segment(2)=="span_jatinangor"?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							HISTORY
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(2)=="span" || $this->uri->segment(2)=="span_jatinangor" ?"active":"";?>"><a href="<?php echo base_url('history/span');?>">SPAN</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<!-- END PERENCANAAN -->
+
 			<!-- SARPRAS -->
 			<li class="has-sub">
 				<a href="javascript:;">
