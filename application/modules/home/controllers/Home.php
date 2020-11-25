@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 
       // STATUS PRAJA
       $status = $this->home_model->status_praja();
-
+      
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
 
@@ -47,9 +47,6 @@ class Home extends CI_Controller {
 
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
-
-      //tahunpraja
-      $tahun = $this->home_model->get_tahun();
 
       // App
       $perpustakaan = $this->home_model->app_perpus();
@@ -81,7 +78,6 @@ class Home extends CI_Controller {
       $x['persentase_jatinangor'] = $persentase_jatinangor;
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
-      $x['tahun'] = $tahun;
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
