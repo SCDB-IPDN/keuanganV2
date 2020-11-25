@@ -124,12 +124,12 @@ class Uploads extends CI_Controller {
 			$sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
 
 			$data = array();
-			$biro = array();
+			$nf = true;
 
 			$date = new DateTime();
 			$datee = $date->format('Y-m-d');
 
-			for($i = 80;$i < 85;$i++)
+			for($i = 10;$i < 23;$i++)
 			{
 				// var_dump($sheetData[$i]['2'] != 1286);
 				if($sheetData[$i]['2'] != NULL && $sheetData[$i]['2'] != 1286 && $sheetData[$i]['2'] != 1292 && $sheetData[$i]['2'] != 1293 && $sheetData[$i]['2'] != 1294 && $sheetData[$i]['2'] != 1295){
@@ -154,39 +154,325 @@ class Uploads extends CI_Controller {
 				}
 			}
 
-			// for($i = 11;$i < 15;$i++)
-			// {
-			// 	array_push($biro, array(
-			// 		'kode_satker_biro'      => $sheetData[$i]['2'],
-			// 		'nama_satker_biro'      => $sheetData[$i]['3'],
-			// 		'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
-			// 		'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
-			// 		'persentase_bp'      => $sheetData[$i]['7'],
-			// 		'pagu_bb'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['8']),
-			// 		'realisasi_bb'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['9']),
-			// 		'persentase_bb'   => $sheetData[$i]['11'],
-			// 		'pagu_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['12']),
-			// 		'realisasi_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['13']),
-			// 		'persentase_bm'   => $sheetData[$i]['15'],
-			// 		'pagu_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['16']),
-			// 		'realisasi_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['17']),
-			// 		'persentase_t'   => $sheetData[$i]['19'],
-			// 		'sisa'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['20']),
-			// 		'created_date' => $datee,
-			// 	));
-			// }
+			for($i = 11;$i < 15;$i++)
+			{
+				array_push($biro, array(
+					'kode_satker_biro'      => $sheetData[$i]['2'],
+					'nama_satker_biro'      => $sheetData[$i]['3'],
+					'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
+					'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
+					'persentase_bp'      => $sheetData[$i]['7'],
+					'pagu_bb'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['8']),
+					'realisasi_bb'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['9']),
+					'persentase_bb'   => $sheetData[$i]['11'],
+					'pagu_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['12']),
+					'realisasi_bm'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['13']),
+					'persentase_bm'   => $sheetData[$i]['15'],
+					'pagu_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['16']),
+					'realisasi_t'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['17']),
+					'persentase_t'   => $sheetData[$i]['19'],
+					'sisa'   => preg_replace("/[^0-9]/", "", $sheetData[$i]['20']),
+					'created_date' => $datee,
+				));
+			}
 			// exit;
-			// $this->db->truncate('tbl_span_biro');
-			// $this->db->insert_batch('tbl_span_biro', $biro);
-			// $this->db->truncate('tbl_span');
-			$this->db->insert_batch('tbl_span', $data);
 
+			$span = $this->db->query("SELECT created_date FROM tbl_span WHERE created_date = '$datee'")->result();
+			$biroo = $this->db->query("SELECT created_date FROM tbl_span_biro WHERE created_date = '$datee'")->result();
+			
+			if(!$span && !$biroo){
+				$this->db->insert_batch('tbl_span_biro', $biro);
+				$this->db->insert_batch('tbl_span', $data);
+			}else{
+				$this->db->query("DELETE FROM tbl_span_biro WHERE created_date='$datee'");
+				$this->db->insert_batch('tbl_span_biro', $biro);
+				$this->db->query("DELETE FROM tbl_span WHERE created_date='$datee'");
+				$this->db->insert_batch('tbl_span', $data);
+			}
+			
 			//upload success
 			$this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 
 			redirect("uploads/v_span"); 
 		}
 	}
+
+	public function satkerspan() {
+
+		// Load plugin PHPExcel nya
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && $_FILES['satker']['tmp_name'][0] != "") {
+
+			// hitung ada berapa file yg di upload bersamaan, buat cek doang
+			// $count = count($_FILES['rank']['name']);
+
+			// echo $count."<br>";
+			// var_dump($_FILES);
+			// print("<pre>".print_r($_FILES,true)."</pre>");
+			$data = array();
+			
+			$nf = true; // tanda file aja, kalo file pertama eselon 1 brarti true
+
+			foreach($_FILES['satkerspan']['tmp_name'] as $index => $tmpName) {
+			
+				$f_name = $_FILES['satker']['name'][$index];
+				// echo $f_name."<br>";
+				if (strpos(strtolower($f_name), 'satker')) {
+					$nf = false;
+				}
+
+				if(isset($_FILES['satker']['name'][$index]) && in_array($_FILES['satker']['type'][$index], $file_mimes)) {
+
+					$arr_file = explode('.', $_FILES['satker']['name'][$index]);
+					$extension = end($arr_file);
+
+					if($extension != 'xlsx') {
+						$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+						redirect("uploads/v_span");
+					}
+
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$loadexcel = $reader->load($_FILES['satker']['tmp_name'][$index]);
+					$shit = $loadexcel->getActiveSheet();
+					$rows = $shit->toArray(null, true, true ,true);
+
+					if ($nf) {
+						// file eselon 1
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								if ($tmp[0] != "021803") {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data, array(
+										'kode_satker'    =>  $tmp[0],
+										'nama_satker'  =>  $txt[0],
+										'pagu_bp'      => $row['C'],
+										'realisasi_bp'      => $row['D'],
+										'persentase_bp'      => $row['E'],
+										'pagu_bb'      => $row['G'],
+										'realisasi_bb'   => $row['H'],
+										'persentase_bb'   => $row['I'],
+										'pagu_bm'   => $row['K'],
+										'realisasi_bm'   => $row['L'],
+										'persentase_bm'   => $row['M'],
+										'pagu_t'   => $row['AM'],
+										'realisasi_t'   => $row['AN'],
+										'persentase_t'   => $row['AO'],
+										'sisa'   => $row['AP']
+									));
+								}
+							}
+						}
+						$nf = false;
+					} else {
+						// file satker
+						foreach ($rows as $row) {
+							$add = false;
+							$nama = "";
+							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+								$nama = $txt[0];
+
+								switch ($tmp[0]) {
+									case 403200:
+										// SETJEN
+										$add = true;
+										break;
+									case 448302:
+										// IPDN
+									break;
+									$add = true;
+									case 483005:
+										// DKPP
+										$add = true;
+										break;
+								}
+								if ($add) {
+									array_push($data, array(
+										'kode_satker'    =>  $tmp[0],
+										'nama_satker'  =>  $txt[0],
+										'pagu_bp'      => $row['C'],
+										'realisasi_bp'      => $row['D'],
+										'persentase_bp'      => $row['E'],
+										'pagu_bb'      => $row['G'],
+										'realisasi_bb'   => $row['H'],
+										'persentase_bb'   => $row['I'],
+										'pagu_bm'   => $row['K'],
+										'realisasi_bm'   => $row['L'],
+										'persentase_bm'   => $row['M'],
+										'pagu_t'   => $row['AM'],
+										'realisasi_t'   => $row['AN'],
+										'persentase_t'   => $row['AO'],
+										'sisa'   => $row['AP']
+									));
+								}
+							}
+						}
+						$nf = true;	
+					}			
+				}
+
+			}
+			// var_dump($data_out);
+			// print("<pre>".print_r($data,true)."</pre>");
+			// $this->db->truncate('peringkat');
+			// $this->db->insert_batch('peringkat', $data);  // PENTING
+			$this->db->truncate('tbl_span');
+			$this->db->insert_batch('tbl_span', $data); 
+			// exit;
+			// //upload success
+			$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect("uploads/v_span");
+		} else {
+			// echo "kosong";
+			$this->session->set_flashdata('satker', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
+			redirect("uploads/v_span");
+		}
+	}
+
+	public function satkerspanbiro() {
+
+		// Load plugin PHPExcel nya
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(strtolower($_SERVER['REQUEST_METHOD']) == 'post' && $_FILES['belanja']['tmp_name'][0] != "") {
+
+			// hitung ada berapa file yg di upload bersamaan, buat cek doang
+			// $count = count($_FILES['rank']['name']);
+
+			// echo $count."<br>";
+			var_dump($_FILES);
+			// print("<pre>".print_r($_FILES,true)."</pre>");
+			$data = array();
+			
+			$nf = true; // tanda file aja, kalo file pertama eselon 1 brarti true
+
+			foreach($_FILES['belanja']['tmp_name'] as $index => $tmpName) {
+			
+				$f_name = $_FILES['belanja']['name'][$index];
+				// echo $f_name."<br>";
+				if (strpos(strtolower($f_name), 'belanja')) {
+					$nf = false;
+				}
+
+				if(isset($_FILES['belanja']['name'][$index]) && in_array($_FILES['belanja']['type'][$index], $file_mimes)) {
+
+					$arr_file = explode('.', $_FILES['belanja']['name'][$index]);
+					$extension = end($arr_file);
+
+					if($extension != 'xlsx') {
+						$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+						redirect("uploads/v_span");
+					}
+
+					$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+					$loadexcel = $reader->load($_FILES['belanja']['tmp_name'][$index]);
+					$shit = $loadexcel->getActiveSheet();
+					$rows = $shit->toArray(null, true, true ,true);
+
+					if ($nf) {
+						// file eselon 1
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								if ($tmp[0] != "021803") {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data, array(
+										'kode_satker'    =>  $tmp[0],
+										'nama_satker'  =>  $txt[0],
+										'pagu_bp'      => $row['C'],
+										'realisasi_bp'      => $row['D'],
+										'persentase_bp'      => $row['E'],
+										'pagu_bb'      => $row['G'],
+										'realisasi_bb'   => $row['H'],
+										'persentase_bb'   => $row['I'],
+										'pagu_bm'   => $row['K'],
+										'realisasi_bm'   => $row['L'],
+										'persentase_bm'   => $row['M'],
+										'pagu_t'   => $row['AM'],
+										'realisasi_t'   => $row['AN'],
+										'persentase_t'   => $row['AO'],
+										'sisa'   => $row['AP']
+									));
+								}
+							}
+						}
+						$nf = false;
+					} else {
+						// file satker
+						foreach ($rows as $row) {
+							$add = false;
+							$nama = "";
+							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+							// echo count($tmp);
+							if (count($tmp) > 0) {
+								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+								$nama = $txt[0];
+
+								switch ($tmp[0]) {
+									case 403200:
+										// SETJEN
+										$add = true;
+										break;
+									case 448302:
+										// IPDN
+									break;
+									$add = true;
+									case 483005:
+										// DKPP
+										$add = true;
+										break;
+								}
+								if ($add) {
+									array_push($data, array(
+										'kode_satker'    =>  $tmp[0],
+										'nama_satker'  =>  $txt[0],
+										'pagu_bp'      => $row['C'],
+										'realisasi_bp'      => $row['D'],
+										'persentase_bp'      => $row['E'],
+										'pagu_bb'      => $row['G'],
+										'realisasi_bb'   => $row['H'],
+										'persentase_bb'   => $row['I'],
+										'pagu_bm'   => $row['K'],
+										'realisasi_bm'   => $row['L'],
+										'persentase_bm'   => $row['M'],
+										'pagu_t'   => $row['AM'],
+										'realisasi_t'   => $row['AN'],
+										'persentase_t'   => $row['AO'],
+										'sisa'   => $row['AP']
+									));
+								}
+							}
+						}
+						$nf = true;	
+					}			
+				}
+
+			}
+			// var_dump($data_out);
+			// print("<pre>".print_r($data,true)."</pre>");
+			// $this->db->truncate('peringkat');
+			// $this->db->insert_batch('peringkat', $data);  // PENTING
+			$this->db->truncate('tbl_span_biro');
+			$this->db->insert_batch('tbl_span_biro', $data); 
+			// exit;
+			// //upload success
+			$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect("uploads/v_span");
+		} else {
+			// echo "kosong";
+			$this->session->set_flashdata('belanja', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
+			redirect("uploads/v_span");
+		}
+	}
+
 
 	public function pok() {
 		// error_reporting(E_ERROR | E_PARSE);

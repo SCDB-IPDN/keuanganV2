@@ -16,8 +16,6 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
-                <div class="panel-body bg-white">
-                    <div class="card border-0 bg-white text-black text-truncate mb-4">
                         <div class="card-body">
 							<div class="row">
                                 <div class="col-xl-7 col-lg-8">
@@ -36,8 +34,42 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-body">
+							<div class="row">
+                                <div class="col-xl-7 col-lg-8">
+                                    <?php echo $this->session->flashdata('satker') ?>
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/satkerspan" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SATKER SPAN</label>
+                                            <span class="ml-2">
+                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
+                                            </span>
+                                            <input for="biroN" type="file" name="span" class="form-control col-sm-12">
+                                        </div>
+
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SATKER SPAN</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+							<div class="row">
+                                <div class="col-xl-7 col-lg-8">
+                                    <?php echo $this->session->flashdata('belanja') ?>
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/satkerspanbiro" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SATKER SPAN BIRO </label>
+                                            <span class="ml-2">
+                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
+                                            </span>
+                                            <input for="biroN" type="file" name="kegiatan" class="form-control col-sm-12">
+                                        </div>
+
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SPAN SATKER BIRO</button>
+                                    </form>
+                                </div>
                     </div>
-                </div>
+               </div>
             </div>
         </div>
     </div>
