@@ -65,7 +65,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1)=="d_sas" && $this->uri->segment(2)!="coba" ?"active":"";?>"><a href="<?php echo base_url('d_sas');?>">UTAMA</a></li>
-							<li class="<?php echo $this->uri->segment(2)=="coba"?"active":"";?>"><a href="<?php echo base_url('d_sas/coba');?>">KAMPUS JATINANGOR</a></li>
+							<!-- <li class="<?php echo $this->uri->segment(2)=="coba"?"active":"";?>"><a href="<?php echo base_url('d_sas/coba');?>">KAMPUS JATINANGOR</a></li> -->
 						</ul>
 					</li>
 				</ul>

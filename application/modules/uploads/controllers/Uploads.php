@@ -581,9 +581,6 @@ class Uploads extends CI_Controller {
 						}
 					}
 				}
-				// echo "<br>";
-				// echo "<br>";
-				// echo "<br>";
 			}
 			// echo "</pre>";
 			$this->db->insert_batch('sarpras', $data);
@@ -645,9 +642,7 @@ class Uploads extends CI_Controller {
 							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
 							// echo "ID BIRO : ".$id_b." <br>";
 						}
-						// $sql = "INSERT INTO biro values (".$id_b.",'".trim($row['AI'])."')";
-						// $this->db->truncate($sql);
-						// $this->db->query($sql);
+					
 
 					} elseif ($row['A'] == 3) {
 
@@ -675,15 +670,7 @@ class Uploads extends CI_Controller {
 							'ket'      => $ket,
 							'tanggal' => $tgl
 						));
-						// echo "$satker_biro $id_c -- $ket1<br>";
-						// $this->db->truncate('output');
-						// $this->db->insert_batch('output', $data);
-
-
-						// $sql1 = "INSERT INTO unit values (".$satker_biro.",".$id_c.",'".$ket."')";
-						// // echo $sql1."<br><br>";
-						// // $this->db->truncate($sql1);
-						// $this->db->query($sql1);
+			
 
 					} elseif ($row['A'] ==5) {
 						$coutput++;                        
@@ -699,10 +686,7 @@ class Uploads extends CI_Controller {
 							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
-						// echo "$satker_biro $id_c -- $ket1<br>";
-						// $this->db->truncate('output');
-						// $this->db->insert_batch('output', $data);
-
+	
 					}
 				}
 				$numrow++;
@@ -1331,6 +1315,7 @@ class Uploads extends CI_Controller {
 
 			$loadexcel  = $reader->load($_FILES['praja']['tmp_name']);
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$namasheet = $loadexcel->getSheetNames();
 
 			$data = array();
 			$unitpraja = array();
@@ -1454,6 +1439,12 @@ class Uploads extends CI_Controller {
 			redirect('uploads/v_praja');
 		}
 	}
+
+	public function prajabaru()
+	{
+		
+	}
+
 
 	
 	public function thl()
