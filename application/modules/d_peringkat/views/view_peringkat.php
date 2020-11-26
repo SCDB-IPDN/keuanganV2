@@ -20,16 +20,19 @@
 					<div class="panel-body">
 						<h4 class="text-center">URUTAN REALISASI SERAPAN ANGGARAN KEMENTERIAN DALAM NEGERI</h4>
 						<h4 class="text-center">PER TANGGAL <?= $uDate; ?></h4>
-						<table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-top" width="100%">
-							<thead>
+						<table id="data-table-buttons" class="table table-striped table-bordered" width="100%">
+							<thead valign="middle">
 								<tr align="center">
-									<th>#</th>									
-									<th>UNIT KERJA</th>
-									<th>KETERANGAN</th>
-									<th>BELANJA PEGAWAI</th>
-									<th>BELANJA BARANG</th>
-									<th>BELANJA MODAL</th>
-									<th>TOTAL</th>
+									<th rowspan="2" style="vertical-align: middle !important">#</th>
+									<th rowspan="2" style="vertical-align: middle !important">UNIT KERJA</th>
+									<th rowspan="2" style="vertical-align: middle !important">KETERANGAN</th>
+									<th colspan="3" style="vertical-align: middle !important">JENIS BELANJA</th>
+									<th rowspan="2" style="vertical-align: middle !important">TOTAL</th>
+								</tr>
+								<tr align="center">
+									<th style="vertical-align: middle !important">PEGAWAI</th>
+									<th style="vertical-align: middle !important">BARANG</th>
+									<th style="vertical-align: middle !important">MODAL</th>
 								</tr>
 							</thead>
 							<tbody>
