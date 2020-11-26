@@ -9,7 +9,7 @@ class Kepegawaian extends CI_Controller{
      // PNS
      function index()
      {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->kepegawaian_model->get_all_pns()->result();
                $tp = $this->kepegawaian_model->get_pendidikan();
@@ -141,7 +141,7 @@ class Kepegawaian extends CI_Controller{
      // THL
      function thl()
      {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->kepegawaian_model->get_all_thl()->result();
                $tp = $this->kepegawaian_model->get_pendidikan();

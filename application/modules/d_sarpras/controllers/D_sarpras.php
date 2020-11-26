@@ -8,7 +8,7 @@ class D_sarpras extends CI_Controller {
 	}
 
 	function index($kampus = NULL) {
-		if($_SESSION['nip']) {
+		if($this->session->userdata('nip') != NULL) {
 			if ($kampus == NULL) {
 				$x['title'] = 'Parent';
 				$data = $this->d_sarpras_model->get_sarpras()->result();
@@ -31,6 +31,7 @@ class D_sarpras extends CI_Controller {
 					}
 					array_push($tmp, array(
 						'total'			=>  $z['total'],
+						'perolehan'			=>  $z['perolehan'],
 						'tahun'			=>	$z['tahun'],
 						'kategori'	=>	$z['kategori']
 					));

@@ -13,7 +13,7 @@ class Home extends CI_Controller {
      */
   public function index()
   {
-    if($_SESSION['nip'])
+    if($this->session->userdata('nip') != NULL)
     {
       // KEPEGAWAIAN
       $peg = $this->home_model->jumlah_peg();
@@ -64,6 +64,8 @@ class Home extends CI_Controller {
       $kerjasama = $this->home_model->app_kerjasama();
       $pengasuhan = $this->home_model->app_pengasuhan();
 
+      $apps = $this->home_model->apps();
+
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
       $x['keuangan'] = $keuangan;
@@ -76,6 +78,8 @@ class Home extends CI_Controller {
       $x['kepegawaian'] = $kepegawaian;
       $x['kerjasama'] = $kerjasama;
       $x['pengasuhan'] = $pengasuhan;
+
+      $x['apps'] = $apps;
 
       $x['biro'] = $biro;
       $x['eselon'] = $eselon;
@@ -94,6 +98,9 @@ class Home extends CI_Controller {
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
       $x['praja'] = $praja;
+
+      $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];
+      $x['rank_kemendagri_ipdn'] = $this->home_model->get_rank_ipdn()['rank'];
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
