@@ -40,14 +40,14 @@
                                     <?php echo $this->session->flashdata('satker') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/satkerspan" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SATKER SPAN</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL REALISASI BELANJA SATKER</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="biroN" type="file" name="span" class="form-control col-sm-12">
+                                            <input for="biroN" type="file" name="satker" class="form-control col-sm-12">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SATKER SPAN</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP BELANJA SATKER</button>
                                     </form>
                                 </div>
                             </div>
@@ -55,17 +55,17 @@
                         <div class="card-body">
 							<div class="row">
                                 <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('belanja') ?>
+                                    <?php echo $this->session->flashdata('kegiatan') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/satkerspanbiro" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SATKER SPAN BIRO </label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL REALISASI BELANJA PERJENIS KEGIATAN </label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="biroN" type="file" name="kegiatan" class="form-control col-sm-12">
+                                            <input for="biroN" type="file" name="belanja" class="form-control col-sm-12">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SPAN SATKER BIRO</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP REALISASI BELANJA</button>
                                     </form>
                                 </div>
                     </div>

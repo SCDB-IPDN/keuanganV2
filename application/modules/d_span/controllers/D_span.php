@@ -55,4 +55,5 @@ class D_span extends CI_Controller{
                redirect("user");
           }
     }
+    
 }
