@@ -39,7 +39,7 @@
         
         <div class="table-responsive">
           <div class="panel-body">
-            <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+            <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead>
                 <tr>
                   <th class="text-nowrap">No</th>

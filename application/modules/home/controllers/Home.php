@@ -99,6 +99,9 @@ class Home extends CI_Controller {
       $x['jkpraja'] = $jkpraja;
       $x['praja'] = $praja;
 
+      $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];
+      $x['rank_kemendagri_ipdn'] = $this->home_model->get_rank_ipdn()['rank'];
+
       $this->load->view("include/head");
       $this->load->view("include/top-header");
       $this->load->view('home', $x);

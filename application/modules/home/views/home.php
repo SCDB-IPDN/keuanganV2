@@ -127,6 +127,42 @@
 				<div class="col-sm-6">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
+							<h4 class="panel-title">PERINGKAT REALISASI SERAPAN</h4>
+							<div class="panel-heading-btn">
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+							</div>
+						</div>
+						<div class="panel-body bg-dark">
+							<div class="card border-0 bg-dark text-white text-truncate mb-3">
+								<div class="mb-3 text-grey">
+									<b class="mb-3">RATA-RATA SERAPAN KEMENTERIAN DALAM NEGERI</b>
+									<div class="text-grey">
+										<i class=""></i> Berdasarkan OM-SPAN
+									</div>
+								</div>
+								<div class="d-flex align-items-center mb-1">
+									<a href="<?php echo base_url('d_peringkat');?>">
+									<h2 class="text-white mb-0">
+										<span data-animation="number" data-value="<?= $rank_kemendagri_persen ?>"><?= $rank_kemendagri_persen ?></span>
+									</h2>
+									</a>
+								</div>
+								<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<i class="fa fa-circle text-lime f-s-8 mr-2"></i>IPDN
+									</div>
+									<div class="d-flex align-items-center ml-auto">
+										<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?= $rank_kemendagri_ipdn ?>"><?= $rank_kemendagri_ipdn ?></span></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-sm-6">
+					<div class="panel panel-inverse">
+						<div class="panel-heading">
 							<h4 class="panel-title">Kalender</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -139,10 +175,10 @@
 							<div id="datepicker-inline" class="datepicker-full-width overflow-y-scroll position-relative"><div></div></div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6">
+				</div> -->
+				<!-- <div class="col-sm-6">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
-						<!-- <div class="card-body">
+						<div class="card-body">
 							<div class="mb-3 text-grey">
 								<b class="mb-3">STORE SESSIONS</b> 
 								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Store Sessions" data-placement="top" data-content="Number of sessions on your online store. A session is a period of continuous activity from a visitor." data-original-title="" title=""></i></span>
@@ -186,12 +222,13 @@
 									<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="5545">0</span></div>
 								</div>
 							</div>
-						</div> -->
+						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="panel panel-inverse">

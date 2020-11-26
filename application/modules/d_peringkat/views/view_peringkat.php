@@ -24,11 +24,11 @@
 							<thead>
 								<tr align="center">
 									<th>#</th>									
-									<th>NAMA</th>
+									<th>UNIT KERJA</th>
 									<th>KETERANGAN</th>
-									<th>PEGAWAI</th>
-									<th>BARANG</th>
-									<th>MODAL</th>
+									<th>BELANJA PEGAWAI</th>
+									<th>BELANJA BARANG</th>
+									<th>BELANJA MODAL</th>
 									<th>TOTAL</th>
 								</tr>
 							</thead>
