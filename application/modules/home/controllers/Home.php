@@ -49,7 +49,8 @@ class Home extends CI_Controller {
       // SPAN
       $span = $this->home_model->get_span()->result();
       $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
-      $persentase_span = round($hitung_span,2);
+      // $persentase_span = round($hitung_span,2);
+      $persentase_span = $this->home_model->get_span_ipdn_sementara()['persentase_span'];
 
       // App
       $perpustakaan = $this->home_model->app_perpus();
