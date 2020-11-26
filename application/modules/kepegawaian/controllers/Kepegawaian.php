@@ -28,6 +28,29 @@ class Kepegawaian extends CI_Controller{
           }
      }
 
+     function ie_pns()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $no = $this->input->get('no', true);
+
+               $data = $this->kepegawaian_model->get_edit_pns($no)->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
+
+               $x['data'] = $data;
+               $x['tp'] = $tp;
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('edit_pns', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
      public function tambah_pns()
 	{		
           // USIA
@@ -132,7 +155,7 @@ class Kepegawaian extends CI_Controller{
 
      function hapus_pns()
      {
-          $nip = $this->input->post('nip');
+          $nip = $this->input->get('nip');
           $this->kepegawaian_model->hapus_pns($nip);
           redirect('kepegawaian');
      }
