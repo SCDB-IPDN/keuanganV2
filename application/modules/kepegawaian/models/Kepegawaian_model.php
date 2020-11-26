@@ -21,6 +21,13 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
+  public function get_edit_pns($no)
+	{	
+    $result = $this->db->query("SELECT * FROM tbl_pns WHERE NO = $no");
+
+    return $result;
+  }
+
   function tambah_pns($input_data)
 	{   
     $add_pns = $this->db->insert('tbl_pns', $input_data);
