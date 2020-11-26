@@ -2,7 +2,13 @@
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
 	</ol>
-	<h1 class="page-header mb-3">&nbsp;</h1>
+	<!-- <h1 class="page-header mb-3">&nbsp;</h1> -->
+	<div class="d-sm-flex align-items-center mb-3">
+		<a href="#" class="btn btn-inverse mr-2 text-truncate" id="daterange-filter">
+			<i class="fa fa-calendar fa-fw text-white-transparent-5 ml-n1"></i> 
+			<span><?php echo date("d/m/Y"); ?></span>
+		</a>
+	</div>
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="panel panel-inverse">
@@ -105,6 +111,7 @@
 								<?php echo $row->alias; ?>
 							</div>
 							<div class="d-flex align-items-center ml-auto">
+								<!-- <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">0</span>%</div> -->
 								<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?php echo $row->persentase_t; ?>"><?php echo $row->persentase_t; ?></span></div>
 							</div>
 						</div>
@@ -114,6 +121,43 @@
 			</div>
 		</div>
 		<div class="col-sm-3">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">PERINGKAT REALISASI SERAPAN</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+					</div>
+				</div>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white text-truncate mb-3">
+						<div class="mb-3 text-grey">
+							<b class="mb-3">RATA-RATA SERAPAN KEMENDAGRI</b>
+							<div class="text-grey">
+								<i class=""></i> Berdasarkan OM-SPAN
+							</div>
+						</div>
+						<div class="d-flex align-items-center mb-1">
+							<a href="<?php echo base_url('d_peringkat');?>">
+							<h2 class="text-white mb-0">
+								<span data-animation="number" data-value="<?= $rank_kemendagri_persen ?>"><?= $rank_kemendagri_persen ?></span>
+							</h2>
+							</a>
+						</div>
+						<br>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-lime f-s-8 mr-2"></i>IPDN
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="<?= $rank_kemendagri_ipdn ?>"><?= $rank_kemendagri_ipdn ?></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-sm-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">Kalender</h4>
@@ -128,7 +172,7 @@
 					<div id="datepicker-inline" class="datepicker-full-width overflow-y-scroll position-relative"><div></div></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="col-sm-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
