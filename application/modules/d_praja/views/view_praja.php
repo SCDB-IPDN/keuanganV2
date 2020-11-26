@@ -60,24 +60,17 @@
             <tbody>
               <?php $no = 1; ?>
               <?php foreach (json_decode($data, true) as $x): ?>
-                <?php $kurangtahun = 2020 - $x['tahun_masuk_kuliah']; ?>
-                 <?php $hasil = 0; ?>
                 <tr>
                  <td><?php echo $no++; ?></td>
                  <td><?= $x['nama']; ?></td>
                  <td><?= $x['jk']; ?></td>
-                 <td><?= $x['tahun_masuk_kuliah'] - date('Y') +1 ;?></td>
-                 <?php if ($x['tahun_masuk_kuliah'] == 2020)  { ?>
-                      <td> <?= $hasil = $angkatan;?> </td>
-                    <?php }elseif($x['tahun_masuk_kuliah'] < 2020 || $x['tahun_masuk_kuliah'] > 2020 ){ ?>
-                       <td><?= $hasil= $angkatan-$kurangtahun;?> </td>
-                    <?php }else{ ?>
-                       <td></td>
-                    <?php } ?>
-                 <!-- <td><?= $x['tahun_masuk_kuliah'] = 31 ;?></td> -->
-                 <td><?= $x['provinsi']; ?></td>
-                 <td><?= $x['status']; ?></td>
-                 <?php if (isset($x['nik_praja'])){ ?>
+                
+                  <td><?= $x['tingkat'];?></td> 
+      
+                <td><?= $x['angkatan'];?>
+                <td><?= $x['provinsi']; ?></td>
+                <td><?= $x['status']; ?></td>
+                <?php if (isset($x['nik_praja'])){ ?>
                   <td>
                     <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
                     <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editpraja<?php echo $x['nik_praja'];?>"><i class="fa fas fa-edit"></i></a>
@@ -123,12 +116,12 @@
               <label for="alamat" class="col-form-label">Alamat:</label>
               <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $x['alamat'];?>" placeholder="Alamat.." required>
             </di>
-             <div class="row">
+            <div class="row">
               <div class="col-sm">
                 <label for="tmpt_lahir" class="col-form-label">RT:</label>
                 <input type="text" class="form-control" id="rt" name="rt" value="<?php echo $x['rt'];?>" placeholder="RT.." required>
               </div>
-                <div class="col-sm">
+              <div class="col-sm">
                 <label for="tmpt_lahir" class="col-form-label">RW :</label>
                 <input type="text" class="form-control" id="rw" name="rw" value="<?php echo $x['rw'];?>" placeholder="RW.." required>
               </div>
@@ -157,15 +150,18 @@
           <div class="form-group">
             <label for="tlp_pribadi" class="col-form-label">Telpon Pribadi:</label>
             <input type="text" class="form-control" id="tlp_pribadi" name="tlp_pribadi" value="<?php echo $x['tlp_pribadi'];?>" placeholder="Telepon Pribadi.." required>
-          </div>                  
+          </div>          
+          <input type="hidden" name="tingkat" value="<?php echo $x['tingkat'];?>">        
           <div class="form-group">
             <label for="status" class="col-form-label">Status sebelumnya: <?php echo $x['status'];?> </label>
             <select class="form-control" name="status" id="status" required="">
              <option value="aktif">Aktif</option>
              <option value="cuti">Cuti</option>
+             <option value="diberhentikan">Diberhentikan</option>
+             <option value="turuntingkat">Turun Tingkat</option>
            </select>
-
          </div>
+
          <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>

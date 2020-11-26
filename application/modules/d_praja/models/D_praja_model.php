@@ -20,6 +20,7 @@ class D_praja_model extends CI_Model{
   	{     
 
     	$id_praja = $input_data['nik_praja'];
+    	$tingkat = $input_data['tingkat'];
     	$hasil = $this->db->where('nik_praja', $id_praja)->update('praja', $input_data);
         return $hasil;    
 	}
@@ -40,11 +41,5 @@ class D_praja_model extends CI_Model{
 	{
 		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
 		return $prov;
-	}
-
-	public function get_tahun()
-	{
-		$tahun=$this->db->query("SELECT tahun_masuk_kuliah from praja ");
-		return $tahun;
 	}
 }

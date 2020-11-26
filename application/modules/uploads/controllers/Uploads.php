@@ -1352,6 +1352,15 @@ class Uploads extends CI_Controller {
 					}
 				} elseif (strlen($row['D']) == 1){
 					$nullcc = 0;
+					$angkatan = 31;
+					$kurangtahun = 2020 - $row['AZ'];
+                	$hasil = 0;
+
+                	if ($row['AZ'] == 2020)  {
+                		$hasil = $angkatan;
+                	}elseif($row['AZ'] < 2020 || $row['AZ'] > 2020 ){
+                		$hasil= $angkatan-$kurangtahun;
+                	}
 
 					array_push($unitpraja, array(
 						'no' => ($num-1),
@@ -1387,7 +1396,9 @@ class Uploads extends CI_Controller {
 						'tahun_masuk_kuliah'      => $row['AZ'],
 						'pembiayaan'      => $row['BA'],
 						'jalur_masuk'      => $row['BB'],
-						'status' => $stat
+						'status' => $stat,
+						'tingkat' => $row['AZ'] - date('Y') +1,
+						'angkatan' => $hasil
 					));
 
 
@@ -1428,8 +1439,11 @@ class Uploads extends CI_Controller {
 			}
 			// print("<pre>".print_r($unitpraja,true)."</pre>");
 			// exit();
+			$this->db->truncate('praja');
 			$this->db->insert_batch('praja', $unitpraja);
+			$this->db->truncate('orangtua');
 			$this->db->insert_batch('orangtua', $unitortu);
+			$this->db->truncate('wali');
 			$this->db->insert_batch('wali', $unitwali);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
