@@ -693,6 +693,8 @@ class Uploads extends CI_Controller {
 						$nf = false;
 					} else {
 						// file satker
+						$pool = 0;
+						$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
 						foreach ($rows as $row) {
 							$add = false;
 							$nama = "";
@@ -707,13 +709,107 @@ class Uploads extends CI_Controller {
 										// SETJEN
 										$add = true;
 										break;
-									case 448302:
-										// IPDN
-										$add = true;
-										break;
 									case 483005:
 										// DKPP
 										$add = true;
+										break;
+									case 448302:
+										// IPDN
+										// $add = true;
+										$satker_a = "448302";
+										$nama_a = $txt[0];
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 352593:
+										// IPDN JAKARTA
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 677010:
+										// IPDN SULUT
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 677024:
+										// IPDN SULSEL
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 677045:
+										// IPDN SUMBAR
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 683070:
+										// IPDN KALBAR
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 683084:
+										// IPDN NTT
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
+										break;
+									case 683091:
+										// IPDN PAPUA
+										// $add = true;
+										$pagu_peg_a += $row['C'];
+										$real_peg_a += $row['D'];
+										$pagu_bar_a += $row['G'];
+										$real_bar_a += $row['H'];
+										$pagu_mod_a += $row['K'];
+										$real_mod_a += $row['L'];
+
+										$pool++;
 										break;
 								}
 								if ($add) {
@@ -726,6 +822,17 @@ class Uploads extends CI_Controller {
 										'real_bar' => $row['H'],
 										'pagu_mod' => $row['K'],
 										'real_mod' => $row['L']
+									));
+								} elseif ($pool == 8) {
+									array_push($data, array(
+										'satker'    =>  $satker_a,
+										'nama'  =>  $nama_a,
+										'pagu_peg' => $pagu_peg_a,
+										'real_peg' => $real_peg_a,
+										'pagu_bar' => $pagu_bar_a,
+										'real_bar' => $real_bar_a,
+										'pagu_mod' => $pagu_mod_a,
+										'real_mod' => $real_mod_a
 									));
 								}
 							}

@@ -218,5 +218,9 @@ class Home_model extends CI_Model{
 			) t
 			WHERE satker = '448302'")->row_array();
 	}
+
+	public function get_span_ipdn_sementara() {
+		return $this->db->query("SELECT ROUND(100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod), 2) AS persentase_span FROM tbl_rank WHERE satker = '448302'")->row_array();
+	}
 	
 }
