@@ -206,7 +206,7 @@ class Home_model extends CI_Model{
 		// 	tbl_rank, (SELECT @per := 0) r
 		// 	) t
 		// 	ORDER BY per DESC LIMIT 1")->row_array();
-		return $this->db->query("SELECT CONCAT(ROUND(SUM((real_peg + real_bar + real_mod)) / SUM((pagu_peg + pagu_bar + pagu_mod)) * 100, 2), '%') AS persen FROM tbl_rank");
+		return $this->db->query("SELECT CONCAT(ROUND(SUM((real_peg + real_bar + real_mod)) / SUM((pagu_peg + pagu_bar + pagu_mod)) * 100, 2), '%') AS persen FROM tbl_rank")->row_array();
 	}
 
 	public function get_rank_ipdn() {
