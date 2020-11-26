@@ -229,4 +229,71 @@ class Kepegawaian extends CI_Controller{
           redirect('kepegawaian/thl');
      }
      // END THL
+     // TA
+     function ta()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $data = $this->kepegawaian_model->get_all_ta()->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
+
+               $x['data'] = $data;
+               $x['tp'] = $tp;
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_ta', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
+     public function tambah_ta()
+	{		
+          $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
+          $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
+          $input_data['penugasan'] = $this->input->post('penugasan', true);
+
+          $result = $this->kepegawaian_model->tambah_ta($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('ta', 'DATA TA GAGAL DITAMBAHKAN.'); 				
+               redirect('kepegawaian/ta'); 			
+          } else { 								
+               $this->session->set_flashdata('ta', 'DATA TA BERHASIL DITAMBAHKAN.');			
+               redirect('kepegawaian/ta'); 			
+          }
+    }
+
+     public function edit_ta()
+     {
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
+          $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
+          $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
+          $input_data['penugasan'] = $this->input->post('penugasan', true);
+          $result = $this->kepegawaian_model->edit_ta($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('ta', 'DATA TA GAGAL DIUBAH.');		
+               redirect('kepegawaian/ta'); 			
+          } else { 								
+               $this->session->set_flashdata('ta', 'DATA TA BERHASIL DIUBAH.');			
+               redirect('kepegawaian/ta'); 			
+          }
+     }
+
+     function hapus_ta()
+     {
+          $nik = $this->input->post('nik');
+          $this->kepegawaian_model->hapus_ta($nik);
+          redirect('kepegawaian/ta');
+     }
 }
