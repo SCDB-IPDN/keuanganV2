@@ -78,6 +78,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(2)=="thl"?"active":"";?>"><a href="<?php echo base_url('kepegawaian/thl');?>">THL</a></li>
+							<li class="<?php echo $this->uri->segment(2)=="ta"?"active":"";?>"><a href="<?php echo base_url('kepegawaian/ta');?>">TA</a></li>
 						</ul>
 					</li>
 				</ul>
