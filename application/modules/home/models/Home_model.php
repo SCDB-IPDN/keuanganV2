@@ -196,16 +196,17 @@ class Home_model extends CI_Model{
 	}
 	
 	public function get_rank_persen() {
-		return $this->db->query("SELECT
-			concat(round(per/13*100,2), '%') as persen
-			FROM
-			(SELECT
-			nama, satker,
-			@per:=@per+round((real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod),2) AS per
-			FROM
-			tbl_rank, (SELECT @per := 0) r
-			) t
-			ORDER BY per DESC LIMIT 1")->row_array();
+		// return $this->db->query("SELECT
+		// 	concat(round(per/13*100,2), '%') as persen
+		// 	FROM
+		// 	(SELECT
+		// 	nama, satker,
+		// 	@per:=@per+round((real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod),2) AS per
+		// 	FROM
+		// 	tbl_rank, (SELECT @per := 0) r
+		// 	) t
+		// 	ORDER BY per DESC LIMIT 1")->row_array();
+		return $this->db->query("SELECT CONCAT(ROUND(SUM((real_peg + real_bar + real_mod)) / SUM((pagu_peg + pagu_bar + pagu_mod)) * 100, 2), '%') AS persen FROM tbl_rank");
 	}
 
 	public function get_rank_ipdn() {

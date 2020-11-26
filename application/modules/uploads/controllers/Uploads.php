@@ -87,6 +87,22 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+	public function v_sarpras_sulsel()
+	{
+		if($this->session->userdata('nip') != NULL)
+		{
+			$x['title'] = "sarpras_sulsel";
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import', $x);
+			$this->load->view("include/sidebar");
+			// $this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+
 	public function v_rank()
 	{
 		if($_SESSION['nip'])
@@ -629,6 +645,77 @@ class Uploads extends CI_Controller {
 		$this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras"); 
+	}
+
+	public function sarpras_sulsel() {
+
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['sarpras_sulsel']['name']) && in_array($_FILES['sarpras_sulsel']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['sarpras_sulsel']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('sarpras_sulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/v_sarpras_sulsel"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel = $reader->load($_FILES['sarpras_sulsel']['tmp_name']);
+
+			$list_sheet = $loadexcel->getSheetNames();
+
+			// $sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
+
+
+			$table = "";
+			$kategori = "";
+			$set = false;
+			$data = array();
+			$kode_satker = 677024;
+			// echo "<pre>";
+
+			foreach ($list_sheet as $shit) {
+				$table = strtolower(str_replace(" ", "_", trim($shit)));
+				$kategori = trim($shit);
+				echo "====================<br>";
+				echo "tabel: $table<br>";
+				echo "====================<br>";
+				$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+				$stop = false;
+				$num = 1;
+				$nullcc = 0;
+				$luas = 0;
+				$set = false; // buat liat bentuk tabel
+				$tab = 0; // jenis tabel (pake luas, tanpa pake luas)
+				while(!$stop) {
+					$row = $rows[$num++];
+					// print("<pre>".print_r($row,true)."</pre>");
+					if ($row['A'] == NULL) {
+						$nullcc++;
+						if ($nullcc == 4) {
+							$stop = true;
+						}
+					} else {
+						$nullcc = 0;
+						echo $row['A']."<br>";
+					}
+				}
+				// echo "<br>";
+				// echo "<br>";
+				// echo "<br>";
+			}
+			// echo "</pre>";
+			// $this->db->insert_batch('sarpras', $data);
+			exit;
+		}
+
+		//upload success
+		$this->session->set_flashdata('sarpras_sulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sulsel']['name'].' berhasil diimport!</div>');
+			//redirect halaman
+		redirect("uploads/v_sarpras_sulsel"); 
 	}
 
 	public function rank() {
