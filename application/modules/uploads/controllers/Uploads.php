@@ -240,7 +240,7 @@ class Uploads extends CI_Controller {
 						// file eselon 1
 						foreach ($rows as $row) {
 							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
-							// echo count($tmp);
+							echo count($tmp);
 							if (count($tmp) > 0) {
 								if ($tmp[0] != "021803") {
 									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
@@ -271,25 +271,45 @@ class Uploads extends CI_Controller {
 							$add = false;
 							$nama = "";
 							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-							// echo count($tmp);
+							echo count($tmp);
 							if (count($tmp) > 0) {
 								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
 								$nama = $txt[0];
 
-								// switch ($tmp[0]) {
-								// 	case 403200:
-								// 		// SETJEN
-								// 		$add = true;
-								// 		break;
-								// 	case 448302:
-								// 		// IPDN
-								// 	break;
-								// 	$add = true;
-								// 	case 483005:
-								// 		// DKPP
-								// 		$add = true;
-								// 		break;
-								// }
+								switch ($tmp[0]) {
+									case 352593:
+									// IPDN KAMPUS JAKARTA 
+									$add = true;
+									break;
+									case 448302:
+									// IPDN KAMPUS JATINANGOR
+									$add = true;
+									break;
+									case 677010:
+									// IPDN KAMPUS SULUT
+									$add = true;
+									break;
+									case 677024:
+									// IPDN KAMPUS SULSES
+									$add = true;
+									break;	
+									case 677045:
+									// IPDN KAMPUS SUMBAR
+									$add = true;
+									break;	
+									case 683070:
+									// IPDN KAMPUS KALBAR
+									$add = true;
+									break;	
+									case 683084:
+									// IPDN KAMPUS NTB
+									$add = true;
+									break;	
+									case 683091:
+									// IPDN KAMPUS PAPUA
+									$add = true;
+									break;	
+								}
 								if ($add) {
 									array_push($data, array(
 										'kode_satker'    =>  $tmp[0],
@@ -322,8 +342,8 @@ class Uploads extends CI_Controller {
 			// $this->db->insert_batch('peringkat', $data);  // PENTING
 			$this->db->truncate('tbl_span');
 			$this->db->insert_batch('tbl_span', $data); 
-			// exit;
 			// //upload success
+			// exit;
 			$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect("uploads/v_span");
