@@ -144,7 +144,10 @@
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_dosen ?>"><?php echo $total_dosen ?></span> DOSEN</h2>
+							<h2 class="text-white mb-0">
+								<span data-animation="number" data-value="<?php echo $total_dosen ?>"><?php echo $total_dosen ?></span>
+								<span>DOSEN</span>
+							</h2>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
