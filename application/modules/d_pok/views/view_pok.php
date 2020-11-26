@@ -29,7 +29,8 @@
 				<div class="panel-body">
 					<div class="table-responsive">
 						<h4 class="text-center">Laporan Progress Realisasi Anggaran IPDN <?php echo date("Y") ?> Berdasarkan POK</h4>
-						<div id="graph" class="height-sm width-xl"></div>
+						<!-- <div id="graph" class="height-sm width-xl"></div> -->
+						<canvas id="myChart" height="70"></canvas>
 					</div>
 				</div>
 			</div>
@@ -55,7 +56,7 @@
 				</div> -->
 				<div class ="table-responsive">
 					<div class="panel-body">
-						<table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+						<table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
 							<thead>
 								<tr>
 									<th>#</th>
@@ -107,19 +108,81 @@
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
 <script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
 <script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
+<script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
 
 <script>
 		// function barChart() {
-			Morris.Bar({
-				element: 'graph',
-				data: <?php echo $data;?>,
-				xkey: 'alias',
-				ykeys: ['pagu', 'realisasi'],
-				labels: ['Pagu', 'Realisasi'],
-					// xLabelAngle: 15,
-					lineWidth: '3px',
-					resize: true,
-					redraw: true
-				});
+			// Morris.Bar({
+			// 	element: 'graph',
+			// 	data: <?php echo $data;?>,
+			// 	xkey: 'alias',
+			// 	ykeys: ['pagu', 'realisasi'],
+			// 	labels: ['Pagu', 'Realisasi'],
+			// 		// xLabelAngle: 15,
+			// 		lineWidth: '3px',
+			// 		resize: true,
+			// 		redraw: true
+			// 	});
 		// }
+
+		// rgba(255, 99, 132, 0.2)
+		// rgba(54, 162, 235, 0.2)
+		// rgba(255, 206, 86, 0.2)
+		// rgba(75, 192, 192, 0.2)
+		// rgba(153, 102, 255, 0.2)
+		// rgba(255, 159, 64, 0.2)
+
+		var label = <?php echo $data;?>.map(function(e) {
+			return e.alias;
+		});
+		var data1 = <?php echo $data;?>.map(function(e) {
+			return e.pagu;
+		});
+
+		var data2 = <?php echo $data;?>.map(function(e) {
+			return e.realisasi;
+		});
+
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var config = {
+			type: 'bar',
+			data: {
+				labels: label,
+				datasets: [{
+					label: 'Pagu',
+					data: data1,
+					borderWidth: 1,
+					backgroundColor: 'rgba(54, 162, 235, 0.2)',
+					borderColor: 'rgba(54, 162, 235, 1)'
+				},
+				{
+					label: 'Realisasi',
+					data: data2,
+					borderWidth: 1,
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)'
+				}]
+			},
+
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							userCallback: function(value, index, values) {
+								// Convert the number to a string and splite the string every 3 charaters from the end
+								value = value.toString();
+								value = value.split(/(?=(?:...)*$)/);
+								// Convert the array to a string and format the output
+								value = value.join('.');
+								return value;
+							}
+						}
+					}]
+				},
+				responsive: true
+			}
+		};
+
+		var chart = new Chart(ctx, config);
 	</script>
