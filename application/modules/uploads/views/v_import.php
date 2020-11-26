@@ -26,7 +26,7 @@
 									<div class="form-group">
 										<?php if ($title == "pok") { ?>
 											<label>UNGGAH 5 FILE EXCEL <?= strtoupper($title); ?> (BIRO I, II, III, IV, PASCA & PROFESI)</label>
-										<?php } elseif ($title == "sarpras") { ?>
+										<?php } elseif ($title == "sarpras" || $title == "sarpras_sulsel") { ?>
 											<label>UNGGAH FILE EXCEL <?= strtoupper($title); ?></label>
 										<?php } elseif ($title == "rank") { ?>
 											<label>UNGGAH 2 FILE EXCEL <?= strtoupper($title); ?> (ESELON 1, SATKER)</label>
@@ -36,7 +36,7 @@
 										</span>
 										<?php if ($title == "pok") { ?>
 											<input type="file" multiple name="<?= $title; ?>[]" class="form-control">
-										<?php } elseif ($title == "sarpras") { ?>
+										<?php } elseif ($title == "sarpras" || $title == "sarpras_sulsel") { ?>
 											<input type="file" name="<?= $title; ?>" class="form-control">
 										<?php } elseif ($title == "rank") { ?>
 											<input type="file" multiple name="<?= $title; ?>[]" class="form-control">
