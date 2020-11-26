@@ -8,7 +8,51 @@ class Home_model extends CI_Model{
 
     return $peg;
   }
-  
+
+  public function jum_eselon()
+  {
+    $result = $this->db->query("SELECT SUM(eselon LIKE 'I.%') as I, SUM(eselon LIKE 'II.%') as II, SUM(eselon LIKE 'III.%') as III, SUM(eselon LIKE 'IV.%') as IV FROM tbl_pns")->result();
+
+    return $result;
+  }
+
+  public function dosen()
+  {
+    $result = $this->db->query("SELECT SUM(jabatan LIKE '%ASISTEN AHLI%') as asisten_ahli, SUM(jabatan LIKE '%GURU BESAR%') as guru_besar, SUM(jabatan LIKE '%LEKTOR%') as lektor, SUM(jabatan LIKE '%LEKTOR KEPALA%') as lektor_kepala FROM tbl_pns")->result();
+    return $result;
+  }
+
+  public function apps(){
+    $result = $this->db->query("SELECT 
+    app1_1,app1_2,app1_3,nama_1,
+    app2_1,app2_2,app2_3,nama_2,
+    app3_1,app3_2,app3_3,nama_3,
+    app4_1,app4_2,app4_3,nama_4,
+    app5_1,app5_2,app5_3,nama_5,
+    app6_1,app6_2,app6_3,nama_6,
+    app7_1,app7_2,app7_3,nama_7,
+    app8_1,app8_2,app8_3,nama_8,
+    app9_1,app9_2,app9_3,nama_9,
+    app10_1,app10_2,app10_3,nama_10,
+    app11_1,app11_2,app11_3,nama_11,
+    aktif,tdk_digunakan,tdk_aktif,total
+    FROM 
+    (SELECT SUM(a.status LIKE '1') as app1_1, SUM(a.status LIKE '2') as app1_2, SUM(a.status LIKE '3') as app1_3, nama_unit as nama_1 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 1) as perpustakaan,
+    (SELECT SUM(a.status LIKE '1') as app2_1, SUM(a.status LIKE '2') as app2_2, SUM(a.status LIKE '3') as app2_3, nama_unit as nama_2 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 2) as akademik,
+    (SELECT SUM(a.status LIKE '1') as app3_1, SUM(a.status LIKE '2') as app3_2, SUM(a.status LIKE '3') as app3_3, nama_unit as nama_3 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 3) as keuangan,
+    (SELECT SUM(a.status LIKE '1') as app4_1, SUM(a.status LIKE '2') as app4_2, SUM(a.status LIKE '3') as app4_3, nama_unit as nama_4 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 4) as riset,
+    (SELECT SUM(a.status LIKE '1') as app5_1, SUM(a.status LIKE '2') as app5_2, SUM(a.status LIKE '3') as app5_3, nama_unit as nama_5 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 5) as tp,
+    (SELECT SUM(a.status LIKE '1') as app6_1, SUM(a.status LIKE '2') as app6_2, SUM(a.status LIKE '3') as app6_3, nama_unit as nama_6 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 6) as keprajaan,
+    (SELECT SUM(a.status LIKE '1') as app7_1, SUM(a.status LIKE '2') as app7_2, SUM(a.status LIKE '3') as app7_3, nama_unit as nama_7 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 7) as pasca,
+    (SELECT SUM(a.status LIKE '1') as app8_1, SUM(a.status LIKE '2') as app8_2, SUM(a.status LIKE '3') as app8_3, nama_unit as nama_8 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 8) as pddikti,
+    (SELECT SUM(a.status LIKE '1') as app9_1, SUM(a.status LIKE '2') as app9_2, SUM(a.status LIKE '3') as app9_3, nama_unit as nama_9 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 9) as kepegawaian,
+    (SELECT SUM(a.status LIKE '1') as app10_1, SUM(a.status LIKE '2') as app10_2, SUM(a.status LIKE '3') as app10_3, nama_unit as nama_10 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 10) as kerjasama,
+    (SELECT SUM(a.status LIKE '1') as app11_1, SUM(a.status LIKE '2') as app11_2, SUM(a.status LIKE '3') as app11_3, nama_unit as nama_11 FROM tbl_apps as a JOIN kategori_app as b ON a.kategori_apps=b.id_app WHERE a.kategori_apps = 11) as pengasuh,
+    (SELECT SUM(status LIKE '1') as aktif, SUM(status LIKE '2') as tdk_digunakan, SUM(status LIKE '3') as tdk_aktif, COUNT(*) as total FROM tbl_apps) as total")->result();
+    
+    return $result;
+  }
+
   public function app_perpus()
   {
     $perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
@@ -65,6 +109,27 @@ class Home_model extends CI_Model{
     return $pddikti;
   }
 
+  public function app_kepegawaian()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 9 AND status= 1")->result();
+
+    return $result;
+  }
+  
+  public function app_kerjasama()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 10 AND status= 1")->result();
+
+    return $result;
+  }
+
+  public function app_pengasuhan()
+  {
+    $result = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 11 AND status= 1")->result();
+
+    return $result;
+  }
+
   public function get_span()
 	{	
     $result = $this->db->query("SELECT SUM(pagu_t) AS pagu, sum(realisasi_t) as realisasi
@@ -102,22 +167,23 @@ class Home_model extends CI_Model{
     return $result;
   }
 
-  public function get_jk_praja()
+   public function get_praja()
+  { 
+    $result = $this->db->query("SELECT * FROM praja")->result();
+
+    return $result;
+  }
+
+   public function get_jk_praja()
   { 
     $result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja")->result();
 
     return $result;
   }
-
-  public function get_tahun()
-	{
-		$tahun = $this->db->query("SELECT tahun_masuk_kuliah from praja ");
-		return $tahun;
-  }
   
   public function jumlah_praja()
   {
-    $praja = $this->db->query("SELECT count(*) as praja from praja where tahun_masuk_kuliah = case when month(now()) >= 6 then year(now()) else date_add(year(now()), interval -1 year) END")->result();
+    $praja = $this->db->query("SELECT count(*) as praja from praja")->result();
 
     return $praja;
   }
@@ -128,5 +194,6 @@ class Home_model extends CI_Model{
 
     return $result;
   }
+  
   
 }

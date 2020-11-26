@@ -124,7 +124,7 @@ class Uploads extends CI_Controller {
 			$sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray();
 
 			$data = array();
-			$nf = true;
+			$biro = array();
 
 			$date = new DateTime();
 			$datee = $date->format('Y-m-d');
@@ -196,7 +196,6 @@ class Uploads extends CI_Controller {
 			redirect("uploads/v_span"); 
 		}
 	}
-
 	public function satkerspan() {
 
 		// Load plugin PHPExcel nya
@@ -277,20 +276,20 @@ class Uploads extends CI_Controller {
 								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
 								$nama = $txt[0];
 
-								switch ($tmp[0]) {
-									case 403200:
-										// SETJEN
-										$add = true;
-										break;
-									case 448302:
-										// IPDN
-									break;
-									$add = true;
-									case 483005:
-										// DKPP
-										$add = true;
-										break;
-								}
+								// switch ($tmp[0]) {
+								// 	case 403200:
+								// 		// SETJEN
+								// 		$add = true;
+								// 		break;
+								// 	case 448302:
+								// 		// IPDN
+								// 	break;
+								// 	$add = true;
+								// 	case 483005:
+								// 		// DKPP
+								// 		$add = true;
+								// 		break;
+								// }
 								if ($add) {
 									array_push($data, array(
 										'kode_satker'    =>  $tmp[0],
