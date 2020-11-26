@@ -309,7 +309,7 @@
 								TENAGA AHLI
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="text-right pl-2 f-w-600"><span>-</span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->ta; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 					</div>
