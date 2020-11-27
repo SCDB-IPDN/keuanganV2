@@ -965,6 +965,7 @@ class Uploads extends CI_Controller {
 
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
+
 			$dataunit = array();
 			$dataoutput = array();
 			$numrow = 1;
@@ -2304,6 +2305,7 @@ class Uploads extends CI_Controller {
 
             $this->db->insert_batch('tbl_pns', $saveData);
             $this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
+
 			$this->session->set_flashdata('pns',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_pns'); 
 		}
