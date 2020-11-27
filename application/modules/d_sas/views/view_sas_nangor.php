@@ -3,15 +3,6 @@
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">IPDN</a></li>
-    <?php if (isset($kampus)) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$klink;?>"><?= $kampus ?></a></li>
-    <?php } ?>
-    <?php if (isset($biro)) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$blink;?>"><?= $biro ?></a></li>
-    <?php } ?>
-    <?php if (isset($unit)) { ?>
-        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$ulink;?>"><?= $unit ?></a></li>
-    <?php } ?>
   </ol>
   <h1 class="page-header">SAS</h1>
   <div class="row">
@@ -60,15 +51,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <?php if (isset($unit)) { ?>
-                  <th>Output</th>
-                <?php } elseif (isset($biro) || isset($bag)) { ?>
-                  <th>Bagian/Unit/Lembaga</th>
-                <?php } elseif (isset($kampus)) { ?>
-                  <th>Biro</th>
-                <?php } else { ?>
-                <th>Kampus</th>
-                <?php } ?>
+                <th>Output</th>
                 <th>Pagu</th>
                 <th>Realiasasi</th>
                 <th>Sisa Pagu</th>
@@ -78,7 +61,7 @@
             </thead>
             <tbody>
                 <?php $no = 1; ?>
-                <?php foreach (json_decode($data, true) as $x): ?>
+                <?php foreach (json_decode($nyoba, true) as $x): ?>
                   <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?= $x['nama']; ?></td>

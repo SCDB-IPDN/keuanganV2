@@ -147,7 +147,8 @@
             <label for="tlp_pribadi" class="col-form-label">Telpon Pribadi:</label>
             <input type="text" class="form-control" id="tlp_pribadi" name="tlp_pribadi" value="<?php echo $x['tlp_pribadi'];?>" placeholder="Telepon Pribadi.." required>
           </div>          
-          <input type="hidden" name="tingkat" value="<?php echo $x['tingkat'];?>">        
+          <input type="hidden" name="tingkat" value="<?php echo $x['tingkat'];?>">
+          <input type="hidden" name="angkatan" value="<?php echo $x['angkatan'];?>">        
           <div class="form-group">
             <label for="status" class="col-form-label">Status sebelumnya: <?php echo $x['status'];?> </label>
             <select class="form-control" name="status" id="status" required="">

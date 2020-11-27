@@ -9,7 +9,7 @@ class D_praja extends CI_Controller{
 
   function index()
   {
-   if($_SESSION['nip'])
+   if($this->session->userdata('nip') != NULL)
    {
     $data = $this->D_praja_model->get_praja()->result();
     // $tingkat = $data[0]->tingkat-1;
@@ -37,7 +37,7 @@ class D_praja extends CI_Controller{
 
 function detail($id)
 {
-  if($_SESSION['nip'])
+  if($this->session->userdata('nip') != NULL)
   {
     $data = $this->D_praja_model->get_detail($id)->result();
     $x['data'] = json_encode($data);
@@ -56,7 +56,7 @@ function detail($id)
 
 function edit_praja()
 {
-  if($_SESSION['nip'])
+  if($this->session->userdata('nip') != NULL)
   {
     $input_data['nik_praja'] = $this->input->post('nik_praja', true);
     $input_data['nama'] = $this->input->post('nama', true);
@@ -74,6 +74,7 @@ function edit_praja()
 
     if ($input_data['status'] == "turuntingkat") {
       $input_data['tingkat'] = $this->input->post('tingkat', true)-1;
+      $input_data['angkatan'] = $this->input->post('angkatan', true)-1;
     }else{
       $input_data['tingkat'] = $this->input->post('tingkat', true);
     }

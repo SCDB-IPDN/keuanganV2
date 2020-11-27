@@ -112,5 +112,13 @@ class D_sas_model extends CI_Model{
 
 		return $result;
 	}
+
+
+	public function biroo($bironya)
+	{	
+		$result = $this->db->query("SELECT nama_satker_biro as nama FROM tbl_satker_biro WHERE kode_satker_biro = $bironya");
+		return $result;
+  	}
+
   
 }
