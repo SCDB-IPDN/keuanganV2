@@ -104,7 +104,7 @@
                 <td width="1%"><?= $row->persentase_t == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_t?></td>
 
                 <td width="1%"><?= number_format($row->sisa) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->sisa) ?></td>
-                <?php if($row->nama_satker == 'IPDN KAMPUS JATINANGOR'){?>
+                <?php if($row->kode_satker == 448302){?>
                 <td width="1%"><?= "<a href='d_span/biro' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a>"?></td>
                 <?php }else{ ?>
                 <td width="1%">Tidak ada detail</td>
