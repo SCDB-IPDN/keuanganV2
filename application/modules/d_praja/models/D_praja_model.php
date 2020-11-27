@@ -4,14 +4,14 @@ class D_praja_model extends CI_Model{
   	public function get_praja()
 	{	
 
-		$result = $this->db->query("SELECT *, tahun_masuk_kuliah FROM praja GROUP BY nik_praja");
+		$result = $this->db->query("SELECT * FROM praja ORDER BY angkatan");
 
 		return $result;
 	}
   
-  	public function get_detail($nik)
+  	public function get_detail($id)
 	{	
-		$result = $this->db->query("SELECT * FROM praja JOIN orangtua ON praja.nik_praja = orangtua.nik_praja JOIN wali ON orangtua.nik_praja = wali.nik_praja WHERE praja.nik_praja = $nik GROUP BY praja.nik_praja");
+		$result = $this->db->query("SELECT * FROM praja JOIN orangtua ON praja.nik_praja = orangtua.nik_praja JOIN wali ON orangtua.nik_praja = wali.nik_praja WHERE praja.id = $id ");
 
 		return $result;
 	}
@@ -20,6 +20,7 @@ class D_praja_model extends CI_Model{
   	{     
 
     	$id_praja = $input_data['nik_praja'];
+    	$tingkat = $input_data['tingkat'];
     	$hasil = $this->db->where('nik_praja', $id_praja)->update('praja', $input_data);
         return $hasil;    
 	}
@@ -40,11 +41,5 @@ class D_praja_model extends CI_Model{
 	{
 		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
 		return $prov;
-	}
-
-	public function get_tahun()
-	{
-		$tahun=$this->db->query("SELECT tahun_masuk_kuliah from praja ");
-		return $tahun;
 	}
 }
