@@ -1803,13 +1803,15 @@ class Uploads extends CI_Controller {
 				$tanggal_lahir = date_create($ttl2[1]);
 				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
                 $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
-                $penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
+				$penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
+				$satker =  $excel->getCellByColumnAndRow(6, $i)->getValue();
                 $data = array(
                     'nama' => $nama,
                     'tempat_lahir' => $tempat_lahir,
                     'tanggal_lahir' => $tanggal_lahir,
                     'dik' => $dik,
-                    'penugasan' => $penugasan
+					'penugasan' => $penugasan,
+					'nama_satker' => $satker
                 );
                 array_push($saveData, $data);
             }
