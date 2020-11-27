@@ -11,7 +11,7 @@ class Apps extends CI_Controller {
 
     public function index()
 	{
-        if($_SESSION['nip'])
+        if($this->session->userdata('nip') != NULL)
         {
             if($this->session->userdata('role') != 'Admin')
             {

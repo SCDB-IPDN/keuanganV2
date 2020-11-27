@@ -21,6 +21,13 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
+  public function get_edit_pns($no)
+	{	
+    $result = $this->db->query("SELECT * FROM tbl_pns WHERE NO = $no");
+
+    return $result;
+  }
+
   function tambah_pns($input_data)
 	{   
     $add_pns = $this->db->insert('tbl_pns', $input_data);
@@ -68,4 +75,31 @@ class Kepegawaian_model extends CI_Model{
     return $hasil;
   }
   // END THL
+  // TA
+  public function get_all_ta()
+	{	
+    $result = $this->db->query("SELECT * FROM tbl_ta");
+
+    return $result;
+  }
+
+  function tambah_ta($input_data)
+	{   
+    $add_ta = $this->db->insert('tbl_ta', $input_data);
+    return $add_ta;
+  }
+
+  function edit_ta($input_data)
+  {       
+    $nik = $input_data['nik'];
+    $hasil = $this->db->where('nik', $nik)->update('tbl_ta', $input_data);
+    
+    return $hasil;    
+  }
+
+  function hapus_ta($nik){
+    $hasil=$this->db->query("DELETE FROM tbl_ta WHERE nik='$nik'");
+    return $hasil;
+  }
+  // END TA
 }

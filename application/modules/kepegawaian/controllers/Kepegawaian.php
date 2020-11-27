@@ -9,7 +9,7 @@ class Kepegawaian extends CI_Controller{
      // PNS
      function index()
      {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->kepegawaian_model->get_all_pns()->result();
                $tp = $this->kepegawaian_model->get_pendidikan();
@@ -20,6 +20,29 @@ class Kepegawaian extends CI_Controller{
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_pns', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
+     function ie_pns()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $no = $this->input->get('no', true);
+
+               $data = $this->kepegawaian_model->get_edit_pns($no)->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
+
+               $x['data'] = $data;
+               $x['tp'] = $tp;
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('edit_pns', $x);
                $this->load->view("include/sidebar");
                $this->load->view("include/panel");
                $this->load->view("include/footer");
@@ -63,6 +86,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['masa_kerja'] = $masa_kerja;
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
+          $input_data['eselon'] = $this->input->post('eselon', true);
 
           $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
         
@@ -116,16 +140,9 @@ class Kepegawaian extends CI_Controller{
           $input_data['masa_kerja'] = $this->input->post('masa_kerja', true);
           $input_data['catatan_mutasi'] = $this->input->post('catatan_mutasi', true);
           $input_data['no_kapreg'] = $this->input->post('no_kapreg', true);
+          $input_data['eselon'] = $this->input->post('eselon', true);
 
-          $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
-        
-          if(!$cek_peg){
-               $result = $this->kepegawaian_model->edit_pns($input_data);
-          }else{
-               $this->session->set_flashdata('pns', 'NIP PEGAWAI SUDAH TERDAFTAR.');
-               $x['alert'] = 'ada';			
-               redirect('kepegawaian',$x);
-          }
+          $result = $this->kepegawaian_model->edit_pns($input_data);
 
           if (!$result) { 							
                $this->session->set_flashdata('pns', 'DATA PNS GAGAL DIUBAH.');		
@@ -138,7 +155,7 @@ class Kepegawaian extends CI_Controller{
 
      function hapus_pns()
      {
-          $nip = $this->input->post('nip');
+          $nip = $this->input->get('nip');
           $this->kepegawaian_model->hapus_pns($nip);
           redirect('kepegawaian');
      }
@@ -147,7 +164,7 @@ class Kepegawaian extends CI_Controller{
      // THL
      function thl()
      {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->kepegawaian_model->get_all_thl()->result();
                $tp = $this->kepegawaian_model->get_pendidikan();
@@ -212,4 +229,71 @@ class Kepegawaian extends CI_Controller{
           redirect('kepegawaian/thl');
      }
      // END THL
+     // TA
+     function ta()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $data = $this->kepegawaian_model->get_all_ta()->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
+
+               $x['data'] = $data;
+               $x['tp'] = $tp;
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_ta', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
+     public function tambah_ta()
+	{		
+          $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
+          $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
+          $input_data['penugasan'] = $this->input->post('penugasan', true);
+
+          $result = $this->kepegawaian_model->tambah_ta($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('ta', 'DATA TA GAGAL DITAMBAHKAN.'); 				
+               redirect('kepegawaian/ta'); 			
+          } else { 								
+               $this->session->set_flashdata('ta', 'DATA TA BERHASIL DITAMBAHKAN.');			
+               redirect('kepegawaian/ta'); 			
+          }
+    }
+
+     public function edit_ta()
+     {
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
+          $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
+          $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
+          $input_data['dik'] = $this->input->post('dik', true);
+          $input_data['penugasan'] = $this->input->post('penugasan', true);
+          $result = $this->kepegawaian_model->edit_ta($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('ta', 'DATA TA GAGAL DIUBAH.');		
+               redirect('kepegawaian/ta'); 			
+          } else { 								
+               $this->session->set_flashdata('ta', 'DATA TA BERHASIL DIUBAH.');			
+               redirect('kepegawaian/ta'); 			
+          }
+     }
+
+     function hapus_ta()
+     {
+          $nik = $this->input->post('nik');
+          $this->kepegawaian_model->hapus_ta($nik);
+          redirect('kepegawaian/ta');
+     }
 }

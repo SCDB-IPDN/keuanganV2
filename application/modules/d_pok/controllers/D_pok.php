@@ -9,7 +9,7 @@ class D_pok extends CI_Controller{
 
     function index($id = NULL)
     {
-      if($_SESSION['nip'])
+      if($this->session->userdata('nip') != NULL)
       {
         if ($id == NULL) {
           $x['title'] = 'Parent';

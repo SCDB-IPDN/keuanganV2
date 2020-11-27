@@ -9,7 +9,7 @@ class D_sas extends CI_Controller{
 
   function index($link = NULL)
   {
-    if($_SESSION['nip'])
+    if($this->session->userdata('nip') != NULL)
     {
       if ($link == NULL) {
         // list semua kampus
