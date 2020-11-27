@@ -58,7 +58,7 @@
 						</ul>
 					</li>
 					
-					<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
+					<li class="<?php echo $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="coba"?"active":"";?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							SAS

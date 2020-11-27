@@ -9,6 +9,8 @@ class D_praja extends CI_Controller{
 
   function index()
   {
+   if($_SESSION['nip'])
+   {
     $data = $this->D_praja_model->get_praja()->result();
     // $tingkat = $data[0]->tingkat-1;
     // echo $tingkat;
@@ -28,11 +30,16 @@ class D_praja extends CI_Controller{
     $this->load->view("include/sidebar");
     $this->load->view("include/panel");
     $this->load->view("include/footer");
-  }
+  }else{
+   redirect("user");
+ }
+}
 
-  function detail($nik)
+function detail($id)
+{
+  if($_SESSION['nip'])
   {
-    $data = $this->D_praja_model->get_detail($nik)->result();
+    $data = $this->D_praja_model->get_detail($id)->result();
     $x['data'] = json_encode($data);
 
     $this->load->view("include/head");
@@ -41,9 +48,15 @@ class D_praja extends CI_Controller{
     $this->load->view("include/sidebar");
     $this->load->view("include/panel");
     $this->load->view("include/footer");
-  }
+  }else{
+   redirect("user");
+ }
 
-  function edit_praja()
+}
+
+function edit_praja()
+{
+  if($_SESSION['nip'])
   {
     $input_data['nik_praja'] = $this->input->post('nik_praja', true);
     $input_data['nama'] = $this->input->post('nama', true);
@@ -76,6 +89,9 @@ class D_praja extends CI_Controller{
      redirect('d_praja'); 			
    }
 
+ }else{
+   redirect("user");
  }
+}
 
 }

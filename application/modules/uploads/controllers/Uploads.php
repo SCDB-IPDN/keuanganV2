@@ -1388,6 +1388,7 @@ class Uploads extends CI_Controller {
 
 					array_push($unitortu, array(
 						'nik_praja'      => $row['G'],
+						'nama'      => $row['C'],
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
@@ -1408,6 +1409,7 @@ class Uploads extends CI_Controller {
 
 					array_push($unitwali, array(
 						'nik_praja'      => $row['G'],
+						'nama'      => $row['C'],
 						'nik_wali'      => $row['AP'],
 						'nama_wali'      => $row['AQ'],
 						'tgllahir_wali'      => $row['AR'],
@@ -1466,6 +1468,7 @@ class Uploads extends CI_Controller {
 			// $i = 28;
 			$unitpraja = array();
 			$unitortu = array();
+			$unitwali = array();
 			$stat = 'aktif';
 
 			foreach($namasheet as $shit){
@@ -1521,11 +1524,17 @@ class Uploads extends CI_Controller {
 
 								array_push($unitortu, array(
 									'nik_praja'      => $row['N'],
+									'nama'      => $row['C'],
 									'nama_ayah'      => $row['O'],
 									'pekerjaan_ayah'      => $row['P'],
 									'nama_ibu'      => $row['Q'],
 									'pekerjaan_ibu'      => $row['R']
 
+								));
+
+								array_push($unitwali, array(
+									'nik_praja'      => $row['N'],
+									'nama'      => $row['C'],
 								));
 
 							}
@@ -1536,10 +1545,11 @@ class Uploads extends CI_Controller {
 
 			}
 		
-			// print("<pre>".print_r($unitpraja,true)."</pre>");
+			// print("<pre>".print_r($unitwali,true)."</pre>");
 			// exit();
 			$this->db->insert_batch('praja', $unitpraja);
 			$this->db->insert_batch('orangtua', $unitortu);
+			$this->db->insert_batch('wali', $unitwali);
 					//upload success
 			$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
