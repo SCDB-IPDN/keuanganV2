@@ -1940,18 +1940,20 @@ class Uploads extends CI_Controller {
 				$tempat_lahir = $ttl2[0];
 				$tanggal_lahir = date_create($ttl2[1]);
 				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
-				$dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
+                $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
 				$penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
-				$data = array(
-					'nama' => $nama,
-					'tempat_lahir' => $tempat_lahir,
-					'tanggal_lahir' => $tanggal_lahir,
-					'dik' => $dik,
-					'penugasan' => $penugasan
-				);
-				array_push($saveData, $data);
-			}
-			$this->db->insert_batch('tbl_thl', $saveData);
+				$satker =  $excel->getCellByColumnAndRow(6, $i)->getValue();
+                $data = array(
+                    'nama' => $nama,
+                    'tempat_lahir' => $tempat_lahir,
+                    'tanggal_lahir' => $tanggal_lahir,
+                    'dik' => $dik,
+					'penugasan' => $penugasan,
+					'nama_satker' => $satker
+                );
+                array_push($saveData, $data);
+            }
+            $this->db->insert_batch('tbl_thl', $saveData);
 			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_thl'); 
 		}
