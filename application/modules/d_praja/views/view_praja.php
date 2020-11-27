@@ -79,7 +79,7 @@
                  <?php if (isset($x['nik_praja'])){ ?>
                   <td>
                     <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
-                    <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editpraja<?php echo $x['nik_praja'];?>"><i class="fa fas fa-edit"></i></a>
+                    <a href='<?= base_url().'d_praja/edit/'.$x['nik_praja'] ?>' data-target="#editpraja" class='btn btn-sm btn-warning' btn-sm><i class='fa fas fa-edit'></i></a>
                   </td>
                 <?php } else { ?>
                   <td>Tidak ada detail</td>

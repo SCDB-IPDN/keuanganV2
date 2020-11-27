@@ -33,6 +33,19 @@ class D_praja extends CI_Controller{
     $this->load->view("include/footer");
   }
 
+  function edit($nik)
+  {
+      $data = $this->D_praja_model->get_detail($nik)->result();
+      $x['data'] = json_encode($data);
+    
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_edit",$x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  }
+
   function praja()
      {
             $data = $this->D_praja_model->get_praja()->result();
@@ -70,11 +83,11 @@ class D_praja extends CI_Controller{
           }
      }
 
-     function hapus_praja()
-     {
-          $id_praja = $this->input->post('id_praja');
-          $this->D_praja_model->hapus_praja($id_praja);
-          redirect('d_praja/praja');
-     }
+    //  function hapus_praja()
+    //  {
+    //       $id_praja = $this->input->post('id_praja');
+    //       $this->D_praja_model->hapus_praja($id_praja);
+    //       redirect('d_praja/praja');
+    //  }
 
 }

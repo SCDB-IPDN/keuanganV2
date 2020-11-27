@@ -358,20 +358,20 @@ class Uploads extends CI_Controller {
 						}
 						if ($add) {
                             array_push($biro, array(
-                                'kode_satker'    =>  $tmp[0],
+								'kode_satker'    =>  $tmp[0],
                                 'nama_satker'  =>  $txt[0],
                                 'pagu_bp'      => $row['C'],
                                 'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => $row['E'],
+                                'persentase_bp'      => substr($row['E'], 1, 6),
                                 'pagu_bb'      => $row['G'],
                                 'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => $row['I'],
+                                'persentase_bb'   => substr($row['I'], 1, 6),
                                 'pagu_bm'   => $row['K'],
                                 'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => $row['M'],
+                                'persentase_bm'   => substr($row['M'], 1, 6),
                                 'pagu_t'   => $row['AM'],
                                 'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => $row['AO'],
+                                'persentase_t'   => substr($row['AO'], 1, 6),
 								'sisa'   => $row['AP'],
 								'created_date' => $datee,
 								
@@ -383,8 +383,8 @@ class Uploads extends CI_Controller {
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
-		}
-		// exit;
+		}var_dump($biro);
+		exit;
 		// $this->db->insert_truncate('tbl_span');
 		$this->db->insert_batch('tbl_span_biro', $biro);
 		//upload success
