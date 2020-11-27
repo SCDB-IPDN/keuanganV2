@@ -642,7 +642,7 @@ class Uploads extends CI_Controller {
 							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
 							// echo "ID BIRO : ".$id_b." <br>";
 						}
-					
+
 
 					} elseif ($row['A'] == 3) {
 
@@ -670,7 +670,7 @@ class Uploads extends CI_Controller {
 							'ket'      => $ket,
 							'tanggal' => $tgl
 						));
-			
+
 
 					} elseif ($row['A'] ==5) {
 						$coutput++;                        
@@ -686,7 +686,7 @@ class Uploads extends CI_Controller {
 							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
-	
+
 					}
 				}
 				$numrow++;
@@ -1339,16 +1339,15 @@ class Uploads extends CI_Controller {
 					$nullcc = 0;
 					$angkatan = 31;
 					$kurangtahun = 2020 - $row['AZ'];
-                	$hasil = 0;
+					$hasil = 0;
 
-                	if ($row['AZ'] == 2020)  {
-                		$hasil = $angkatan;
-                	}elseif($row['AZ'] < 2020 || $row['AZ'] > 2020 ){
-                		$hasil= $angkatan-$kurangtahun;
-                	}
+					if ($row['AZ'] == 2020)  {
+						$hasil = $angkatan;
+					}elseif($row['AZ'] < 2020 || $row['AZ'] > 2020 ){
+						$hasil= $angkatan-$kurangtahun;
+					}
 
 					array_push($unitpraja, array(
-						'no' => ($num-1),
 						'no_spcp'      => $row['B'],
 						'nama'      => $row['C'],
 						'jk'      => $row['D'],
@@ -1440,13 +1439,117 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+
 	public function prajabaru()
 	{
+				// Load plugin PHPExcel nya
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+		if(isset($_FILES['prajabaru']['name']) && in_array($_FILES['prajabaru']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['prajabaru']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				
+				redirect("uploads/v_praja"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel  = $reader->load($_FILES['prajabaru']['tmp_name']);
+			
+			$namasheet = $loadexcel->getSheetNames();
+
+			// var_dump($sheetData);
+			// $i = 28;
+			$unitpraja = array();
+			$unitortu = array();
+			$stat = 'aktif';
+
+			foreach($namasheet as $shit){
+				
+				if (($shit == "Angkatan 28") || ($shit == "Angkatan 29") || ($shit == "Angkatan 30")) {
+					$sheetData = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+					$numrow =  1;
+
+					$bb = explode(" ", $shit);
+					$cc = $bb[1];
+					// echo "$cc";
+
+					$stop = false;
+					$num = 1;
+					$nullcc = 0;
+					while(!$stop) {
+						$row = $sheetData[$num++];
+						if ($row['C'] == NULL && $numrow > 7) {
+							$nullcc++;
+							if ($nullcc == 3) {
+								$stop = true;    
+							}
+						} else {
+							
+							$nullcc = 0;
+							$angka = 'XXX';
+							$jadi =1;
+							if($numrow > 7){
+								if ($row['AC'] != "") {
+									$angka = $row['AC'];
+
+								}
+								$angka = $this->rti($angka);
+								$jadi = date('y') +12 - $angka;
+							// echo "$jadi";
+								array_push($unitpraja, array(
+									'nama'      => $row['C'],
+									'tmpt_lahir'      => $row['D'],
+									'tgl_lahir'      => date("Y-m-d", strtotime($row['E'])),
+									'jk'      => $row['F'],
+									'provinsi'      => $row['H'],
+									'kab/kota'      => $row['J'],
+									'agama'      => $row['K'],		
+									'nik_praja'      => $row['N'],
+									'alamat'      => $row['S'],
+									'kelurahan'      => $row['T'],
+									'kecamatan'      => $row['U'],
+									'tingkat' => $jadi,
+									'angkatan' => $cc,
+									'status'=>$stat
+
+								));
+
+								array_push($unitortu, array(
+									'nik_praja'      => $row['N'],
+									'nama_ayah'      => $row['O'],
+									'pekerjaan_ayah'      => $row['P'],
+									'nama_ibu'      => $row['Q'],
+									'pekerjaan_ibu'      => $row['R']
+
+								));
+
+							}
+							$numrow++;
+						}
+					}
+				}
+
+			}
 		
+			// print("<pre>".print_r($unitpraja,true)."</pre>");
+			// exit();
+			$this->db->insert_batch('praja', $unitpraja);
+			$this->db->insert_batch('orangtua', $unitortu);
+					//upload success
+			$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect('uploads/v_praja');
+
+		}
 	}
 
-
 	
+
 	public function thl()
 	{
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

@@ -10,11 +10,11 @@ class D_praja extends CI_Controller{
   function index()
   {
     $data = $this->D_praja_model->get_praja()->result();
-    $tingkat = $data[0]->tingkat-1;
+    // $tingkat = $data[0]->tingkat-1;
     // echo $tingkat;
     // exit();
     $x['data'] = json_encode($data);
-    $x['tingkat'] = $tingkat;
+    // $x['tingkat'] = $tingkat;
 
     $prov = $this->D_praja_model->get_provinsi()->result();
     $x['prov'] = json_encode($prov);

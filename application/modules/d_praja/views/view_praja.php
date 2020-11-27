@@ -42,7 +42,7 @@
             <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
           </div>
         <?php } ?>
-        <?php $angkatan = 31; ?>
+  
         <div class="panel-body">
           <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
             <thead>
@@ -52,7 +52,6 @@
                 <TH>JENIS KELAMIN</TH>
                 <th>TINGKAT</th>
                 <th>ANGKATAN</th>
-                <th>PROVINSI</th>
                 <th>STATUS</th>
                 <th>OPSI</th>
               </tr>
@@ -64,13 +63,10 @@
                  <td><?php echo $no++; ?></td>
                  <td><?= $x['nama']; ?></td>
                  <td><?= $x['jk']; ?></td>
-                
-                  <td><?= $x['tingkat'];?></td> 
-      
-                <td><?= $x['angkatan'];?>
-                <td><?= $x['provinsi']; ?></td>
-                <td><?= $x['status']; ?></td>
-                <?php if (isset($x['nik_praja'])){ ?>
+                 <td><?= $x['tingkat'];?></td> 
+                 <td><?= $x['angkatan'];?>
+                 <td><?= $x['status']; ?></td>
+                 <?php if (isset($x['nik_praja'])){ ?>
                   <td>
                     <a href='<?= base_url().'d_praja/detail/'.$x['nik_praja'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
                     <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editpraja<?php echo $x['nik_praja'];?>"><i class="fa fas fa-edit"></i></a>
