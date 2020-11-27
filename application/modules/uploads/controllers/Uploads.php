@@ -536,7 +536,7 @@ class Uploads extends CI_Controller {
 
 
 			$table = "";
-			$kategori = "";
+			// $kategori = "";
 			$set = false;
 			$data = array();
 			$kode_satker = 448302;
@@ -544,7 +544,7 @@ class Uploads extends CI_Controller {
 
 			foreach ($list_sheet as $shit) {
 				$table = strtolower(str_replace(" ", "_", trim($shit)));
-				$kategori = trim($shit);
+				// $kategori = trim($shit);
 				// echo "====================<br>";
 				// echo "tabel: $table<br>";
 				// echo "====================<br>";
@@ -554,7 +554,7 @@ class Uploads extends CI_Controller {
 				$nullcc = 0;
 				$luas = 0;
 				$set = false; // buat liat bentuk tabel
-				$tab = 0; // jenis tabel (pake luas, tanpa pake luas)
+				$tab = 0; // jenis tabel (tanpa pake luas, pake luas)
 				while(!$stop) {
 					$row = $rows[$num++];
 					// print("<pre>".print_r($row,true)."</pre>");
@@ -578,11 +578,9 @@ class Uploads extends CI_Controller {
 								if (strpos(strtolower($row['L']), 'asal') === 0) {
 									$set = true;
 									$tab = 1;
-									// echo "pake";
 								} elseif (strpos(strtolower($row['L']), 'kondisi') === 0) {
 									$set = true;
 									$tab = 0;
-									// echo "tanpa";
 								}
 							} elseif (is_numeric($row['A']) && strlen($row['A'] > 4)) {
 								$harga_beli = $harga_baru = $asal = $kondisi = "";
@@ -600,19 +598,7 @@ class Uploads extends CI_Controller {
 									$asal = $row['K'];
 									$kondisi = $row['L'];
 								}
-								// echo "Kode: $row[A]<br>";
-								// echo "Uraian: $row[B]<br>";
-								// echo "NUP: $row[C]<br>";
-								// echo "Merk: $row[D]<br>";
-								// echo "Tahun: $row[E]<br>";
-								// echo "Luas: $luas<br>";
-								// echo "Jumlah: $jumlah<br>";
-								// echo "Harga Satuan Perolehan: $harga_beli<br>";
-								// echo "Harga Satuan Revaluasi: $harga_baru<br>";
-								// echo "Asal: $asal<br>";
-								// echo "Kondisi: $kondisi<br>";
 
-								// echo "<br>";
 								array_push($data, array(
 									'kode_satker'    =>  $kode_satker,
 									'kode'  =>  preg_replace("/[^0-9]/", "", $row['A']),
@@ -625,8 +611,8 @@ class Uploads extends CI_Controller {
 									'harga_baru' => $harga_baru,
 									'asal' => $asal,
 									'kondisi' => $kondisi,
-									'luas' => $luas,
-									'kategori' => $kategori
+									'luas' => $luas
+									// 'kategori' => $kategori
 								));
 							}
 						}
@@ -637,14 +623,14 @@ class Uploads extends CI_Controller {
 				// echo "<br>";
 			}
 			// echo "</pre>";
-			$this->db->insert_batch('sarpras', $data);
+			$this->db->insert_batch('tbl_sarpras', $data);
 			// exit;
 		}
 
 		//upload success
 		$this->session->set_flashdata('sarpras', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras']['name'].' berhasil diimport!</div>');
-			//redirect halaman
-		redirect("uploads/v_sarpras"); 
+		//redirect halaman
+		redirect("uploads/v_sarpras");
 	}
 
 	public function sarpras_sulsel() {
@@ -658,7 +644,7 @@ class Uploads extends CI_Controller {
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('sarpras_sulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
-				redirect("uploads/v_sarpras_sulsel"); 
+				redirect("uploads/v_sarpras_sulsel");
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
@@ -680,18 +666,19 @@ class Uploads extends CI_Controller {
 			foreach ($list_sheet as $shit) {
 				$table = strtolower(str_replace(" ", "_", trim($shit)));
 				$kategori = trim($shit);
-				echo "====================<br>";
-				echo "tabel: $table<br>";
-				echo "====================<br>";
+				// echo "====================<br>";
+				// echo "tabel: $table<br>";
+				// echo "====================<br>";
 				$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+				$maxRow = $loadexcel->getSheetByName($shit)->getHighestDataRow() + 1;
 				$stop = false;
 				$num = 1;
 				$nullcc = 0;
 				$luas = 0;
 				$set = false; // buat liat bentuk tabel
 				$tab = 0; // jenis tabel (pake luas, tanpa pake luas)
-				while(!$stop) {
-					$row = $rows[$num++];
+				while(!$stop && $num < $maxRow) {
+					$row = $rows[$num];
 					// print("<pre>".print_r($row,true)."</pre>");
 					if ($row['A'] == NULL) {
 						$nullcc++;
@@ -700,16 +687,111 @@ class Uploads extends CI_Controller {
 						}
 					} else {
 						$nullcc = 0;
-						echo $row['A']."<br>";
+						if (!$set) {
+							if (strpos(strtolower($row['H']), "harga") === 0) {
+								if (strpos(strtolower($row['L']), 'asal') === 0) {
+									// tanah
+									$set = true;
+									$tab = 0;
+								} elseif (strpos(strtolower($row['L']), 'kondisi') === 0) {
+									// aset tak berwujud, aset tetap lainnya, peralatan dan mesin
+									$set = true;
+									$tab = 1;
+								}
+							} elseif (strpos(strtolower($row['H']), "luas") === 0) {
+								if (strpos(strtolower($row['M']), 'asal') === 0) {
+									// gedung dan bangunan
+									$set = true;
+									$tab = 2;
+								} elseif (strpos(strtolower($row['M']), 'kondisi') === 0) {
+									// jaringan, irigasi, jalan dan jembatan
+									$set = true;
+									$tab = 3;
+								}
+							}
+						} elseif (is_numeric($row['B']) && strlen($row['B'] > 4)) {
+							// echo $this->ktt($row['I'])."<br>";
+							$harga_beli = $harga_baru = $asal = $kondisi = "";
+							$jumlah = $this->ktt($row['G']);
+							switch ($tab) {
+								case 0:
+									// tanah
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$asal = $row['L'];
+									$kondisi = $row['M'];
+									break;
+								case 1:
+									// aset tak berwujud, aset tetap lainnya, peralatan dan mesin
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$kondisi = $row['L'];
+									break;
+								case 2:
+									// gedung dan bangunan
+									$luas = $this->ktt($row['H']);
+									$harga_beli = $this->ktt($row['I']);
+									$harga_baru = $this->ktt($row['K']);
+									$asal = $row['M'];
+									$kondisi = $row['N'];
+									break;
+								case 3:
+									// jaringan, irigasi, jalan dan jembatan
+									$luas = $this->ktt($row['H']);
+									$harga_beli = $this->ktt($row['I']);
+									$harga_baru = $this->ktt($row['K']);
+									$kondisi = $row['M'];
+									break;
+							}
+
+							array_push($data, array(
+								'kode_satker'    =>  $kode_satker,
+								'kode'  =>  preg_replace("/[^0-9]/", "", $row['B']),
+								'uraian' => $row['C'],
+								'nup' => $row['D'],
+								'merk' => $row['E'],
+								'tahun' => $row['F'],
+								'jumlah' => $jumlah,
+								'harga_beli' => $harga_beli,
+								'harga_baru' => $harga_baru,
+								'asal' => $asal,
+								'kondisi' => $kondisi,
+								'luas' => $luas
+								// 'kategori' => $kategori
+							));
+
+						}
 					}
+					$num++;
 				}
-				// echo "<br>";
-				// echo "<br>";
-				// echo "<br>";
 			}
+			// print("<pre>".print_r($data,true)."</pre>");exit;
+
+			// $html = "<table border='1'>";
+			// $html .= '<tr>';
+			// foreach($data[0] as $key=>$value){
+			// 	$html .= '<th>' . htmlspecialchars($key) . '</th>';
+			// }
+			// $html .= '</tr>';
+
+			// // data rows
+			// foreach( $data as $key=>$value){
+			// 	$html .= '<tr>';
+			// 	foreach($value as $key2=>$value2){
+			// 		$html .= '<td>' . htmlspecialchars($value2) . '</td>';
+			// 	}
+			// 	$html .= '</tr>';
+			// }
+
+			// // finish table and return it
+
+			// $html .= '</table>';
+			// echo $html;
+			// exit;
+
+
 			// echo "</pre>";
-			// $this->db->insert_batch('sarpras', $data);
-			exit;
+			$this->db->insert_batch('tbl_sarpras', $data);
 		}
 
 		//upload success
@@ -2229,6 +2311,9 @@ class Uploads extends CI_Controller {
 	}
 
 	function ktt($s) {
+		if ($s == "" || !is_numeric(preg_replace('/[ ,.]/', "", $s))) {
+			return "";
+		}
 		$temp = trim($s);
 		$res = $temp;
 		$temp = explode(",", $temp);

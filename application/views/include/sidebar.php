@@ -34,7 +34,7 @@
 			<li class="<?php echo $this->uri->segment(1)=="d_span" || $this->uri->segment(1)=="d_pok" || $this->uri->segment(1)=="d_sas" || $this->uri->segment(2)=="biro"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
-					<i class="fas fa-money-bill-alt"></i> 
+					<i class="fas fa-money-bill-alt"></i>
 					<span>Keuangan</span>
 				</a>
 				<ul class="sub-menu">
@@ -121,14 +121,15 @@
 			<!-- END PERENCANAAN -->
 
 			<!-- SARPRAS -->
-			<li class="has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="d_sarpras"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-building"></i>
 					<span>Sarpras</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="d_sarpras"?"active":"";?>"><a href="<?php echo base_url('d_sarpras');?>">JATINANGOR</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="448302"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/448302";?>">JATINANGOR</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="677024"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677024";?>">SULAWESI SELATAN</a></li>
 				</ul>
 			</li>
 			<!-- END SARPRAS -->

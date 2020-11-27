@@ -7,14 +7,14 @@ class D_sarpras extends CI_Controller {
 		$this->load->model('d_sarpras_model');
 	}
 
-	function index($kampus = NULL) {
+	function index($satker = NULL) {
 		if($this->session->userdata('nip') != NULL) {
-			if ($kampus == NULL) {
+			if ($satker != NULL) {
 				$x['title'] = 'Parent';
-				$data = $this->d_sarpras_model->get_sarpras()->result();
-				// $chart = $this->d_sarpras_model->get_sarpras_year()->result();
-				$chart = $this->d_sarpras_model->get_belanja_tahun()->result();
-				$list_kat = $this->d_sarpras_model->get_kategori()->result();
+				$data = $this->d_sarpras_model->get_sarpras($satker)->result();
+				// $chart = $this->d_sarpras_model->get_sarpras_year($satker)->result();
+				$chart = $this->d_sarpras_model->get_belanja_tahun($satker)->result();
+				$list_kat = $this->d_sarpras_model->get_kategori($satker)->result();
 
 				$chart = json_encode($chart);
 
@@ -31,9 +31,9 @@ class D_sarpras extends CI_Controller {
 					}
 					array_push($tmp, array(
 						'total'			=>  $z['total'],
-						'perolehan'			=>  $z['perolehan'],
+						'perolehan'		=>  $z['perolehan'],
 						'tahun'			=>	$z['tahun'],
-						'kategori'	=>	$z['kategori']
+						'kategori'		=>	$z['kategori']
 					));
 
 				endforeach;

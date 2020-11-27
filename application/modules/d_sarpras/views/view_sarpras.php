@@ -70,30 +70,28 @@
 						</thead>
 						<tbody>
 
-				<?php } else { ?>
-
-							<tr class="gradeA">
-								<td><?php echo $no++; ?></td>
-								<td><?= $x['uraian']; ?></td>
-								<td><?= $x['merk']; ?></td>
-								<td><?= $x['tahun']; ?></td>
-								<?php if ($x['luas'] != 0) { ?>
-									<td><?= number_format($x['luas'], 0, ',', '.'); ?></td>
-									<?php $m = $x['luas']; ?>
-								<?php } else { ?>
-									<td><?= number_format($x['jumlah'], 0, ',', '.'); ?></td>
-									<?php $m = $x['jumlah']; ?>
-								<?php } ?>
-								<td><?= number_format($x['harga_beli'], 0, ',', '.'); ?></td>
-								<?php $tot = $m*$x['harga_beli']; ?>
-								<td><?= number_format($tot, 0, ',', '.'); ?></td>
-								<?php $tot = $m*$x['harga_baru']; ?>
-								<td><?= number_format($tot, 0, ',', '.'); ?></td>
-								<td><?= $x['asal']; ?></td>
-								<td><?= $x['kondisi']; ?></td>
-							</tr>
-
 				<?php } ?>
+
+						<tr class="gradeA">
+							<td><?php echo $no++; ?></td>
+							<td><?= $x['uraian']; ?></td>
+							<td><?= $x['merk']; ?></td>
+							<td><?= $x['tahun']; ?></td>
+							<?php if ($x['luas'] != 0) { ?>
+								<td><?= number_format($x['luas'], 0, ',', '.'); ?></td>
+								<?php $m = $x['luas']; ?>
+							<?php } else { ?>
+								<td><?= number_format($x['jumlah'], 0, ',', '.'); ?></td>
+								<?php $m = $x['jumlah']; ?>
+							<?php } ?>
+							<td><?= number_format($x['harga_beli'], 0, ',', '.'); ?></td>
+							<?php $tot = $m*$x['harga_beli']; ?>
+							<td><?= number_format($tot, 0, ',', '.'); ?></td>
+							<?php $tot = $m*$x['harga_baru']; ?>
+							<td><?= number_format($tot, 0, ',', '.'); ?></td>
+							<td><?= $x['asal']; ?></td>
+							<td><?= $x['kondisi']; ?></td>
+						</tr>
 
 			<?php endforeach; ?>
 
