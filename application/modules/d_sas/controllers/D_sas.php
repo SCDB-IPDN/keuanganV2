@@ -7,6 +7,7 @@ class D_sas extends CI_Controller
     parent::__construct();
     //load chart_model from model
     $this->load->model('d_sas_model');
+    $this->load->model('d_sas_modelbaru');
   }
 
   function index($link = NULL)
@@ -120,10 +121,11 @@ class D_sas extends CI_Controller
       $this->load->view("include/head");
       $this->load->view("include/top-header");
       if ($link == 'coba') {
-        $nyoba = $this->d_sas_model->kampusnyaa()->result();
+        $nyoba = $this->d_sas_modelbaru->get_all_kampus()->result();
         $a['nyoba'] = json_encode($nyoba);
         $this->load->view("view_sas_nangor", $a);
       } else {
+
         $this->load->view("view_sas", $x);
       }
       $this->load->view("include/sidebar");

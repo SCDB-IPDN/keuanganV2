@@ -4,20 +4,19 @@ class D_sas_modelbaru extends CI_Model
 
     public function get_all_kampus()
     {
-        $kampus = $this->db->query("SELECT tbl_satker.nama_satker as nama,  tbl_satker.kode_satker, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN tbl_satker ON tbl_satker.kode_satker = akun_sas.kode_satker ORDER BY akun_sas.kode_satker");
+        $kampus = $this->db->query("SELECT tbl_satker.nama_satker as nama, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN tbl_satker ON tbl_satker.kode_satker = akun_sas.kode_satker ORDER BY akun_sas.kode_satker");
 
         return $kampus;
     }
-
-    public function get_kegiatan($link)
+    public function get_kegiatan($kode)
     {
-        $kegiatan = $this->db->query("SELECT tbl_satker_biro.nama_satker_biro, akun_sas.id_b, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN tbl_satker_biro ON tbl_satker_biro.kode_satker_biro = akun_sas.id_b WHERE akun_sas.kode_satker = $link GROUP BY akun_sas.id_b ORDER BY akun_sas.id_b asc");
+        $kegiatan = $this->db->query("SELECT tbl_satker_biro.nama_satker_biro, akun_sas.id_b, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN tbl_satker_biro ON tbl_satker_biro.kode_satker_biro = akun_sas.id_b WHERE akun_sas.kode_satker = $kode GROUP BY akun_sas.id_b ORDER BY akun_sas.id_b");
         return $kegiatan;
     }
 
-    public function get_output($keg)
+    public function get_output($kegiatan)
     {
-        $output = $this->db->query("SELECT outputnya_sas.ket,outputnya_sas.id_c, akun_sas.id_c, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN outputnya_sas ON outputnya_sas.id_c = akun_sas.id_c WHERE akun_sas.id_b = $keg GROUP BY akun_sas.id_c ORDER BY akun_sas.id_c ");
+        $output = $this->db->query("SELECT outputnya_sas.ket,outputnya_sas.id_c, akun_sas.id_c, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN outputnya_sas ON outputnya_sas.id_c = akun_sas.id_c WHERE akun_sas.id_b = $kegiatan GROUP BY akun_sas.id_c ORDER BY akun_sas.id_c ");
         return $output;
     }
 
