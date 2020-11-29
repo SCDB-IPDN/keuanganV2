@@ -1,16 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-class D_sas extends CI_Controller{
-  function __construct(){
+defined('BASEPATH') or exit('No direct script access allowed');
+class D_sas extends CI_Controller
+{
+  function __construct()
+  {
     parent::__construct();
-      //load chart_model from model
+    //load chart_model from model
     $this->load->model('d_sas_model');
   }
 
   function index($link = NULL)
   {
-    if($this->session->userdata('nip') != NULL)
-    {
+    if ($this->session->userdata('nip') != NULL) {
 
       if ($link == NULL) {
         // list semua kampus
@@ -28,58 +29,58 @@ class D_sas extends CI_Controller{
         $data = array();
         switch (strlen($link)) {
           case 15:
-          $data = $this->d_sas_model->get_all_output($link)->result();
+            $data = $this->d_sas_model->get_all_output($link)->result();
             // output, link ada 3 bagian
             // 1: kampus
             // 2: biro
             // 3: bagian/unit
-          $temp = explode(".", $link);
-          $kampus = $temp[0];
-          $biro = $temp[1];
-          $q = $this->d_sas_model->get_nama_kampus($kampus);
-          $x['kampus'] = $q['alias'];
-          $x['klink'] = $q['kode_satker'];
-          $q = $this->d_sas_model->get_nama_biro($biro);
-          if (isset($q)) {
-            $x['biro'] = $q['alias'];
-            $x['blink'] = $x['klink'].".".$q['kode_satker_biro'];
-          }
-          $q = $this->d_sas_model->get_nama_unit($link);
-          $x['unit'] = $q['ket'];
-          $x['ulink'] = $link;
-          break;
+            $temp = explode(".", $link);
+            $kampus = $temp[0];
+            $biro = $temp[1];
+            $q = $this->d_sas_model->get_nama_kampus($kampus);
+            $x['kampus'] = $q['alias'];
+            $x['klink'] = $q['kode_satker'];
+            $q = $this->d_sas_model->get_nama_biro($biro);
+            if (isset($q)) {
+              $x['biro'] = $q['alias'];
+              $x['blink'] = $x['klink'] . "." . $q['kode_satker_biro'];
+            }
+            $q = $this->d_sas_model->get_nama_unit($link);
+            $x['unit'] = $q['ket'];
+            $x['ulink'] = $link;
+            break;
           case 11:
             // pasti dari jatinangor
             // $page = $this->d_sas_model->get_biro($link)->result();
-          $data = $this->d_sas_model->get_all_unit($link)->result();
+            $data = $this->d_sas_model->get_all_unit($link)->result();
             // bagian/unit, link ada 2 bagian
             // 1: kampus
             // 2: biro
-          $temp = explode(".", $link);
-          $kampus = $temp[0];
-          $biro = $temp[1];
-          $q = $this->d_sas_model->get_nama_kampus($kampus);
-          $x['kampus'] = $q['alias'];
-          $x['klink'] = $q['kode_satker'];
-          $q = $this->d_sas_model->get_nama_biro($biro);
-          $x['biro'] = $q['alias'];
-          $x['blink'] = $link;
-          break;
+            $temp = explode(".", $link);
+            $kampus = $temp[0];
+            $biro = $temp[1];
+            $q = $this->d_sas_model->get_nama_kampus($kampus);
+            $x['kampus'] = $q['alias'];
+            $x['klink'] = $q['kode_satker'];
+            $q = $this->d_sas_model->get_nama_biro($biro);
+            $x['biro'] = $q['alias'];
+            $x['blink'] = $link;
+            break;
           case 6:
             // kalo jatinangor, show biro
             // kalo regional, show unit/bagian
-          $q = $this->d_sas_model->get_nama_kampus($link);
-          $x['kampus'] = $q['alias'];
-          $x['klink'] = $q['kode_satker'];
-          if ($link != 448302) {
+            $q = $this->d_sas_model->get_nama_kampus($link);
+            $x['kampus'] = $q['alias'];
+            $x['klink'] = $q['kode_satker'];
+            if ($link != 448302) {
               // regional ke unit
-            $data = $this->d_sas_model->get_all_unit_satker($link)->result();
-            $x['bag'] = "unit";
-          } else {
+              $data = $this->d_sas_model->get_all_unit_satker($link)->result();
+              $x['bag'] = "unit";
+            } else {
               // masuk ke biro jatinangor
-            $data = $this->d_sas_model->get_all_biro($link)->result();
-          }
-          break;
+              $data = $this->d_sas_model->get_all_biro($link)->result();
+            }
+            break;
         }
         $x['data'] = json_encode($data);
       }
@@ -118,31 +119,18 @@ class D_sas extends CI_Controller{
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
-      if($link == 'coba'){
+      if ($link == 'coba') {
         $nyoba = $this->d_sas_model->kampusnyaa()->result();
-        // $a['nyoba'] = $nyoba;
         $a['nyoba'] = json_encode($nyoba);
-        // $bb = explode(" ", $shit);
-        // $cc = $bb[1];
-
-        $this->load->view("view_sas_nangor",$a);
-      }elseif(strlen($link) == 4){
-        $nyoba = $this->d_sas_model->biroo($link)->result();
-        // $a['nyoba'] = $nyoba;
-       $a['nyoba'] = json_encode($nyoba);
-       $bb = explode(" ", $shit);
-       $cc = $bb[1];
-
-       $this->load->view("view_sas_nangor",$a);
-
-     }else{
-      $this->load->view("view_sas",$x);
+        $this->load->view("view_sas_nangor", $a);
+      } else {
+        $this->load->view("view_sas", $x);
+      }
+      $this->load->view("include/sidebar");
+      $this->load->view("include/panel");
+      $this->load->view("include/footer");
+    } else {
+      redirect("user");
     }
-    $this->load->view("include/sidebar");
-    $this->load->view("include/panel");
-    $this->load->view("include/footer");
-  }else{
-    redirect("user");
   }
-}
 }
