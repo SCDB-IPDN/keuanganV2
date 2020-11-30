@@ -2,7 +2,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="<?php echo base_url('d_span');?>">KEMENTERIAN DALAM NEGERI</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('d_span');?>"> PERINGKAT SERAPAN ANGGARAN</a></li>
 	</ol>
 	<h2 class="page-header">&nbsp;</h2>
 	<div class="row">
@@ -18,12 +18,12 @@
 				</div>
 				<div class ="table-responsive">
 					<div class="panel-body">
-						<h4 class="text-center">URUTAN REALISASI SERAPAN ANGGARAN KEMENTERIAN DALAM NEGERI</h4>
+						<h4 class="text-center">REALISASI SERAPAN ANGGARAN INSTITUT PEMERINTAHAN DALAM NEGERI</h4>
 						<h4 class="text-center">TAHUN <?php echo date("Y") ?></h4>
 						<table id="data-table-buttons" class="table table-striped table-bordered" width="100%">
 							<thead valign="middle">
 								<tr align="center">
-									<th rowspan="2" style="vertical-align: middle !important">#</th>
+									<th rowspan="2" style="vertical-align: middle !important">NO</th>
 									<th rowspan="2" style="vertical-align: middle !important">UNIT KERJA</th>
 									<th rowspan="2" style="vertical-align: middle !important">KETERANGAN</th>
 									<th colspan="3" style="vertical-align: middle !important">JENIS BELANJA</th>

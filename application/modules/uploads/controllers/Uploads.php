@@ -134,8 +134,8 @@ class Uploads extends CI_Controller {
 				// var_dump($sheetData[$i]['2'] != 1286);
 				if($sheetData[$i]['2'] != NULL && $sheetData[$i]['2'] != 1286 && $sheetData[$i]['2'] != 1292 && $sheetData[$i]['2'] != 1293 && $sheetData[$i]['2'] != 1294 && $sheetData[$i]['2'] != 1295){
 					array_push($data, array(
-						'kode_satker'      => $sheetData[$i]['2'],
-						'nama_satker'      => $sheetData[$i]['3'],
+						'kode_belanja'      => $sheetData[$i]['2'],
+						'nama_belanja'      => $sheetData[$i]['3'],
 						'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
 						'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
 						'persentase_bp'      => $sheetData[$i]['7'],
@@ -157,8 +157,8 @@ class Uploads extends CI_Controller {
 			for($i = 11;$i < 15;$i++)
 			{
 				array_push($biro, array(
-					'kode_satker_biro'      => $sheetData[$i]['2'],
-					'nama_satker_biro'      => $sheetData[$i]['3'],
+					'kode_belanja_biro'      => $sheetData[$i]['2'],
+					'nama_belanja_biro'      => $sheetData[$i]['3'],
 					'pagu_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['4']),
 					'realisasi_bp'      => preg_replace("/[^0-9]/", "", $sheetData[$i]['5']),
 					'persentase_bp'      => $sheetData[$i]['7'],
@@ -200,21 +200,21 @@ class Uploads extends CI_Controller {
 	public function satkerspan() {
 
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['satker']['name']) && in_array($_FILES['satker']['type'], $file_mimes)) {
+		if(isset($_FILES['belanja']['name']) && in_array($_FILES['belanja']['type'], $file_mimes)) {
 
-			$arr_file = explode('.', $_FILES['satker']['name']);
+			$arr_file = explode('.', $_FILES['belanja']['name']);
 			$extension = end($arr_file);
 
 			if($extension != 'xlsx') {
-				$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
 				redirect("uploads/v_span"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
-			$loadexcel = $reader->load($_FILES['satker']['tmp_name']);
-			// echo $_FILES['satker']['name'];
+			$loadexcel = $reader->load($_FILES['belanja']['tmp_name']);
+			// echo $_FILES['belanja']['name'];
 
 			$shit = $loadexcel->getActiveSheet();
 			$rows = $shit->toArray(null, true, true ,true);
@@ -266,6 +266,22 @@ class Uploads extends CI_Controller {
                             // IPDN KAMPUS PAPUA
                             $add = true;
 							break;
+							case 1294:
+							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
+							$add = true;
+							break;
+							case 1293:
+							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
+							$add = true;
+							break;
+							case 1286:
+							// Penyelenggaraan Administrasin Kerjasama dan Hukum
+							$add = true;
+							break;
+							case 1292:
+							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
+							$add = true;
+							break;
 						}
 						if ($add) {
                             array_push($data, array(
@@ -295,104 +311,105 @@ class Uploads extends CI_Controller {
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
-		} 
-		// $this->db->insert_truncate('tbl_span');
-		$this->db->insert_batch('tbl_span_rank', $data);
-		//upload success
-		$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
-		//redirect halaman
-		redirect("uploads/v_span");
-	}
-
-	public function satkerspanbiro() {
-		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['belanja']['name']) && in_array($_FILES['belanja']['type'], $file_mimes)) {
-
-			$arr_file = explode('.', $_FILES['belanja']['name']);
-			$extension = end($arr_file);
-
-			if($extension != 'xlsx') {
-				$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
-				redirect("uploads/v_span"); 
-			} else {
-				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-			}
-
-			$loadexcel = $reader->load($_FILES['belanja']['tmp_name']);
-			// echo $_FILES['satker']['name'];
-
-			$shit = $loadexcel->getActiveSheet();
-			$rows = $shit->toArray(null, true, true ,true);
-			$biro = array();
-			
-			$date = new DateTime();
-			$datee = $date->format('Y-m-d');
-
-			
-			foreach ($rows as $row) {
-			// echo $row ['B'];
-			$add = false;
-			$nama = "";
-			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-			if (count($tmp) > 0) {
-				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-                        $nama = $txt[0];
-                        switch ($tmp[0]) {
-							case 1286:
-							// PENYELENGGARAAN ADMINISTRASI KERJASAMA DAN HUKUM
-							$add = true;
-							break;
-                            case 1292:
-                            // PENYELENGGARAAN ADMINISTRASI AKADEMIK DAN PERENCANAAN
-                            $add = true;
-                            break;
-                            case 1293:
-                            // PENYELENGGARAAN ADMINISTRASI KEPRAJAAN DAN KEMAHASISWAAN
-                            $add = true;
-                            break;
-                            case 1294:
-                            // PENGELOLAAN ADMINISTRASI UMUM DAN KEUANGAN PENDIDIKA
-                            $add = true;
-                            break;	
-						}
-						if ($add) {
-                            array_push($biro, array(
-								'kode_satker'    =>  $tmp[0],
-                                'nama_satker'  =>  $txt[0],
-                                'pagu_bp'      => $row['C'],
-                                'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => substr($row['E'], 1, 6),
-                                'pagu_bb'      => $row['G'],
-                                'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => substr($row['I'], 1, 6),
-                                'pagu_bm'   => $row['K'],
-                                'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => substr($row['M'], 1, 6),
-                                'pagu_t'   => $row['AM'],
-                                'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => substr($row['AO'], 1, 6),
-								'sisa'   => $row['AP'],
-								'created_date' => $datee,
-								
-                    ));
-                }	
-			}
-		}
-
-			// print("<pre>".print_r($data,true)."</pre>");
-			// print("<pre>".print_r($pelatihan,true)."</pre>");
-			// exit;
-		}var_dump($biro);
+		}var_dump($data);
 		exit;
 		// $this->db->insert_truncate('tbl_span');
-		$this->db->insert_batch('tbl_span_biro', $biro);
+		$this->db->insert_batch('tbl_span_rank', $data);
 		//upload success
 		$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_span");
-
 	}
+
+	// public function belanjaspanbiro() {
+	// 	$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	// 	if(isset($_FILES['belanja']['name']) && in_array($_FILES['belanja']['type'], $file_mimes)) {
+
+	// 		$arr_file = explode('.', $_FILES['belanja']['name']);
+	// 		$extension = end($arr_file);
+
+	// 		if($extension != 'xlsx') {
+	// 			$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+	// 			redirect("uploads/v_span"); 
+	// 		} else {
+	// 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+	// 		}
+
+	// 		$loadexcel = $reader->load($_FILES['belanja']['tmp_name']);
+	// 		// echo $_FILES['belanja']['name'];
+
+	// 		$shit = $loadexcel->getActiveSheet();
+	// 		$rows = $shit->toArray(null, true, true ,true);
+	// 		$biro = array();
+			
+	// 		$date = new DateTime();
+	// 		$datee = $date->format('Y-m-d');
+
+			
+	// 		foreach ($rows as $row) {
+	// 		// echo $row ['B'];
+	// 		$add = false;
+	// 		$nama = "";
+	// 		preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+	// 		if (count($tmp) > 0) {
+	// 			preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+    //                     $nama = $txt[0];
+    //                     switch ($tmp[0]) {
+	// 						case 1286:
+	// 						// PENYELENGGARAAN ADMINISTRASI KERJASAMA DAN HUKUM
+	// 						$add = true;
+	// 						break;
+    //                         case 1292:
+    //                         // PENYELENGGARAAN ADMINISTRASI AKADEMIK DAN PERENCANAAN
+    //                         $add = true;
+    //                         break;
+    //                         case 1293:
+    //                         // PENYELENGGARAAN ADMINISTRASI KEPRAJAAN DAN KEMAHASISWAAN
+    //                         $add = true;
+    //                         break;
+    //                         case 1294:
+    //                         // PENGELOLAAN ADMINISTRASI UMUM DAN KEUANGAN PENDIDIKA
+    //                         $add = true;
+    //                         break;	
+	// 					}
+	// 					if ($add) {
+    //                         array_push($biro, array(
+	// 							'kode_belanja'    =>  $tmp[0],
+    //                             'nama_belanja'  =>  $txt[0],
+    //                             'pagu_bp'      => $row['C'],
+    //                             'realisasi_bp'      => $row['D'],
+    //                             'persentase_bp'      => substr($row['E'], 1, 6),
+    //                             'pagu_bb'      => $row['G'],
+    //                             'realisasi_bb'   => $row['H'],
+    //                             'persentase_bb'   => substr($row['I'], 1, 6),
+    //                             'pagu_bm'   => $row['K'],
+    //                             'realisasi_bm'   => $row['L'],
+    //                             'persentase_bm'   => substr($row['M'], 1, 6),
+    //                             'pagu_t'   => $row['AM'],
+    //                             'realisasi_t'   => $row['AN'],
+    //                             'persentase_t'   => substr($row['AO'], 1, 6),
+	// 							'sisa'   => $row['AP'],
+	// 							'created_date' => $datee,
+								
+    //                 ));
+    //             }	
+	// 		}
+	// 	}
+
+	// 		// print("<pre>".print_r($data,true)."</pre>");
+	// 		// print("<pre>".print_r($pelatihan,true)."</pre>");
+	// 		// exit;
+	// 	}var_dump($biro);
+	// 	exit;
+	// 	// $this->db->insert_truncate('tbl_span');
+	// 	$this->db->insert_batch('tbl_span_biro', $biro);
+	// 	//upload success
+	// 	$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+	// 	//redirect halaman
+	// 	redirect("uploads/v_span");
+
+	// }
 
 
 	public function pok() {
@@ -400,7 +417,7 @@ class Uploads extends CI_Controller {
 		// error_reporting(E_ALL);
 		// ini_set('display_errors', TRUE);
 		// ini_set('display_startup_errors', TRUE);
-		// satker kampus
+		// belanja kampus
 		// 448302 IPDN KAMPUS JATINANGOR
 		// 352593 IPDN KAMPUS JAKARTA
 		// 677010 IPDN KAMPUS SULAWESI UTARA
@@ -673,7 +690,7 @@ class Uploads extends CI_Controller {
 			$kategori = "";
 			$set = false;
 			$data = array();
-			$kode_satker = 448302;
+			$kode_belanja = 448302;
 			// echo "<pre>";
 
 			foreach ($list_sheet as $shit) {
@@ -736,7 +753,7 @@ class Uploads extends CI_Controller {
 
 								// echo "<br>";
 								array_push($data, array(
-									'kode_satker'    =>  $kode_satker,
+									'kode_belanja'    =>  $kode_belanja,
 									'kode'  =>  $row['A'],
 									'uraian' => $row['B'],
 									'nup' => $row['C'],
@@ -793,7 +810,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$bag = '';
 			$id_c = 0;
-			$satker_jatinangor = 448302;
+			$belanja_jatinangor = 448302;
 
 			foreach($sheet as $row){
 				if($numrow > 1){
@@ -827,29 +844,29 @@ class Uploads extends CI_Controller {
 						$cunit++;
 						$unit = $id_b."<br>".(($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit).$row['AI']."<br>";
 						$temp = explode(".", $row['AI']);
-						$satker_biro = $temp[0];
+						$belanja_biro = $temp[0];
 						// echo $unit;
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						// echo $id_c;
 						$ket = trim($row['AI']);
 						$temp = explode(".", $ket);
-						$satker_biro = $temp[0];
+						$belanja_biro = $temp[0];
 						$ket = substr($ket, 9);
 						echo "<br><br>";
 
 						array_push($dataunit, array(
-							'kode_satker' => $satker_jatinangor,
-							'id_b'      => $satker_biro,
+							'kode_belanja' => $belanja_jatinangor,
+							'id_b'      => $belanja_biro,
 							'id_c'      =>$id_c,
 							'ket'      => $ket
 						));
-						// echo "$satker_biro $id_c -- $ket1<br>";
+						// echo "$belanja_biro $id_c -- $ket1<br>";
 						// $this->db->truncate('output');
 						// $this->db->insert_batch('output', $data);
 
 
-						// $sql1 = "INSERT INTO unit values (".$satker_biro.",".$id_c.",'".$ket."')";
+						// $sql1 = "INSERT INTO unit values (".$belanja_biro.",".$id_c.",'".$ket."')";
 						// // echo $sql1."<br><br>";
 						// // $this->db->truncate($sql1);
 						// $this->db->query($sql1);
@@ -859,15 +876,15 @@ class Uploads extends CI_Controller {
 						$ket1 = trim($row['AI']);
 						$ket1 = substr($ket1, 4);
 						array_push($dataoutput, array(
-							'kode_satker' => $satker_jatinangor,
-							'id_b'      => $satker_biro,
+							'kode_belanja' => $belanja_jatinangor,
+							'id_b'      => $belanja_biro,
 							'id_c'      =>$id_c,
 							// 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
 							'ket'      => $ket1
 						));
-						// echo "$satker_biro $id_c -- $ket1<br>";
+						// echo "$belanja_biro $id_c -- $ket1<br>";
 						// $this->db->truncate('output');
 						// $this->db->insert_batch('output', $data);
 
@@ -920,7 +937,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_sulsel = 677024;
+			$belanja_sulsel = 677024;
 
 			foreach($sheet as $row){
 				if($numrow > 7){
@@ -931,20 +948,20 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 
-						 // $sql1 = "INSERT INTO unit_sas values (".$satker_sulsel.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+						 // $sql1 = "INSERT INTO unit_sas values (".$belanja_sulsel.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 						 // echo "$sql1";
 						 // echo "<br>";
 						 // $this->db->query($sql1);
 
 						$unitsulsel = array();
 						array_push($unitsulsel, array(
-							'kode_satker'      => $satker_sulsel,
+							'kode_belanja'      => $belanja_sulsel,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
@@ -963,8 +980,8 @@ class Uploads extends CI_Controller {
 
 						$outputsulsel = array();
 						array_push($outputsulsel, array(
-							'kode_satker' => $satker_sulsel,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_sulsel,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
@@ -973,7 +990,7 @@ class Uploads extends CI_Controller {
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsulsel);
 
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sulsel.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+					   // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_sulsel.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
 					   // echo "$sql2";
 					   // echo "<br>";
 					   // $this->db->query($sql2);
@@ -1019,7 +1036,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_kalbar = 683070;
+			$belanja_kalbar = 683070;
 
 			foreach($sheet as $row){
 				if($numrow > 4){
@@ -1030,28 +1047,28 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
-						// $sql1 = "INSERT INTO unit_sas values (NULL,".$satker_kalbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+						// $sql1 = "INSERT INTO unit_sas values (NULL,".$belanja_kalbar.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 						// echo "$sql1";
 						// echo "<br>";
 						// $this->db->query($sql1);
 
 						$unitkalbar = array();
 						array_push($unitkalbar, array(
-							'kode_satker'      => $satker_kalbar,
+							'kode_belanja'      => $belanja_kalbar,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitkalbar);
 
 						//  array_push($dataunit, array(
-						//     'kode_satker' => $satker_sulsel,
+						//     'kode_belanja' => $belanja_sulsel,
 						//     'id_c'      =>$id_c,
-						//     'id_b'      => $satker_biro,
+						//     'id_b'      => $belanja_biro,
 						//     'ket'      => $ket1
 						// ));
 						// echo $id_c;
@@ -1068,8 +1085,8 @@ class Uploads extends CI_Controller {
 
 						$outputkalbar = array();
 						array_push($outputkalbar, array(
-							'kode_satker' => $satker_kalbar,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_kalbar,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
@@ -1078,7 +1095,7 @@ class Uploads extends CI_Controller {
 						// exit;
 						$this->db->insert_batch('output_sas', $outputkalbar);
 
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+					   // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_kalbar.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
 					   // echo "$sql2";
 					   // echo "<br>";
 					   // $this->db->query($sql2);
@@ -1123,7 +1140,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_ntb = 683084;
+			$belanja_ntb = 683084;
 
 			foreach($sheet as $row){
 				if($numrow > 6){
@@ -1134,20 +1151,20 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitntb = array();
 						array_push($unitntb, array(
-							'kode_satker'      => $satker_ntb,
+							'kode_belanja'      => $belanja_ntb,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitntb);
-					// $sql1 = "INSERT INTO unit_sas values (".$satker_ntb.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+					// $sql1 = "INSERT INTO unit_sas values (".$belanja_ntb.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 					// echo "$sql1";
 					// echo "<br>";
 					// $this->db->query($sql1);
@@ -1163,8 +1180,8 @@ class Uploads extends CI_Controller {
 
 						$outputntb = array();
 						array_push($outputntb, array(
-							'kode_satker' => $satker_ntb,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_ntb,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['AC']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AD']),
@@ -1172,7 +1189,7 @@ class Uploads extends CI_Controller {
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputntb);
-				 // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_ntb.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
+				 // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_ntb.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
 				 // echo "$sql2";
 				 // echo "<br>";
 				 // $this->db->query($sql2);
@@ -1217,7 +1234,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_papua = 683091;
+			$belanja_papua = 683091;
 
 			foreach($sheet as $row){
 				if($numrow > 6){
@@ -1228,19 +1245,19 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitpapua = array();
 						array_push($unitpapua, array(
-							'kode_satker'      => $satker_papua,
+							'kode_belanja'      => $belanja_papua,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitpapua);
-						// $sql1 = "INSERT INTO unit_sas values (".$satker_papua.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+						// $sql1 = "INSERT INTO unit_sas values (".$belanja_papua.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 						// echo "$sql1";
 						// echo "<br>";
 						// $this->db->query($sql1);
@@ -1255,8 +1272,8 @@ class Uploads extends CI_Controller {
 						$realisasi = $row['C'];
 						$outputpapua = array();
 						array_push($outputpapua, array(
-							'kode_satker' => $satker_papua,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_papua,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
@@ -1264,7 +1281,7 @@ class Uploads extends CI_Controller {
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputpapua);
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_papua.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+					   // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_papua.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
 					   // echo "$sql2";
 					   // echo "<br>";
 					   // $this->db->query($sql2);
@@ -1311,7 +1328,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_sulut = 677010;
+			$belanja_sulut = 677010;
 
 			foreach($sheet as $row){
 				if($numrow > 1){
@@ -1322,20 +1339,20 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitsulut = array();
 						array_push($unitsulut, array(
-							'kode_satker'  => $satker_sulut,
+							'kode_belanja'  => $belanja_sulut,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitsulut);
-					// $sql1 = "INSERT INTO unit_sas values (".$satker_sulut.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+					// $sql1 = "INSERT INTO unit_sas values (".$belanja_sulut.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 					// echo "$sql1";
 					// echo "<br>";
 					// $this->db->query($sql1);
@@ -1350,8 +1367,8 @@ class Uploads extends CI_Controller {
 						$realisasi = $row['C'];
 						$outputsulut = array();
 						array_push($outputsulut, array(
-							'kode_satker' => $satker_sulut,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_sulut,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
@@ -1359,7 +1376,7 @@ class Uploads extends CI_Controller {
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsulut);
-				 // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sulut.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+				 // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_sulut.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
 				 // echo "$sql2";
 				 // echo "<br>";
 				 // $this->db->query($sql2);
@@ -1402,7 +1419,7 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_sumbar = 677045;
+			$belanja_sumbar = 677045;
 
 
 			foreach($sheet as $row){
@@ -1414,20 +1431,20 @@ class Uploads extends CI_Controller {
 					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
+						$belanja_biro = explode(".", $temp[0]);
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						$unitsumbar = array();
 						array_push($unitsumbar, array(
-							'kode_satker'  => $satker_sumbar,
+							'kode_belanja'  => $belanja_sumbar,
 							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
+							'id_b'      => $belanja_biro[0],
 							'ket'      => $ket
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitsumbar);
 
-						// $sql1 = "INSERT INTO unit_sas values (".$satker_sumbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
+						// $sql1 = "INSERT INTO unit_sas values (".$belanja_sumbar.",".$id_c.",".$belanja_biro[0].",'".$ket."')";
 						// echo "$sql1";
 						// echo "<br>";
 						// $this->db->query($sql1);
@@ -1443,8 +1460,8 @@ class Uploads extends CI_Controller {
 						$realisasi = $row['C'];
 						$outputsumbar = array();
 						array_push($outputsumbar, array(
-							'kode_satker' => $satker_sumbar,
-							'id_b'      => $satker_biro[0],
+							'kode_belanja' => $belanja_sumbar,
+							'id_b'      => $belanja_biro[0],
 							'id_c'      => $id_c,
 							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
@@ -1452,7 +1469,7 @@ class Uploads extends CI_Controller {
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputsumbar);
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sumbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+					   // $sql2 = "INSERT INTO output_sas values (NULL,".$belanja_sumbar.",".$belanja_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
 					   // echo "$sql2";
 					   // echo "<br>";
 					   // $this->db->query($sql2);

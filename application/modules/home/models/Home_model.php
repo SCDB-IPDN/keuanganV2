@@ -194,6 +194,12 @@ class Home_model extends CI_Model{
 
     return $result;
   }
+  public function angkatan_praja()
+  {
+    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja")->result();
+
+    return $result;
+  }
   
   
 }
