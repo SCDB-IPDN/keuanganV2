@@ -1,16 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-class D_sas extends CI_Controller{
-  function __construct(){
+defined('BASEPATH') or exit('No direct script access allowed');
+class D_sas extends CI_Controller
+{
+  function __construct()
+  {
     parent::__construct();
-      //load chart_model from model
+    //load chart_model from model
     $this->load->model('d_sas_model');
+    $this->load->model('d_sas_modelbaru');
   }
 
   function index($link = NULL)
   {
-    if($this->session->userdata('nip') != NULL)
-    {
+    if ($this->session->userdata('nip') != NULL) {
+
       if ($link == NULL) {
         // list semua kampus
         // $x['title'] = "test";
@@ -41,7 +44,7 @@ class D_sas extends CI_Controller{
             $q = $this->d_sas_model->get_nama_biro($biro);
             if (isset($q)) {
               $x['biro'] = $q['alias'];
-              $x['blink'] = $x['klink'].".".$q['kode_satker_biro'];
+              $x['blink'] = $x['klink'] . "." . $q['kode_satker_biro'];
             }
             $q = $this->d_sas_model->get_nama_unit($link);
             $x['unit'] = $q['ket'];
@@ -117,32 +120,19 @@ class D_sas extends CI_Controller{
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
-      $this->load->view("view_sas",$x);
+      if ($link == 'coba') {
+        $nyoba = $this->d_sas_modelbaru->get_all_kampus()->result();
+        $a['nyoba'] = json_encode($nyoba);
+        $this->load->view("view_sas_nangor", $a);
+      } else {
+
+        $this->load->view("view_sas", $x);
+      }
       $this->load->view("include/sidebar");
       $this->load->view("include/panel");
       $this->load->view("include/footer");
-    }else{
+    } else {
       redirect("user");
     }
   }
-
-  function coba()
-    {
-          if($_SESSION['nip'])
-          {
-               $data = $this->d_sas_model->kampusnyaa()->result();
-
-               $x['data'] = $data;
-               $x['chart'] = json_encode($data);
-          
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('view_sas_nangor', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
-          }else{
-               redirect("user");
-          }
-    }
 }

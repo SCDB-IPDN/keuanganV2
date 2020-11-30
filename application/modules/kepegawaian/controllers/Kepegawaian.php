@@ -269,9 +269,11 @@ class Kepegawaian extends CI_Controller{
           {
                $data = $this->kepegawaian_model->get_all_thl()->result();
                $tp = $this->kepegawaian_model->get_pendidikan();
+               $ns = $this->kepegawaian_model->get_namasatker();
 
                $x['data'] = $data;
                $x['tp'] = $tp;
+               $x['ns'] = $ns;
           
                $this->load->view("include/head");
                $this->load->view("include/top-header");
@@ -291,6 +293,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
           $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
+          $input_data['nama_satker'] = $this->input->post('nama_satker', true);
 
           $result = $this->kepegawaian_model->tambah_thl($input_data);
 
@@ -311,6 +314,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
           $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
+          $input_data['nama_satker'] = $this->input->post('nama_satker', true);
 
           $result = $this->kepegawaian_model->edit_thl($input_data);
 
