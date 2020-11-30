@@ -20,37 +20,19 @@
                 <div class="panel-body bg-white">
                     <div class="card border-0 bg-white text-black text-truncate mb-4">
                         <div class="card-body">
-							    <div class="row">
+                            <div class="row">
                                 <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('praja') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/praja" enctype="multipart/form-data">
+                                    <?php echo $this->session->flashdata('dosen') ?>
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/dosen" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL PRAJA ANGKATAN 31</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL DOSEN</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="praja" type="file" name="praja" class="form-control">
+                                            <input for="dosen" type="file" name="dosen" class="form-control">
                                         </div>
 
-                                        <button id="praja" type="submit" class="btn btn-success">UPLOAD REKAP PRAJA</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                                <div class="row">
-                                <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('prajabaru') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/prajabaru" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL PRAJA ANGKATAN 28,29,30 </label>
-                                            <span class="ml-2">
-                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
-                                            </span>
-                                            <input for="prajabaru" type="file" name="prajabaru" class="form-control">
-                                        </div>
-
-                                        <button id="prajabaru" type="submit" class="btn btn-success">UPLOAD REKAP PRAJA</button>
+                                        <button id="dosen" type="submit" class="btn btn-success">UPLOAD REKAP DOSEN</button>
                                     </form>
                                 </div>
                             </div>

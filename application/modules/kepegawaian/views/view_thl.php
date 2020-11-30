@@ -43,8 +43,9 @@
                         <th>Nama</th>
                         <th>Tempat Lahir</th>
                         <th>Tanggal Lahir</th>
-                        <th>Dik</th>
+                        <th>Pendidikan</th>
                         <th>Penugasan</th>
+                        <th>Satuan Kerja</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -62,6 +63,7 @@
                             <td><?= date('d/m/Y', strtotime($row->tanggal_lahir)) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : date('d/m/Y', strtotime($row->tanggal_lahir)) ?></td>
                             <td><?= $row->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->dik ?></td>
                             <td><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
+                            <td><?= $row->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_satker ?></td>
                             <?php if($this->session->userdata('role') == 'Admin'){?>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editthl<?php echo $row->id_thl;?>"><i class="fa fas fa-edit"></i></a>
@@ -100,7 +102,7 @@
                                                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
                                                     </div>
                                                     <div class="col-sm">
-                                                        <label class="col-form-label">DIK:</label>
+                                                        <label class="col-form-label">Pendidikan:</label>
                                                         <select class="form-control" id="dik" name="dik" required>
                                                             <option disabled selected> Pilih </option>
                                                             <?php foreach($tp as $rows){ ?>
@@ -118,6 +120,19 @@
                                                 <label class="col-form-label">Penugasan:</label>
                                                 <input type="text" class="form-control" id="penugasan" name="penugasan" value="<?php echo $row->penugasan;?>" placeholder="Penugasan.." required>
                                             </div>
+                                            <!-- <div class="col-sm"> -->
+                                                        <label class="col-form-label">Satuan kerja:</label>
+                                                        <select class="form-control" id="nama_satker" name="nama_satker" required>
+                                                            <option disabled selected> Pilih </option>
+                                                            <?php foreach($ns as $rows){ ?>
+                                                                <?php if($rows->nama_satker == $row->nama_satker){?>
+                                                                <option value="<?php echo $rows->nama_satker ?>" selected><?php echo $rows->nama_satker ?></option>
+                                                                <?php }else{ ?>
+                                                                <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
+                                                                <?php } ?>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
@@ -193,7 +208,7 @@
                                     <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
                                 </div>
                                 <div class="col-sm">
-                                    <label class="col-form-label">DIK:</label>
+                                    <label class="col-form-label">Pendidikan:</label>
                                     <select class="form-control" id="dik" name="dik" required>
                                         <option disabled selected> Pilih </option>
                                         <?php foreach($tp as $rows){?>
@@ -206,6 +221,15 @@
                         <div class="form-group">
                             <label class="col-form-label">Penugasan:</label>
                             <input type="text" class="form-control" id="penugasan" name="penugasan" placeholder="Penugasan.." required>
+                        </div>
+                        <!-- <div class="col-sm"> -->
+                                <label class="col-form-label">Satuan Kerja:</label>
+                                <select class="form-control" id="nama_satker" name="nama_satker" required>
+                                    <option disabled selected> Pilih </option>
+                                    <?php foreach($ns as $rows){?>
+                                        <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
+                                    <?php } ?>
+                                </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
