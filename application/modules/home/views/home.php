@@ -171,7 +171,7 @@
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_dosen ?>"><?php echo $total_dosen ?></span> DOSEN</h2>
+							<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $dosen[0]->total; ?>"><?php echo $dosen[0]->total; ?></span> DOSEN</h2>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
@@ -179,20 +179,11 @@
 						<br><br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-								ASISTEN AHLI
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								GURU BESAR
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->asisten_ahli; ?></span></div>
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
-								LEKTOR
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -206,11 +197,20 @@
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-								GURU BESAR
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								LEKTOR
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								ASISTEN AHLI
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->asisten_ahli; ?></span></div>
 							</div>
 						</div>
 					</div>
