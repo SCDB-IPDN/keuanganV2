@@ -12,6 +12,11 @@ class Kepegawaian_model extends CI_Model{
     $tingkat = $this->db->query("SELECT * FROM tbl_pendidikan")->result();
     return $tingkat;
   }
+  function get_namasatker()
+	{   
+    $nama_satker = $this->db->query("SELECT * FROM tbl_satker")->result();
+    return $nama_satker;
+  }
 
   // PNS
   public function get_all_pns()
