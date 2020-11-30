@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -79,7 +79,7 @@ $db['default'] = array(
 	// 'hostname' => '192.168.203.152',
 	// 'username' => 'root',
 	// 'password' => '',
-	// 'database' => 'scdb_ipdn',
+	'database' => 'scdb_ipdn',
 	'username' => 'ipdnacid_scdb',
 	'password' => 'yellowminicooper',
 	'database' => 'ipdnacid_scdb',

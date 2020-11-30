@@ -72,7 +72,7 @@
                     <?php if (isset($x['url'])) { ?>
                       <td><a href="<?= base_url() . 'd_sas/' . $x['url']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php } else { ?>
-                      <td></td>
+                      <td><a href="<?= base_url() . 'd_sas/' . $x['id_b']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php } ?>
                   </tr>
                 <?php endforeach; ?>
