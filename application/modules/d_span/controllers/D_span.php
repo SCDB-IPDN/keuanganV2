@@ -8,7 +8,7 @@ class D_span extends CI_Controller{
 
     function index()
     {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->d_span_model->get_all_dashboard()->result();
 
@@ -38,7 +38,7 @@ class D_span extends CI_Controller{
 
     function biro()
     {
-          if($_SESSION['nip'])
+          if($this->session->userdata('nip') != NULL)
           {
                $data = $this->d_span_model->get_all_dashboard_biro()->result();
 

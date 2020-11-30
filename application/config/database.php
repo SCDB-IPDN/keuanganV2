@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -75,21 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => 'localhost',
 	'hostname' => '192.168.203.152',
 	// 'username' => 'root',
 	// 'password' => '',
-	'database' => 'ipdnacid_scdb',
+	'database' => 'scdb_ipdn',
 	'username' => 'ipdnacid_scdb',
 	'password' => 'yellowminicooper',
-	// 'database' => 'ipdnacid_scdb',
-	// 'hostname' => 'http://192.168.203.152/',
-	// // 'username' => 'root',
-	// // 'password' => '',
-	// 'database' => 'scdb_ipdn',
-	// 'username' => 'ipdnacid_scdb',
-	// 'password' => 'yellowminicooper',
-	// // 'database' => 'ipdnacid_scdb',
+	'database' => 'ipdnacid_scdb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

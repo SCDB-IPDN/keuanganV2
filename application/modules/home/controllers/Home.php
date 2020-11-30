@@ -39,9 +39,9 @@ class Home extends CI_Controller {
       // STATUS PRAJA
       $status = $this->home_model->status_praja();
 
-      // STATUS PRAJA
+      // ANGKATAN PRAJA
       $angkatan = $this->home_model->angkatan_praja();
-	    
+      
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
 	    
@@ -52,7 +52,8 @@ class Home extends CI_Controller {
       // SPAN
       $span = $this->home_model->get_span()->result();
       $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
-      $persentase_span = round($hitung_span,2);
+      // $persentase_span = round($hitung_span,2);
+      $persentase_span = $this->home_model->get_span_ipdn_sementara()['persentase_span'];
 
       // App
       $perpustakaan = $this->home_model->app_perpus();
@@ -83,18 +84,14 @@ class Home extends CI_Controller {
       $x['pengasuhan'] = $pengasuhan;
 
       $x['apps'] = $apps;
-
       $x['biro'] = $biro;
       $x['eselon'] = $eselon;
-      
       $x['peg'] = $peg;
       $x['total_peg'] = $total_peg;
-
       $x['dosen'] = $dosen;
       $x['total_dosen'] = $total_dosen;
-      
-      $x['status'] = $status;
       $x['angkatan'] = $angkatan;
+      $x['status'] = $status;
       $x['total_praja'] = $total_praja;
       $x['persentase_span'] = $persentase_span;
       $x['persentase_sas'] = $persentase_sas;
@@ -102,6 +99,9 @@ class Home extends CI_Controller {
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
       $x['praja'] = $praja;
+
+      $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];
+      $x['rank_kemendagri_ipdn'] = $this->home_model->get_rank_ipdn()['rank'];
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");

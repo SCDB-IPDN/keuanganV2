@@ -24,14 +24,14 @@
                                     <?php echo $this->session->flashdata('notifpagu') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadPagu" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL PAGU</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL JATINANGOR</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
                                             <input for="biroN" type="file" name="pagu" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP PAGU</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP JATINANGOR</button>
                                     </form>
                                 </div>
                             </div>
@@ -146,6 +146,25 @@
                                         </div>
 
                                         <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SUMBAR</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-8">
+                                    <?php echo $this->session->flashdata('notifnangor') ?>
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadJatinangor" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL JATINANGOR</label>
+                                            <span class="ml-2">
+                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
+                                            </span>
+                                            <input for="biroN" type="file" name="nangor" class="form-control">
+                                        </div>
+
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP Jatinangor</button>
                                     </form>
                                 </div>
                             </div>

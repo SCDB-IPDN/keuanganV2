@@ -3,7 +3,15 @@
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="<?php echo base_url('d_sas');?>">IPDN</a></li>
-
+    <?php if (isset($kampus)) { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$klink;?>"><?= $kampus ?></a></li>
+    <?php } ?>
+    <?php if (isset($biro)) { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$blink;?>"><?= $biro ?></a></li>
+    <?php } ?>
+    <?php if (isset($unit)) { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url().'d_sas/'.$ulink;?>"><?= $unit ?></a></li>
+    <?php } ?>
   </ol>
   <h1 class="page-header">SAS</h1>
   <div class="row">
@@ -52,7 +60,15 @@
             <thead>
               <tr>
                 <th>#</th>
+                <?php if (isset($unit)) { ?>
+                  <th>Output</th>
+                <?php } elseif (isset($biro) || isset($bag)) { ?>
+                  <th>Bagian/Unit/Lembaga</th>
+                <?php } elseif (isset($kampus)) { ?>
+                  <th>Biro</th>
+                <?php } else { ?>
                 <th>Kampus</th>
+                <?php } ?>
                 <th>Pagu</th>
                 <th>Realiasasi</th>
                 <th>Sisa Pagu</th>
@@ -70,14 +86,8 @@
                     <td><?= number_format($x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= number_format($x['pagu']-$x['realisasi'], 0, ',', '.'); ?></td>
                     <td><?= round((100/$x['pagu']*$x['realisasi']), 2)."%"; ?></td>
-                    <?php if (isset($x['id_c']))  { ?>
-                      <!-- unit -->
+                    <?php if (isset($x['url']))  { ?>
                       <td><a href="<?= base_url().'d_sas/'.$x['url']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
-                    <?php } elseif (isset($x['id_b'])) { ?>
-                      <!-- biro -->
-                      <td><a href="<?= base_url().'d_sas/'.$x['id_b']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
-                    <?php } elseif (isset($x['kode_satker'])){ ?>
-                      <td><a href="<?= base_url().'d_sas/'.$x['kode_satker']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                     <?php }else{ ?>
                        <td></td>
                     <?php } ?>
