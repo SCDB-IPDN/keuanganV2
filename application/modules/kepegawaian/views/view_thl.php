@@ -120,7 +120,7 @@
                                                 <label class="col-form-label">Penugasan:</label>
                                                 <input type="text" class="form-control" id="penugasan" name="penugasan" value="<?php echo $row->penugasan;?>" placeholder="Penugasan.." required>
                                             </div>
-                                            <div class="col-sm">
+                                            <!-- <div class="col-sm"> -->
                                                         <label class="col-form-label">Satuan kerja:</label>
                                                         <select class="form-control" id="nama_satker" name="nama_satker" required>
                                                             <option disabled selected> Pilih </option>
