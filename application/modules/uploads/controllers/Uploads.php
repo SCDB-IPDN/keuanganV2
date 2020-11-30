@@ -297,7 +297,7 @@ class Uploads extends CI_Controller {
 			// exit;
 		} 
 		// $this->db->insert_truncate('tbl_span');
-		$this->db->insert_batch('tbl_span', $data);
+		$this->db->insert_batch('tbl_span_rank', $data);
 		//upload success
 		$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
