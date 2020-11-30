@@ -34,7 +34,7 @@
 
 
             <?php foreach (json_decode($data, true) as $x): ?>
-             <form action="d_praja/edit_praja" method="post">
+             <form action="" method="post">
               <h3> DATA DIRI  </h3>
               <br>
               <h5> Nama : <?= $x['nama']; ?>  </h5>
