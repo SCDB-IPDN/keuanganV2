@@ -166,6 +166,22 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+	public function v_alumni()
+	{
+		if($this->session->userdata('nip') != NULL)
+		{
+			// redirect("home");
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import_alumni');
+			$this->load->view("include/sidebar");
+			$this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+
 	public function span(){
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['span']['name']) && in_array($_FILES['span']['type'], $file_mimes)) {
@@ -2502,6 +2518,59 @@ class Uploads extends CI_Controller {
 			//redirect halaman
 			redirect('uploads/v_sas');
 
+		}
+	}
+
+	public function alumni()
+	{
+		// Load plugin PHPExcel nya
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['alumni']['name']) && in_array($_FILES['alumni']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['alumni']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('alumni', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/v_alumni"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel  = $reader->load($_FILES['alumni']['tmp_name']);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+
+			$upalumni = array();
+			$numrow = 1;
+			$satker_sulsel = 677024;
+			$tgl = date('Y-m-d');
+
+			foreach($sheet as $row){
+				if($numrow > 3){
+					$temp = explode(" ", $row['H']);
+					$biro = $temp[1];
+					var_dump($biro);
+
+
+						array_push($upalumni, array(
+							'nama'      => $row['D'],
+							'jk'      => $row['E'],
+							'npp'      => $row['F'],
+							'nip'      => $row['G'],
+							'tanggal' => $tgl
+						));
+						// exit;
+						$this->db->insert_batch('alumni', $upalumni);
+				}
+				$numrow++;
+			}
+				exit();
+
+			//upload success
+			$this->session->set_flashdata('alumni', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect('uploads/v_alumni');
 		}
 	}
 
