@@ -311,9 +311,9 @@ class Uploads extends CI_Controller {
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
-		}var_dump($data);
-		exit;
+		}
 		// $this->db->insert_truncate('tbl_span');
+		$this->db->query("DELETE FROM tbl_span_rank WHERE created_date='$datee'");
 		$this->db->insert_batch('tbl_span_rank', $data);
 		//upload success
 		$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
