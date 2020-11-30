@@ -20,7 +20,6 @@ class Home extends CI_Controller {
       $total_peg = $peg[0]->pns + $peg[0]->thl;
       $eselon = $this->home_model->jum_eselon();
       $dosen = $this->home_model->dosen();
-      $total_dosen = $dosen[0]->asisten_ahli + $dosen[0]->lektor + $dosen[0]->lektor_kepala + $dosen[0]->guru_besar;
 
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
@@ -89,7 +88,6 @@ class Home extends CI_Controller {
       $x['total_peg'] = $total_peg;
 
       $x['dosen'] = $dosen;
-      $x['total_dosen'] = $total_dosen;
       
       $x['status'] = $status;
       $x['total_praja'] = $total_praja;

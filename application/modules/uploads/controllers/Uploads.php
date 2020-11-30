@@ -150,6 +150,7 @@ class Uploads extends CI_Controller {
 			redirect("user");
 		}
 	}
+	
 	public function v_thl()
 	{
 		if($this->session->userdata('nip') != NULL)
@@ -158,6 +159,21 @@ class Uploads extends CI_Controller {
 			$this->load->view("include/head");
 			$this->load->view("include/top-header");
 			$this->load->view('v_import_thl');
+			$this->load->view("include/sidebar");
+			$this->load->view("include/panel");
+			$this->load->view("include/footer"); 
+		}else{
+			redirect("user");
+		}
+	}
+
+	public function v_dosen()
+	{
+		if($this->session->userdata('nip') != NULL)
+		{
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view('v_import_dosen');
 			$this->load->view("include/sidebar");
 			$this->load->view("include/panel");
 			$this->load->view("include/footer"); 
@@ -2504,6 +2520,71 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+	function dosen()
+	{
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['dosen']['name']) && in_array($_FILES['dosen']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['dosen']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('dosen', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/dosen"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$spreadsheet = $reader->load($_FILES['dosen']['tmp_name']);
+
+			$list_sheet = $spreadsheet->getSheetNames();
+
+			$sheetData = $spreadsheet->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
+			$data = array();
+			$datex = new DateTime();
+			$date = $datex->format('Y-m-d');
+
+			foreach($sheetData as $row){
+				if($row['A'] >= 1){
+
+					array_push($data, array(
+						'nama'      => $row['B'],
+						'nip'      => $row['C'],
+						'nidn'      => $row['D'],
+						'serdos'      => $row['E'],
+						'bidang_ilmu'      => $row['F'],
+						'nik'   => $row['G'],
+						'alamat'   => $row['H'],
+						'jabatan'   => $row['I'],
+						'pangkat'   => $row['J'],
+						'created_date' => $date,
+					));
+
+					// echo "NO: $row[A]<br>";
+					// echo "NAMA: $row[B]<br>";
+					// echo "NIP: $row[C]<br>";
+					// echo "NIDN: $row[D]<br>";
+					// echo "SERTIFIKASI DOSEN: $row[E]<br>";
+					// echo "BIDANG ILMU: $row[F]<br>";
+					// echo "NIK: $row[G]<br>";
+					// echo "ALAMAT: $row[H]<br>";
+					// echo "JABATAN: $row[I]<br>";
+					// echo "PANGKAT: $row[J]<br>";
+				}	
+			}
+			$this->db->truncate('tbl_dosen');
+			$this->db->insert_batch('tbl_dosen', $data);
+
+			$this->session->set_flashdata('dosen', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+			//redirect halaman
+			redirect("uploads/v_dosen");
+		}else {
+			$this->session->set_flashdata('dosen', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b><br>Data kosong!</div>');
+			redirect("uploads/v_dosen");
+		}
+
+	}
 
 
 	function rti($s) {

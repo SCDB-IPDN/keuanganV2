@@ -161,6 +161,107 @@ class Kepegawaian extends CI_Controller{
      }
      //END PNS
 
+     // DOSEN
+     function dosen($id = NULL)
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               if($id == NULL){
+                    $x['title'] = "DATA DOSEN";
+                    $data = $this->kepegawaian_model->get_all_dosen()->result();
+               }else if($id == 'belum_nidn'){
+                    $x['title'] = 'TIDAK ADA DATA NIDN';
+                    $data = $this->kepegawaian_model->get_not($id)->result();
+               }else if($id == 'belum_serdos'){
+                    $x['title'] = 'TIDAK ADA DATA SERTIFIKASI DOSEN';
+                    $data = $this->kepegawaian_model->get_not($id)->result();
+               }else{
+                    redirect("kepegawaian/dosen");
+               }
+
+               $x['data'] = $data;
+          
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_dosen', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
+     public function tambah_dosen()
+	{
+          $datex = new DateTime();
+          $date = $datex->format('Y-m-d');
+
+          $input_data['nama'] = $this->input->post('nama', true);
+          $input_data['nip'] = $this->input->post('nip', true);
+          $input_data['nidn'] = $this->input->post('nidn', true);
+          $input_data['serdos'] = $this->input->post('serdos', true);
+          $input_data['bidang_ilmu'] = $this->input->post('bidang_ilmu', true);
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['alamat'] = $this->input->post('alamat', true);
+          $input_data['jabatan'] = $this->input->post('jabatan', true);
+          $input_data['pangkat'] = $this->input->post('pangkat', true);
+          $input_data['created_date'] = $date;
+
+          $result = $this->kepegawaian_model->tambah_dosen($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DITAMBAHKAN.'); 				
+               redirect('kepegawaian/dosen'); 			
+          } else { 								
+               $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DITAMBAHKAN.');			
+               redirect('kepegawaian/dosen'); 			
+          }
+    }
+
+     public function edit_dosen()
+	{
+          $datex = new DateTime();
+          $date = $datex->format('Y-m-d');
+          
+          $input_data['id_dosen'] = $this->input->post('id_dosen', true);
+          $input_data['nama'] = $this->input->post('nama', true);
+          $input_data['nip'] = $this->input->post('nip', true);
+          $input_data['nidn'] = $this->input->post('nidn', true);
+          $input_data['serdos'] = $this->input->post('serdos', true);
+          $input_data['bidang_ilmu'] = $this->input->post('bidang_ilmu', true);
+          $input_data['nik'] = $this->input->post('nik', true);
+          $input_data['alamat'] = $this->input->post('alamat', true);
+          $input_data['jabatan'] = $this->input->post('jabatan', true);
+          $input_data['pangkat'] = $this->input->post('pangkat', true);
+          $input_data['updated_date'] = $date;
+
+          $result = $this->kepegawaian_model->edit_dosen($input_data);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DIUBAH.'); 				
+               redirect('kepegawaian/dosen'); 			
+          } else { 								
+               $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DIUBAH.');			
+               redirect('kepegawaian/dosen'); 			
+          }
+    }
+
+     function hapus_dosen()
+     {
+          $id = $this->input->post('id_dosen');
+          $result = $this->kepegawaian_model->hapus_dosen($id);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DIHAPUS.'); 				
+               redirect('kepegawaian/dosen'); 			
+          } else { 								
+               $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DIHAPUS.');			
+               redirect('kepegawaian/dosen'); 			
+          }
+     }
+     //END DOSEN
+
      // THL
      function thl()
      {

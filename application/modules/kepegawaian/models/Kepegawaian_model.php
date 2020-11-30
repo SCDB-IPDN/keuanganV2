@@ -13,6 +13,44 @@ class Kepegawaian_model extends CI_Model{
     return $tingkat;
   }
 
+  //DOSEN
+  public function get_all_dosen()
+	{	
+    $result = $this->db->query("SELECT * FROM tbl_dosen");
+
+    return $result;
+  }
+
+  public function get_not($id)
+	{
+    if($id == 'belum_nidn'){
+      $result = $this->db->query("SELECT * FROM tbl_dosen WHERE nidn = 0");
+    }else if($id == 'belum_serdos'){
+      $result = $this->db->query("SELECT * FROM tbl_dosen WHERE serdos = ''");
+    }
+    
+    return $result;
+  }
+
+  function tambah_dosen($input_data)
+	{   
+    $result = $this->db->insert('tbl_dosen', $input_data);
+    return $result;
+  }
+
+  function edit_dosen($input_data)
+  {       
+    $id = $input_data['id_dosen'];
+    $hasil = $this->db->where('id_dosen', $id)->update('tbl_dosen', $input_data);
+    
+    return $hasil;    
+  }
+
+  function hapus_dosen($id){
+    $hasil=$this->db->query("DELETE FROM tbl_dosen WHERE id_dosen='$id'");
+    return $hasil;
+  }
+
   // PNS
   public function get_all_pns()
 	{	
