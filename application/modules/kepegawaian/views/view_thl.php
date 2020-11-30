@@ -222,15 +222,15 @@
                             <label class="col-form-label">Penugasan:</label>
                             <input type="text" class="form-control" id="penugasan" name="penugasan" placeholder="Penugasan.." required>
                         </div>
-                        <div class="col-sm">
-                                    <label class="col-form-label">Satuan Kerja:</label>
-                                    <select class="form-control" id="nama_satker" name="nama_satker" required>
-                                        <option disabled selected> Pilih </option>
-                                        <?php foreach($ns as $rows){?>
-                                            <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                        <!-- <div class="col-sm"> -->
+                                <label class="col-form-label">Satuan Kerja:</label>
+                                <select class="form-control" id="nama_satker" name="nama_satker" required>
+                                    <option disabled selected> Pilih </option>
+                                    <?php foreach($ns as $rows){?>
+                                        <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
+                                    <?php } ?>
+                                </select>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
