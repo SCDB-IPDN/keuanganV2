@@ -2,12 +2,12 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>">JATINANGOR</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>"><?= $title; ?></a></li>
 	</ol>
-	<h1 class="page-header">Sarana dan Prasarana IPDN Jatinangor</h1>
+	<h1 class="page-header">Sarana dan Prasarana IPDN <?= $title; ?></h1>
 	<div class="row">
 
-		<div class="col-xl-12">
+		<div class="col-xl-12" id="tabs">
 			<!-- begin nav-tabs -->
 			<ul class="nav nav-tabs">
 
@@ -15,7 +15,7 @@
 				<?php foreach (json_decode($l_kat, true) as $y): ?>
 
 				<li class="nav-item">
-					<a href="#default-tab-<?= $cl; ?>" data-toggle="tab" class="nav-link <?php echo $cl==1?'active':''; ?>">
+					<a href="#default-tab-<?= $cl; ?>" id="tab-<?= $cl; ?>" data-toggle="tab" class="nav-link <?php echo $cl==1?'active':''; ?>" data-url="<?= base_url(uri_string()).'/'.url_title($y['kategori']); ?>">
 						<span class="d-sm-none">Tab <?= $cl++; ?></span>
 						<span class="d-sm-block d-none"><?php echo ucwords(strtolower($y['kategori'])); ?></span>
 					</a>
@@ -28,39 +28,20 @@
 			<!-- begin tab-content -->
 			<div class="tab-content">
 
-			<?php $kat = ""; ?>
-			<?php $m = 0; ?>
-			<?php $cc = 1; ?>
-			<?php foreach (json_decode($data, true) as $x): ?>
-				<?php if ($x['kategori'] != $kat) { ?>
+			<?php $cl = 1; ?>
+				<?php foreach (json_decode($l_kat, true) as $y): ?>
 
-					<?php if ($kat != "") { ?>
-
-						</tbody>
-					</table>
-				</div>
-				<!-- end tab-pane -->
-
-					<?php } ?>
-
-					<?php $kat = $x['kategori']; ?>
-					<?php $no = 1; ?>
-				<!-- begin tab-pane -->
-				<div class="tab-pane fade <?php echo $cc==1?'active show':''; ?>" id="default-tab-<?= $cc; ?>">
-					<h4 class="text-center">Belanja <?php echo ucwords(strtolower($x['kategori'])); ?> bedasarkan Tahun</h4>
-					<canvas id="myChart<?php echo $cc; ?>" height="70"></canvas>
-					<table class="table table-striped table-bordered table-td-valign-middle data-table-buttons" id="myTable<?php echo $cc++; ?>" width="100%">
+				<div class="tab-pane fade <?php echo $cl==1?'active show':''; ?>" id="default-tab-<?= $cl; ?>">
+					<h4 class="text-center">Belanja <?php echo ucwords(strtolower($y['kategori'])); ?> bedasarkan Tahun</h4>
+					<canvas id="myChart<?php echo $cl; ?>" height="70"></canvas>
+					<table class="table table-striped table-bordered table-td-valign-middle" id="tbl-tab-<?php echo $cl++; ?>" width="100%">
 						<thead>
-							<tr>
+							<tr align="center">
 								<th>#</th>
 								<th>Uraian</th>
 								<th>Merk</th>
 								<th>Tahun</th>
-								<?php if ($x['luas'] != 0) { ?>
-									<th>Luas</th>
-								<?php } else { ?>
-									<th>Jumlah</th>
-								<?php } ?>
+								<th>Jumlah/Luas</th>
 								<th>Harga Satuan</th>
 								<th>Harga Perolehan</th>
 								<th>Harga Revaluasi</th>
@@ -68,37 +49,19 @@
 								<th>Kondisi</th>
 							</tr>
 						</thead>
-						<tbody>
-
-				<?php } ?>
-
-						<tr class="gradeA">
-							<td><?php echo $no++; ?></td>
-							<td><?= $x['uraian']; ?></td>
-							<td><?= $x['merk']; ?></td>
-							<td><?= $x['tahun']; ?></td>
-							<?php if ($x['luas'] != 0) { ?>
-								<td><?= number_format($x['luas'], 0, ',', '.'); ?></td>
-								<?php $m = $x['luas']; ?>
-							<?php } else { ?>
-								<td><?= number_format($x['jumlah'], 0, ',', '.'); ?></td>
-								<?php $m = $x['jumlah']; ?>
-							<?php } ?>
-							<td><?= number_format($x['harga_beli'], 0, ',', '.'); ?></td>
-							<?php $tot = $m*$x['harga_beli']; ?>
-							<td><?= number_format($tot, 0, ',', '.'); ?></td>
-							<?php $tot = $m*$x['harga_baru']; ?>
-							<td><?= number_format($tot, 0, ',', '.'); ?></td>
-							<td><?= $x['asal']; ?></td>
-							<td><?= $x['kondisi']; ?></td>
-						</tr>
+						<tfoot>
+							<tr align="center">
+								<th colspan="6">TOTAL</th>
+								<th><?= $y['total']; ?></th>
+								<th><?= $y['perolehan']; ?></th>
+								<th colspan="2"></th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 
 			<?php endforeach; ?>
 
-						</tbody>
-					</table>
-				</div>
-				<!-- end tab-pane -->
 			</div>
 		</div>
 	</div>
@@ -113,12 +76,36 @@
 
 	<?php $cc = 1; ?>
 	<?php foreach ($chart as $x): ?>
+
+	$(document).ready(function() {
+
+		var uri = $("#tab-<?php echo $cc; ?>").attr("Data-url");
+
+		$('#tbl-tab-<?= $cc; ?>').dataTable({
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'excel', 'pdf', 'print'
+			],
+			"ajax": {
+				"url": uri,
+				"dataSrc": ""
+			},
+			"columns": [
+				{ "data": "no" },
+				{ "data": "uraian" },
+				{ "data": "merk" },
+				{ "data": "tahun", className: "text-right" },
+				{ "data": "jumlah", className: "text-right" },
+				{ "data": "harga_beli", className: "text-right" },
+				{ "data": "tb", className: "text-right" },
+				{ "data": "tr", className: "text-right" },
+				{ "data": "asal" },
+				{ "data": "kondisi" }
+			]
+		});
+		
 		<?php $ch = json_encode($x) ?>
 
-		$('a[href="#default-tab-<?php echo $cc; ?>"]').click(function() {
-			$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
-		});
-			
 		var labels<?php echo $cc; ?> = <?php echo $ch;?>.map(function(e) {
 			return e.tahun;
 		});
@@ -174,6 +161,8 @@
 		};
 
 		var chart<?php echo $cc; ?> = new Chart(ctx<?php echo $cc++; ?>, config);
+
+	});
 
 	<?php endforeach; ?>
 
