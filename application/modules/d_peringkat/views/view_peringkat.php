@@ -19,7 +19,7 @@
 				<div class ="table-responsive">
 					<div class="panel-body">
 						<h4 class="text-center">URUTAN REALISASI SERAPAN ANGGARAN KEMENTERIAN DALAM NEGERI</h4>
-						<h4 class="text-center">PER TANGGAL <?= $uDate; ?></h4>
+						<h4 class="text-center">PER <?= $uDate; ?></h4>
 						<table id="data-table-buttons" class="table table-striped table-bordered" width="100%">
 							<thead valign="middle">
 								<tr align="center">
