@@ -41,20 +41,20 @@
 								<th>Uraian</th>
 								<th>Merk</th>
 								<th>Tahun</th>
+								<th>Asal Perolehan</th>
 								<th>Jumlah/Luas</th>
 								<th>Harga Satuan</th>
 								<th>Harga Perolehan</th>
 								<th>Harga Revaluasi</th>
-								<th>Asal Perolehan</th>
 								<th>Kondisi</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr align="center">
-								<th colspan="6">TOTAL</th>
+								<th colspan="7">TOTAL</th>
 								<th><?= $y['total']; ?></th>
 								<th><?= $y['perolehan']; ?></th>
-								<th colspan="2"></th>
+								<th></th>
 							</tr>
 						</tfoot>
 					</table>
@@ -95,11 +95,11 @@
 				{ "data": "uraian" },
 				{ "data": "merk" },
 				{ "data": "tahun", className: "text-right" },
+				{ "data": "asal" },
 				{ "data": "jumlah", className: "text-right" },
 				{ "data": "harga_beli", className: "text-right" },
 				{ "data": "tb", className: "text-right" },
 				{ "data": "tr", className: "text-right" },
-				{ "data": "asal" },
 				{ "data": "kondisi" }
 			]
 		});
