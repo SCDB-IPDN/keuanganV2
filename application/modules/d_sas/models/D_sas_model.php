@@ -105,5 +105,20 @@ class D_sas_model extends CI_Model{
         
 		return $result;
   }
+
+  public function kampusnyaa()
+	{	
+		$result = $this->db->query("SELECT tbl_satker.kode_satker, tbl_satker.alias, tbl_satker.nama_satker as nama , SUM(akun_sas.pagu) AS pagu , SUM(akun_sas.realisasi) AS realisasi, tbl_satker.kode_satker as url FROM tbl_satker JOIN akun_sas ON tbl_satker.kode_satker = akun_sas.kode_satker GROUP BY tbl_satker.kode_satker");
+
+		return $result;
+	}
+
+
+	public function biroo($bironya)
+	{	
+		$result = $this->db->query("SELECT nama_satker_biro as nama FROM tbl_satker_biro WHERE kode_satker_biro = $bironya");
+		return $result;
+  	}
+
   
 }

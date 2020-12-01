@@ -4,7 +4,7 @@ class Home_model extends CI_Model{
 	// Kepegawaian
 	public function jumlah_peg()
 	{
-		$peg = $this->db->query("SELECT pns, thl FROM (SELECT count(*) as pns FROM tbl_pns) as pns, (SELECT count(*) as thl FROM tbl_thl) as thl")->result();
+		$peg = $this->db->query("SELECT pns, thl, ta FROM (SELECT count(*) as pns FROM tbl_pns) as pns, (SELECT count(*) as thl FROM tbl_thl) as thl, (SELECT count(*) as ta FROM tbl_ta) as ta")->result();
 
 		return $peg;
 	}
@@ -18,7 +18,14 @@ class Home_model extends CI_Model{
 
 	public function dosen()
 	{
-		$result = $this->db->query("SELECT SUM(jabatan LIKE '%ASISTEN AHLI%') as asisten_ahli, SUM(jabatan LIKE '%GURU BESAR%') as guru_besar, SUM(jabatan LIKE '%LEKTOR%') as lektor, SUM(jabatan LIKE '%LEKTOR KEPALA%') as lektor_kepala FROM tbl_pns")->result();
+		$result = $this->db->query("SELECT 
+							SUM(jabatan = 'ASISTEN AHLI') as asisten_ahli, 
+							SUM(jabatan = 'GURU BESAR') as guru_besar, 
+							SUM(jabatan = 'LEKTOR') as lektor, 
+							SUM(jabatan = 'LEKTOR KEPALA') as lektor_kepala, 
+							count(*) as total 
+							FROM tbl_dosen")
+						->result();
 		return $result;
 	}
 
