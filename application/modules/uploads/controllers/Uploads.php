@@ -2636,13 +2636,12 @@ class Uploads extends CI_Controller {
 					$biro = $temp[1];
 					var_dump($biro);
 
-
 						array_push($upalumni, array(
 							'nama'      => $row['D'],
 							'jk'      => $row['E'],
 							'npp'      => $row['F'],
 							'nip'      => $row['G'],
-							'tanggal' => $tgl
+							// 'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('alumni', $upalumni);
