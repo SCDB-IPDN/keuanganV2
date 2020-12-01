@@ -481,18 +481,11 @@
                   <option value="turuntingkat">Turun Tingkat</option>
                 </select>
               </div>
-              <div class="col-15">
-                <br>
-                <button type="submit" class="btn btn-warning" value="Cek">Ubah</button>
-                <a href="<?php echo base_url('d_praja'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
-              </div>
             </div>
-          </form>
-          <br>
-          <br>
-          <h3> DATA ORANG TUA </h3>
-          <br>
-          <form action="<?php echo base_url('d_praja/view_editortu'); ?>" method="POST">
+            <br>
+            <br>
+            <h3> DATA ORANG TUA </h3>
+            <br>
             <div class="row">
               <div class="col-2">
                <input type="hidden" class="form-control" id="id_ortu" name="id_ortu" value="<?php echo $data[0]->id_ortu ?>" >
@@ -572,19 +565,12 @@
                 <label for="basic-url">No Tlp Ibu</label>
                 <input type="text" class="form-control" id="tlp_ibu" name="tlp_ibu" value="<?php echo $data[0]->tlp_ibu == NULL ? "-" :  $data[0]->tlp_ibu ?>" >
               </div>
-              <div class="col-10">
-                <br>
-                <button type="submit" class="btn btn-warning" value="Cek">Ubah</button>
-                <a href="<?php echo base_url('d_praja'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
-              </div>
-            </form>
 
-          </div>
-          <br>
-          <br>
-          <h3> DATA WALI </h3>
-          <br>
-          <form action="<?php echo base_url('d_praja/view_editwali'); ?>" method="POST">
+            </div>
+            <br>
+            <br>
+            <h3> DATA WALI </h3>
+            <br>
             <div class="row">
               <div class="col-2">
                 <input type="hidden" class="form-control" id="id_wali" name="id_wali" value="<?php echo $data[0]->id_wali ?>" >
