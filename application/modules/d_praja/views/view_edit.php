@@ -16,6 +16,7 @@
           <h4 class="panel-title">
             ID : <?php echo $data[0]->id ?>
           </h4>
+
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -186,16 +187,10 @@
                 <label for="basic-url">Angkatan</label>
                 <input type="text" class="form-control" id="angkatan" name="angkatan"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" readonly>
               </div>
-              <div class="col-2">
+              <div class="col-1">
                 <br>
-                <label for="basic-url">Status sebelumnya: <?php echo $data[0]->status; ?> </label>
-                <select class="form-control" name="status" id="status" required="">
-                  <option value="">Pilih Status</option>
-                  <option value="aktif">Aktif</option>
-                  <option value="cuti">Cuti</option>
-                  <option value="diberhentikan">Diberhentikan</option>
-                  <option value="turuntingkat">Turun Tingkat</option>
-                </select>
+                <label for="basic-url">Status</label>
+                <input type="text" class="form-control" id="status" name="status"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" readonly>
               </div>
             </div>
             <br>
