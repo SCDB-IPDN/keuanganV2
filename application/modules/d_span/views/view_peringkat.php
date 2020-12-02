@@ -2,7 +2,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="<?php echo base_url('d_span');?>"> SERAPAN ANGGARAN</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('d_spanbaru');?>"> SERAPAN ANGGARAN</a></li>
 	</ol>
 	<h2 class="page-header">&nbsp;</h2>
 	<div class="row">

@@ -38,14 +38,14 @@
 					<span>Keuangan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php $this->uri->segment(1) == "d_span" ? "active" : ""; ?> has-sub">
+				<li class="<?php echo $this->uri->segment(1) == "d_span" || $this->uri->segment(2) == "serapan" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							SPAN
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "d_span" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span'); ?>">UTAMA</a></li>
-							<li class="<?php echo $this->uri->segment(1) == "d_span/serapan" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span/serapan'); ?>">REALISASI</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "d_span" && $this->uri->segment(2) != "serapan" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span'); ?>">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "serapan" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span/serapan'); ?>">REALISASI</a></li>
 						</ul>
 					</li>
 					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
