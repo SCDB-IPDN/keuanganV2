@@ -281,20 +281,20 @@ class Uploads extends CI_Controller {
 	public function satkerspan() {
 
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['belanja']['name']) && in_array($_FILES['belanja']['type'], $file_mimes)) {
+		if(isset($_FILES['satker']['name']) && in_array($_FILES['satker']['type'], $file_mimes)) {
 
-			$arr_file = explode('.', $_FILES['belanja']['name']);
+			$arr_file = explode('.', $_FILES['satker']['name']);
 			$extension = end($arr_file);
 
 			if($extension != 'xlsx') {
-				$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
 				redirect("uploads/v_span"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
-			$loadexcel = $reader->load($_FILES['belanja']['tmp_name']);
+			$loadexcel = $reader->load($_FILES['satker']['tmp_name']);
 			// echo $_FILES['belanja']['name'];
 
 			$shit = $loadexcel->getActiveSheet();
@@ -347,22 +347,6 @@ class Uploads extends CI_Controller {
                             // IPDN KAMPUS PAPUA
                             $add = true;
 							break;
-							case 1294:
-							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
-							case 1293:
-							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
-							$add = true;
-							break;
-							case 1286:
-							// Penyelenggaraan Administrasin Kerjasama dan Hukum
-							$add = true;
-							break;
-							case 1292:
-							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
 						}
 						if ($add) {
                             array_push($data, array(
@@ -396,6 +380,95 @@ class Uploads extends CI_Controller {
 		// $this->db->insert_truncate('tbl_span');
 		$this->db->truncate('tbl_span_rank');
 		$this->db->insert_batch('tbl_span_rank', $data);
+		//upload success
+		$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
+		//redirect halaman
+		redirect("uploads/v_span");
+	}
+
+	public function satkerspanbiro() {
+
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['belanja']['name']) && in_array($_FILES['belanja']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['belanja']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/v_span"); 
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel = $reader->load($_FILES['belanja']['tmp_name']);
+			// echo $_FILES['belanja']['name'];
+
+			$shit = $loadexcel->getActiveSheet();
+			$rows = $shit->toArray(null, true, true ,true);
+			$biroo = array();
+			
+			$date = new DateTime();
+			$datee = $date->format('Y-m-d');
+			
+			foreach ($rows as $row) {
+			// echo $row ['B'];
+			$add = false;
+			$nama = "";
+			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+			if (count($tmp) > 0) {
+				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+                        $nama = $txt[0];
+                        switch ($tmp[0]) {
+							case '1294':
+							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
+							$add = true;
+							break;
+							case '1293':
+							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
+							$add = true;
+							break;
+							case '1286':
+							// Penyelenggaraan Administrasin Kerjasama dan Hukum
+							$add = true;
+							break;
+							case '1292':
+							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
+							$add = true;
+							break;
+						}
+						if ($add) {
+                            array_push($biroo, array(
+                                'kode_satker'    =>  $tmp[0],
+                                'nama_satker'  =>  $txt[0],
+                                'pagu_bp'      => $row['C'],
+                                'realisasi_bp'      => $row['D'],
+                                'persentase_bp'      => substr($row['E'], 1, 4),
+                                'pagu_bb'      => $row['G'],
+                                'realisasi_bb'   => $row['H'],
+                                'persentase_bb'   => substr($row['I'], 1, 4),
+                                'pagu_bm'   => $row['K'],
+                                'realisasi_bm'   => $row['L'],
+                                'persentase_bm'   => substr($row['M'], 1, 4),
+                                'pagu_t'   => $row['AM'],
+                                'realisasi_t'   => $row['AN'],
+                                'persentase_t'   => substr($row['AO'], 1, 4),
+								'sisa'   => $row['AP'],
+								'created_date' => $datee,
+								
+                    ));
+                }	
+			}
+		}
+			// print("<pre>".print_r($data,true)."</pre>");
+			// print("<pre>".print_r($pelatihan,true)."</pre>");
+			// exit;
+		} var_dump($biroo);
+		exit;
+		// $this->db->insert_truncate('tbl_span');
+		$this->db->truncate('tbl_span_rank');
+		$this->db->insert_batch('tbl_span_rank', $biroo);
 		//upload success
 		$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
@@ -633,7 +706,8 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			// var_dump($unitList);
+			var_dump($unitList);
+			exit;
 			// print("<pre>".print_r($unitList,true)."</pre>");
 			$this->db->truncate('unit_pok');
 			$this->db->insert_batch('unit_pok', $unitList); // PENTING 
@@ -750,7 +824,7 @@ class Uploads extends CI_Controller {
 						}
 					}
 				}
-			}
+			} 
 
 			$this->db->insert_batch('tbl_sarpras', $data);
 			// exit;
@@ -1511,7 +1585,6 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			// var_dump($data_out);
 			// print("<pre>".print_r($data,true)."</pre>");
 			// $this->db->truncate('peringkat');
 			// $this->db->insert_batch('peringkat', $data);  // PENTING
@@ -2724,7 +2797,7 @@ class Uploads extends CI_Controller {
 					}				
 				}
 			}
-
+				
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;

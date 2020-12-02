@@ -376,7 +376,7 @@
 								TURUN TINGKAT
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->tt; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->tt; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">

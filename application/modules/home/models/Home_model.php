@@ -194,7 +194,13 @@ class Home_model extends CI_Model{
 
 		return $praja;
 	}
+	public function hukuman()
+	{
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt FROM hukuman")->result();
 
+		return $result;
+	}
+	
 	public function status_praja()
 	{
 		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
