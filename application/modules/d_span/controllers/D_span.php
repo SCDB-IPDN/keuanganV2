@@ -56,7 +56,7 @@ class D_span extends CI_Controller{
           }
     }
 
-    function peringkat()
+    function serapan()
     {
       if($_SESSION['nip']) {
 
