@@ -75,7 +75,8 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.203.152',
+	'hostname' => 'localhost',
+	// 'hostname' => '192.168.203.152',
 	// 'username' => 'root',
 	// 'password' => '',
 	'database' => 'scdb_ipdn',
