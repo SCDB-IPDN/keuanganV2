@@ -46,6 +46,12 @@ class Home extends CI_Controller {
 
       // STATUS PRAJA
       $status = $this->home_model->status_praja();
+
+      // HUKUMAN PRAJA
+      $hukuman = $this->home_model->hukuman();
+
+      // ANGKATAN PRAJA
+      $angkatan = $this->home_model->angkatan_praja();
 	    
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
@@ -99,7 +105,9 @@ class Home extends CI_Controller {
       $x['dosen'] = $dosen;
       $x['last_dosen'] = $last_dosen;
       
+      $x['angkatan'] = $angkatan;
       $x['status'] = $status;
+      $x['hukuman'] = $hukuman;
       $x['total_praja'] = $total_praja;
       $x['persentase_span'] = $persentase_span;
       $x['persentase_sas'] = $persentase_sas;

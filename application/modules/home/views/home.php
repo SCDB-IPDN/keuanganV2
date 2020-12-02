@@ -376,7 +376,7 @@
 								TURUN TINGKAT
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->tt; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->tt; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -400,7 +400,34 @@
 								ANGKATAN 31
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $total_praja ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan31; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								ANGKATAN 30
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan30; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								ANGKATAN 29
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan29; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								ANGKATAN 28
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan28; ?></span></div>
 							</div>
 						</div>
 					</div>
