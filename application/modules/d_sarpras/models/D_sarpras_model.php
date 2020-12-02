@@ -1,39 +1,77 @@
 <?php
 class D_sarpras_model extends CI_Model{
 
-	public function get_sarpras() {
-		
+	public function get_sarpras($satker) {
+		// SELECT * FROM tbl_sarpras s JOIN tbl_sarpras_kat k ON kode REGEXP concat('^', k.id);
+		$this->db->select('*');
+		$this->db->from('tbl_sarpras');
+		$this->db->join('tbl_sarpras_kat', "kode REGEXP concat('^', tbl_sarpras_kat.id)");
+		$this->db->where('kode_satker', $satker);
 		$this->db->order_by('kategori', 'ASC');
-		$result = $this->db->get('sarpras');
+		$result = $this->db->get();
 
 		return $result;
 	}
 
-	public function get_sarpras_year() {
+	public function get_sarpras_by_kategori($satker, $kategori) {
+		// SELECT * FROM tbl_sarpras s JOIN tbl_sarpras_kat k ON kode REGEXP concat('^', k.id);
+		$result = $this->db->query("SELECT @num:=@num+1 AS no, T.* FROM (SELECT @num := 0) N, (SELECT uraian, merk, tahun, IF(luas>0, FORMAT(luas,0,'de_DE'), FORMAT(jumlah,0,'de_DE')) as jumlah, FORMAT(harga_beli,2,'de_DE') AS harga_beli, FORMAT((jumlah*harga_beli),0,'de_DE') AS tb, FORMAT((jumlah*harga_baru), 0, 'de_DE') AS tr, asal, kondisi FROM tbl_sarpras JOIN tbl_sarpras_kat ON kode REGEXP concat('^', tbl_sarpras_kat.id) WHERE kode_satker = '$satker' AND kategori = '$kategori' ORDER BY kategori ASC) T");
+		return $result;
+		// $this->db->select('*, (jumlah*harga_beli) AS tb, (jumlah*harga_baru) AS tr');
+		// $this->db->from('tbl_sarpras');
+		// $this->db->join('tbl_sarpras_kat', "kode REGEXP concat('^', tbl_sarpras_kat.id)");
+		// $this->db->where('kode_satker', $satker);
+		// $this->db->where('kategori', $kategori);
+		// $this->db->order_by('kategori', 'ASC');
+		// $result = $this->db->get();
+
+		// return $result;
+	}
+
+	public function get_sarpras_year($satker) {
 
 		$this->db->select('COUNT(tahun) as total, tahun, kategori');
+		$this->db->where('kode_satker', $satker);
 		$this->db->group_by(array("kategori", "tahun"));
-		$result = $this->db->get('sarpras');
+		$result = $this->db->get('tbl_sarpras');
 
 		return $result;
 	}
 
-	public function get_belanja_tahun() {
+	public function get_belanja_tahun($satker) {
 		// $this->db->select("FORMAT(SUM((jumlah*harga_beli)+(luas*harga_beli)), 2, 'de_DE') AS total, tahun, kategori");
 		$this->db->select("SUM((jumlah*harga_beli)) AS total, SUM((jumlah*harga_baru)) AS perolehan, tahun, kategori");
+		$this->db->from('tbl_sarpras');
+		$this->db->join('tbl_sarpras_kat', "kode REGEXP concat('^', tbl_sarpras_kat.id)");
+		$this->db->where('kode_satker', $satker);
 		$this->db->group_by(array("kategori", "tahun"));
 		$this->db->order_by('kategori', 'ASC');
-		$result = $this->db->get('sarpras');
+		$result = $this->db->get();
 
 		return $result;
 	}
 
-	public function get_kategori() {
+	public function get_kategori($satker) {
+
+		// SELECT DISTINCT kategori FROM tbl_sarpras s JOIN tbl_sarpras_kat k ON kode REGEXP concat('^', k.id) WHERE kode_satker=677024 ORDER BY kategori ASC
+		// $this->db->distinct();
+		$this->db->select("kategori, FORMAT(SUM(jumlah*harga_beli), 2, 'de_DE') AS total, FORMAT(SUM(jumlah*harga_baru), 2, 'de_DE') AS perolehan");
+		$this->db->from('tbl_sarpras');
+		$this->db->join('tbl_sarpras_kat', "kode REGEXP concat('^', tbl_sarpras_kat.id)");
+		$this->db->where('kode_satker', $satker);
+		$this->db->group_by("kategori");
+		$this->db->order_by('kategori', 'ASC');
+		$result = $this->db->get();
+
+		return $result;
+	}
+
+	public function get_kategori2() {
 
 		$this->db->distinct();
 		$this->db->select('kategori');
 		$this->db->order_by('kategori', 'ASC');
-		$result = $this->db->get('sarpras');
+		$result = $this->db->get('tbl_sarpras_kat');
 
 		return $result;
 	}

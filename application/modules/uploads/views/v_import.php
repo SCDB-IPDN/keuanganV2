@@ -21,13 +21,18 @@
                         <div class="card-body">
 							<div class="row">
                                 <div class="col-xl-7 col-lg-8">
-									<?php echo $this->session->flashdata("$title") ?>
-									<?php echo form_open_multipart("uploads/$title"); ?>
+									<?php if ($title == "sarpras") { ?>
+										<?php echo $this->session->flashdata($title."_".$kampus) ?>
+										<?php echo form_open_multipart("uploads/".$title."_".$kampus); ?>
+									<?php } else { ?>
+										<?php echo $this->session->flashdata("$title") ?>
+										<?php echo form_open_multipart("uploads/$title"); ?>
+									<?php } ?>
 									<div class="form-group">
 										<?php if ($title == "pok") { ?>
 											<label>UNGGAH 5 FILE EXCEL <?= strtoupper($title); ?> (BIRO I, II, III, IV, PASCA & PROFESI)</label>
-										<?php } elseif ($title == "sarpras" || $title == "sarpras_sulsel") { ?>
-											<label>UNGGAH FILE EXCEL <?= strtoupper($title); ?></label>
+										<?php } elseif ($title == "sarpras") { ?>
+											<label>UNGGAH FILE EXCEL <?= strtoupper($title)." ".strtoupper($kampus); ?></label>
 										<?php } elseif ($title == "rank") { ?>
 											<label>UNGGAH 2 FILE EXCEL <?= strtoupper($title); ?> (ESELON 1, SATKER)</label>
 										<?php } ?>
@@ -36,8 +41,8 @@
 										</span>
 										<?php if ($title == "pok") { ?>
 											<input type="file" multiple name="<?= $title; ?>[]" class="form-control">
-										<?php } elseif ($title == "sarpras" || $title == "sarpras_sulsel") { ?>
-											<input type="file" name="<?= $title; ?>" class="form-control">
+										<?php } elseif ($title == "sarpras") { ?>
+											<input type="file" name="<?= $title; ?>_<?= $kampus; ?>" class="form-control">
 										<?php } elseif ($title == "rank") { ?>
 											<input type="file" multiple name="<?= $title; ?>[]" class="form-control">
 										<?php } ?>
