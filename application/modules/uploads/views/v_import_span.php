@@ -33,23 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-							<div class="row">
-                                <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('satker') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/satkerspan" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL PERINGKAT SPAN</label>
-                                            <span class="ml-2">
-                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
-                                            </span>
-                                            <input for="biroN" type="file" name="satker" class="form-control col-sm-12">
-                                        </div>
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD PERINGKAT SPAN</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!--  -->
                </div>
             </div>
         </div>
