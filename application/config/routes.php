@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['d_pok/(:any)'] = 'd_pok/index/$1';
 $route['d_sas/(:any)'] = 'd_sas/index/$1';
+$route['d_praja/coba/(:any)'] = 'd_praja/coba/$1';
 $route['d_sarpras/(:num)'] = 'd_sarpras/index/$1';
 $route['d_sarpras/(:num)/(:any)'] = 'd_sarpras/table/$1/$2';
 $route['uploads/v_sarpras/(:any)'] = 'uploads/v_sarpras/$1';

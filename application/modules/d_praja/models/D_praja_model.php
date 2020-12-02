@@ -24,24 +24,36 @@ class D_praja_model extends CI_Model
         return $hasil;  
   }
 
+	public function get_statuspraja()
+	{
+
+
+		$result = $this->db->query("SELECT * FROM hukuman");
+
+		return $result;
+	}
+
+	public function get_nama()
+	{
+
+		$result = $this->db->query("SELECT nama FROM praja ");
+
+		return $result;
+	}
+
+	public function getcoba($nama)
+	{
+		$nama = strtoupper(str_replace('-', ' ', $nama));
+		$result = $this->db->query("SELECT id,nama,status,angkatan,tingkat FROM praja WHERE nama = '$nama'");
+
+		return $result;
+	}
+
+
+
 	public function view_edit($editnya)
 	{
 		$id = $editnya['id'];
-		// $nama = $editnya['nama'];
-		// $email = $editnya['email'];
-		// $alamat = $editnya['alamat'];
-		// $rt = $editnya['rt'];
-		// $rw = $editnya['rw'];
-		// $nama_dusun = $editnya['nama_dusun'];
-		// $kelurahan = $editnya['kelurahan'];
-		// $kecamatan = $editnya['kecamatan'];
-		// $kab_kota = $editnya['kab_kota'];
-		// $kode_pos = $editnya['kode_pos'];
-		// $provinsi = $editnya['provinsi'];
-		// $tlp_pribadi = $editnya['tlp_pribadi'];
-		// $status = $editnya['status'];
-		// $tingkat = $editnya['tingkat'];
-		// $angkatan = $editnya['angkatan'];
 
 		// $hasil ="UPDATE praja SET email=$email,alamat=$alamat,rt=$rt,rw=$rw,nama_dusun=$nama_dusun,
 		// kelurahan=$kelurahan,kecamatan=$kecamatan,kab_kota=$kab_kota,kode_pos=$kode_pos,
@@ -57,24 +69,7 @@ class D_praja_model extends CI_Model
 	public function view_editortu($editort)
 	{
 		$id_ortu = $editort['id_ortu'];
-		// echo "$id_ortu";
-		// exit();
-		// $nik_praja = $editnya['nik_praja'] ;
-		// $nama = $editnya['nama'] ;
-		// $nik_ayah = $editnya['nik_ayah'] ;
-		// $nama_ayah = $editnya['nama_ayah'];
-		// $tgllahir_ayah = $editnya['tgllahir_ayah'];
-		// $pendidikan_ayah = $editnya['pendidikan_ayah'];
-		// $pekerjaan_ayah = $editnya['pekerjaan_ayah'];
-		// $penghasilan_ayah = $editnya['penghasilan_ayah'] ;
-		// $tlp_ayah = $editnya['tlp_ayah'];
-		// $nik_ibu = $editnya['nik_ibu'];
-		// $nama_ibu = $editnya['nama_ibu'] ;
-		// $tgllahir_ibu = $editnya['tgllahir_ibu'];
-		// $pendidikan_ibu = $editnya['pendidikan_ibu'];
-		// $pekerjaan_ibu = $editnya['pekerjaan_ibu'];
-		// $penghasilan_ibu = $editnya['penghasilan_ibu'];
-		// $tlp_ibu = $editnya['tlp_ibu'];
+
 
 		// $hasil ="UPDATE orangtua SET id_ortu=$id_ortu,nik_praja=$nik_praja,nama=$nama,nik_ayah=$nik_ayah,nama_ayah=$nama_ayah,
 		// tgllahir_ayah=$tgllahir_ayah,pendidikan_ayah=$pendidikan_ayah,pekerjaan_ayah=$pekerjaan_ayah,penghasilan_ayah=$penghasilan_ayah,
@@ -89,22 +84,6 @@ class D_praja_model extends CI_Model
 	public function view_editwali($editwal)
 	{
 		$id_wali = $editwal['id_wali'];
-		// $nik_praja = $editnya['nik_praja'] ;
-		// $nama = $editnya['nama'] ;
-		// $nik_ayah = $editnya['nik_ayah'] ;
-		// $nama_ayah = $editnya['nama_ayah'];
-		// $tgllahir_ayah = $editnya['tgllahir_ayah'];
-		// $pendidikan_ayah = $editnya['pendidikan_ayah'];
-		// $pekerjaan_ayah = $editnya['pekerjaan_ayah'];
-		// $penghasilan_ayah = $editnya['penghasilan_ayah'] ;
-		// $tlp_ayah = $editnya['tlp_ayah'];
-		// $nik_ibu = $editnya['nik_ibu'];
-		// $nama_ibu = $editnya['nama_ibu'] ;
-		// $tgllahir_ibu = $editnya['tgllahir_ibu'];
-		// $pendidikan_ibu = $editnya['pendidikan_ibu'];
-		// $pekerjaan_ibu = $editnya['pekerjaan_ibu'];
-		// $penghasilan_ibu = $editnya['penghasilan_ibu'];
-		// $tlp_ibu = $editnya['tlp_ibu'];
 
 		// $hasil ="UPDATE orangtua SET id_ortu=$id_ortu,nik_praja=$nik_praja,nama=$nama,nik_ayah=$nik_ayah,nama_ayah=$nama_ayah,
 		// tgllahir_ayah=$tgllahir_ayah,pendidikan_ayah=$pendidikan_ayah,pekerjaan_ayah=$pekerjaan_ayah,penghasilan_ayah=$penghasilan_ayah,
@@ -133,5 +112,13 @@ class D_praja_model extends CI_Model
 	{
 		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
 		return $prov;
+	}
+
+
+	function edit($editpraja)
+	{   
+		$id = $editpraja['id'];
+		$hasil = $this->db->where('id', $id)->update('praja', $editpraja);
+		return $hasil;
 	}
 }
