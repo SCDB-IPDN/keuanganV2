@@ -76,14 +76,13 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl" || $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="dosen" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
 					<span>Kepegawaian</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
 					<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" && $this->uri->segment(2)!="ta" && $this->uri->segment(2)!="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="thl" || $this->uri->segment(2)=="ta" ?"active":"";?> has-sub">
 						<a href="javascript:;">
@@ -98,6 +97,19 @@
 				</ul>
 			</li>
 			<!-- END KEPEGAWAIAN -->
+
+			<!-- AKADEMIK -->
+			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-school"></i>
+					<span>Akademik</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+				</ul>
+			</li>
+			<!-- END AKADEMIK -->
 
 			<!-- KEPRAJAAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?> has-sub">
@@ -186,8 +198,6 @@
 								<li class="<?php echo $this->uri->segment(3)=="sulut"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/sulut');?>">SARPRAS SULUT</a></li>
 							</ul>
 						</li>
-						
-
 					</ul>
 				</li>
 			<?php } ?>

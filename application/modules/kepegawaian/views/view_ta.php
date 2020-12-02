@@ -9,7 +9,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <?php if($this->session->userdata('role') == 'Admin'){?>
+            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){?>
             <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addta"><i class="fa fa-plus-square"></i></a>
             <?php } ?>
           </h4>
@@ -36,7 +36,7 @@
         <?php } ?>
         <div class="panel-body">
             <div class ="table-responsive">
-                <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+                <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                     <thead>
                     <tr>
                         <th>No</th>

@@ -19,7 +19,16 @@ class Home extends CI_Controller {
       $peg = $this->home_model->jumlah_peg();
       $total_peg = $peg[0]->pns + $peg[0]->thl;
       $eselon = $this->home_model->jum_eselon();
+
+      // AKDEMIK
       $dosen = $this->home_model->dosen();
+      $last_dosenx = $this->home_model->update_last_dosen();
+      if($last_dosenx[0]->updated_date != NULL){
+        $date = date('d F Y', strtotime($last_dosenx[0]->updated_date));
+      }else{
+        $date = '';
+      }
+      $last_dosen = $date;
 
       // SPAN JATINANGOR
       $persentase_jatinangor = $this->home_model->get_span_jatinangor();
@@ -88,6 +97,7 @@ class Home extends CI_Controller {
       $x['total_peg'] = $total_peg;
 
       $x['dosen'] = $dosen;
+      $x['last_dosen'] = $last_dosen;
       
       $x['status'] = $status;
       $x['total_praja'] = $total_praja;
