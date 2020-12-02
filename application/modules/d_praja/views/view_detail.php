@@ -14,7 +14,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-
+            <span><a href="<?php echo base_url('d_praja');?>" class="btn btn-sm btn-warning">KEMBALI</a></span>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -270,22 +270,22 @@
                   </div>
 
                   <br>
-              </form>
+                </form>
 
-            <?php endforeach; ?>
-            <br>
+              <?php endforeach; ?>
+              <br>
 
 
+            </div>
           </div>
+          <!-- end panel-body -->
         </div>
-        <!-- end panel-body -->
+        <!-- end panel -->
       </div>
-      <!-- end panel -->
+      <!-- end col-10 -->
     </div>
-    <!-- end col-10 -->
   </div>
-</div>
 
-<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>

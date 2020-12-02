@@ -114,14 +114,6 @@ class D_praja extends CI_Controller
      $editnya['jalur_masuk'] = $this->input->post('jalur_masuk', true);
      $editnya['status'] = $this->input->post('status', true);
 
-     if ($editnya['status'] == "turuntingkat") {
-      $editnya['tingkat'] = $this->input->post('tingkat', true) - 1;
-      $editnya['angkatan'] = $this->input->post('angkatan', true) +1;
-    } else {
-      $editnya['tingkat'] = $this->input->post('tingkat', true);
-      $editnya['angkatan'] = $this->input->post('angkatan', true);
-    }
-
     $editort['id_ortu'] = $this->input->post('id_ortu', true);
     $editort['nik_praja'] = $this->input->post('nik_praja', true);
     $editort['nama'] = $this->input->post('nama', true);
@@ -172,79 +164,6 @@ class D_praja extends CI_Controller
   }
 }
 
-// public function view_editortu()
-// {
-//   if ($this->session->userdata('nip') != NULL) {
-//    $editnya['id_ortu'] = $this->input->post('id_ortu', true);
-
-//    $editnya['nik_praja'] = $this->input->post('nik_praja', true);
-//    $editnya['nama'] = $this->input->post('nama', true);
-//    $editnya['nik_ayah'] = $this->input->post('nik_ayah', true);
-//    $editnya['nama_ayah'] = $this->input->post('nama_ayah', true);
-//    $editnya['tgllahir_ayah'] = $this->input->post('tgllahir_ayah', true);
-//    $editnya['pendidikan_ayah'] = $this->input->post('pendidikan_ayah', true);
-//    $editnya['pekerjaan_ayah'] = $this->input->post('pekerjaan_ayah', true);
-//    $editnya['penghasilan_ayah'] = $this->input->post('penghasilan_ayah', true);
-//    $editnya['tlp_ayah'] = $this->input->post('tlp_ayah', true);
-//    $editnya['nik_ibu'] = $this->input->post('nik_ibu', true);
-//    $editnya['nama_ibu'] = $this->input->post('nama_ibu', true);
-//    $editnya['tgllahir_ibu'] = $this->input->post('tgllahir_ibu', true);
-//    $editnya['pendidikan_ibu'] = $this->input->post('pendidikan_ibu', true);
-//    $editnya['pekerjaan_ibu'] = $this->input->post('pekerjaan_ibu', true);
-//    $editnya['penghasilan_ibu'] = $this->input->post('email', true);
-//    $editnya['penghasilan_ibu'] = $this->input->post('email', true);
-//    $editnya['tlp_ibu'] = $this->input->post('tlp_ibu', true);
-
-   
-//    $result = $this->D_praja_model->view_editortu($editnya);
-//     // echo $result;
-//     // exit();
-
-
-//    if (!$result) {
-//     $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
-//     redirect('d_praja');
-//   } else {
-//     $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
-//     redirect('d_praja');
-//   }
-// } else {
-//   redirect("user");
-// }
-// }
-
-// public function view_editwali()
-// {
-//   if ($this->session->userdata('nip') != NULL) {
-//    $editnya['id_wali'] = $this->input->post('id_wali', true);
-//    $editnya['nik_praja'] = $this->input->post('nik_praja', true);
-//    $editnya['nama'] = $this->input->post('nama', true);
-//    $editnya['nik_wali'] = $this->input->post('nik_wali', true);
-//    $editnya['nama_wali'] = $this->input->post('nama_wali', true);
-//    $editnya['pendidikan_wali'] = $this->input->post('pendidikan_wali', true);
-//    $editnya['tgllahir_wali'] = $this->input->post('tgllahir_wali', true);
-//    $editnya['pekerjaan_wali'] = $this->input->post('pekerjaan_wali', true);
-//    $editnya['penghasilan_wali'] = $this->input->post('penghasilan_wali', true);
-//    $editnya['tlp_wali'] = $this->input->post('tlp_wali', true);
-
-   
-//    $result = $this->D_praja_model->view_editwali($editnya);
-//     // echo $result;
-//     // exit();
-
-
-//    if (!$result) {
-//     $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
-//     redirect('d_praja');
-//   } else {
-//     $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
-//     redirect('d_praja');
-//   }
-// } else {
-//   redirect("user");
-// }
-// }
-
 function alumni()
 {
   if ($this->session->userdata('nip') != NULL) {
@@ -271,5 +190,152 @@ function alumni()
     redirect("user");
   }
 }
+
+
+function hukuman()
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->D_praja_model->get_statuspraja()->result();
+    $x['data'] = json_encode($data);
+
+    $pra = $this->D_praja_model->get_praja()->result();
+    $x['pra'] = $pra;
+
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_status", $x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  } else {
+    redirect("user");
+  }
+}
+
+
+function editstatus()
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->D_praja_model->get_statuspraja()->result();
+    $x['data'] = json_encode($data);
+
+    $pra = $this->D_praja_model->get_praja()->result();
+    $x['pra'] = $pra;
+
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_status", $x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  } else {
+    redirect("user");
+  }
+}
+
+function ubahstatus()
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->D_praja_model->get_nama()->result();
+    $x['data'] = json_encode($data);
+
+      // var_dump($data);
+      // exit();
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_ubah", $x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  } else {
+    redirect("user");
+  }
+}
+
+function coba($nama = NULL)
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->D_praja_model->getcoba($nama)->result();
+    echo json_encode($data);
+
+      // $html = "";
+      // $html .= "<br>";
+      // $html .= "<h4> Nama : $data[nama]</h4>";
+
+  } else {
+    redirect("user");
+  }
+}
+
+function tambah_status()
+{
+  if ($this->session->userdata('nip') != NULL) {
+
+    $data = $this->D_praja_model->getcoba($this->input->post('nama', true))->row_array();
+
+    if ($this->input->post('status', true) == "turuntingkat") {
+      $ting = $data['tingkat']-1;
+      $ang = $data['angkatan']+1;
+    }else{
+      $ting = $data['tingkat'];
+      $ang = $data['angkatan'];
+    }
+
+    $tingkatann = $this->input->post('status', true);
+    $keterangann = $this->input->post('keterangan', true);
+
+    $nya = array();
+    array_push($nya, array(
+      'id'      => $data['id'],
+      'nama'      => $data['nama'],
+      'status'      => $tingkatann,
+      'tingkat'      => $ting,
+      'angkatan' => $ang,
+      'keterangan' => $keterangann
+
+    ));
+    // print("<pre>".print_r($nya,true)."</pre>");
+    $up = $this->db->insert_batch('hukuman', $nya);
+
+
+    if($this->input->post('status', true) != "turuntingkat"){
+       $haha = $this->input->post('status', true);
+       // echo "$haha";
+    }else{
+       $haha = $data['status'];
+    }
+    
+    $uptudate = array();
+    $uptudate = array(
+     'id'      => $data['id'],
+     'nama'      => $data['nama'],
+     'status'      => $haha,
+     'tingkat'      => $ting,
+     'angkatan' => $ang,
+   );
+    // print("<pre>".print_r($uptudate,true)."</pre>");
+    // exit();
+    $nih = $this->db->where('id',$data['id']);
+    $nih = $this->db->update('praja',$uptudate); //Here also couldn't update
+
+
+   // $this->db->update_batch('praja', $uptudate, '$data[id]');
+// exit();
+
+    if (!$up && $nih) {
+      $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
+      redirect('d_praja/editstatus');
+    } else {
+      $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
+      redirect('d_praja/editstatus');
+    }
+
+  } else {
+    redirect("user");
+  }
+}
+
+
+
 
 }
