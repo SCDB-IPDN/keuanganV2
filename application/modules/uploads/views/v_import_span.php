@@ -28,7 +28,6 @@
                                             </span>
                                             <input for="biroN" type="file" name="span" class="form-control col-sm-12">
                                         </div>
-
                                         <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SPAN</button>
                                     </form>
                                 </div>
@@ -46,7 +45,6 @@
                                             </span>
                                             <input for="biroN" type="file" name="belanja" class="form-control col-sm-12">
                                         </div>
-
                                         <button id="biroN" type="submit" class="btn btn-success">UPLOAD PERINGKAT SPAN</button>
                                     </form>
                                 </div>
@@ -56,4 +54,3 @@
             </div>
         </div>
     </div>
-</div>
