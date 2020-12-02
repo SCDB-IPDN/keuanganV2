@@ -21,7 +21,7 @@ class Kepegawaian_model extends CI_Model{
   //DOSEN
   public function get_all_dosen()
 	{	
-    $result = $this->db->query("SELECT * FROM tbl_dosen");
+    $result = $this->db->query("SELECT * FROM tbl_dosen ORDER BY updated_date DESC");
 
     return $result;
   }
