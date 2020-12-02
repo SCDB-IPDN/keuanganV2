@@ -7,6 +7,66 @@ class Kepegawaian extends CI_Controller{
      }
 
      // PNS
+     function table_pns() {
+          $data = $this->kepegawaian_model->get_all_pns()->result();
+
+          $apa = array();
+
+          $no = 1;
+
+          foreach($data as $r) {
+               $nip = $r->nip == NULL ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nama = $r->nama_lengkap == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama_lengkap;
+               $bagian = $r->bagian == NULL ? "<i><font style='color:red;'>Bagian Tidak ada</font></i>" : $r->bagian; 
+               $ttl = $r->tempat_lahir.", ". date('d/m/Y', strtotime($r->tanggal_lahir));
+               $no_urut_pangkat = $r->no_urut_pangkat == NULL ? "<i><font style='color:red;'>No Urut Pangkat tidak ada</font></i>" : $r->no_urut_pangkat;
+               $pangkat_gol = $r->pangkat." ($r->gol_ruang)";
+               $tmt_pangkat = $r->tmt_pangkat == NULL ? "<i><font style='color:red;'>TMT Pangkat tidak ada</font></i>" : date('d/m/Y', strtotime($r->tmt_pangkat));
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabatan tidak ada</font></i>" : $r->jabatan;
+               $tmt_jabatan = $r->tmt_jabatan == NULL ? "<i><font style='color:red;'>TMT Jabatan tidak ada</font></i>" : date('d/m/Y', strtotime($r->tmt_jabatan));
+               $jurusan = $r->jurusan == NULL ? "<i><font style='color:red;'>Jurusan tidak ada</font></i>" : $r->jurusan;
+               $nama_pt = $r->nama_pt == NULL ? "<i><font style='color:red;'>Perguruan Tinggi tidak ada</font></i>" : $r->nama_pt;
+               $tahun_lulus = $r->tahun_lulus == NULL ? "<i><font style='color:red;'>Tahun Lulus tidak ada</font></i>" : $r->tahun_lulus;
+               $tingkat_pendidikan = $r->tingkat_pendidikan == NULL ? "<i><font style='color:red;'>Tingkat Pendidikan tidak ada</font></i>" : $r->tingkat_pendidikan;
+               $usia = $r->usia == NULL ? "<i><font style='color:red;'>Usia tidak ada</font></i>" : $r->usia;
+               $masa_kerja = $r->masa_kerja == NULL ? "<i><font style='color:red;'>Masa Kerja tidak ada</font></i>" : $r->masa_kerja;
+               $catatan = $r->catatan_mutasi == NULL ? "<i><font style='color:red;'>Catatan Mutasi tidak ada</font></i>" : $r->catatan_mutasi;
+               $no_kapreg = $r->no_kapreg == NULL ? "<i><font style='color:red;'>No Kapreg tidak ada</font></i>" : $r->no_kapreg;
+               $eselon = $r->eselon == NULL ? "<i><font style='color:red;'>Eselon tidak ada</font></i>" : $r->eselon;
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
+                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editpns$r->no'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapuspns$r->no'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nip,
+                    $nama,
+                    $bagian,
+                    $ttl,
+                    $no_urut_pangkat,
+                    $pangkat_gol,
+                    $tmt_pangkat,
+                    $jabatan,
+                    $tmt_jabatan,
+                    $jurusan,
+                    $nama_pt,
+                    $tahun_lulus,
+                    $tingkat_pendidikan,
+                    $usia,
+                    $masa_kerja,
+                    $catatan,
+                    $no_kapreg,
+                    $eselon,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+
      function index()
      {
           if($this->session->userdata('nip') != NULL)
@@ -20,29 +80,6 @@ class Kepegawaian extends CI_Controller{
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_pns', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
-          }else{
-               redirect("user");
-          }
-     }
-
-     function ie_pns()
-     {
-          if($this->session->userdata('nip') != NULL)
-          {
-               $no = $this->input->get('no', true);
-
-               $data = $this->kepegawaian_model->get_edit_pns($no)->result();
-               $tp = $this->kepegawaian_model->get_pendidikan();
-
-               $x['data'] = $data;
-               $x['tp'] = $tp;
-          
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('edit_pns', $x);
                $this->load->view("include/sidebar");
                $this->load->view("include/panel");
                $this->load->view("include/footer");
@@ -162,6 +199,50 @@ class Kepegawaian extends CI_Controller{
      //END PNS
 
      // DOSEN
+     function table_dosen() {
+          $data = $this->kepegawaian_model->get_all_dosen()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama;
+               $nip = $r->nip == 0 ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nidn = $r->nidn == 0 ? "<i><font style='color:red;'>NIDN tidak ada</font></i>" : $r->nidn;
+               $serdos = $r->serdos == NULL ? "<i><font style='color:red;'>Data tidak ada</font></i>" : $r->serdos;
+               $bidang_ilmu = $r->bidang_ilmu == NULL ? "<i><font style='color:red;'>Bidang Ilmu tidak ada</font></i>" : $r->bidang_ilmu;
+               $nik = $r->nik == 0 ? "<i><font style='color:red;'>NIK tidak ada</font></i>" : $r->nik;
+               $alamat = $r->alamat == NULL ? "<i><font style='color:red;'>Alamat tidak ada</font></i>" : $r->alamat;
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
+               $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
+               $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editdosen$r->id_dosen'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapusdosen$r->id_dosen'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $nip,
+                    $nidn,
+                    $serdos,
+                    $bidang_ilmu,
+                    $nik,
+                    $alamat,
+                    $jabatan,
+                    $pangkat,
+                    $updated_date,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+     
      function dosen($id = NULL)
      {
           if($this->session->userdata('nip') != NULL)
@@ -207,14 +288,17 @@ class Kepegawaian extends CI_Controller{
           $input_data['jabatan'] = $this->input->post('jabatan', true);
           $input_data['pangkat'] = $this->input->post('pangkat', true);
           $input_data['created_date'] = $date;
+          $input_data['updated_date'] = $date;
+
+          $nama = $this->input->post('nama', true);
 
           $result = $this->kepegawaian_model->tambah_dosen($input_data);
 
           if (!$result) { 							
-               $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DITAMBAHKAN.'); 				
+               $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) GAGAL DITAMBAHKAN."); 				
                redirect('kepegawaian/dosen'); 			
           } else { 								
-               $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DITAMBAHKAN.');			
+               $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
                redirect('kepegawaian/dosen'); 			
           }
     }
@@ -236,13 +320,15 @@ class Kepegawaian extends CI_Controller{
           $input_data['pangkat'] = $this->input->post('pangkat', true);
           $input_data['updated_date'] = $date;
 
+          $nama = $this->input->post('nama', true);
+
           $result = $this->kepegawaian_model->edit_dosen($input_data);
 
           if (!$result) { 							
-               $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DIUBAH.'); 				
+               $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) GAGAL DIUBAH."); 				
                redirect('kepegawaian/dosen'); 			
           } else { 								
-               $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DIUBAH.');			
+               $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DIUBAH.");			
                redirect('kepegawaian/dosen'); 			
           }
     }
@@ -263,6 +349,40 @@ class Kepegawaian extends CI_Controller{
      //END DOSEN
 
      // THL
+     function table_thl() {
+          $data = $this->kepegawaian_model->get_all_thl()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama;
+               $ttl = $r->tempat_lahir.', '.date('d/m/Y', strtotime($r->tanggal_lahir));
+               $dik = $r->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->dik;
+               $penugasan = $r->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->penugasan;
+               $nama_satker = $r->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama_satker;
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
+                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editthl$r->id_thl'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapusthl$r->id_thl'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $ttl,
+                    $dik,
+                    $penugasan,
+                    $nama_satker,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+
      function thl()
      {
           if($this->session->userdata('nip') != NULL)
@@ -334,6 +454,7 @@ class Kepegawaian extends CI_Controller{
           redirect('kepegawaian/thl');
      }
      // END THL
+
      // TA
      function ta()
      {

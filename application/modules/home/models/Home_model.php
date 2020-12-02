@@ -16,6 +16,10 @@ class Home_model extends CI_Model{
 		return $result;
 	}
 
+	public function update_last_dosen(){
+		return $this->db->query("SELECT updated_date FROM tbl_dosen ORDER BY updated_date DESC LIMIT 1")->result();
+	}
+
 	public function dosen()
 	{
 		$result = $this->db->query("SELECT 
