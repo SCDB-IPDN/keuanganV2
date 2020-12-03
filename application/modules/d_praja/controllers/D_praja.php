@@ -177,8 +177,8 @@ function alumni()
     $prov = $this->D_praja_model->get_provinsi_alumni()->result();
     $x['prov'] = json_encode($prov);
 
-    $status = $this->D_praja_model->get_status()->result();
-    $x['status'] = json_encode($status);
+    // $status = $this->D_praja_model->get_status()->result();
+    // $x['status'] = json_encode($status);
 
     $this->load->view("include/head");
     $this->load->view("include/top-header");

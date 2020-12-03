@@ -21,7 +21,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-             <span><a href="<?php echo base_url('d_praja/editstatus');?>" class="btn btn-sm btn-green">UBAH STATUS PRAJA</a></span>
+             <span><a href="<?php echo base_url('d_praja/editstatus');?>" class="btn btn-sm btn-green">UBAH STATUS ALUMNI</a></span>
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
           </h4>
@@ -66,14 +66,6 @@
                     <td><?= $x['nip']; ?>
                     <td><?= $x['instansi']; ?></td>
                     <td><?= $x['jabatan']; ?></td>
-                    <?php if (isset($x['id'])) { ?>
-                      <td>
-                        <a href='<?= base_url() . 'd_praja/detail/' . $x['id'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
-                        <a href='<?= base_url() . 'd_praja/edt/' . $x['id'] ?>' class="btn btn-sm btn-warning" btn-sm><i class="fa fas fa-edit"></i></a>
-                      </td>
-                    <?php } else { ?>
-                      <td>Tidak ada detail</td>
-                    <?php } ?>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -96,9 +88,9 @@
       Morris.Bar({
         element: 'graph',
         data: <?php echo $prov; ?>,
-        xkey: 'provinsi',
+        xkey: 'asdaf',
         ykeys: ['jumlah'],
-        labels: [' Jumlah'],
+        labels: ['Jumlah'],
         barRatio: 0.1,
         behaveLikeLine: true,
         pointSize: 5,
