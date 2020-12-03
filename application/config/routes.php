@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['d_pok/(:any)'] = 'd_pok/index/$1';
 $route['d_sas/(:any)'] = 'd_sas/index/$1';
 $route['d_spanint/(:num)'] = 'd_spanint/index/$1';
+$route['d_praja/coba/(:any)'] = 'd_praja/coba/$1';
 $route['d_sarpras/(:num)'] = 'd_sarpras/index/$1';
 $route['d_sarpras/detail/(:num)'] = 'd_sarpras/detail/$1';
 $route['d_sarpras/(:num)/(:any)'] = 'd_sarpras/table/$1/$2';

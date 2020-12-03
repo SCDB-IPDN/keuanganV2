@@ -33,4 +33,25 @@ class D_span_model extends CI_Model{
 
 		return $result;
   }
+
+  // public function get_peringkat() {
+
+  //   $result = $this->db->query("SELECT concat(kode_satker, ' | ', nama_satker) AS nama,
+  //     pagu_bp, realisasi_bp, (pagu_bp - realisasi_bp) AS sisa_peg, concat(round((100 * realisasi_bp / pagu_bp), 2), '%') AS per_peg,
+  //     pagu_bb, realisasi_bb, (pagu_bb - realisasi_bb) AS sisa_bar, concat(round((100 * realisasi_bb / pagu_bb), 2), '%') AS per_bar,
+  //     pagu_bm, realisasi_bm, (pagu_bm - realisasi_bm) AS sisa_mod, concat(round((100 * realisasi_bm / pagu_bm), 2), '%') AS per_mod,
+  //     pagu_t, realisasi_t, (pagu_t - realisasi_t) AS persentase_t, concat(round((100 * realisasi_t / pagu_t), 2), '%') AS per_total,
+  //     @pagu_t:=pagu_bp + pagu_bb + pagu_bm AS pagu_tot,
+  //     @realisasi_t:=realisasi_bp + realisasi_bb + realisasi_bm AS real_tot,
+  //     @pagu_t - @realisasi_t AS sisa_tot,
+  //     concat(round((100 * @realisasi_t / @pagu_t), 2), '%') AS per_tot
+  //     FROM tbl_span_rank ORDER BY per_tot DESC");
+  
+  //   return $result;
+  //   }
+  
+    // public function get_date() {
+    //   return $this->db->query("SELECT created_at FROM tbl_rank LIMIT 1")->row_array();
+    // }
+
 }

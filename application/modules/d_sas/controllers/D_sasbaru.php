@@ -9,14 +9,25 @@ class D_sasbaru extends CI_Controller
         $this->load->model('d_sas_modelbaru');
     }
 
-    function index()
+    function index($link = NULL)
     {
         if ($this->session->userdata('nip') != NULL) {
-            $data = $this->d_sas_modelbaru->get_all_kampus()->result();
 
-            $x['data'] = json_encode($data);
-            var_dump($data);
-            exit();
+            if ($link == NULL) {
+                $data = $this->d_sas_modelbaru->get_all_kampus()->result();
+
+
+                $x['data'] = json_encode($data);
+            } elseif (strlen($link == 4)) {
+                $biro = $this->d_sas_modelbaru->get_kegiatan()->result();
+
+                $x['biro'] = json_encode($biro);
+                var_dump($biro);
+                exit;
+            }
+
+            // var_dump($data);
+            // exit();
 
             $this->load->view("include/head");
             $this->load->view("include/top-header");
