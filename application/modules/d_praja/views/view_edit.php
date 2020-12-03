@@ -189,17 +189,17 @@
               <div class="col-1">
                 <br>
                 <label for="basic-url">Tingkat</label>
-                <input type="text" class="form-control"  id="tingkat" name="tingkat"  value="<?php echo $data[0]->tingkat == NULL ? "-" : $data[0]->tingkat ?>" >
+                <input type="text" class="form-control"  id="tingkat" name="tingkat"  value="<?php echo $data[0]->tingkat == NULL ? "-" : $data[0]->tingkat ?>"readonly >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Angkatan</label>
-                <input type="text" class="form-control" id="angkatan" name="angkatan"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" >
+                <input type="text" class="form-control" id="angkatan" name="angkatan"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" readonly>
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Status</label>
-                <input type="text" class="form-control" id="status" name="status"   value="<?php echo $data[0]->status == NULL ? "-" : $data[0]->status ?>" >
+                <input type="text" class="form-control" id="status" name="status"   value="<?php echo $data[0]->status == NULL ? "-" : $data[0]->status ?>"readonly >
               </div>
             </div>
             <br>
