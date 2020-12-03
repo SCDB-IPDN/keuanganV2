@@ -50,6 +50,18 @@ class Home extends CI_Controller {
       // HUKUMAN PRAJA
       $hukuman = $this->home_model->hukuman();
 
+      // ANGKATAN 31
+       $angkatan31 = $this->home_model->angkatan_31();
+
+      // ANGKATAN 30
+      $angkatan30 = $this->home_model->angkatan_30();
+
+       // ANGKATAN 29
+       $angkatan29 = $this->home_model->angkatan_29();
+
+      // ANGKATAN 28
+      $angkatan28 = $this->home_model->angkatan_28();
+
       // ANGKATAN PRAJA
       $angkatan = $this->home_model->angkatan_praja();
 	    
@@ -123,6 +135,10 @@ class Home extends CI_Controller {
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
       $x['jkalumni'] = $jkalumni;
+      $x['angkatan31'] = $angkatan31;
+      $x['angkatan30'] = $angkatan30;
+      $x['angkatan29'] = $angkatan29;
+      $x['angkatan28'] = $angkatan28;
       $x['praja'] = $praja;
 
       $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];

@@ -194,7 +194,7 @@ class Home_model extends CI_Model{
 	
 	public function jumlah_praja()
 	{
-		$praja = $this->db->query("SELECT count(*) as praja from praja")->result();
+		$praja = $this->db->query("SELECT count(*) as praja from praja WHERE status='aktif'")->result();
 
 		return $praja;
 	}
@@ -222,16 +222,37 @@ class Home_model extends CI_Model{
 	
 	public function status_praja()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti, SUM(status = 'diberhentikan') as berhenti FROM praja")->result();
 
 		return $result;
-  }
-  public function angkatan_praja()
-  {
+	}
+	  
+	public function angkatan_praja()
+   	{
     $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja")->result();
-
     return $result;
-  }
+	}
+
+	public function angkatan_31()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
+   return $result;
+	 }
+	 public function angkatan_30()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
+   return $result;
+	 }
+	 public function angkatan_29()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
+   return $result;
+	 }
+	 public function angkatan_28()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
+   return $result;
+	 }
 	
 	public function get_rank_persen() {
 		// return $this->db->query("SELECT

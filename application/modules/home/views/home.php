@@ -386,20 +386,44 @@
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-								TURUN TINGKAT
+								<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+								DIBERHENTIKAN
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->tt; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->berhenti; ?></span></div>
+							</div>
+						</div>
+						</br>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								TURUN TINGKAT
 							</div>
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-grey f-s-8 mr-2"></i>
-								CUTI
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								PRAJA UTAMA
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->cuti; ?></span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan28[0]->turuntingkat; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
+								NINDYA
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan29[0]->turuntingkat; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								MADYA PRAJA => MUDA PRAJA
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan30[0]->turuntingkat; ?></span></div>
 							</div>
 						</div>
 						</br>

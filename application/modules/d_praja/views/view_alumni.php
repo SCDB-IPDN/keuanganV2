@@ -21,7 +21,6 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-             <span><a href="<?php echo base_url('d_praja/editstatus');?>" class="btn btn-sm btn-green">UBAH STATUS ALUMNI</a></span>
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
           </h4>
@@ -32,16 +31,6 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
-        
-        
-        <div class="table-responsive">
-          <?php if ($this->session->flashdata('praja') != NULL) { ?>
-            <div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
-            </div>
-          <?php } ?>
-
           <div class="panel-body">
             <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead>
