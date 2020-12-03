@@ -36,6 +36,37 @@ class D_praja extends CI_Controller
     }
   }
 
+  function cobain(){
+    $data = $this->D_praja_model->get_praja()->result();
+    
+      $dataall = array();
+      $no = 1;
+      foreach($data as $r) {
+        $id = $r->id;
+        $nama = $r->nama;
+        $jk = $r->jk;
+        $tingkat = $r->tingkat;
+        $angkatan = $r->angkatan;
+        $status = $r->status;
+        if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+          $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a> <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+        }else{
+          $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
+        }
+
+        $dataall[] = array(
+          $no++,
+          $nama,
+          $jk,
+          $tingkat,
+          $angkatan,
+          $status,
+          $opsi
+        );
+      }
+      echo json_encode($dataall);
+  }
+
   function detail($id)
   {
     if ($this->session->userdata('nip') != NULL) {

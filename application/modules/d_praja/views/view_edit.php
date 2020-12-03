@@ -38,29 +38,38 @@
               </div>
               <div class="col-2">
                 <label for="basic-url">NIK</label>
-                <input type="text" class="form-control"  id="nik_praja" name="nik_praja" value="<?php echo $data[0]->nik_praja == NULL ? "-" : $data[0]->nik_praja ?>" readonly>
+                <input type="text" class="form-control"  id="nik_praja" name="nik_praja" value="<?php echo $data[0]->nik_praja == NULL ? "-" : $data[0]->nik_praja ?>" >
               </div>
               <div class="col-2">
                 <label for="basic-url">No SPCP</label>
-                <input type="text" class="form-control" id="no_spcp" name="no_spcp" value="<?php echo  $data[0]->no_spcp == NULL ? "-" : $data[0]->no_spcp ?>" readonly>
+                <input type="text" class="form-control" id="no_spcp" name="no_spcp" value="<?php echo  $data[0]->no_spcp == NULL ? "-" : $data[0]->no_spcp ?>" >
               </div>
               <div class="col-2">
                 <label for="basic-url">NISN</label>
-                <input type="text" class="form-control" id="nisn" name="nisn" value="<?php echo $data[0]->nisn == NULL ? "-" : $data[0]->nisn ?>" readonly>
+                <input type="text" class="form-control" id="nisn" name="nisn" value="<?php echo $data[0]->nisn == NULL ? "-" : $data[0]->nisn ?>" >
               </div>
 
               <div class="col-2">
                 <label for="basic-url">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $data[0]->tmpt_lahir == NULL ? "-" : $data[0]->tmpt_lahir ?>" readonly>
+                <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" value="<?php echo $data[0]->tmpt_lahir == NULL ? "-" : $data[0]->tmpt_lahir ?>" > 
               </div>
               <div class="col-2">
                 <label for="basic-url">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $data[0]->tgl_lahir == NULL ? "-" : $data[0]->tgl_lahir ?>" readonly>
+                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $data[0]->tgl_lahir == NULL ? "-" : $data[0]->tgl_lahir ?>" >
               </div>
+              <div class="col-1">
+                <br>
+                <label for="basic-url">Jenis Kelamin</label>
+                <select class="form-control" name="jk" id="jk" >
+                   <option value="<?php echo $data[0]->jk== NULL ? "-" : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ? "-" : $data[0]->jk?>
+                   <option value="L">Laki-Laki</option>
+                   <option value="P">Perempuan</option>
+                 </select>
+                            </div>
               <div class="col-2">
                 <br>
                 <label for="basic-url">Agama</label>
-                <input type="text" class="form-control"  id="agama" name="agama"  value="<?php echo $data[0]->agama == NULL ? "-" : $data[0]->agama ?>" readonly>
+                <input type="text" class="form-control"  id="agama" name="agama"  value="<?php echo $data[0]->agama == NULL ? "-" : $data[0]->agama ?>" >
               </div>
               <div class="col-4">
                 <br>
@@ -110,12 +119,12 @@
               <div class="col-2">
                 <br>
                 <label for="basic-url">Jenis Tinggal</label>
-                <input type="text" class="form-control"  id="jenis_tinggal" name="jenis_tinggal"  value="<?php echo $data[0]->jenis_tinggal == NULL ? "-" : $data[0]->jenis_tinggal ?>" readonly>
+                <input type="text" class="form-control"  id="jenis_tinggal" name="jenis_tinggal"  value="<?php echo $data[0]->jenis_tinggal == NULL ? "-" : $data[0]->jenis_tinggal ?>" >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Alat Transportasi</label>
-                <input type="text" class="form-control"   id="alat_transport" name="alat_transport"  value="<?php echo $data[0]->alat_transport == NULL ? "-" : $data[0]->alat_transport ?>" readonly>
+                <input type="text" class="form-control"   id="alat_transport" name="alat_transport"  value="<?php echo $data[0]->alat_transport == NULL ? "-" : $data[0]->alat_transport ?>" >
               </div>
               <div class="col-1">
                 <br>
@@ -135,12 +144,12 @@
               <div class="col-1">
                 <br>
                 <label for="basic-url">Kewarganegaraan</label>
-                <input type="text" class="form-control"  id="kewarganegaraan" name="kewarganegaraan"  value="<?php echo $data[0]->kewarganegaraan == NULL ? "-" : $data[0]->kewarganegaraan ?>" readonly>
+                <input type="text" class="form-control"  id="kewarganegaraan" name="kewarganegaraan"  value="<?php echo $data[0]->kewarganegaraan == NULL ? "-" : $data[0]->kewarganegaraan ?>" >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Penerima PKS</label>
-                <input type="text" class="form-control"  id="penerima_pks" name="penerima_pks"  value="<?php echo $data[0]->penerima_pks == NULL ? "-" : $data[0]->penerima_pks ?>" readonly>
+                <input type="text" class="form-control"  id="penerima_pks" name="penerima_pks"  value="<?php echo $data[0]->penerima_pks == NULL ? "-" : $data[0]->penerima_pks ?>" >
               </div>
               <div class="col-2">
                 <br>
@@ -155,42 +164,42 @@
               <div class="col-2">
                 <br>
                 <label for="basic-url">Jenis Pendaftaran</label>
-                <input type="text" class="form-control"  id="jenis_pendaftaran" name="jenis_pendaftaran" value="<?php echo $data[0]->jenis_pendaftaran == NULL ? "-" : $data[0]->jenis_pendaftaran ?>" readonly>
+                <input type="text" class="form-control"  id="jenis_pendaftaran" name="jenis_pendaftaran" value="<?php echo $data[0]->jenis_pendaftaran == NULL ? "-" : $data[0]->jenis_pendaftaran ?>" >
               </div>
               <div class="col-2">
                 <br>
                 <label for="basic-url">Tanggal Masuk Kuliah</label>
-                <input type="date" class="form-control"  id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" value="<?php echo $data[0]->tgl_masuk_kuliah == NULL ? "-" : $data[0]->tgl_masuk_kuliah ?>" readonly>
+                <input type="date" class="form-control"  id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" value="<?php echo $data[0]->tgl_masuk_kuliah == NULL ? "-" : $data[0]->tgl_masuk_kuliah ?>" >
               </div>
               <div class="col-2">
                 <br>
                 <label for="basic-url">Tahun Masuk Kuliah</label>
-                <input type="text" class="form-control"  id="tahun_masuk_kuliah" name="tahun_masuk_kuliah"  value="<?php echo $data[0]->tahun_masuk_kuliah == NULL ? "-" : $data[0]->tahun_masuk_kuliah ?>" readonly>
+                <input type="text" class="form-control"  id="tahun_masuk_kuliah" name="tahun_masuk_kuliah"  value="<?php echo $data[0]->tahun_masuk_kuliah == NULL ? "-" : $data[0]->tahun_masuk_kuliah ?>" >
               </div>
               <div class="col-2">
                 <br>
                 <label for="basic-url">Pembiayaan</label>
-                <input type="text" class="form-control"  id="pembiayaan" name="pembiayaan"  value="<?php echo $data[0]->pembiayaan == NULL ? "-" : $data[0]->pembiayaan ?>" readonly>
+                <input type="text" class="form-control"  id="pembiayaan" name="pembiayaan"  value="<?php echo $data[0]->pembiayaan == NULL ? "-" : $data[0]->pembiayaan ?>" >
               </div>
               <div class="col-2">
                 <br>
                 <label for="basic-url">Jalur Masuk</label>
-                <input type="text" class="form-control"  id="jalur_masuk" name="jalur_masuk"  value="<?php echo $data[0]->jalur_masuk == NULL ? "-" : $data[0]->jalur_masuk ?>" readonly>
+                <input type="text" class="form-control"  id="jalur_masuk" name="jalur_masuk"  value="<?php echo $data[0]->jalur_masuk == NULL ? "-" : $data[0]->jalur_masuk ?>" >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Tingkat</label>
-                <input type="text" class="form-control"  id="tingkat" name="tingkat"  value="<?php echo $data[0]->tingkat == NULL ? "-" : $data[0]->tingkat ?>" readonly>
+                <input type="text" class="form-control"  id="tingkat" name="tingkat"  value="<?php echo $data[0]->tingkat == NULL ? "-" : $data[0]->tingkat ?>" >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Angkatan</label>
-                <input type="text" class="form-control" id="angkatan" name="angkatan"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" readonly>
+                <input type="text" class="form-control" id="angkatan" name="angkatan"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" >
               </div>
               <div class="col-1">
                 <br>
                 <label for="basic-url">Status</label>
-                <input type="text" class="form-control" id="status" name="status"   value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan ?>" readonly>
+                <input type="text" class="form-control" id="status" name="status"   value="<?php echo $data[0]->status == NULL ? "-" : $data[0]->status ?>" >
               </div>
             </div>
             <br>

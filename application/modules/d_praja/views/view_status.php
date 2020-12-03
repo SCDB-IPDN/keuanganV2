@@ -21,7 +21,9 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <span><a href="<?php echo base_url('d_praja/ubahstatus');?>" class="btn btn-sm btn-warning">UBAH STATUS PRAJA</a></span>
+              <span><a href="<?php echo base_url('d_praja');?>" class="btn btn-sm btn-warning">Kembali</a></span>
+            <span><a href="<?php echo base_url('d_praja/ubahstatus');?>" class="btn btn-sm btn-green">UBAH STATUS PRAJA</a></span>
+
             <!-- <span><a href="" class="btn btn-sm btn-red" data-toggle="modal" data-target="#editstatus">UBAH STATUS PRAJA</a></span> -->
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
