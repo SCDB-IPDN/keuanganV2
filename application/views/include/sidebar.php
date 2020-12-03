@@ -1,4 +1,4 @@
-begin #sidebar -->
+<!-- begin #sidebar -->
 <div id="sidebar" class="sidebar">
 	<div data-scrollbar="true" data-height="100%">
 		<ul class="nav">
@@ -231,4 +231,4 @@ begin #sidebar -->
 	</div>
 </div>
 <div class="sidebar-bg"></div>
-<!-- end #sidebar
+<!-- end #sidebar -->
