@@ -411,7 +411,7 @@
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
-								NINDYA
+								NINDYA PRAJA
 							</div>
 							<div class="d-flex align-items-center ml-auto">
 								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan29[0]->turuntingkat; ?></span></div>
