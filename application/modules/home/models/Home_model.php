@@ -199,20 +199,6 @@ class Home_model extends CI_Model{
 		return $praja;
 	}
 
-	public function jumlah_alumni()
-	{
-		$alumni = $this->db->query("SELECT count(*) as alumni from alumni")->result();
-
-		return $alumni;
-	}
-
-	public function get_jk_alumni()
-	{ 
-		$result = $this->db->query("SELECT SUM(jk = 'P') AS jumlahP, SUM(jk = 'L') AS jumlahL FROM alumni")->result();
-
-		return $result;
-	}
-
 	public function hukuman()
 	{
 		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt FROM hukuman")->result();

@@ -102,13 +102,6 @@ class D_praja_model extends CI_Model
 		return $prov;
 	}
 
-	public function get_provinsi_alumni()
-	{
-		$prov=$this->db->query("SELECT asdaf , count(asdaf) as jumlah from alumni group by asdaf");
-		return $prov;
-	}
-
-
 	function edit($editpraja)
 	{   
 		$id = $editpraja['id'];

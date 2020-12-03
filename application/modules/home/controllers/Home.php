@@ -67,9 +67,6 @@ class Home extends CI_Controller {
 	    
       //JKPRAJA
       $jkpraja = $this->home_model->get_jk_praja();
-
-      //JKALUMNI
-      $jkalumni = $this->home_model->get_jk_alumni();
 	    
       // PRAJA
       $praja = $this->home_model->jumlah_praja();
@@ -134,7 +131,6 @@ class Home extends CI_Controller {
       $x['persentase_jatinangor'] = $persentase_jatinangor;
       $x['persentase_pok'] = $persentase_pok;
       $x['jkpraja'] = $jkpraja;
-      $x['jkalumni'] = $jkalumni;
       $x['angkatan31'] = $angkatan31;
       $x['angkatan30'] = $angkatan30;
       $x['angkatan29'] = $angkatan29;
