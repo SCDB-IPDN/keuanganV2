@@ -39,32 +39,32 @@ class D_praja extends CI_Controller
   function cobain(){
     $data = $this->D_praja_model->get_praja()->result();
     
-      $dataall = array();
-      $no = 1;
-      foreach($data as $r) {
-        $id = $r->id;
-        $nama = $r->nama;
-        $jk = $r->jk;
-        $tingkat = $r->tingkat;
-        $angkatan = $r->angkatan;
-        $status = $r->status;
-        if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
-          $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a> <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
-        }else{
-          $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
-        }
-
-        $dataall[] = array(
-          $no++,
-          $nama,
-          $jk,
-          $tingkat,
-          $angkatan,
-          $status,
-          $opsi
-        );
+    $dataall = array();
+    $no = 1;
+    foreach($data as $r) {
+      $id = $r->id;
+      $nama = $r->nama;
+      $jk = $r->jk;
+      $tingkat = $r->tingkat;
+      $angkatan = $r->angkatan;
+      $status = $r->status;
+      if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+        $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a> <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+      }else{
+        $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
       }
-      echo json_encode($dataall);
+
+      $dataall[] = array(
+        $no++,
+        $nama,
+        $jk,
+        $tingkat,
+        $angkatan,
+        $status,
+        $opsi
+      );
+    }
+    echo json_encode($dataall);
   }
 
   function detail($id)
@@ -145,45 +145,45 @@ class D_praja extends CI_Controller
      $editnya['jalur_masuk'] = $this->input->post('jalur_masuk', true);
      $editnya['status'] = $this->input->post('status', true);
 
-    $editort['id_ortu'] = $this->input->post('id_ortu', true);
-    $editort['nik_praja'] = $this->input->post('nik_praja', true);
-    $editort['nama'] = $this->input->post('nama', true);
-    $editort['nik_ayah'] = $this->input->post('nik_ayah', true);
-    $editort['nama_ayah'] = $this->input->post('nama_ayah', true);
-    $editort['tgllahir_ayah'] = $this->input->post('tgllahir_ayah', true);
-    $editort['pendidikan_ayah'] = $this->input->post('pendidikan_ayah', true);
-    $editort['pekerjaan_ayah'] = $this->input->post('pekerjaan_ayah', true);
-    $editort['penghasilan_ayah'] = $this->input->post('penghasilan_ayah', true);
-    $editort['tlp_ayah'] = $this->input->post('tlp_ayah', true);
-    $editort['nik_ibu'] = $this->input->post('nik_ibu', true);
-    $editort['nama_ibu'] = $this->input->post('nama_ibu', true);
-    $editort['tgllahir_ibu'] = $this->input->post('tgllahir_ibu', true);
-    $editort['pendidikan_ibu'] = $this->input->post('pendidikan_ibu', true);
-    $editort['pekerjaan_ibu'] = $this->input->post('pekerjaan_ibu', true);
-    $editort['penghasilan_ibu'] = $this->input->post('email', true);
-    $editort['penghasilan_ibu'] = $this->input->post('email', true);
-    $editort['tlp_ibu'] = $this->input->post('tlp_ibu', true);
+     $editort['id_ortu'] = $this->input->post('id_ortu', true);
+     $editort['nik_praja'] = $this->input->post('nik_praja', true);
+     $editort['nama'] = $this->input->post('nama', true);
+     $editort['nik_ayah'] = $this->input->post('nik_ayah', true);
+     $editort['nama_ayah'] = $this->input->post('nama_ayah', true);
+     $editort['tgllahir_ayah'] = $this->input->post('tgllahir_ayah', true);
+     $editort['pendidikan_ayah'] = $this->input->post('pendidikan_ayah', true);
+     $editort['pekerjaan_ayah'] = $this->input->post('pekerjaan_ayah', true);
+     $editort['penghasilan_ayah'] = $this->input->post('penghasilan_ayah', true);
+     $editort['tlp_ayah'] = $this->input->post('tlp_ayah', true);
+     $editort['nik_ibu'] = $this->input->post('nik_ibu', true);
+     $editort['nama_ibu'] = $this->input->post('nama_ibu', true);
+     $editort['tgllahir_ibu'] = $this->input->post('tgllahir_ibu', true);
+     $editort['pendidikan_ibu'] = $this->input->post('pendidikan_ibu', true);
+     $editort['pekerjaan_ibu'] = $this->input->post('pekerjaan_ibu', true);
+     $editort['penghasilan_ibu'] = $this->input->post('email', true);
+     $editort['penghasilan_ibu'] = $this->input->post('email', true);
+     $editort['tlp_ibu'] = $this->input->post('tlp_ibu', true);
 
-    $editwal['id_wali'] = $this->input->post('id_wali', true);
-    $editwal['nik_praja'] = $this->input->post('nik_praja', true);
-    $editwal['nama'] = $this->input->post('nama', true);
-    $editwal['nik_wali'] = $this->input->post('nik_wali', true);
-    $editwal['nama_wali'] = $this->input->post('nama_wali', true);
-    $editwal['pendidikan_wali'] = $this->input->post('pendidikan_wali', true);
-    $editwal['tgllahir_wali'] = $this->input->post('tgllahir_wali', true);
-    $editwal['pekerjaan_wali'] = $this->input->post('pekerjaan_wali', true);
-    $editwal['penghasilan_wali'] = $this->input->post('penghasilan_wali', true);
-    $editwal['tlp_wali'] = $this->input->post('tlp_wali', true);
+     $editwal['id_wali'] = $this->input->post('id_wali', true);
+     $editwal['nik_praja'] = $this->input->post('nik_praja', true);
+     $editwal['nama'] = $this->input->post('nama', true);
+     $editwal['nik_wali'] = $this->input->post('nik_wali', true);
+     $editwal['nama_wali'] = $this->input->post('nama_wali', true);
+     $editwal['pendidikan_wali'] = $this->input->post('pendidikan_wali', true);
+     $editwal['tgllahir_wali'] = $this->input->post('tgllahir_wali', true);
+     $editwal['pekerjaan_wali'] = $this->input->post('pekerjaan_wali', true);
+     $editwal['penghasilan_wali'] = $this->input->post('penghasilan_wali', true);
+     $editwal['tlp_wali'] = $this->input->post('tlp_wali', true);
 
 
-    $result = $this->D_praja_model->view_edit($editnya);
-    $ha = $this->D_praja_model->view_editortu($editort);
-    $hi = $this->D_praja_model->view_editwali($editwal);
+     $result = $this->D_praja_model->view_edit($editnya);
+     $ha = $this->D_praja_model->view_editortu($editort);
+     $hi = $this->D_praja_model->view_editwali($editwal);
     // echo $result;
     // exit();
 
 
-    if (!$result && !$ha && !$hi) {
+     if (!$result && !$ha && !$hi) {
       $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
       redirect('d_praja');
     } else {
@@ -304,12 +304,13 @@ function tambah_status()
 
     $data = $this->D_praja_model->getcoba($this->input->post('nama', true))->row_array();
 
-    if ($this->input->post('status', true) == "turuntingkat") {
-      $ting = $data['tingkat']-1;
-      $ang = $data['angkatan']+1;
-    }else{
+    if ($this->input->post('status', true) == "turuntingkat" && $data['tingkat'] == 1) {
       $ting = $data['tingkat'];
       $ang = $data['angkatan'];
+      
+    }else{
+      $ting = $data['tingkat']-1;
+      $ang = $data['angkatan']+1;
     }
 
     $tingkatann = $this->input->post('status', true);
@@ -330,14 +331,14 @@ function tambah_status()
 
 
     if($this->input->post('status', true) != "turuntingkat"){
-       $haha = $this->input->post('status', true);
+     $haha = $this->input->post('status', true);
        // echo "$haha";
-    }else{
-       $haha = $data['status'];
-    }
-    
-    $uptudate = array();
-    $uptudate = array(
+   }else{
+     $haha = $data['status'];
+   }
+
+   $uptudate = array();
+   $uptudate = array(
      'id'      => $data['id'],
      'nama'      => $data['nama'],
      'status'      => $haha,
@@ -346,7 +347,7 @@ function tambah_status()
    );
     // print("<pre>".print_r($uptudate,true)."</pre>");
     // exit();
-    $nih = $this->db->where('id',$data['id']);
+   $nih = $this->db->where('id',$data['id']);
     $nih = $this->db->update('praja',$uptudate); //Here also couldn't update
 
 
