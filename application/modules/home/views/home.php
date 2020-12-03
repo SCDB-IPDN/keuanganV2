@@ -329,20 +329,6 @@
 				</div>
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
-					<div class="mb-3 text-grey">
-							<b class="mb-3">TOTAL ALUMNI</b> 
-							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
-							<div class="text-grey">
-								<i class=""></i> KAMPUS IPDN
-							</div>
-					</div>
-					<div class="d-flex align-items-center mb-1">
-							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_alumni ?>"><?php echo $total_alumni ?></span> PURNA PRAJA</h4>
-							<div class="ml-auto">
-								<div id="conversion-rate-sparkline"></div>
-							</div>
-						</div>
-						<br>
 						<div class="mb-3 text-grey">
 							<b class="mb-3">TOTAL PRAJA</b> 
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
