@@ -9,13 +9,6 @@ class D_praja_model extends CI_Model
 
 		return $result;
 	}
-	public function get_alumni()
-	{
-
-		$result = $this->db->query("SELECT * FROM alumni ");
-
-		return $result;
-	}
 	public function get_detail($id)
 	{
 
