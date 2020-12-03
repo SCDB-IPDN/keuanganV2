@@ -8,6 +8,13 @@ class D_praja_model extends CI_Model
 
 		return $result;
 	}
+	public function get_alumni()
+	{
+
+		$result = $this->db->query("SELECT * FROM alumni");
+
+		return $result;
+	}
   
   	public function get_detail($id)
 	{	
@@ -111,6 +118,12 @@ class D_praja_model extends CI_Model
 	public function get_provinsi()
 	{
 		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja group by provinsi");
+		return $prov;
+	}
+
+	public function get_provinsi_alumni()
+	{
+		$prov=$this->db->query("SELECT asdaf , count(asdaf) as jumlah from alumni group by asdaf");
 		return $prov;
 	}
 
