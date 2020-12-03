@@ -51,6 +51,7 @@
                   <TH>JENIS KELAMIN</TH>
                   <th>NPP</th>
                   <th>NIP</th>
+                  <th>ASDAF</th>
                   <th>INSTANSI</th>
                   <th>JABATAN</th>
                 </tr>
@@ -64,6 +65,7 @@
                     <td><?= $x['jk']; ?></td>
                     <td><?= $x['npp']; ?></td>
                     <td><?= $x['nip']; ?>
+                    <td><?= $x['asdaf']; ?>
                     <td><?= $x['instansi']; ?></td>
                     <td><?= $x['jabatan']; ?></td>
                   </tr>
