@@ -51,7 +51,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>haha</th>
+                                    <th>Kampus</th>
                                     <th>Pagu</th>
                                     <th>Realiasasi</th>
                                     <th>Sisa Pagu</th>
@@ -69,11 +69,12 @@
                                         <td><?= number_format($x['realisasi'], 0, ',', '.'); ?></td>
                                         <td><?= number_format($x['pagu'] - $x['realisasi'], 0, ',', '.'); ?></td>
                                         <td><?= round((100 / $x['pagu'] * $x['realisasi']), 2) . "%"; ?></td>
-                                        <!-- <?php if (isset($x['url'])) { ?>
-                                            <td><a href="<?= base_url() . 'd_sas/' . $x['url']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+                                        <?php if (isset($x['kode_satker'])) { ?>
+                                            <td><a href="<?= base_url() . 'd_sasbaru/' . $x['kode_satker']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
                                         <?php } else { ?>
-                                            <td></td>
-                                        <?php } ?> -->
+                                            <td><a href="<?= base_url() . 'd_sasbaru/' . $x['id_b']; ?>" class='btn btn-primary mr-1'><i class='fa fa-eye'></i></a></td>
+
+                                        <?php } ?>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
