@@ -64,6 +64,29 @@ class Home_model extends CI_Model{
 		return $result;
 	}
 
+	public function angkatan_31()
+	{
+
+   	$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
+   	return $result;
+	
+	}
+	 public function angkatan_30()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
+   return $result;
+	 }
+	 public function angkatan_29()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
+   return $result;
+	 }
+	 public function angkatan_28()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
+   return $result;
+	 }
+
 	public function app_perpus()
 	{
 		$perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
@@ -194,13 +217,13 @@ class Home_model extends CI_Model{
 	
 	public function jumlah_praja()
 	{
-		$praja = $this->db->query("SELECT count(*) as praja from praja")->result();
+		$praja = $this->db->query("SELECT count(*) as praja from praja WHERE status='aktif'")->result();
 
 		return $praja;
 	}
 	public function hukuman()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt FROM hukuman")->result();
+		$result = $this->db->query("SELECT SUM(status = 'diberhentikan') as berhenti FROM hukuman")->result();
 
 		return $result;
 	}
