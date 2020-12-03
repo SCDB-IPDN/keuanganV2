@@ -195,6 +195,34 @@ class D_praja extends CI_Controller
   }
 }
 
+function alumni()
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->D_praja_model->get_alumni()->result();
+      // $tingkat = $data[0]->tingkat-1;
+      // echo $tingkat;
+      // exit();
+    $x['data'] = json_encode($data);
+      // $x['tingkat'] = $tingkat;
+
+    $prov = $this->D_praja_model->get_provinsi_alumni()->result();
+    $x['prov'] = json_encode($prov);
+
+    // $status = $this->D_praja_model->get_status()->result();
+    // $x['status'] = json_encode($status);
+
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_alumni", $x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  } else {
+    redirect("user");
+  }
+}
+
+
 function hukuman()
 {
   if ($this->session->userdata('nip') != NULL) {
