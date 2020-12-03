@@ -2651,20 +2651,20 @@ class Uploads extends CI_Controller {
 				$tempat_lahir = $ttl2[0];
 				$tanggal_lahir = date_create($ttl2[1]);
 				$tanggal_lahir = date_format($tanggal_lahir, "Y-m-d");
-                $dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
+				$dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
 				$penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
 				$satker =  $excel->getCellByColumnAndRow(6, $i)->getValue();
-                $data = array(
-                    'nama' => $nama,
-                    'tempat_lahir' => $tempat_lahir,
-                    'tanggal_lahir' => $tanggal_lahir,
-                    'dik' => $dik,
+				$data = array(
+					'nama' => $nama,
+					'tempat_lahir' => $tempat_lahir,
+					'tanggal_lahir' => $tanggal_lahir,
+					'dik' => $dik,
 					'penugasan' => $penugasan,
 					'nama_satker' => $satker
-                );
-                array_push($saveData, $data);
-            }
-            $this->db->insert_batch('tbl_thl', $saveData);
+				);
+				array_push($saveData, $data);
+			}
+			$this->db->insert_batch('tbl_thl', $saveData);
 			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_thl'); 
 		}
@@ -3160,7 +3160,7 @@ class Uploads extends CI_Controller {
 							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
-					
+
 					}  elseif ($row['A'] == 7) {
 						$cakun++;                        
 						$ket1 = trim($row['AI']);
@@ -3310,23 +3310,50 @@ class Uploads extends CI_Controller {
 
 			foreach($sheet as $row){
 				if($numrow > 3){
-					$temp = explode(" ", $row['H']);
-					$biro = $temp[1];
-					var_dump($biro);
+					
+					$regex = "/[-\d]+([ \d]|[ '\w])+[- \d]+$/";
+					$tgl =  $row['H'];
+					if ($row['H'] != NULL) {
+						preg_match($regex, trim($row['H']),$haha);
+						if (count($haha) > 1) {
+							$tgl = $haha['0'];
+							// echo "$tgl<br>";
+							$tgl = str_replace("'"," ","$tgl");
+						}
+					}else{
+						$tgl =  $row['H'];
+					}
 
-						array_push($upalumni, array(
-							'nama'      => $row['D'],
-							'jk'      => $row['E'],
-							'npp'      => $row['F'],
-							'nip'      => $row['G'],
-							// 'tanggal' => $tgl
-						));
+					$temp = explode(",", $row['H']);
+					$tgl_last = count($temp)-1;
+					$caca = "/[ ,-]+$/";
+					// echo "$tgl_last ..... $row[H]<br>";
+					$kosong = " ";
+					$yukbisa = preg_replace($regex,'' , $row['H']);
+					$yukbisa = preg_replace($caca,'' , $yukbisa);
+					// echo "$yukbisa<br>";
+
+					array_push($upalumni, array(
+						'nama'      => $row['D'],
+						'jk'      => $row['E'],
+						'npp'      => $row['F'],
+						'nip'      => $row['G'],
+						'tempat_lahir' => $yukbisa,
+						'tanggal_lahir' => $tgl,
+						'asdaf' => $row['I'],
+						'agama' => $row['K'],
+						'instansi' => $row['L'],
+						'jabatan' =>$row['M']
+					));
 						// exit;
-						$this->db->insert_batch('alumni', $upalumni);
+
+						
 				}
 				$numrow++;
 			}
-				exit();
+			$this->db->insert_batch('alumni', $upalumni);
+			// print("<pre>".print_r($upalumni,true)."</pre>");
+			// exit();
 
 			//upload success
 			$this->session->set_flashdata('alumni', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
