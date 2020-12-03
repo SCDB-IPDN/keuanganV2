@@ -2,7 +2,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="<?php echo base_url('d_pok');?>">KEMENTERIAN DALAM NEGERI</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('d_peringkat');?>">KEMENTERIAN DALAM NEGERI</a></li>
 	</ol>
 	<h2 class="page-header">&nbsp;</h2>
 	<div class="row">
@@ -19,7 +19,7 @@
 				<div class ="table-responsive">
 					<div class="panel-body">
 						<h4 class="text-center">URUTAN REALISASI SERAPAN ANGGARAN KEMENTERIAN DALAM NEGERI</h4>
-						<h4 class="text-center">PER <?= $uDate; ?></h4>
+						<h4 class="text-center">PER <?= $uDate; ?></h4><br>
 						<table id="data-table-buttons" class="table table-striped table-bordered" width="100%">
 							<thead valign="middle">
 								<tr align="center">
