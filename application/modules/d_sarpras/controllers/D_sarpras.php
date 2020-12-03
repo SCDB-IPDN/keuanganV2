@@ -96,4 +96,9 @@ class D_sarpras extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	function detail($id = NULL) {
+		$data = $this->d_sarpras_model->get_detail($id)->row_array();
+		echo json_encode($data);
+	}
+
 }

@@ -47,6 +47,7 @@
 								<th>Harga Perolehan</th>
 								<th>Harga Revaluasi</th>
 								<th>Kondisi</th>
+								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -54,7 +55,7 @@
 								<th colspan="7">TOTAL</th>
 								<th><?= $y['total']; ?></th>
 								<th><?= $y['perolehan']; ?></th>
-								<th></th>
+								<th colspan="2"></th>
 							</tr>
 						</tfoot>
 					</table>
@@ -65,6 +66,27 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	{"id":"7925","kode_satker":"448302","kode":"8010101001","uraian":"Software Komputer","nup":"1","merk":"Software Windows","tahun":"2010","jumlah":"1","harga_beli":"4900000","harga_baru":"4900000","asal":"PPs.MAPD","kondisi":"Baik","luas":"0","kategori":"Aset Tak Berwujud","nama_satker":"IPDN KAMPUS JATINANGOR"}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
@@ -81,11 +103,12 @@
 
 		var uri = $("#tab-<?php echo $cc; ?>").attr("Data-url");
 
-		$('#tbl-tab-<?= $cc; ?>').dataTable({
+		$('#tbl-tab-<?= $cc; ?>').DataTable({
 			dom: 'Bfrtip',
 			buttons: [
 				'copy', 'excel', 'pdf', 'print'
 			],
+			"responsive": true,
 			"ajax": {
 				"url": uri,
 				"dataSrc": ""
@@ -100,8 +123,28 @@
 				{ "data": "harga_beli", className: "text-right" },
 				{ "data": "tb", className: "text-right" },
 				{ "data": "tr", className: "text-right" },
-				{ "data": "kondisi" }
+				{ "data": "kondisi" },
+				{ "data": "id",
+					render: function (data, type, full, meta) {
+						return '<button data-id="' + data + '" data-toggle="modal" data-target="#editModal">detail</button>';
+					}
+				}
 			]
+		});
+
+		$('#tbl-tab-<?= $cc; ?> tbody').on('click', 'button', function () {
+    	    var uri = "<?= base_url().'d_sarpras/detail/'; ?>" + $(this).attr("data-id");
+    	    // alert(uri);
+			$.ajax({
+				url: uri,
+				success: function(data){
+					// alert(data);
+					var obj = JSON.parse(data);
+					// alert(obj.uraian);
+					$('#editModalTitle').text(obj.merk);
+					// alert(data);
+				}
+			});
 		});
 		
 		<?php $ch = json_encode($x) ?>
