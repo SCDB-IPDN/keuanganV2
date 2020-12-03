@@ -173,6 +173,21 @@
                     <label for="basic-url">Jalur Masuk</label>
                     <input type="text" class="form-control" value="<?= $x['jalur_masuk'] == NULL ? "-" : $x['jalur_masuk'] ?>" readonly>
                   </div>
+                   <div class="col-1">
+                    <br>
+                    <label for="basic-url">Tingkat</label>
+                    <input type="text" class="form-control" value="<?= $x['tingkat'] == NULL ? "-" : $x['tingkat'] ?>" readonly>
+                  </div>
+                  <div class="col-1">
+                    <br>
+                    <label for="basic-url">Angkatan</label>
+                    <input type="text" class="form-control" value="<?= $x['angkatan'] == NULL ? "-" : $x['angkatan'] ?>" readonly>
+                  </div>
+                  <div class="col-1">
+                    <br>
+                    <label for="basic-url">Status</label>
+                    <input type="text" class="form-control" value="<?= $x['status'] == NULL ? "-" : $x['status'] ?>" readonly>
+                  </div>
                 </div>
                 <br>
                 <br>
@@ -233,6 +248,7 @@
                     <label for="basic-url">No Tlp Ibu</label>
                     <input type="text" class="form-control" value="<?= $x['tlp_ibu'] == NULL ? "-" : $x['tlp_ibu'] ?>" readonly>
                   </div>
+                 
                 </div>
                 <br>
                 <br>

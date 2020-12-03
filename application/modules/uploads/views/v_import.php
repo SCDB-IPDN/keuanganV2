@@ -35,7 +35,7 @@
 										<?php } elseif ($title == "sarpras") { ?>
 											<label>UNGGAH FILE EXCEL <?= strtoupper($title)." ".strtoupper($kampus); ?></label>
 										<?php } elseif ($title == "rank") { ?>
-											<label>UNGGAH 2 FILE EXCEL <?= strtoupper($title); ?> (ESELON 1, SATKER)</label>
+											<label>UNGGAH 3 FILE EXCEL <?= strtoupper($title); ?> (ESELON 1, SATKER, KEGIATAN)</label>
 										<?php } ?>
 										<span class="ml-2">
 											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
