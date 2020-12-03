@@ -65,21 +65,16 @@
                     <td><?= $x['tingkat']; ?></td>
                     <td><?= $x['angkatan']; ?>
                     <td><?= $x['status']; ?></td>
-                    
                     <?php if (isset($x['id'])) { ?>
                       <td>
                         <a href='<?= base_url() . 'd_praja/detail/' . $x['id'] ?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>
-                        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan' ){?>
                         <a href='<?= base_url() . 'd_praja/edt/' . $x['id'] ?>' class="btn btn-sm btn-warning" btn-sm><i class="fa fas fa-edit"></i></a>
-                        <?php } ?>
-
                       </td>
                     <?php } else { ?>
                       <td>Tidak ada detail</td>
                     <?php } ?>
                   </tr>
                 <?php endforeach; ?>
-              
               </tbody>
             </table>
           </div>
