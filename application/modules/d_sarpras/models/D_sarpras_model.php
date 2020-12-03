@@ -87,4 +87,19 @@ class D_sarpras_model extends CI_Model{
 		return $result;
 	}
 
+	public function update_sarpras() {
+		$id = $this->input->post('editModalId');
+		$hr = $this->input->post('editModalHR');
+		$ko = $this->input->post('editModalKondisi');
+		// echo "$id $hr $ko";exit;
+
+		$data = array(
+			'harga_baru' => $this->input->post('editModalHR'),
+			'kondisi' => $this->input->post('editModalKondisi')
+			);
+		$this->db->where('id', $id);
+		return $this->db->update('tbl_sarpras', $data);
+
+	}
+
 }

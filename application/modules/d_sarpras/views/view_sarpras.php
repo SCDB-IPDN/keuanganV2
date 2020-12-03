@@ -2,7 +2,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-		<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>"><?= $title; ?></a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url(uri_string());?>"><?= $title; ?></a></li>
 	</ol>
 	<h1 class="page-header">Sarana dan Prasarana IPDN <?= $title; ?></h1>
 	<div class="row">
@@ -78,12 +78,50 @@
         </button>
       </div>
       <div class="modal-body">
-      	{"id":"7925","kode_satker":"448302","kode":"8010101001","uraian":"Software Komputer","nup":"1","merk":"Software Windows","tahun":"2010","jumlah":"1","harga_beli":"4900000","harga_baru":"4900000","asal":"PPs.MAPD","kondisi":"Baik","luas":"0","kategori":"Aset Tak Berwujud","nama_satker":"IPDN KAMPUS JATINANGOR"}
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+		<?php echo form_open('d_sarpras/update/'.$this->uri->segment(2)); ?>
+			<input type="hidden" id="editModalId" name="editModalId" value="">
+			<div class="form-group row">
+				<label for="editModalKode" class="col-sm-4 col-form-label">Kode</label>
+				<div class="col-sm-8">
+					<input type="text" readonly class="form-control-plaintext" id="editModalKode" value="">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="editModalMerk" class="col-sm-4 col-form-label">Merk</label>
+				<div class="col-sm-8">
+					<input type="text" readonly class="form-control-plaintext" id="editModalMerk" value="">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="editModalTahun" class="col-sm-4 col-form-label">Tahun</label>
+				<div class="col-sm-8">
+					<input type="text" readonly class="form-control-plaintext" id="editModalTahun" value="">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="editModalHP" class="col-sm-4 col-form-label">Harga Perolehan</label>
+				<div class="col-sm-8">
+					<input type="text" readonly class="form-control-plaintext" id="editModalHP">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="editModalHR" class="col-sm-4 col-form-label">Harga Revaluasi</label>
+				<div class="col-sm-8">
+					<input type="number" min="0" step="100" class="form-control" id="editModalHR" name="editModalHR">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="editModalKondisi" class="col-sm-4 col-form-label">Kondisi</label>
+				<div class="col-sm-8">
+					<select name="editModalKondisi" class="form-control" id="editModalKondisi">
+						<option>Baik</option>
+						<option>Rusak Ringan</option>
+						<option>Rusak Berat</option>
+					</select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
       </div>
     </div>
   </div>
@@ -106,7 +144,7 @@
 		$('#tbl-tab-<?= $cc; ?>').DataTable({
 			dom: 'Bfrtip',
 			buttons: [
-				'copy', 'excel', 'pdf', 'print'
+				'copy', 'excel', 'print'
 			],
 			"responsive": true,
 			"ajax": {
@@ -126,7 +164,7 @@
 				{ "data": "kondisi" },
 				{ "data": "id",
 					render: function (data, type, full, meta) {
-						return '<button data-id="' + data + '" data-toggle="modal" data-target="#editModal">detail</button>';
+						return '<button data-id="' + data + '" data-toggle="modal" data-target="#editModal">ubah</button>';
 					}
 				}
 			]
@@ -141,11 +179,20 @@
 					// alert(data);
 					var obj = JSON.parse(data);
 					// alert(obj.uraian);
-					$('#editModalTitle').text(obj.merk);
+					$('#editModalTitle').text(obj.uraian);
+					$('#editModalId').val(obj.id);
+					$('#editModalKode').val(obj.kode);
+					$('#editModalMerk').val(obj.merk);
+					$('#editModalTahun').val(obj.tahun);
+					$('#editModalHP').val(obj.harga_beli);
+					$('#editModalHR').val(obj.harga_baru);
+					$("#editModalKondisi").val(obj.kondisi);
 					// alert(data);
 				}
 			});
 		});
+
+		// {"id":"7925","kode_satker":"448302","kode":"8010101001","uraian":"Software Komputer","nup":"1","merk":"Software Windows","tahun":"2010","jumlah":"1","harga_beli":"4900000","harga_baru":"4900000","asal":"PPs.MAPD","kondisi":"Baik","luas":"0","kategori":"Aset Tak Berwujud","nama_satker":"IPDN KAMPUS JATINANGOR"}
 		
 		<?php $ch = json_encode($x) ?>
 

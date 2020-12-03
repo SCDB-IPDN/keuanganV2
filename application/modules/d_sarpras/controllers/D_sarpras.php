@@ -101,4 +101,9 @@ class D_sarpras extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function update($satker = NULL) {
+		$this->d_sarpras_model->update_sarpras();
+		redirect('d_sarpras/'.$satker);
+	}
+
 }

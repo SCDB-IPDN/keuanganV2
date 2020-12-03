@@ -31,21 +31,21 @@
 			</li>
 
 			<!-- KEUANGAN -->
-			<li class="<?php echo $this->uri->segment(1) == "d_span" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
+			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-money-bill-alt"></i>
 					<span>Keuangan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "d_span" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(2) == "448302" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							SPAN
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "d_span" && $this->uri->segment(2) != "biro" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span'); ?>">UTAMA</a></li>
-							<li class="<?php echo $this->uri->segment(2) == "biro" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span/biro'); ?>">KAMPUS JATINANGOR</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) != "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint'); ?>">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint/448302'); ?>">KAMPUS JATINANGOR</a></li>
 						</ul>
 					</li>
 					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
