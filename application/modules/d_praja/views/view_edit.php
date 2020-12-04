@@ -7,7 +7,7 @@
   </ol>
   <hxl class="page-header">EDIT PRAJA <?php echo $data[0]->nama;?> </hxl>
   <div class="row">
-    <div class="col-xl-xlxl">
+    <div class="col-xl-12">
       <!-- begin panel -->
 
       <!-- end panel -->
@@ -27,8 +27,7 @@
         <div class="table-responsive">
           <div class="panel-body">
             <form action="<?php echo base_url('d_praja/view_edit'); ?>" method="POST">
-              <hxl> DATA DIRI </hxl>
-              <br>
+              <h3> DATA DIRI </h3>
               <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data[0]->id ?>" >
 
               <div class="row">
@@ -210,8 +209,7 @@
             </div>
             <br>
             <br>
-            <hxl> DATA ORANG TUA </hxl>
-            <br>
+            <h3> DATA ORANG TUA </h3>
             <br>
             <div class="row">
               <div class="col-xl">
@@ -244,11 +242,11 @@
                <option value="<?php echo $data[0]->penghasilan_ayah == NULL ? "-" : $data[0]->penghasilan_ayah ?>"><?php echo $data[0]->penghasilan_ayah == NULL ? "-" : $data[0]->penghasilan_ayah ?>
                <option value="kurang dari Rp. 500.000">kurang dari Rp. 500.000</option>
                <option value="Rp. 500.000 s/d Rp. 999.999">Rp. 500.000 s/d Rp. 999.999</option>
-               <option value="Rp. xl.000.000 s/d Rp. xl.999.999">Rp. xl.000.000 s/d Rp. xl.999.999</option>
-               <option value="Rp. xl.000.000 s/d Rp. 4.999.999">Rp. xl.000.000 s/d Rp. 4.999.999</option>
+               <option value="Rp. l.000.000 s/d Rp. l.999.999">Rp. l.000.000 s/d Rp. l.999.999</option>
+               <option value="Rp. l.000.000 s/d Rp. 4.999.999">Rp. l.000.000 s/d Rp. 4.999.999</option>
                <option value="Rp. 5.000.000 s/d Rp. 7.499.999">Rp. 5.000.000 s/d Rp. 7.499.999</option>
                <option value="Rp. 7.500.000 s/d Rp. 9.999.999">Rp. 7.500.000 s/d Rp. 9.999.999</option>
-               <option value="Lebih dari Rp. xl0.000.000">Lebih dari Rp. xl0.000.000</option>
+               <option value="Lebih dari Rp. l0.000.000">Lebih dari Rp. l0.000.000</option>
              </select>
            </div>
            <div class="col-xl">
@@ -285,11 +283,11 @@
                    <option value="<?php echo $data[0]->penghasilan_ibu== NULL ? "-" : $data[0]->penghasilan_ibu?>"><?php echo $data[0]->penghasilan_ibu == NULL ? "-" : $data[0]->penghasilan_ibu?>
                    <option value="kurang dari Rp. 500.000">kurang dari Rp. 500.000</option>
                    <option value="Rp. 500.000 s/d Rp. 999.999">Rp. 500.000 s/d Rp. 999.999</option>
-                   <option value="Rp. xl.000.000 s/d Rp. xl.999.999">Rp. xl.000.000 s/d Rp. xl.999.999</option>
-                   <option value="Rp. xl.000.000 s/d Rp. 4.999.999">Rp. xl.000.000 s/d Rp. 4.999.999</option>
+                   <option value="Rp. l.000.000 s/d Rp. l.999.999">Rp. l.000.000 s/d Rp. l.999.999</option>
+                   <option value="Rp. l.000.000 s/d Rp. 4.999.999">Rp. l.000.000 s/d Rp. 4.999.999</option>
                    <option value="Rp. 5.000.000 s/d Rp. 7.499.999">Rp. 5.000.000 s/d Rp. 7.499.999</option>
                    <option value="Rp. 7.500.000 s/d Rp. 9.999.999">Rp. 7.500.000 s/d Rp. 9.999.999</option>
-                   <option value="Lebih dari Rp. xl0.000.000">Lebih dari Rp. xl0.000.000</option>
+                   <option value="Lebih dari Rp. l0.000.000">Lebih dari Rp. l0.000.000</option>
                  </select>
                </div>
                <div class="col-xl">
@@ -301,8 +299,7 @@
             </div>
             <br>
             <br>
-            <hxl> DATA WALI </hxl>
-            <br>
+            <h3> DATA WALI </h3>
             <br>
             <div class="row">
               <div class="col-xl">
@@ -346,7 +343,6 @@
               <br>
               <div class="col-11">
                 <br>
-
                 <button type="submit" class="btn btn-warning" value="Cek">Ubah</button>
                 <a href="<?php echo base_url('d_praja'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
               </div>
@@ -361,7 +357,7 @@
       </div>
       <!-- end panel -->
     </div>
-    <!-- end col-xl0 -->
+    <!-- end col-l0 -->
   </div>
 </div>
 

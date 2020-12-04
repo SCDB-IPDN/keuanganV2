@@ -5,9 +5,9 @@
     <li class="breadcrumb-item"><a href="<?php echo base_url('d_praja'); ?>">Detail Praja </a></li>
 
   </ol>
-  <hxl class="page-header">DETAIL PRAJA</hxl>
+  <hl class="page-header">DETAIL PRAJA</hl>
   <div class="row">
-    <div class="col-xl-xlxl">
+    <div class="col-xl-12">
       <!-- begin panel -->
 
       <!-- end panel -->
@@ -316,7 +316,7 @@
         </div>
         <!-- end panel -->
       </div>
-      <!-- end col-xl0 -->
+      <!-- end col-l0 -->
     </div>
   </div>
 
