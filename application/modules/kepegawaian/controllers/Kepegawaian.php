@@ -242,6 +242,94 @@ class Kepegawaian extends CI_Controller{
           
           echo json_encode($apa);
      }
+
+     function table_belum_nidn() {
+          $data = $this->kepegawaian_model->get_not_nidn()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama;
+               $nip = $r->nip == 0 ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nidn = $r->nidn == 0 ? "<i><font style='color:red;'>NIDN tidak ada</font></i>" : $r->nidn;
+               $serdos = $r->serdos == NULL ? "<i><font style='color:red;'>Data tidak ada</font></i>" : $r->serdos;
+               $bidang_ilmu = $r->bidang_ilmu == NULL ? "<i><font style='color:red;'>Bidang Ilmu tidak ada</font></i>" : $r->bidang_ilmu;
+               $nik = $r->nik == 0 ? "<i><font style='color:red;'>NIK tidak ada</font></i>" : $r->nik;
+               $alamat = $r->alamat == NULL ? "<i><font style='color:red;'>Alamat tidak ada</font></i>" : $r->alamat;
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
+               $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
+               $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+                    $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $nip,
+                    $nidn,
+                    $serdos,
+                    $bidang_ilmu,
+                    $nik,
+                    $alamat,
+                    $jabatan,
+                    $pangkat,
+                    $updated_date,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+
+     function table_belum_serdos() {
+          $data = $this->kepegawaian_model->get_not_serdos()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama;
+               $nip = $r->nip == 0 ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nidn = $r->nidn == 0 ? "<i><font style='color:red;'>NIDN tidak ada</font></i>" : $r->nidn;
+               $serdos = $r->serdos == NULL ? "<i><font style='color:red;'>Data tidak ada</font></i>" : $r->serdos;
+               $bidang_ilmu = $r->bidang_ilmu == NULL ? "<i><font style='color:red;'>Bidang Ilmu tidak ada</font></i>" : $r->bidang_ilmu;
+               $nik = $r->nik == 0 ? "<i><font style='color:red;'>NIK tidak ada</font></i>" : $r->nik;
+               $alamat = $r->alamat == NULL ? "<i><font style='color:red;'>Alamat tidak ada</font></i>" : $r->alamat;
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
+               $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
+               $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+                    $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $nip,
+                    $nidn,
+                    $serdos,
+                    $bidang_ilmu,
+                    $nik,
+                    $alamat,
+                    $jabatan,
+                    $pangkat,
+                    $updated_date,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
      
      function dosen($id = NULL)
      {
@@ -249,18 +337,13 @@ class Kepegawaian extends CI_Controller{
           {
                if($id == NULL){
                     $x['title'] = "DATA DOSEN";
-                    $data = $this->kepegawaian_model->get_all_dosen()->result();
                }else if($id == 'belum_nidn'){
                     $x['title'] = 'TIDAK ADA DATA NIDN';
-                    $data = $this->kepegawaian_model->get_not($id)->result();
                }else if($id == 'belum_serdos'){
                     $x['title'] = 'TIDAK ADA DATA SERTIFIKASI DOSEN';
-                    $data = $this->kepegawaian_model->get_not($id)->result();
                }else{
                     redirect("kepegawaian/dosen");
                }
-
-               $x['data'] = $data;
           
                $this->load->view("include/head");
                $this->load->view("include/top-header");
