@@ -60,3 +60,6 @@ $route['d_sarpras/(:num)'] = 'd_sarpras/index/$1';
 $route['d_sarpras/detail/(:num)'] = 'd_sarpras/detail/$1';
 $route['d_sarpras/(:num)/(:any)'] = 'd_sarpras/table/$1/$2';
 $route['uploads/v_sarpras/(:any)'] = 'uploads/v_sarpras/$1';
+$route['kepegawaian/isian_dosen'] = 'kepegawaian/table_dosen';
+$route['kepegawaian/isian_pns'] = 'kepegawaian/table_pns';
+$route['kepegawaian/isian_thl'] = 'kepegawaian/table_thl';
