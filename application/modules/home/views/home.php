@@ -47,7 +47,7 @@
 										</span>
 									</div>
 									<div class="d-flex mb-1">
-										<a href="<?php echo base_url('d_span');?>"><h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2></a>
+										<a href="<?php echo base_url('d_spanint');?>"><h2 class="mb-0"><span data-animation="number" data-value="<?php echo $persentase_span ?>"><?php echo $persentase_span ?></span>%</h2></a>
 										<div class="ml-auto mt-n1 mb-n1"><div id="total-sales-sparkline"></div></div>
 									</div>
 									<div class="mb-3 text-grey">
@@ -126,7 +126,7 @@
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<a href="<?php echo base_url('d_span/biro');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+							<a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
