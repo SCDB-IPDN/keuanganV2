@@ -36,7 +36,7 @@
         <?php } ?>
         <div class="panel-body">
             <div class ="table-responsive">
-                <table id="tbl-scdb" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+                <table id="tbl-scdb-thl" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                     <thead>
                     <tr>
                         <th>No</th>
@@ -59,49 +59,38 @@
     </div>
     <!-- end col-10 -->
 
-    <?php
-    $no = 0;
-    foreach($data as $row){
-    $no++;
-    ?>
-
     <!-- Modal EDIT THL -->
-    <div class="modal fade" id="editthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="editthll" aria-hidden="true">
+    <div class="modal fade" id="editthl" tabindex="-1" role="dialog" aria-labelledby="editthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editthll">Edit THL <?php echo $row->nama;?></h5>
+                <h5 class="modal-title" id="editthll">Edit THL</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                     <form action="edit_thl" method="POST">
-                        <input type="hidden" class="form-control" id="id_thl" name="id_thl" value="<?php echo $row->id_thl;?>">
+                        <input type="hidden" class="form-control" id="id_thlx" name="id_thl">
                         <div class="form-group">
                             <label class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row->nama;?>" placeholder="Nama Lengkap.." required>
+                            <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm">
                                     <label class="col-form-label">Tempat Lahir:</label>
-                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir;?>" placeholder="Tempat Lahir.." required>
+                                    <input type="text" class="form-control" id="tempat_lahirx" name="tempat_lahir" placeholder="Tempat Lahir.." required>
                                 </div>
                                 <div class="col-sm">
                                     <label class="col-form-label">Tanggal Lahir:</label>
-                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
+                                    <input type="date" class="form-control" id="tanggal_lahirx" name="tanggal_lahir" required>
                                 </div>
                                 <div class="col-sm">
                                     <label class="col-form-label">Pendidikan:</label>
-                                    <select class="form-control" id="dik" name="dik" required>
-                                        <option disabled selected> Pilih </option>
+                                    <select class="form-control" id="dikx" name="dik" required>
                                         <?php foreach($tp as $rows){ ?>
-                                            <?php if($rows->tingkat_pendidikan == $row->dik){?>
-                                            <option value="<?php echo $rows->tingkat_pendidikan ?>" selected><?php echo $rows->tingkat_pendidikan ?></option>
-                                            <?php }else{ ?>
                                             <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
-                                            <?php } ?>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -109,21 +98,16 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Penugasan:</label>
-                            <input type="text" class="form-control" id="penugasan" name="penugasan" value="<?php echo $row->penugasan;?>" placeholder="Penugasan.." required>
+                            <input type="text" class="form-control" id="penugasanx" name="penugasan" placeholder="Penugasan.." required>
                         </div>
-                        <!-- <div class="col-sm"> -->
-                                    <label class="col-form-label">Satuan kerja:</label>
-                                    <select class="form-control" id="nama_satker" name="nama_satker" required>
-                                        <option disabled selected> Pilih </option>
-                                        <?php foreach($ns as $rows){ ?>
-                                            <?php if($rows->nama_satker == $row->nama_satker){?>
-                                            <option value="<?php echo $rows->nama_satker ?>" selected><?php echo $rows->nama_satker ?></option>
-                                            <?php }else{ ?>
-                                            <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Satuan kerja:</label>
+                            <select class="form-control" id="nama_satkerx" name="nama_satker" required>
+                                <?php foreach($ns as $rows){ ?>
+                                    <option value="<?php echo $rows->nama_satker ?>"><?php echo $rows->nama_satker ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
@@ -135,7 +119,7 @@
     </div>
 
     <!-- Modal HAPUS THL -->
-    <div class="modal fade" id="hapusthl<?php echo $row->id_thl;?>" tabindex="-1" role="dialog" aria-labelledby="hapusthll" aria-hidden="true">
+    <div class="modal fade" id="hapusthl" tabindex="-1" role="dialog" aria-labelledby="hapusthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -147,10 +131,10 @@
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="hapus_thl">
                         <div class="modal-body">
-                            <p>Anda yakin mau menghapus Data THL <b><?php echo $row->nama;?></b></p>
+                            <p>Anda yakin mau menghapus Data <input type="text" id="namaxx" disabled> ?</p>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="id_thl" value="<?php echo $row->id_thl;?>">
+                            <input type="hidden" id="id_thlxx" name="id_thl">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                             <button class="btn btn-danger">Hapus</button>
                         </div>
@@ -159,9 +143,6 @@
             </div>
         </div>
     </div>
-
-    <?php } ?>
-    <!-- END FOREACH -->
 
     <!-- Modal ADD THL -->
     <div class="modal fade" id="addthl" tabindex="-1" role="dialog" aria-labelledby="addthll" aria-hidden="true">
@@ -224,25 +205,6 @@
     </div>
 </div>
 
-<script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script>
-
-    $(document).ready(function() {
-
-        var url = '<?php echo base_url('kepegawaian/table_thl');?>';
-
-        $('#tbl-scdb').dataTable({
-            // dom: 'Bfrtip',
-            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
-            buttons: [
-                'copy', 'excel', 'print'
-            ],
-            responsive: true,
-            "ajax": {
-                "url": url,
-                "dataSrc": ""
-            }
-        });
-    });
-
-</script>
+<!-- Manage -->
+<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/app-manage.js');?>"></script>
