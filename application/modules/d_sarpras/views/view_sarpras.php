@@ -139,6 +139,12 @@
 
 	$(document).ready(function() {
 
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+			$($.fn.dataTable.tables(true)).DataTable()
+				.columns.adjust()
+				.responsive.recalc();
+		});
+
 		var uri = $("#tab-<?php echo $cc; ?>").attr("Data-url");
 
 		$('#tbl-tab-<?= $cc; ?>').DataTable({
@@ -163,9 +169,10 @@
 				{ "data": "tr", className: "text-right" },
 				{ "data": "kondisi" },
 				{ "data": "id",
-					render: function (data, type, full, meta) {
-						return '<button data-id="' + data + '" data-toggle="modal" data-target="#editModal">ubah</button>';
-					}
+					render: function (data) {
+						return '<button data-id="' + data + '" data-toggle="modal" data-target="#editModal" class="btn btn-sm btn-primary btn-block"><i class="fa fas fa-edit"></button>';
+					},
+					className: "text-center"
 				}
 			]
 		});
