@@ -32,7 +32,7 @@
         <?php } ?>
         <div class="panel-body">
             <div class ="table-responsive">
-                <table id="tbl-tab-1" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+                <table id="tbl-scdb-dosen" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                     <thead>
                         <tr>
                             <th class="text-nowrap">NO</th>
@@ -60,66 +60,60 @@
     </div>
     <!-- end col-10 -->
 
-    <?php
-    $no = 0;
-    foreach($data as $row){
-    $no++;
-    ?>
-    
     <!-- Modal EDIT THL -->
-    <div class="modal fade" id="editdosen<?php echo $row->id_dosen;?>" tabindex="-1" role="dialog" aria-labelledby="editthll" aria-hidden="true">
+    <div class="modal fade" id="editdosen" tabindex="-1" role="dialog" aria-labelledby="editthll" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editdosen">Edit DOSEN <?php echo $row->nama;?></h5>
+                <h5 class="modal-title" id="editdosen">Edit DOSEN</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                     <form action="edit_dosen" method="POST">
-                        <input type="hidden" class="form-control" id="id_dosen" name="id_dosen" value="<?php echo $row->id_dosen;?>">
+                        <input type="hidden" class="form-control" id="id_dosenx" name="id_dosen">
                         <div class="form-group">
                             <label class="col-form-label">NIK:</label>
-                            <input type="number" class="form-control" id="nik" name="nik" value="<?php echo $row->nik;?>" placeholder="NIK..">
+                            <input type="number" class="form-control" id="nikx" name="nik" placeholder="NIK..">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Nama: *</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row->nama;?>" placeholder="Nama Lengkap.." required>
+                            <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama Lengkap.." required>
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm">
                                     <label class="col-form-label">NIP:</label>
-                                    <input type="number" class="form-control" id="nip" name="nip" value="<?php echo $row->nip;?>" placeholder="NIP..">
+                                    <input type="number" class="form-control" id="nipx" name="nip" placeholder="NIP..">
                                 </div>
                                 <div class="col-sm">
                                     <label class="col-form-label">NIDN:</label>
-                                    <input type="number" class="form-control" id="nidn" name="nidn" value="<?php echo $row->nidn;?>" placeholder="NIDN..">
+                                    <input type="number" class="form-control" id="nidnx" name="nidn" placeholder="NIDN..">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">SERTIFIKASI DOSEN:</label>
-                            <textarea  class="form-control" id="serdos" name="serdos" rows="3" cols="40"><?php echo $row->serdos;?></textarea>
+                            <textarea  class="form-control" id="serdosx" name="serdos" rows="3" cols="40"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">BIDANG ILMU:</label>
-                            <textarea  class="form-control" id="bidang_ilmu" name="bidang_ilmu" rows="3" cols="40"><?php echo $row->bidang_ilmu;?></textarea>
+                            <textarea  class="form-control" id="bidang_ilmux" name="bidang_ilmu" rows="3" cols="40"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Alamat:</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $row->alamat;?>" placeholder="Alamat..">
+                            <input type="text" class="form-control" id="alamatx" name="alamat" placeholder="Alamat..">
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm">
                                     <label class="col-form-label">Jabatan: *</label>
-                                    <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?php echo $row->jabatan;?>" placeholder="Jabatan.." required>
+                                    <input type="text" class="form-control" id="jabatanx" name="jabatan" placeholder="Jabatan.." required>
                                 </div>
                                 <div class="col-sm">
                                     <label class="col-form-label">Pangkat(Gol): *</label>
-                                    <input type="text" class="form-control" id="pangkat" name="pangkat" value="<?php echo $row->pangkat;?>" placeholder="Pangkat(Gol).." required>
+                                    <input type="text" class="form-control" id="pangkatx" name="pangkat" placeholder="Pangkat(Gol).." required>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +128,7 @@
     </div>
 
     <!-- Modal HAPUS DOSEN -->
-    <div class="modal fade" id="hapusdosen<?php echo $row->id_dosen;?>" tabindex="-1" role="dialog" aria-labelledby="hapusdosen" aria-hidden="true">
+    <div class="modal fade" id="hapusdosen" tabindex="-1" role="dialog" aria-labelledby="hapusdosen" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -146,10 +140,10 @@
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="hapus_dosen">
                         <div class="modal-body">
-                            <p>Anda yakin mau menghapus Data DOSEN <b><?php echo $row->nama;?></b></p>
+                            <p>Anda yakin mau menghapus Data DOSEN <input type="text" id="namaxx" disabled></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="id_dosen" value="<?php echo $row->id_dosen;?>">
+                            <input type="hidden" name="id_dosenxx" name="id_dosen" >
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                             <button class="btn btn-danger">Hapus</button>
                         </div>
@@ -158,9 +152,6 @@
             </div>
         </div>
     </div>
-
-    <?php } ?>
-    <!-- END FOREACH -->
 
     <!-- Modal ADD THL -->
     <div class="modal fade" id="adddosen" tabindex="-1" role="dialog" aria-labelledby="adddosen" aria-hidden="true">
@@ -229,26 +220,6 @@
     </div>
 </div>
 
-<script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script>
-
-    $(document).ready(function() {
-
-        var url = '<?php echo base_url('kepegawaian/table_dosen');?>';
-        var edhap = "<a href='#' class='btn btn-primary mr-1'>Detail</a>";
-
-        $('#tbl-tab-1').dataTable({
-            // dom: 'Bfrtip',
-            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
-            buttons: [
-                'copy', 'excel', 'print'
-            ],
-            responsive: true,
-            "ajax": {
-                "url": url,
-                "dataSrc": ""
-            }
-        });
-    });
-
-</script>
+<!-- Manage -->
+<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/app-manage.js');?>"></script>

@@ -39,7 +39,7 @@
         
         <div class="table-responsive">
           <div class="panel-body">
-            <table id="tbl-scdb" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+            <table id="tbl-scdb-pns" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead>
                 <tr>
                   <th class="text-nowrap">No</th>
@@ -74,48 +74,41 @@
   </div>
   <!-- END TABEL -->
 
-  <?php
-    $no = 0;
-    foreach($data as $row){
-    $no++;
-  ?>
-
-  <!-- Modal EDIT PNS -->
-  <div class="modal fade" id="editpns<?php echo $row->no;?>" tabindex="-1" role="dialog" aria-labelledby="editpnss" aria-hidden="true">
+  <div class="modal fade" id="editpns" tabindex="-1" role="dialog" aria-labelledby="editpnss" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="editpnss">Edit PNS <?php echo $row->nama_lengkap;?></h5>
+            <h5 class="modal-title" id="editpnss">Edit PNS</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
           <form action="kepegawaian/edit_pns" method="POST">
-            <input type="hidden" class="form-control" id="no" name="no" value="<?php echo $row->no?>">
+            <input type="hidden" class="form-control" id="nox" name="no">
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-4">
                   <label class="col-form-label">Nip:</label>
-                  <input type="text" class="form-control" id="nip" name="nip" value="<?php echo $row->nip?>" placeholder="Nip.." required>
+                  <input type="text" class="form-control" id="nipx" name="nip" placeholder="Nip.." required>
                 </div>
                 <div class="col-sm-8">
                   <label class="col-form-label">Nama Lengkap:</label>
-                  <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?php echo $row->nama_lengkap;?>" placeholder="Nama Lengkap.." required>
+                  <input type="text" class="form-control" id="nama_lengkapx" name="nama_lengkap" placeholder="Nama Lengkap.." required>
                 </div>
               </div>
             </div>
             <div class="form-group">
                 <label class="col-form-label">Bagian:</label>
-                <input type="text" class="form-control" id="bagian" name="bagian" value="<?php echo $row->bagian;?>" placeholder="Bagian.." required>
+                <input type="text" class="form-control" id="bagianx" name="bagian" placeholder="Bagian.." required>
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col-sm">
                     <label class="col-form-label">Tempat Lahir:</label>
-                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir;?>" placeholder="Tempat Lahir.." required>
+                    <input type="text" class="form-control" id="tempat_lahirx" name="tempat_lahir" placeholder="Tempat Lahir.." required>
                 </div>
                 <div class="col-sm">
                     <label class="col-form-label">Tanggal Lahir:</label>
-                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir;?>" required>
+                    <input type="date" class="form-control" id="tanggal_lahirx" name="tanggal_lahir" required>
                 </div>
               </div>
             </div>
@@ -123,19 +116,19 @@
               <div class="row">
                 <div class="col-sm">
                   <label class="col-form-label">No Urut:</label>
-                  <input type="text" class="form-control" id="no_urut_pangkat" name="no_urut_pangkat" placeholder="No Urut Pangkat.." value="<?php echo $row->no_urut_pangkat;?>" required>
+                  <input type="text" class="form-control" id="no_urut_pangkatx" name="no_urut_pangkat" placeholder="No Urut Pangkat.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Pangkat:</label>
-                  <input type="text" class="form-control" id="pangkat" name="pangkat" placeholder="Pangkat.." value="<?php echo $row->pangkat;?>" required>
+                  <input type="text" class="form-control" id="pangkatx" name="pangkat" placeholder="Pangkat.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Gol Ruang:</label>
-                  <input type="text" class="form-control" id="gol_ruang" name="gol_ruang" placeholder="Gol Ruang.." value="<?php echo $row->gol_ruang;?>" required>
+                  <input type="text" class="form-control" id="gol_ruangx" name="gol_ruang" placeholder="Gol Ruang.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">TMT Pangkat:</label>
-                  <input type="date" class="form-control" id="tmt_pangkat" name="tmt_pangkat" placeholder="TMT Pangkat.." value="<?php echo $row->tmt_pangkat;?>" required>
+                  <input type="date" class="form-control" id="tmt_pangkatx" name="tmt_pangkat" placeholder="TMT Pangkat.." required>
                 </div>
               </div>
             </div>
@@ -143,11 +136,11 @@
               <div class="row">
                 <div class="col-sm">
                   <label class="col-form-label">Jabatan:</label>
-                  <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan.." value="<?php echo $row->jabatan;?>" required>
+                  <input type="text" class="form-control" id="jabatanx" name="jabatan" placeholder="Jabatan.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">TMT Jabatan:</label>
-                  <input type="date" class="form-control" id="tmt_jabatan" name="tmt_jabatan" placeholder="TMT Jabatan.." value="<?php echo $row->tmt_jabatan;?>" required>
+                  <input type="date" class="form-control" id="tmt_jabatanx" name="tmt_jabatan" placeholder="TMT Jabatan.." required>
                 </div>
               </div>
             </div>
@@ -155,15 +148,15 @@
               <div class="row">
                 <div class="col-sm">
                   <label class="col-form-label">Jurusan:</label>
-                  <input type="text" class="form-control" id="jurusan" name="jurusan" placeholder="Jurusan.." value="<?php echo $row->jurusan;?>" required>
+                  <input type="text" class="form-control" id="jurusanx" name="jurusan" placeholder="Jurusan.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Nama Perguruan Tinggi:</label>
-                  <input type="text" class="form-control" id="nama_pt" name="nama_pt" placeholder="Perguruan Tinggi.." value="<?php echo $row->nama_pt;?>" required>
+                  <input type="text" class="form-control" id="nama_ptx" name="nama_pt" placeholder="Perguruan Tinggi.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Tahun Lulus:</label>
-                  <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus" placeholder="Tahun Lulus.." value="<?php echo $row->tahun_lulus;?>" required>
+                  <input type="text" class="form-control" id="tahun_lulusx" name="tahun_lulus" placeholder="Tahun Lulus.." required>
                 </div>
               </div>
             </div>
@@ -171,36 +164,32 @@
               <div class="row">
                 <div class="col-sm">
                   <label class="col-form-label">Tingkat Pendidikan Terakhir:</label>
-                  <select class="form-control" id="tingkat_pendidikan" name="tingkat_pendidikan" required>
-                    <option disabled selected> Pilih </option>
+                  <select class="form-control" id="tingkat_pendidikanx" name="tingkat_pendidikan" required>
+                    <option value=""></option>
                     <?php foreach($tp as $rows){ ?>
-                      <?php if($rows->tingkat_pendidikan == $row->tingkat_pendidikan){?>
-                      <option value="<?php echo $rows->tingkat_pendidikan ?>" selected><?php echo $rows->tingkat_pendidikan ?></option>
-                      <?php }else{ ?>
                       <option value="<?php echo $rows->tingkat_pendidikan ?>"><?php echo $rows->tingkat_pendidikan ?></option>
-                      <?php } ?>
                     <?php } ?>
                   </select>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Masa Kerja:</label>
-                  <input type="text" class="form-control" id="masa_kerja" name="masa_kerja" placeholder="Masa Kerja.." value="<?php echo $row->masa_kerja;?>" required>
+                  <input type="text" class="form-control" id="masa_kerjax" name="masa_kerja" placeholder="Masa Kerja.." required>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label class="col-form-label">Catatan Mutasi:</label>
-              <input type="text" class="form-control" id="catatan_mutasi" name="catatan_mutasi" placeholder="Catatan Mutasi.." value="<?php echo $row->catatan_mutasi;?>">
+              <input type="text" class="form-control" id="catatan_mutasix" name="catatan_mutasi" placeholder="Catatan Mutasi..">
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col-sm">
-                  <label class="col-form-label">No.Karpeg:</label>
-                  <input type="text" class="form-control" id="no_kapreg" name="no_kapreg" placeholder="No.Karpeg.." value="<?php echo $row->no_kapreg;?>" required>
+                  <label class="col-form-label">No.Kapreg:</label>
+                  <input type="text" class="form-control" id="no_kapregx" name="no_kapreg" placeholder="No.Karpeg.." required>
                 </div>
                 <div class="col-sm">
                   <label class="col-form-label">Eselon:</label>
-                  <input type="text" class="form-control" id="eselon" name="eselon" placeholder="Eselon.." value="<?php echo $row->eselon;?>">
+                  <input type="text" class="form-control" id="eselonx" name="eselon" placeholder="Eselon..">
                 </div>
               </div>
             </div>
@@ -214,8 +203,7 @@
     </div>
   </div>
 
-  <!-- Modal HAPUS PNS -->
-  <div class="modal fade" id="hapuspns<?php echo $row->no;?>" tabindex="-1" role="dialog" aria-labelledby="hapuspnss" aria-hidden="true">
+  <div class="modal fade" id="hapuspns" tabindex="-1" role="dialog" aria-labelledby="hapuspnss" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -227,10 +215,10 @@
         <div class="modal-body">
           <form class="form-horizontal" method="post" action="kepegawaian/hapus_pns">
             <div class="modal-body">
-              <p>Anda yakin mau menghapus Data PNS <b><?php echo $row->nip;?></b></p>
+              <p>Anda yakin mau menghapus data <input type="text" id="nama_lengkapxx" disabled> ? </p>
             </div>
             <div class="modal-footer">
-              <input type="hidden" name="nip" value="<?php echo $row->nip;?>">
+              <input type="hidden" id="nipxx" name="nip">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
               <button class="btn btn-danger">Hapus</button>
             </div>
@@ -239,9 +227,6 @@
       </div>
     </div>
   </div>
-
-  <?php } ?>
-  <!-- END FOREACH -->
 
   <!-- Modal ADD PNS -->
   <div class="modal fade" id="addpns" tabindex="-1" role="dialog" aria-labelledby="addpnss" aria-hidden="true">
@@ -378,25 +363,6 @@
   </div>
 </div>
 
-<script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script>
-
-    $(document).ready(function() {
-
-        var url = '<?php echo base_url('kepegawaian/table_pns');?>';
-
-        $('#tbl-scdb').dataTable({
-            // dom: 'Bfrtip',
-            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
-            buttons: [
-                'copy', 'excel', 'print'
-            ],
-            responsive: true,
-            "ajax": {
-                "url": url,
-                "dataSrc": ""
-            }
-        });
-    });
-
-</script>
+<!-- Manage -->
+<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+<script src="<?php echo base_url('assets/js/app-manage.js');?>"></script>
