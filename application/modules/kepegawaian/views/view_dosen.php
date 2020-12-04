@@ -32,7 +32,11 @@
         <?php } ?>
         <div class="panel-body">
             <div class ="table-responsive">
+                <?php if($title == 'TIDAK ADA DATA NIDN'){ ?>
+                <table id="tbl-scdb-nidn" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+                <?php }else{ ?>
                 <table id="tbl-scdb-dosen" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+                <?php } ?>
                     <thead>
                         <tr>
                             <th class="text-nowrap">NO</th>
