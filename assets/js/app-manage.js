@@ -98,6 +98,50 @@ $(document).ready(function() {
         });
     }
 
+    if ($('#tbl-scdb-nidn').length !== 0) {
+        var url = 'isian_nidn';
+
+        $('#tbl-scdb-nidn').dataTable({
+            // dom: 'Bfrtip',
+            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
+            buttons: [
+                'copy', 'excel', 'print'
+            ],
+            responsive: true,
+            "ajax": {
+                "url": url,
+                "dataSrc": ""
+            }
+        });
+
+        // Untuk sunting
+        $('#editdosen').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id_dosenx').attr("value",div.data('id_dosen'));
+            modal.find('#namax').attr("value",div.data('nama'));
+            modal.find('#nipx').attr("value",div.data('nip'));
+            modal.find('#nidnx').attr("value",div.data('nidn'));
+            modal.find('#serdosx').val(div.data('serdos'));
+            modal.find('#bidang_ilmux').val(div.data('bidang_ilmu'));
+            modal.find('#nikx').attr("value",div.data('nik'));
+            modal.find('#alamatx').attr("value",div.data('alamat'));
+            modal.find('#jabatanx').attr("value",div.data('jabatan'));
+            modal.find('#pangkatx').attr("value",div.data('pangkat'));
+        });
+
+        $('#hapusdosen').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id_dosenxx').attr("value",div.data('id_dosen'));
+            modal.find('#namaxx').attr("value",div.data('nama'));
+        });
+    }
+
     if ($('#tbl-scdb-thl').length !== 0) {
         var url = 'isian_thl';
 
