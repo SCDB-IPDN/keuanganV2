@@ -83,7 +83,7 @@ class D_praja extends CI_Controller
       redirect("user");
     }
   }
-
+  
   function edt($id)
   {
     if ($this->session->userdata('nip') != NULL) {
@@ -105,7 +105,60 @@ class D_praja extends CI_Controller
       redirect("user");
     }
   }
+  function edit_alumni()
+  {
+    if ($this->session->userdata('nip') != NULL) {
 
+      $data = $this->D_praja_model->get_alumni()->result();
+
+      $x['data'] = $data;
+
+      // var_dump($data);
+      // exit();
+
+      $this->load->view("include/head");
+      $this->load->view("include/top-header");
+      $this->load->view('edit_alumni', $x);
+      $this->load->view("include/sidebar");
+      $this->load->view("include/panel");
+      $this->load->view("include/footer");
+    } else {
+      redirect("user");
+    }
+  }
+
+  function alumni_praja(){
+    $data = $this->D_praja_model->get_alumni()->result();
+    
+    $dataall = array();
+    $no = 1;
+    foreach($data as $r) {
+      $id = $r->id;
+      $nama = $r->nama;
+      $jk = $r->jk;
+      $npp = $r->npp;
+      $nip = $r->nip;
+      $asdaf = $r->asdaf;
+      $instansi = $r->instansi;
+      $jabatan = $r->jabatan;
+      if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+        $opsi = "<a href='d_praja/edit_alumni/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+      }
+
+      $dataall[] = array(
+        $no++,
+        $nama,
+        $jk,
+        $npp,
+        $nip,
+        $asdaf,
+        $instansi,
+        $jabatan,
+        $opsi
+      );
+    }
+    echo json_encode($dataall);
+  }
 
   public function view_edit()
   {
