@@ -50,7 +50,7 @@
                             <label class="col-lg-4 col-form-label">Ganti Foto</label>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                <?php if(file_exists('assets/img/user/'.$_SESSION['image_url']) && isset($_SESSION['image_url'])){?>
+                                <?php if(file_exists('assets/img/user/'.$_SESSION['image_url']) && $_SESSION['image_url'] != NULL){?>
                                     <img class="thumb-image setpropileam" src="<?php echo base_url().'assets/img/user/'. $_SESSION['image_url']; ?>" width="128px" height="128px" alt="User profile picture">
                                 <?php }else{ ?>
                                     <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" width="128px" height="128px" alt="User profile picture"/>  
