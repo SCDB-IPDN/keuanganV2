@@ -308,70 +308,70 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-			$add = false;
-			$nama = "";
-			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-			if (count($tmp) > 0) {
-				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-                        $nama = $txt[0];
-                        switch ($tmp[0]) {
-							case 448302:
+				$add = false;
+				$nama = "";
+				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+				if (count($tmp) > 0) {
+					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+					$nama = $txt[0];
+					switch ($tmp[0]) {
+						case 448302:
 							// IPDN KAMPUS JATINANGOR
-							$add = true;
-							break;
-                            case 352593:
+						$add = true;
+						break;
+						case 352593:
                             // IPDN KAMPUS JAKARTA 
-                            $add = true;
-                            break;
-                            case 677010:
+						$add = true;
+						break;
+						case 677010:
                             // IPDN KAMPUS SULUT
-                            $add = true;
-                            break;
-                            case 677024:
+						$add = true;
+						break;
+						case 677024:
                             // IPDN KAMPUS SULSES
-                            $add = true;
-                            break;	
-                            case 677045:
+						$add = true;
+						break;	
+						case 677045:
                             // IPDN KAMPUS SUMBAR
-                            $add = true;
-                            break;	
-                            case 683070:
+						$add = true;
+						break;	
+						case 683070:
                             // IPDN KAMPUS KALBAR
-                            $add = true;
-                            break;	
-                            case 683084:
+						$add = true;
+						break;	
+						case 683084:
                             // IPDN KAMPUS NTB
-                            $add = true;
-                            break;	
-                            case 683091:
+						$add = true;
+						break;	
+						case 683091:
                             // IPDN KAMPUS PAPUA
-                            $add = true;
-							break;
-						}
-						if ($add) {
-                            array_push($data, array(
-                                'kode_satker'    =>  $tmp[0],
-                                'nama_satker'  =>  $txt[0],
-                                'pagu_bp'      => $row['C'],
-                                'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => substr($row['E'], 1, 6),
-                                'pagu_bb'      => $row['G'],
-                                'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => substr($row['I'], 1, 6),
-                                'pagu_bm'   => $row['K'],
-                                'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => substr($row['M'], 1, 6),
-                                'pagu_t'   => $row['AM'],
-                                'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => substr($row['AO'], 1, 6),
-								'sisa'   => $row['AP'],
-								'created_date' => $datee,
-								
-                    ));
-                }	
+						$add = true;
+						break;
+					}
+					if ($add) {
+						array_push($data, array(
+							'kode_satker'    =>  $tmp[0],
+							'nama_satker'  =>  $txt[0],
+							'pagu_bp'      => $row['C'],
+							'realisasi_bp'      => $row['D'],
+							'persentase_bp'      => substr($row['E'], 1, 6),
+							'pagu_bb'      => $row['G'],
+							'realisasi_bb'   => $row['H'],
+							'persentase_bb'   => substr($row['I'], 1, 6),
+							'pagu_bm'   => $row['K'],
+							'realisasi_bm'   => $row['L'],
+							'persentase_bm'   => substr($row['M'], 1, 6),
+							'pagu_t'   => $row['AM'],
+							'realisasi_t'   => $row['AN'],
+							'persentase_t'   => substr($row['AO'], 1, 6),
+							'sisa'   => $row['AP'],
+							'created_date' => $datee,
+
+						));
+					}	
+				}
 			}
-		}
-		
+
 
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
@@ -414,53 +414,53 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-			$add = false;
-			$nama = "";
-			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-			if (count($tmp) > 0) {
-				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-                        $nama = $txt[0];
-                        switch ($tmp[0]) {
-							case '1294':
+				$add = false;
+				$nama = "";
+				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+				if (count($tmp) > 0) {
+					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+					$nama = $txt[0];
+					switch ($tmp[0]) {
+						case '1294':
 							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
-							case '1293':
+						$add = true;
+						break;
+						case '1293':
 							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
-							$add = true;
-							break;
-							case '1286':
+						$add = true;
+						break;
+						case '1286':
 							// Penyelenggaraan Administrasin Kerjasama dan Hukum
-							$add = true;
-							break;
-							case '1292':
+						$add = true;
+						break;
+						case '1292':
 							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
-						}
-						if ($add) {
-                            array_push($biroo, array(
-                                'kode_satker'    =>  $tmp[0],
-                                'nama_satker'  =>  $txt[0],
-                                'pagu_bp'      => $row['C'],
-                                'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => substr($row['E'], 1, 4),
-                                'pagu_bb'      => $row['G'],
-                                'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => substr($row['I'], 1, 4),
-                                'pagu_bm'   => $row['K'],
-                                'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => substr($row['M'], 1, 4),
-                                'pagu_t'   => $row['AM'],
-                                'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => substr($row['AO'], 1, 4),
-								'sisa'   => $row['AP'],
-								'created_date' => $datee,
-								
-                    ));
-                }	
+						$add = true;
+						break;
+					}
+					if ($add) {
+						array_push($biroo, array(
+							'kode_satker'    =>  $tmp[0],
+							'nama_satker'  =>  $txt[0],
+							'pagu_bp'      => $row['C'],
+							'realisasi_bp'      => $row['D'],
+							'persentase_bp'      => substr($row['E'], 1, 4),
+							'pagu_bb'      => $row['G'],
+							'realisasi_bb'   => $row['H'],
+							'persentase_bb'   => substr($row['I'], 1, 4),
+							'pagu_bm'   => $row['K'],
+							'realisasi_bm'   => $row['L'],
+							'persentase_bm'   => substr($row['M'], 1, 4),
+							'pagu_t'   => $row['AM'],
+							'realisasi_t'   => $row['AN'],
+							'persentase_t'   => substr($row['AO'], 1, 4),
+							'sisa'   => $row['AP'],
+							'created_date' => $datee,
+
+						));
+					}	
+				}
 			}
-		}
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -1011,32 +1011,32 @@ class Uploads extends CI_Controller {
 							switch ($tab) {
 								case 0:
 									// tanah
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 1:
 									// aset tak berwujud, aset tetap lainnya, peralatan dan mesin
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$kondisi = $row['L'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$kondisi = $row['L'];
+								break;
 								case 2:
 									// gedung dan bangunan
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$asal = $row['M'];
-									$kondisi = $row['N'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$asal = $row['M'];
+								$kondisi = $row['N'];
+								break;
 								case 3:
 									// jaringan, irigasi, jalan dan jembatan
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$kondisi = $row['M'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$kondisi = $row['M'];
+								break;
 							}
 
 							$thn = $row['F'];
@@ -1157,35 +1157,35 @@ class Uploads extends CI_Controller {
 							$asal = $kondisi = "";
 							switch ($tab) {
 								case 1:
-									$luas = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$luas = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 2:
-									$jumlah = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$harga_baru = $this->ktt($row['I']);
-									$asal = $row['K'];
-									$kondisi = $row['L'];
-									break;
+								$jumlah = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$harga_baru = $this->ktt($row['I']);
+								$asal = $row['K'];
+								$kondisi = $row['L'];
+								break;
 								case 3:
-									$jumlah = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$jumlah = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 4:
-									$luas = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['H']);
-									$asal = $row['J'];
-									$kondisi = $row['K'];
-									break;
+								$luas = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['H']);
+								$asal = $row['J'];
+								$kondisi = $row['K'];
+								break;
 								case 5:
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 							}
 
 							$thn = $row['E'];
@@ -1306,35 +1306,35 @@ class Uploads extends CI_Controller {
 
 							switch ($tab) {
 								case 1:
-									$harga_beli = $this->ktt($row['H']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 2:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['I']);
-									$asal = $row['J'];
-									$kondisi = $row['K'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['I']);
+								$asal = $row['J'];
+								$kondisi = $row['K'];
+								break;
 								case 3:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 4:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 5:
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$asal = $row['M'];
-									$kondisi = $row['N'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$asal = $row['M'];
+								$kondisi = $row['N'];
+								break;
 							}
 
 							$thn = $row['F'];
@@ -1418,220 +1418,220 @@ class Uploads extends CI_Controller {
 					switch ($nf) {
 						case 1:
 							// file eselon 1
-							foreach ($rows as $row) {
-								preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
 								// echo count($tmp);
-								if (count($tmp) > 0) {
-									if ($tmp[0] != "01001") {
-										preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-										array_push($data, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $txt[0],
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
-										));
-									}
+							if (count($tmp) > 0) {
+								if ($tmp[0] != "01001") {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $txt[0],
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 						case 2:
 							// file satker
-							$pool = 0;
-							$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
-							foreach ($rows as $row) {
-								$add = $spanint = false;
-								$nama = "";
-								preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+						$pool = 0;
+						$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
+						foreach ($rows as $row) {
+							$add = $spanint = false;
+							$nama = "";
+							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
 								// echo count($tmp);
-								if (count($tmp) > 0) {
-									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-									$nama = $txt[0];
+							if (count($tmp) > 0) {
+								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+								$nama = $txt[0];
 
-									switch ($tmp[0]) {
-										case 403200:
+								switch ($tmp[0]) {
+									case 403200:
 											// SETJEN
-										$add = true;
-										break;
-										case 483005:
+									$add = true;
+									break;
+									case 483005:
 											// DKPP
-										$add = true;
-										break;
-										case 448302:
+									$add = true;
+									break;
+									case 448302:
 											// IPDN
 											// $add = true;
-										$satker_a = $tmp[0];
-										$nama_a = $txt[0];
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$satker_a = $tmp[0];
+									$nama_a = $txt[0];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										$nama = "IPDN KAMPUS JATINANGOR";
-										break;
-										case 352593:
+									$pool++;
+									$spanint = true;
+									$nama = "IPDN KAMPUS JATINANGOR";
+									break;
+									case 352593:
 											// IPDN JAKARTA
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 677010:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677010:
 											// IPDN SULUT
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 677024:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677024:
 											// IPDN SULSEL
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 677045:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677045:
 											// IPDN SUMBAR
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 683070:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683070:
 											// IPDN KALBAR
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 683084:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683084:
 											// IPDN NTB
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-										case 683091:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683091:
 											// IPDN PAPUA
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
-									}
-									if ($add) {
-										array_push($data, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $nama,
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
-										));
-									} elseif ($pool == 8) {
-										array_push($data, array(
-											'satker'    =>  $satker_a,
-											'nama'  =>  $nama_a,
-											'pagu_peg' => $pagu_peg_a,
-											'real_peg' => $real_peg_a,
-											'pagu_bar' => $pagu_bar_a,
-											'real_bar' => $real_bar_a,
-											'pagu_mod' => $pagu_mod_a,
-											'real_mod' => $real_mod_a
-										));
-									} 
+									$pool++;
+									$spanint = true;
+									break;
+								}
+								if ($add) {
+									array_push($data, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $nama,
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
+								} elseif ($pool == 8) {
+									array_push($data, array(
+										'satker'    =>  $satker_a,
+										'nama'  =>  $nama_a,
+										'pagu_peg' => $pagu_peg_a,
+										'real_peg' => $real_peg_a,
+										'pagu_bar' => $pagu_bar_a,
+										'real_bar' => $real_bar_a,
+										'pagu_mod' => $pagu_mod_a,
+										'real_mod' => $real_mod_a
+									));
+								} 
 
-									if ($spanint) {
-										array_push($data_span, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $nama,
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
-										));
-									}
+								if ($spanint) {
+									array_push($data_span, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $nama,
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 						case 3:
 							// file kegiatan (biro)
-							$biro = array('1286', '1292', '1293', '1294');
-							foreach ($rows as $row) {
-								preg_match('/\b[0-9]{4}\b/', $row['B'], $tmp);
-								if (count($tmp) > 0) {
-									if (in_array($tmp[0], $biro)) {
-										preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-										array_push($data_span, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $txt[0],
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
-										));
-									}
+						$biro = array('1286', '1292', '1293', '1294');
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{4}\b/', $row['B'], $tmp);
+							if (count($tmp) > 0) {
+								if (in_array($tmp[0], $biro)) {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data_span, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $txt[0],
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L']
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 					}
 				}
 			}
@@ -1664,7 +1664,7 @@ class Uploads extends CI_Controller {
 			$extension = end($arr_file);
 
 			if($extension != 'xlsx') {
-				$this->session->set_flashdata('pagu', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
 				redirect("uploads/v_sas"); 
 			} else {
@@ -1684,6 +1684,14 @@ class Uploads extends CI_Controller {
 			$id_c = 0;
 			$satker_jatinangor = 448302;
 			$tgl = date('Y-m-d');
+
+
+			$this->db->where('kode_satker', $satker_jatinangor);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_jatinangor);
+			$this->db->delete('output_sas');
+
 
 			foreach($sheet as $row){
 				if($numrow > 1){
@@ -1726,7 +1734,7 @@ class Uploads extends CI_Controller {
 						$ket = substr($ket, 9);
 
 						
-						echo "<br><br>";
+						// echo "<br><br>";
 
 						array_push($dataunit, array(
 							'kode_satker' => $satker_jatinangor,
@@ -1763,8 +1771,16 @@ class Uploads extends CI_Controller {
 			// exit();
 
 			// $this->db->truncate('unit');
+			// print("<pre>".print_r($satker_jatinangor,true)."</pre>");
+			// print("<pre>".print_r($dataunit,true)."</pre>");
+			// print("<pre>".print_r($dataoutput,true)."</pre>");
+			// exit();
+
+
+
 			$this->db->insert_batch('unit_sas', $dataunit);
 			// $this->db->truncate('output');
+			// $this->db->update_batch('output_sas', $dataoutput, 'kode_satker');
 			$this->db->insert_batch('output_sas', $dataoutput);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
@@ -1804,6 +1820,14 @@ class Uploads extends CI_Controller {
 			$satker_sulsel = 677024;
 			$tgl = date('Y-m-d');
 
+
+			$this->db->where('kode_satker', $satker_sulsel);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_sulsel);
+			$this->db->delete('output_sas');
+
+
 			foreach($sheet as $row){
 				if($numrow > 7){
 					$ket1 = trim($row['A']);
@@ -1817,11 +1841,6 @@ class Uploads extends CI_Controller {
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 
-						 // $sql1 = "INSERT INTO unit_sas values (".$satker_sulsel.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-						 // echo "$sql1";
-						 // echo "<br>";
-						 // $this->db->query($sql1);
-						
 						$unitsulsel = array();
 						array_push($unitsulsel, array(
 							'kode_satker'      => $satker_sulsel,
@@ -1843,6 +1862,8 @@ class Uploads extends CI_Controller {
 						$realisasi = $row['C'];
 					   // echo "realisasi"."$realisasi";
 					   // echo $row['A']."<br>" ;
+
+						
 
 						$outputsulsel = array();
 						array_push($outputsulsel, array(
@@ -1904,6 +1925,13 @@ class Uploads extends CI_Controller {
 			$cunit = 0;
 			$satker_kalbar = 683070;
 			$tgl = date('Y-m-d');
+
+			$this->db->where('kode_satker', $satker_kalbar);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_kalbar);
+			$this->db->delete('output_sas');
+
 
 			foreach($sheet as $row){
 				if($numrow > 4){
@@ -2003,6 +2031,12 @@ class Uploads extends CI_Controller {
 			$satker_ntb = 683084;
 			$tgl = date('Y-m-d');
 
+			$this->db->where('kode_satker', $satker_ntb);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_ntb);
+			$this->db->delete('output_sas');
+
 			foreach($sheet as $row){
 				if($numrow > 6){
 					$ket1 = trim($row['AB']);
@@ -2098,6 +2132,14 @@ class Uploads extends CI_Controller {
 			$cunit = 0;
 			$satker_papua = 683091;
 			$tgl = date('Y-m-d');
+
+
+			$this->db->where('kode_satker', $satker_papua);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_papua);
+			$this->db->delete('output_sas');
+
 
 			foreach($sheet as $row){
 				if($numrow > 6){
@@ -2195,6 +2237,14 @@ class Uploads extends CI_Controller {
 			$satker_sulut = 677010;
 			$tgl = date('Y-m-d');
 
+			
+			$this->db->where('kode_satker', $satker_sulut);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_sulut);
+			$this->db->delete('output_sas');
+
+
 			foreach($sheet as $row){
 				if($numrow > 1){
 					$ket1 = trim($row['A']);
@@ -2288,6 +2338,12 @@ class Uploads extends CI_Controller {
 			$cunit = 0;
 			$satker_sumbar = 677045;
 			$tgl = date('Y-m-d');
+
+			$this->db->where('kode_satker', $satker_sumbar);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_sumbar);
+			$this->db->delete('output_sas');
 			foreach($sheet as $row){
 				if($numrow > 1){
 					$ket1 = trim($row['A']);
@@ -2372,7 +2428,7 @@ class Uploads extends CI_Controller {
 
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('praja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-				
+
 				redirect("uploads/v_praja"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -2429,7 +2485,7 @@ class Uploads extends CI_Controller {
 						'kelurahan'      => $row['O'],
 						'kecamatan'      => $row['P'],
 						'kode_pos'      =>$row['Q'],
-						'kab/kota'      => $row['R'],
+						'kab_kota'      => $row['R'],
 						'provinsi'      => $row['S'],
 						'jenis_tinggal'      => $row['T'],
 						'alat_transport'      => $row['U'],
@@ -2519,14 +2575,14 @@ class Uploads extends CI_Controller {
 
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-				
+
 				redirect("uploads/v_praja"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
 			$loadexcel  = $reader->load($_FILES['prajabaru']['tmp_name']);
-			
+
 			$namasheet = $loadexcel->getSheetNames();
 
 			// var_dump($sheetData);
@@ -2537,7 +2593,7 @@ class Uploads extends CI_Controller {
 			$stat = 'aktif';
 
 			foreach($namasheet as $shit){
-				
+
 				if (($shit == "Angkatan 28") || ($shit == "Angkatan 29") || ($shit == "Angkatan 30")) {
 					$sheetData = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
 					$numrow =  1;
@@ -2557,7 +2613,7 @@ class Uploads extends CI_Controller {
 								$stop = true;    
 							}
 						} else {
-							
+
 							$nullcc = 0;
 							$angka = 'XXX';
 							$jadi =1;
@@ -2575,7 +2631,7 @@ class Uploads extends CI_Controller {
 									'tgl_lahir'      => date("Y-m-d", strtotime($row['E'])),
 									'jk'      => $row['F'],
 									'provinsi'      => $row['H'],
-									'kab/kota'      => $row['J'],
+									'kab_kota'      => $row['J'],
 									'agama'      => $row['K'],		
 									'nik_praja'      => $row['N'],
 									'alamat'      => $row['S'],
@@ -2623,7 +2679,7 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-	
+
 
 	public function thl()
 	{
@@ -2850,7 +2906,7 @@ class Uploads extends CI_Controller {
 					}				
 				}
 			}
-				
+
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -3306,49 +3362,61 @@ class Uploads extends CI_Controller {
 
 			$upalumni = array();
 			$numrow = 1;
-			$satker_sulsel = 677024;
 			$tgl = date('Y-m-d');
 
 			foreach($sheet as $row){
-				if($numrow > 3){
+				if($numrow > 1){
 					
-					$regex = "/[-\d]+([ \d]|[ '\w])+[- \d]+$/";
-					$tgl =  $row['H'];
-					if ($row['H'] != NULL) {
-						preg_match($regex, trim($row['H']),$haha);
-						if (count($haha) > 1) {
-							$tgl = $haha['0'];
-							// echo "$tgl<br>";
-							$tgl = str_replace("'"," ","$tgl");
-						}
-					}else{
-						$tgl =  $row['H'];
-					}
+					// $regex = "/[-\d]+([ \d]|[ '\w])+[- \d]+$/";
+					// $tgl =  $row['H'];
+					// if ($row['H'] != NULL) {
+					// 	preg_match($regex, trim($row['H']),$haha);
+					// 	if (count($haha) > 1) {
+					// 		$tgl = $haha['0'];
+					// 		// echo "$tgl<br>";
+					// 		$tgl = str_replace("'"," ","$tgl");
+					// 	}
+					// }else{
+					// 	$tgl =  $row['H'];
+					// }
 
-					$temp = explode(",", $row['H']);
-					$tgl_last = count($temp)-1;
-					$caca = "/[ ,-]+$/";
-					// echo "$tgl_last ..... $row[H]<br>";
-					$kosong = " ";
-					$yukbisa = preg_replace($regex,'' , $row['H']);
-					$yukbisa = preg_replace($caca,'' , $yukbisa);
+					// $temp = explode(",", $row['H']);
+					// $tgl_last = count($temp)-1;
+					// $caca = "/[ ,-]+$/";
+					// // echo "$tgl_last ..... $row[H]<br>";
+					// $kosong = " ";
+					// $yukbisa = preg_replace($regex,'' , $row['H']);
+					// $yukbisa = preg_replace($caca,'' , $yukbisa);
 					// echo "$yukbisa<br>";
 
+					// array_push($upalumni, array(
+					// 	'nama'      => $row['D'],
+					// 	'jk'      => $row['E'],
+					// 	'npp'      => $row['F'],
+					// 	'nip'      => $row['G'],
+					// 	'tempat_lahir' => $yukbisa,
+					// 	'tanggal_lahir' => $tgl,
+					// 	'asdaf' => $row['I'],
+					// 	'agama' => $row['K'],
+					// 	'instansi' => $row['L'],
+					// 	'jabatan' =>$row['M']
+					// ));
+
 					array_push($upalumni, array(
+						'nip'      => $row['C'],
 						'nama'      => $row['D'],
 						'jk'      => $row['E'],
-						'npp'      => $row['F'],
-						'nip'      => $row['G'],
-						'tempat_lahir' => $yukbisa,
-						'tanggal_lahir' => $tgl,
-						'asdaf' => $row['I'],
-						'agama' => $row['K'],
-						'instansi' => $row['L'],
-						'jabatan' =>$row['M']
+						'institusi' => $row['F'],
+						'angkatan' => $row['G'],
+						'tahun_lulus' => $row['H'],
+						'instansi_tugas' => $row['I'],
+						'jabatan' =>$row['J'],
+						'kabkot' => $row['K'],
+						'provinsi' => $row['L']
 					));
 						// exit;
 
-						
+
 				}
 				$numrow++;
 			}
