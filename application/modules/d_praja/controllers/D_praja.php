@@ -20,7 +20,7 @@ class D_praja extends CI_Controller
       // $x['tingkat'] = $tingkat;
 
       $prov = $this->D_praja_model->get_provinsi()->result();
-      $x['prov'] = json_encode($prov);
+      $x['prov'] = ($prov);
 
       $status = $this->D_praja_model->get_status()->result();
       $x['status'] = json_encode($status);
@@ -303,7 +303,7 @@ function alumni()
       // $x['tingkat'] = $tingkat;
 
     $prov = $this->D_praja_model->get_provinsi_alumni()->result();
-    $x['prov'] = json_encode($prov);
+    $x['prov'] = ($prov);
 
     // $status = $this->D_praja_model->get_status()->result();
     // $x['status'] = json_encode($status);
