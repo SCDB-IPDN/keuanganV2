@@ -6,7 +6,7 @@
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-					<?php if(file_exists('assets/img/user/'.$_SESSION['image_url']) && $_SESSION['image_url'] != NULL) { ?>
+					<?php if(file_exists('assets/img/user/'.$this->session->userdata('image_url')) && $this->session->userdata('image_url') != NULL) { ?>
 						<img src="<?php echo base_url().'assets/img/user/'. $this->session->userdata('image_url');?>" alt="" />     
 					<?php }else{ ?>
 						<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" alt=""/>  
