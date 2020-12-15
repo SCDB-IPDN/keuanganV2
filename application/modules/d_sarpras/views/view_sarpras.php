@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
-		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
+		<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>">Dashboard</a></li>
 		<li class="breadcrumb-item"><a href="<?php echo base_url(uri_string());?>"><?= $title; ?></a></li>
 	</ol>
 	<h1 class="page-header">Sarana dan Prasarana IPDN <?= $title; ?></h1>
@@ -33,7 +33,7 @@
 
 				<div class="tab-pane fade <?php echo $cl==1?'active show':''; ?>" id="default-tab-<?= $cl; ?>">
 					<h4 class="text-center">Belanja <?php echo ucwords(strtolower($y['kategori'])); ?> bedasarkan Tahun</h4>
-					<canvas id="myChart<?php echo $cl; ?>" height="70"></canvas>
+					<canvas id="myChart<?php echo $cl; ?>" height="80%"></canvas>
 					<table class="table table-striped table-bordered table-td-valign-middle" id="tbl-tab-<?php echo $cl++; ?>" width="100%">
 						<thead>
 							<tr align="center">
@@ -128,8 +128,6 @@
 </div>
 
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
-<script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
 <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
 
 <script>
@@ -215,6 +213,15 @@
 		});
 
 		var ctx<?php echo $cc; ?> = document.getElementById("myChart<?php echo $cc; ?>").getContext('2d');
+
+		var gradientFill1 = ctx<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
+		gradientFill1.addColorStop(0, "rgba(153, 102, 255, 1)");
+		gradientFill1.addColorStop(1, "rgba(153, 102, 255, 0.1)");
+
+		var gradientFill2 = ctx<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
+		gradientFill2.addColorStop(0, "rgba(75, 192, 192, 1)");
+		gradientFill2.addColorStop(1, "rgba(75, 192, 192, 0.1)");
+
 		var config = {
 			type: 'line',
 			data: {
@@ -224,7 +231,7 @@
 					data: data1_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
 					pointBorderWidth: 2,
-					backgroundColor: 'rgba(153, 102, 255, 0.2)',
+					backgroundColor: gradientFill1,
 					borderColor: 'rgba(153, 102, 255, 1)'
 				},
 				{
@@ -232,7 +239,7 @@
 					data: data2_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
 					pointBorderWidth: 2,
-					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					backgroundColor: gradientFill2,
 					borderColor: 'rgba(75, 192, 192, 1)'
 				}]
 			},
@@ -253,7 +260,10 @@
 						}
 					}]
 				},
-				responsive: true
+				responsive: true,
+				chartArea: {
+					backgroundColor: 'rgba(251, 85, 85, 0.4)'
+				}
 			}
 		};
 
