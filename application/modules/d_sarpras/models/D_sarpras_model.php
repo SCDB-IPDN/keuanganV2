@@ -28,12 +28,34 @@ class D_sarpras_model extends CI_Model{
 		// return $result;
 	}
 
-	public function get_sarpras_year($satker) {
+	public function get_sarpras_year() {
 
-		$this->db->select('COUNT(tahun) as total, tahun, kategori');
-		$this->db->where('kode_satker', $satker);
-		$this->db->group_by(array("kategori", "tahun"));
+		$this->db->select('COUNT(tahun) as total, tahun, kode_satker');
+		$this->db->group_by(array("tahun", "kode_satker"));
+		$this->db->order_by('kode_satker', 'ASC');
 		$result = $this->db->get('tbl_sarpras');
+
+		return $result;
+	}
+
+	public function get_sarpras_kondisi() {
+
+		$this->db->select('COUNT(kondisi) as total, kondisi, kode_satker');
+		$this->db->group_by(array("kondisi", "kode_satker"));
+		$this->db->order_by('kode_satker', 'ASC');
+		$result = $this->db->get('tbl_sarpras');
+
+		return $result;
+	}
+
+	public function get_satker() {
+
+		$this->db->select('tbl_satker.kode_satker, tbl_satker.nama_satker');
+		$this->db->from('tbl_sarpras');
+		$this->db->join('tbl_satker', "tbl_sarpras.kode_satker = tbl_satker.kode_satker");
+		$this->db->group_by("tbl_sarpras.kode_satker");
+		$this->db->order_by('tbl_sarpras.kode_satker', 'ASC');
+		$result = $this->db->get();
 
 		return $result;
 	}
