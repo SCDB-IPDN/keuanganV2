@@ -83,6 +83,64 @@ class D_sarpras extends CI_Controller {
 				$this->load->view("view_sarpras",$x);
 				$this->load->view("include/sidebar");
 				$this->load->view("include/footer");
+			} else {
+				$chart = $this->d_sarpras_model->get_sarpras_year()->result();
+				$list_kon = $this->d_sarpras_model->get_sarpras_kondisi()->result();
+				$satker = $this->d_sarpras_model->get_satker()->result();
+
+				$chart = json_encode($chart);
+				$sat = "";
+				$arr = $tmp = array();
+				foreach (json_decode($chart, true) as $z):
+
+					if ($z['kode_satker'] != $sat) {
+						if ($sat != "") {
+							array_push($arr, $tmp);
+							$tmp = array();
+						}
+						$sat = $z['kode_satker'];
+					}
+					array_push($tmp, array(
+						'total'			=>  $z['total'],
+						'tahun'			=>	$z['tahun'],
+						'kode_satker'		=>	$z['kode_satker']
+					));
+
+				endforeach;
+				array_push($arr, $tmp);
+
+				$list_kon = json_encode($list_kon);
+				$kon = "";
+				$arrk = $tmpk = array();
+				foreach (json_decode($list_kon, true) as $z):
+
+					if ($z['kode_satker'] != $kon) {
+						if ($kon != "") {
+							array_push($arrk, $tmpk);
+							$tmpk = array();
+						}
+						$kon = $z['kode_satker'];
+					}
+					array_push($tmpk, array(
+						'total'			=>  $z['total'],
+						'kondisi'			=>	$z['kondisi'],
+						'kode_satker'		=>	$z['kode_satker']
+					));
+
+				endforeach;
+				array_push($arrk, $tmpk);
+
+				// var_dump($arr[0]);
+
+				$x['chart'] = $arr;
+				$x['l_kon'] = $arrk;
+				$x['satker'] = json_encode($satker);
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("dash_sarpras", $x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/footer");
 			}
 		}else{
 			redirect("user");
@@ -104,6 +162,11 @@ class D_sarpras extends CI_Controller {
 	public function update($satker = NULL) {
 		$this->d_sarpras_model->update_sarpras();
 		redirect('d_sarpras/'.$satker);
+	}
+
+	function test(){
+		$list_kon = $this->d_sarpras_model->get_sarpras_kondisi()->result();
+		echo json_encode($list_kon);
 	}
 
 }

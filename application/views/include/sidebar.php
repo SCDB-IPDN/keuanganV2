@@ -153,8 +153,9 @@
 			<!-- END PERENCANAAN -->
 
 			<!-- SARPRAS -->
-			<li class=" <?php echo $this->uri->segment(1)=="d_sarpras" && ($this->uri->segment(2)=="448302" || $this->uri->segment(2)=="677024" || $this->uri->segment(2)=="683091" || $this->uri->segment(2)=="683084" || $this->uri->segment(2)=="677010")?"active":"";?> has-sub">
-				<a href="javascript:;">
+			<li class="<?php echo $this->uri->segment(1)=="d_sarpras" || $this->uri->segment(1)=="d_sarpras" && ($this->uri->segment(2)=="448302" || $this->uri->segment(2)=="677024" || $this->uri->segment(2)=="683091" || $this->uri->segment(2)=="683084" || $this->uri->segment(2)=="677010")?"active":"";?> has-sub">
+				<!-- <a href="javascript:;"> -->
+				<a href="<?php echo base_url('d_sarpras');?>">
 					<b class="caret"></b>
 					<i class="fas fa-building"></i>
 					<span>Sarpras</span>
