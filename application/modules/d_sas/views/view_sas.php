@@ -121,7 +121,7 @@
     resize: true,
     parseTime: false,
     hideHover: 'auto',
-    barColors: ["#ADD8E6", "#e9baaa", "#1AB244", "#B29215"],
+    barColors: ["#9BC4CB", "#F7A9A8", "#1AB244", "#B29215"],
     gridTextSize: 9
   });
 </script>
