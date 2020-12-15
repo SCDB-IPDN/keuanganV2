@@ -77,8 +77,6 @@ class Profil extends CI_Controller {
             } 
         }
 
-        // var_dump($profile_pic);exit;
-
         $password = $this->input->post('password', true);
 
         $input_data['nip'] = $this->input->post('nip', true); 			
@@ -102,49 +100,6 @@ class Profil extends CI_Controller {
             $this->session->set_userdata('image_url',$input_data['image_url']);				
             redirect('profil'); 			
         }
-        
-        // $profile = $this->input->post('filefoto', true);
-        // $old = $this->input->post('fileOld');;
-
-        // if($profile == NULL){
-        //     if($old != NULL){
-        //         $newname = $this->input->post('fileOld');
-        //         $profile_pic =$newname;
-        //     }else{
-        //         $profile_pic = $default_pic;
-        //     }
-        // }else{
-        //     $newname = $this->input->post('image_url');
-        //     $profile_pic =$newname;
-        // }
- 
-        // $this->upload->initialize($config);
-
-        // $newname = $this->upload($profile_pic);
-        // $password = $this->input->post('password', true);
-
-        // $input_data['nip'] = $this->input->post('nip', true); 			
-        // $input_data['nama_user'] = $this->input->post('nama_user', true);
-
-        // if($password != NULL){
-        //     $input_data['password'] = md5($this->input->post('password', true));
-        // }
-
-        // $input_data['image_url'] = $newname["file_name"];
-
-
-        // $result = $this->profil_model->edit_profil($input_data);
-
-        // if (!$result) { 							
-        //     $this->session->set_flashdata('notif_update_user', 'Gagal mengubah profil.'); 				
-        //     redirect('profil'); 			
-        // } else { 								
-        //     $this->session->set_flashdata('notif_update_user', 'Profil Berhasil diubah.');
-        //     $this->session->set_userdata('nip',$input_data['nip']);
-        //     $this->session->set_userdata('nama',$input_data['nama_user']);
-        //     $this->session->set_userdata('image_url',$input_data['image_url']);				
-        //     redirect('profil'); 			
-        // }
     }
 }
 ?>
