@@ -35,7 +35,7 @@ class Kepegawaian extends CI_Controller{
                $eselon = $r->eselon == NULL ? "<i><font style='color:red;'>Eselon tidak ada</font></i>" : $r->eselon;
                             
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
-                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editpns$r->no'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapuspns$r->no'><i class='fa fas fa-trash'></i></a>";
+                    $aksi = "<a href='javascript:;' data-no='$r->no' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-bagian='$r->bagian' data-tempat_lahir='$r->tempat_lahir' data-tanggal_lahir='$r->tanggal_lahir' data-no_urut_pangkat='$r->no_urut_pangkat' data-pangkat='$r->pangkat' data-gol_ruang='$r->gol_ruang' data-tmt_pangkat='$r->tmt_pangkat' data-jabatan='$r->jabatan' data-tmt_jabatan='$r->tmt_jabatan' data-jurusan='$r->jurusan' data-nama_pt='$r->nama_pt' data-tahun_lulus='$r->tahun_lulus' data-tingkat_pendidikan='$r->tingkat_pendidikan' data-usia='$r->usia' data-masa_kerja='$r->masa_kerja' data-catatan_mutasi='$r->catatan_mutasi' data-no_kapreg='$r->no_kapreg' data-eselon='$r->eselon' data-toggle='modal' data-target='#editpns' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-toggle='modal' data-target='#hapuspns' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
                     $aksi = "Tidak ada Akses";
                }
@@ -219,7 +219,95 @@ class Kepegawaian extends CI_Controller{
                $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
                             
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
-                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editdosen$r->id_dosen'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapusdosen$r->id_dosen'><i class='fa fas fa-trash'></i></a>";
+                    $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $nip,
+                    $nidn,
+                    $serdos,
+                    $bidang_ilmu,
+                    $nik,
+                    $alamat,
+                    $jabatan,
+                    $pangkat,
+                    $updated_date,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+
+     function table_belum_nidn() {
+          $data = $this->kepegawaian_model->get_not_nidn()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama;
+               $nip = $r->nip == 0 ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nidn = $r->nidn == 0 ? "<i><font style='color:red;'>NIDN tidak ada</font></i>" : $r->nidn;
+               $serdos = $r->serdos == NULL ? "<i><font style='color:red;'>Data tidak ada</font></i>" : $r->serdos;
+               $bidang_ilmu = $r->bidang_ilmu == NULL ? "<i><font style='color:red;'>Bidang Ilmu tidak ada</font></i>" : $r->bidang_ilmu;
+               $nik = $r->nik == 0 ? "<i><font style='color:red;'>NIK tidak ada</font></i>" : $r->nik;
+               $alamat = $r->alamat == NULL ? "<i><font style='color:red;'>Alamat tidak ada</font></i>" : $r->alamat;
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
+               $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
+               $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+                    $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+               }else{
+                    $aksi = "Tidak ada Akses";
+               }
+
+               $apa[] = array(
+                    $no++,
+                    $nama,
+                    $nip,
+                    $nidn,
+                    $serdos,
+                    $bidang_ilmu,
+                    $nik,
+                    $alamat,
+                    $jabatan,
+                    $pangkat,
+                    $updated_date,
+                    $aksi
+               );
+          }
+          
+          echo json_encode($apa);
+     }
+
+     function table_belum_serdos() {
+          $data = $this->kepegawaian_model->get_not_serdos()->result();
+
+          $no = 1;
+          $apa = array();
+
+          foreach($data as $r) {
+
+               $nama = $r->nama == NULL ? "<i><font style='color:red;'>Nama tidak ada</font></i>" : $r->nama;
+               $nip = $r->nip == 0 ? "<i><font style='color:red;'>Nip tidak ada</font></i>" : $r->nip;
+               $nidn = $r->nidn == 0 ? "<i><font style='color:red;'>NIDN tidak ada</font></i>" : $r->nidn;
+               $serdos = $r->serdos == NULL ? "<i><font style='color:red;'>Data tidak ada</font></i>" : $r->serdos;
+               $bidang_ilmu = $r->bidang_ilmu == NULL ? "<i><font style='color:red;'>Bidang Ilmu tidak ada</font></i>" : $r->bidang_ilmu;
+               $nik = $r->nik == 0 ? "<i><font style='color:red;'>NIK tidak ada</font></i>" : $r->nik;
+               $alamat = $r->alamat == NULL ? "<i><font style='color:red;'>Alamat tidak ada</font></i>" : $r->alamat;
+               $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
+               $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
+               $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
+                            
+               if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+                    $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
                     $aksi = "Tidak ada Akses";
                }
@@ -249,18 +337,13 @@ class Kepegawaian extends CI_Controller{
           {
                if($id == NULL){
                     $x['title'] = "DATA DOSEN";
-                    $data = $this->kepegawaian_model->get_all_dosen()->result();
                }else if($id == 'belum_nidn'){
                     $x['title'] = 'TIDAK ADA DATA NIDN';
-                    $data = $this->kepegawaian_model->get_not($id)->result();
                }else if($id == 'belum_serdos'){
                     $x['title'] = 'TIDAK ADA DATA SERTIFIKASI DOSEN';
-                    $data = $this->kepegawaian_model->get_not($id)->result();
                }else{
                     redirect("kepegawaian/dosen");
                }
-
-               $x['data'] = $data;
           
                $this->load->view("include/head");
                $this->load->view("include/top-header");
@@ -364,7 +447,7 @@ class Kepegawaian extends CI_Controller{
                $nama_satker = $r->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama_satker;
                             
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
-                    $aksi = "<a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editthl$r->id_thl'><i class='fa fas fa-edit'></i></a> <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#hapusthl$r->id_thl'><i class='fa fas fa-trash'></i></a>";
+                    $aksi = " <a href='javascript:;' data-id_thl='$r->id_thl' data-nama='$r->nama' data-tempat_lahir='$r->tempat_lahir' data-tanggal_lahir='$r->tanggal_lahir' data-dik='$r->dik' data-penugasan='$r->penugasan' data-nama_satker='$r->nama_satker' data-toggle='modal' data-target='#editthl' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_thl='$r->id_thl' data-nama='$r->nama' data-toggle='modal' data-target='#hapusthl' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
                     $aksi = "Tidak ada Akses";
                }
@@ -450,8 +533,15 @@ class Kepegawaian extends CI_Controller{
      function hapus_thl()
      {
           $id_thl = $this->input->post('id_thl');
-          $this->kepegawaian_model->hapus_thl($id_thl);
-          redirect('kepegawaian/thl');
+          $result = $this->kepegawaian_model->hapus_thl($id_thl);
+
+          if (!$result) { 							
+               $this->session->set_flashdata('thl', 'DATA THL GAGAL DIHAPUS.'); 				
+               redirect('kepegawaian/thl'); 			
+          } else { 								
+               $this->session->set_flashdata('thl', 'DATA THL BERHASIL DIHAPUS.');			
+               redirect('kepegawaian/thl'); 			
+          }
      }
      // END THL
 

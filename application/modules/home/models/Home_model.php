@@ -64,6 +64,29 @@ class Home_model extends CI_Model{
 		return $result;
 	}
 
+	public function angkatan_31()
+	{
+
+   	$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
+   	return $result;
+	
+	}
+	 public function angkatan_30()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
+   return $result;
+	 }
+	 public function angkatan_29()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
+   return $result;
+	 }
+	 public function angkatan_28()
+	{
+   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
+   return $result;
+	 }
+
 	public function app_perpus()
 	{
 		$perpus = $this->db->query("SELECT * FROM tbl_apps WHERE kategori_apps = 1 AND status= 1 ")->result();
@@ -152,14 +175,14 @@ class Home_model extends CI_Model{
 	}
 
 	public function get_span_jatinangor(){
-		$result = $this->db->query("SELECT persentase_t FROM tbl_span WHERE kode_satker = 448302 ORDER BY created_date DESC LIMIT 1")->result();
+		$result = $this->db->query("SELECT CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint WHERE satker = 448302")->result(); 
 
 		return $result;
 	}
 
 	public function get_all_span_biro()
 	{	
-		$result = $this->db->query("SELECT *, alias FROM (SELECT a.*, b.alias FROM tbl_span_biro as a JOIN tbl_satker_biro as b ON a.kode_satker_biro=b.kode_satker_biro ORDER BY a.id_span_biro DESC limit 4) as k ORDER BY alias ASC")->result();
+		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 ORDER BY alias")->result();
 
 		return $result;
 	}
@@ -215,7 +238,7 @@ class Home_model extends CI_Model{
 
 	public function hukuman()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt FROM hukuman")->result();
+		$result = $this->db->query("SELECT SUM(status = 'diberhentikan') as berhenti FROM hukuman")->result();
 
 		return $result;
 	}

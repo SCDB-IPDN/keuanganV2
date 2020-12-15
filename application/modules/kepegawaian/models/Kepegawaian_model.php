@@ -26,14 +26,16 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
-  public function get_not($id)
+  public function get_not_serdos()
 	{
-    if($id == 'belum_nidn'){
-      $result = $this->db->query("SELECT * FROM tbl_dosen WHERE nidn = 0");
-    }else if($id == 'belum_serdos'){
-      $result = $this->db->query("SELECT * FROM tbl_dosen WHERE serdos = ''");
-    }
+    $result = $this->db->query("SELECT * FROM tbl_dosen WHERE serdos = ''");
     
+    return $result;
+  }
+
+  public function get_not_nidn()
+	{
+    $result = $this->db->query("SELECT * FROM tbl_dosen WHERE nidn = 0");
     return $result;
   }
 

@@ -2,21 +2,25 @@
 <div id="sidebar" class="sidebar">
 	<div data-scrollbar="true" data-height="100%">
 		<ul class="nav">
-			<li class="nav-profile">
+			<li class="nav-profile <?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>">
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" alt="" />
+					<?php if(file_exists('assets/img/user/'.$_SESSION['image_url']) && isset($_SESSION['image_url'])) { ?>
+						<img src="<?php echo base_url().'assets/img/user/'. $this->session->userdata('image_url');?>" alt="" />     
+					<?php }else{ ?>
+						<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" alt=""/>  
+					<?php } ?> 
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
-						<?php echo $_SESSION['nama']; ?>
-						<small>Nip: <?php echo $_SESSION['nip']; ?></small>
+						<?php echo $this->session->userdata('nama'); ?>
+						<small>Nip: <?php echo $this->session->userdata('nip'); ?></small>
 					</div>
 				</a>
 			</li>
 			<li>
-				<ul class="nav nav-profile">
+				<ul class="nav nav-profile <?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>">
 					<li class="<?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>"><a href="<?php echo base_url('profil'); ?>"><i class="fa fa-cog"></i> Edit Profile</a></li>
 				</ul>
 			</li>
@@ -39,6 +43,7 @@
 				</a>
 				<ul class="sub-menu">
 				<li class="<?php echo $this->uri->segment(1) == "d_span" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "d_spanint" && ($this->uri->segment(1) == "d_spanint" || $this->uri->segment(2) == "448302") ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							SPAN
@@ -46,6 +51,8 @@
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "d_span" && $this->uri->segment(2) != "biro" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span'); ?>">UTAMA</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "biro" ? "active" : ""; ?>"><a href="<?php echo base_url('d_span/biro'); ?>">KAMPUS JATINANGOR</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) != "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint'); ?>">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) == "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint/448302'); ?>">KAMPUS JATINANGOR</a></li>
 						</ul>
 					</li>
 					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
@@ -147,14 +154,28 @@
 			<!-- END PERENCANAAN -->
 
 			<!-- SARPRAS -->
+
 			<li class="has-sub">
 				<a href="javascript:;">
+
+			<li class="<?php echo $this->uri->segment(1)=="d_sarpras" || $this->uri->segment(1)=="d_sarpras" && ($this->uri->segment(2)=="448302" || $this->uri->segment(2)=="677024" || $this->uri->segment(2)=="683091" || $this->uri->segment(2)=="683084" || $this->uri->segment(2)=="677010")?"active":"";?> has-sub">
+				<!-- <a href="javascript:;"> -->
+				<a href="<?php echo base_url('d_sarpras');?>">
+
 					<b class="caret"></b>
 					<i class="fas fa-building"></i>
 					<span>Sarpras</span>
 				</a>
 				<ul class="sub-menu">
+
 					<li class="<?php echo $this->uri->segment(1) == "d_sarpras" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sarpras'); ?>">JATINANGOR</a></li>
+
+					<li class="<?php echo $this->uri->segment(1)=="d_sarpras" && $this->uri->segment(2)=="448302"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/448302";?>">JATINANGOR</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="677024"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677024";?>">SULAWESI SELATAN</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="683091"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683091";?>">PAPUA</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="683084"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683084";?>">NTB</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="677010"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677010";?>">SULAWESI UTARA</a></li>
+
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
