@@ -568,10 +568,11 @@ class Uploads extends CI_Controller {
 							// echo "<br>".$unit."<br>";
 
 							$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+							$maxRow = $loadexcel->getSheetByName($shit)->getHighestDataRow() + 1;
 							$stop = false;
 							$num = 1;
 							$nullcc = 0;
-							while(!$stop) {
+							while(!$stop && $num < $maxRow) {
 								$row = $rows[$num++];
 								if ($row['A'] == NULL) {
 									$nullcc++;
@@ -706,8 +707,8 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			var_dump($unitList);
-			exit;
+			// var_dump($unitList);
+			// exit;
 			// print("<pre>".print_r($unitList,true)."</pre>");
 			$this->db->truncate('unit_pok');
 			$this->db->insert_batch('unit_pok', $unitList); // PENTING 
