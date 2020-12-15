@@ -15,6 +15,7 @@ class User_model extends CI_Model {
                 $this->session->set_userdata('nip',$nip);
                 $this->session->set_userdata('nama',$data_user->nama_user);
                 $this->session->set_userdata('role',$data_user->role);
+                $this->session->set_userdata('image_url',$data_user->image_url);
                 $this->session->set_userdata('is_login',TRUE);
                 return TRUE;
             } else {
