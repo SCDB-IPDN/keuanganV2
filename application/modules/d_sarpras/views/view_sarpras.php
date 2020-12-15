@@ -78,7 +78,8 @@
         </button>
       </div>
       <div class="modal-body">
-		<?php echo form_open('d_sarpras/update/'.$this->uri->segment(2)); ?>
+      	<?php $attributes = ['class' => 'form-horizontal form-bordered']; ?>
+		<?php echo form_open('d_sarpras/update/'.$this->uri->segment(2), $attributes); ?>
 			<input type="hidden" id="editModalId" name="editModalId" value="">
 			<div class="form-group row">
 				<label for="editModalKode" class="col-sm-4 col-form-label">Kode</label>
@@ -120,7 +121,10 @@
 					</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+		
+      </div>
+      <div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
       </div>
     </div>
