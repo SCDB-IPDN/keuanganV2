@@ -53,6 +53,9 @@
 
 <script>
 
+	var back = ["153, 102, 255", "102, 255, 153", "204, 255, 102", "255, 102, 204"];
+	var rand = "";
+
 	<?php $cc = 1; ?>
 	<?php foreach ($chart as $x): ?>
 
@@ -71,9 +74,10 @@
 
 		var ctx<?php echo $cc; ?> = document.getElementById("myChart<?php echo $cc; ?>").getContext('2d');
 
+		rand = back[Math.floor(Math.random() * back.length)];
 		var gradientFill = ctx<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
-		gradientFill.addColorStop(0, "rgba(153, 102, 255, 1)");
-		gradientFill.addColorStop(1, "rgba(153, 102, 255, 0.1)");
+		gradientFill.addColorStop(0, "rgba(" + rand + ", 1)");
+		gradientFill.addColorStop(1, "rgba(" + rand + ", 0.1)");
 
 		var config = {
 			type: 'line',
@@ -85,7 +89,7 @@
 					pointBackgroundColor: 'white',
 					pointBorderWidth: 2,
 					backgroundColor: gradientFill,
-					borderColor: 'rgba(153, 102, 255, 1)',
+					borderColor: 'rgba(' + rand + ', 1)',
 					lineTension: 0
 				}]
 			},
