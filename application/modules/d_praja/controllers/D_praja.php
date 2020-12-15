@@ -83,6 +83,23 @@ class D_praja extends CI_Controller
       redirect("user");
     }
   }
+
+  function detail_alumni($id)
+  {
+    if ($this->session->userdata('nip') != NULL) {
+      $data = $this->D_praja_model->get_detail_alumni($id)->result();
+      $x['data'] = json_encode($data);
+
+      $this->load->view("include/head");
+      $this->load->view("include/top-header");
+      $this->load->view("view_detailalumni", $x);
+      $this->load->view("include/sidebar");
+      $this->load->view("include/panel");
+      $this->load->view("include/footer");
+    } else {
+      redirect("user");
+    }
+  }
   
   function edt($id)
   {
@@ -105,7 +122,7 @@ class D_praja extends CI_Controller
       redirect("user");
     }
   }
-  function edit_alumni()
+  function edt_alumni()
   {
     if ($this->session->userdata('nip') != NULL) {
 
@@ -129,37 +146,64 @@ class D_praja extends CI_Controller
 
   function alumni_praja(){
     $data = $this->D_praja_model->get_alumni()->result();
-    
+
     $dataall = array();
     $no = 1;
+    
     foreach($data as $r) {
-      $id = $r->id;
-      $nama = $r->nama;
-      $jk = $r->jk;
-      $npp = $r->npp;
-      $nip = $r->nip;
-      $asdaf = $r->asdaf;
-      $instansi = $r->instansi;
-      $jabatan = $r->jabatan;
+    $id = $r->id;
+    $nama = $r->nama;
+    $jk = $r->jk;
+    $institusi = $r->institusi;
+    $angkatan = $r->angkatan;
+    $provinsi = $r->provinsi;
       if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
-        $opsi = "<a href='d_praja/edit_alumni/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+        $opsi = "<a href='d_praja/detail_alumni/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a> <a href='d_praja/edt_alumni/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+      }else{
+        $opsi = "<a href='d_praja/detail_alumni/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
       }
 
       $dataall[] = array(
         $no++,
         $nama,
         $jk,
-        $npp,
-        $nip,
-        $asdaf,
-        $instansi,
-        $jabatan,
+        $institusi,
+        $angkatan,
+        $provinsi,
         $opsi
       );
     }
     echo json_encode($dataall);
   }
+  public function edit_alumni()
+  {
+    if ($this->session->userdata('nip') != NULL) {
+     $alumni['id'] = $this->input->post('id', true);
+     $alumni['nama'] = $this->input->post('nama', true);
+     $alumni['jk'] = $this->input->post('jk', true);
+     $alumni['nip'] = $this->input->post('nip', true);
+     $alumni['institusi'] = $this->input->post('institusi', true);
+     $alumni['angkatan'] = $this->input->post('angkatan', true);
+     $alumni['tahun_lulus'] = $this->input->post('tahun_lulus', true);
+     $alumni['instansi'] = $this->input->post('instansi', true);
+     $alumni['jabatan'] = $this->input->post('jabatan', true);
+     $alumni['kabkot'] = $this->input->post('kabkot', true);
+     $alumni['provinsi'] = $this->input->post('provinsi', true);
 
+     $result = $this->D_praja_model->edit_alumni($alumni);
+    // echo $result;
+    // exit();
+     if ($result) {
+      $this->session->set_flashdata('alumni', 'DATA ALUMNI GAGAL DIUBAH.');
+      redirect('d_praja/alumni');
+    } else {
+      $this->session->set_flashdata('alumni', 'DATA ALUMNI BERHASIL DIUBAH.');
+      redirect('d_praja/alumni');
+    }
+  } else {
+    redirect("user");
+  }
+}
   public function view_edit()
   {
     if ($this->session->userdata('nip') != NULL) {

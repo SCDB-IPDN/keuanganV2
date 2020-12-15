@@ -4,22 +4,23 @@ class D_praja_model extends CI_Model
 
 	public function get_praja()
 	{
-
 		$result = $this->db->query("SELECT * FROM praja ORDER BY angkatan");
 
 		return $result;
 	}
 	public function get_alumni()
 	{
-
 		$result = $this->db->query("SELECT * FROM alumni");
-
 		return $result;
 	}
 	public function get_detail($id)
 	{
-
 		$result = $this->db->query("SELECT * FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE praja.id = $id ");
+		return $result;
+	}
+	public function get_detail_alumni($id)
+	{
+		$result = $this->db->query("SELECT * FROM alumni WHERE alumni.id = $id ");
 		return $result;
 	}
 
@@ -45,8 +46,6 @@ class D_praja_model extends CI_Model
 		return $result;
 	}
 
-
-
 	public function view_edit($editnya)
 	{
 		$id = $editnya['id'];
@@ -57,6 +56,20 @@ class D_praja_model extends CI_Model
 		// angkatan=$angkatan where nama=$nama";
 		
 		$hasil = $this->db->where('id', $id)->update('praja', $editnya);
+		// echo "$hasil";
+		// exit();
+		return $hasil;
+	}
+	public function edit_alumni($alumni)
+	{
+		$id = $editnya['id'];
+
+		// $hasil ="UPDATE praja SET email=$email,alamat=$alamat,rt=$rt,rw=$rw,nama_dusun=$nama_dusun,
+		// kelurahan=$kelurahan,kecamatan=$kecamatan,kab_kota=$kab_kota,kode_pos=$kode_pos,
+		// provinsi=$provinsi,tlp_pribadi=$tlp_pribadi,status=$status,tingkat=$tingkat,
+		// angkatan=$angkatan where nama=$nama";
+		
+		$hasil = $this->db->where('id', $id)->update('alumni', $alumni);
 		// echo "$hasil";
 		// exit();
 		return $hasil;
@@ -111,7 +124,7 @@ class D_praja_model extends CI_Model
 
 	public function get_provinsi_alumni()
 	{
-		$prov=$this->db->query("SELECT asdaf , count(asdaf) as jumlah from alumni group by asdaf");
+		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from alumni group by provinsi");
 		return $prov;
 	}
 

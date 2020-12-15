@@ -30,7 +30,6 @@
               <h3> DATA DIRI </h3>
               <br>
               <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data[0]->id ?>" >
-
               <div class="row">
                <div class="col-xl">
                 <label for="basic-url">Nama</label>
@@ -44,59 +43,57 @@
                    <option value="L">Laki-Laki</option>
                    <option value="P">Perempuan</option>
                  </select>
-                            </div>
-              <div class="col-xl">
-                <br>
-                <label for="basic-url">NPP</label>
-                <input type="text" class="form-control"  id="npp" name="npp"  value="<?php echo $data[0]->npp == NULL ? "-" : $data[0]->npp ?>" >
               </div>
               <div class="col-xl">
                 <br>
                 <label for="basic-url">NIP</label>
-                <input type="text" class="form-control"  id="nip" name="nip"  value="<?php echo $data[0]->nip == NULL ? "-" : $data[0]->nip ?>">
+                <input type="text" class="form-control"  id="nip" name="nip"  value="<?php echo $data[0]->nip == NULL ? "-" : $data[0]->nip ?>" >
               </div>
               <div class="col-xl">
                 <br>
-                <label for="basic-url">Tempat Lahir</label>
-                <input type="text" class="form-control"  id="tempat_lahir" name="tempat_lahir"  value="<?php echo $data[0]->tempat_lahir == NULL ? "-" : $data[0]->tempat_lahir  ?>">
+                <label for="basic-url">Institusi</label>
+                <input type="text" class="form-control"  id="institusi" name="institusi"  value="<?php echo $data[0]->institusi == NULL ? "-" : $data[0]->institusi ?>">
+              </div>
+              <div class="col-xl">
+                <br>
+                <label for="basic-url">Angkatan</label>
+                <input type="text" class="form-control"  id="angkatan" name="angkatan"  value="<?php echo $data[0]->angkatan == NULL ? "-" : $data[0]->angkatan  ?>">
               </div>
               <div class="col-xl">
               <br>
-                <label for="basic-url">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $data[0]->tanggal_lahir == NULL ? "-" : $data[0]->tanggal_lahir ?>" >
-              </div>
-              <div class="col-xl">
-                <br>
-                <label for="basic-url">Asdaf</label>
-                <input type="text" class="form-control"  id="asdaf" name="asdaf" value="<?php echo $data[0]->asdaf == NULL ? "-" : $data[0]->asdaf ?>" >
-              </div>
-              <div class="col-xl">
-                <br>
-                <label for="basic-url">Agama</label>
-                <input type="text" class="form-control"  id="agama" name="agama"  value="<?php echo $data[0]->agama == NULL ? "-" : $data[0]->agama ?>" >
+                <label for="basic-url">Tahun Lulus</label>
+                <input type="year" class="form-control" id="tahun_lulusr" name="tahun_lulusr" value="<?php echo $data[0]->tahun_lulus == NULL ? "-" : $data[0]->tahun_lulus ?>" >
               </div>
               <div class="col-xl">
                 <br>
                 <label for="basic-url">Instansi</label>
-                <input type="text" class="form-control"  id="instansi" name="instansi"  value="<?php echo $data[0]->instansi == NULL ? "-" : $data[0]->instansi ?>">
+                <input type="text" class="form-control"  id="instansi" name="instansi" value="<?php echo $data[0]->instansi == NULL ? "-" : $data[0]->instansi ?>" >
               </div>
               <div class="col-xl">
                 <br>
                 <label for="basic-url">Jabatan</label>
-                <input type="text" class="form-control"  id="jabatan" name="jabatan"  value="<?php echo $data[0]->jabatan == NULL ? "-" : $data[0]->jabatan ?>">
+                <input type="text" class="form-control"  id="jabatan" name="jabatan"  value="<?php echo $data[0]->jabatan == NULL ? "-" : $data[0]->jabatan ?>" >
+              </div>
+              <div class="col-xl">
+                <br>
+                <label for="basic-url">Kab/Kota</label>
+                <input type="text" class="form-control"  id="kabkot" name="kabkot"  value="<?php echo $data[0]->kabkot == NULL ? "-" : $data[0]->kabkot ?>">
+              </div>
+              <div class="col-xl">
+                <br>
+                <label for="basic-url">Provinsi</label>
+                <input type="text" class="form-control"  id="provinsi" name="provinsi"  value="<?php echo $data[0]->provinsi == NULL ? "-" : $data[0]->provinsi ?>">
               </div>
               <br>
               <br>
               <div class="col-11">
                 <br>
                 <button type="submit" class="btn btn-warning" value="Cek">Ubah</button>
-                <a href="<?php echo base_url('view_alumni'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
+                <a href="<?php echo base_url('d_praja/alumni'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
               </div>
               <br>
             </form>
             <br>
-
-
           </div>
         </div>
         <!-- end panel-body -->
