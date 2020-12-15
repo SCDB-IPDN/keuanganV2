@@ -28,10 +28,10 @@
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="biroN" type="file" name="pagu" class="form-control">
+                                            <input for="pagu" type="file" name="pagu" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP JATINANGOR</button>
+                                        <button id="pagu" type="submit" class="btn btn-success">UPLOAD REKAP JATINANGOR</button>
                                     </form>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                             </div>
                         </div>
 
-                         <div class="card-body">
+                         <!-- <div class="card-body">
                             <div class="row">
                                 <div class="col-xl-7 col-lg-8">
                                     <?php echo $this->session->flashdata('notifnangor') ?>
@@ -168,7 +168,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
