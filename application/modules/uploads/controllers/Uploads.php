@@ -90,7 +90,7 @@ class Uploads extends CI_Controller {
 
 	public function v_rank()
 	{
-		if($_SESSION['nip'])
+		if($this->session->userdata('nip'))
 		{
 			$x['title'] = "rank";
 			$this->load->view("include/head");
