@@ -10,6 +10,7 @@
       <!-- begin panel -->
       <div class="panel-body">
         <div class="table-responsive">
+        <div class="panel-heading">
           <h4 class="text-center">ALUMNI IPDN </h4>
           <div id="graph" class="height-sm width-xl"></div>
         </div>

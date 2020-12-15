@@ -32,6 +32,7 @@
               <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data[0]->id ?>" >
               <div class="row">
                <div class="col-xl">
+               <br>
                 <label for="basic-url">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" >
               </div>

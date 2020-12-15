@@ -33,6 +33,7 @@
                 <br>
                 <div class="row">
                   <div class="col-xl">
+                  <br>
                     <label for="basic-url">NIP</label>
                     <input type="text" class="form-control" value="<?= $x['nip'] == NULL ? "-" : $x['nip'] ?>" readonly>
                   </div>

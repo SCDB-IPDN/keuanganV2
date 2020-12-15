@@ -122,11 +122,11 @@ class D_praja extends CI_Controller
       redirect("user");
     }
   }
-  function edt_alumni()
+  function edt_alumni($id)
   {
     if ($this->session->userdata('nip') != NULL) {
 
-      $data = $this->D_praja_model->get_alumni()->result();
+      $data = $this->D_praja_model->get_detail_alumni($id)->result();
 
       $x['data'] = $data;
 
@@ -194,10 +194,10 @@ class D_praja extends CI_Controller
     // echo $result;
     // exit();
      if ($result) {
-      $this->session->set_flashdata('alumni', 'DATA ALUMNI GAGAL DIUBAH.');
+      $this->session->set_flashdata('alumni', 'DATA ALUMNI BERHASIL DIUBAH.');
       redirect('d_praja/alumni');
     } else {
-      $this->session->set_flashdata('alumni', 'DATA ALUMNI BERHASIL DIUBAH.');
+      $this->session->set_flashdata('alumni', 'DATA ALUMNI GAGAL DIUBAH.');
       redirect('d_praja/alumni');
     }
   } else {

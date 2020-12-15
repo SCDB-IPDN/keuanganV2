@@ -62,7 +62,7 @@ class D_praja_model extends CI_Model
 	}
 	public function edit_alumni($alumni)
 	{
-		$id = $editnya['id'];
+		$id = $alumni['id'];
 
 		// $hasil ="UPDATE praja SET email=$email,alamat=$alamat,rt=$rt,rw=$rw,nama_dusun=$nama_dusun,
 		// kelurahan=$kelurahan,kecamatan=$kecamatan,kab_kota=$kab_kota,kode_pos=$kode_pos,
