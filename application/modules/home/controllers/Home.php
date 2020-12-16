@@ -41,6 +41,9 @@ class Home extends CI_Controller {
       $persen_sas= $this->home_model->get_all_sas();
       $persentase_sas = round($persen_sas[0]->persen,2);
 
+      // ALUMNI
+      $biro = $this->home_model->alumni();
+
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
 

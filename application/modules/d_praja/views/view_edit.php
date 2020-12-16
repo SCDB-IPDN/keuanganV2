@@ -39,7 +39,11 @@
                <div class="col">
                 <br>
                 <label for="basic-url">NIK</label>
+                <?php if($data[0]->nik_praja != NULL) { ?>           
+                <input type="text" class="form-control"  id="nik_praja" name="nik_praja" value="<?php echo $data[0]->nik_praja ?>" readonly>
+              <?php }else{ ?>
                 <input type="text" class="form-control"  id="nik_praja" name="nik_praja" value="<?php echo $data[0]->nik_praja == NULL ? "-" : $data[0]->nik_praja ?>" >
+              <?php }?>
               </div>
             </div>
 
@@ -72,10 +76,9 @@
               </div>
               <div class="col">
                 <br>
-                <label for="basic-url">Jenis Kelamin</label>
-                <select class="form-control" name="jk" id="jk" >
-
-                 <option value="<?php echo $data[0]->jk== NULL ? "-" : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ? "-" : $data[0]->jk?>
+                <label for="basic-url">Jenis Kelamin : <?php echo $data[0]->jk == "P" ? "Perempuan" : "Laki-Laki" ?></label>
+                <select class="form-control" name="jk" id="jk">
+                 <!-- <option value="<?php echo $data[0]->jk== NULL ? "-" : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ? "-" : $data[0]->jk?> -->
                  <option value="L">Laki-Laki</option>
                  <option value="P">Perempuan</option>
                </select>
