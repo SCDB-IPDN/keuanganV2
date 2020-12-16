@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-xl-12">
       <!-- begin panel -->
-        <div class="panel panel-inverse" data-sortable-id="morris-chart-1">
+      <div class="panel panel-inverse" data-sortable-id="morris-chart-1">
         <div class="panel-heading">
           <h4 class="panel-title"></h4>
           <div class="panel-heading-btn">
@@ -21,7 +21,7 @@
         </div>
         <div class="panel-body">
           <div class="table-responsive">
-            <h4 class="text-center">PRAJA IPDN</h4>
+            <h4 class="text-center">Jumlah Praja Di Setiap Provinsi</h4>
             <!-- <div id="graph" class="height-sm width-xl"></div> -->
             <canvas id="myChart" height="70"></canvas>
           </div>
@@ -77,16 +77,70 @@
     </div>
     <!-- end col-10 -->
 
+    <!-- <?php foreach(json_decode($data, true) as $x){?> -->
+      <!-- Modal edit praja -->
+      <!-- <div class="modal fade" id="editpraja<?php echo $x['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">EDIT STATUS PRAJA - <?php echo $x['nama'];?></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="d_praja/tambah_status" method="post">
+                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $x['id'];?>">
+                <div class="form-group">
+                  <label for="nama" class="col-form-label">Nama:</label>
+                  <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $x['nama'];?>" placeholder="Nama Lengkap.." readonly>
+                </div>
+                <div class="form-group">
+                  <label for="nama" class="col-form-label">Tingkat:</label>
+                  <input type="text" class="form-control" id="tingkat" name="tingkat" value="<?php echo $x['tingkat'];?>" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="nama" class="col-form-label">Angkatan:</label>
+                  <input type="text" class="form-control" id="angkatan" name="angkatan" value="<?php echo $x['angkatan'];?>" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Keterangan:</label>
+                  <textarea cols="30" rows="5" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="status" class="col-form-label">Status sebelumnya: <?php echo $x['status'];?> </label>
+                  <select class="form-control" name="status" id="status" required="">
+                   <option value="">Pilih Status</option>
+                  <option value="aktif">Aktif</option>
+                  <option value="cuti">Cuti</option>
+                  <option value="diberhentikan">Diberhentikan</option>
+                  <option value="turuntingkat">Turun Tingkat</option>
+                   <option value="turuntingkat">Meninggal</option>
+                 </select>
+
+               </div>
+               <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  <!-- <?php } ?> -->
 
 
-    <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-    <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-    <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
-    <script>
 
-      $(document).ready(function() {
+  <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+  <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+  <script>
 
-        var url = '<?php echo base_url('d_praja/cobain');?>';
+    $(document).ready(function() {
+
+      var url = '<?php echo base_url('d_praja/cobain');?>';
+        // alert(url);
 
         $('#data-praja').dataTable({
             // dom: 'Bfrtip',

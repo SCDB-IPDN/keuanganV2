@@ -40,6 +40,7 @@ class D_praja extends CI_Controller
     $data = $this->D_praja_model->get_praja()->result();
     
     $dataall = array();
+
     $no = 1;
     foreach($data as $r) {
       $id = $r->id;
@@ -49,7 +50,8 @@ class D_praja extends CI_Controller
       $angkatan = $r->angkatan;
       $status = $r->status;
       if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
-        $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a> <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>";
+        $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>  <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>  ";
+        // <a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editpraja$r->id'><i class='fa fas fa-edit'></i></a>
       }else{
         $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
       }
@@ -66,6 +68,8 @@ class D_praja extends CI_Controller
     }
     echo json_encode($dataall);
   }
+
+ 
 
   function detail($id)
   {
@@ -348,7 +352,7 @@ function tambah_status()
     // print("<pre>".print_r($uptudate,true)."</pre>");
     // exit();
    $nih = $this->db->where('id',$data['id']);
-    $nih = $this->db->update('praja',$uptudate); //Here also couldn't update
+    $nih = $this->db->update('praja',$uptudate); 
 
 
    // $this->db->update_batch('praja', $uptudate, '$data[id]');

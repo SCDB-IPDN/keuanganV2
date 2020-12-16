@@ -31,7 +31,7 @@
               <div class="row">
                <div class="col-2">
                 <label for="basic-url">Nama  : </label>
-                <input list="namaaa" name="nama" id="nama">
+                <input class="form-control" list="namaaa" name="nama" id="nama">
                 <datalist id="namaaa">
                  <?php foreach (json_decode($data, true) as $x) : ?>
 
