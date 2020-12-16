@@ -94,7 +94,8 @@
             responsive: true,
             "ajax": {
               "url": url,
-              "dataSrc": ""
+              "dataSrc": "",
+              "deferRender": true
             }
           });
       });
@@ -135,8 +136,9 @@
         ],
         datasets: [{
           label: 'Jumlah Alumni',
-          backgroundColor: '#ff6384',
+          backgroundColor: '#ff7f0e',
           borderColor: '#cc65fe',
+          borderWidth: 1,
           data: [
           <?php
           if (count($prov)>0) {
