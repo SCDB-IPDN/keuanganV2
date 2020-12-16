@@ -30,7 +30,8 @@
 					<div class="table-responsive">
 						<h4 class="text-center">Laporan Progress Realisasi Anggaran IPDN <?php echo date("Y") ?> Berdasarkan POK</h4>
 						<!-- <div id="graph" class="height-sm width-xl"></div> -->
-						<canvas id="myChart" height="70"></canvas>
+						<canvas id="myCharts" height="170" class="d-sm-none"></canvas>
+						<canvas id="myChart" height="70" class="d-sm-block d-none"></canvas>
 					</div>
 				</div>
 			</div>
@@ -143,6 +144,7 @@
 			return e.realisasi;
 		});
 
+		var ctxs = document.getElementById("myCharts").getContext('2d');
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var config = {
 			type: 'bar',
@@ -185,4 +187,5 @@
 		};
 
 		var chart = new Chart(ctx, config);
+		var charts = new Chart(ctxs, config);
 	</script>
