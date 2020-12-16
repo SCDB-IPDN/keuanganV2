@@ -37,15 +37,15 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" >
               </div>
               <div class="col-xl">
-                <br>
+               <br>
                 <label for="basic-url">Jenis Kelamin</label>
-                <select class="form-control" name="jk" id="jk" >
-                   <option value="<?php echo $data[0]->jk== NULL ? "-" : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ? "-" : $data[0]->jk?>
-                   <option value="L">L</option>
-                   <option value="P">P</option>
-                 </select>
+                <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->jk == NULL ? "-" :$data[0]->jk ?>" >
               </div>
-
+              <div class="col-xl">
+                <br>
+                <label for="basic-url">NIP</label>
+                <input type="text" class="form-control"  id="nip" name="nip"  value="<?php echo $data[0]->nip == NULL ? "-" : $data[0]->nip ?>" readonly >
+              </div>
               <div class="col-xl">
                 <br>
                 <label for="basic-url">Institusi</label>
