@@ -41,15 +41,11 @@
                 <label for="basic-url">Jenis Kelamin</label>
                 <select class="form-control" name="jk" id="jk" >
                    <option value="<?php echo $data[0]->jk== NULL ? "-" : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ? "-" : $data[0]->jk?>
-                   <option value="L">Laki-Laki</option>
-                   <option value="P">Perempuan</option>
+                   <option value="L">L</option>
+                   <option value="P">P</option>
                  </select>
               </div>
-              <div class="col-xl">
-                <br>
-                <label for="basic-url">NIP</label>
-                <input type="text" class="form-control"  id="nip" name="nip"  value="<?php echo $data[0]->nip == NULL ? "-" : $data[0]->nip ?>" >
-              </div>
+
               <div class="col-xl">
                 <br>
                 <label for="basic-url">Institusi</label>

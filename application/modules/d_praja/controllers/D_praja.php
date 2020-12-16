@@ -181,7 +181,6 @@ class D_praja extends CI_Controller
      $alumni['id'] = $this->input->post('id', true);
      $alumni['nama'] = $this->input->post('nama', true);
      $alumni['jk'] = $this->input->post('jk', true);
-     $alumni['nip'] = $this->input->post('nip', true);
      $alumni['institusi'] = $this->input->post('institusi', true);
      $alumni['angkatan'] = $this->input->post('angkatan', true);
      $alumni['tahun_lulus'] = $this->input->post('tahun_lulus', true);

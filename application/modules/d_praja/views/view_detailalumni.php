@@ -50,7 +50,7 @@
 
                   <div class="col-xl">
                   <br>
-                    <label for="basic-url">Angkatatn</label>
+                    <label for="basic-url">Angkatan</label>
                     <input type="text" class="form-control" value="<?= $x['angkatan'] == NULL ? "-" : $x['angkatan'] ?>" readonly>
                   </div>
                   <div class="col-xl">
