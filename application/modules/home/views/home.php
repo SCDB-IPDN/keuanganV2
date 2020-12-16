@@ -381,20 +381,6 @@
 				</div>
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
-					<div class="mb-3 text-grey">
-							<b class="mb-3">TOTAL ALUMNI</b> 
-							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
-							<div class="text-grey">
-								<i class=""></i> KAMPUS IPDN
-							</div>
-					</div>
-					<div class="d-flex align-items-center mb-1">
-							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_alumni ?>"><?php echo $total_alumni ?></span> PURNA PRAJA</h4>
-							<div class="ml-auto">
-								<div id="conversion-rate-sparkline"></div>
-							</div>
-						</div>
-						<br>
 						<div class="mb-3 text-grey">
 							<b class="mb-3">TOTAL PEGAWAI</b> 
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
@@ -428,59 +414,17 @@
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text- f-s-8 mr-2"></i>
-								CUTI
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								Eselon II
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->cuti; ?></span></div>
+								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
-								DIBERHENTIKAN
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $status[0]->berhenti; ?></span></div>
-							</div>
-						</div>
-						</br>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								TURUN TINGKAT
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-								PRAJA UTAMA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan28[0]->turuntingkat; ?></span></div>
-								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
-								NINDYA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan29[0]->turuntingkat; ?></span></div>
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-								MADYA PRAJA => MUDA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan30[0]->turuntingkat; ?></span></div>
-							</div>
-						</div>
-						</br>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								ANGKATAN
+								Eselon III
 							</div>
 							<div class="d-flex align-items-center ml-auto">
 								<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?> PEGAWAI</span></div>
@@ -488,8 +432,6 @@
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-								MUDA PRAJA
 								<i class="fa fa-circle text-primary f-s-8 mr-2"></i>
 								Eselon IV
 							</div>
@@ -500,18 +442,11 @@
 						<br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-								MADYA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan30; ?></span></div>
 								NON-PNS
 							</div>
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-								NINDYA PRAJA
 								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
 								TENAGA KONTRAK
 							</div>
@@ -521,9 +456,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
-								PRAJA UTAMA
-							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
 								TENAGA AHLI
 							</div>
 							<div class="d-flex align-items-center ml-auto">
@@ -534,7 +467,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="col-xl-6">
 			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
 				<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">APLIKASI</span></a></li>
@@ -730,7 +662,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   	<div class="modal-dialog modal-dialog-centered" role="document">
