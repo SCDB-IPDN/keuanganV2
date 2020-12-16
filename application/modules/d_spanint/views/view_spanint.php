@@ -26,7 +26,8 @@
 						<h4 class="text-center">Laporan Progress Realisasi Anggaran IPDN <?php echo date("Y") ?> Berdasarkan OM-SPAN</h4>
 						<h4 class="text-center">PER <?= $uDate; ?></h4><br>
 						<!-- <div id="graph" class="height-sm width-xl"></div> -->
-						<canvas id="myChart" height="70"></canvas>
+						<canvas id="myCharts" height="170" class="d-sm-none"></canvas>
+						<canvas id="myChart" height="70" class="d-sm-block d-none"></canvas>
 					</div>
 				</div>
 			</div>
@@ -106,9 +107,14 @@
 
 <script>
 
+		var labels = <?php echo $data;?>.map(function(e) {
+			return e.aliass;
+		});
+
 		var label = <?php echo $data;?>.map(function(e) {
 			return e.alias;
 		});
+
 		var data1 = <?php echo $data;?>.map(function(e) {
 			return e.pagu_tot;
 		});
@@ -117,7 +123,49 @@
 			return e.real_tot;
 		});
 
+		var ctxs = document.getElementById("myCharts").getContext('2d');
 		var ctx = document.getElementById("myChart").getContext('2d');
+
+		var configs = {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'Pagu',
+					data: data1,
+					borderWidth: 1,
+					backgroundColor: 'rgba(54, 162, 235, 0.2)',
+					borderColor: 'rgba(54, 162, 235, 1)'
+				},
+				{
+					label: 'Realisasi',
+					data: data2,
+					borderWidth: 1,
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255, 99, 132, 1)'
+				}]
+			},
+
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							userCallback: function(value, index, values) {
+								// Convert the number to a string and splite the string every 3 charaters from the end
+								value = value.toString();
+								value = value.split(/(?=(?:...)*$)/);
+								// Convert the array to a string and format the output
+								value = value.join('.');
+								return value;
+							}
+						}
+					}]
+				},
+				responsive: true
+			}
+		};
+
 		var config = {
 			type: 'bar',
 			data: {
@@ -158,5 +206,6 @@
 			}
 		};
 
+		var charts = new Chart(ctxs, configs);
 		var chart = new Chart(ctx, config);
 	</script>
