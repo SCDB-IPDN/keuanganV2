@@ -22,6 +22,7 @@
         <div class="panel-body">
           <div class="table-responsive">
             <h4 class="text-center">Jumlah Praja Di Setiap Provinsi</h4>
+            
             <!-- <div id="graph" class="height-sm width-xl"></div> -->
             <canvas id="myChart" height="70"></canvas>
           </div>
