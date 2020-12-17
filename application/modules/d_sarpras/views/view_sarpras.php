@@ -244,7 +244,7 @@
 					label: 'Total Belanja',
 					data: data1_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill1,
 					borderColor: 'rgba(153, 102, 255, 1)'
 				},
@@ -252,7 +252,7 @@
 					label: 'Total Revaluasi',
 					data: data2_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill2,
 					borderColor: 'rgba(75, 192, 192, 1)'
 				}]

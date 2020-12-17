@@ -12,6 +12,7 @@ class Uploads extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('uploads_model');
 	}
 
 	public function index()
@@ -1414,6 +1415,7 @@ class Uploads extends CI_Controller {
 					$loadexcel = $reader->load($_FILES['rank']['tmp_name'][$index]);
 					$shit = $loadexcel->getActiveSheet();
 					$rows = $shit->toArray(null, true, true ,true);
+					$newDate = date_format(new DateTime(),"Y-m-d");
 
 					switch ($nf) {
 						case 1:
@@ -1432,7 +1434,8 @@ class Uploads extends CI_Controller {
 											'pagu_bar' => $row['G'],
 											'real_bar' => $row['H'],
 											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
+											'real_mod' => $row['L'],
+											'created_at' => $newDate
 										));
 									}
 								}
@@ -1578,7 +1581,8 @@ class Uploads extends CI_Controller {
 											'pagu_bar' => $row['G'],
 											'real_bar' => $row['H'],
 											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
+											'real_mod' => $row['L'],
+											'created_at' => $newDate
 										));
 									} elseif ($pool == 8) {
 										array_push($data, array(
@@ -1589,7 +1593,8 @@ class Uploads extends CI_Controller {
 											'pagu_bar' => $pagu_bar_a,
 											'real_bar' => $real_bar_a,
 											'pagu_mod' => $pagu_mod_a,
-											'real_mod' => $real_mod_a
+											'real_mod' => $real_mod_a,
+											'created_at' => $newDate
 										));
 									} 
 
@@ -1602,7 +1607,8 @@ class Uploads extends CI_Controller {
 											'pagu_bar' => $row['G'],
 											'real_bar' => $row['H'],
 											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
+											'real_mod' => $row['L'],
+											'created_at' => $newDate
 										));
 									}
 								}
@@ -1625,7 +1631,8 @@ class Uploads extends CI_Controller {
 											'pagu_bar' => $row['G'],
 											'real_bar' => $row['H'],
 											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L']
+											'real_mod' => $row['L'],
+											'created_at' => $newDate
 										));
 									}
 								}
@@ -1638,6 +1645,10 @@ class Uploads extends CI_Controller {
 			// print("<pre>".print_r($data,true)."</pre>");
 			// $this->db->truncate('peringkat');
 			// $this->db->insert_batch('peringkat', $data);  // PENTING
+			// $this->ptt($data);exit;
+			$this->uploads_model->upsert_batch($data);
+			exit;
+
 			$this->db->truncate('tbl_rank');
 			$this->db->insert_batch('tbl_rank', $data);
 
