@@ -1646,11 +1646,14 @@ class Uploads extends CI_Controller {
 			// $this->db->truncate('peringkat');
 			// $this->db->insert_batch('peringkat', $data);  // PENTING
 			// $this->ptt($data);exit;
-			$this->uploads_model->upsert_batch($data);
-			exit;
+			
+			
+			$this->uploads_model->upsert_batch($data, 'tbl_rank', $newDate);
 
-			$this->db->truncate('tbl_rank');
-			$this->db->insert_batch('tbl_rank', $data);
+			// exit;
+
+			// $this->db->truncate('tbl_rank');
+			// $this->db->insert_batch('tbl_rank', $data);
 
 			$this->db->truncate('tbl_spanint');
 			$this->db->insert_batch('tbl_spanint', $data_span);

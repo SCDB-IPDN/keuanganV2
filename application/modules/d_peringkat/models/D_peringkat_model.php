@@ -11,12 +11,12 @@ class D_peringkat_model extends CI_Model{
 		@real_tot:=real_peg + real_bar + real_mod AS real_tot,
 		@pagu_tot - @real_tot AS sisa_tot,
 		concat(round((100 * @real_tot / @pagu_tot), 2), '%') AS per_tot
-		FROM tbl_rank ORDER BY per_tot DESC");
+		FROM tbl_rank ORDER BY created_at DESC, per_tot DESC LIMIT 13");
 
 	return $result;
   }
 
   public function get_date() {
-  	return $this->db->query("SELECT created_at FROM tbl_rank LIMIT 1")->row_array();
+  	return $this->db->query("SELECT created_at FROM tbl_rank ORDER BY created_at DESC LIMIT 1")->row_array();
   }
 }
