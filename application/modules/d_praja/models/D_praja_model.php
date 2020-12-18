@@ -5,7 +5,7 @@ class D_praja_model extends CI_Model
 	public function get_praja()
 	{
 
-		$result = $this->db->query("SELECT * FROM praja ORDER BY angkatan");
+		$result = $this->db->query("SELECT * FROM praja");
 
 		return $result;
 	}

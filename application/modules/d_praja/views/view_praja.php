@@ -46,7 +46,7 @@
           </div>
         </div>
 
-
+        <!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
         <div class="table-responsive">
           <?php if ($this->session->flashdata('praja') != NULL) { ?>
             <div class="alert alert-success alert-dismissible">
@@ -54,6 +54,7 @@
               <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
             </div>
           <?php } ?>
+           <!-- <a href="<?php echo base_url('d_praja/export'); ?>">Export Data</a> -->
 
           <div class="panel-body">
             <table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
@@ -79,7 +80,7 @@
     <!-- end col-10 -->
 
     <!-- <?php foreach(json_decode($data, true) as $x){?> -->
-      <!-- Modal edit praja -->
+    <!-- Modal edit praja -->
       <!-- <div class="modal fade" id="editpraja<?php echo $x['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -129,18 +130,18 @@
         </div>
       </div>
     </div> -->
-  <!-- <?php } ?> -->
+    <!-- <?php } ?> -->
 
 
 
-  <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-  <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-  <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
-  <script>
+    <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+    <script>
 
-    $(document).ready(function() {
+      $(document).ready(function() {
 
-      var url = '<?php echo base_url('d_praja/cobain');?>';
+        var url = '<?php echo base_url('d_praja/cobain');?>';
         // alert(url);
 
         $('#data-praja').dataTable({
