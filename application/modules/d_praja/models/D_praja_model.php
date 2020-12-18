@@ -5,7 +5,17 @@ class D_praja_model extends CI_Model
 	public function get_praja()
 	{
 
-		$result = $this->db->query("SELECT * FROM praja ORDER BY angkatan");
+		// $result = $this->db->query("SELECT * FROM praja");
+
+		$result = $this->db->query("SELECT *,CASE WHEN jk= 'P' THEN 'Perempuan'
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jeniskelamin FROM praja ");
+
+		// $result = "SELECT *, CASE WHEN jk = 'P' THEN 'Perempuan'
+		// WHEN jk= 'L' THEN 'Laki-Laki'
+		// ELSE 'Belum Ada'
+		// END AS jeniskelamin
+		// FROM Praja
+		// ";
 
 		return $result;
 	}
@@ -13,7 +23,8 @@ class D_praja_model extends CI_Model
 	public function get_detail($id)
 	{
 
-		$result = $this->db->query("SELECT * FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE praja.id = $id ");
+		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jeniskelamin FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE praja.id = $id ");
 
 		return $result;
 	}
