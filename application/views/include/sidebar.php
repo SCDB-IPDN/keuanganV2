@@ -2,21 +2,25 @@
 <div id="sidebar" class="sidebar">
 	<div data-scrollbar="true" data-height="100%">
 		<ul class="nav">
-			<li class="nav-profile">
+			<li class="nav-profile <?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>">
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" alt="" />
+					<?php if(file_exists('assets/img/user/'.$this->session->userdata('image_url')) && $this->session->userdata('image_url') != NULL) { ?>
+						<img src="<?php echo base_url().'assets/img/user/'. $this->session->userdata('image_url');?>" alt="" />     
+					<?php }else{ ?>
+						<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" alt=""/>  
+					<?php } ?> 
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
-						<?php echo $_SESSION['nama']; ?>
-						<small>Nip: <?php echo $_SESSION['nip']; ?></small>
+						<?php echo $this->session->userdata('nama'); ?>
+						<small>Nip: <?php echo $this->session->userdata('nip'); ?></small>
 					</div>
 				</a>
 			</li>
 			<li>
-				<ul class="nav nav-profile">
+				<ul class="nav nav-profile <?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>">
 					<li class="<?php echo $this->uri->segment(1) == "profil" ? "active" : ""; ?>"><a href="<?php echo base_url('profil'); ?>"><i class="fa fa-cog"></i> Edit Profile</a></li>
 				</ul>
 			</li>
