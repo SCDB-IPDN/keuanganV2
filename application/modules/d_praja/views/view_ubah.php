@@ -55,6 +55,7 @@
                 <textarea cols="50" rows="10" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.."></textarea>
 
                 <br>
+                <br>
 
                  <!--  <label for="basic-url">Upload SK : </label>
                   <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload"> -->
