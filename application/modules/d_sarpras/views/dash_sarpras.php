@@ -2,7 +2,7 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb float-xl-right">
-				<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>">Dashboard SARPRAS</a></li>
+				<li class="breadcrumb-item"><a href="#">Dashboard SARPRAS</a></li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin title -->
@@ -90,7 +90,7 @@
 					label: 'Total Barang',
 					data: data1_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill,
 					borderColor: 'rgba(' + rand + ', 1)',
 					lineTension: 0
