@@ -109,7 +109,7 @@
 			<div class="form-group row">
 				<label for="editModalHR" class="col-sm-4 col-form-label">Harga Revaluasi</label>
 				<div class="col-sm-8">
-					<input type="number" min="0" step="100" class="form-control" id="editModalHR" name="editModalHR">
+					<input type="number" min="0" step="0.01" class="form-control" id="editModalHR" name="editModalHR">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -138,9 +138,10 @@
 <script>
 
 	<?php $cc = 1; ?>
-	<?php foreach ($chart as $x): ?>
+	
 
 	$(document).ready(function() {
+		<?php foreach ($chart as $x): ?>
 
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			$($.fn.dataTable.tables(true)).DataTable()
@@ -284,8 +285,7 @@
 		var charts<?php echo $cc; ?> = new Chart(ctxs<?php echo $cc; ?>, config);
 		var chart<?php echo $cc; ?> = new Chart(ctx<?php echo $cc++; ?>, config);
 
+		<?php endforeach; ?>
 	});
-
-	<?php endforeach; ?>
 
 	</script>

@@ -1,7 +1,7 @@
 <?php
 class D_peringkat_model extends CI_Model{
 
-  public function get_peringkat() {
+  public function get_peringkat($date) {
 
 	$result = $this->db->query("SELECT concat(satker, ' | ', nama) AS nama,
 		pagu_peg, real_peg, (pagu_peg - real_peg) AS sisa_peg, concat(round((100 * real_peg / pagu_peg), 2), '%') AS per_peg,
@@ -11,7 +11,7 @@ class D_peringkat_model extends CI_Model{
 		@real_tot:=real_peg + real_bar + real_mod AS real_tot,
 		@pagu_tot - @real_tot AS sisa_tot,
 		concat(round((100 * @real_tot / @pagu_tot), 2), '%') AS per_tot
-		FROM tbl_rank ORDER BY created_at DESC, per_tot DESC LIMIT 13");
+		FROM tbl_rank WHERE created_at = '$date' ORDER BY per_tot DESC");
 
 	return $result;
   }
