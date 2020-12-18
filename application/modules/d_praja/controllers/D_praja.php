@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require('./application/third_party/phpoffice/vendor/autoload.php');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class D_praja extends CI_Controller
 {
   function __construct()
@@ -48,7 +49,7 @@ class D_praja extends CI_Controller
     foreach($data as $r) {
       $id = $r->id;
       $nama = $r->nama;
-      $jk = $r->jk;
+      $jk = $r->jeniskelamin;
       $tingkat = $r->tingkat;
       $angkatan = $r->angkatan;
       $status = $r->status;
@@ -474,6 +475,16 @@ function export()
  header('Cache-Control: max-age=0');
 
  $writer->save('php://output');
+}
+
+function matkul(){
+ $this->load->view("include/head");
+ $this->load->view("include/top-header");
+ $this->load->view("view_matkul");
+ $this->load->view("include/sidebar");
+ $this->load->view("include/panel");
+ $this->load->view("include/footer");
+
 }
 
 

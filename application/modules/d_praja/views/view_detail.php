@@ -77,6 +77,11 @@
                <div class="row">
                 <div class="col-xl">
 
+                  <label for="basic-url">Jenis Kelamin</label>
+                  <input type="text" class="form-control" value="<?= $x['jeniskelamin'] == NULL ? "-" : $x['jeniskelamin'] ?>" readonly>
+                </div>
+                <div class="col-xl">
+
                   <label for="basic-url">Alamat</label>
                   <input type="text" class="form-control" value="<?= $x['alamat'] == NULL ? "-" : $x['alamat'] ?>" readonly>
                 </div>
