@@ -24,7 +24,7 @@
 
 	<!-- begin login-cover -->
 	<div class="login-cover">
-		<div class="login-cover-image" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-17.jpg');?>)" data-id="login-cover-image"></div>
+		<div class="login-cover-image" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-ipdn-1.jpg');?>)" data-id="login-cover-image"></div>
 		<div class="login-cover-bg"></div>
 	</div>
 	<!-- end login-cover -->
@@ -70,7 +70,7 @@
 		
 		<!-- begin login-bg -->
 		<ul class="login-bg-list clearfix">
-			<li class="active"><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-17.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-17.jpg');?>)"></a></li>
+			<li class="active"><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-ipdn-1.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-ipdn-1.jpg');?>)"></a></li>
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-16.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-16.jpg');?>)"></a></li>
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-15.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-15.jpg');?>)"></a></li>
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-14.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-14.jpg');?>)"></a></li>

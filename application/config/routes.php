@@ -65,3 +65,4 @@ $route['kepegawaian/dosen/isian_dosen'] = 'kepegawaian/table_belum_serdos';
 $route['kepegawaian/dosen/isian_nidn'] = 'kepegawaian/table_belum_nidn';
 $route['kepegawaian/isian_pns'] = 'kepegawaian/table_pns';
 $route['kepegawaian/isian_thl'] = 'kepegawaian/table_thl';
+$route['d_peringkat/(:any)'] = 'd_peringkat/index/$1';

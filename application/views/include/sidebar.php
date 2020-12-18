@@ -161,11 +161,13 @@
 					<span>Sarpras</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="d_sarpras" && $this->uri->segment(2)=="448302"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/448302";?>">JATINANGOR</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="448302"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/448302";?>">JATINANGOR</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="677024"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677024";?>">SULAWESI SELATAN</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="683091"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683091";?>">PAPUA</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="683084"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683084";?>">NTB</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="677010"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677010";?>">SULAWESI UTARA</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="352593"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/352593";?>">JAKARTA</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="683070"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683070";?>">KALIMANTAN BARAT</a></li>
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
@@ -215,6 +217,8 @@
 								<li class="<?php echo $this->uri->segment(3)=="papua"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/papua');?>">SARPRAS PAPUA</a></li>
 								<li class="<?php echo $this->uri->segment(3)=="ntb"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/ntb');?>">SARPRAS NTB</a></li>
 								<li class="<?php echo $this->uri->segment(3)=="sulut"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/sulut');?>">SARPRAS SULUT</a></li>
+								<li class="<?php echo $this->uri->segment(3)=="jakarta"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/jakarta');?>">SARPRAS JAKARTA</a></li>
+								<li class="<?php echo $this->uri->segment(3)=="kalbar"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/kalbar');?>">SARPRAS KALBAR</a></li>
 							</ul>
 						</li>
 						<?php } ?>

@@ -33,7 +33,8 @@
 
 				<div class="tab-pane fade <?php echo $cl==1?'active show':''; ?>" id="default-tab-<?= $cl; ?>">
 					<h4 class="text-center">Belanja <?php echo ucwords(strtolower($y['kategori'])); ?> bedasarkan Tahun</h4>
-					<canvas id="myChart<?php echo $cl; ?>" height="80%"></canvas>
+					<canvas id="myCharts<?php echo $cl; ?>" height="150%" class="d-sm-none"></canvas>
+					<canvas id="myChart<?php echo $cl; ?>" height="80%" class="d-sm-block d-none"></canvas>
 					<table class="table table-striped table-bordered table-td-valign-middle" id="tbl-tab-<?php echo $cl++; ?>" width="100%">
 						<thead>
 							<tr align="center">
@@ -108,7 +109,7 @@
 			<div class="form-group row">
 				<label for="editModalHR" class="col-sm-4 col-form-label">Harga Revaluasi</label>
 				<div class="col-sm-8">
-					<input type="number" min="0" step="100" class="form-control" id="editModalHR" name="editModalHR">
+					<input type="number" min="0" step="0.01" class="form-control" id="editModalHR" name="editModalHR">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -137,9 +138,10 @@
 <script>
 
 	<?php $cc = 1; ?>
-	<?php foreach ($chart as $x): ?>
+	
 
 	$(document).ready(function() {
+		<?php foreach ($chart as $x): ?>
 
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			$($.fn.dataTable.tables(true)).DataTable()
@@ -216,7 +218,16 @@
 			return e.perolehan;
 		});
 
+		var ctxs<?php echo $cc; ?> = document.getElementById("myCharts<?php echo $cc; ?>").getContext('2d');
 		var ctx<?php echo $cc; ?> = document.getElementById("myChart<?php echo $cc; ?>").getContext('2d');
+
+		var gradientFill1s = ctxs<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
+		gradientFill1s.addColorStop(0, "rgba(153, 102, 255, 1)");
+		gradientFill1s.addColorStop(1, "rgba(153, 102, 255, 0.1)");
+
+		var gradientFill2s = ctxs<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
+		gradientFill2s.addColorStop(0, "rgba(75, 192, 192, 1)");
+		gradientFill2s.addColorStop(1, "rgba(75, 192, 192, 0.1)");
 
 		var gradientFill1 = ctx<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
 		gradientFill1.addColorStop(0, "rgba(153, 102, 255, 1)");
@@ -234,7 +245,7 @@
 					label: 'Total Belanja',
 					data: data1_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill1,
 					borderColor: 'rgba(153, 102, 255, 1)'
 				},
@@ -242,7 +253,7 @@
 					label: 'Total Revaluasi',
 					data: data2_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill2,
 					borderColor: 'rgba(75, 192, 192, 1)'
 				}]
@@ -271,10 +282,10 @@
 			}
 		};
 
+		var charts<?php echo $cc; ?> = new Chart(ctxs<?php echo $cc; ?>, config);
 		var chart<?php echo $cc; ?> = new Chart(ctx<?php echo $cc++; ?>, config);
 
+		<?php endforeach; ?>
 	});
-
-	<?php endforeach; ?>
 
 	</script>

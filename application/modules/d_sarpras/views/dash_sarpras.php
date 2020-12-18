@@ -2,7 +2,7 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb float-xl-right">
-				<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>">Dashboard SARPRAS</a></li>
+				<li class="breadcrumb-item"><a href="#">Dashboard SARPRAS</a></li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin title -->
@@ -34,9 +34,8 @@
 							</div>
 						</div>
 						<div class="card-body p-0">
-							<div style="height: 269px; padding: 0 15px">
-								<canvas id="myChart<?php echo $cl++; ?>" height="45%"></canvas>
-							</div>
+							<canvas id="myCharts<?php echo $cl; ?>" height="120%" style="padding: 10px" class="d-sm-none"></canvas>
+							<canvas id="myChart<?php echo $cl++; ?>" height="55%" style="padding: 10px" class="d-sm-block d-none"></canvas>
 						</div>
 					</div>
 					<!-- end card -->
@@ -52,6 +51,9 @@
 <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
 
 <script>
+
+	var back = ["153, 102, 255", "102, 255, 153", "204, 255, 102", "255, 102, 204"];
+	var rand = "";
 
 	<?php $cc = 1; ?>
 	<?php foreach ($chart as $x): ?>
@@ -69,11 +71,16 @@
 			return e.total;
 		});
 
+		var ctxs<?php echo $cc; ?> = document.getElementById("myCharts<?php echo $cc; ?>").getContext('2d');
 		var ctx<?php echo $cc; ?> = document.getElementById("myChart<?php echo $cc; ?>").getContext('2d');
 
+		rand = back[Math.floor(Math.random() * back.length)];
+		var gradientFills = ctxs<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
 		var gradientFill = ctx<?php echo $cc; ?>.createLinearGradient(0, 0, 0, 290);
-		gradientFill.addColorStop(0, "rgba(153, 102, 255, 1)");
-		gradientFill.addColorStop(1, "rgba(153, 102, 255, 0.1)");
+		gradientFills.addColorStop(0, "rgba(" + rand + ", 1)");
+		gradientFills.addColorStop(1, "rgba(" + rand + ", 0.1)");
+		gradientFill.addColorStop(0, "rgba(" + rand + ", 1)");
+		gradientFill.addColorStop(1, "rgba(" + rand + ", 0.1)");
 
 		var config = {
 			type: 'line',
@@ -83,9 +90,9 @@
 					label: 'Total Barang',
 					data: data1_<?php echo $cc;?>,
 					pointBackgroundColor: 'white',
-					pointBorderWidth: 2,
+					pointBorderWidth: 1,
 					backgroundColor: gradientFill,
-					borderColor: 'rgba(153, 102, 255, 1)',
+					borderColor: 'rgba(' + rand + ', 1)',
 					lineTension: 0
 				}]
 			},
@@ -126,6 +133,7 @@
 			}
 		};
 
+		var charts<?php echo $cc; ?> = new Chart(ctxs<?php echo $cc; ?>, config);
 		var chart<?php echo $cc; ?> = new Chart(ctx<?php echo $cc++; ?>, config);
 
 	});
