@@ -56,8 +56,8 @@
 
                 <br>
 
-                  <label for="basic-url">Upload SK : </label>
-                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload">
+                 <!--  <label for="basic-url">Upload SK : </label>
+                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload"> -->
                   <br>
               </div>
             </div>
