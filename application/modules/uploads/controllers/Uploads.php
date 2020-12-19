@@ -1740,7 +1740,7 @@ class Uploads extends CI_Controller {
 					switch ($nf) {
 						case 1:
 							// file eselon 1
-						foreach ($rows as $row) {
+							foreach ($rows as $row) {
 							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
 								// echo count($tmp);
 								if (count($tmp) > 0) {
@@ -1760,184 +1760,182 @@ class Uploads extends CI_Controller {
 									}
 								}
 							}
-						}
-						$nf = 1;
-						break;
+							$nf = 1;
+							break;
 						case 2:
 							// file satker
-						$pool = 0;
-						$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
-						foreach ($rows as $row) {
-							$add = $spanint = false;
-							$nama = "";
-							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+							$pool = 0;
+							$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
+							foreach ($rows as $row) {
+								$add = $spanint = false;
+								$nama = "";
+								preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
 								// echo count($tmp);
-							if (count($tmp) > 0) {
-								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-								$nama = $txt[0];
+								if (count($tmp) > 0) {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									$nama = $txt[0];
 
-								switch ($tmp[0]) {
-									case 403200:
+									switch ($tmp[0]) {
+										case 403200:
 											// SETJEN
-									$add = true;
-									break;
-									case 483005:
+											$add = true;
+											break;
+										case 483005:
 											// DKPP
-									$add = true;
-									break;
-									case 448302:
+											$add = true;
+											break;
+										case 448302:
 											// IPDN
 											// $add = true;
-									$satker_a = $tmp[0];
-									$nama_a = $txt[0];
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$satker_a = $tmp[0];
+											$nama_a = $txt[0];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									$nama = "IPDN KAMPUS JATINANGOR";
-									break;
-									case 352593:
+											$pool++;
+											$spanint = true;
+											$nama = "IPDN KAMPUS JATINANGOR";
+											break;
+										case 352593:
 											// IPDN JAKARTA
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 677010:
+											$pool++;
+											$spanint = true;
+											break;
+										case 677010:
 											// IPDN SULUT
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 677024:
+											$pool++;
+											$spanint = true;
+											break;
+										case 677024:
 											// IPDN SULSEL
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 677045:
+											$pool++;
+											$spanint = true;
+											break;
+										case 677045:
 											// IPDN SUMBAR
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 683070:
+											$pool++;
+											$spanint = true;
+											break;
+										case 683070:
 											// IPDN KALBAR
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 683084:
+											$pool++;
+											$spanint = true;
+											break;
+										case 683084:
 											// IPDN NTB
 											// $add = true;
-									$pagu_peg_a += $row['C'];
-									$real_peg_a += $row['D'];
-									$pagu_bar_a += $row['G'];
-									$real_bar_a += $row['H'];
-									$pagu_mod_a += $row['K'];
-									$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-									$pool++;
-									$spanint = true;
-									break;
-									case 683091:
+											$pool++;
+											$spanint = true;
+											break;
+										case 683091:
 											// IPDN PAPUA
 											// $add = true;
-										$pagu_peg_a += $row['C'];
-										$real_peg_a += $row['D'];
-										$pagu_bar_a += $row['G'];
-										$real_bar_a += $row['H'];
-										$pagu_mod_a += $row['K'];
-										$real_mod_a += $row['L'];
+											$pagu_peg_a += $row['C'];
+											$real_peg_a += $row['D'];
+											$pagu_bar_a += $row['G'];
+											$real_bar_a += $row['H'];
+											$pagu_mod_a += $row['K'];
+											$real_mod_a += $row['L'];
 
-										$pool++;
-										$spanint = true;
-										break;
+											$pool++;
+											$spanint = true;
+											break;
 									}
                 
 									if ($add) {
 										array_push($data, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $nama,
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L'],
-											'created_at' => $newDate
+											'satker'	=>  $tmp[0],
+											'nama'		=>  $nama,
+											'pagu_peg'	=> $row['C'],
+											'real_peg'	=> $row['D'],
+											'pagu_bar'	=> $row['G'],
+											'real_bar'	=> $row['H'],
+											'pagu_mod'	=> $row['K'],
+											'real_mod'	=> $row['L'],
+											'created_at'	=> $newDate
 										));
 									} elseif ($pool == 8) {
 										array_push($data, array(
-											'satker'    =>  $satker_a,
-											'nama'  =>  $nama_a,
-											'pagu_peg' => $pagu_peg_a,
-											'real_peg' => $real_peg_a,
-											'pagu_bar' => $pagu_bar_a,
-											'real_bar' => $real_bar_a,
-											'pagu_mod' => $pagu_mod_a,
-											'real_mod' => $real_mod_a,
-											'created_at' => $newDate
+											'satker'	=>  $satker_a,
+											'nama'		=>  $nama_a,
+											'pagu_peg'	=> $pagu_peg_a,
+											'real_peg'	=> $real_peg_a,
+											'pagu_bar'	=> $pagu_bar_a,
+											'real_bar'	=> $real_bar_a,
+											'pagu_mod'	=> $pagu_mod_a,
+											'real_mod'	=> $real_mod_a,
+											'created_at'	=> $newDate
 										));
 									} 
 
 									if ($spanint) {
 										array_push($data_span, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $nama,
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L'],
-											'created_at' => $newDate
+											'satker'	=>  $tmp[0],
+											'nama'		=>  $nama,
+											'pagu_peg'	=> $row['C'],
+											'real_peg'	=> $row['D'],
+											'pagu_bar'	=> $row['G'],
+											'real_bar'	=> $row['H'],
+											'pagu_mod'	=> $row['K'],
+											'real_mod'	=> $row['L'],
+											'created_at'	=> $newDate
 										));
 									}
 								}
 							}
-						}
-						$nf = 1;
-						break;
+							$nf = 1;
+							break;
 						case 3:
 							// file kegiatan (biro)
 							$biro = array('1286', '1292', '1293', '1294');
@@ -1947,22 +1945,21 @@ class Uploads extends CI_Controller {
 									if (in_array($tmp[0], $biro)) {
 										preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
 										array_push($data_span, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $txt[0],
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L'],
-											'created_at' => $newDate
+											'satker'	=>  $tmp[0],
+											'nama'		=>  $txt[0],
+											'pagu_peg'	=> $row['C'],
+											'real_peg'	=> $row['D'],
+											'pagu_bar'	=> $row['G'],
+											'real_bar'	=> $row['H'],
+											'pagu_mod'	=> $row['K'],
+											'real_mod'	=> $row['L'],
+											'created_at'	=> $newDate
 										));
 									}
 								}
 							}
-						}
-						$nf = 1;
-						break;
+							$nf = 1;
+							break;
 					}
 				}
 			}
