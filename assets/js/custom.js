@@ -67,7 +67,7 @@ $(document).ready(function() {
     //$('#matkul').select2();
 
     $('#tanggal').datetimepicker({
-        format: "DD-MM-YYYY",
+        format: "YYYY-MM-DD",
     });
 
 	$('#jam').datetimepicker({

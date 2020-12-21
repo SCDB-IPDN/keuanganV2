@@ -33,7 +33,7 @@
 							<div class="row">
 								<div class="col-lg-8">
 									<label for="dosen">Nama Dosen:</label>
-									<select id="dosen" name="nama_dosen" class="form-control" style="width: 100%"> 
+									<select id="dosen" name="nama_dosen" class="form-control" style="width: 100%" > 
 										<option disabled selected>Nama Dosen..</option>
 										<?php foreach($nama_dosen as $dosen){?>
 										<option value="<?php echo $dosen->nama ?>"><?php echo $dosen->nama ?></option>
