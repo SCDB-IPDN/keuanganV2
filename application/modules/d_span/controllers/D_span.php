@@ -10,27 +10,28 @@ class D_span extends CI_Controller{
     {
           if($this->session->userdata('nip') != NULL)
           {
-               $data = $this->d_span_model->get_all_dashboard()->result();
+               // $data = $this->d_span_model->get_all_dashboard()->result();
 
-               $tanggal = $this->d_span_model->get_tanggal()->result();
-               $hasil_tgl = date('d F Y', strtotime($tanggal[0]->created_date));
+               // $tanggal = $this->d_span_model->get_tanggal()->result();
+               // $hasil_tgl = date('d F Y', strtotime($tanggal[0]->created_date));
 
-               if($hasil_tgl == '01 January 1970'){
-                    $hasil_tanggal = '--------';
-               }else{
-                    $hasil_tanggal = $hasil_tgl;
-               }
+               // if($hasil_tgl == '01 January 1970'){
+               //      $hasil_tanggal = '--------';
+               // }else{
+               //      $hasil_tanggal = $hasil_tgl;
+               // }
 
-               $x['data'] = $data;
-               $x['chart'] = json_encode($data);
-               $x['tanggal'] = $hasil_tanggal;
+               // $x['data'] = $data;
+               // $x['chart'] = json_encode($data);
+               // $x['tanggal'] = $hasil_tanggal;
           
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('view_span', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
+               // $this->load->view("include/head");
+               // $this->load->view("include/top-header");
+               // $this->load->view('view_span', $x);
+               // $this->load->view("include/sidebar");
+               // $this->load->view("include/panel");
+               // $this->load->view("include/footer");
+               redirect("d_spanint");
           }else{
                redirect("user");
           }
@@ -40,17 +41,18 @@ class D_span extends CI_Controller{
     {
           if($this->session->userdata('nip') != NULL)
           {
-               $data = $this->d_span_model->get_all_dashboard_biro()->result();
+               // $data = $this->d_span_model->get_all_dashboard_biro()->result();
 
-               $x['data'] = $data;
-               $x['chart'] = json_encode($data);
+               // $x['data'] = $data;
+               // $x['chart'] = json_encode($data);
           
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('view_span_biro', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
+               // $this->load->view("include/head");
+               // $this->load->view("include/top-header");
+               // $this->load->view('view_span_biro', $x);
+               // $this->load->view("include/sidebar");
+               // $this->load->view("include/panel");
+               // $this->load->view("include/footer");
+               redirect("d_spanint");
           }else{
                redirect("user");
           }

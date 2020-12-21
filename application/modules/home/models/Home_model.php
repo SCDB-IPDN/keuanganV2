@@ -242,17 +242,9 @@ class Home_model extends CI_Model{
   }
 	
 	public function get_rank_persen() {
-		// return $this->db->query("SELECT
-		// 	concat(round(per/13*100,2), '%') as persen
-		// 	FROM
-		// 	(SELECT
-		// 	nama, satker,
-		// 	@per:=@per+round((real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod),2) AS per
-		// 	FROM
-		// 	tbl_rank, (SELECT @per := 0) r
-		// 	) t
-		// 	ORDER BY per DESC LIMIT 1")->row_array();
-		return $this->db->query("SELECT CONCAT(ROUND(SUM((real_peg + real_bar + real_mod)) / SUM((pagu_peg + pagu_bar + pagu_mod)) * 100, 2), '%') AS persen FROM tbl_rank")->row_array();
+		
+		return $this->db->query("SELECT CONCAT(ROUND(SUM((real_peg + real_bar + real_mod)) / SUM((pagu_peg + pagu_bar + pagu_mod)) * 100, 2), '%') AS persen FROM
+			(SELECT * FROM tbl_rank ORDER BY created_at DESC LIMIT 13) t")->row_array();
 	}
 
 	public function get_rank_ipdn() {
@@ -261,13 +253,13 @@ class Home_model extends CI_Model{
 			100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod) AS per_tot
 			FROM
 			tbl_rank, (SELECT @rank := 0) r
-			ORDER BY per_tot DESC
+			ORDER BY created_at DESC, per_tot DESC LIMIT 13
 			) t
 			WHERE satker = '448302'")->row_array();
 	}
 
 	public function get_span_ipdn_sementara() {
-		return $this->db->query("SELECT ROUND(100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod), 2) AS persentase_span FROM tbl_rank WHERE satker = '448302'")->row_array();
+		return $this->db->query("SELECT ROUND(100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod), 2) AS persentase_span FROM tbl_rank WHERE satker = '448302' ORDER BY created_at DESC LIMIT 1")->row_array();
 	}
 	
 }
