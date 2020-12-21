@@ -37,9 +37,13 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" >
               </div>
               <div class="col-xl">
-               <br>
+                <br>
                 <label for="basic-url">Jenis Kelamin</label>
-                <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->jk == NULL ? "-" :$data[0]->jk ?>" >
+                <select class="form-control" name="jk" id="jk" >
+                   <option value="<?php echo $data[0]->jk== NULL ? : $data[0]->jk?>"><?php echo $data[0]->jk == NULL ?  : $data[0]->jk?>
+                   <option value="L">L</option>
+                   <option value="P">P</option>
+                 </select>
               </div>
               <div class="col-xl">
                 <br>

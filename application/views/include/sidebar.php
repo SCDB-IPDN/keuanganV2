@@ -79,7 +79,7 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="dosen" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="dosen" && $this->uri->segment(2)!="plot" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
@@ -102,7 +102,7 @@
 			<!-- END KEPEGAWAIAN -->
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(2)=="dosen" && $this->uri->segment(2)!="plot"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
@@ -110,6 +110,7 @@
 				</a>
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="plot" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/plot');?>">PLOT</a></li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
@@ -122,7 +123,7 @@
 					<span>Keprajaan</span>
 				</a>
 				<ul class="sub-menu">
-				<li class="<?php echo $this->uri->segment(1) == "d_praja" && $this->uri->segment(2) != "alumni" ?  : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
+					<li class="<?php echo $this->uri->segment(1) == "d_praja" && $this->uri->segment(2) != "alumni" ?  : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
 					<li class="<?php echo $this->uri->segment(2) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li>
 				</ul>
 			</li>
