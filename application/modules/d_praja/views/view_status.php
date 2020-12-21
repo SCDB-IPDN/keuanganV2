@@ -55,7 +55,8 @@
                   <th>TINGKAT</th>
                   <th>ANGKATAN</th>
                   <th>STATUS</th>
-                    <TH>KETERANGAN</TH>
+                  <TH>KETERANGAN</TH>
+                  <TH>AKSI</TH>
                 </tr>
               </thead>
               <tbody>
@@ -69,6 +70,7 @@
                     <td><?= $x['angkatan']; ?>
                     <td><?= $x['status']; ?></td>
                     <td><?= $x['keterangan']; ?></td>
+                    <td><a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
                     
                   </tr>
                 <?php endforeach; ?>

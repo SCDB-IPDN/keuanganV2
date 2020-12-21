@@ -23,12 +23,13 @@
       <div class="panel-body">
         <form action="<?php echo base_url(''); ?>" method="POST">
          <div class="col-sm-3">
-           <label for="basic-url">Fakultas</label>
-           <select class="form-control" name="fakultas" id="fakultas">
-            <option value="L">Pilih Fakultas</option>
-             <option value="L">Laki-Laki</option>
-             <option value="P">Perempuan</option>
+           <label for="basic-url">Fakultas :</label>
+           <select class="form-control" name="fakultas" id="fakultas" >
+            <?php foreach ($data as $x) { ?>
+            <option value="<?php echo $x->nama_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
+               <?php } ?>
            </select>
+      
          </div>
          <br>
          <div class="col-sm-3">
@@ -37,13 +38,18 @@
          </div>
          <br>
          <div class="col-sm-3">
-           <label for="basic-url">Semester</label>
+           <label for="basic-url">Sks : </label>
+           <input type="text" class="form-control" id="sks" name="sks" placeholder="Jumlah SKS..">
+         </div>
+         <br>
+       <!--   <div class="col-sm-3">
+           <label for="basic-url">Semester :</label>
            <select class="form-control" name="semester" id="semester">
             <option value="L">Pilih Semester</option>
             <option value="L">GANJIL</option>
             <option value="P">GENAP</option>
           </select>
-        </div>
+        </div> -->
         <br>
          <div class="col-sm-5">
       <button type="submit" class="btn btn-success" value="Cek">Tambah</button>
