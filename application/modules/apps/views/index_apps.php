@@ -138,58 +138,57 @@
   <div class="modal fade" id="editapps<?php echo $row->id_apps;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Apps <?php echo $row->nama_apps;?></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-            <form action="apps/edit_apps" method="POST">
-              <input type="hidden" name="id_apps" value="<?php echo $row->id_apps;?>">
-              <div class="form-group">
-                <label for="link_apps" class="col-form-label">Link Apps:</label>
-                <input type="text" class="form-control" id="link_apps" name="link_apps" value="<?php echo $row->link_apps ?>" placeholder="Link Apps.." required>
-              </div>
-              <div class="form-group">
-                <label for="nama_apps" class="col-form-label">Nama Apps:</label>
-                <input type="text" class="form-control" id="nama_apps" name="nama_apps" value="<?php echo $row->nama_apps ?>" placeholder="Nama Apps.." required>
-              </div>
-              <div class="form-group">
-                <label for="image_url" class="col-form-label">Image URL:</label>
-                <input type="text" class="form-control" id="image_url" name="image_url" value="<?php echo $row->image_url ?>" placeholder="Image URL.." required>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-sm">
-                    <label for="kategori_apps" class="col-form-label">Unit:</label>
-                    <select class="form-control" name="kategori_apps" id="kategori_apps" required>
-                      <option disabled selected> Pilih </option>
-                      <?php foreach($kategori as $rows){ ?>
-                        <?php if($row->kategori_apps == $rows->id_app){?>
-                        <option value="<?php echo $rows->id_app ?>" selected><?php echo $rows->nama_unit ?></option>
-                        <?php }else{ ?>
-                        <option value="<?php echo $rows->id_app ?>"><?php echo $rows->nama_unit ?></option>
-                        <?php } ?>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Apps <?php echo $row->nama_apps;?></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="apps/edit_apps" method="POST">
+            <input type="hidden" name="id_apps" value="<?php echo $row->id_apps;?>">
+            <div class="form-group">
+              <label for="link_apps" class="col-form-label">Link Apps:</label>
+              <input type="text" class="form-control" id="link_apps" name="link_apps" value="<?php echo $row->link_apps ?>" placeholder="Link Apps.." required>
+            </div>
+            <div class="form-group">
+              <label for="nama_apps" class="col-form-label">Nama Apps:</label>
+              <input type="text" class="form-control" id="nama_apps" name="nama_apps" value="<?php echo $row->nama_apps ?>" placeholder="Nama Apps.." required>
+            </div>
+            <div class="form-group">
+              <label for="image_url" class="col-form-label">Image URL:</label>
+              <input type="text" class="form-control" id="image_url" name="image_url" value="<?php echo $row->image_url ?>" placeholder="Image URL.." required>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm">
+                  <label for="kategori_apps" class="col-form-label">Unit:</label>
+                  <select class="form-control" name="kategori_apps" id="kategori_apps" required>
+                    <option disabled selected> Pilih </option>
+                    <?php foreach($kategori as $rows){ ?>
+                      <?php if($row->kategori_apps == $rows->id_app){?>
+                      <option value="<?php echo $rows->id_app ?>" selected><?php echo $rows->nama_unit ?></option>
+                      <?php }else{ ?>
+                      <option value="<?php echo $rows->id_app ?>"><?php echo $rows->nama_unit ?></option>
                       <?php } ?>
-                    </select>
-                  </div>
-                  <div class="col-sm">
-                    <label for="status" class="col-form-label">Status:</label>
-                    <select class="form-control" name="status" id="status" required>
-                        <option value="1">Aktif, digunakan</option>
-                        <option value="2">Aktif, tidak digunakan</option>
-                        <option value="3">Tidak Aktif</option>
-                    </select>
-                  </div>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="col-sm">
+                  <label for="status" class="col-form-label">Status:</label>
+                  <select class="form-control" name="status" id="status" required>
+                      <option value="1">Aktif, digunakan</option>
+                      <option value="2">Aktif, tidak digunakan</option>
+                      <option value="3">Tidak Aktif</option>
+                  </select>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

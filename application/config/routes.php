@@ -68,3 +68,5 @@ $route['kepegawaian/isian_thl'] = 'kepegawaian/table_thl';
 $route['kemeng'] = 'kemeng/index';
 $route['kemeng/matkul'] = 'kemeng/get_matkul';
 $route['kemeng/prodi'] = 'kemeng/get_prodi';
+$route['d_peringkat/(:any)'] = 'd_peringkat/index/$1';
+

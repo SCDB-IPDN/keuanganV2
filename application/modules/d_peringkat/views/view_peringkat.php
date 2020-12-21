@@ -1,10 +1,16 @@
-<link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
+<link href="<?php echo base_url().'assets/plugins/bootstrap-daterangepicker/daterangepicker.css'?>" rel="stylesheet" />
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
 		<li class="breadcrumb-item"><a href="<?php echo base_url('d_peringkat');?>">KEMENTERIAN DALAM NEGERI</a></li>
 	</ol>
-	<h2 class="page-header">&nbsp;</h2>
+	<div class="d-sm-flex align-items-center mb-3">
+		<a href="#" class="btn btn-inverse mr-2 text-truncate" id="date-filter">
+			<i class="fa fa-calendar fa-fw text-white-transparent-5 ml-n1"></i> 
+			<span><?= ucwords(strtolower($uDate)); ?></span>
+			<b class="caret"></b>
+		</a>
+	</div>
 	<div class="row">
 		<div class="col-xl-12">
 			<div class="panel panel-inverse">
@@ -68,4 +74,22 @@
 </div>
 
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
+<script src="<?php echo base_url().'assets/plugins/moment/moment.js'?>"></script>
+<script src="<?php echo base_url().'assets/plugins/bootstrap-daterangepicker/daterangepicker.js'?>"></script>
+<script>
+	// alert('test');
+	$('#date-filter').daterangepicker({
+		startDate: "<?= $seDate; ?>",
+		endDate: "<?= $seDate; ?>",
+		singleDatePicker: true,
+		showDropdowns: true,
+		minYear: 2010,
+		maxYear: parseInt(moment().format('YYYY'),10)
+		},
+		function(start, end, label) {
+			// $('#date-filter span').html(start.format('DD MMMM YYYY'));
+			$(location).attr('href', "<?= base_url('d_peringkat');?>"+ "/" + start.format('YYYY-MM-DD'));
+			// alert(start.format('YYYY-MM-DD'));
+		}
+	);
+</script>

@@ -55,28 +55,28 @@
           <p>Silahkan input <b>Data Pegawai</b> Pada Button icon "<i class="fa fa-plus-square"></i>"</p>
         </div> -->
         <div class ="table-responsive">
-          <div class="panel-body">
-            <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <?php if (isset($unit)) { ?>
-                    <th>Output</th>
-                  <?php } elseif (isset($biro) || isset($bag)) { ?>
-                    <th>Bagian/Unit/Lembaga</th>
-                  <?php } elseif (isset($kampus)) { ?>
-                    <th>Biro</th>
-                  <?php } else { ?>
-                    <th>Kampus</th>
-                  <?php } ?>
-                  <th>Pagu</th>
-                  <th>Realiasasi</th>
-                  <th>Sisa Pagu</th>
-                  <th>Persentase</th>
-                  <th>Detail</th>
-                </tr>
-              </thead>
-              <tbody>
+        <div class="panel-body">
+          <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+            <thead>
+              <tr>
+                <th>#</th>
+                <?php if (isset($unit)) { ?>
+                  <th>Output</th>
+                <?php } elseif (isset($biro) || isset($bag)) { ?>
+                  <th>Bagian/Unit/Lembaga</th>
+                <?php } elseif (isset($kampus)) { ?>
+                  <th>Biro</th>
+                <?php } else { ?>
+                <th>Kampus</th>
+                <?php } ?>
+                <th>Pagu</th>
+                <th>Realiasasi</th>
+                <th>Sisa Pagu</th>
+                <th>Persentase</th>
+                <th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
                 <?php $no = 1; ?>
                 <?php foreach (json_decode($data, true) as $x): ?>
                   <tr>
