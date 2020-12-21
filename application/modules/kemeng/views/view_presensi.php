@@ -42,7 +42,7 @@
 									<br>
 									<label for="fakultas">Fakultas:</label>
 									<select class="form-control" id="fakultas" name="fakultas" required>
-										<option disabled selected> Pilih </option>
+										<option disabled selected> Pilih Fakultas </option>
 										<?php foreach($fakultas as $rows){?>
 										<option value="<?php echo $rows->id_fakultas ?>"><?php echo $rows->nama_fakultas ?></option>
 										<?php } ?>
@@ -50,20 +50,20 @@
 									<br>
 									<label for="prodi">Prodi:</label>
 									<select class="form-control" id="prodi" name="prodi" required>
-										<option disabled selected> Pilih </option>
+										<option disabled selected> Pilih Program Studi </option>
 									</select>
 									<br>
 									<label for="matkul">Mata Kuliah:</label>
 									<select class="form-control" id="matkul" name="matkul" required>
-											<option disabled selected> Pilih </option>
+											<option disabled selected> Pilih Mata Kuliah</option>
 									</select>
 									<br>
 									<label for="kelas">Kelas:</label>
-									<input type="text" class="form-control" id="kelas" name="kelas" placeholder="kelas" required>
+									<input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" required>
 									<br>
 									<label for="tanggal">Tanggal:</label>
 									<div class="input-group date" id="tanggal">
-										<input type="text" class="form-control" name="tanggal" autocomplete="off" placeholder="YYYY-MM-DD" required>
+										<input type="text" class="form-control" name="tanggal" autocomplete="off" placeholder="Tanggal" required>
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
@@ -71,7 +71,7 @@
 									<br>
 									<label for="jam">Jam:</label>
 									<div class="input-group date" id="jam">
-										<input type="text" class="form-control" name="jam" autocomplete="off" placeholder="HH:mm" required>
+										<input type="text" class="form-control" name="jam" autocomplete="off" placeholder="Jam" required>
 										<div class="input-group-addon">
 											<i class="fa fa-clock"></i>
 										</div>
@@ -82,7 +82,6 @@
 								<div class="col-12">
 									<br>
 									<button type="submit" class="btn btn-blue" value="Cek">Submit</button>
-									<a href="<?php echo base_url('kemeng'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
 								</div>
 							</div>
 						</form>
