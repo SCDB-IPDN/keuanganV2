@@ -171,6 +171,20 @@
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
+						
+			<!-- Fakultas -->
+			<li class="<?php echo $this->uri->segment(1) == "kemeng" ? "active" : ""; ?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-graduation-cap"></i>
+					<span>Fakultas</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1) == "kemeng" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
+
+				</ul>
+			</li>
+			<!-- END Fakultas -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
 			<li class="nav-header">Data</li>
