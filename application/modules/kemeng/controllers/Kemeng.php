@@ -12,7 +12,8 @@ class Kemeng extends CI_Controller
 	function matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_fakul($id_fakultas)->result();
 			$x['data'] = $data;
 
 			$this->load->view("include/head");
@@ -28,10 +29,14 @@ class Kemeng extends CI_Controller
 	function view_matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_makul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 			$x['data'] = $data;
 
-			$fakulll = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$fakulll = $this->Kemeng_model->get_fakul($id_fakultas)->result();
+			// var_dump($fakulll);
+			// exit();
 			$x['fakulll'] = $fakulll;
 
 			$this->load->view("include/head");
@@ -68,7 +73,8 @@ class Kemeng extends CI_Controller
 
 
 	function cobain(){
-		$data = $this->Kemeng_model->get_makul()->result();
+		$id_fakultas = $this->session->userdata('role');
+		$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 
 		$dataall = array();
 
@@ -83,7 +89,7 @@ class Kemeng extends CI_Controller
 
 			$sks = $r->sks;
 			$semester = $r->semester;
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				$opsi = "<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-id_prodi='$r->id_prodi'  data-nama_prodi='$r->nama_prodi' data-nama_matkul='$r->nama_matkul'
 				data-sks='$r->sks' data-id_fakultas='$r->id_fakultas' data-nama_fakultas='$r->nama_fakultas'
