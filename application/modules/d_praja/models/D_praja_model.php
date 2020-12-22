@@ -6,6 +6,17 @@ class D_praja_model extends CI_Model
 	{
 		$result = $this->db->query("SELECT * FROM praja ORDER BY angkatan");
 
+		// $result = $this->db->query("SELECT * FROM praja");
+
+		$result = $this->db->query("SELECT *,CASE WHEN jk= 'P' THEN 'Perempuan'
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jeniskelamin FROM praja ");
+
+		// $result = "SELECT *, CASE WHEN jk = 'P' THEN 'Perempuan'
+		// WHEN jk= 'L' THEN 'Laki-Laki'
+		// ELSE 'Belum Ada'
+		// END AS jeniskelamin
+		// FROM Praja
+		// ";
 		return $result;
 	}
 	public function get_alumni()

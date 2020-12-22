@@ -50,8 +50,8 @@
                             <label class="col-lg-4 col-form-label">Ganti Foto</label>
                             <div class="col-lg-3">
                                 <div class="input-group">
-                                <?php if(file_exists('assets/img/user/'.$_SESSION['image_url']) && isset($_SESSION['image_url'])){?>
-                                    <img class="thumb-image setpropileam" src="<?php echo base_url().'assets/img/user/'. $_SESSION['image_url']; ?>" width="128px" height="128px" alt="User profile picture">
+                                <?php if(file_exists('assets/img/user/'.$this->session->userdata('image_url')) && $this->session->userdata('image_url') != NULL) { ?>
+                                    <img class="thumb-image setpropileam" src="<?php echo base_url().'assets/img/user/'.$this->session->userdata('image_url'); ?>" width="128px" height="128px" alt="User profile picture">
                                 <?php }else{ ?>
                                     <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image.png" width="128px" height="128px" alt="User profile picture"/>  
                                 <?php } ?>
@@ -60,7 +60,7 @@
                                 </div>
                                 </br>
                                 <input id="fileUpload" class="upload btn-warning" name="profile_pic" type="file"/><br />
-                                <input type="hidden" name="fileOld" value="<?php echo isset($_SESSION['image_url'])?$_SESSION['image_url']:'';?>" />
+                                <input type="hidden" name="fileOld" value="<?php echo $this->session->userdata('image_url') != NULL ? $this->session->userdata('image_url'):'';?>" />
                             </div>
                         </div>
                         <div class="form-group row">

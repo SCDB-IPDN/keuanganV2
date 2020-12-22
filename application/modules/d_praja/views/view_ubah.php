@@ -29,31 +29,37 @@
               <h3> DATA DIRI </h3>
               <br>
               <div class="row">
-               <div class="col-2">
+               <div class="col-3">
                 <label for="basic-url">Nama  : </label>
-                <input list="namaaa" name="nama" id="nama">
+                <input class="form-control" list="namaaa" name="nama" id="nama">
                 <datalist id="namaaa">
                  <?php foreach (json_decode($data, true) as $x) : ?>
 
                    <option value="<?php echo $x['nama'] ?>">
-                  
+
                    <?php endforeach; ?>
                  </datalist>
                  <br>
 
-                <label for="basic-url">Status : </label>
-                <select class="form-control" name="status" id="status" required="">
+                 <label for="basic-url">Status : </label>
+                 <select class="form-control" name="status" id="status" required="">
                   <option value="">Pilih Status</option>
                   <option value="aktif">Aktif</option>
                   <option value="cuti">Cuti</option>
                   <option value="diberhentikan">Diberhentikan</option>
                   <option value="turuntingkat">Turun Tingkat</option>
-                   <option value="turuntingkat">Meninggal</option>
+                  <option value="turuntingkat">Meninggal</option>
                 </select>
                 <br>
                 <label for="basic-url">Keterangan : </label>
                 <textarea cols="50" rows="10" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.."></textarea>
-                 <!-- <input type="text-area" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.."> -->
+
+                <br>
+                <br>
+
+                 <!--  <label for="basic-url">Upload SK : </label>
+                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload"> -->
+                  <br>
               </div>
             </div>
 
