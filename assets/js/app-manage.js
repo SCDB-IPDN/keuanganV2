@@ -33,7 +33,7 @@ $(document).ready(function() {
             modal.find('#gol_ruangx').attr("value",div.data('gol_ruang'));
             modal.find('#tmt_pangkatx').attr("value",div.data('tmt_pangkat'));
             modal.find('#jabatanx').attr("value",div.data('jabatan'));
-            modal.find('#tmt_jabatanx').attr("value",div.data('tmt_jabatan'));
+            modal.find('#tmt_jabatanx').attr("value",jdiv.data('tmt_jabatan'));
             modal.find('#jurusanx').attr("value",div.data('jurusan'));
             modal.find('#nama_ptx').attr("value",div.data('nama_pt'));
             modal.find('#tahun_lulusx').attr("value",div.data('tahun_lulus'));
@@ -182,6 +182,23 @@ $(document).ready(function() {
             // Isi nilai pada field
             modal.find('#id_thlxx').attr("value",div.data('id_thl'));
             modal.find('#namaxx').attr("value",div.data('nama'));
+        });
+    }
+
+    if ($('#tbl-scdb-plot').length !== 0) {
+        var url = 'table_plot';
+
+        $('#tbl-scdb-plot').dataTable({
+            // dom: 'Bfrtip',
+            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
+            buttons: [
+                'copy', 'excel', 'print'
+            ],
+            responsive: true,
+            "ajax": {
+                "url": url,
+                "dataSrc": ""
+            }
         });
     }
 });

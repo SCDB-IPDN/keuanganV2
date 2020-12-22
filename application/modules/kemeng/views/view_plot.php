@@ -47,7 +47,7 @@
         				</tr>
         			</thead>
         			<tbody>
-            <?php
+                    <?php
                 $no = 0;
                 foreach($data as $rows){
                 $no++;

@@ -31,4 +31,45 @@ class Kemeng_model extends CI_Model
 	{   
 		return $this->db->insert('tbl_absensi', $data);
 	}
+	//plot dosen
+	public function get_all_plot()
+	{
+
+	$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+	return $result;
+
+	}
+
+  	function tambah_plot($plot)
+ 	{
+
+  	$result = $this->db->insert('tbl_plot_dosen', $plot);
+  	return $result;
+
+	}
+	
+	public function get_nama()
+	{
+
+	$result = $this->db->query("SELECT nama FROM tbl_dosen ");
+	return $result;
+
+	}
+
+	public function get_nama_matkul()
+	{
+
+	$result = $this->db->query("SELECT nama_matkul FROM tbl_matkul ");
+	return $result;
+
+	}
+
+	public function get_nama_fakultas()
+	{
+
+	$result = $this->db->query("SELECT nama_fakultas FROM tbl_fakultas ");
+	return $result;
+
+	}
+
 }

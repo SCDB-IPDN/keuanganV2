@@ -61,6 +61,7 @@ $route['d_sarpras/detail/(:num)'] = 'd_sarpras/detail/$1';
 $route['d_sarpras/(:num)/(:any)'] = 'd_sarpras/table/$1/$2';
 $route['uploads/v_sarpras/(:any)'] = 'uploads/v_sarpras/$1';
 $route['kepegawaian/isian_dosen'] = 'kepegawaian/table_dosen';
+$route['kepegawaian/isian_plot'] = 'kemeng/table_plot';
 $route['kepegawaian/dosen/isian_dosen'] = 'kepegawaian/table_belum_serdos';
 $route['kepegawaian/dosen/isian_nidn'] = 'kepegawaian/table_belum_nidn';
 $route['kepegawaian/isian_pns'] = 'kepegawaian/table_pns';
