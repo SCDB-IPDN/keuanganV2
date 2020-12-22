@@ -37,8 +37,7 @@
         			<thead>
         				<tr>
         					<th class="text-nowrap">No</th>
-        					<th class="text-nowrap">Nama Dosen</th>
-                  <th class="text-nowrap">NIP</th>
+        					<th class="text-nowrap">Nama Dosen | NIP</th>
         					<th class="text-nowrap">Nama Matkul</th>
         					<th class="text-nowrap">Tanggal</th>
         					<th class="text-nowrap">Jam Mengajar</th>
@@ -55,8 +54,7 @@
             ?>
               <tr>
                 <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
-                <td><?= $rows->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama ?></td>
-                <td><?= $rows->nip == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nip ?></td>
+                <td><?= $rows->nama.'|'.$rows->nip == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama.'|'.$rows->nip ?></td>
                 <td><?= $rows->nama_matkul == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama_matkul ?></td>
                 <td><?= $rows->tanggal == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->tanggal ?></td>
                 <td><?= $rows->jam == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->jam ?></td>
