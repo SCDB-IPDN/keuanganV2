@@ -88,14 +88,12 @@ class Kemeng extends CI_Controller
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-id_prodi='$r->id_prodi'  data-nama_prodi='$r->nama_prodi' data-nama_matkul='$r->nama_matkul'
 				data-sks='$r->sks' data-id_fakultas='$r->id_fakultas' data-nama_fakultas='$r->nama_fakultas'
 				data-semester='$r->semester'
-				data-toggle='modal' data-target='#edit-data'> <button  data-toggle=
-				'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button>
+				data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
 				</a>
 
 				<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-nama_matkul='$r->nama_matkul'
-				<button  data-toggle=
-				'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
+				data-toggle='modal' data-target='#hapusmatkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
 				</a>";
 			}else{
 				$opsi = "";
