@@ -41,5 +41,11 @@ class Kemeng_model extends CI_Model
 		return $tamkul;
 	}
 
+	function cekdata($id)
+	{   
+		$sql = $this->db->query("SELECT id_matkul FROM tbl_matkul where id_matkul=$id ");
+		return $tamkul;
+	}
+
 
 }

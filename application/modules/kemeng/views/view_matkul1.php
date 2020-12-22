@@ -150,11 +150,12 @@
        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 
      </div>
-     <form class="form-horizontal" action="<?php echo base_url('kemeng/tambahmatkul')?>" method="post" enctype="multipart/form-data" role="form">
+     <form class="form-horizontal" action="<?php echo base_url('kemeng/tambahmatakuliah')?>" method="post" enctype="multipart/form-data" role="form">
        <div class="modal-body">
          <div class="form-group">
           <div class="row">
             <div class="col-xl-3">
+
               <label class="col-form-label">Kode Matkul:</label>
               <input type="text" class="form-control" id="id_matkul" name="id_matkul" placeholder="ID Matkul..">
             </div>
