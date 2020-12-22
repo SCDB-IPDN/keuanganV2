@@ -43,8 +43,15 @@ class Kemeng_model extends CI_Model
 
 	function cekdata($id)
 	{   
-		$sql = $this->db->query("SELECT id_matkul FROM tbl_matkul where id_matkul=$id ");
-		return $tamkul;
+		$sql = $this->db->query("SELECT id_matkul FROM tbl_matkul where id_matkul='$id' ")->result();
+		return $sql;
+	}
+
+
+	function del_matkul($id_matkul){
+
+		$hasil=$this->db->query("DELETE FROM tbl_matkul WHERE id_matkul= '$id_matkul' ");
+		return $hasil;
 	}
 
 

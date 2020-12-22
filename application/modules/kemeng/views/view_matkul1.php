@@ -30,10 +30,10 @@
 
         <!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
         <div class="table-responsive">
-          <?php if ($this->session->flashdata('praja') != NULL) { ?>
+          <?php if ($this->session->flashdata('matkul') != NULL) { ?>
             <div class="alert alert-success alert-dismissible">
               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
+              <strong>Notif!</strong> <?php echo $this->session->flashdata('matkul') ?>
             </div>
           <?php } ?>
           <!-- <a href="<?php echo base_url('d_praja/export'); ?>">Export Data</a> -->
@@ -141,7 +141,7 @@
 <!-- END Modal Ubah -->
 
 
-<<!-- Modal Ubah -->
+<<!-- Modal TAMBAH -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" id="tambahmatkul" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -156,11 +156,11 @@
           <div class="row">
             <div class="col-xl-3">
 
-              <label class="col-form-label">Kode Matkul:</label>
+              <label class="col-form-label">Kode Matkul :</label>
               <input type="text" class="form-control" id="id_matkul" name="id_matkul" placeholder="ID Matkul..">
             </div>
             <div class="col-xl">
-              <label class="col-form-label">Nama Matkul:</label>
+              <label class="col-form-label">Nama Matkul :</label>
               <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" placeholder="Nama Matakuliah..">
             </div>
           </div>
@@ -168,8 +168,8 @@
         <div class="form-group">
           <div class="row">
             <div class="col-xl">
-              <label class="col-form-label">Kode Fakultas:</label>
-              <select class="form-control" name="fakultas" id="fakultas" >
+              <label class="col-form-label">Kode Fakultas :</label>
+              <select class="form-control" name="fakultas" id="fakultas">
                 <option value="">No Selected</option>
                 <?php foreach ($fakulll as $x) { ?>
                   <option value="<?php echo $x->id_fakultas;?>"><?php echo $x->id_fakultas;?> | <?php echo $x->nama_fakultas;?></option>
@@ -181,38 +181,73 @@
         <div class="form-group">
           <div class="row">
             <div class="col-xl">
-              <label class="col-form-label">Kode Prodi:</label>
-              <select class="form-control" name="prodi" id="prodi" >
-                 <option>No Selected</option> 
+              <label class="col-form-label">Kode Prodi :</label>
+              <select class="form-control" name="prodi" id="prodi">
+               <option>No Selected</option> 
 
-              </select>
-            </div>
+             </select>
+           </div>
+         </div>
+       </div> 
+
+       <div class="form-group">
+        <div class="row">
+          <div class="col-xl-5">
+            <label class="col-form-label">SKS :</label>
+            <input type="text" class="form-control" id="sks" name="sks" required="">
           </div>
-        </div> 
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-xl-5">
-              <label class="col-form-label">SKS:</label>
-              <input type="text" class="form-control" id="sks" name="sks" required="">
-            </div>
-            <div class="col-xl">
-              <label class="col-form-label">Semester:</label>
-              <input type="text" class="form-control" id="semester" name="semester" required="">
-            </div>
+          <div class="col-xl">
+            <label class="col-form-label">Semester :</label>
+            <input type="text" class="form-control" id="semester" name="semester" required="">
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-       <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
-       <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
-     </div>
-   </form>
- </div>
+    </div>
+    <div class="modal-footer">
+     <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+     <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+   </div>
+ </form>
+</div>
 </div>
 </div>
 </div>
 <!-- END Modal tambah -->
+
+<!-- Modal HAPUS DOSEN -->
+<div class="modal fade" id="hapusmatkul" tabindex="-1" role="dialog" aria-labelledby="hapusmatkul" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hapusmatkul">Hapus Data Matkuliah</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="hapus_matkul">
+          <div class="modal-body">
+            <p>Anda yakin akan menghapus Data Matakuliah : </p>
+            <div class="form-group">
+          <div class="row">
+            <div class="col-xl">
+              <input type="hidden" id="id_matkul" name="id_matkul">
+              <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+            </div>
+          </div>
+        </div>
+
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="id_dosenxx" name="id_dosen" >
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+            <button class="btn btn-danger">Hapus</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
@@ -261,6 +296,23 @@
           });
       });
     </script>
+
+
+
+    <script>
+      $(document).ready(function() {
+        // Untuk sunting
+        $('#hapusmatkul').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id_matkul').attr("value",div.data('id_matkul'));
+            modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
+          });
+      });
+    </script>
+
 
     <script type="text/javascript">
       $(document).ready(function(){

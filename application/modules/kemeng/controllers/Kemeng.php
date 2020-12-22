@@ -59,12 +59,12 @@ class Kemeng extends CI_Controller
   //       $data = $this->Kemeng_model->get_prodi($$idfakul)->result();
   //       echo json_encode($data);
   //   }
- 
-    function get_sub_category(){
-        $category_id = $this->input->post('id_prodi',TRUE);
-        $data = $this->Kemeng_model->get_sub_category($category_id)->result();
-        echo json_encode($data);
-    }
+
+	function get_sub_category(){
+		$category_id = $this->input->post('id_prodi',TRUE);
+		$data = $this->Kemeng_model->get_sub_category($category_id)->result();
+		echo json_encode($data);
+	}
 
 
 	function cobain(){
@@ -90,6 +90,12 @@ class Kemeng extends CI_Controller
 				data-semester='$r->semester'
 				data-toggle='modal' data-target='#edit-data'> <button  data-toggle=
 				'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button>
+				</a>
+
+				<a 
+				href='javascript:;' data-id_matkul='$r->id_matkul' data-nama_matkul='$r->nama_matkul'
+				<button  data-toggle=
+				'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
 				</a>";
 			}else{
 				$opsi = "";
@@ -123,10 +129,10 @@ class Kemeng extends CI_Controller
 		$result = $this->Kemeng_model->ubah($ubahmatakuliah);
 
 		if (!$result) { 							
-			$this->session->set_flashdata('ubah', 'DATA MATAKULIAH GAGAL DIUBAH.');		
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIUBAH.');		
 			redirect('Kemeng/get_matkul'); 			
 		} else { 								
-			$this->session->set_flashdata('ubah', 'DATA MATAKULIAH BERHASIL DIUBAH.');			
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIUBAH.');			
 			redirect('Kemeng/get_matkul'); 			
 		}
 	}
@@ -135,20 +141,47 @@ class Kemeng extends CI_Controller
 
 		$input_data['id_matkul'] = $this->input->post('id_matkul', true);
 		$input_data['nama_matkul'] = $this->input->post('nama_matkul', true);
-		$input_data['id_prodi'] = $this->input->post('id_prodi', true);
-		$input_data['id_fakultas'] = $this->input->post('id_fakultas', true);
+		$input_data['id_prodi'] = $this->input->post('prodi', true);
+		$input_data['id_fakultas'] = $this->input->post('fakultas', true);
 		$input_data['sks'] = $this->input->post('sks', true);
 		$input_data['semester'] = $this->input->post('semester', true);
 		
+		$cekdata = $this->Kemeng_model->cekdata($input_data['id_matkul']);
+		if(!$cekdata){
+			$result = $this->Kemeng_model->cekdata($input_data);
+		}else{
+
+			$this->session->set_flashdata('matkul', 'KODE MATKUL SUDAH TERDAFTAR!!');
+			$x['alert'] = 'ada';			
+			redirect('Kemeng/get_matkul',$x);
+		}
+
 		$result = $this->Kemeng_model->tambahmatkul($input_data);
 
 		if (!$result) { 							
-			$this->session->set_flashdata('tambah', 'DATA MATAKULIAH GAGAL DITAMBAHKAN.');		
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DITAMBAHKAN!!');		
 			redirect('Kemeng/get_matkul'); 			
 		} else { 								
-			$this->session->set_flashdata('tambah', 'DATA MATAKULIAH BERHASIL DITAMBAHKAN.');			
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DITAMBAHKAN.');			
 			redirect('Kemeng/get_matkul'); 			
 		}
+	}
+
+
+	function hapus_matkul()
+	{
+		$id_matkul = $this->input->post('id_matkul');
+
+		$hasil = $this->Kemeng_model->del_matkul($id_matkul);
+
+		if (!$hasil) { 							
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIHAPUS.');				
+			redirect('Kemeng/get_matkul'); 			
+		} else { 								
+			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIHAPUS.');	
+			redirect('Kemeng/get_matkul'); 			
+		}
+		
 	}
 
 
