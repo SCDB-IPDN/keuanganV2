@@ -38,6 +38,7 @@
         				<tr>
         					<th class="text-nowrap">No</th>
         					<th class="text-nowrap">Nama Dosen</th>
+                  <th class="text-nowrap">NIP</th>
         					<th class="text-nowrap">Nama Matkul</th>
         					<th class="text-nowrap">Tanggal</th>
         					<th class="text-nowrap">Jam Mengajar</th>
@@ -55,6 +56,7 @@
               <tr>
                 <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
                 <td><?= $rows->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama ?></td>
+                <td><?= $rows->nip == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nip ?></td>
                 <td><?= $rows->nama_matkul == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama_matkul ?></td>
                 <td><?= $rows->tanggal == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->tanggal ?></td>
                 <td><?= $rows->jam == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->jam ?></td>
@@ -80,15 +82,15 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-        	<form action="kepegawaian/tambah_plot" method="POST">
+        	<form action="kemeng/tambah_plot" method="POST">
         		<div class="form-group">
         			<div class="row">
         				<div class="col-sm-8">
         					<label class="col-form-label">Nama Dosen :</label>
         					<select class="form-control" id="nama" name="nama" required>
-        						<option>--Nama--</option>
+        						<option>--Nama|Nip--</option>
         						<?php foreach($tp as $rows){?>
-        						<option value="<?php echo $rows->nama ?>"><?php echo $rows->nama ?></option>
+        						<option value="<?php echo $rows->nama.'|'.$rows->nip;?>"><?php echo $rows->nama.'|'.$rows->nip;?></option>
         						<?php } ?>
         					</select>
         				</div>

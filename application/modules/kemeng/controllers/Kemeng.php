@@ -43,8 +43,8 @@ class Kemeng extends CI_Controller
                $x['tp'] = $tp;
                $x['mk'] = $mk;
                $x['fk'] = $fk;
-               // var_dump($fk);
-               // exit();    
+            //    var_dump($tp);
+            //    exit();    
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_plot', $x);
@@ -65,15 +65,21 @@ class Kemeng extends CI_Controller
 		   $plot['kelas'] = $this->input->post('kelas', true);
 		   $plot['semester'] = $this->input->post('semester', true);
 		   $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
- 
+		
+		   $pisah = explode("|", $plot['nama']);
+		   $nama = $pisah[0];
+		   $nip = $pisah[1];
+		   $plot['nama']=$nama;
+		   $plot['nip']=$nip;
+
 		   $result = $this->Kemeng_model->tambah_plot($plot);
- 
+		   
 		   if (!$result) { 							
 				$this->session->set_flashdata('plot', 'DATA GAGAL DITAMBAHKAN.'); 				
-				redirect('kepegawaian/plot'); 			
+				redirect('kemeng/plot'); 			
 		   } else { 								
 				$this->session->set_flashdata('plot', 'DATA BERHASIL DITAMBAHKAN.');			
-				redirect('kepegawaian/plot'); 			
+				redirect('kemeng/plot'); 			
 		   }
 	 }
 

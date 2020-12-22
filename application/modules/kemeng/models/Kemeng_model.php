@@ -51,7 +51,7 @@ class Kemeng_model extends CI_Model
 	public function get_nama()
 	{
 
-	$result = $this->db->query("SELECT nama FROM tbl_dosen ");
+	$result = $this->db->query("SELECT nama, nip FROM tbl_dosen");
 	return $result;
 
 	}
