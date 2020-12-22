@@ -68,7 +68,7 @@
     </div>
     <!-- end col-10 -->
 
-    <<!-- Modal Ubah -->
+    <!-- Modal Ubah -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -141,7 +141,7 @@
 <!-- END Modal Ubah -->
 
 
-<<!-- Modal TAMBAH -->
+<!-- Modal TAMBAH -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" id="tambahmatkul" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -294,13 +294,6 @@
             modal.find('#sks').attr("value",div.data('sks'));
             modal.find('#semester').attr("value",div.data('semester'));
           });
-      });
-    </script>
-
-
-
-    <script>
-      $(document).ready(function() {
         // Untuk sunting
         $('#hapusmatkul').on('show.bs.modal', function (event) {
             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan

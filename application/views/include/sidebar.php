@@ -173,14 +173,15 @@
 			<!-- END SARPRAS -->
 						
 			<!-- Fakultas -->
-			<li class="<?php echo $this->uri->segment(1) == "kemeng" ? "active" : ""; ?> has-sub">
+			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-graduation-cap"></i>
 					<span>Fakultas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "kemeng" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
+					<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2)!="view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
+					<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
 
 				</ul>
 			</li>

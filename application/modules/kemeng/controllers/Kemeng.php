@@ -130,10 +130,10 @@ class Kemeng extends CI_Controller
 
 		if (!$result) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIUBAH.');		
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIUBAH.');			
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		}
 	}
 
@@ -153,17 +153,17 @@ class Kemeng extends CI_Controller
 
 			$this->session->set_flashdata('matkul', 'KODE MATKUL SUDAH TERDAFTAR!!');
 			$x['alert'] = 'ada';			
-			redirect('Kemeng/get_matkul',$x);
+			redirect('Kemeng/view_matkul',$x);
 		}
 
 		$result = $this->Kemeng_model->tambahmatkul($input_data);
 
 		if (!$result) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DITAMBAHKAN!!');		
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DITAMBAHKAN.');			
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		}
 	}
 
@@ -176,10 +176,10 @@ class Kemeng extends CI_Controller
 
 		if (!$hasil) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIHAPUS.');				
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIHAPUS.');	
-			redirect('Kemeng/get_matkul'); 			
+			redirect('Kemeng/view_matkul'); 			
 		}
 		
 	}
@@ -217,11 +217,11 @@ class Kemeng extends CI_Controller
 
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
-			redirect('kemeng'); 			
+			redirect('kemeng/view_matkul'); 			
 		} 
 		else { 								
 			$this->session->set_flashdata('absen', ['danger', 'Data absensi gagal disimpan']); 
-			redirect('kemeng'); 			
+			redirect('kemeng/view_matkul'); 			
 		} 
 	}
 
