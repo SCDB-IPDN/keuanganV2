@@ -21,7 +21,9 @@
 	<link href="<?php echo base_url('assets/plugins/jvectormap-next/jquery-jvectormap.css');?>" rel="stylesheet" />
 	<link href="<?php echo base_url('assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css');?>" rel="stylesheet" />
 	<link href="<?php echo base_url('assets/plugins/gritter/css/jquery.gritter.css');?>" rel="stylesheet" />
-	
+	<link href="<?php echo base_url('assets/plugins/select2/dist/css/select2.min.css');?>" rel="stylesheet" />
+	<link href="<?php echo base_url('assets/plugins/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet" />
+
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
 </head>
 <body>

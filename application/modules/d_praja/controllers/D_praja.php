@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require('./application/third_party/phpoffice/vendor/autoload.php');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
 
 class D_praja extends CI_Controller
 {
@@ -315,30 +315,32 @@ function tambah_status()
     if ($this->input->post('status', true) == "turuntingkat" && $data['tingkat'] == 1) {
       $ting = $data['tingkat'];
       $ang = $data['angkatan'];
-      
-    }else{
+    }else if ($this->input->post('status', true) == "turuntingkat"){
       $ting = $data['tingkat']-1;
       $ang = $data['angkatan']+1;
-    }
+    }else if($this->input->post('status', true) != "turuntingkat") {
+     $ting = $data['tingkat'];
+     $ang = $data['angkatan'];
+   }
 
-    $tingkatann = $this->input->post('status', true);
-    $keterangann = $this->input->post('keterangan', true);
+   $tingkatann = $this->input->post('status', true);
+   $keterangann = $this->input->post('keterangan', true);
 
-    $nya = array();
-    array_push($nya, array(
-      'id'      => $data['id'],
-      'nama'      => $data['nama'],
-      'status'      => $tingkatann,
-      'tingkat'      => $ting,
-      'angkatan' => $ang,
-      'keterangan' => $keterangann
+   $nya = array();
+   array_push($nya, array(
+    'id'      => $data['id'],
+    'nama'      => $data['nama'],
+    'status'      => $tingkatann,
+    'tingkat'      => $ting,
+    'angkatan' => $ang,
+    'keterangan' => $keterangann
 
-    ));
+  ));
     // print("<pre>".print_r($nya,true)."</pre>");
-    $up = $this->db->insert_batch('hukuman', $nya);
+   $up = $this->db->insert_batch('hukuman', $nya);
 
 
-    if($this->input->post('status', true) != "turuntingkat"){
+   if($this->input->post('status', true) != "turuntingkat"){
      $haha = $this->input->post('status', true);
        // echo "$haha";
    }else{
@@ -477,15 +479,7 @@ function export()
  $writer->save('php://output');
 }
 
-function matkul(){
- $this->load->view("include/head");
- $this->load->view("include/top-header");
- $this->load->view("view_matkul");
- $this->load->view("include/sidebar");
- $this->load->view("include/panel");
- $this->load->view("include/footer");
 
-}
 
 
 
