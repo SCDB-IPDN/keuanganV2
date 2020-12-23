@@ -175,14 +175,14 @@ class Home_model extends CI_Model{
 	}
 
 	public function get_span_jatinangor(){
-		$result = $this->db->query("SELECT CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint WHERE satker = 448302")->result(); 
+		$result = $this->db->query("SELECT CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint WHERE satker = 448302 ORDER BY created_at DESC LIMIT 1")->result(); 
 
 		return $result;
 	}
 
 	public function get_all_span_biro()
 	{	
-		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 ORDER BY alias")->result();
+		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 ORDER BY created_at DESC, alias ASC LIMIT 4")->result();
 
 		return $result;
 	}

@@ -238,4 +238,20 @@ class Kemeng extends CI_Controller
 		$prodi = $this->Kemeng_model->get_prodi($fakultas)->result();
 		echo json_encode($prodi);
 	}
+
+	function honor() {
+		if($this->session->userdata('nip') != NULL) {
+						
+			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
+			$x['uDate'] = date_format(new DateTime(),"d F Y");
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view("view_honor",$x);
+			$this->load->view("include/sidebar");
+			$this->load->view("include/footer");
+
+		}else{
+			redirect("user");
+		}
+	}
 }
