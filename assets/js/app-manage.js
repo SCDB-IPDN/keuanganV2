@@ -184,21 +184,4 @@ $(document).ready(function() {
             modal.find('#namaxx').attr("value",div.data('nama'));
         });
     }
-
-    if ($('#tbl-scdb-plot').length !== 0) {
-        var url = 'table_plot';
-
-        $('#tbl-scdb-plot').dataTable({
-            // dom: 'Bfrtip',
-            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
-            buttons: [
-                'copy', 'excel', 'print'
-            ],
-            responsive: true,
-            "ajax": {
-                "url": url,
-                "dataSrc": ""
-            }
-        });
-    }
 });

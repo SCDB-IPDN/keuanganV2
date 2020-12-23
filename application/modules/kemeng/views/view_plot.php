@@ -1,7 +1,7 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('kepegawaian/plot');?>">Plot Dosen</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('kemeng/plot');?>">Plot Dosen</a></li>
   </ol>
   <h1 class="page-header">Plot Dosen</h1>
 
@@ -33,36 +33,24 @@
         
         <div class="table-responsive">
         	<div class="panel-body">
-        		<table id="tbl-scdb-plot" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+        		<table id="tbl-plot" class="table table-striped table-bordered table-td-valign-middle" width="100%">
         			<thead>
         				<tr>
-        					<th class="text-nowrap">No</th>
-        					<th class="text-nowrap">Nama Dosen | NIP</th>
-        					<th class="text-nowrap">Nama Matkul</th>
-        					<th class="text-nowrap">Tanggal</th>
-        					<th class="text-nowrap">Jam Mengajar</th>
-        					<th class="text-nowrap">Kelas</th>
-                  <th class="text-nowrap">Nama Fakultas</th>
-                  <th class="text-nowrap">Semester</th>
+        					<th>No</th>
+        					<th>Nama Dosen | NIP</th>
+        					<th>Nama Matkul</th>
+        					<th>Tanggal</th>
+        					<th>Jam Mengajar</th>
+        					<th>Kelas</th>
+                  <th>Nama Fakultas</th>
+                  <th>Semester</th>
+                  <?php if($this->session->userdata('role') == 'Admin'){?>
+                    <th>OPSI</th>
+                  <?php } ?>
         				</tr>
         			</thead>
-        			<tbody>
-            <?php
-                $no = 0;
-                foreach($data as $rows){
-                $no++;
-            ?>
-              <tr>
-                <td><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
-                <td><?= $rows->nama.'|'.$rows->nip == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama.'|'.$rows->nip ?></td>
-                <td><?= $rows->nama_matkul == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama_matkul ?></td>
-                <td><?= $rows->tanggal == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->tanggal ?></td>
-                <td><?= $rows->jam == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->jam ?></td>
-                <td><?= $rows->kelas == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->kelas ?></td>
-                <td><?= $rows->nama_fakultas == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->nama_fakultas ?></td>
-                <td><?= $rows->semester == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $rows->semester ?></td>
-            <?php } ?>
-            </tbody>
+              <tbody>
+              </tbody>
         		</table>
         	</div>
         </div>
@@ -141,7 +129,159 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- Manage -->
-<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+  <!-- Modal Edit -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-plot" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+           <h4 class="modal-title">Ubah Data Plot</h4>
+           <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+         </div>
+         <form class="form-horizontal" action="<?php echo base_url('kemeng/edit_plot')?>" method="post" enctype="multipart/form-data" role="form">
+           <div class="modal-body">
+             <div class="form-group">
+              <div class="row">
+                <div class="col-xl-3">
+                  <label class="col-form-label">Nama Dosen:</label>
+                  <input type="text" class="form-control" id="nama" name="nama" readonly="">
+                </div>
+                <div class="col-xl">
+                  <label class="col-form-label">Nama Matkul:</label>
+                  <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xl-3">
+                  <label class="col-form-label">Kode Fakultas:</label>
+                  <input type="text" class="form-control" id="id_fakultas" name="id_fakultas" readonly="">
+                </div>
+                <div class="col-xl">
+                  <label class="col-form-label">Nama Fakultas:</label>
+                  <input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xl-3">
+                  <label class="col-form-label">Kode Prodi:</label>
+                  <input type="text" class="form-control" id="id_prodi" name="id_prodi" readonly="">
+                </div>
+                <div class="col-xl">
+                  <label class="col-form-label">Nama Prodi:</label>
+                  <input type="text" class="form-control" id="nama_prodi" name="nama_prodi" readonly="">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xl-5">
+                  <label class="col-form-label">SKS:</label>
+                  <input type="text" class="form-control" id="sks" name="sks" required="">
+                </div>
+                <div class="col-xl">
+                  <label class="col-form-label">Semester:</label>
+                  <input type="text" class="form-control" id="semester" name="semester" required="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+           <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
+           <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+</div>
+<!-- END Modal Edit -->
+</div>
+<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+<script>
+
+  $(document).ready(function() {
+
+    var url = '<?php echo base_url('kemeng/table_plot');?>';
+        // alert(url);
+
+        $('#tbl-plot').dataTable({
+            // dom: 'Bfrtip',
+            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
+            buttons: [
+            'copy', 'excel', 'print'
+            ],
+            responsive: true,
+            "ajax": {
+              "url": url,
+              "dataSrc": ""
+            }
+          });
+      });
+
+    </script>
+
+
+    <script>
+      $(document).ready(function() {
+        // Untuk sunting
+        $('#edit-plot').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
+            modal.find('#id_prodi').attr("value",div.data('id_prodi'));
+            modal.find('#nama_prodi').attr("value",div.data('nama_prodi'));
+            modal.find('#id_fakultas').attr("value",div.data('id_fakultas'));
+            modal.find('#nama_fakultas').attr("value",div.data('nama_fakultas'));
+            modal.find('#sks').attr("value",div.data('sks'));
+            modal.find('#semester').attr("value",div.data('semester'));
+          });
+        // Untuk sunting
+        $('#hapusmatkul').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#id_matkul').attr("value",div.data('id_matkul'));
+            modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
+          });
+      });
+    </script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        $('#fakultas').change(function(){ 
+          var id_prodi=$(this).val();
+          $.ajax({
+            url : "<?php echo site_url('kemeng/get_sub_category');?>",
+            method : "POST",
+            data : {id_prodi: id_prodi},
+            async : true,
+            dataType : 'json',
+            success: function(data){
+
+              var html = '';
+              var i;
+              for(i=0; i<data.length; i++){
+                html += '<option value='+data[i].id_prodi+'>'+data[i].nama_prodi+'</option>';
+              }
+              $('#prodi').html(html);
+
+            }
+          });
+          return false;
+        }); 
+
+      });
+    </script>

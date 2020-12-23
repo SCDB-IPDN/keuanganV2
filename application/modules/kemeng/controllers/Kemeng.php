@@ -259,28 +259,58 @@ class Kemeng extends CI_Controller
 		   }
 	 }
 
+	 function edit_plot(){
+
+		$editplot['nama'] = $this->input->post('nama', true);
+		$editplot['nama_matkul'] = $this->input->post('nama_matkul', true);
+		$editplot['tanggal'] = $this->input->post('tanggal', true);
+		$editplot['jam'] = $this->input->post('jam', true);
+		$editplot['kelas'] = $this->input->post('kelas', true);
+		$editplot['semester'] = $this->input->post('semester', true);
+		$editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+		
+		$result = $this->Kemeng_model->edit_plot($editplot);
+	
+		if (!$result) { 							
+			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
+			redirect('Kemeng/plot'); 			
+		} else { 								
+			$this->session->set_flashdata('plot', 'DATA BERHASIL DIUBAH.');			
+			redirect('Kemeng/plot'); 			
+		}
+	}
+
 	 function table_plot() {
 		$data = $this->Kemeng_model->get_all_plot()->result();
    
-		$apa = array();
+		$plot = array();
 		$no = 1;
    
 		foreach($data as $r) {
-			 $nama = $r->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama;
-			 $nama_matkul = $r->nama_matkul == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama_matkul; 
-			 $tanggal = $r->tanggal == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->tanggal; 
-			 $jam = $r->jam == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->jam;
-			 $kelas = $r->kelas == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->kelas;
-			 $semester = $r->semester == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->semester;
-			 $nama_fakultas = $r->nama_fakultas == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama_fakultas;
+			 $nama = $r->nama;
+			 $nama_matkul = $r->nama_matkul; 
+			 $tanggal = $r->tanggal; 
+			 $jam = $r->jam;
+			 $kelas = $r->kelas;
+			 $semester = $r->semester;
+			 $nama_fakultas = $r->nama_fakultas;
 						  
 			 if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
-				  $aksi = "<a href='javascript:; 'data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' data-nama_fakultas='$r->nama_fakultas' </a>";
+				  $aksi = "<a href='javascript:; 'data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
+				  data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
+				  data-nama_fakultas='$r->nama_fakultas' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
+				  'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button> </a>
+				  
+				  <a 
+				  href='javascript:;' data-nama='$r->nama'
+				  <button  data-toggle=
+				  'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
+				  </a>"; ;
 			 }else{
-				  $aksi = "Tidak ada Akses";
+				  $aksi = "";
 			 }
    
-			 $apa[] = array(
+			 $plot[] = array(
 				  $no++,
 				  $nama,
 				  $nama_matkul,
@@ -292,9 +322,9 @@ class Kemeng extends CI_Controller
 			 );
 		}
 		
-		echo json_encode($apa);
+		echo json_encode($plot);
    }
-
+   
    //END PLOT
 
  	function tambah_presensi()

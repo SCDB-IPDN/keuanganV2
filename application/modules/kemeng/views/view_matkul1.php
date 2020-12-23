@@ -54,11 +54,8 @@
                   <?php if($this->session->userdata('role') == 'Admin'){?>
                     <th>OPSI</th>
                   <?php } ?>
-
-                  
                 </tr>
               </thead>
-
             </table>
           </div>
         </div>
