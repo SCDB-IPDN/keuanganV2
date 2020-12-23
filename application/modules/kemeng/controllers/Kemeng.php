@@ -238,4 +238,69 @@ class Kemeng extends CI_Controller
 		$prodi = $this->Kemeng_model->get_prodi($fakultas)->result();
 		echo json_encode($prodi);
 	}
+
+	function jadwal_dosen(){
+		if ($this->session->userdata('nip') != NULL) {
+			$nip = $this->session->userdata('nip');
+			$dosen = $this->session->userdata('dosen');
+
+			if($nip == 'admin'){
+
+				$semester = $this->input->post('semester');
+				$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
+				$x['data'] = json_encode($data);
+
+				$this->session->set_flashdata('alert', 'SILAHKAN PILIH SEMESTER');
+
+				if($data == NULL && $semester != NULL){
+					$this->session->set_flashdata('alert', 'TIDAK ADA JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+				}
+				
+				if($data != NULL && $semester != NULL){
+					$this->session->set_flashdata('alert', 'JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+				}
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("jadwal_dosen",$x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/panel");
+				$this->load->view("include/footer");
+			}
+			
+			if($dosen != NULL){
+				$cek_dosen = $this->Kemeng_model->cek_dosen($nip);
+
+				if($cek_dosen != NULL){
+
+					$semester = $this->input->post('semester');
+					$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
+					$x['data'] = json_encode($data);
+
+					$this->session->set_flashdata('alert', 'SILAHKAN PILIH SEMESTER');
+
+					if($data == NULL && $semester != NULL){
+						$this->session->set_flashdata('alert', 'TIDAK ADA JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+					}
+					
+					if($data != NULL && $semester != NULL){
+						$this->session->set_flashdata('alert', 'JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+					}
+
+					$this->load->view("include/head");
+					$this->load->view("include/top-header");
+					$this->load->view("jadwal_dosen",$x);
+					$this->load->view("include/sidebar");
+					$this->load->view("include/panel");
+					$this->load->view("include/footer");
+
+				}
+			}else{
+				redirect("home");
+			}
+			
+		} else {
+			redirect("user");
+		}
+	}
 }

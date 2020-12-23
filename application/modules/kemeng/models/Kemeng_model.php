@@ -1,6 +1,24 @@
 <?php
 class Kemeng_model extends CI_Model
 {
+	public function cek_dosen($nip)
+	{
+		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = $nip")->result();
+
+		return $result;
+	}
+
+	public function jadwal_dosen($nip, $semester)
+	{
+		if($nip == 'admin'){
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE semester = '$semester'")->result();
+		}else{
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = $nip AND semester = '$semester'")->result();
+		}
+
+		return $result;
+	}
+
 	public function get_fakul()
 	{
 
