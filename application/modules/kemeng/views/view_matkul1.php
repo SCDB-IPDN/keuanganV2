@@ -14,9 +14,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <?php if($this->session->userdata('role') == 'Admin'){?>
-              <span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambahmatkul">TAMBAH MATAKULIAH</a></span>
-            <?php } ?>
+            <span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambahmatkul">TAMBAH MATAKULIAH</a></span>
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
           </h4>
@@ -51,9 +49,7 @@
                   <th>NAMA PRODI</th>
                   <th>SKS</th>
                   <th>SEMESTER</th>
-                  <?php if($this->session->userdata('role') == 'Admin'){?>
-                    <th>OPSI</th>
-                  <?php } ?>
+                  <th>OPSI</th>
 
                   
                 </tr>
@@ -73,7 +69,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-           <h4 class="modal-title">Ubah Data</h4>
+           <h4 class="modal-title">Ubah Data Matakuliah</h4>
            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 
          </div>
@@ -146,7 +142,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <h4 class="modal-title">Ubah Data</h4>
+       <h4 class="modal-title">Tambah Matakuliah</h4>
        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 
      </div>
@@ -219,7 +215,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="hapusmatkul">Hapus Data Matkuliah</h5>
+        <h5 class="modal-title" id="hapusmatkul">Hapus Data Matakuliah</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -229,13 +225,13 @@
           <div class="modal-body">
             <p>Anda yakin akan menghapus Data Matakuliah : </p>
             <div class="form-group">
-          <div class="row">
-            <div class="col-xl">
-              <input type="hidden" id="id_matkul" name="id_matkul">
-              <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+              <div class="row">
+                <div class="col-xl">
+                  <input type="hidden" id="id_matkul" name="id_matkul">
+                  <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
           </div>
           <div class="modal-footer">

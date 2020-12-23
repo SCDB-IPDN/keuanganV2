@@ -12,7 +12,8 @@ class Kemeng extends CI_Controller
 	function matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
 			$x['data'] = $data;
 
 			$this->load->view("include/head");
@@ -28,10 +29,14 @@ class Kemeng extends CI_Controller
 	function view_matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_makul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 			$x['data'] = $data;
 
-			$fakulll = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$fakulll = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
+			// var_dump($fakulll);
+			// exit();
 			$x['fakulll'] = $fakulll;
 
 			$this->load->view("include/head");
@@ -68,7 +73,8 @@ class Kemeng extends CI_Controller
 
 
 	function cobain(){
-		$data = $this->Kemeng_model->get_makul()->result();
+		$id_fakultas = $this->session->userdata('role');
+		$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 
 		$dataall = array();
 
@@ -83,19 +89,17 @@ class Kemeng extends CI_Controller
 
 			$sks = $r->sks;
 			$semester = $r->semester;
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				$opsi = "<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-id_prodi='$r->id_prodi'  data-nama_prodi='$r->nama_prodi' data-nama_matkul='$r->nama_matkul'
 				data-sks='$r->sks' data-id_fakultas='$r->id_fakultas' data-nama_fakultas='$r->nama_fakultas'
 				data-semester='$r->semester'
-				data-toggle='modal' data-target='#edit-data'> <button  data-toggle=
-				'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button>
+				data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
 				</a>
 
 				<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-nama_matkul='$r->nama_matkul'
-				<button  data-toggle=
-				'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
+				data-toggle='modal' data-target='#hapusmatkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
 				</a>";
 			}else{
 				$opsi = "";
@@ -206,22 +210,37 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
-		$data['nama_dosen'] = $this->input->post('nama_dosen', true);
+		$baru = $this->input->post('nama_dosen', true);
+		$hahaha = explode("|",$baru);
+		$nama = $hahaha[0];
+		$id = $hahaha[1];
+
+
+		$baru2 =$this->input->post('matkul', true);
+		$hihihih = explode("|",$baru2);
+		$idmat = $hihihih[0];
+		$sks = $hihihih[1];
+
+		$data['nip'] = $id;
+		$data['nama_dosen'] =$nama;
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
-		$data['id_matkul'] = $this->input->post('matkul', true);
+		$data['id_matkul'] = $idmat;
+		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
 		$data['tanggal'] = $this->input->post('tanggal', true);
 		$data['jam'] = $this->input->post('jam', true);
 		$data['kelas'] = $this->input->post('kelas', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
+		// var_dump($data);exit;
+
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 		else { 								
 			$this->session->set_flashdata('absen', ['danger', 'Data absensi gagal disimpan']); 
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 	}
 
