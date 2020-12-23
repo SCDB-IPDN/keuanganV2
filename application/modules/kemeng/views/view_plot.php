@@ -42,12 +42,12 @@
         					<th class="text-nowrap">Tanggal</th>
         					<th class="text-nowrap">Jam Mengajar</th>
         					<th class="text-nowrap">Kelas</th>
+                  <th class="text-nowrap">Nama Fakultas</th>
                   <th class="text-nowrap">Semester</th>
-        					<th class="text-nowrap">Nama Fakultas</th>
         				</tr>
         			</thead>
         			<tbody>
-                    <?php
+            <?php
                 $no = 0;
                 foreach($data as $rows){
                 $no++;
@@ -117,11 +117,11 @@
             </div>
             <div class="form-group">
             	<label class="col-form-label">Semester :</label>
-            	<select class="form-control" id="semester" name="semester"  required>
-              <option>--Semester--</option>
-              <option>GANJIL 2020/2021</option>
-              <option>GENAP 2020/2021</option>
-            </select>
+            	<select class="form-control" id="semester" name="semester" required>
+            		<option>--Semester--</option>
+            		<option>GANJIL 2020/2021</option>
+            		<option>GENAP 2020/2021</option>
+            	</select>
             </div>
             <div class="form-group">
             	<label class="col-form-label">Nama Fakultas :</label>
@@ -145,4 +145,3 @@
 
 <!-- Manage -->
 <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
-<script src="<?php echo base_url('assets/js/app-manage.js');?>"></script>
