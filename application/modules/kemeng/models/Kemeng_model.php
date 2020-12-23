@@ -75,4 +75,33 @@ class Kemeng_model extends CI_Model
 	{   
 		return $this->db->insert('tbl_absensi', $data);
 	}
+
+	function get_absen_bulan($date, $nip) {
+		$date_t = explode('-', $date);
+		$index = $this->get_index_honor($nip)->row_array()['index'];
+
+		// echo $index;exit;
+		
+		$this->db->select("tbl_absensi.id_matkul AS 'Kode Mata Kuliah', tbl_matkul.nama_matkul AS 'Nama Mata Kuliah',
+			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', tbl_absensi.tanggal AS 'Tanggal',
+			tbl_absensi.sks AS 'DURASI (SKS)', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Honor'");
+		$this->db->from('tbl_absensi');
+		$this->db->join('tbl_matkul', "tbl_absensi.id_matkul=tbl_matkul.id_matkul");
+		$this->db->join('tbl_prodi', "tbl_matkul.id_prodi = tbl_prodi.id_prodi");
+		$this->db->where('YEAR(tbl_absensi.tanggal)', $date_t[1]);
+		$this->db->where('MONTH(tbl_absensi.tanggal)', $date_t[0]);
+		$this->db->where('tbl_absensi.nip', $nip);
+		$this->db->order_by('tbl_absensi.tanggal', 'ASC');
+		$res = $this->db->get();
+		return $res;
+	}
+
+	function get_index_honor($nip) {
+		$this->db->select("index");
+		$this->db->from("tbl_dosen");
+		$this->db->join('tbl_honor_dosen', "tbl_dosen.jabatan=tbl_honor_dosen.jabatan");
+		$this->db->where('tbl_dosen.nip', $nip);
+		$res = $this->db->get();
+		return $res;
+	}
 }
