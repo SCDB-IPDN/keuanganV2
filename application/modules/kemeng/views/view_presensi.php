@@ -11,21 +11,44 @@
 			<!-- end panel -->
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
+				<h4 class="panel-title">
+            	<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addpresensi">TAMBAH PRESENSI</a></span>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
+            <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
+          		</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-					</div>
+					</div> 
 				</div>
-
-				<?php if($this->session->flashdata() != NULL){ ?>
+				<!--start table-->
+				<div class="table-responsive">
+				<?php if($this->session->flashdata('absen') != NULL){ ?>
 				<div class="alert alert-<?php echo $this->session->flashdata('absen')[0] ?> alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('absen')[1] ?>
 				</div>
 				<?php } ?>
-
+				
+				<div class="panel-body">
+					<table id="data-matkul" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Nama Dosen</th>
+							<th>Fakultas</th>
+							<th>Program Studi</th>
+							<th>Mata Kuliah</th>
+							<th>Kelas</th>
+							<th>Tanggal</th>
+							<th>Jam</th>
+						</tr>
+					</thead>
+					</table>
+				</div>
+				<!-- end table-->
 				<div class="table-responsive">
 					<div class="panel-body">
 						<form action="<?php echo base_url('kemeng/tambah_presensi'); ?>" method="POST">

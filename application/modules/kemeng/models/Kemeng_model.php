@@ -78,7 +78,7 @@ class Kemeng_model extends CI_Model
 	public function get_namdosen()
 	{
 
-		$namadosen = $this->db->query("SELECT nip,nama FROM tbl_dosen ORDER BY id_dosen");
+		$namadosen = $this->db->query("SELECT nip,nama FROM tbl_plot_dosen ORDER BY nip");
 
 		return $namadosen;
 	}
