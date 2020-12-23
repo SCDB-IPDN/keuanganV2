@@ -168,6 +168,7 @@
 					<li class="<?php echo $this->uri->segment(2)=="677010"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677010";?>">SULAWESI UTARA</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="352593"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/352593";?>">JAKARTA</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="683070"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/683070";?>">KALIMANTAN BARAT</a></li>
+					<li class="<?php echo $this->uri->segment(2)=="677045"?"active":"";?>"><a href="<?php echo base_url('d_sarpras')."/677045";?>">SUMATERA BARAT</a></li>
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
@@ -244,6 +245,7 @@
 								<li class="<?php echo $this->uri->segment(3)=="sulut"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/sulut');?>">SARPRAS SULUT</a></li>
 								<li class="<?php echo $this->uri->segment(3)=="jakarta"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/jakarta');?>">SARPRAS JAKARTA</a></li>
 								<li class="<?php echo $this->uri->segment(3)=="kalbar"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/kalbar');?>">SARPRAS KALBAR</a></li>
+								<li class="<?php echo $this->uri->segment(3)=="sumbar"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sarpras/sumbar');?>">SARPRAS SUMBAR</a></li>
 							</ul>
 						</li>
 						<?php } ?>
