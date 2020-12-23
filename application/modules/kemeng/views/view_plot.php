@@ -42,8 +42,8 @@
         					<th class="text-nowrap">Tanggal</th>
         					<th class="text-nowrap">Jam Mengajar</th>
         					<th class="text-nowrap">Kelas</th>
+                  <th class="text-nowrap">Semester</th>
         					<th class="text-nowrap">Nama Fakultas</th>
-        					<th class="text-nowrap">Semester</th>
         				</tr>
         			</thead>
         			<tbody>
@@ -117,7 +117,11 @@
             </div>
             <div class="form-group">
             	<label class="col-form-label">Semester :</label>
-            	<input type="text" class="form-control" id="semester" name="semester" placeholder="Ganjil/Genap" required>
+            	<select class="form-control" id="semester" name="semester"  required>
+              <option>--Semester--</option>
+              <option>GANJIL 2020/2021</option>
+              <option>GENAP 2020/2021</option>
+            </select>
             </div>
             <div class="form-group">
             	<label class="col-form-label">Nama Fakultas :</label>
