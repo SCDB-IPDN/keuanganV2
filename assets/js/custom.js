@@ -45,7 +45,7 @@ function get_matkul() {
 				if(dataObj) {
 					$(dataObj).each(function() {
 						var option = $('<option />');
-						option.attr('value', this.id_matkul).text(this.nama_matkul);           
+						option.attr('value', this.id_matkul+'|'+this.sks).text(this.nama_matkul);           
 						$("#matkul").append(option);
 					});
 				}

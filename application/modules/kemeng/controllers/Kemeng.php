@@ -13,7 +13,7 @@ class Kemeng extends CI_Controller
 
 		if ($this->session->userdata('nip') != NULL) {
 			$id_fakultas = $this->session->userdata('role');
-			$data = $this->Kemeng_model->get_fakul($id_fakultas)->result();
+			$data = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
 			$x['data'] = $data;
 
 			$this->load->view("include/head");
@@ -34,7 +34,7 @@ class Kemeng extends CI_Controller
 			$x['data'] = $data;
 
 			$id_fakultas = $this->session->userdata('role');
-			$fakulll = $this->Kemeng_model->get_fakul($id_fakultas)->result();
+			$fakulll = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
 			// var_dump($fakulll);
 			// exit();
 			$x['fakulll'] = $fakulll;
@@ -210,22 +210,37 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
-		$data['nama_dosen'] = $this->input->post('nama_dosen', true);
+		$baru = $this->input->post('nama_dosen', true);
+		$hahaha = explode("|",$baru);
+		$nama = $hahaha[0];
+		$id = $hahaha[1];
+
+
+		$baru2 =$this->input->post('matkul', true);
+		$hihihih = explode("|",$baru2);
+		$idmat = $hihihih[0];
+		$sks = $hihihih[1];
+
+		$data['nip'] = $id;
+		$data['nama_dosen'] =$nama;
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
-		$data['id_matkul'] = $this->input->post('matkul', true);
+		$data['id_matkul'] = $idmat;
+		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
 		$data['tanggal'] = $this->input->post('tanggal', true);
 		$data['jam'] = $this->input->post('jam', true);
 		$data['kelas'] = $this->input->post('kelas', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
+		// var_dump($data);exit;
+
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 		else { 								
 			$this->session->set_flashdata('absen', ['danger', 'Data absensi gagal disimpan']); 
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 	}
 
