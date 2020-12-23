@@ -21,6 +21,7 @@
                 <!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> -->
                 <!-- <a href="javascript:;" class="dropdown-item">Calendar</a> -->
                 <div class="dropdown-divider"></div>
+                <a href="<?php echo base_url(); ?>profil" class="dropdown-item">Edit Profil</a>
                 <a href="<?php echo base_url(); ?>user/logout" class="dropdown-item">Log Out</a>
             </div>
         </li>
