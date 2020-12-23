@@ -84,7 +84,8 @@ class Kemeng_model extends CI_Model
 		
 		$this->db->select("tbl_absensi.id_matkul AS 'Kode Mata Kuliah', tbl_matkul.nama_matkul AS 'Nama Mata Kuliah',
 			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', tbl_absensi.tanggal AS 'Tanggal',
-			tbl_absensi.sks AS 'DURASI (SKS)', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Honor'");
+			tbl_absensi.jam AS 'Shift', tbl_absensi.sks AS 'Durasi (SKS)', FORMAT($index,0,'de_DE') AS 'Honor Per SKS',
+			tbl_absensi.sks AS 'Indek', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Jumlah Honor'");
 		$this->db->from('tbl_absensi');
 		$this->db->join('tbl_matkul', "tbl_absensi.id_matkul=tbl_matkul.id_matkul");
 		$this->db->join('tbl_prodi', "tbl_matkul.id_prodi = tbl_prodi.id_prodi");

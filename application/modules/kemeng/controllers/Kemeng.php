@@ -262,23 +262,45 @@ class Kemeng extends CI_Controller
 		// var_dump($data);exit;
 		if ($data) {
 			$html = "<table id='data-table-buttons' class='table table-striped table-bordered table-td-valign-middle' width='100%'>";
+			$html .= '<thead>';
 			$html .= '<tr>';
 			$html .= '<th>No.</th>';
+			$span = 0;
 			foreach($data[0] as $key=>$value){
+				$span++;
 				$html .= '<th>' . htmlspecialchars($key) . '</th>';
 			}
 			$html .= '</tr>';
+			$html .= '</thead>';
 
 			// data rows
+			$html .= '<tbody>';
 			$cc = 1;
-			foreach( $data as $key=>$value){
+			$th = 0;
+			foreach($data as $key=>$value){
+				$al = "";
 				$html .= '<tr>';
 				$html .= '<td>' . $cc++ . '</td>';
 				foreach($value as $key2=>$value2){
-					$html .= '<td>' . htmlspecialchars(ucwords($value2)) . '</td>';
+					if ($key2 == 'Jumlah Honor') {
+						$th += str_replace(".", "", $value2);
+					}
+					if ($key2 == "Durasi (SKS)") {
+						$al = "align='right'";
+					}
+					$html .= "<td $al>" . htmlspecialchars(ucwords($value2)) . '</td>';
 				}
 				$html .= '</tr>';
 			}
+			$html .= '</tbody>';
+			$html .= '<tfoot>';
+			$html .= "<tr align='right'>";
+			$html .= "<th colspan='$span'>Total</th>";
+			
+			$html .= '<th>' . htmlspecialchars(number_format($th, 0, ',', '.')) . '</th>';
+				
+			$html .= '</tr>';
+			$html .= '</tfoot>';
 			$html .= '</table>';
 			echo $html;
 		}

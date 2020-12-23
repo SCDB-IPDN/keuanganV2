@@ -43,7 +43,19 @@
 							</thead>
 							<tbody>
 								<?php $no = 1; ?>
+								<?php $pagu_peg = $real_peg = 0; ?>
+								<?php $pagu_bar = $real_bar = 0; ?>
+								<?php $pagu_mod = $real_mod = 0; ?>
+								<?php $pagu_tot = $real_tot = 0; ?>
 								<?php foreach (json_decode($data, true) as $x): ?>
+									<?php $pagu_peg += $x['pagu_peg']; ?>
+									<?php $real_peg += $x['real_peg']; ?>
+									<?php $pagu_bar += $x['pagu_bar']; ?>
+									<?php $real_bar += $x['real_bar']; ?>
+									<?php $pagu_mod += $x['pagu_mod']; ?>
+									<?php $real_mod += $x['real_mod']; ?>
+									<?php $pagu_tot += $x['pagu_tot']; ?>
+									<?php $real_tot += $x['real_tot']; ?>
 									<tr class="gradeA">
 										<td rowspan="2"><?php echo $no++; ?></td>
 										<td rowspan="2"><?= $x['nama']; ?></td>
@@ -62,6 +74,23 @@
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
+							<tfoot>
+								<tr class="gradeA">
+									<th rowspan="2" colspan="2">GRAND TOTAL</th>
+									<th>PAGU<br>REALISASI<br></th>
+									<th align="right"><?= number_format($pagu_peg, 0, ',', '.'); ?><br><?= number_format($real_peg, 0, ',', '.'); ?><br>(<?= number_format(100/$pagu_peg*$real_peg, 2, ',', '.'); ?>%)</th>
+									<th align="right"><?= number_format($pagu_bar, 0, ',', '.'); ?><br><?= number_format($real_bar, 0, ',', '.'); ?><br>(<?= number_format(100/$pagu_bar*$real_bar, 2, ',', '.'); ?>%)</th>
+									<th align="right"><?= number_format($pagu_mod, 0, ',', '.'); ?><br><?= number_format($real_mod, 0, ',', '.'); ?><br>(<?= number_format(100/$pagu_mod*$real_mod, 2, ',', '.'); ?>%)</th>
+									<th align="right"><?= number_format($pagu_tot, 0, ',', '.'); ?><br><?= number_format($real_tot, 0, ',', '.'); ?><br>(<?= number_format(100/$pagu_tot*$real_tot, 2, ',', '.'); ?>%)</th>
+								</tr>
+								<tr>
+									<td>SISA</td>
+									<td align="right"><?= number_format($pagu_peg-$real_peg, 0, ',', '.'); ?></td>
+									<td align="right"><?= number_format($pagu_bar-$real_bar, 0, ',', '.'); ?></td>
+									<td align="right"><?= number_format($pagu_mod-$real_mod, 0, ',', '.'); ?></td>
+									<td align="right"><?= number_format($pagu_tot-$real_tot, 0, ',', '.'); ?></td>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div>

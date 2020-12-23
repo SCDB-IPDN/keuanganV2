@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
@@ -101,8 +100,6 @@
 </div>
 
 <script src="<?php echo base_url().'assets/js/jquery.min.js'?>"></script>
-<script src="<?php echo base_url().'assets/js/raphael-min.js'?>"></script>
-<script src="<?php echo base_url().'assets/js/morris.min.js'?>"></script>
 <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
 
 <script>

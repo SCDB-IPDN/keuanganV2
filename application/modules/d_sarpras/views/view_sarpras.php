@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url().'assets/js/morris.css'?>">
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('d_sarpras');?>">Dashboard</a></li>
