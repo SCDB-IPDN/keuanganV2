@@ -1,18 +1,58 @@
+  
 <?php
 class Kemeng_model extends CI_Model
 {
+	public function cek_dosen($nip)
+	{
+		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = $nip")->result();
+
+		return $result;
+	}
+
+	public function jadwal_dosen($nip, $semester)
+	{
+		if($nip == 'admin'){
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE semester = '$semester'")->result();
+		}else{
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = $nip AND semester = '$semester'")->result();
+		}
+
+		return $result;
+	}
+
 	public function get_fakul()
 	{
-
-		$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
+	
+			$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
 
 		return $fakul;
 	}
 
-	public function get_makul()
+
+	public function get_fakultassss($id_fakultas)
 	{
 
-		$makul = $this->db->query("SELECT *, tbl_matkul.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_matkul JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_matkul.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_matkul.id_fakultas");
+		if ($id_fakultas != "Admin"){
+			$fakul = $this->db->query("SELECT * FROM tbl_fakultas where id_fakultas='$id_fakultas'");
+		}else{
+
+			$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
+		}
+		
+
+		return $fakul;
+	}
+
+
+
+	public function get_makul($id_fakultas)
+	{
+		if ($id_fakultas != "Admin"){
+			$makul = $this->db->query("SELECT *, tbl_matkul.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_matkul JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_matkul.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_matkul.id_fakultas Where tbl_fakultas.id_fakultas ='$id_fakultas' ");
+		}else{
+
+			$makul = $this->db->query("SELECT *, tbl_matkul.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_matkul JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_matkul.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_matkul.id_fakultas ");
+		}
 
 		return $makul;
 	}
@@ -55,16 +95,18 @@ class Kemeng_model extends CI_Model
 	public function get_namdosen()
 	{
 
-		$namadosen = $this->db->query("SELECT nama FROM tbl_dosen ORDER BY id_dosen");
+		$namadosen = $this->db->query("SELECT nip,nama FROM tbl_dosen ORDER BY id_dosen");
 
 		return $namadosen;
-    }
-    public function get_matkul($prodi)
+	}
+	
+	public function get_matkul($prodi)
 	{
-		return $this->db->select("id_matkul, nama_matkul")
+		return $this->db->select("id_matkul, nama_matkul,sks")
 					->order_by("nama_matkul", "ASC")
 					->get_where("tbl_matkul", ["id_prodi" => $prodi]);
 	}
+
 
 	public function get_prodi($fakultas)
 	{
@@ -73,6 +115,38 @@ class Kemeng_model extends CI_Model
 
 	function attendence_add($data)
 	{   
+		// var_dump($data);exit;
 		return $this->db->insert('tbl_absensi', $data);
+		
 	}
+
+	function get_absen_bulan($date, $nip) {
+		$date_t = explode('-', $date);
+		$index = $this->get_index_honor($nip)->row_array()['index'];
+
+		// echo $index;exit;
+		
+		$this->db->select("tbl_absensi.id_matkul AS 'Kode Mata Kuliah', tbl_matkul.nama_matkul AS 'Nama Mata Kuliah',
+			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', tbl_absensi.tanggal AS 'Tanggal',
+			tbl_absensi.sks AS 'DURASI (SKS)', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Honor'");
+		$this->db->from('tbl_absensi');
+		$this->db->join('tbl_matkul', "tbl_absensi.id_matkul=tbl_matkul.id_matkul");
+		$this->db->join('tbl_prodi', "tbl_matkul.id_prodi = tbl_prodi.id_prodi");
+		$this->db->where('YEAR(tbl_absensi.tanggal)', $date_t[1]);
+		$this->db->where('MONTH(tbl_absensi.tanggal)', $date_t[0]);
+		$this->db->where('tbl_absensi.nip', $nip);
+		$this->db->order_by('tbl_absensi.tanggal', 'ASC');
+		$res = $this->db->get();
+		return $res;
+	}
+
+	function get_index_honor($nip) {
+		$this->db->select("index");
+		$this->db->from("tbl_dosen");
+		$this->db->join('tbl_honor_dosen', "tbl_dosen.jabatan=tbl_honor_dosen.jabatan");
+		$this->db->where('tbl_dosen.nip', $nip);
+		$res = $this->db->get();
+		return $res;
+	}
+
 }

@@ -12,7 +12,8 @@ class Kemeng extends CI_Controller
 	function matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
 			$x['data'] = $data;
 
 			$this->load->view("include/head");
@@ -28,10 +29,14 @@ class Kemeng extends CI_Controller
 	function view_matkul(){
 
 		if ($this->session->userdata('nip') != NULL) {
-			$data = $this->Kemeng_model->get_makul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 			$x['data'] = $data;
 
-			$fakulll = $this->Kemeng_model->get_fakul()->result();
+			$id_fakultas = $this->session->userdata('role');
+			$fakulll = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
+			// var_dump($fakulll);
+			// exit();
 			$x['fakulll'] = $fakulll;
 
 			$this->load->view("include/head");
@@ -68,7 +73,8 @@ class Kemeng extends CI_Controller
 
 
 	function cobain(){
-		$data = $this->Kemeng_model->get_makul()->result();
+		$id_fakultas = $this->session->userdata('role');
+		$data = $this->Kemeng_model->get_makul($id_fakultas)->result();
 
 		$dataall = array();
 
@@ -83,19 +89,17 @@ class Kemeng extends CI_Controller
 
 			$sks = $r->sks;
 			$semester = $r->semester;
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				$opsi = "<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-id_prodi='$r->id_prodi'  data-nama_prodi='$r->nama_prodi' data-nama_matkul='$r->nama_matkul'
 				data-sks='$r->sks' data-id_fakultas='$r->id_fakultas' data-nama_fakultas='$r->nama_fakultas'
 				data-semester='$r->semester'
-				data-toggle='modal' data-target='#edit-data'> <button  data-toggle=
-				'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button>
+				data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
 				</a>
 
 				<a 
 				href='javascript:;' data-id_matkul='$r->id_matkul' data-nama_matkul='$r->nama_matkul'
-				<button  data-toggle=
-				'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
+				data-toggle='modal' data-target='#hapusmatkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
 				</a>";
 			}else{
 				$opsi = "";
@@ -206,22 +210,37 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
-		$data['nama_dosen'] = $this->input->post('nama_dosen', true);
+		$baru = $this->input->post('nama_dosen', true);
+		$hahaha = explode("|",$baru);
+		$nama = $hahaha[0];
+		$id = $hahaha[1];
+
+
+		$baru2 =$this->input->post('matkul', true);
+		$hihihih = explode("|",$baru2);
+		$idmat = $hihihih[0];
+		$sks = $hihihih[1];
+
+		$data['nip'] = $id;
+		$data['nama_dosen'] =$nama;
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
-		$data['id_matkul'] = $this->input->post('matkul', true);
+		$data['id_matkul'] = $idmat;
+		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
 		$data['tanggal'] = $this->input->post('tanggal', true);
 		$data['jam'] = $this->input->post('jam', true);
 		$data['kelas'] = $this->input->post('kelas', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
+		// var_dump($data);exit;
+
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 		else { 								
 			$this->session->set_flashdata('absen', ['danger', 'Data absensi gagal disimpan']); 
-			redirect('kemeng/view_matkul'); 			
+			redirect('kemeng'); 			
 		} 
 	}
 
@@ -239,11 +258,77 @@ class Kemeng extends CI_Controller
 		echo json_encode($prodi);
 	}
 
+	function jadwal_dosen(){
+		if ($this->session->userdata('nip') != NULL) {
+			$nip = $this->session->userdata('nip');
+			$dosen = $this->session->userdata('dosen');
+
+			if($nip == 'admin'){
+
+				$semester = $this->input->post('semester');
+				$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
+				$x['data'] = json_encode($data);
+
+				$this->session->set_flashdata('alert', 'SILAHKAN PILIH SEMESTER');
+
+				if($data == NULL && $semester != NULL){
+					$this->session->set_flashdata('alert', 'TIDAK ADA JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+				}
+				
+				if($data != NULL && $semester != NULL){
+					$this->session->set_flashdata('alert', 'JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+				}
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("jadwal_dosen",$x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/panel");
+				$this->load->view("include/footer");
+			}
+			
+			if($dosen != NULL){
+				$cek_dosen = $this->Kemeng_model->cek_dosen($nip);
+
+				if($cek_dosen != NULL){
+
+					$semester = $this->input->post('semester');
+					$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
+					$x['data'] = json_encode($data);
+
+					$this->session->set_flashdata('alert', 'SILAHKAN PILIH SEMESTER');
+
+					if($data == NULL && $semester != NULL){
+						$this->session->set_flashdata('alert', 'TIDAK ADA JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+					}
+					
+					if($data != NULL && $semester != NULL){
+						$this->session->set_flashdata('alert', 'JADWAL MENGAJAR DI SEMESTER '.$semester.'.');
+					}
+
+					$this->load->view("include/head");
+					$this->load->view("include/top-header");
+					$this->load->view("jadwal_dosen",$x);
+					$this->load->view("include/sidebar");
+					$this->load->view("include/panel");
+					$this->load->view("include/footer");
+
+				}
+			}else{
+				redirect("home");
+			}
+			
+		} else {
+			redirect("user");
+		}
+	}
+
 	function honor() {
 		if($this->session->userdata('nip') != NULL) {
 						
 			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
-			$x['uDate'] = date_format(new DateTime(),"d F Y");
+			$x['uDate'] = date_format(new DateTime(),"F Y");
+
 			$this->load->view("include/head");
 			$this->load->view("include/top-header");
 			$this->load->view("view_honor",$x);
@@ -253,5 +338,34 @@ class Kemeng extends CI_Controller
 		}else{
 			redirect("user");
 		}
+	}
+
+	function honor_table($date) {
+		$nip = $this->session->userdata('nip');
+		$data = $this->Kemeng_model->get_absen_bulan($date, $nip)->result();
+		// var_dump($data);exit;
+		if ($data) {
+			$html = "<table id='data-table-buttons' class='table table-striped table-bordered table-td-valign-middle' width='100%'>";
+			$html .= '<tr>';
+			$html .= '<th>No.</th>';
+			foreach($data[0] as $key=>$value){
+				$html .= '<th>' . htmlspecialchars($key) . '</th>';
+			}
+			$html .= '</tr>';
+
+			// data rows
+			$cc = 1;
+			foreach( $data as $key=>$value){
+				$html .= '<tr>';
+				$html .= '<td>' . $cc++ . '</td>';
+				foreach($value as $key2=>$value2){
+					$html .= '<td>' . htmlspecialchars(ucwords($value2)) . '</td>';
+				}
+				$html .= '</tr>';
+			}
+			$html .= '</table>';
+			echo $html;
+		}
+
 	}
 }

@@ -24,8 +24,8 @@
 				</div>
 				<div class ="table-responsive">
 					<div class="panel-body">
-						<h4 class="text-center">HONOR</h4><br>
-						
+						<h4 class="text-center">HONOR MENGAJAR</h4><br>
+						<div id="tbl-honor" class ="table-responsive"></div>
 					</div>
 				</div>
 				<!-- end panel-body -->
@@ -42,20 +42,35 @@
 <script>
 	// alert('test');
 	$('#date-filter').daterangepicker({
-		startDate: moment().format('MM[/01/]YYYY'),
-		endDate: "<?= $seDate; ?>",
+		startDate: "<?= $seDate; ?>",
+		singleDatePicker: true,
 		showDropdowns: true,
 		maxDate: moment(),
-		minYear: 2017,
+		minYear: 2019,
 		maxYear: parseInt(moment().format('YYYY'),10)
 		},
 		function(start, end, label) {
 			// start = start.format('01 MMMM YYYY');
-			$('#date-filter span').html(start.format('DD MMMM YYYY'));
+			$('#date-filter span').html(start.format('MMMM YYYY'));
+			update(start.format('MM-YYYY'));
+			// alert(start.format('MM-YYYY'));
 			// $('#date-filter span').html(start.format('DD MMMM YYYY'));
 			// $('#date-filter span').html(moment().format('MM[/01/]YYYY'));
 			// $(location).attr('href', "<?= base_url('d_peringkat');?>"+ "/" + start.format('YYYY-MM-DD'));
 			// alert(start.format('YYYY-MM-DD'));
 		}
 	);
+
+	function update(date) {
+		var uri = "<?= base_url().'kemeng/honor_table/'; ?>" + date;
+		$.ajax({
+			url: uri,
+			success: function(data){
+				// alert(data);
+				// var obj = JSON.parse(data);
+				// alert(data);
+				$('#tbl-honor').html(data);
+			}
+		});
+	}
 </script>
