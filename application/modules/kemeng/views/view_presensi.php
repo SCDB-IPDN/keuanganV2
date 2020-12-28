@@ -25,12 +25,20 @@
 				</div>
 				<!--start table-->
 				<div class="table-responsive">
-				<?php if($this->session->flashdata('absen') != NULL){ ?>
-				<div class="alert alert-<?php echo $this->session->flashdata('absen')[0] ?> alert-dismissible">
+				<?php if ($this
+    ->session
+    ->flashdata('absen') != NULL)
+{ ?>
+				<div class="alert alert-<?php echo $this
+        ->session
+        ->flashdata('absen') [0] ?> alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('absen')[1] ?>
+					<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this
+        ->session
+        ->flashdata('absen') [1] ?>
 				</div>
-				<?php } ?>
+				<?php
+} ?>
 				
 				<div class="panel-body">
 					<table id="data-matkul" class="table table-striped table-bordered table-td-valign-middle" width="100%">
@@ -48,30 +56,43 @@
 					</thead>
 					</table>
 				</div>
+
 				<!-- end table-->
-				<div class="table-responsive">
-					<div class="panel-body">
-						<form action="<?php echo base_url('kemeng/tambah_presensi'); ?>" method="POST">
-							<br>
-							<div class="row">
-								<div class="col-lg-8">
-									<label for="dosen">Nama Dosen:</label>
-									<select id="dosen" name="nama_dosen" class="form-control" style="width: 100%" > 
-										<option disabled selected>Nama Dosen..</option>
-										<?php foreach($nama_dosen as $dosen){?>
-											<option value="<?php echo $dosen->nama;?>|<?php echo $dosen->nip;?>"><?php echo $dosen->nama;?></option>
+				<!--tambah-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" id="addpresensi" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+	<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	   <h4 class="modal-title">Tambah Presensi</h4>
+	   <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+	   </div>
+
+		<form class="form-horizontal" action="<?php echo base_url('kemeng/tambah_presensi'); ?>" method="POST">
+		<div class="modal-body">
+         <div class="form-group">
+			<div class="row">
+			<div class="col-xl">
+			<label for="dosen">Nama Dosen:</label>
+			<select id="dosen" name="nama_dosen" class="form-control" style="width: 100%" > 
+			<option disabled selected>Nama Dosen..</option>
+			<?php foreach ($nama_dosen as $dosen)
+{ ?>
+			<option value="<?php echo $dosen->nama; ?>|<?php echo $dosen->nip; ?>"><?php echo $dosen->nama; ?></option>
 										
-										<!-- <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->id_dosen  ?> </option>  -->
+			<!-- <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->id_dosen ?> </option>  -->
 										
-										<?php } ?>
+			<?php
+} ?>
 									</select>
 									<br>
 									<label for="fakultas">Fakultas:</label>
 									<select class="form-control" id="fakultas" name="fakultas" required>
 										<option disabled selected> Pilih Fakultas </option>
-										<?php foreach($fakultas as $rows){?>
+										<?php foreach ($fakultas as $rows)
+{ ?>
 										<option value="<?php echo $rows->id_fakultas ?>"><?php echo $rows->nama_fakultas ?></option>
-										<?php } ?>
+										<?php
+} ?>
 									</select>
 									<br>
 									<label for="prodi">Prodi:</label>
@@ -87,9 +108,9 @@
 									<label for="kelas">Kelas:</label>
 									<input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" required>
 									<br>
-									<label for="tanggal">Tanggal:</label>
+									<!-- <label for="tanggal">Tanggal:</label>
 									<div class="input-group date" id="tanggal">
-										<input type="text" class="form-control" name="tanggal" autocomplete="off" placeholder="Tanggal" required>
+										<input type="text" class="form-control" name="tanggal" value ="<?php echo date('Y-m-d') ?>" placeholder="Tanggal" required>
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
@@ -97,16 +118,15 @@
 									<br>
 									<label for="jam">Jam:</label>
 									<div class="input-group date" id="jam">
-										<input type="text" class="form-control" name="jam" autocomplete="off" placeholder="Jam" required>
+										<input type="text" class="form-control" name="jam" value ="<?php echo date('H:i') ?>" placeholder="Jam" required>
 										<div class="input-group-addon">
 											<i class="fa fa-clock"></i>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div class="panel-body">
-								<div class="col-12">
-									<br>
+								<div class="col-xl">
 									<button type="submit" class="btn btn-blue" value="Cek">Submit</button>
 								</div>
 							</div>
@@ -117,3 +137,44 @@
 		</div>
 	</div>
 </div>
+<script>
+
+  $(document).ready(function() {
+
+    var url = '<?php echo base_url('kemeng/get_allp');?>';
+        // alert(url);
+
+        $('#data-presensi').dataTable({
+            // dom: 'Bfrtip',
+            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
+            buttons: [
+            'copy', 'excel', 'print'
+            ],
+            responsive: true,
+            "ajax": {
+              "url": url,
+              "dataSrc": ""
+            }
+          });
+      });
+
+    </script>
+
+
+<script>
+      $(document).ready(function() {
+            // Isi nilai pada field
+			modal.find('#id_absensi').attr("value",div.data('id_absensi'));
+			modal.find('#nama_dosen').attr("value",div.data('nama_dosen'));
+            modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
+            modal.find('#id_prodi').attr("value",div.data('id_prodi'));
+            modal.find('#nama_prodi').attr("value",div.data('nama_prodi'));
+            modal.find('#id_fakultas').attr("value",div.data('id_fakultas'));
+            modal.find('#nama_fakultas').attr("value",div.data('nama_fakultas'));
+			modal.find('#kelas').attr("value",div.data('kelas'));
+			modal.find('#tanggal').attr("value",div.data('tanggal'));
+            modal.find('#jam').attr("value",div.data('jam'));
+          });
+          });
+      });
+    </script>

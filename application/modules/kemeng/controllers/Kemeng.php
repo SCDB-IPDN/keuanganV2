@@ -227,8 +227,6 @@ class Kemeng extends CI_Controller
 		$data['id_matkul'] = $idmat;
 		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
-		$data['tanggal'] = $this->input->post('tanggal', true);
-		$data['jam'] = $this->input->post('jam', true);
 		$data['kelas'] = $this->input->post('kelas', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
@@ -256,6 +254,43 @@ class Kemeng extends CI_Controller
 		$fakultas = $this->input->post('data');
 		$prodi = $this->Kemeng_model->get_prodi($fakultas)->result();
 		echo json_encode($prodi);
+	}
+
+	function get_allp(){
+		$id_absensi = $this->session->userdata('role');
+		$data = $this->Kemeng_model->get_presensi($id_absensi)->result();
+
+		$allp = array();
+
+		$no = 1;
+		foreach($data as $r) {
+			$id_absensi = $r->id_absensi;
+			$nama_dosen = $r->nama_dosen;
+			$nama_matkul = $r->nama_matkul;
+			$nama_prodi = $r->nama_prodi;
+			$id_fakultas = $r->id_fakultas;
+			$nama_fakultas = $r->nama_fakultas;
+			$id_prodi = $r->id_prodi;
+			$kelas = $r->kelas;
+			$jam = $r->jam;
+			$tanggal = $r->tanggal;
+			$allp[] = array(
+				$no++,
+				$nama_dosen,
+				$nama_fakultas,
+				$nama_prodi,
+				// $id_matkul,
+				$nama_matkul,
+	// $id_fakultas,
+				
+	// $id_prodi,
+				
+				$kelas,
+				$tanggal,
+				$jam
+			);
+		}
+		echo json_encode($allp);
 	}
 
 	function honor() {

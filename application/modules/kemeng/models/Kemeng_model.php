@@ -62,6 +62,15 @@ class Kemeng_model extends CI_Model
 		return $tamkul;
 	}
 
+	public function get_presensi()
+	{
+	
+			$pres = $this->db->query("SELECT * FROM tbl_absensi group BY id_absensi");
+
+		return $pres;
+	}
+
+
 	function cekdata($id)
 	{   
 		$sql = $this->db->query("SELECT id_matkul FROM tbl_matkul where id_matkul='$id' ")->result();
@@ -78,7 +87,7 @@ class Kemeng_model extends CI_Model
 	public function get_namdosen()
 	{
 
-		$namadosen = $this->db->query("SELECT nip,nama FROM tbl_plot_dosen ORDER BY nip");
+		$namadosen = $this->db->query("SELECT DISTINCT nip,nama FROM tbl_plot_dosen ORDER BY nip");
 
 		return $namadosen;
 	}
