@@ -302,7 +302,8 @@ class Kemeng extends CI_Controller
 				$html .= '<td>' . $cc++ . '</td>';
 				foreach($value as $key2=>$value2){
 					if ($key2 == 'Jumlah Honor') {
-						$th += str_replace(".", "", $value2);
+						// $th += str_replace(".", "", $value2);
+						$th += intval(preg_replace("/[^0-9]/", "", $value2));
 					}
 					if ($key2 == "Durasi (SKS)") {
 						$al = "align='right'";

@@ -110,16 +110,16 @@ class Kemeng_model extends CI_Model
 		// echo $index;exit;
 		
 		$this->db->select("tbl_absensi.id_matkul AS 'Kode Mata Kuliah', tbl_matkul.nama_matkul AS 'Nama Mata Kuliah',
-			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', tbl_absensi.tanggal AS 'Tanggal',
-			tbl_absensi.jam AS 'Shift', tbl_absensi.sks AS 'Durasi (SKS)', FORMAT($index,0,'de_DE') AS 'Honor Per SKS',
-			tbl_absensi.sks AS 'Indek', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Jumlah Honor'");
+			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', DATE(tbl_absensi.timestamp) AS 'Tanggal',
+			TIME(tbl_absensi.timestamp) AS 'Shift', tbl_absensi.sks AS 'Durasi (SKS)', FORMAT($index,0,'de_DE') AS 'Honor Per SKS',
+			tbl_absensi.indeks AS 'Indeks', FORMAT(tbl_absensi.indeks*$index,0,'de_DE') AS 'Jumlah Honor'");
 		$this->db->from('tbl_absensi');
 		$this->db->join('tbl_matkul', "tbl_absensi.id_matkul=tbl_matkul.id_matkul");
 		$this->db->join('tbl_prodi', "tbl_matkul.id_prodi = tbl_prodi.id_prodi");
-		$this->db->where('YEAR(tbl_absensi.tanggal)', $date_t[1]);
-		$this->db->where('MONTH(tbl_absensi.tanggal)', $date_t[0]);
+		$this->db->where('YEAR(tbl_absensi.timestamp)', $date_t[1]);
+		$this->db->where('MONTH(tbl_absensi.timestamp)', $date_t[0]);
 		$this->db->where('tbl_absensi.nip', $nip);
-		$this->db->order_by('tbl_absensi.tanggal', 'ASC');
+		$this->db->order_by('DATE(tbl_absensi.timestamp)', 'ASC');
 		$res = $this->db->get();
 		return $res;
 	}
