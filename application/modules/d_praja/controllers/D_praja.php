@@ -326,51 +326,62 @@ function tambah_status()
    $tingkatann = $this->input->post('status', true);
    $keterangann = $this->input->post('keterangan', true);
 
-   $nya = array();
-   array_push($nya, array(
-    'id'      => $data['id'],
-    'nama'      => $data['nama'],
-    'status'      => $tingkatann,
-    'tingkat'      => $ting,
-    'angkatan' => $ang,
-    'keterangan' => $keterangann
-
-  ));
-    // print("<pre>".print_r($nya,true)."</pre>");
-   $up = $this->db->insert_batch('hukuman', $nya);
 
 
-   if($this->input->post('status', true) != "turuntingkat"){
-     $haha = $this->input->post('status', true);
+   $config['upload_path']          = './uploads/';
+   $config['allowed_types']        = 'pdf|docx';
+   $config['max_size']             = 1000;
+   $this->load->library('upload', $config);
+   if ($this->upload->do_upload('fileToUpload')){
+    $nya = array();
+    array_push($nya, array(
+      'id'      => $data['id'],
+      'nama'      => $data['nama'],
+      'status'      => $tingkatann,
+      'tingkat'      => $ting,
+      'angkatan' => $ang,
+      'keterangan' => $keterangann,
+      'bukti'=> $this->upload->data("file_name")
+
+    ));
+   
+    $up = $this->db->insert_batch('hukuman', $nya);
+  }
+
+
+
+  if($this->input->post('status', true) != "turuntingkat"){
+   $haha = $this->input->post('status', true);
        // echo "$haha";
-   }else{
-     $haha = $data['status'];
-   }
+ }else{
+   $haha = $data['status'];
+ }
 
-   $uptudate = array();
-   $uptudate = array(
-     'id'      => $data['id'],
-     'nama'      => $data['nama'],
-     'status'      => $haha,
-     'tingkat'      => $ting,
-     'angkatan' => $ang,
-   );
+ $uptudate = array();
+ $uptudate = array(
+   'id'      => $data['id'],
+   'nama'      => $data['nama'],
+   'status'      => $haha,
+   'tingkat'      => $ting,
+   'angkatan' => $ang
+
+ );
     // print("<pre>".print_r($uptudate,true)."</pre>");
     // exit();
-   $nih = $this->db->where('id',$data['id']);
-   $nih = $this->db->update('praja',$uptudate); 
+ $nih = $this->db->where('id',$data['id']);
+ $nih = $this->db->update('praja',$uptudate); 
 
 
    // $this->db->update_batch('praja', $uptudate, '$data[id]');
 // exit();
 
-   if (!$up && $nih) {
-    $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
-    redirect('d_praja/editstatus');
-  } else {
-    $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
-    redirect('d_praja/editstatus');
-  }
+ if (!$up && $nih) {
+  $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
+  redirect('d_praja/editstatus');
+} else {
+  $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
+  redirect('d_praja/editstatus');
+}
 
 } else {
   redirect("user");
