@@ -70,7 +70,7 @@
                     <td><?= $x['angkatan']; ?>
                     <td><?= $x['status']; ?></td>
                     <td><?= $x['keterangan']; ?></td>
-                    <td><a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
+                    <td><a href='<?php echo base_url('uploads/'. $x['bukti'])?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
                     
                   </tr>
                 <?php endforeach; ?>

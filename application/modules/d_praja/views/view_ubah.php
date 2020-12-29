@@ -25,7 +25,7 @@
         </div>
         <div class="table-responsive">
           <div class="panel-body">
-            <form action="<?php echo base_url('d_praja/tambah_status'); ?>" method="POST">
+            <form action="<?php echo base_url('d_praja/tambah_status'); ?>" method="POST" enctype="multipart/form-data">
               <h3> DATA DIRI </h3>
               <br>
               <div class="row">
