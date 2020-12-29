@@ -23,7 +23,7 @@ class Kemeng_model extends CI_Model
 	public function get_fakul()
 	{
 	
-			$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
+		$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
 
 		return $fakul;
 	}
