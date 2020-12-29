@@ -109,9 +109,9 @@ class Kemeng extends CI_Controller
 				$no++,
 				$id_matkul,
 				$nama_matkul,
-	// $id_fakultas,
+				// $id_fakultas,
 				$nama_fakultas,
-	// $id_prodi,
+				// $id_prodi,
 				$nama_prodi,
 				$sks,
 				$semester,
@@ -191,10 +191,10 @@ class Kemeng extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('nip') != NULL) {
-			$fakultas = $this->Kemeng_model->get_fakul()->result();
+			//$fakultas = $this->Kemeng_model->get_fakul()->result();
 			$nama_dosen = $this ->Kemeng_model->get_namdosen()->result();
 
-			$x['fakultas'] = $fakultas;
+			//$x['fakultas'] = $fakultas;
 			$x['nama_dosen'] = $nama_dosen;
 
 			$this->load->view("include/head");
@@ -210,24 +210,14 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
-		$baru = $this->input->post('nama_dosen', true);
-		$hahaha = explode("|",$baru);
-		$nama = $hahaha[0];
-		$id = $hahaha[1];
-
-
-		$baru2 =$this->input->post('matkul', true);
-		$hihihih = explode("|",$baru2);
-		$idmat = $hihihih[0];
-		$sks = $hihihih[1];
-
-		$data['nip'] = $id;
-		$data['nama_dosen'] =$nama;
+		$data['nip'] = $this->input->post('nip_dosen', true);
+		$data['nama_dosen'] =$this->input->post('nama_dosen', true);
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
-		$data['id_matkul'] = $idmat;
-		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
+		$data['id_matkul'] = $this->input->post('matkul', true);
+		$data['sks'] = $this->input->post('sks', true);
 		$data['kelas'] = $this->input->post('kelas', true);
+		$data['indeks'] = $this->input->post('indeks', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
 		// var_dump($data);exit;
@@ -244,52 +234,65 @@ class Kemeng extends CI_Controller
 
 	function get_matkul() 
 	{
-		$prodi = $this->input->post('data');
-		$fakultaz = $this->Kemeng_model->get_matkul($prodi)->result();
+		$nip = $this->input->post('nip');
+		$fakultas = $this->input->post('fakultas');
+		$prodi = $this->input->post('prodi');
+		$fakultaz = $this->Kemeng_model->get_matkul($nip, $fakultas, $prodi)->result();
 		echo json_encode($fakultaz);
 	}
 
 	function get_prodi() 
 	{
-		$fakultas = $this->input->post('data');
-		$prodi = $this->Kemeng_model->get_prodi($fakultas)->result();
+		$nip = $this->input->post('nip');
+		$fakultas = $this->input->post('fakultas');
+		$prodi = $this->Kemeng_model->get_prodi($nip, $fakultas)->result();
 		echo json_encode($prodi);
+	}
+
+	function get_fakultas() 
+	{
+		$nip = $this->input->post('data');
+		$fakultas = $this->Kemeng_model->get_fakultas($nip)->result();
+		echo json_encode($fakultas);
+	}
+
+	function get_sks() 
+	{
+		$nip = $this->input->post('nip');
+		$fakultas = $this->input->post('fakultas');
+		$prodi = $this->input->post('prodi');
+		$matkul = $this->input->post('matkul');
+		$data = $this->Kemeng_model->get_sks($nip, $fakultas, $prodi, $matkul)->result();
+		echo json_encode($data);
 	}
 
 	function get_allp(){
 		$id_absensi = $this->session->userdata('role');
 		$data = $this->Kemeng_model->get_presensi($id_absensi)->result();
+		
 
 		$allp = array();
 
 		$no = 1;
 		foreach($data as $r) {
-			$id_absensi = $r->id_absensi;
+			$nip = $r->nip;
 			$nama_dosen = $r->nama_dosen;
-			$nama_matkul = $r->nama_matkul;
-			$nama_prodi = $r->nama_prodi;
-			$id_fakultas = $r->id_fakultas;
-			$nama_fakultas = $r->nama_fakultas;
-			$id_prodi = $r->id_prodi;
+			$matkul = $r->nama_matkul;
+			$prodi = $r->nama_prodi;
+			$fakultas = $r->nama_fakultas;
 			$kelas = $r->kelas;
-			$jam = $r->jam;
-			$tanggal = $r->tanggal;
+		
 			$allp[] = array(
 				$no++,
+				$nip,
 				$nama_dosen,
-				$nama_fakultas,
-				$nama_prodi,
-				// $id_matkul,
-				$nama_matkul,
-	// $id_fakultas,
-				
-	// $id_prodi,
-				
-				$kelas,
-				$tanggal,
-				$jam
+				$matkul,
+				$fakultas,
+				$prodi,
+				$kelas
 			);
 		}
+
 		echo json_encode($allp);
 	}
 

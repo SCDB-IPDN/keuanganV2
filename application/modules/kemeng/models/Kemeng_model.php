@@ -3,15 +3,6 @@
 class Kemeng_model extends CI_Model
 {
 
-	public function get_fakul()
-	{
-	
-			$fakul = $this->db->query("SELECT * FROM tbl_fakultas group BY nama_fakultas");
-
-		return $fakul;
-	}
-
-
 	public function get_fakultassss($id_fakultas)
 	{
 
@@ -62,12 +53,25 @@ class Kemeng_model extends CI_Model
 		return $tamkul;
 	}
 
-	public function get_presensi()
+	public function get_presensi($id_absensi)
 	{
-	
-			$pres = $this->db->query("SELECT * FROM tbl_absensi group BY id_absensi");
-
-		return $pres;
+		if ($id_absensi != "Admin"){
+			$this->db->select("tbl_absensi.nip, tbl_absensi.nama_dosen, tbl_absensi.kelas, tbl_fakultas.nama_fakultas, tbl_prodi.nama_prodi, tbl_matkul.nama_matkul");
+			$this->db->from("tbl_absensi");
+			$this->db->join("tbl_fakultas", "tbl_fakultas.id_fakultas =  tbl_absensi.id_fakultas");
+			$this->db->join("tbl_prodi", "tbl_prodi.id_prodi =  tbl_absensi.id_prodi");
+			$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_absensi.id_matkul");
+			$this->db->where("tbl_absensi.tbl_absensi", $id_absensi);
+			return $this->db->get();
+		} else {
+			$this->db->select("tbl_absensi.nip, tbl_absensi.nama_dosen, tbl_absensi.kelas, tbl_fakultas.nama_fakultas, tbl_prodi.nama_prodi, tbl_matkul.nama_matkul");
+			$this->db->from("tbl_absensi");
+			$this->db->join("tbl_fakultas", "tbl_fakultas.id_fakultas =  tbl_absensi.id_fakultas");
+			$this->db->join("tbl_prodi", "tbl_prodi.id_prodi =  tbl_absensi.id_prodi");
+			$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_absensi.id_matkul");
+			$this->db->group_by("id_absensi");
+			return $this->db->get();
+		}
 	}
 
 
@@ -92,17 +96,38 @@ class Kemeng_model extends CI_Model
 		return $namadosen;
 	}
 	
-	public function get_matkul($prodi)
+	public function get_matkul($nip, $fakultas, $prodi)
 	{
-		return $this->db->select("id_matkul, nama_matkul,sks")
+		return $this->db->distinct()->select("id_matkul, nama_matkul")
 					->order_by("nama_matkul", "ASC")
-					->get_where("tbl_matkul", ["id_prodi" => $prodi]);
+					->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas, "id_prodi" => $prodi]);
 	}
 
 
-	public function get_prodi($fakultas)
+	public function get_prodi($nip, $fakultas)
 	{
-		return $this->db->order_by("nama_prodi", "ASC")->get_where("tbl_prodi", ["id_fakultas" => $fakultas]);
+		return $this->db->distinct()->select("id_prodi, nama_prodi")
+					->order_by("nama_prodi", "ASC")
+					->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas]);
+	}
+
+	public function get_fakultas($nip)
+	{
+		return $this->db->distinct()->select("id_fakultas, nama_fakultas")
+					->order_by("nama_fakultas", "ASC")
+					->get_where("tbl_plot_dosen", ["nip" => $nip]);
+	}
+
+	public function get_sks($nip, $fakultas, $prodi, $matkul)
+	{
+		$this->db->select("tbl_plot_dosen.nama, tbl_plot_dosen.indeks, tbl_matkul.sks");
+		$this->db->from("tbl_plot_dosen");
+		$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_plot_dosen.id_matkul");
+		$this->db->where("tbl_plot_dosen.nip", $nip);
+		$this->db->where("tbl_plot_dosen.id_fakultas", $fakultas);
+		$this->db->where("tbl_plot_dosen.id_prodi", $prodi);
+		$this->db->where("tbl_plot_dosen.id_matkul", $matkul);
+		return $this->db->get();
 	}
 
 	function attendence_add($data)
