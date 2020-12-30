@@ -28,12 +28,13 @@
 
         <!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
         <div class="table-responsive">
-          <?php if ($this->session->flashdata('matkul') != NULL) { ?>
-            <div class="alert alert-success alert-dismissible">
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <strong>Notif!</strong> <?php echo $this->session->flashdata('matkul') ?>
-            </div>
-          <?php } ?>
+		  	<?php if ($this->session->flashdata('absen') != NULL) { ?>
+				<div class="alert alert-<?php echo $this->session->flashdata('absen') [0] ?> alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('absen') [1] ?>
+				</div>
+			<?php } ?> 
+		 
           <!-- <a href="<?php echo base_url('d_praja/export'); ?>">Export Data</a> -->
 
           <div class="panel-body">
@@ -43,15 +44,12 @@
                   <th>No</th>
                   <th>NIP</th>
                   <TH>NAMA DOSEN </TH>
-                  <!-- <th>ID FAKULTAS</th> -->
                   <th>NAMA MATKUL</th>
-                  <!-- <th>ID PRODI</th> -->
-                  
                   <th>NAMA FAKULTAS</th>
                   <th>NAMA PRODI</th>
-                  <th>KELAS</th>
-
-                  
+				  <th>KELAS</th>
+				  <th>TANGGAL</th>
+				  <th>JAM</th>
                 </tr>
               </thead>
 
@@ -104,8 +102,8 @@
 								<label for="kelas">Kelas:</label>
 								<input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" required>
 								<br>
-								<input type="hidden" name="nama_dosen" id="nama_dosen">
-								<input type="hidden" name="sks" id="sks">
+								<!-- <input type="hidden" name="nama_dosen" id="nama_dosen">
+								<input type="hidden" name="sks" id="sks"> -->
 								<input type="hidden" name="indeks" id="indeks">
 								<!-- <label for="tanggal">Tanggal:</label>
 								<div class="input-group date" id="tanggal">
@@ -161,6 +159,3 @@
       });
 
     </script>
-
-
-  

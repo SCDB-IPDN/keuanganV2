@@ -210,17 +210,26 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
+		$crot=$this->input->post('nip_dosen', true);
+		$ecek = $this->db->query("SELECT nama FROM tbl_dosen WHERE nip = '$crot'")->result();
+
+		$crott = $this->input->post('matkul', true);
+		$ecekk = $this->db->query("SELECT sks FROM tbl_matkul WHERE id_matkul = '$crott'")->result();
+
+		// $crottt = $this->input->post('indeks', true);
+		// $ecekkk = $this->db->query("SELECT sks FROM tbl_matkul WHERE id_matkul >= '$crottt'")->result();
+
 		$data['nip'] = $this->input->post('nip_dosen', true);
-		$data['nama_dosen'] =$this->input->post('nama_dosen', true);
+		$data['nama_dosen'] = $ecek[0]->nama;
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
 		$data['id_prodi'] = $this->input->post('prodi', true);
 		$data['id_matkul'] = $this->input->post('matkul', true);
-		$data['sks'] = $this->input->post('sks', true);
+		$data['sks'] = $ecekk[0]->sks;
 		$data['kelas'] = $this->input->post('kelas', true);
 		$data['indeks'] = $this->input->post('indeks', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
-		// var_dump($data);exit;
+
 
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
@@ -281,6 +290,10 @@ class Kemeng extends CI_Controller
 			$prodi = $r->nama_prodi;
 			$fakultas = $r->nama_fakultas;
 			$kelas = $r->kelas;
+			$timestamp = $r->timestamp;
+			$date_time = explode(" ", $timestamp);
+			$tanggal = $date_time[0];
+			$jam = substr($date_time[1], 0, 5);
 		
 			$allp[] = array(
 				$no++,
@@ -289,7 +302,9 @@ class Kemeng extends CI_Controller
 				$matkul,
 				$fakultas,
 				$prodi,
-				$kelas
+				$kelas,
+				$tanggal,
+				$jam
 			);
 		}
 
