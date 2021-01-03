@@ -117,10 +117,10 @@ class Kemeng_model extends CI_Model
 	}
 	public function edit_plot($editplot){
 		
-		$id_matkul = $editplot['id'];
-		$edit = $this->db->where('id', $id)->update('tbl_plot_dosen', $editplot);
+		$id_plot = $editplot['id'];
+		$edit = $this->db->where('id', $id_plot)->update('tbl_plot_dosen', $editplot);
 
-		return $ubahmatkul; 	
+		return $edit; 	
 	}
 
 

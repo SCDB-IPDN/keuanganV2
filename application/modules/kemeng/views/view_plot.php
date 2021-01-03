@@ -42,8 +42,8 @@
         					<th>Tanggal</th>
         					<th>Jam Mengajar</th>
         					<th>Kelas</th>
-                  <th>Nama Fakultas</th>
                   <th>Semester</th>
+                  <th>Nama Fakultas</th>
                   <?php if($this->session->userdata('role') == 'Admin'){?>
                     <th>OPSI</th>
                   <?php } ?>
@@ -97,7 +97,7 @@
             </div>
             <div class="form-group">
             	<label class="col-form-label">Jam :</label>
-            	<input type="text" class="form-control" id="jam" name="jam" required>
+            	<input type="time" class="form-control" id="jam" name="jam" required>
             </div>
             <div class="form-group">
             	<label class="col-form-label">Kelas :</label>
@@ -140,56 +140,34 @@
          </div>
          <form class="form-horizontal" action="<?php echo base_url('kemeng/edit_plot')?>" method="post" enctype="multipart/form-data" role="form">
            <div class="modal-body">
-             <div class="form-group">
-              <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">Nama Dosen:</label>
-                  <input type="text" class="form-control" id="nama" name="nama" readonly="">
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Nama Matkul:</label>
-                  <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
-                </div>
-              </div>
+           <div class="form-group">
+            	<label class="col-form-label">Nama Dosen :</label>
+            	<input type="text" class="form-control" id="nama" name="nama" readonly="">
+            </div>
+           <div class="form-group">
+            	<label class="col-form-label">Tanggal :</label>
+            	<input type="date" class="form-control" id="tanggal" name="tanggal" required>
             </div>
             <div class="form-group">
-              <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">Kode Fakultas:</label>
-                  <input type="text" class="form-control" id="id_fakultas" name="id_fakultas" readonly="">
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Nama Fakultas:</label>
-                  <input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
-                </div>
-              </div>
+            	<label class="col-form-label">Nama Matkul :</label>
+            	<input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
             </div>
             <div class="form-group">
-              <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">Kode Prodi:</label>
-                  <input type="text" class="form-control" id="id_prodi" name="id_prodi" readonly="">
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Nama Prodi:</label>
-                  <input type="text" class="form-control" id="nama_prodi" name="nama_prodi" readonly="">
-                </div>
-              </div>
+            	<label class="col-form-label">Jam :</label>
+            	<input type="time" class="form-control" id="jam" name="jam" required>
             </div>
-
             <div class="form-group">
-              <div class="row">
-                <div class="col-xl-5">
-                  <label class="col-form-label">SKS:</label>
-                  <input type="text" class="form-control" id="sks" name="sks" required="">
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Semester:</label>
-                  <input type="text" class="form-control" id="semester" name="semester" required="">
-                </div>
-              </div>
+            	<label class="col-form-label">Kelas :</label>
+            	<input type="text" class="form-control" id="kelas" name="kelas" required>
             </div>
-          </div>
+            <div class="form-group">
+            	<label class="col-form-label">Semester :</label>
+            	<input type="text" class="form-control" id="semester" name="semester" readonly="">
+            </div>
+            <div class="form-group">
+            	<label class="col-form-label">Nama Fakultas :</label>
+            	<input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
+            </div>
           <div class="modal-footer">
            <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
            <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
@@ -198,8 +176,44 @@
      </div>
    </div>
  </div>
+ <!-- END Modal Edit -->
+
+ <!-- Modal HAPUS  -->
+<div class="modal fade" id="hapusplot" tabindex="-1" role="dialog" aria-labelledby="hapusplot" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hapusmatkul">Hapus Data Plot</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="hapus_matkul">
+          <div class="modal-body">
+            <p>Anda yakin akan menghapus Data : </p>
+            <div class="form-group">
+          <div class="row">
+            <div class="col-xl">
+              <input type="hidden" id="id" name="id_matkul">
+              <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+            </div>
+          </div>
+        </div>
+
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="id_dosenxx" name="id_dosen" >
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+            <button class="btn btn-danger">Hapus</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- END Modal Edit -->
+</div>
+<!-- END Modal Hapus -->
 </div>
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
@@ -236,22 +250,21 @@
             var modal          = $(this)
 
             // Isi nilai pada field
+            modal.find('#tanggal').attr("value",div.data('tanggal'));
             modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#jam').attr("value",div.data('jam'));
+            modal.find('#kelas').attr("value",div.data('kelas'));
             modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
-            modal.find('#id_prodi').attr("value",div.data('id_prodi'));
-            modal.find('#nama_prodi').attr("value",div.data('nama_prodi'));
-            modal.find('#id_fakultas').attr("value",div.data('id_fakultas'));
             modal.find('#nama_fakultas').attr("value",div.data('nama_fakultas'));
-            modal.find('#sks').attr("value",div.data('sks'));
             modal.find('#semester').attr("value",div.data('semester'));
           });
         // Untuk sunting
-        $('#hapusmatkul').on('show.bs.modal', function (event) {
+        $('#hapusplot').on('show.bs.modal', function (event) {
             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
             var modal          = $(this)
 
             // Isi nilai pada field
-            modal.find('#id_matkul').attr("value",div.data('id_matkul'));
+            modal.find('#id').attr("value",div.data('id_matkul'));
             modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
           });
       });

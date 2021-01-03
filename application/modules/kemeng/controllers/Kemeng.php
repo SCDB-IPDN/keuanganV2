@@ -213,8 +213,10 @@ class Kemeng extends CI_Controller
                $data = $this->Kemeng_model->get_all_plot()->result();
                $tp = $this->Kemeng_model->get_nama()->result();
                $mk = $this->Kemeng_model->get_nama_matkul()->result();
-               $fk = $this->Kemeng_model->get_nama_fakultas()->result();
+			   $fk = $this->Kemeng_model->get_nama_fakultas()->result();
+			   $fakultas = $this->Kemeng_model->get_fakul()->result();
 
+			   $x['fakultas'] = $fakultas;
                $x['data'] = $data;
                $x['tp'] = $tp;
                $x['mk'] = $mk;
@@ -273,10 +275,10 @@ class Kemeng extends CI_Controller
 	
 		if (!$result) { 							
 			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
-			redirect('Kemeng/plot'); 			
+			redirect('kemeng/plot'); 			
 		} else { 								
 			$this->session->set_flashdata('plot', 'DATA BERHASIL DIUBAH.');			
-			redirect('Kemeng/plot'); 			
+			redirect('kemeng/plot'); 			
 		}
 	}
 
@@ -287,7 +289,7 @@ class Kemeng extends CI_Controller
 		$no = 1;
    
 		foreach($data as $r) {
-			 $nama = $r->nama;
+			 $nama = $r->nama.'|'.$r->nip;
 			 $nama_matkul = $r->nama_matkul; 
 			 $tanggal = $r->tanggal; 
 			 $jam = $r->jam;
@@ -304,7 +306,7 @@ class Kemeng extends CI_Controller
 				  <a 
 				  href='javascript:;' data-nama='$r->nama'
 				  <button  data-toggle=
-				  'modal' data-target='#hapusmatkul' class='btn btn-danger'>Hapus</button>
+				  'modal' data-target='#hapusplot' class='btn btn-danger'>Hapus</button>
 				  </a>"; ;
 			 }else{
 				  $aksi = "";
@@ -319,6 +321,7 @@ class Kemeng extends CI_Controller
 				  $kelas,
 				  $semester,
 				  $nama_fakultas,
+				  $aksi,
 			 );
 		}
 		
