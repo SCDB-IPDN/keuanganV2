@@ -129,6 +129,18 @@
 			</li>
 			<!-- END KEPRAJAAN -->
 
+			<!-- HUMAS -->
+			<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-handshake"></i>
+					<span>Humas</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?>"><a href="<?php echo base_url('berita');?>">BERITA</a></li>
+				</ul>
+			</li>
+
 			<!-- PERENCANAAN -->
 			<li class="<?php echo $this->uri->segment(2) == "span" || $this->uri->segment(2) == "span_jatinangor" || $this->uri->segment(1) == "d_peringkat" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">

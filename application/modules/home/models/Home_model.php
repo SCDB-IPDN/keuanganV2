@@ -1,6 +1,17 @@
 <?php
 class Home_model extends CI_Model{
 
+	// Listing
+	public function listing()
+	{
+		$this->db->select('*');
+		$this->db->from('berita');
+		$this->db->where('status_berita','Publish');
+		$this->db->order_by('id_berita','DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	// Kepegawaian
 	public function jumlah_peg()
 	{
