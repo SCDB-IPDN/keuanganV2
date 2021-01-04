@@ -115,13 +115,17 @@ class Kemeng_model extends CI_Model
 	return $result;
 
 	}
-	public function edit_plot($editplot){
-		
-		$id_plot = $editplot['id'];
-		$edit = $this->db->where('id', $id_plot)->update('tbl_plot_dosen', $editplot);
+	function edit_plot($editplot)
+  	{ 
+    $no = $editplot['id'];
+    $hasil = $this->db->where('id', $no)->update('tbl_plot_dosen', $editplot);
+    
+    return $hasil;    
+  	}
 
-		return $edit; 	
+	function hapus_plot($id){
+
+		$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id= '$id' ");
+		return $hasil;
 	}
-
-
 }

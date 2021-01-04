@@ -206,7 +206,7 @@ class Kemeng extends CI_Controller
 
 	 //PLOT
 
-     function plot()
+     function plot ()
      {
           if($this->session->userdata('nip') != NULL)
           {
@@ -235,7 +235,8 @@ class Kemeng extends CI_Controller
 	 }
 	 
 	 public function tambah_plot()
-	 {		
+	 {
+		   $plot['id'] = $this->input->post('id', true);
 		   $plot['nama'] = $this->input->post('nama', true);
 		   $plot['nama_matkul'] = $this->input->post('nama_matkul', true);
 		   $plot['tanggal'] = $this->input->post('tanggal', true);
@@ -243,6 +244,8 @@ class Kemeng extends CI_Controller
 		   $plot['kelas'] = $this->input->post('kelas', true);
 		   $plot['semester'] = $this->input->post('semester', true);
 		   $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+		   $plot['id_prodi'] = $this->input->post('id_prodi', true);
+		   $plot['id_fakultas'] = $this->input->post('id_fakultas', true);
 		
 		   $pisah = explode("|", $plot['nama']);
 		   $nama = $pisah[0];
@@ -263,6 +266,7 @@ class Kemeng extends CI_Controller
 
 	 function edit_plot(){
 
+		$editplot['no'] = $this->input->post('no', true);
 		$editplot['nama'] = $this->input->post('nama', true);
 		$editplot['nama_matkul'] = $this->input->post('nama_matkul', true);
 		$editplot['tanggal'] = $this->input->post('tanggal', true);
@@ -272,7 +276,7 @@ class Kemeng extends CI_Controller
 		$editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
 		
 		$result = $this->Kemeng_model->edit_plot($editplot);
-	
+			
 		if (!$result) { 							
 			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
 			redirect('kemeng/plot'); 			
@@ -289,6 +293,7 @@ class Kemeng extends CI_Controller
 		$no = 1;
    
 		foreach($data as $r) {
+			$id = $r->id;
 			 $nama = $r->nama.'|'.$r->nip;
 			 $nama_matkul = $r->nama_matkul; 
 			 $tanggal = $r->tanggal; 
@@ -296,11 +301,12 @@ class Kemeng extends CI_Controller
 			 $kelas = $r->kelas;
 			 $semester = $r->semester;
 			 $nama_fakultas = $r->nama_fakultas;
+			 $nama_prodi = $r->nama_prodi;
 						  
 			 if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
 				  $aksi = "<a href='javascript:; 'data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
 				  data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
-				  data-nama_fakultas='$r->nama_fakultas' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
+				  data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
 				  'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button> </a>
 				  
 				  <a 
@@ -321,13 +327,29 @@ class Kemeng extends CI_Controller
 				  $kelas,
 				  $semester,
 				  $nama_fakultas,
+				  $nama_prodi,
 				  $aksi,
 			 );
 		}
 		
 		echo json_encode($plot);
    }
-   
+
+   function hapus_plot()
+	{
+		$id = $this->input->post('no');
+
+		$hasil = $this->Kemeng_model->hapus_plot($id);
+
+		if (!$hasil) { 							
+			$this->session->set_flashdata('plot', 'DATA GAGAL DIHAPUS.');				
+			redirect('kemeng/plot'); 			
+		} else { 								
+			$this->session->set_flashdata('plot', 'DATA BERHASIL DIHAPUS.');	
+			redirect('kemeng/plot'); 			
+		}
+		
+	}
    //END PLOT
 
  	function tambah_presensi()

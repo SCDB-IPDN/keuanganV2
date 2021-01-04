@@ -30,8 +30,7 @@
           <strong>Notif!</strong> <?php echo $this->session->flashdata('plot') ?>
         </div>
         <?php } ?>
-        
-        <div class="table-responsive">
+
         	<div class="panel-body">
         		<table id="tbl-plot" class="table table-striped table-bordered table-td-valign-middle" width="100%">
         			<thead>
@@ -44,6 +43,7 @@
         					<th>Kelas</th>
                   <th>Semester</th>
                   <th>Nama Fakultas</th>
+                  <th>Nama Progdi</th>
                   <?php if($this->session->userdata('role') == 'Admin'){?>
                     <th>OPSI</th>
                   <?php } ?>
@@ -56,7 +56,6 @@
         </div>
       </div>
     </div>
-  </div>
   <!-- END TABEL -->
 
   <!-- Modal ADD PLOT -->
@@ -111,15 +110,30 @@
             		<option>GENAP 2020/2021</option>
             	</select>
             </div>
-            <div class="form-group">
-            	<label class="col-form-label">Nama Fakultas :</label>
-            	<select class="form-control" id="nama_fakultas" name="nama_fakultas" required>
-            		<option>--Fakultas--</option>
-            		<?php foreach($fk as $rows){?>
-            		<option value="<?php echo $rows->nama_fakultas ?>"><?php echo $rows->nama_fakultas ?></option>
-            		<?php } ?>
-            	</select>
+          <div class="form-group">
+          <div class="row">
+            <div class="col-xl">
+              <label class="col-form-label">Nama Fakultas :</label>
+              <select class="form-control" name="fakultas" id="fakultas">
+                <option value="">No Selected</option>
+                <?php foreach ($fakultas as $x) { ?>
+                  <option value="<?php echo $x->id_fakultas;?>"><?php echo $x->id_fakultas;?> | <?php echo $x->nama_fakultas;?></option>
+                <?php } ?>
+              </select>
             </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-xl">
+              <label class="col-form-label">Nama Prodi :</label>
+              <select class="form-control" name="prodi" id="prodi">
+               <option>No Selected</option> 
+
+             </select>
+           </div>
+         </div>
+       </div> 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
@@ -169,6 +183,7 @@
             	<input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
             </div>
           <div class="modal-footer">
+          <input type="hidden" class="form-control" id="no" name="no">
            <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
            <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
          </div>
@@ -176,35 +191,36 @@
      </div>
    </div>
  </div>
+</div>
  <!-- END Modal Edit -->
 
- <!-- Modal HAPUS  -->
+ <!-- Modal HAPUS PLOT -->
 <div class="modal fade" id="hapusplot" tabindex="-1" role="dialog" aria-labelledby="hapusplot" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="hapusmatkul">Hapus Data Plot</h5>
+        <h5 class="modal-title" id="hapusplot">Hapus Data Matkuliah</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="post" action="hapus_matkul">
+        <form class="form-horizontal" method="post" action="hapus_plot">
           <div class="modal-body">
             <p>Anda yakin akan menghapus Data : </p>
             <div class="form-group">
           <div class="row">
             <div class="col-xl">
-              <input type="hidden" id="id" name="id_matkul">
-              <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
+            <input type="hidden" id="id" name="id">
+            <input type="text" class="form-control" id="nama" name="nama" readonly="">
             </div>
           </div>
         </div>
 
           </div>
           <div class="modal-footer">
-            <input type="hidden" name="id_dosenxx" name="id_dosen" >
             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+
             <button class="btn btn-danger">Hapus</button>
           </div>
         </form>
@@ -212,9 +228,8 @@
     </div>
   </div>
 </div>
-</div>
 <!-- END Modal Hapus -->
-</div>
+
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
@@ -240,8 +255,7 @@
       });
 
     </script>
-
-
+    
     <script>
       $(document).ready(function() {
         // Untuk sunting
@@ -250,12 +264,14 @@
             var modal          = $(this)
 
             // Isi nilai pada field
-            modal.find('#tanggal').attr("value",div.data('tanggal'));
+            modal.find('#no').attr("value",div.data('no'));
             modal.find('#nama').attr("value",div.data('nama'));
+            modal.find('#tanggal').attr("value",div.data('tanggal'));
             modal.find('#jam').attr("value",div.data('jam'));
             modal.find('#kelas').attr("value",div.data('kelas'));
             modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
             modal.find('#nama_fakultas').attr("value",div.data('nama_fakultas'));
+            modal.find('#nama_progdi').attr("value",div.data('nama_progdi'));
             modal.find('#semester').attr("value",div.data('semester'));
           });
         // Untuk sunting
@@ -264,37 +280,12 @@
             var modal          = $(this)
 
             // Isi nilai pada field
-            modal.find('#id').attr("value",div.data('id_matkul'));
-            modal.find('#nama_matkul').attr("value",div.data('nama_matkul'));
+            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#nama').attr("value",div.data('nama'));
+
           });
       });
     </script>
 
 
-    <script type="text/javascript">
-      $(document).ready(function(){
-
-        $('#fakultas').change(function(){ 
-          var id_prodi=$(this).val();
-          $.ajax({
-            url : "<?php echo site_url('kemeng/get_sub_category');?>",
-            method : "POST",
-            data : {id_prodi: id_prodi},
-            async : true,
-            dataType : 'json',
-            success: function(data){
-
-              var html = '';
-              var i;
-              for(i=0; i<data.length; i++){
-                html += '<option value='+data[i].id_prodi+'>'+data[i].nama_prodi+'</option>';
-              }
-              $('#prodi').html(html);
-
-            }
-          });
-          return false;
-        }); 
-
-      });
-    </script>
+    

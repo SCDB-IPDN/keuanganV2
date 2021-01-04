@@ -1,0 +1,2 @@
+[2021-01-04 14:19:02.153] [sharedprocess] [info] main {"machineId":"6724139b5274ae621f7486cfcc91dfd7746d008714b0a496a3765c1d88973a69","windowId":2}
+[2021-01-04 14:19:02.223] [sharedprocess] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/opt/lampp/htdocs/keuanganV2/~/.vscode-root/User/snippets'
