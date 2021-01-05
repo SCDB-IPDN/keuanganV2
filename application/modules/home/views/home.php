@@ -41,7 +41,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-8">
 									<div class="mb-3 text-grey">
-										<b>PERSENTASE SPAN</b>
+										<b>PERSENTASE OM-SPAN</b>
 										<span class="ml-2">
 											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
 										</span>
