@@ -124,7 +124,6 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
 					<!-- <li class="<?php echo $this->uri->segment(1) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li> -->
-
 				</ul>
 			</li>
 			<!-- END KEPRAJAAN -->
@@ -137,7 +136,16 @@
 					<span>Humas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?>"><a href="<?php echo base_url('berita');?>">BERITA</a></li>
+					<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							BERITA
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
+							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+						</ul>
+					</li>
 				</ul>
 			</li>
 
