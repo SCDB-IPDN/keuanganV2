@@ -134,6 +134,7 @@
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-chart-line"></i>
+					<i class="fas fa-chart-lingit pulle"></i>
 					<span>Perencanaan</span>
 				</a>
 				<ul class="sub-menu">
@@ -174,6 +175,7 @@
 			<!-- END SARPRAS -->
 						
 			<!-- Fakultas -->
+			<?php if ($this->session->userdata('role') == 'Admin') { ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
@@ -183,7 +185,7 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2)!="view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
 					<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
-
+					<?php } ?>
 				</ul>
 			</li>
 			<!-- END Fakultas -->
