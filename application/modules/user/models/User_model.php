@@ -20,12 +20,16 @@ class User_model extends CI_Model {
                 $this->session->set_userdata('image_url',$data_user->image_url);
                 $this->session->set_userdata('is_login',TRUE);
 
-                $this->db->where("nip='$nip'");
-                $dosen = $this->db->get('tbl_dosen')->result();
-                
-                if(!empty($dosen)){
-                    $this->session->set_userdata('dosen','Dosen');
+                if($nip != 'admin'){
+                    $this->db->where("nip='$nip'");
+                    $dosen = $this->db->get('tbl_dosen')->result();
+
+                    
+                    if(!empty($dosen)){
+                        $this->session->set_userdata('dosen','Dosen');
+                    }
                 }
+                
 
                 return TRUE;
             } else {
