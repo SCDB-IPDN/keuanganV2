@@ -54,8 +54,9 @@
 	<script src="<?php echo base_url('assets/plugins/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
 
-	<script src="<?php echo base_url('assets/plugins/ckeditor/ckeditor.js'); ?>"></script>
+	<!-- <script src="<?php echo base_url('assets/plugins/ckeditor/ckeditor.js'); ?>"></script> -->
 	<script src="<?php echo base_url('assets/plugins/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js'); ?>"></script>
+	<script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script>
 	<script src="<?php echo base_url('assets/js/demo/form-wysiwyg.demo.js'); ?>"></script>
 	
 </body>

@@ -48,7 +48,7 @@
                        
                         
                         <td>
-                            <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#read<?php echo $row->id_berita;?>"><i class="fa fas fa-info"></i></a>
+                            <a href="#" class="btn btn-sm btn-green" data-toggle="modal" data-target="#read<?php echo $row->id_berita;?>"><i class="fa fas fa-info"></i></a>
                             
                             <!-- Modal Read -->
                             <div class="modal fade bd-example-modal-xl" id="read<?php echo $row->id_berita;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -179,7 +179,9 @@
                                                     <span class="input-group-text btn-warning"><i class="icon-picture">  Upload Gambar</i></span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input type="file" class="form-control" name="pcsss" required/>
+                                                    <input type="file" class="form-control" name="profile_pic"/>
+                                                    <input type="text" value="<?php echo $row->gambar;?>" disabled/>
+                                                    <input type="hidden" name="fileOld" value="<?php echo $row->gambar;?>" />
                                                 </div>
                                             </div>
                                             <textarea class="ckeditor" id="isi" name="isi" rows="20"><?php echo $row->isi; ?></textarea>

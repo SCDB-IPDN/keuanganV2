@@ -108,7 +108,7 @@
 		<div class="col-xl-6">
 			<!-- begin tabs -->
 			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">Berita Terbaru</span></a></li>
+				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
 			</ul>
 			<div class="tab-content" data-sortable-id="index-3">
 				<div class="tab-pane fade active show" id="latest-post">
@@ -122,6 +122,7 @@
 								</a>
 								<div class="media-body">
 									<h5 class="media-heading"><?php echo $berita->judul_berita ?></h5>
+									<p><?php echo date('H:i:s | d/m/Y', strtotime($berita->tanggal)) ?></p>
 									<?php $limited_word = word_limiter($berita->isi,10);?>
         							<?php echo $limited_word ?>
 									<span>
@@ -138,7 +139,6 @@
 									<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel"><?php echo $berita->judul_berita ?></h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span><?php echo $berita->tanggal;?></span>
 										<span aria-hidden="true">&times;</span>
 									</button>
 									</div>

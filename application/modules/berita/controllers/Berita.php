@@ -78,20 +78,36 @@ class Berita extends CI_Controller {
     }
 
     public function edit_berita(){
-        $pic = '';
+        
+        $profile_pic = '';
+
+        if($this->input->post('fileOld')) {  
+            $newname = $this->input->post('fileOld');
+            $profile_pic =$newname;
+        }else {
+            $profile_pic ='';
+        }
 
         foreach($_FILES as $name => $fileInfo)
-        {
-
-            if(!empty($_FILES[$name]['name'])){
-                $newname = $this->upload(); 
-                $data[$name] = $newname;
-                $pic = $newname;
-            }
+        { 
+             if(!empty($_FILES[$name]['name'])){
+                $newname=$this->upload(); 
+                $data[$name]=$newname;
+                $profile_pic =$newname;
+             } else {  
+                if($this->input->post('fileOld')) {  
+                    $newname = $this->input->post('fileOld');
+                    $data[$name]=$newname;
+                    $profile_pic =$newname;
+                }else {
+                    $data[$name]='';
+                    $profile_pic ='';
+                }
+            } 
         }
 
         $input_data['id_berita'] = $this->input->post('id_berita', true);
-        $input_data['gambar'] = $pic;
+        $input_data['gambar'] = $profile_pic;
         $input_data['judul_berita'] = $this->input->post('judul_berita', true);
         $input_data['isi'] = $this->input->post('isi', true);
         $input_data['status_berita'] = $this->input->post('status_berita', true);
