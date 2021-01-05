@@ -1,10 +1,9 @@
 <?php
 class Berita_model extends CI_Model{
-
+    
 	public function berita(){
 		$this->db->select('*');
 		$this->db->from('berita');
-		// $this->db->where('status_berita','Publish');
 		$this->db->order_by('id_berita','DESC');
 		$query = $this->db->get();
 		return $query->result();
@@ -28,5 +27,4 @@ class Berita_model extends CI_Model{
         $id_berita = $input_data['id_berita'];
         return $this->db->where('id_berita', $id_berita)->update('berita', $input_data);
     }
-
 }

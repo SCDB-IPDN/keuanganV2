@@ -184,8 +184,9 @@
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
-						
+			
 			<!-- Fakultas -->
+			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
@@ -208,6 +209,7 @@
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
 			<!-- END Fakultas -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>

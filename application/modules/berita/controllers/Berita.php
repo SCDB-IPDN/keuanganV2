@@ -36,18 +36,17 @@ class Berita extends CI_Controller {
             $exp=explode('.', $filename);
             $ext=end($exp);
             $newname=  $exp[0].'_'.time().".".$ext; 
-            $config['upload_path'] = './assets/upload/image/';
-            $config['upload_url'] =  base_url().'assets/upload/image/';
+            $config['upload_path'] = './assets/img/gallery/';
+            $config['upload_url'] =  base_url().'assets/img/gallery/';
             $config['allowed_types'] = "gif|jpg|jpeg|png";
             $config['max_size'] = '2000000';
             $config['file_name'] = $newname;
             $this->load->library('upload', $config);
-            move_uploaded_file($tmpname,"assets/upload/image/".$newname);
+            move_uploaded_file($tmpname,"assets/img/gallery/".$newname);
             return $newname;
         }
     }
 
-    
     public function tambah_berita()
 	{
         $pic = '';
@@ -139,5 +138,4 @@ class Berita extends CI_Controller {
             redirect('berita'); 			
         }
     }
-
 }
