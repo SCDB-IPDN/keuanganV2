@@ -208,7 +208,7 @@ class Kemeng extends CI_Controller
 		}
 	}
 
- 	function tambah_presensi()
+	function tambah_presensi()
 	{
 		$baru = $this->input->post('nama_dosen', true);
 		$hahaha = explode("|",$baru);
@@ -260,7 +260,7 @@ class Kemeng extends CI_Controller
 
 	function honor() {
 		if($this->session->userdata('nip') != NULL) {
-						
+
 			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
 			$x['uDate'] = date_format(new DateTime(),"d F Y");
 			$this->load->view("include/head");
@@ -273,4 +273,70 @@ class Kemeng extends CI_Controller
 			redirect("user");
 		}
 	}
+
+
+	function honor_all() {
+		if($this->session->userdata('nip') != NULL) {
+
+			$fakultas = $this->Kemeng_model->get_fakul()->result();
+			$x['fakultas']  = json_encode($fakultas);
+
+
+			$nip = $this->Kemeng_model->nama_dosen()->result_array();
+			// var_dump($nip);exit();
+			$honoooor = $this->Kemeng_model->get_honor_all($nip)->result();
+			$honorr = $this->Kemeng_model->get_fakulhonor()->result();
+			// $x['honoooor']  = json_encode($honoooor);
+			// var_dump($honoooor);exit();
+			
+			$this->load->view("include/head");
+			$this->load->view("include/top-header");
+			$this->load->view("view_honor_all",$x);
+			$this->load->view("include/sidebar");
+			$this->load->view("include/footer");
+
+		}else{
+			redirect("user");
+		}
+	}
+
+	function honor_table_all(){
+		// $id_fakultas = $this->Kemeng_model->nama_fakultas()->result();
+		$honorr = $this->Kemeng_model->get_fakulhonor()->result();
+		
+		$dataall = array();
+
+		$no = 1;
+		foreach($honorr as $r) {
+			$nip = $r->nip;
+			$nama = $r->nama;
+			$jabatan = $r->jabatan;
+			$index = $r->index;
+			// $nama_fakultas = $r->nama_fakultas;
+			// $nama_matkul = $r->nama_matkul;
+			$totalsks = $r->totalsks;
+			$kewajiban = $r->kewajiban;
+			$kelebihan = $r->kelebihan;
+			$total = $r->total;
+
+			$dataall[] = array(
+				$no++,
+				$nip,
+				$nama,
+				$jabatan,
+				$index,
+				// $nama_fakultas,
+				// $nama_matkul,
+				$totalsks,
+				$kewajiban,
+				$kelebihan,
+				$total
+			);
+		}
+		echo json_encode($dataall);
+	}
+
+
+
+
 }

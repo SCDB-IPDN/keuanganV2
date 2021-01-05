@@ -52,7 +52,7 @@ class D_sarpras extends CI_Controller {
 				$list_kat = $this->d_sarpras_model->get_kategori($satker)->result();
 
 				$chart = json_encode($chart);
-
+				var_dump($chart);exit();
 				$kat = "";
 				$arr = $tmp = array();
 				foreach (json_decode($chart, true) as $z):
