@@ -223,6 +223,29 @@
 
 			<!-- END Fakultas -->
 
+			<!-- ORTALA -->
+			<li class="<?php echo $this->uri->segment(1)=="ortala" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-handshake"></i>
+					<span>ORTALA</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							Produk Hukum
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('uu'); ?>">Undang-Undang</a></li>
+							<!-- <li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('uu'); ?>">Undang-Undang</a></li> -->
+							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<!-- END ORTALA -->
+
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
 			<li class="nav-header">Data</li>
 				<li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_dosen" || $this->uri->segment(2)=="v_pns" || $this->uri->segment(2)=="v_thl" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja" || $this->uri->segment(2)=="v_rank"?"active":"";?> has-sub">
