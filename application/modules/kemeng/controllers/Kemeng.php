@@ -419,3 +419,4 @@ class Kemeng extends CI_Controller
 
 	}
 }
+}
