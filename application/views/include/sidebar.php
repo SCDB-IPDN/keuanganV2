@@ -195,7 +195,6 @@
 			<!-- END SARPRAS -->
 			
 			<!-- Fakultas -->
-
 			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
@@ -220,7 +219,6 @@
 				</ul>
 			</li>
 			<?php } ?>
-
 			<!-- END Fakultas -->
 
 			<!-- ORTALA -->

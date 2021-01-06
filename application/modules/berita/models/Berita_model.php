@@ -2,8 +2,13 @@
 class Berita_model extends CI_Model{
     
 	public function berita(){
+        // var_dump($this->session->userdata('role') == 'Admin'&& ($this->session->userdata('role') == 'Humas'));exit;
 		$this->db->select('*');
-		$this->db->from('berita');
+        $this->db->from('berita');
+        if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){
+        }else{
+            $this->db->where('status_berita','Publish');
+        }
 		$this->db->order_by('id_berita','DESC');
 		$query = $this->db->get();
 		return $query->result();
