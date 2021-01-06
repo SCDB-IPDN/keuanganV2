@@ -77,6 +77,7 @@ class D_praja extends CI_Controller
 
   function detail($id)
   {
+    // var_dump($id);exit();
     if ($this->session->userdata('nip') != NULL) {
       $data = $this->D_praja_model->get_detail($id)->result();
       $x['data'] = json_encode($data);

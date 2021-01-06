@@ -143,16 +143,17 @@
 	$(document).ready(function() {
 		<?php foreach ($chart as $x): ?>
 
-			$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+				$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 
-				$($.fn.dataTable.tables(true)).DataTable()
-				.columns.adjust()
-				.responsive.recalc();
-			});
+					$($.fn.dataTable.tables(true)).DataTable()
+					.columns.adjust()
+					.responsive.recalc();
+				});
 
 			var uri = $("#tab-<?php echo $cc; ?>").attr("Data-url");
 			// alert(uri);
-			$('#tbl-tab-<?= $cc; ?>').DataTable({
+			$('#tbl-tab-<?php echo $cc; ?>').DataTable({
+
 				dom: 'Bfrtip',
 				buttons: [
 				'copy', 'excel', 'print'

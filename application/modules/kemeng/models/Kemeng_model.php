@@ -163,6 +163,38 @@ class Kemeng_model extends CI_Model
 		return $query;
 	}
 
+	function get_honor_allinone($id_fakultas){
+		
+		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_honor_dosen.jabatan, sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
+			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
+			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
+			END AS kelebihan,
+			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN (SUM(tbl_plot_dosen.sks)-9)*(tbl_honor_dosen.index)
+			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
+			END AS total
+			FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan
+			WHERE tbl_plot_dosen.id_fakultas='$id_fakultas' ");
+		
+
+		return $query;
+	}
+
+	function nihcoba(){
+		
+		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_honor_dosen.jabatan, sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
+			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
+			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
+			END AS kelebihan,
+			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN (SUM(tbl_plot_dosen.sks)-9)*(tbl_honor_dosen.index)
+			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
+			END AS total
+			FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan");
+		
+
+		return $query;
+	}
+
+
 	function get_fakulhonor(){
 		// var_dump($id_fakultas);exit();
 		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_dosen.jabatan, sum(tbl_plot_dosen.sks) as totalsks,9 as kewajiban,

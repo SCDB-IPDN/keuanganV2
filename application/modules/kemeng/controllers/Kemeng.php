@@ -275,67 +275,106 @@ class Kemeng extends CI_Controller
 	}
 
 
-	function honor_all() {
+	function honor_all($id_fakultas = NULL) {
 		if($this->session->userdata('nip') != NULL) {
 
-			$fakultas = $this->Kemeng_model->get_fakul()->result();
-			$x['fakultas']  = json_encode($fakultas);
+			// var_dump($id_fakultas);exit;
+			if ($id_fakultas == NULL) {
+
+				$fakultas = $this->Kemeng_model->get_fakul()->result();
+				$x['fakultas']  = json_encode($fakultas);
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("view_honor_all",$x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/footer");
+				
+			}else{
+
+				$nip = $this->Kemeng_model->nama_dosen()->result_array();
+				$honoooor = $this->Kemeng_model->get_honor_all($nip)->result();
 
 
-			$nip = $this->Kemeng_model->nama_dosen()->result_array();
-			// var_dump($nip);exit();
-			$honoooor = $this->Kemeng_model->get_honor_all($nip)->result();
-			$honorr = $this->Kemeng_model->get_fakulhonor()->result();
-			// $x['honoooor']  = json_encode($honoooor);
-			// var_dump($honoooor);exit();
-			
-			$this->load->view("include/head");
-			$this->load->view("include/top-header");
-			$this->load->view("view_honor_all",$x);
-			$this->load->view("include/sidebar");
-			$this->load->view("include/footer");
+				$honorr = $this->Kemeng_model->get_fakulhonor($id_fakultas)->result();
+				$honorr = json_encode($honorr);
+
+
+				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
+
+				var_dump($ho);exit;
+
+				$tmp = array();
+
+				foreach($ho as $r) {
+					$nip = $r->nip;
+					$nama = $r->nama;
+					$jabatan = $r->jabatan;
+					$totalsks = $r->totalsks;
+					$kewajiban = $r->kewajiban;
+					$kelebihan = $r->kelebihan;
+					$total = $r->total;
+
+					$tmp[] = array(
+						$nip,
+						$nama,
+						$jabatan,
+						$totalsks,
+						$kewajiban,
+						$kelebihan,
+						$total
+					);
+				}
+				echo json_encode($tmp);
+			}
 
 		}else{
 			redirect("user");
 		}
 	}
 
-	function honor_table_all(){
-		// $id_fakultas = $this->Kemeng_model->nama_fakultas()->result();
-		$honorr = $this->Kemeng_model->get_fakulhonor()->result();
+	function honor_table_all($id_fakultas = NULL){
+		$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
 		
-		$dataall = array();
-
-		$no = 1;
-		foreach($honorr as $r) {
-			$nip = $r->nip;
-			$nama = $r->nama;
-			$jabatan = $r->jabatan;
-			$index = $r->index;
-			// $nama_fakultas = $r->nama_fakultas;
-			// $nama_matkul = $r->nama_matkul;
-			$totalsks = $r->totalsks;
-			$kewajiban = $r->kewajiban;
-			$kelebihan = $r->kelebihan;
-			$total = $r->total;
-
-			$dataall[] = array(
-				$no++,
-				$nip,
-				$nama,
-				$jabatan,
-				$index,
-				// $nama_fakultas,
-				// $nama_matkul,
-				$totalsks,
-				$kewajiban,
-				$kelebihan,
-				$total
-			);
-		}
-		echo json_encode($dataall);
+		echo json_encode($ho);
+		// exit();
 	}
 
+
+
+	function hon_all ($id_fakultas= NULL){
+		// var_dump($id_fakultas);exit();
+		if($this->session->userdata('nip') != NULL) {
+
+			if ($id_fakultas != NULL) {
+
+				switch ($id_fakultas) {
+					case "FHTP":
+						// FHTP
+					$x['title'] = 'FAKULTAS HUKUM TATA PEMERINTAHAN';
+					break;
+					case "FMP":
+						// FMP
+					$x['title'] = 'FAKULTAS MANAJEMEN PEMERINTAHAN';
+					break;
+					case "FPP":
+						// FPP
+					$x['title'] = 'FAKULTAS POLITIK PEMERINTAHAN';
+					break;
+				}
+
+				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
+				// var_dump($ho);exit;
+				$x['ho'] = json_encode($ho);
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("view_honor_all1",$x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/footer");
+			}
+		}
+	}
 
 
 

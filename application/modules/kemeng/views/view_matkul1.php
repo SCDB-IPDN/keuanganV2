@@ -252,7 +252,7 @@
   $(document).ready(function() {
 
     var url = '<?php echo base_url('kemeng/cobain');?>';
-        // alert(url);
+    // alert(url);
 
         $('#data-matkul').dataTable({
             // dom: 'Bfrtip',

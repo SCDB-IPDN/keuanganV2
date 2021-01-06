@@ -181,10 +181,23 @@
 					<span>Fakultas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2)!="view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
+					<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2)!="view_matkul" && $this->uri->segment(2)!="hon_all" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
 					<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
 
+					<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							HONOR ALL
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(3)=="FHTP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FHTP";?>">FHTP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FMP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FMP";?>">FMP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
+						</ul>
+					</li>
+
 				</ul>
+				
 			</li>
 			<!-- END Fakultas -->
 
