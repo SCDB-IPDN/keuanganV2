@@ -108,6 +108,14 @@ class Kemeng_model extends CI_Model
 
 	}
 
+	public function get_nama_prodi()
+	{
+
+	$result = $this->db->query("SELECT nama_prodi FROM tbl_prodi ");
+	return $result;
+
+	}
+
 	public function get_nama_fakultas()
 	{
 
@@ -115,17 +123,18 @@ class Kemeng_model extends CI_Model
 	return $result;
 
 	}
-	function edit_plot($editplot)
-  	{ 
-    $no = $editplot['id'];
-    $hasil = $this->db->where('id', $no)->update('tbl_plot_dosen', $editplot);
-    
-    return $hasil;    
+	function edit_plot($editplot){
+
+	$id_plot = $editplot['id_plot'];
+	$this->db->where('id_plot', $editplot['id_plot']);
+	$this->db->update('tbl_plot_dosen', $editplot);
   	}
 
 	function hapus_plot($id){
 
-		$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id= '$id' ");
-		return $hasil;
+		$this->db->where(['id_plot' => $id]);
+		$this->db->delete('tbl_plot_dosen');
+	// 	$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id_plot= '$id' ");
+	// 	return $hasil;
 	}
 }

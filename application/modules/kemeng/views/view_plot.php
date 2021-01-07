@@ -60,89 +60,119 @@
 
   <!-- Modal ADD PLOT -->
   <div class="modal fade" id="addplot" tabindex="-1" role="dialog" aria-labelledby="addplot" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="addplot">Tambah Plot Dosen</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-        	<form action="kemeng/tambah_plot" method="POST">
-        		<div class="form-group">
-        			<div class="row">
-        				<div class="col-sm-8">
-        					<label class="col-form-label">Nama Dosen :</label>
-        					<select class="form-control" id="nama" name="nama" required>
-        						<option>--Nama|Nip--</option>
-        						<?php foreach($tp as $rows){?>
-        						<option value="<?php echo $rows->nama.'|'.$rows->nip;?>"><?php echo $rows->nama.'|'.$rows->nip;?></option>
-        						<?php } ?>
-        					</select>
-        				</div>
-        			</div>
-        		</div>
+  	<div class="modal-dialog" role="document">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<h5 class="modal-title" id="addplot">Tambah Plot Dosen</h5>
+  				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+  						aria-hidden="true">&times;</span></button>
+  			</div>
+  			<div class="modal-body">
+  				<form action="kemeng/tambah_plot" method="POST">
+  					<div class="form-group">
+  						<div class="row">
+  							<div class="col-sm-8">
+  								<label class="col-form-label">Nama Dosen :</label>
+  								<select class="form-control" id="nama" name="nama" required>
+  									<option>--Nama|Nip--</option>
+  									<?php foreach($tp as $rows){?>
+  									<option value="<?php echo $rows->nama.'|'.$rows->nip;?>"><?php echo $rows->nama.'|'.$rows->nip;?>
+  									</option>
+  									<?php } ?>
+  								</select>
+  							</div>
+  						</div>
+  					</div>
+  					<div class="form-group">
+  						<div class="row">
+  							<div class="col-xl-3">
+  								<label class="col-form-label">Kode Matkul :</label>
+  								<input type="text" class="form-control" id="id_matkul" name="id_matkul" placeholder="ID Matkul..">
+  							</div>
+  							<div class="col-xl">
+  								<label class="col-form-label">Nama Matkul :</label>
+                  <select class="form-control" id="nama_matkul" name="nama_matkul" required>
+                  	<option>--Matkul--</option>
+                  	<?php foreach($mk as $rows){?>
+                  	<option value="<?php echo $rows->nama_matkul ?>"><?php echo $rows->nama_matkul ?></option>
+                  	<?php } ?>
+                  </select>
+  							</div>
+  						</div>
+  					</div>
+  					<div class="form-group">
+  						<div class="row">
+  							<div class="col-xl-3">
+  								<label class="col-form-label">Jam :</label>
+  								<input type="time" class="form-control" id="jam" name="jam" required>
+  							</div>
+                <div class="col-xl">
+  								<label class="col-form-label">Tanggal :</label>
+  								<input type="date" class="form-control" id="tanggal" name="tanggal" required>
+  							</div>
+  						</div>
+            </div>
+  					<div class="form-group">
+  						<label class="col-form-label">Kelas :</label>
+  						<input type="text" class="form-control" id="kelas" name="kelas" required>
+  					</div>
+  					<div class="form-group">
+  						<label class="col-form-label">Semester :</label>
+  						<select class="form-control" id="semester" name="semester" required>
+  							<option>--Semester--</option>
+  							<option>GANJIL 2020/2021</option>
+  							<option>GENAP 2020/2021</option>
+  						</select>
+  					</div>
+  					<div class="form-group">
+  						<div class="row">
+  							<div class="col-xl-3">
+  								<label class="col-form-label">Id Fakultas :</label>
+  								<input type="text" class="form-control" id="id_fakultas" name="id_fakultas" placeholder="ID Matkul..">
+  							</div>
+  							<div class="col-xl">
+  								<label class="col-form-label">Nama Fakultas :</label>
+  								<select class="form-control" name="nama_fakultas" id="nama_fakultas">
+  									<option>--Fakultas--</option>
+  									<?php foreach($fk as $rows){?>
+  									<option value="<?php echo $rows->nama_fakultas ?>"><?php echo $rows->nama_fakultas ?></option>
+  									<?php } ?>
+  								</select>
+  							</div>
+  						</div>
+  					</div>
             <div class="form-group">
-            	<label class="col-form-label">Mata Kuliah:</label>
-            	<select class="form-control" id="nama_matkul" name="nama_matkul" required>
-            		<option>--Matkul--</option>
-            		<?php foreach($mk as $rows){?>
-            		<option value="<?php echo $rows->nama_matkul ?>"><?php echo $rows->nama_matkul ?></option>
-            		<?php } ?>
-            	</select>
+  						<div class="row">
+  							<div class="col-xl-3">
+  								<label class="col-form-label">ID Prodi :</label>
+  								<input type="text" class="form-control" id="id_prodi" name="id_prodi" required>
+  							</div>
+                <div class="col-xl">
+  								<label class="col-form-label">Nama Prodi :</label>
+  								<select class="form-control" name="nama_prodi" id="nama_prodi">
+  									<option>--Prodi--</option>
+  									<?php foreach($prodi as $rows){?>
+  									<option value="<?php echo $rows->nama_prodi ?>"><?php echo $rows->nama_prodi ?></option>
+  									<?php } ?>
+  								</select>
+  							</div>
+  						</div>
             </div>
             <div class="form-group">
-            	<label class="col-form-label">Tanggal :</label>
-            	<input type="date" class="form-control" id="tanggal" name="tanggal" required>
+            	<label class="col-form-label">Sks :</label>
+            	<input type="text" class="form-control" id="sks" name="sks" required>
             </div>
-            <div class="form-group">
-            	<label class="col-form-label">Jam :</label>
-            	<input type="time" class="form-control" id="jam" name="jam" required>
-            </div>
-            <div class="form-group">
-            	<label class="col-form-label">Kelas :</label>
-            	<input type="text" class="form-control" id="kelas" name="kelas" required>
-            </div>
-            <div class="form-group">
-            	<label class="col-form-label">Semester :</label>
-            	<select class="form-control" id="semester" name="semester" required>
-            		<option>--Semester--</option>
-            		<option>GANJIL 2020/2021</option>
-            		<option>GENAP 2020/2021</option>
-            	</select>
-            </div>
-          <div class="form-group">
-          <div class="row">
-            <div class="col-xl">
-              <label class="col-form-label">Nama Fakultas :</label>
-              <select class="form-control" name="fakultas" id="fakultas">
-                <option value="">No Selected</option>
-                <?php foreach ($fakultas as $x) { ?>
-                  <option value="<?php echo $x->id_fakultas;?>"><?php echo $x->id_fakultas;?> | <?php echo $x->nama_fakultas;?></option>
-                <?php } ?>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-xl">
-              <label class="col-form-label">Nama Prodi :</label>
-              <select class="form-control" name="prodi" id="prodi">
-               <option>No Selected</option> 
-
-             </select>
-           </div>
-         </div>
-       </div> 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+  					<div class="modal-footer">
+  						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  						<button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
+  					</div>
+  				</form>
+  			</div>
+  		</div>
+  	</div>
   </div>
+
+<!-- END Modal tambah -->
 
   <!-- Modal Edit -->
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-plot" class="modal fade">
@@ -156,6 +186,7 @@
            <div class="modal-body">
            <div class="form-group">
             	<label class="col-form-label">Nama Dosen :</label>
+              <input type="hidden" class="form-control" id="id_plot" name="id_plot">
             	<input type="text" class="form-control" id="nama" name="nama" readonly="">
             </div>
            <div class="form-group">
@@ -183,7 +214,6 @@
             	<input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
             </div>
           <div class="modal-footer">
-          <input type="hidden" class="form-control" id="no" name="no">
            <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
            <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
          </div>
@@ -211,7 +241,7 @@
             <div class="form-group">
           <div class="row">
             <div class="col-xl">
-            <input type="hidden" id="id" name="id">
+            <input type="hidden" id="id_plot" name="id_plot">
             <input type="text" class="form-control" id="nama" name="nama" readonly="">
             </div>
           </div>
@@ -264,7 +294,7 @@
             var modal          = $(this)
 
             // Isi nilai pada field
-            modal.find('#no').attr("value",div.data('no'));
+            modal.find('#id_plot').attr("value",div.data('id_plot'));
             modal.find('#nama').attr("value",div.data('nama'));
             modal.find('#tanggal').attr("value",div.data('tanggal'));
             modal.find('#jam').attr("value",div.data('jam'));
@@ -280,7 +310,7 @@
             var modal          = $(this)
 
             // Isi nilai pada field
-            modal.find('#id').attr("value",div.data('id'));
+            modal.find('#id_plot').attr("value",div.data('id_plot'));
             modal.find('#nama').attr("value",div.data('nama'));
 
           });

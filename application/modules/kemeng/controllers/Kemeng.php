@@ -200,7 +200,7 @@ class Kemeng extends CI_Controller
 			$this->load->view("include/panel");
 			$this->load->view("include/footer");
 		} else {
-			redirect("user");
+			redirect("user"); 
 		}
 	}
 
@@ -214,13 +214,13 @@ class Kemeng extends CI_Controller
                $tp = $this->Kemeng_model->get_nama()->result();
                $mk = $this->Kemeng_model->get_nama_matkul()->result();
 			   $fk = $this->Kemeng_model->get_nama_fakultas()->result();
-			   $fakultas = $this->Kemeng_model->get_fakul()->result();
+			   $prodi = $this->Kemeng_model->get_nama_prodi()->result();
 
-			   $x['fakultas'] = $fakultas;
                $x['data'] = $data;
                $x['tp'] = $tp;
                $x['mk'] = $mk;
-               $x['fk'] = $fk;
+			   $x['fk'] = $fk;
+			   $x['prodi'] = $prodi;
             //    var_dump($tp);
             //    exit();    
                $this->load->view("include/head");
@@ -236,9 +236,9 @@ class Kemeng extends CI_Controller
 	 
 	 public function tambah_plot()
 	 {
-		   $plot['id'] = $this->input->post('id', true);
 		   $plot['nama'] = $this->input->post('nama', true);
 		   $plot['nama_matkul'] = $this->input->post('nama_matkul', true);
+		   $plot['nama_prodi'] = $this->input->post('nama_prodi', true);
 		   $plot['tanggal'] = $this->input->post('tanggal', true);
 		   $plot['jam'] = $this->input->post('jam', true);
 		   $plot['kelas'] = $this->input->post('kelas', true);
@@ -246,7 +246,12 @@ class Kemeng extends CI_Controller
 		   $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
 		   $plot['id_prodi'] = $this->input->post('id_prodi', true);
 		   $plot['id_fakultas'] = $this->input->post('id_fakultas', true);
-		
+		   $plot['id_matkul'] = $this->input->post('id_matkul', true);
+		   $plot['sks'] = $this->input->post('sks', true);
+		   $kemeng = 9;
+		   if ($plot['sks'] > $kemeng) {
+		   	$plot['indeks'] = $plot['s ks'] - $kemeng;
+		   }
 		   $pisah = explode("|", $plot['nama']);
 		   $nama = $pisah[0];
 		   $nip = $pisah[1];
@@ -266,7 +271,7 @@ class Kemeng extends CI_Controller
 
 	 function edit_plot(){
 
-		$editplot['no'] = $this->input->post('no', true);
+		$editplot['id_plot'] = $this->input->post('id_plot', true);
 		$editplot['nama'] = $this->input->post('nama', true);
 		$editplot['nama_matkul'] = $this->input->post('nama_matkul', true);
 		$editplot['tanggal'] = $this->input->post('tanggal', true);
@@ -274,14 +279,16 @@ class Kemeng extends CI_Controller
 		$editplot['kelas'] = $this->input->post('kelas', true);
 		$editplot['semester'] = $this->input->post('semester', true);
 		$editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+	// 	var_dump($editplot);
+	// exit();
 		
 		$result = $this->Kemeng_model->edit_plot($editplot);
 			
-		if (!$result) { 							
-			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
-			redirect('kemeng/plot'); 			
-		} else { 								
+		if (!$result) { 	
 			$this->session->set_flashdata('plot', 'DATA BERHASIL DIUBAH.');			
+			redirect('kemeng/plot'); 									
+		} else { 								
+			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
 			redirect('kemeng/plot'); 			
 		}
 	}
@@ -293,7 +300,7 @@ class Kemeng extends CI_Controller
 		$no = 1;
    
 		foreach($data as $r) {
-			$id = $r->id;
+
 			 $nama = $r->nama.'|'.$r->nip;
 			 $nama_matkul = $r->nama_matkul; 
 			 $tanggal = $r->tanggal; 
@@ -304,13 +311,13 @@ class Kemeng extends CI_Controller
 			 $nama_prodi = $r->nama_prodi;
 						  
 			 if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
-				  $aksi = "<a href='javascript:; 'data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
+				  $aksi = "<a href='javascript:; 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
 				  data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
 				  data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
 				  'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button> </a>
 				  
 				  <a 
-				  href='javascript:;' data-nama='$r->nama'
+				  href='javascript:;' data-nama='$r->nama' data-id_plot='$r->id_plot'
 				  <button  data-toggle=
 				  'modal' data-target='#hapusplot' class='btn btn-danger'>Hapus</button>
 				  </a>"; ;
@@ -337,16 +344,17 @@ class Kemeng extends CI_Controller
 
    function hapus_plot()
 	{
-		$id = $this->input->post('no');
+		$id = $this->input->post('id_plot');
+		
 
 		$hasil = $this->Kemeng_model->hapus_plot($id);
 
-		if (!$hasil) { 							
-			$this->session->set_flashdata('plot', 'DATA GAGAL DIHAPUS.');				
-			redirect('kemeng/plot'); 			
-		} else { 								
+		if (!$hasil) { 		
 			$this->session->set_flashdata('plot', 'DATA BERHASIL DIHAPUS.');	
-			redirect('kemeng/plot'); 			
+			redirect('kemeng/plot'); 						 			
+		} else { 								
+			$this->session->set_flashdata('plot', 'DATA GAGAL DIHAPUS.');				
+			redirect('kemeng/plot');		
 		}
 		
 	}
