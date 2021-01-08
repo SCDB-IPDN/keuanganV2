@@ -2,7 +2,7 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('kemeng'); ?>">Undang-Undang</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Undang-Undang</a></li>
 
   </ol>
   <h1 class="page-header">Presensi</h1>
@@ -60,78 +60,130 @@
     </div>
     <!-- end col-10 -->
 
-<!--tambah-->
-<div aria-hidden="true" aria-labelledby="myModalLabel" id="adduu" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
-	<div class="modal-dialog">
-    	<div class="modal-content">
-      		<div class="modal-header">
-	   			<h4 class="modal-title">Tambah Undang-Undang</h4>
-	   			<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-	   		</div>
+    <!-- Modal ADD prokum -->
+    <div class="modal fade" id="adduu" tabindex="-1" role="dialog" aria-labelledby="adduuu" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adduuu">Tambah Produk Hukum</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="col-xl">
+                    <form action="adduu" method="POST">
+                        <div class="form-group">
+                            <label class="col-form-label">Kategori:</label>
+                            <select class="form-control" id="kat" name="kat" required>
+                                        <option disabled selected> Pilih Kategori</option>
+                                        <?php foreach($kat as $rows){?>
+                                            <option value="<?php echo $rows->nama_kat ?>"><?php echo $rows->nama_kat ?></option>
+                                        <?php } ?>
+                                    </select>
+                              
+                            <label class="col-form-label">Nomor:</label>
+                            <input type="text" class="form-control" id="nomor" name="Nomor" placeholder="Nomor" required>
 
-			<form class="form-horizontal" action="<?php echo base_url('kemeng/tambah_presensi'); ?>" method="POST">
-				<div class="modal-body">
-         			<div class="form-group">
-						<div class="row">
-							<div class="col-xl">
-								<label for="dosen">Nama Dosen:</label>
-								<select id="dosen" name="nip_dosen" class="form-control" style="width: 100%" > 
-									<option disabled selected>Nama Dosen..</option>
-									<?php foreach ($nama_dosen as $dosen) { ?>
-										<option value="<?php echo $dosen->nip; ?>"><?php echo $dosen->nama; ?></option>						
-									<?php } ?>
-								</select>
-								<br>
-								<label for="fakultas">Fakultas:</label>
-								<select class="form-control" id="fakultas" name="fakultas" required>
-									<option disabled selected> Pilih Fakultas </option>
-								</select>
-								<br>
-								<label for="prodi">Prodi:</label>
-								<select class="form-control" id="prodi" name="prodi" required>
-									<option disabled selected> Pilih Program Studi </option>
-								</select>
-								<br>
-								<label for="matkul">Mata Kuliah:</label>
-								<select class="form-control" id="matkul" name="matkul" required>
-									<option disabled selected> Pilih Mata Kuliah</option>
-								</select>
-								<br>
-								<label for="kelas">Kelas:</label>
-								<input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" required>
-								<br>
-								<!-- <input type="hidden" name="nama_dosen" id="nama_dosen">
-								<input type="hidden" name="sks" id="sks"> -->
-								<input type="hidden" name="indeks" id="indeks">
-								<!-- <label for="tanggal">Tanggal:</label>
-								<div class="input-group date" id="tanggal">
-									<input type="text" class="form-control" name="tanggal" value ="<?php echo date('Y-m-d') ?>" placeholder="Tanggal" required>
-									<div class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</div>
-								</div>
-								<br>
-								<label for="jam">Jam:</label>
-								<div class="input-group date" id="jam">
-									<input type="text" class="form-control" name="jam" value ="<?php echo date('H:i') ?>" placeholder="Jam" required>
-									<div class="input-group-addon">
-										<i class="fa fa-clock"></i>
-									</div>
-								</div> -->
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="col-xl">
-									<button type="submit" class="btn btn-blue" value="Cek">Submit</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                            <label class="col-form-label">Tahun:</label>
+                            <input type="year" class="form-control" id="tahun" name="Tahun" placeholder="Tahun" required>
+                         
+                            <label class="col-form-label">Tentang:</label>
+                            <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
+                            
+                            <label class="col-form-label">Status:</label>
+                            <select type="text" class="form-control" name="status" id="Status">
+                                <option disabled selected> Pilih Status</option>  
+                                <option value="aktif">Aktif</option>
+                                <option value="non-aktif">Non Aktif</option>
+                            </select>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal EDIT prokum -->
+        <div class="modal fade" id="editprokum" tabindex="-1" role="dialog" aria-labelledby="editprokum" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="editthll">Edit Produk Hukum</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="edit_prokum" method="POST">
+                        <input type="hidden" class="form-control" id="id_prokumx" name="id_prokum">
+                        <div class="form-group">
+                        <label class="col-form-label">Kategori:</label>
+                            <select class="form-control" id="kat" name="kat" required>
+                                        <option disabled selected> Pilih Kategori</option>
+                                        <?php foreach($kat as $rows){?>
+                                            <option value="<?php echo $rows->nama_kat ?>"><?php echo $rows->nama_kat ?></option>
+                                        <?php } ?>
+                                    </select>
+                              
+                            <label class="col-form-label">Nomor:</label>
+                            <input type="text" class="form-control" id="nomor" name="Nomor" placeholder="Nomor" required>
+
+                            <label class="col-form-label">Tahun:</label>
+                            <input type="year" class="form-control" id="tahun" name="Tahun" placeholder="Tahun" required>
+                            
+                            <label class="col-form-label">Tentang:</label>
+                            <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
+                            
+                            <label class="col-form-label">Status:</label>
+                            <select type="text" class="form-control" name="status" id="Status">
+                                <option disabled selected> Pilih Status</option>  
+                                <option value="aktif">Aktif</option>
+                                <option value="non-aktif">Non Aktif</option>
+                            </select>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HAPUS THL -->
+    <div class="modal fade" id="delprokum" tabindex="-1" role="dialog" aria-labelledby="delprokumm" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="delprokumm">Hapus Produk Hukum</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="del_prokum">
+                        <div class="modal-body">
+                            <p>Anda yakin mau menghapus Data <input type="text" id="namaxx" disabled> ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="id_prokumxx" name="id_prokum">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                            <button class="btn btn-danger">Hapus</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
 <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
@@ -139,10 +191,10 @@
 
   $(document).ready(function() {
 
-    var url = '<?php echo base_url('kemeng/get_allp');?>';
+    var url = '<?php echo base_url('ortala/get_uu');?>';
     // alert(url);
 
-        $('#data-presensi').dataTable({
+        $('#data-uu').dataTable({
             // dom: 'Bfrtip',
             dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
             buttons: [

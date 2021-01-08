@@ -235,7 +235,7 @@
 							Produk Hukum
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('uu'); ?>">Undang-Undang</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/uu'); ?>">Undang-Undang</a></li>
 							<!-- <li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('uu'); ?>">Undang-Undang</a></li> -->
 							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
 						</ul>
