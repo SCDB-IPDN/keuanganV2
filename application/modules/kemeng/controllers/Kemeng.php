@@ -364,8 +364,17 @@ class Kemeng extends CI_Controller
 				}
 
 				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
-				// var_dump($ho);exit;
 				$x['ho'] = json_encode($ho);
+
+				$hi = $this->Kemeng_model->cobanip($id_fakultas)->result();
+
+				// if ($this->Kemeng_model->nihcoba($id_fakultas,$hi)->result() == NULL) {
+				// 	echo hahaha; exit();
+				// }
+		
+				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi)->result();
+				// var_dump($haha);exit();
+				$x['haha'] = json_encode($haha);
 
 				$this->load->view("include/head");
 				$this->load->view("include/top-header");

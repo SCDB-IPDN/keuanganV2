@@ -13,7 +13,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-        
+
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -27,35 +27,53 @@
         <div class="table-responsive">
 
           <div class="panel-body">
-              <h4 class="text-center">Kelebihan Mengajar <?php echo ucwords(strtolower($title)); ?></h4>
-            <table id="data-dosen-honor" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+            <h4 class="text-center">Kelebihan Mengajar <?php echo ucwords(strtolower($title)); ?></h4>
+            <br>
+            <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead valign="middle">
                 <tr align="center">
-                  <th  >NIP</th>
-                  <th  >NAMA</th>
-                  <th  >JABATAN</th>
-                  <th  >TOTAL SKS</th>
-                  <th  >KEWAJIBAN</th>
-                  <th  >KELEBIHAN</th>
-                  <th  >TOTAL</th>
+                  <th rowspan="2" style="vertical-align: middle !important">NO</th>
+                  <th colspan="3" style="vertical-align: middle !important">DOSEN</th>
+                  <th rowspan="2" style="vertical-align: middle !important">TOTAL SKS</th>
+                  <th rowspan="2" style="vertical-align: middle !important">KEWAJIBAN</th>
+                  <th rowspan="2" style="vertical-align: middle !important">KELEBIHAN</th>
+                  <th rowspan="2" style="vertical-align: middle !important">TOTAL</th>
+                </tr>
+                <tr align="center">
+                  <th  style="vertical-align: middle !important">NIP</th>
+                  <th  style="vertical-align: middle !important">NAMA</th>
+                  <th  style="vertical-align: middle !important">GOLONGAN</th>
+                </tr>
+                <!-- <th>NIP</th>
+                <th>NAMA</th>
+                <th>JABATAN</th>
+                <th>TOTAL SKS</th>
+                <th>KEWAJIBAN</th>
+                <th>KELEBIHAN</th>
+                <th>TOTAL</th> -->
 
-                </tr>  
+              </tr>  
 
-              </thead>
+            </thead>
 
-              <tbody>
-                <?php foreach (json_decode($ho, true) as $x): ?>
-                  <tr>
-                    <td><?= $x['nip']; ?></td>
-                    <td><?= $x['nama']; ?></td>
-                    <td><?= $x['jabatan']; ?></td>
-                    <td><?= $x['totalsks']; ?></td>
-                    <td><?= $x['kewajiban'];  ?></td>
-                    <td><?= $x['kelebihan'];  ?></td>
-                    <td><?= $x['total']; ?></td>
-                 </tr>
-               <?php endforeach; ?>
-             </tbody>
+            <tbody>
+              <?php $no = 1; ?>
+              <?php foreach (json_decode($ho, true) as $x): ?>
+                <tr >
+                  <td ><?php echo $no++; ?></td>
+                  <td ><?= $x['nip']; ?></td>
+                  <td ><?= $x['nama']; ?></td>
+                  <td ><?= $x['jabatan']; ?></td>
+                  <td ><?= $x['totalsks'].' sks'; ?></td>
+                  <td ><?= $x['kewajiban'].' sks'; ?></td>
+                  <td ><?= $x['kelebihan'].' sks'; ?></td>
+                  <td ><?= 'Rp'. number_format($x['total'], 0, ',', '.'); ?></td>
+
+                  <?php endforeach; ?>
+                </tr>
+                
+              </tbody>
+
 
             </table>
           </div>
@@ -66,7 +84,7 @@
     </div>
     <!-- end col-10 -->
 
-    
+
 
 
     <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
