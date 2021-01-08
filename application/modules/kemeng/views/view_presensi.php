@@ -36,10 +36,7 @@
 									<select id="dosen" name="nama_dosen" class="form-control" style="width: 100%" > 
 										<option disabled selected>Nama Dosen..</option>
 										<?php foreach($nama_dosen as $dosen){?>
-											<option value="<?php echo $dosen->nama;?>|<?php echo $dosen->nip;?>"><?php echo $dosen->nama;?></option>
-										
-										<!-- <option value="<?php echo $dosen->id_dosen ?>"><?php echo $dosen->id_dosen  ?> </option>  -->
-										
+										<option value="<?php echo $dosen->nama ?>"><?php echo $dosen->nama ?></option>
 										<?php } ?>
 									</select>
 									<br>

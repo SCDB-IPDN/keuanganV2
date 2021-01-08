@@ -16,7 +16,6 @@
           <h4 class="panel-title">
             ID : <?php echo $data[0]->id ?>
           </h4>
-
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -29,6 +28,23 @@
             <form action="<?php echo base_url('d_praja/view_edit'); ?>" method="POST">
               <h3> DATA DIRI </h3>
               <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data[0]->id ?>" >
+              <div class="row">
+               <div class="col-xl">
+               <br>
+                <label for="basic-url">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" >
+              </div>
+              <div class="col-xl">
+              <br>
+                <label for="basic-url">NIK</label>
+                <input type="text" class="form-control"  id="nik_praja" name="nik_praja" value="<?php echo $data[0]->nik_praja == NULL ? "-" : $data[0]->nik_praja ?>" >
+              </div>
+              <div class="col-xl">
+              <br>
+                <label for="basic-url">No SPCP</label>
+                <input type="text" class="form-control" id="no_spcp" name="no_spcp" value="<?php echo  $data[0]->no_spcp == NULL ? "-" : $data[0]->no_spcp ?>" >
+              </div>
+              <div class="col-xl">
               <br>
               <div class="form-group">
                 <div class="row">

@@ -81,7 +81,6 @@
         </table>
         <div class="col-11">
           <br>
-
           <button type="submit" class="btn btn-blue" value="Cek">Ubah</button>
           <a href="<?php echo base_url('d_praja'); ?>"><button type="button" class="btn btn-secondary">Kembali</button></a>
         </div>

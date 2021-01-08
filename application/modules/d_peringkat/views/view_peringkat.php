@@ -83,8 +83,7 @@
 		endDate: "<?= $seDate; ?>",
 		singleDatePicker: true,
 		showDropdowns: true,
-		maxDate: moment(),
-		minYear: 2017,
+		minYear: 2010,
 		maxYear: parseInt(moment().format('YYYY'),10)
 		},
 		function(start, end, label) {

@@ -153,7 +153,8 @@
             responsive: true,
             "ajax": {
               "url": url,
-              "dataSrc": ""
+              "dataSrc": "",
+              "deferRender": true
             }
           });
       });
@@ -176,7 +177,6 @@
       gridTextSize: 10
     });
   </script> -->
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');

@@ -12,6 +12,7 @@ class Kepegawaian_model extends CI_Model{
     $tingkat = $this->db->query("SELECT * FROM tbl_pendidikan")->result();
     return $tingkat;
   }
+
   function get_namasatker()
 	{   
     $nama_satker = $this->db->query("SELECT * FROM tbl_satker")->result();
@@ -26,6 +27,13 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
+  public function get_nama_dosen()
+	{	
+    $result = $this->db->query("SELECT nama FROM tbl_dosen");
+
+    return $result;
+  }
+
   public function get_not_serdos()
 	{
     $result = $this->db->query("SELECT * FROM tbl_dosen WHERE serdos = ''");
@@ -33,11 +41,25 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
+  public function get_nama_fakultas()
+	{
+		$result = $this->db->query("SELECT nama_fakultas FROM tbl_fakultas ");
+		return $result;
+  }
+
   public function get_not_nidn()
 	{
     $result = $this->db->query("SELECT * FROM tbl_dosen WHERE nidn = 0");
     return $result;
   }
+
+  public function getcoba($nama)
+	{
+		$nama = strtoupper(str_replace('-', ' ', $nama));
+		$result = $this->db->query("SELECT id, nama_dosen, nama_matkul, tanggal, jam, kelas, semester, nama FROM tbl_plot_dosen WHERE nama_dosen = '$nama'");
+		return $result;
+  }
+  
 
   function tambah_dosen($input_data)
 	{   
