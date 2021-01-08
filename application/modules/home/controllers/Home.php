@@ -5,6 +5,7 @@ class Home extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('home_model');
+    $this->load->helper('text');
   }
 
   /**
@@ -92,7 +93,13 @@ class Home extends CI_Controller {
       $pengasuhan = $this->home_model->app_pengasuhan();
 
       $apps = $this->home_model->apps();
+      
+      $berita = $this->home_model->listing();
+      
 
+      // var_dump($berita);exit;
+
+      $x['berita'] = $berita;
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
       $x['keuangan'] = $keuangan;
@@ -148,5 +155,22 @@ class Home extends CI_Controller {
     }
 	
   }
+
+  // // Read berita
+	// public function read($slug_berita)
+	// {
+	// 	helper('text');
+	// 	$berita = $this->home_model->read($slug_berita);
+
+  //   $x['berita'] = $berita;
+            
+  //   $this->load->view("include/head");
+  //   $this->load->view("include/top-header");
+  //   $this->load->view('read', $x);
+  //   $this->load->view("include/sidebar");
+  //   $this->load->view("include/panel");
+  //   $this->load->view("include/footer");
+    
+	// }
 }
 ?>

@@ -250,7 +250,7 @@ class Kemeng extends CI_Controller
 		   $plot['sks'] = $this->input->post('sks', true);
 		   $kemeng = 9;
 		   if ($plot['sks'] > $kemeng) {
-		   	$plot['indeks'] = $plot['s ks'] - $kemeng;
+		   	$plot['indeks'] = $plot['sks'] - $kemeng;
 		   }
 		   $pisah = explode("|", $plot['nama']);
 		   $nama = $pisah[0];
