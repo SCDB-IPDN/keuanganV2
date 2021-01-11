@@ -274,65 +274,6 @@ class Kemeng extends CI_Controller
 		}
 	}
 
-
-	function honor_all($id_fakultas = NULL) {
-		if($this->session->userdata('nip') != NULL) {
-
-			// var_dump($id_fakultas);exit;
-			if ($id_fakultas == NULL) {
-
-				$fakultas = $this->Kemeng_model->get_fakul()->result();
-				$x['fakultas']  = json_encode($fakultas);
-
-				$this->load->view("include/head");
-				$this->load->view("include/top-header");
-				$this->load->view("view_honor_all",$x);
-				$this->load->view("include/sidebar");
-				$this->load->view("include/footer");
-				
-			}else{
-
-				$nip = $this->Kemeng_model->nama_dosen()->result_array();
-				$honoooor = $this->Kemeng_model->get_honor_all($nip)->result();
-
-
-				$honorr = $this->Kemeng_model->get_fakulhonor($id_fakultas)->result();
-				$honorr = json_encode($honorr);
-
-
-				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
-
-				var_dump($ho);exit;
-
-				$tmp = array();
-
-				foreach($ho as $r) {
-					$nip = $r->nip;
-					$nama = $r->nama;
-					$jabatan = $r->jabatan;
-					$totalsks = $r->totalsks;
-					$kewajiban = $r->kewajiban;
-					$kelebihan = $r->kelebihan;
-					$total = $r->total;
-
-					$tmp[] = array(
-						$nip,
-						$nama,
-						$jabatan,
-						$totalsks,
-						$kewajiban,
-						$kelebihan,
-						$total
-					);
-				}
-				echo json_encode($tmp);
-			}
-
-		}else{
-			redirect("user");
-		}
-	}
-
 	function honor_table_all($id_fakultas = NULL){
 		$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
 		
@@ -367,10 +308,6 @@ class Kemeng extends CI_Controller
 				$x['ho'] = json_encode($ho);
 
 				$hi = $this->Kemeng_model->cobanip($id_fakultas)->result();
-
-				// if ($this->Kemeng_model->nihcoba($id_fakultas,$hi)->result() == NULL) {
-				// 	echo hahaha; exit();
-				// }
 		
 				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi)->result();
 				// var_dump($haha);exit();
@@ -378,7 +315,7 @@ class Kemeng extends CI_Controller
 
 				$this->load->view("include/head");
 				$this->load->view("include/top-header");
-				$this->load->view("view_honor_all1",$x);
+				$this->load->view("view_honor_all",$x);
 				$this->load->view("include/sidebar");
 				$this->load->view("include/footer");
 			}
