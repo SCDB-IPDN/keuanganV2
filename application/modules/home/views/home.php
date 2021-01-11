@@ -41,7 +41,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-8">
 									<div class="mb-3 text-grey">
-										<b>PERSENTASE SPAN</b>
+										<b>PERSENTASE OM-SPAN</b>
 										<span class="ml-2">
 											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
 										</span>
@@ -105,6 +105,7 @@
 				</div>
 			</div>
 		</div> -->
+
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -217,6 +218,262 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-xl-6">
+			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
+				<li class="nav-item"><a href="#aplikasi" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">APLIKASI</span></a></li>
+				<li class="nav-item"><a href="#status_aplikasi" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">STATUS APLIKASI</span></a></li>
+			</ul>
+			<div class="tab-content" data-sortable-id="index-3">
+				<div class="tab-pane fade active show" id="aplikasi">
+					<div class="height-sm" data-scrollbar="true">
+						<div class="panel-body">
+							<div class="card border-0 bg-white text-black mb-3">
+								<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 100%;"></div>
+								<div class="widget-list widget-list-rounded">
+									<br>
+									<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
+										<div class="widget-list-media icon">
+											<i class="fab fas fa-lg fa-fw  fa-university bg-primary text-white"></i>
+										</div>
+										<div class="widget-list-content">
+											<div class="widget-list-title">IPDN</div>
+										</div>
+									</a>
+									<a href="<?php echo base_url('d_span');?>" class="widget-list-item rounded-0 p-t-3">
+										<div class="widget-list-media icon">
+											<i class="fab fas fa-lg fa-fw  fa-money-bill-alt bg-green text-white"></i>
+										</div>
+										<div class="widget-list-content">
+											<div class="widget-list-title">Keuangan</div>
+										</div>
+									</a>
+									<a href="<?php echo base_url('kepegawaian');?>" class="widget-list-item rounded-0 p-t-3">
+										<div class="widget-list-media icon">
+											<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
+										</div>
+										<div class="widget-list-content">
+											<div class="widget-list-title">Kepegawaian</div>
+										</div>
+									</a>
+									<a href="<?php echo base_url('d_praja');?>" class="widget-list-item rounded-0 p-t-3">
+										<div class="widget-list-media icon">
+											<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
+										</div>
+										<div class="widget-list-content">
+											<div class="widget-list-title">Keprajaan</div>
+										</div>
+									</a>
+									<br>
+									<div class="col-sm-6">
+										<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="status_aplikasi">
+					<div class="height-sm" data-scrollbar="true">
+						<div class="card border-0 bg-white text-black text-truncate mb-3">
+							<div class="mb-3 text-black">
+								<b class="mb-3">TOTAL APLIKASI</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="" data-original-title="" title=""></i></span>
+								<div class="text-black">
+									<i class=""></i> KAMPUS IPDN
+								</div>
+							</div>
+							<div class="d-flex align-items-center mb-1">
+								<h4 class="text-black mb-0"><span data-animation="number" data-value="<?php echo $apps[0]->total ?>"><?php echo $apps[0]->total ?></span> Aplikasi</h4>
+								<div class="ml-auto">
+									<div id="conversion-rate-sparkline"></div>
+								</div>
+							</div>
+							<br>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+									Aktif, Digunakan
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->aktif; ?></span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+									Aktif, Tidak Digunakan
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_digunakan; ?></span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+									Tidak Aktif
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_aktif; ?></span></div>
+								</div>
+							</div>					
+						</div>
+						<div class="table-responsive">
+							<table class="table table-valign-middle table-panel mb-0" width="100%">
+								<thead>
+									<tr>
+										<div class="progress rounded-corner">
+											<div class="progress-bar bg-dark" style="width: 25%">
+											Unit
+											</div>
+											<div class="progress-bar bg-lime" style="width: 25%">
+											Aktif, Digunakan
+											</div>
+											<div class="progress-bar bg-warning" style="width: 25%">
+											Tidak Digunakan
+											</div>
+											<div class="progress-bar bg-red" style="width: 25%">
+											Tidak Aktif
+											</div>
+										</div>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td width="35%"><label class="label label-danger"><?php echo $apps[0]->nama_1; ?></label></td>
+										<td width="26%"><?php echo $apps[0]->app1_1; ?></td>
+										<td width="24%"><?php echo $apps[0]->app1_2; ?></td>
+										<td><?php echo $apps[0]->app1_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-warning"><?php echo $apps[0]->nama_2; ?></label></td>
+										<td><?php echo $apps[0]->app2_1; ?></td>
+										<td><?php echo $apps[0]->app2_2; ?></td>
+										<td><?php echo $apps[0]->app2_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-success"><?php echo $apps[0]->nama_3; ?></label></td>
+										<td><?php echo $apps[0]->app3_1; ?></td>
+										<td><?php echo $apps[0]->app3_2; ?></td>
+										<td><?php echo $apps[0]->app3_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-primary"><?php echo $apps[0]->nama_4; ?></label></td>
+										<td><?php echo $apps[0]->app4_1; ?></td>
+										<td><?php echo $apps[0]->app4_2; ?></td>
+										<td><?php echo $apps[0]->app4_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-default"><?php echo $apps[0]->nama_5; ?></label></td>
+										<td><?php echo $apps[0]->app5_1; ?></td>
+										<td><?php echo $apps[0]->app5_2; ?></td>
+										<td><?php echo $apps[0]->app5_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-lime"><?php echo $apps[0]->nama_6; ?></label></td>
+										<td><?php echo $apps[0]->app6_1; ?></td>
+										<td><?php echo $apps[0]->app6_2; ?></td>
+										<td><?php echo $apps[0]->app6_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-pink"><?php echo $apps[0]->nama_7; ?></label></td>
+										<td><?php echo $apps[0]->app7_1; ?></td>
+										<td><?php echo $apps[0]->app7_2; ?></td>
+										<td><?php echo $apps[0]->app7_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-green"><?php echo $apps[0]->nama_8; ?></label></td>
+										<td><?php echo $apps[0]->app8_1; ?></td>
+										<td><?php echo $apps[0]->app8_2; ?></td>
+										<td><?php echo $apps[0]->app8_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-red"><?php echo $apps[0]->nama_9; ?></label></td>
+										<td><?php echo $apps[0]->app9_1; ?></td>
+										<td><?php echo $apps[0]->app9_2; ?></td>
+										<td><?php echo $apps[0]->app9_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-warning"><?php echo $apps[0]->nama_10; ?></label></td>
+										<td><?php echo $apps[0]->app10_1; ?></td>
+										<td><?php echo $apps[0]->app10_2; ?></td>
+										<td><?php echo $apps[0]->app10_3; ?></td>
+									</tr>
+									<tr>
+										<td><label class="label label-default"><?php echo $apps[0]->nama_11; ?></label></td>
+										<td><?php echo $apps[0]->app11_1; ?></td>
+										<td><?php echo $apps[0]->app11_2; ?></td>
+										<td><?php echo $apps[0]->app11_3; ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xl-6">
+			<!-- begin tabs -->
+			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
+				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
+			</ul>
+			<div class="tab-content" data-sortable-id="index-3">
+				<div class="tab-pane fade active show" id="latest-post">
+					<div class="height-sm" data-scrollbar="true">
+						
+					<?php foreach($berita as $berita) { ?>
+						<ul class="media-list media-list-with-divider">
+							<li class="media media-lg">
+								<a href="javascript:;" class="pull-left">
+									<img class="media-object rounded" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
+								</a>
+								<div class="media-body">
+									<h5 class="media-heading"><?php echo $berita->judul_berita ?></h5>
+									<p><?php echo date('H:i:s | d/m/Y', strtotime($berita->tanggal)) ?></p>
+									<?php $limited_word = word_limiter($berita->isi,10);?>
+        							<?php echo $limited_word ?>
+									<span>
+										<a href="#" data-toggle="modal" data-target="#read<?php echo $berita->id_berita;?>">Baca detail...</a>
+									</span>
+								</div>
+							</li>
+						</ul>
+
+						<!-- Modal -->
+						<div class="modal fade bd-example-modal-xl" id="read<?php echo $berita->id_berita;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-xl" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel"><?php echo $berita->judul_berita ?></h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="height-lg" data-scrollbar="true">
+										<div class="modal-body">
+											<div class="row">
+												<div class="form-group col-xl-4">
+													<a href="javascript:;" class="pull-left">
+														<img class="rounded" style="width:100%" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
+													</a>
+												</div>
+												<div class="form-group col-xl-8">
+													<?php echo $berita->isi ?>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php }?>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -467,199 +724,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-6">
-			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-				<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">APLIKASI</span></a></li>
-				<li class="nav-item"><a href="#purchase" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">STATUS APLIKASI</span></a></li>
-			</ul>
-			<div class="tab-content" data-sortable-id="index-3">
-				<div class="tab-pane fade active show" id="latest-post">
-					<div class="height-sm" data-scrollbar="true">
-						<div class="panel-body">
-							<div class="card border-0 bg-white text-black mb-3">
-								<div class="card-body" style="background: no-repeat bottom right; background-image: url(assets/img/svg/img-4.svg); background-size: auto 100%;"></div>
-								<div class="widget-list widget-list-rounded">
-									<br>
-									<a href="http://ipdn.ac.id/" target="_blank" class="widget-list-item rounded-0 p-t-3">
-										<div class="widget-list-media icon">
-											<i class="fab fas fa-lg fa-fw  fa-university bg-primary text-white"></i>
-										</div>
-										<div class="widget-list-content">
-											<div class="widget-list-title">IPDN</div>
-										</div>
-									</a>
-									<a href="<?php echo base_url('d_span');?>" class="widget-list-item rounded-0 p-t-3">
-										<div class="widget-list-media icon">
-											<i class="fab fas fa-lg fa-fw  fa-money-bill-alt bg-green text-white"></i>
-										</div>
-										<div class="widget-list-content">
-											<div class="widget-list-title">Keuangan</div>
-										</div>
-									</a>
-									<a href="<?php echo base_url('kepegawaian');?>" class="widget-list-item rounded-0 p-t-3">
-										<div class="widget-list-media icon">
-											<i class="fab fas fa-lg fa-fw fa-building bg-blue text-white"></i>
-										</div>
-										<div class="widget-list-content">
-											<div class="widget-list-title">Kepegawaian</div>
-										</div>
-									</a>
-									<a href="<?php echo base_url('d_praja');?>" class="widget-list-item rounded-0 p-t-3">
-										<div class="widget-list-media icon">
-											<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
-										</div>
-										<div class="widget-list-content">
-											<div class="widget-list-title">Keprajaan</div>
-										</div>
-									</a>
-									<br>
-									<div class="col-sm-6">
-										<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#detail"><i class="fa fas fa-info-circle"></i> More</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="purchase">
-					<div class="height-sm" data-scrollbar="true">
-						<div class="card border-0 bg-white text-black text-truncate mb-3">
-							<div class="mb-3 text-black">
-								<b class="mb-3">TOTAL APLIKASI</b> 
-								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="" data-original-title="" title=""></i></span>
-								<div class="text-black">
-									<i class=""></i> KAMPUS IPDN
-								</div>
-							</div>
-							<div class="d-flex align-items-center mb-1">
-								<h4 class="text-black mb-0"><span data-animation="number" data-value="<?php echo $apps[0]->total ?>"><?php echo $apps[0]->total ?></span> Aplikasi</h4>
-								<div class="ml-auto">
-									<div id="conversion-rate-sparkline"></div>
-								</div>
-							</div>
-							<br>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-									Aktif, Digunakan
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->aktif; ?></span></div>
-								</div>
-							</div>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
-									Aktif, Tidak Digunakan
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_digunakan; ?></span></div>
-								</div>
-							</div>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-									Tidak Aktif
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $apps[0]->tdk_aktif; ?></span></div>
-								</div>
-							</div>					
-						</div>
-						<div class="table-responsive">
-							<table class="table table-valign-middle table-panel mb-0" width="100%">
-								<thead>
-									<tr>
-										<div class="progress rounded-corner">
-											<div class="progress-bar bg-dark" style="width: 25%">
-											Unit
-											</div>
-											<div class="progress-bar bg-lime" style="width: 25%">
-											Aktif, Digunakan
-											</div>
-											<div class="progress-bar bg-warning" style="width: 25%">
-											Tidak Digunakan
-											</div>
-											<div class="progress-bar bg-red" style="width: 25%">
-											Tidak Aktif
-											</div>
-										</div>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td width="35%"><label class="label label-danger"><?php echo $apps[0]->nama_1; ?></label></td>
-										<td width="26%"><?php echo $apps[0]->app1_1; ?></td>
-										<td width="24%"><?php echo $apps[0]->app1_2; ?></td>
-										<td><?php echo $apps[0]->app1_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-warning"><?php echo $apps[0]->nama_2; ?></label></td>
-										<td><?php echo $apps[0]->app2_1; ?></td>
-										<td><?php echo $apps[0]->app2_2; ?></td>
-										<td><?php echo $apps[0]->app2_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-success"><?php echo $apps[0]->nama_3; ?></label></td>
-										<td><?php echo $apps[0]->app3_1; ?></td>
-										<td><?php echo $apps[0]->app3_2; ?></td>
-										<td><?php echo $apps[0]->app3_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-primary"><?php echo $apps[0]->nama_4; ?></label></td>
-										<td><?php echo $apps[0]->app4_1; ?></td>
-										<td><?php echo $apps[0]->app4_2; ?></td>
-										<td><?php echo $apps[0]->app4_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-default"><?php echo $apps[0]->nama_5; ?></label></td>
-										<td><?php echo $apps[0]->app5_1; ?></td>
-										<td><?php echo $apps[0]->app5_2; ?></td>
-										<td><?php echo $apps[0]->app5_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-lime"><?php echo $apps[0]->nama_6; ?></label></td>
-										<td><?php echo $apps[0]->app6_1; ?></td>
-										<td><?php echo $apps[0]->app6_2; ?></td>
-										<td><?php echo $apps[0]->app6_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-pink"><?php echo $apps[0]->nama_7; ?></label></td>
-										<td><?php echo $apps[0]->app7_1; ?></td>
-										<td><?php echo $apps[0]->app7_2; ?></td>
-										<td><?php echo $apps[0]->app7_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-green"><?php echo $apps[0]->nama_8; ?></label></td>
-										<td><?php echo $apps[0]->app8_1; ?></td>
-										<td><?php echo $apps[0]->app8_2; ?></td>
-										<td><?php echo $apps[0]->app8_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-red"><?php echo $apps[0]->nama_9; ?></label></td>
-										<td><?php echo $apps[0]->app9_1; ?></td>
-										<td><?php echo $apps[0]->app9_2; ?></td>
-										<td><?php echo $apps[0]->app9_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-warning"><?php echo $apps[0]->nama_10; ?></label></td>
-										<td><?php echo $apps[0]->app10_1; ?></td>
-										<td><?php echo $apps[0]->app10_2; ?></td>
-										<td><?php echo $apps[0]->app10_3; ?></td>
-									</tr>
-									<tr>
-										<td><label class="label label-default"><?php echo $apps[0]->nama_11; ?></label></td>
-										<td><?php echo $apps[0]->app11_1; ?></td>
-										<td><?php echo $apps[0]->app11_2; ?></td>
-										<td><?php echo $apps[0]->app11_3; ?></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</div>
 </div>
 
