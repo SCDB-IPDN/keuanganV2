@@ -40,6 +40,8 @@ class User extends CI_Controller {
 		$this->session->unset_userdata('nip');
 		$this->session->unset_userdata('nama');
 		$this->session->unset_userdata('is_login');
+		$this->session->unset_userdata('image_url');
+		$this->session->unset_userdata('dosen');
 		redirect('user');
 	}
 }

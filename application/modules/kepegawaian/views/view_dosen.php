@@ -147,7 +147,7 @@
                             <p>Anda yakin mau menghapus Data DOSEN <input type="text" id="namaxx" disabled></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="id_dosenxx" name="id_dosen" >
+                            <input type="hidden" id="id_dosenxx" name="id_dosen">
                             <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                             <button class="btn btn-danger">Hapus</button>
                         </div>

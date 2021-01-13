@@ -33,6 +33,7 @@ class D_sarpras_model extends CI_Model{
 		$this->db->select('COUNT(tahun) as total, tahun, kode_satker');
 		$this->db->group_by(array("tahun", "kode_satker"));
 		$this->db->order_by('kode_satker', 'ASC');
+		$this->db->order_by('tahun', 'ASC');
 		$result = $this->db->get('tbl_sarpras');
 
 		return $result;

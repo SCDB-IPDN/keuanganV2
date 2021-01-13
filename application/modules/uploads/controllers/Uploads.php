@@ -91,7 +91,7 @@ class Uploads extends CI_Controller {
 
 	public function v_rank()
 	{
-		if($this->session->userdata('nip'))
+		if($_SESSION['nip'])
 		{
 			$x['title'] = "rank";
 			$this->load->view("include/head");
@@ -309,70 +309,70 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-				$add = false;
-				$nama = "";
-				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-				if (count($tmp) > 0) {
-					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-					$nama = $txt[0];
-					switch ($tmp[0]) {
-						case 448302:
+			$add = false;
+			$nama = "";
+			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+			if (count($tmp) > 0) {
+				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+                        $nama = $txt[0];
+                        switch ($tmp[0]) {
+							case 448302:
 							// IPDN KAMPUS JATINANGOR
-						$add = true;
-						break;
-						case 352593:
+							$add = true;
+							break;
+                            case 352593:
                             // IPDN KAMPUS JAKARTA 
-						$add = true;
-						break;
-						case 677010:
+                            $add = true;
+                            break;
+                            case 677010:
                             // IPDN KAMPUS SULUT
-						$add = true;
-						break;
-						case 677024:
+                            $add = true;
+                            break;
+                            case 677024:
                             // IPDN KAMPUS SULSES
-						$add = true;
-						break;	
-						case 677045:
+                            $add = true;
+                            break;	
+                            case 677045:
                             // IPDN KAMPUS SUMBAR
-						$add = true;
-						break;	
-						case 683070:
+                            $add = true;
+                            break;	
+                            case 683070:
                             // IPDN KAMPUS KALBAR
-						$add = true;
-						break;	
-						case 683084:
+                            $add = true;
+                            break;	
+                            case 683084:
                             // IPDN KAMPUS NTB
-						$add = true;
-						break;	
-						case 683091:
+                            $add = true;
+                            break;	
+                            case 683091:
                             // IPDN KAMPUS PAPUA
-						$add = true;
-						break;
-					}
-					if ($add) {
-						array_push($data, array(
-							'kode_satker'    =>  $tmp[0],
-							'nama_satker'  =>  $txt[0],
-							'pagu_bp'      => $row['C'],
-							'realisasi_bp'      => $row['D'],
-							'persentase_bp'      => substr($row['E'], 1, 6),
-							'pagu_bb'      => $row['G'],
-							'realisasi_bb'   => $row['H'],
-							'persentase_bb'   => substr($row['I'], 1, 6),
-							'pagu_bm'   => $row['K'],
-							'realisasi_bm'   => $row['L'],
-							'persentase_bm'   => substr($row['M'], 1, 6),
-							'pagu_t'   => $row['AM'],
-							'realisasi_t'   => $row['AN'],
-							'persentase_t'   => substr($row['AO'], 1, 6),
-							'sisa'   => $row['AP'],
-							'created_date' => $datee,
-
-						));
-					}	
-				}
+                            $add = true;
+							break;
+						}
+						if ($add) {
+                            array_push($data, array(
+                                'kode_satker'    =>  $tmp[0],
+                                'nama_satker'  =>  $txt[0],
+                                'pagu_bp'      => $row['C'],
+                                'realisasi_bp'      => $row['D'],
+                                'persentase_bp'      => substr($row['E'], 1, 6),
+                                'pagu_bb'      => $row['G'],
+                                'realisasi_bb'   => $row['H'],
+                                'persentase_bb'   => substr($row['I'], 1, 6),
+                                'pagu_bm'   => $row['K'],
+                                'realisasi_bm'   => $row['L'],
+                                'persentase_bm'   => substr($row['M'], 1, 6),
+                                'pagu_t'   => $row['AM'],
+                                'realisasi_t'   => $row['AN'],
+                                'persentase_t'   => substr($row['AO'], 1, 6),
+								'sisa'   => $row['AP'],
+								'created_date' => $datee,
+								
+                    ));
+                }	
 			}
-
+		}
+		
 
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
@@ -415,53 +415,53 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-				$add = false;
-				$nama = "";
-				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-				if (count($tmp) > 0) {
-					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-					$nama = $txt[0];
-					switch ($tmp[0]) {
-						case '1294':
+			$add = false;
+			$nama = "";
+			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+			if (count($tmp) > 0) {
+				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+                        $nama = $txt[0];
+                        switch ($tmp[0]) {
+							case '1294':
 							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
-						$add = true;
-						break;
-						case '1293':
+							$add = true;
+							break;
+							case '1293':
 							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
-						$add = true;
-						break;
-						case '1286':
+							$add = true;
+							break;
+							case '1286':
 							// Penyelenggaraan Administrasin Kerjasama dan Hukum
-						$add = true;
-						break;
-						case '1292':
+							$add = true;
+							break;
+							case '1292':
 							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
-						$add = true;
-						break;
-					}
-					if ($add) {
-						array_push($biroo, array(
-							'kode_satker'    =>  $tmp[0],
-							'nama_satker'  =>  $txt[0],
-							'pagu_bp'      => $row['C'],
-							'realisasi_bp'      => $row['D'],
-							'persentase_bp'      => substr($row['E'], 1, 4),
-							'pagu_bb'      => $row['G'],
-							'realisasi_bb'   => $row['H'],
-							'persentase_bb'   => substr($row['I'], 1, 4),
-							'pagu_bm'   => $row['K'],
-							'realisasi_bm'   => $row['L'],
-							'persentase_bm'   => substr($row['M'], 1, 4),
-							'pagu_t'   => $row['AM'],
-							'realisasi_t'   => $row['AN'],
-							'persentase_t'   => substr($row['AO'], 1, 4),
-							'sisa'   => $row['AP'],
-							'created_date' => $datee,
-
-						));
-					}	
-				}
+							$add = true;
+							break;
+						}
+						if ($add) {
+                            array_push($biroo, array(
+                                'kode_satker'    =>  $tmp[0],
+                                'nama_satker'  =>  $txt[0],
+                                'pagu_bp'      => $row['C'],
+                                'realisasi_bp'      => $row['D'],
+                                'persentase_bp'      => substr($row['E'], 1, 4),
+                                'pagu_bb'      => $row['G'],
+                                'realisasi_bb'   => $row['H'],
+                                'persentase_bb'   => substr($row['I'], 1, 4),
+                                'pagu_bm'   => $row['K'],
+                                'realisasi_bm'   => $row['L'],
+                                'persentase_bm'   => substr($row['M'], 1, 4),
+                                'pagu_t'   => $row['AM'],
+                                'realisasi_t'   => $row['AN'],
+                                'persentase_t'   => substr($row['AO'], 1, 4),
+								'sisa'   => $row['AP'],
+								'created_date' => $datee,
+								
+                    ));
+                }	
 			}
+		}
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -1012,32 +1012,32 @@ class Uploads extends CI_Controller {
 							switch ($tab) {
 								case 0:
 									// tanah
-								$harga_beli = $this->ktt($row['H']);
-								$harga_baru = $this->ktt($row['J']);
-								$asal = $row['L'];
-								$kondisi = $row['M'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$asal = $row['L'];
+									$kondisi = $row['M'];
+									break;
 								case 1:
 									// aset tak berwujud, aset tetap lainnya, peralatan dan mesin
-								$harga_beli = $this->ktt($row['H']);
-								$harga_baru = $this->ktt($row['J']);
-								$kondisi = $row['L'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$kondisi = $row['L'];
+									break;
 								case 2:
 									// gedung dan bangunan
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$harga_baru = $this->ktt($row['K']);
-								$asal = $row['M'];
-								$kondisi = $row['N'];
-								break;
+									$luas = $this->ktt($row['H']);
+									$harga_beli = $this->ktt($row['I']);
+									$harga_baru = $this->ktt($row['K']);
+									$asal = $row['M'];
+									$kondisi = $row['N'];
+									break;
 								case 3:
 									// jaringan, irigasi, jalan dan jembatan
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$harga_baru = $this->ktt($row['K']);
-								$kondisi = $row['M'];
-								break;
+									$luas = $this->ktt($row['H']);
+									$harga_beli = $this->ktt($row['I']);
+									$harga_baru = $this->ktt($row['K']);
+									$kondisi = $row['M'];
+									break;
 							}
 
 							$thn = $row['F'];
@@ -1158,35 +1158,35 @@ class Uploads extends CI_Controller {
 							$asal = $kondisi = "";
 							switch ($tab) {
 								case 1:
-								$luas = $this->ktt($row['F']);
-								$harga_beli = $this->ktt($row['G']);
-								$asal = $row['I'];
-								$kondisi = $row['J'];
-								break;
+									$luas = $this->ktt($row['F']);
+									$harga_beli = $this->ktt($row['G']);
+									$asal = $row['I'];
+									$kondisi = $row['J'];
+									break;
 								case 2:
-								$jumlah = $this->ktt($row['F']);
-								$harga_beli = $this->ktt($row['G']);
-								$harga_baru = $this->ktt($row['I']);
-								$asal = $row['K'];
-								$kondisi = $row['L'];
-								break;
+									$jumlah = $this->ktt($row['F']);
+									$harga_beli = $this->ktt($row['G']);
+									$harga_baru = $this->ktt($row['I']);
+									$asal = $row['K'];
+									$kondisi = $row['L'];
+									break;
 								case 3:
-								$jumlah = $this->ktt($row['F']);
-								$harga_beli = $this->ktt($row['G']);
-								$asal = $row['I'];
-								$kondisi = $row['J'];
-								break;
+									$jumlah = $this->ktt($row['F']);
+									$harga_beli = $this->ktt($row['G']);
+									$asal = $row['I'];
+									$kondisi = $row['J'];
+									break;
 								case 4:
-								$luas = $this->ktt($row['F']);
-								$harga_beli = $this->ktt($row['H']);
-								$asal = $row['J'];
-								$kondisi = $row['K'];
-								break;
+									$luas = $this->ktt($row['F']);
+									$harga_beli = $this->ktt($row['H']);
+									$asal = $row['J'];
+									$kondisi = $row['K'];
+									break;
 								case 5:
-								$harga_beli = $this->ktt($row['G']);
-								$asal = $row['I'];
-								$kondisi = $row['J'];
-								break;
+									$harga_beli = $this->ktt($row['G']);
+									$asal = $row['I'];
+									$kondisi = $row['J'];
+									break;
 							}
 
 							$thn = $row['E'];
@@ -1307,35 +1307,35 @@ class Uploads extends CI_Controller {
 
 							switch ($tab) {
 								case 1:
-								$harga_beli = $this->ktt($row['H']);
-								$asal = $row['I'];
-								$kondisi = $row['J'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$asal = $row['I'];
+									$kondisi = $row['J'];
+									break;
 								case 2:
-								$harga_beli = $this->ktt($row['H']);
-								$harga_baru = $this->ktt($row['I']);
-								$asal = $row['J'];
-								$kondisi = $row['K'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['I']);
+									$asal = $row['J'];
+									$kondisi = $row['K'];
+									break;
 								case 3:
-								$harga_beli = $this->ktt($row['H']);
-								$harga_baru = $this->ktt($row['J']);
-								$asal = $row['L'];
-								$kondisi = $row['M'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$asal = $row['L'];
+									$kondisi = $row['M'];
+									break;
 								case 4:
-								$harga_beli = $this->ktt($row['H']);
-								$harga_baru = $this->ktt($row['J']);
-								$asal = $row['L'];
-								$kondisi = $row['M'];
-								break;
+									$harga_beli = $this->ktt($row['H']);
+									$harga_baru = $this->ktt($row['J']);
+									$asal = $row['L'];
+									$kondisi = $row['M'];
+									break;
 								case 5:
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$harga_baru = $this->ktt($row['K']);
-								$asal = $row['M'];
-								$kondisi = $row['N'];
-								break;
+									$luas = $this->ktt($row['H']);
+									$harga_beli = $this->ktt($row['I']);
+									$harga_baru = $this->ktt($row['K']);
+									$asal = $row['M'];
+									$kondisi = $row['N'];
+									break;
 							}
 
 							$thn = $row['F'];
@@ -1696,6 +1696,140 @@ class Uploads extends CI_Controller {
 		redirect("uploads/v_sarpras/kalbar");
 	}
 
+	public function sarpras_sumbar() {
+
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		if(isset($_FILES['sarpras_sumbar']['name']) && in_array($_FILES['sarpras_sumbar']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['sarpras_sumbar']['name']);
+			$extension = end($arr_file);
+
+			if($extension != 'xlsx') {
+				$this->session->set_flashdata('sarpras_sumbar', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+				redirect("uploads/v_sarpras/sumbar");
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+
+			$loadexcel = $reader->load($_FILES['sarpras_sumbar']['tmp_name']);
+
+			$list_sheet = $loadexcel->getSheetNames();
+
+			$table = "";
+			$kategori = "";
+			$set = false;
+			$data = array();
+			$kode_satker = 677045;
+			$ctest = 0;
+			$carr = 0;
+
+			foreach ($list_sheet as $shit) {
+				$ctest = 0;
+				$table = strtolower(str_replace(" ", "_", trim($shit)));
+				$kategori = trim($shit);
+				// echo "====================<br>";
+				// echo "tabel: $table<br>";
+				// echo "====================<br>";
+				$rows = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
+				$maxRow = $loadexcel->getSheetByName($shit)->getHighestDataRow() + 1;
+				$stop = false;
+				$num = 1;
+				$nullcc = 0;
+				$luas = $jumlah = 0;
+				$set = false; // buat liat bentuk tabel
+				$tab = 0; // jenis tabel
+				while($num < $maxRow) {
+					$row = $rows[$num];
+					$nullcc = 0;
+					if (!$set) {
+						if (strpos(strtolower($row['G']), "lokasi") === 0) {
+							// gedung dan bangunan
+							$set = true;
+							$tab = 1;
+						} elseif (strpos(strtolower($row['G']), "tanggal") === 0) {
+							// kendaraan
+							$set = true;
+							$tab = 2;
+						} elseif (strpos(strtolower($row['G']), "nilai") === 0) {
+							// jalan, jembatan dan jaringan
+							$set = true;
+							$tab = 3;
+						}
+					} elseif (is_numeric(preg_replace("/[^0-9]/", "", $row['C'])) && strlen(preg_replace("/[^0-9]/", "", $row['C'])) > 8) { //kode barang
+						// echo preg_replace("/[^0-9]/", "", $row['A'])."<br>";
+						$luas = $harga_beli = $harga_baru = 0;
+						$jumlah = 1;
+						$uraian = $nup = $merk = $thn = $asal = $kondisi = "";
+
+						switch ($tab) {
+							case 1:
+								$uraian = $row['D'];
+								$nup = $row['E'];
+								$harga_beli = $this->ktt($row['H']);
+								$luas = $this->ktt($row['I']);
+								$kondisi = $row['J'];
+								$ctest++;
+								break;
+							case 2:
+								$uraian = $row['D'];
+								$merk = $row['E'];
+								$harga_beli = $this->ktt($row['F']);
+								$thn = $row['G'];
+								if (strlen($thn) > 4) {
+									preg_match("/[0-9]{4}\b/", $thn, $thnT);
+									$thn = $thnT[0];
+								}
+								$kondisi = $row['H'];
+								$ctest++;
+								break;
+							case 3:
+								$nup = $row['D'];
+								$uraian = $row['E'];
+								$harga_beli = $this->ktt($row['G']);
+								// $thn = $row['H'];
+								// if (strlen($thn) > 4) {
+								// 	preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								// 	$thn = $thnT[0];
+								// }
+								$ctest++;
+								break;
+						}
+
+						array_push($data, array(
+							'kode_satker'    =>  $kode_satker,
+							'kode'  =>  preg_replace("/[^0-9]/", "", $row['C']),
+							// -------------------- //
+							'uraian' => $uraian,
+							'nup' => $nup,
+							'merk' => $merk,
+							'tahun' => $thn,
+							'jumlah' => $jumlah,
+							'luas' => $luas,
+							'harga_beli' => $harga_beli,
+							'harga_baru' => $harga_baru,
+							'asal' => $asal,
+							'kondisi' => $kondisi
+						));
+						$carr++;
+
+					}
+					$num++;
+				}
+				// echo $ctest."<br>";
+			}
+			// echo $carr."<br>";
+			// echo count($data)."<br>";
+			// $this->ptt($data);exit;
+			$this->db->insert_batch('tbl_sarpras', $data);
+		}
+
+		//upload success
+		$this->session->set_flashdata('sarpras_sumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sumbar']['name'].' berhasil diimport!</div>');
+			//redirect halaman
+		redirect("uploads/v_sarpras/sumbar");
+	}
+
 	public function rank() {
 
 		// Load plugin PHPExcel nya
@@ -1976,8 +2110,9 @@ class Uploads extends CI_Controller {
 			// $this->db->truncate('tbl_rank');
 			// $this->db->insert_batch('tbl_rank', $data);
 
-			$this->db->truncate('tbl_spanint');
-			$this->db->insert_batch('tbl_spanint', $data_span);
+			// $this->db->truncate('tbl_spanint');
+			// $this->db->insert_batch('tbl_spanint', $data_span);
+			$this->uploads_model->upsert_batch($data_span, 'tbl_spanint', $newDate);
 			// exit;
 			// //upload success
 			$this->session->set_flashdata('rank', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
@@ -2069,7 +2204,7 @@ class Uploads extends CI_Controller {
 						$ket = substr($ket, 9);
 
 						
-						// echo "<br><br>";
+						//echo "<br><br>";
 
 						array_push($dataunit, array(
 							'kode_satker' => $satker_jatinangor,
@@ -2106,16 +2241,8 @@ class Uploads extends CI_Controller {
 			// exit();
 
 			// $this->db->truncate('unit');
-			// print("<pre>".print_r($satker_jatinangor,true)."</pre>");
-			// print("<pre>".print_r($dataunit,true)."</pre>");
-			// print("<pre>".print_r($dataoutput,true)."</pre>");
-			// exit();
-
-
-
 			$this->db->insert_batch('unit_sas', $dataunit);
 			// $this->db->truncate('output');
-			// $this->db->update_batch('output_sas', $dataoutput, 'kode_satker');
 			$this->db->insert_batch('output_sas', $dataoutput);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
@@ -2763,7 +2890,7 @@ class Uploads extends CI_Controller {
 
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('praja', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
+				
 				redirect("uploads/v_praja"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -2910,14 +3037,14 @@ class Uploads extends CI_Controller {
 
 			if($extension != 'xlsx') {
 				$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
+				
 				redirect("uploads/v_praja"); 
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
 			$loadexcel  = $reader->load($_FILES['prajabaru']['tmp_name']);
-
+			
 			$namasheet = $loadexcel->getSheetNames();
 
 			// var_dump($sheetData);
@@ -2928,7 +3055,7 @@ class Uploads extends CI_Controller {
 			$stat = 'aktif';
 
 			foreach($namasheet as $shit){
-
+				
 				if (($shit == "Angkatan 28") || ($shit == "Angkatan 29") || ($shit == "Angkatan 30")) {
 					$sheetData = $loadexcel->getSheetByName($shit)->toArray(null, true, true ,true);
 					$numrow =  1;
@@ -2948,7 +3075,7 @@ class Uploads extends CI_Controller {
 								$stop = true;    
 							}
 						} else {
-
+							
 							$nullcc = 0;
 							$angka = 'XXX';
 							$jadi =1;
@@ -3014,7 +3141,7 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-
+	
 
 	public function thl()
 	{
@@ -3241,7 +3368,7 @@ class Uploads extends CI_Controller {
 					}				
 				}
 			}
-
+				
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -3741,17 +3868,18 @@ class Uploads extends CI_Controller {
 						'nip'      => $row['C'],
 						'nama'      => $row['D'],
 						'jk'      => $row['E'],
-						'institusi' => $row['F'],
-						'angkatan' => $row['G'],
-						'tahun_lulus' => $row['H'],
-						'instansi_tugas' => $row['I'],
-						'jabatan' =>$row['J'],
-						'kabkot' => $row['K'],
-						'provinsi' => $row['L']
+						'npp'      => $row['F'],
+						'nip'      => $row['G'],
+						'tempat_lahir' => $yukbisa,
+						'tanggal_lahir' => $tgl,
+						'asdaf' => $row['I'],
+						'agama' => $row['K'],
+						'instansi' => $row['L'],
+						'jabatan' =>$row['M']
 					));
 						// exit;
 
-
+						
 				}
 				$numrow++;
 			}

@@ -386,66 +386,6 @@ class Kepegawaian extends CI_Controller{
           }
     }
 
-    function tambah_status() {
-    	if ($this->session->userdata('nip') != NULL) {
-
-    		$data = $this->kepegawaian_model->getcoba($this->input->post('nama', true))->row_array();
-
-    		$tingkatann = $this->input->post('status', true);
-    		$keterangann = $this->input->post('keterangan', true);
-
-    		$nya = array();
-    		array_push($nya, array(
-    			'id' => $data['id'],
-    			'nama' => $data['nama'],
-    			'id_matkul' => $tingkatann,
-    			'tanggal' => $ting,
-    			'jam' => $ang,
-               'kelas' => $keterangann,
-               'semester' => $semester
-
-    		));
-    		// print("<pre>".print_r($nya,true)."</pre>");
-    		$up = $this->db->insert_batch('tbl_plot_dosen', $nya);
-
-
-    		if ($this->input->post('status', true) != "turuntingkat") {
-    			$haha = $this->input->post('status', true);
-    			// echo "$haha";
-    		} else {
-    			$haha = $data['status'];
-    		}
-
-    		$uptudate = array();
-    		$uptudate = array(
-    			'id' => $data['id'],
-    			'nama' => $data['nama'],
-    			'status' => $haha,
-    			'tingkat' => $ting,
-    			'angkatan' => $ang,
-    		);
-    		// print("<pre>".print_r($uptudate,true)."</pre>");
-    		// exit();
-    		$nih = $this->db->where('id', $data['id']);
-    		$nih = $this->db->update('tbl_plot_dosen', $uptudate); //Here also couldn't update
-
-
-    		// $this->db->update_batch('praja', $uptudate, '$data[id]');
-    		// exit();
-
-    		if (!$up && $nih) {
-    			$this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');
-    			redirect('kepegawaian/plot');
-    		} else {
-    			$this->session->set_flashdata('plot', 'DATA BERHASIL DIUBAH.');
-    			redirect('kepegawaian/plot');
-    		}
-
-    	} else {
-    		redirect("user");
-    	}
-    }
-
      public function edit_dosen()
 	{
           $datex = new DateTime();
