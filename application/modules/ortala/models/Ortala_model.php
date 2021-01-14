@@ -20,10 +20,10 @@ class Ortala_model extends CI_Model{
 		return $delporkum;
     }
 
-    public function edit_prokum($edit_prokum){
+    public function edit_prokum($editprokum){
 		
-		$id_prokum = $edit_prokum['id_prokum'];
-		$editprok = $this->db->where('id_prokum', $id_prokum)->update('tbl_ort', $edit_prokum);
+		$id_prokum = $editprokum['id_prokum'];
+		$editprok = $this->db->where('id_prokum', $id_prokum)->update('tbl_ort', $editprokum);
 
 		return $editprok; 	
     }

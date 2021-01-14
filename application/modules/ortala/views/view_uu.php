@@ -46,6 +46,7 @@
                   <TH>NOMOR</TH>
                   <th>TAHUN</th>
                   <th>TENTANG</th>
+                  <th>FILE</th>
                   <th>STATUS</th>
 				  <th>AKSI</th>
                 </tr>
@@ -89,6 +90,9 @@
                          
                             <label class="col-form-label">Tentang:</label>
                             <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
+                            
+                            <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" id="link" name="Link" placeholder="Link" required>
                             
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="Status">
@@ -140,6 +144,9 @@
                             <label class="col-form-label">Tentang:</label>
                             <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
                             
+                            <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" id="link" name="Link" placeholder="Link" required>
+                            
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="Status">
                                 <option disabled selected> Pilih Status</option>  
@@ -184,10 +191,6 @@
             </div>
         </div>
     </div>
-<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
-<script>
 
   $(document).ready(function() {
 
@@ -208,4 +211,36 @@
           });
       });
 
+    </script>
+
+<script>
+      $(document).ready(function() {
+        // Untuk sunting
+        $('#editprokum').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#kat').attr("value",div.data('kategori'));
+            modal.find('#nomor').attr("value",div.data('nomor'));
+            modal.find('#tahun').attr("value",div.data('tahun'));
+            modal.find('#tentang').attr("value",div.data('tentang'));
+            modal.find('#link').attr("value",div.data('link'));
+            modal.find('#status').attr("value",div.data('status'));
+
+          });
+        // Untuk sunting
+        $('#delprokum').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal          = $(this)
+
+            // Isi nilai pada field
+            modal.find('#kat').attr("value",div.data('kategori'));
+            modal.find('#nomor').attr("value",div.data('nomor'));
+            modal.find('#tahun').attr("value",div.data('tahun'));
+            modal.find('#tentang').attr("value",div.data('tentang'));
+            modal.find('#link').attr("value",div.data('link'));
+            modal.find('#status').attr("value",div.data('status'));
+          });
+      });
     </script>
