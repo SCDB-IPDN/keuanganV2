@@ -2913,30 +2913,35 @@ class Uploads extends CI_Controller {
 			$nullcc = 0;
 			while(!$stop) {
 				$row = $sheet[$num++];
+				// var_dump($round(val)w);exit();
 				if ($row['B'] == NULL) {
 					$nullcc++;
 					if ($nullcc == 4) {
 						$stop = true;    
 					}
-				} elseif (strlen($row['D']) == 1){
+				} elseif (strlen($row['C']) == 1){
 					$nullcc = 0;
 					$angkatan = 31;
-					$kurangtahun = 2020 - $row['AZ'];
+					$kurangtahun = 2020 - $row['BA'];
 					$hasil = 0;
 
-					if ($row['AZ'] == 2020)  {
+					$bb = explode(".", $row['F']);
+					$cc = $bb[0];
+
+					if ($row['BA'] == 2020)  {
 						$hasil = $angkatan;
-					}elseif($row['AZ'] < 2020 || $row['AZ'] > 2020 ){
+					}elseif($row['BA'] < 2020 || $row['BA'] > 2020 ){
 						$hasil= $angkatan-$kurangtahun;
 					}
 
+					
 					array_push($unitpraja, array(
 						'no_spcp'      => $row['A'],
 						'nama'      => $row['B'],
 						'jk'      => $row['C'],
-						'npp'      => $row['D'],
-						'nisn'      => $row['E'],
-						'npwp'      => $row['F'],
+						'nisn'      => $row['D'],
+						'npwp'      => $row['E'],
+						'npp'      => $row['F'],
 						'nik_praja'      => $row['G'],
 						'tmpt_lahir'      => $row['H'],
 						'tgl_lahir'      => $row['I'],
@@ -2959,16 +2964,15 @@ class Uploads extends CI_Controller {
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
 						'prodi'      => $row['AW'],
-						'prodi'      => $row['AW'],
-						'kode_prodi'      => $row['AX'],
+						'fakultas'      => $row['AX'],
 						'jenis_pendaftaran'      =>  $row['AY'],
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
 						'tahun_masuk_kuliah'      => $row['BA'],
 						'pembiayaan'      => $row['BB'],
 						'jalur_masuk'      => $row['BC'],
 						'status' => $stat,
-						'tingkat' => $row['AZ'] - date('Y') +1,
-						'angkatan' => $hasil
+						'tingkat' => $hasil,
+						'angkatan' => $cc
 					));
 
 
@@ -3009,13 +3013,13 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			print("<pre>".print_r($unitpraja,true)."</pre>");
-			exit();
-			$this->db->truncate('praja');
+
+			var_dump($hasil);exit();
+			// $this->db->truncate('praja');
 			$this->db->insert_batch('praja', $unitpraja);
-			$this->db->truncate('orangtua');
+			// $this->db->truncate('orangtua');
 			$this->db->insert_batch('orangtua', $unitortu);
-			$this->db->truncate('wali');
+			// $this->db->truncate('wali');
 			$this->db->insert_batch('wali', $unitwali);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));

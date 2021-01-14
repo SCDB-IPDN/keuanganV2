@@ -259,13 +259,4 @@ class Kemeng_model extends CI_Model
 		return $query;
 	}
 
-	function get_index_honor($nip) {
-		$this->db->select("index");
-		$this->db->from("tbl_dosen");
-		$this->db->join('tbl_honor_dosen', "tbl_dosen.jabatan=tbl_honor_dosen.jabatan");
-		$this->db->where('tbl_dosen.nip', $nip);
-		$res = $this->db->get();
-		return $res;
-	}
-
 }

@@ -21,6 +21,20 @@ class Home_model extends CI_Model{
 		return $peg;
 	}
 
+	public function ceksas()
+	{
+		$peg = $this->db->query("SELECT * FROM output_sas where tanggal like '%2021%'")->result();
+
+		return $peg;
+	}
+
+	public function cekpok()
+	{
+		$peg = $this->db->query("SELECT * FROM out_pok where tgl like '%2021%'")->result();
+
+		return $peg;
+	}
+
 	public function jum_eselon()
 	{
 		$result = $this->db->query("SELECT SUM(eselon LIKE 'I.%') as I, SUM(eselon LIKE 'II.%') as II, SUM(eselon LIKE 'III.%') as III, SUM(eselon LIKE 'IV.%') as IV FROM tbl_pns")->result();
