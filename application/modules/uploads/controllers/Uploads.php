@@ -2931,9 +2931,10 @@ class Uploads extends CI_Controller {
 					}
 
 					array_push($unitpraja, array(
-						'no_spcp'      => $row['B'],
-						'nama'      => $row['C'],
-						'jk'      => $row['D'],
+						'no_spcp'      => $row['A'],
+						'nama'      => $row['B'],
+						'jk'      => $row['C'],
+						'npp'      => $row['D'],
 						'nisn'      => $row['E'],
 						'npwp'      => $row['F'],
 						'nik_praja'      => $row['G'],
@@ -2957,12 +2958,14 @@ class Uploads extends CI_Controller {
 						'kewarganegaraan'      => $row['AM'],
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
-						'kode_prodi'      => $row['AW'],
-						'jenis_pendaftaran'      =>  $row['AX'],
-						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
-						'tahun_masuk_kuliah'      => $row['AZ'],
-						'pembiayaan'      => $row['BA'],
-						'jalur_masuk'      => $row['BB'],
+						'prodi'      => $row['AW'],
+						'prodi'      => $row['AW'],
+						'kode_prodi'      => $row['AX'],
+						'jenis_pendaftaran'      =>  $row['AY'],
+						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
+						'tahun_masuk_kuliah'      => $row['BA'],
+						'pembiayaan'      => $row['BB'],
+						'jalur_masuk'      => $row['BC'],
 						'status' => $stat,
 						'tingkat' => $row['AZ'] - date('Y') +1,
 						'angkatan' => $hasil
@@ -2971,7 +2974,7 @@ class Uploads extends CI_Controller {
 
 					array_push($unitortu, array(
 						'nik_praja'      => $row['G'],
-						'nama'      => $row['C'],
+						'nama'      => $row['B'],
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
@@ -3006,8 +3009,8 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			// print("<pre>".print_r($unitpraja,true)."</pre>");
-			// exit();
+			print("<pre>".print_r($unitpraja,true)."</pre>");
+			exit();
 			$this->db->truncate('praja');
 			$this->db->insert_batch('praja', $unitpraja);
 			$this->db->truncate('orangtua');
