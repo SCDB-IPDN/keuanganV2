@@ -45,7 +45,7 @@
 					<li class="<?php echo $this->uri->segment(1) == "d_spanint" && ($this->uri->segment(1) == "d_spanint" || $this->uri->segment(2) == "448302") ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
-							SPAN
+							OM-SPAN
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) != "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint'); ?>">UTAMA</a></li>
@@ -124,10 +124,30 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
 					<!-- <li class="<?php echo $this->uri->segment(1) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li> -->
-
 				</ul>
 			</li>
 			<!-- END KEPRAJAAN -->
+
+			<!-- HUMAS -->
+			<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-handshake"></i>
+					<span>Humas</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							BERITA
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
+							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+						</ul>
+					</li>
+				</ul>
+			</li>
 
 			<!-- PERENCANAAN -->
 			<li class="<?php echo $this->uri->segment(2) == "span" || $this->uri->segment(2) == "span_jatinangor" || $this->uri->segment(1) == "d_peringkat" ? "active" : ""; ?> has-sub">
@@ -172,9 +192,10 @@
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
-						
+			
 			<!-- Fakultas -->
-			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
+			<?php if($this->session->userdata('role') == 'Admin'){ ?>
+			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" || $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-graduation-cap"></i>
@@ -183,6 +204,7 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2)!="view_matkul" && $this->uri->segment(2)!="hon_all" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
 					<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
+					<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
 
 					<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
 						<a href="javascript:;">
@@ -195,10 +217,10 @@
 					<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
 						</ul>
 					</li>
-
 				</ul>
 				
 			</li>
+			<?php } ?>
 			<!-- END Fakultas -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
