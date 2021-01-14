@@ -71,3 +71,4 @@ $route['kemeng/prodi'] = 'kemeng/get_prodi';
 $route['d_peringkat/(:any)'] = 'd_peringkat/index/$1';
 $route['kemeng/get_sub_category'] = 'kemeng/get_sub_category';
 $route['kemeng/honor_table_all'] = 'kemeng/honor_table_all';
+$route['absensi/coba/(:any)'] = 'absensi/coba/$1';

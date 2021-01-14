@@ -66,8 +66,6 @@ class D_praja_model extends CI_Model
 		// angkatan=$angkatan where nama=$nama";
 		
 		$hasil = $this->db->where('id', $id)->update('praja', $editnya);
-		// echo "$hasil";
-		// exit();
 		return $hasil;
 	}
 

@@ -80,6 +80,7 @@ class D_praja extends CI_Controller
     // var_dump($id);exit();
     if ($this->session->userdata('nip') != NULL) {
       $data = $this->D_praja_model->get_detail($id)->result();
+
       $x['data'] = json_encode($data);
 
       $this->load->view("include/head");
@@ -120,13 +121,20 @@ class D_praja extends CI_Controller
   {
     if ($this->session->userdata('nip') != NULL) {
      $editnya['id'] = $this->input->post('id', true);
+
      $editnya['no_spcp'] = $this->input->post('no_spcp', true);
+
      $editnya['nama'] = $this->input->post('nama', true);
+
      $editnya['jk'] = $this->input->post('jk', true);
      $editnya['nisn'] = $this->input->post('nisn', true);
      $editnya['npwp'] = $this->input->post('npwp', true);
+      
      $editnya['nik_praja'] = $this->input->post('nik_praja', true);
+     // var_dump($editnya['nik_praja']);
+     // exit();
      $editnya['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
+     
      $editnya['tgl_lahir'] = $this->input->post('tgl_lahir', true);
      $editnya['agama'] = $this->input->post('agama', true);
      $editnya['email'] = $this->input->post('email', true);
@@ -186,11 +194,10 @@ class D_praja extends CI_Controller
 
 
      $result = $this->D_praja_model->view_edit($editnya);
+     // var_dump($result);exit();
      $ha = $this->D_praja_model->view_editortu($editort);
      $hi = $this->D_praja_model->view_editwali($editwal);
-    // echo $result;
-    // exit();
-
+     // echo "$result";exit();
 
      if (!$result && !$ha && !$hi) {
       $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
@@ -345,7 +352,7 @@ function tambah_status()
       'bukti'=> $this->upload->data("file_name")
 
     ));
-   
+
     $up = $this->db->insert_batch('hukuman', $nya);
   }
 
