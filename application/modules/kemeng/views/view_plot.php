@@ -6,7 +6,7 @@
   <h1 class="page-header">Plot Dosen</h1>
 
   <!-- TABEL -->
-  <div class="row">
+  <div class="row"> 
     <div class="col-xl-12">
       <div class="panel panel-inverse">
         <div class="panel-heading">
