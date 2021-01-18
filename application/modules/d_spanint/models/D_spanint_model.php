@@ -12,7 +12,7 @@ class D_spanint_model extends CI_Model{
 		@pagu_tot - @real_tot AS sisa_tot,
 		concat(round((100 * @real_tot / @pagu_tot), 2), '%') AS per_tot
 		FROM tbl_spanint JOIN tbl_satker ON tbl_spanint.satker = tbl_satker.kode_satker
-		WHERE length(satker) > 4 ORDER BY created_at DESC, satker ASC LIMIT 8");
+		WHERE length(satker) > 4 ORDER BY satker");
 
 	return $result;
   }
@@ -28,12 +28,12 @@ class D_spanint_model extends CI_Model{
 		@pagu_tot - @real_tot AS sisa_tot,
 		concat(round((100 * @real_tot / @pagu_tot), 2), '%') AS per_tot
 		FROM tbl_spanint JOIN tbl_satker_biro ON tbl_spanint.satker = tbl_satker_biro.kode_satker_biro
-        WHERE length(satker) = 4 ORDER BY created_at DESC, satker ASC LIMIT 4");
+        WHERE length(satker) = 4 ORDER BY satker");
 
 	return $result;
   }
 
   public function get_date() {
-  	return $this->db->query("SELECT created_at FROM tbl_spanint ORDER BY created_at DESC LIMIT 1")->row_array();
+  	return $this->db->query("SELECT created_at FROM tbl_rank LIMIT 1")->row_array();
   }
 }

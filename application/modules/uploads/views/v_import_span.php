@@ -16,6 +16,8 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
+                <div class="panel-body bg-white">
+                    <div class="card border-0 bg-white text-black text-truncate mb-4">
                         <div class="card-body">
 							<div class="row">
                                 <div class="col-xl-7 col-lg-8">
@@ -33,8 +35,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!--  -->
-               </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

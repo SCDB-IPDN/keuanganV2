@@ -5,6 +5,7 @@ class Home extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('home_model');
+    $this->load->helper('text');
   }
 
   /**
@@ -36,11 +37,12 @@ class Home extends CI_Controller {
       // POK
       $persen_pok = $this->home_model->get_all_pok_biro();
       $persentase_pok = round($persen_pok[0]->persen,2);
+      $ceksas = $this->home_model->ceksas();
 
       // SAS
       $persen_sas= $this->home_model->get_all_sas();
       $persentase_sas = round($persen_sas[0]->persen,2);
-
+      $cekpok = $this->home_model->cekpok();
       // BIRO
       $biro = $this->home_model->get_all_span_biro();
 
@@ -92,7 +94,13 @@ class Home extends CI_Controller {
       $pengasuhan = $this->home_model->app_pengasuhan();
 
       $apps = $this->home_model->apps();
+      
+      $berita = $this->home_model->listing();
+      
 
+      // var_dump($berita);exit;
+
+      $x['berita'] = $berita;
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
       $x['keuangan'] = $keuangan;
@@ -132,6 +140,9 @@ class Home extends CI_Controller {
       $x['jkpraja'] = $jkpraja;
       $x['praja'] = $praja;
 
+      $x['ceksas'] = $ceksas;
+      $x['cekpok'] = $cekpok;
+
       $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];
       $x['rank_kemendagri_ipdn'] = $this->home_model->get_rank_ipdn()['rank'];
 
@@ -148,5 +159,22 @@ class Home extends CI_Controller {
     }
 	
   }
+
+  // // Read berita
+	// public function read($slug_berita)
+	// {
+	// 	helper('text');
+	// 	$berita = $this->home_model->read($slug_berita);
+
+  //   $x['berita'] = $berita;
+            
+  //   $this->load->view("include/head");
+  //   $this->load->view("include/top-header");
+  //   $this->load->view('read', $x);
+  //   $this->load->view("include/sidebar");
+  //   $this->load->view("include/panel");
+  //   $this->load->view("include/footer");
+    
+	// }
 }
 ?>

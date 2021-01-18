@@ -1,6 +1,33 @@
 <?php
 class Home_model extends CI_Model{
 
+	// Listing
+	public function listing()
+	{
+		$this->db->select('*');
+		$this->db->from('berita');
+		$this->db->where('status_berita','Publish');
+		$this->db->order_by('id_berita','DESC');
+		$this->db->limit(10);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function ceksas()
+	{
+		$peg = $this->db->query("SELECT * FROM output_sas where tanggal like '%2021%'")->result();
+
+		return $peg;
+	}
+
+	public function cekpok()
+	{
+		$peg = $this->db->query("SELECT * FROM out_pok where tgl like '%2021%'")->result();
+
+		return $peg;
+	}
+
+
 	// Kepegawaian
 	public function jumlah_peg()
 	{

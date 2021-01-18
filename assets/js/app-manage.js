@@ -33,7 +33,7 @@ $(document).ready(function() {
             modal.find('#gol_ruangx').attr("value",div.data('gol_ruang'));
             modal.find('#tmt_pangkatx').attr("value",div.data('tmt_pangkat'));
             modal.find('#jabatanx').attr("value",div.data('jabatan'));
-            modal.find('#tmt_jabatanx').attr("value",div.data('tmt_jabatan'));
+            modal.find('#tmt_jabatanx').attr("value",jdiv.data('tmt_jabatan'));
             modal.find('#jurusanx').attr("value",div.data('jurusan'));
             modal.find('#nama_ptx').attr("value",div.data('nama_pt'));
             modal.find('#tahun_lulusx').attr("value",div.data('tahun_lulus'));
