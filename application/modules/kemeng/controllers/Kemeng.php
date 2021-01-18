@@ -109,9 +109,9 @@ class Kemeng extends CI_Controller
 				$no++,
 				$id_matkul,
 				$nama_matkul,
-				// $id_fakultas,
+	// $id_fakultas,
 				$nama_fakultas,
-				// $id_prodi,
+	// $id_prodi,
 				$nama_prodi,
 				$sks,
 				$semester,
@@ -191,10 +191,10 @@ class Kemeng extends CI_Controller
 	function index()
 	{
 		if ($this->session->userdata('nip') != NULL) {
-			//$fakultas = $this->Kemeng_model->get_fakul()->result();
+			$fakultas = $this->Kemeng_model->get_fakul()->result();
 			$nama_dosen = $this ->Kemeng_model->get_namdosen()->result();
 
-			//$x['fakultas'] = $fakultas;
+			$x['fakultas'] = $fakultas;
 			$x['nama_dosen'] = $nama_dosen;
 
 			$this->load->view("include/head");
@@ -210,26 +210,29 @@ class Kemeng extends CI_Controller
 
  	function tambah_presensi()
 	{
-		$crot=$this->input->post('nip_dosen', true);
-		$ecek = $this->db->query("SELECT nama FROM tbl_dosen WHERE nip = '$crot'")->result();
+		$baru = $this->input->post('nama_dosen', true);
+		$hahaha = explode("|",$baru);
+		$nama = $hahaha[0];
+		$id = $hahaha[1];
 
-		$crott = $this->input->post('matkul', true);
-		$ecekk = $this->db->query("SELECT sks FROM tbl_matkul WHERE id_matkul = '$crott'")->result();
 
-		// $crottt = $this->input->post('indeks', true);
-		// $ecekkk = $this->db->query("SELECT sks FROM tbl_matkul WHERE id_matkul >= '$crottt'")->result();
+		$baru2 =$this->input->post('matkul', true);
+		$hihihih = explode("|",$baru2);
+		$idmat = $hihihih[0];
+		$sks = $hihihih[1];
 
-		$data['nip'] = $this->input->post('nip_dosen', true);
-		$data['nama_dosen'] = $ecek[0]->nama;
+		$data['nip'] = $id;
+		$data['nama_dosen'] =$nama;
 		$data['id_fakultas'] = $this->input->post('fakultas', true);
+		$data['id_matkul'] = $idmat;
+		$data['sks'] = $sks;
 		$data['id_prodi'] = $this->input->post('prodi', true);
-		$data['id_matkul'] = $this->input->post('matkul', true);
-		$data['sks'] = $ecekk[0]->sks;
+		$data['tanggal'] = $this->input->post('tanggal', true);
+		$data['jam'] = $this->input->post('jam', true);
 		$data['kelas'] = $this->input->post('kelas', true);
-		$data['indeks'] = $this->input->post('indeks', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
-
+		// var_dump($data);exit;
 
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
@@ -243,72 +246,17 @@ class Kemeng extends CI_Controller
 
 	function get_matkul() 
 	{
-		$nip = $this->input->post('nip');
-		$fakultas = $this->input->post('fakultas');
-		$prodi = $this->input->post('prodi');
-		$fakultaz = $this->Kemeng_model->get_matkul($nip, $fakultas, $prodi)->result();
+		$prodi = $this->input->post('data');
+		$fakultaz = $this->Kemeng_model->get_matkul($prodi)->result();
 		echo json_encode($fakultaz);
 	}
 
 	function get_prodi() 
 	{
-		$nip = $this->input->post('nip');
-		$fakultas = $this->input->post('fakultas');
-		$prodi = $this->Kemeng_model->get_prodi($nip, $fakultas)->result();
+		$fakultas = $this->input->post('data');
+		$prodi = $this->Kemeng_model->get_prodi($fakultas)->result();
 		echo json_encode($prodi);
 	}
-
-	function get_fakultas() 
-	{
-		$nip = $this->input->post('data');
-		$fakultas = $this->Kemeng_model->get_fakultas($nip)->result();
-		echo json_encode($fakultas);
-	}
-
-	function get_sks() 
-	{
-		$nip = $this->input->post('nip');
-		$fakultas = $this->input->post('fakultas');
-		$prodi = $this->input->post('prodi');
-		$matkul = $this->input->post('matkul');
-		$data = $this->Kemeng_model->get_sks($nip, $fakultas, $prodi, $matkul)->result();
-		echo json_encode($data);
-	}
-
-	function get_allp(){
-		$id_absensi = $this->session->userdata('role');
-		$data = $this->Kemeng_model->get_presensi($id_absensi)->result();
-		
-
-		$allp = array();
-
-		$no = 1;
-		foreach($data as $r) {
-			$nip = $r->nip;
-			$nama_dosen = $r->nama_dosen;
-			$matkul = $r->nama_matkul;
-			$prodi = $r->nama_prodi;
-			$fakultas = $r->nama_fakultas;
-			$kelas = $r->kelas;
-			$timestamp = $r->timestamp;
-			$date_time = explode(" ", $timestamp);
-			$tanggal = $date_time[0];
-			$jam = substr($date_time[1], 0, 5);
-		
-			$allp[] = array(
-				$no++,
-				$nip,
-				$nama_dosen,
-				$matkul,
-				$fakultas,
-				$prodi,
-				$kelas,
-				$tanggal,
-				$jam
-			);
-		}
-
-		echo json_encode($allp);
 
 	function jadwal_dosen(){
 		if ($this->session->userdata('nip') != NULL) {
@@ -370,7 +318,6 @@ class Kemeng extends CI_Controller
 		} else {
 			redirect("user");
 		}
-
 	}
 
 	function honor() {
@@ -418,5 +365,158 @@ class Kemeng extends CI_Controller
 		}
 
 	}
-}
+	//PLOT
+	function plot ()
+	{
+		 if($this->session->userdata('nip') != NULL)
+		 {
+			  $data = $this->Kemeng_model->get_all_plot()->result();
+			  $tp = $this->Kemeng_model->get_nama()->result();
+			  $mk = $this->Kemeng_model->get_nama_matkul()->result();
+			  $fk = $this->Kemeng_model->get_nama_fakultas()->result();
+			  $prodi = $this->Kemeng_model->get_nama_prodi()->result();
+
+			  $x['data'] = $data;
+			  $x['tp'] = $tp;
+			  $x['mk'] = $mk;
+			  $x['fk'] = $fk;
+			  $x['prodi'] = $prodi;
+		   //    var_dump($tp);
+		   //    exit();    
+			  $this->load->view("include/head");
+			  $this->load->view("include/top-header");
+			  $this->load->view('view_plot', $x);
+			  $this->load->view("include/sidebar");
+			  $this->load->view("include/panel");
+			  $this->load->view("include/footer");
+		 }else{
+			  redirect("user");
+		 }
+	}
+	
+	public function tambah_plot()
+	{
+		  $plot['nama'] = $this->input->post('nama', true);
+		  $plot['nama_matkul'] = $this->input->post('nama_matkul', true);
+		  $plot['nama_prodi'] = $this->input->post('nama_prodi', true);
+		  $plot['tanggal'] = $this->input->post('tanggal', true);
+		  $plot['jam'] = $this->input->post('jam', true);
+		  $plot['kelas'] = $this->input->post('kelas', true);
+		  $plot['semester'] = $this->input->post('semester', true);
+		  $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+		  $plot['id_prodi'] = $this->input->post('id_prodi', true);
+		  $plot['id_fakultas'] = $this->input->post('id_fakultas', true);
+		  $plot['id_matkul'] = $this->input->post('id_matkul', true);
+		  $plot['sks'] = $this->input->post('sks', true);
+		  $kemeng = 9;
+		  if ($plot['sks'] > $kemeng) {
+			  $plot['indeks'] = $plot['sks'] - $kemeng;
+		  }
+		  $pisah = explode("|", $plot['nama']);
+		  $nama = $pisah[0];
+		  $nip = $pisah[1];
+		  $plot['nama']=$nama;
+		  $plot['nip']=$nip;
+
+		  $result = $this->Kemeng_model->tambah_plot($plot);
+		  
+		  if (!$result) { 							
+			   $this->session->set_flashdata('plot', 'DATA GAGAL DITAMBAHKAN.'); 				
+			   redirect('kemeng/plot'); 			
+		  } else { 								
+			   $this->session->set_flashdata('plot', 'DATA BERHASIL DITAMBAHKAN.');			
+			   redirect('kemeng/plot'); 			
+		  }
+	}
+
+	function edit_plot(){
+
+	   $editplot['id_plot'] = $this->input->post('id_plot', true);
+	   $editplot['nama'] = $this->input->post('nama', true);
+	   $editplot['nama_matkul'] = $this->input->post('nama_matkul', true);
+	   $editplot['tanggal'] = $this->input->post('tanggal', true);
+	   $editplot['jam'] = $this->input->post('jam', true);
+	   $editplot['kelas'] = $this->input->post('kelas', true);
+	   $editplot['semester'] = $this->input->post('semester', true);
+	   $editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+   // 	var_dump($editplot);
+   // exit();
+	   
+	   $result = $this->Kemeng_model->edit_plot($editplot);
+		   
+	   if (!$result) { 	
+		   $this->session->set_flashdata('plot', 'DATA BERHASIL DIUBAH.');			
+		   redirect('kemeng/plot'); 									
+	   } else { 								
+		   $this->session->set_flashdata('plot', 'DATA GAGAL DIUBAH.');		
+		   redirect('kemeng/plot'); 			
+	   }
+   }
+
+	function table_plot() {
+	   $data = $this->Kemeng_model->get_all_plot()->result();
+  
+	   $plot = array();
+	   $no = 1;
+  
+	   foreach($data as $r) {
+
+			$nama = $r->nama.'|'.$r->nip;
+			$nama_matkul = $r->nama_matkul; 
+			$tanggal = $r->tanggal; 
+			$jam = $r->jam;
+			$kelas = $r->kelas;
+			$semester = $r->semester;
+			$nama_fakultas = $r->nama_fakultas;
+			$nama_prodi = $r->nama_prodi;
+						 
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
+				 $aksi = "<a href='javascript:; 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
+				 data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
+				 data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
+				 'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button> </a>
+				 
+				 <a 
+				 href='javascript:;' data-nama='$r->nama' data-id_plot='$r->id_plot'
+				 <button  data-toggle=
+				 'modal' data-target='#hapusplot' class='btn btn-danger'>Hapus</button>
+				 </a>"; ;
+			}else{
+				 $aksi = "";
+			}
+  
+			$plot[] = array(
+				 $no++,
+				 $nama,
+				 $nama_matkul,
+				 $tanggal,
+				 $jam,
+				 $kelas,
+				 $semester,
+				 $nama_fakultas,
+				 $nama_prodi,
+				 $aksi,
+			);
+	   }
+	   
+	   echo json_encode($plot);
+  }
+
+  function hapus_plot()
+   {
+	   $id = $this->input->post('id_plot');
+	   
+
+	   $hasil = $this->Kemeng_model->hapus_plot($id);
+
+	   if (!$hasil) { 		
+		   $this->session->set_flashdata('plot', 'DATA BERHASIL DIHAPUS.');	
+		   redirect('kemeng/plot'); 						 			
+	   } else { 								
+		   $this->session->set_flashdata('plot', 'DATA GAGAL DIHAPUS.');				
+		   redirect('kemeng/plot');		
+	   }
+	   
+   }
+  //END PLOT
 }

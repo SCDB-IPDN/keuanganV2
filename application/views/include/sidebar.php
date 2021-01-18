@@ -115,15 +115,15 @@
 			<!-- END AKADEMIK -->
 
 			<!-- KEPRAJAAN -->
-			<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?> has-sub">
+			<li class="<?php echo $this->uri->segment(1) == "d_praja" || $this->uri->segment(2) == "alumni" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-graduation-cap"></i>
 					<span>Keprajaan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
-					<!-- <li class="<?php echo $this->uri->segment(1) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li> -->
+				<li class="<?php echo $this->uri->segment(1) == "d_praja" && $this->uri->segment(2) == NULL ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
+				<li class="<?php echo $this->uri->segment(2) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li>
 				</ul>
 			</li>
 			<!-- END KEPRAJAAN -->
@@ -203,7 +203,7 @@
 					<span>Fakultas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "kemeng" || $this->uri->segment(2) == "view_matkul" || $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "kemeng" || $this->uri->segment(2) == "view_matkul" || $this->uri->segment(2) == "plot" || $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							KEMENG
@@ -211,6 +211,7 @@
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2) == NULL ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "plot" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/plot'); ?>">PLOT</a></li>
 							<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin'){?>
 							<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
 							<?php } ?>

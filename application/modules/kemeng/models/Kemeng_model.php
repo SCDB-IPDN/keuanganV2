@@ -187,5 +187,68 @@ class Kemeng_model extends CI_Model
 		$res = $this->db->get();
 		return $res;
 	}
+	//plot dosen
+	public function get_all_plot()
+	{
+
+	$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+	return $result;
+
+	}
+
+  	function tambah_plot($plot)
+ 	{
+
+  	$result = $this->db->insert('tbl_plot_dosen', $plot);
+  	return $result;
+
+	}
+	
+	public function get_nama()
+	{
+
+	$result = $this->db->query("SELECT nama, nip FROM tbl_dosen");
+	return $result;
+
+	}
+
+	public function get_nama_matkul()
+	{
+
+	$result = $this->db->query("SELECT nama_matkul FROM tbl_matkul ");
+	return $result;
+
+	}
+
+	public function get_nama_prodi()
+	{
+
+	$result = $this->db->query("SELECT nama_prodi FROM tbl_prodi ");
+	return $result;
+
+	}
+
+	public function get_nama_fakultas()
+	{
+
+	$result = $this->db->query("SELECT nama_fakultas FROM tbl_fakultas ");
+	return $result;
+
+	}
+	function edit_plot($editplot){
+
+	$id_plot = $editplot['id_plot'];
+	$this->db->where('id_plot', $editplot['id_plot']);
+	$this->db->update('tbl_plot_dosen', $editplot);
+  	}
+
+	function hapus_plot($id){
+
+		$this->db->where(['id_plot' => $id]);
+		$this->db->delete('tbl_plot_dosen');
+	// 	$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id_plot= '$id' ");
+	// 	return $hasil;
+	}
+	//END PLOT
 
 }
