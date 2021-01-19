@@ -27,8 +27,9 @@
 							<div class="mb-3 text-grey">
 								<b class="mb-3">RATA-RATA KEMENDAGRI</b>
 								<div class="text-grey">
-									<i class=""></i> Berdasarkan OM-SPAN
+									<i class=""></i> Berdasarkan OM-SPAN 
 								</div>
+								<?php echo date('d/m/Y', strtotime($tanggal_rank)) ?>
 							</div>
 							<div class="d-flex align-items-center mb-1">
 								<a href="<?php echo base_url('d_peringkat');?>">

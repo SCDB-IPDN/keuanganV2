@@ -275,8 +275,8 @@ class Home_model extends CI_Model{
 	}
 
 	public function get_rank_ipdn() {
-		return $this->db->query("SELECT rank FROM
-			(SELECT @rank:=@rank+1 AS rank, nama, satker,
+		return $this->db->query("SELECT created_at, rank FROM
+			(SELECT @rank:=@rank+1 AS rank, nama, created_at, satker,
 			100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod) AS per_tot
 			FROM
 			tbl_rank, (SELECT @rank := 0) r
