@@ -32,48 +32,7 @@ class Ortala extends CI_Controller {
 		$data = $this->ortala_model->get_uu->result();
 
 		$dataall = array();
-
-		$no = 1;
-		foreach($data as $r) {
-			$id_matkul = $r->id_matkul;
-			$nama_matkul = $r->nama_matkul;
-			$nama_prodi = $r->nama_prodi;
-			$id_fakultas = $r->id_fakultas;
-			$nama_fakultas = $r->nama_fakultas;
-			$id_prodi = $r->id_prodi;
-
-			$sks = $r->sks;
-			$semester = $r->semester;
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
-				$opsi = "<a 
-				href='javascript:;' data-id_matkul='$r->id_matkul' data-id_prodi='$r->id_prodi'  data-nama_prodi='$r->nama_prodi' data-nama_matkul='$r->nama_matkul'
-				data-sks='$r->sks' data-id_fakultas='$r->id_fakultas' data-nama_fakultas='$r->nama_fakultas'
-				data-semester='$r->semester'
-				data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_matkul='$r->id_matkul' data-nama_matkul='$r->nama_matkul'
-				data-toggle='modal' data-target='#hapusmatkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
-			}else{
-				$opsi = "";
-			}
-
-			$dataall[] = array(
-				$no++,
-				$id_matkul,
-				$nama_matkul,
-				// $id_fakultas,
-				$nama_fakultas,
-				// $id_prodi,
-				$nama_prodi,
-				$sks,
-				$semester,
-				$opsi
-			);
-		}
-		echo json_encode($dataall);
+	
 	}
 
     function add_prokum()

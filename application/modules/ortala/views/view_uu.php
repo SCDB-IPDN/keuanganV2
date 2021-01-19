@@ -5,7 +5,7 @@
     <li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Undang-Undang</a></li>
 
   </ol>
-  <h1 class="page-header">Presensi</h1>
+  <h1 class="page-header">Undang-Undang</h1>
   <div class="row">
     <div class="col-xl-12">
       <!-- begin panel -->
@@ -14,7 +14,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-          <span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
+          <span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH PRODUK HUKUM</a></span>
  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
           </h4>
