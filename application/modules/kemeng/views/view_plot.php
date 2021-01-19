@@ -84,16 +84,41 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">Kode Matkul :</label>
-                  <input type="text" class="form-control" id="id_matkul" name="id_matkul" placeholder="ID Matkul..">
-                </div>
-                <div class="col-xl">
+                <div class="col-sm-8">
                   <label class="col-form-label">Nama Matkul :</label>
                   <select class="form-control" id="nama_matkul" name="nama_matkul" required>
-                    <option>--Matkul--</option>
+                    <option>--Nama Matkul--</option>
                     <?php foreach ($mk as $rows) { ?>
-                      <option value="<?php echo $rows->nama_matkul ?>"><?php echo $rows->nama_matkul ?></option>
+                      <option value="<?php echo $rows->nama_matkul . '|' . $rows->id_matkul; ?>"><?php echo $rows->nama_matkul . '|' . $rows->id_matkul; ?>
+                      </option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label class="col-form-label">Nama Fakultas :</label>
+                  <select class="form-control" id="nama_fakultas" name="nama_fakultas" required>
+                    <option>--Nama Fakultas--</option>
+                    <?php foreach ($fk as $rows) { ?>
+                      <option value="<?php echo $rows->nama_fakultas . '|' . $rows->id_fakultas; ?>"><?php echo $rows->nama_fakultas . '|' . $rows->id_fakultas; ?>
+                      </option>
+                    <?php } ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label class="col-form-label">Nama Prodi :</label>
+                  <select class="form-control" id="nama_prodi" name="nama_prodi" required>
+                    <option>--Nama Prodi--</option>
+                    <?php foreach ($prodi as $rows) { ?>
+                      <option value="<?php echo $rows->nama_prodi . '|' . $rows->id_prodi; ?>"><?php echo $rows->nama_prodi . '|' . $rows->id_prodi; ?>
+                      </option>
                     <?php } ?>
                   </select>
                 </div>
@@ -122,40 +147,6 @@
                 <option>GANJIL 2020/2021</option>
                 <option>GENAP 2020/2021</option>
               </select>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">Id Fakultas :</label>
-                  <input type="text" class="form-control" id="id_fakultas" name="id_fakultas" placeholder="ID Matkul..">
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Nama Fakultas :</label>
-                  <select class="form-control" name="nama_fakultas" id="nama_fakultas">
-                    <option>--Fakultas--</option>
-                    <?php foreach ($fk as $rows) { ?>
-                      <option value="<?php echo $rows->nama_fakultas ?>"><?php echo $rows->nama_fakultas ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-xl-3">
-                  <label class="col-form-label">ID Prodi :</label>
-                  <input type="text" class="form-control" id="id_prodi" name="id_prodi" required>
-                </div>
-                <div class="col-xl">
-                  <label class="col-form-label">Nama Prodi :</label>
-                  <select class="form-control" name="nama_prodi" id="nama_prodi">
-                    <option>--Prodi--</option>
-                    <?php foreach ($prodi as $rows) { ?>
-                      <option value="<?php echo $rows->nama_prodi ?>"><?php echo $rows->nama_prodi ?></option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
             </div>
             <div class="form-group">
               <label class="col-form-label">Sks :</label>

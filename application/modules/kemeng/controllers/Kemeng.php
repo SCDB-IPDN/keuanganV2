@@ -404,9 +404,6 @@ class Kemeng extends CI_Controller
 		  $plot['kelas'] = $this->input->post('kelas', true);
 		  $plot['semester'] = $this->input->post('semester', true);
 		  $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
-		  $plot['id_prodi'] = $this->input->post('id_prodi', true);
-		  $plot['id_fakultas'] = $this->input->post('id_fakultas', true);
-		  $plot['id_matkul'] = $this->input->post('id_matkul', true);
 		  $plot['sks'] = $this->input->post('sks', true);
 		  $kemeng = 9;
 		  if ($plot['sks'] > $kemeng) {
@@ -417,6 +414,24 @@ class Kemeng extends CI_Controller
 		  $nip = $pisah[1];
 		  $plot['nama']=$nama;
 		  $plot['nip']=$nip;
+
+		  $pisah1 = explode("|", $plot['nama_matkul']);
+		  $namamk = $pisah1[0];
+		  $idmk = $pisah1[1];
+		  $plot['nama_matkul']=$namamk;
+		  $plot['id_matkul']=$idmk;
+
+		  $pisah2 = explode("|", $plot['nama_fakultas']);
+		  $namafk = $pisah2[0];
+		  $idfk = $pisah2[1];
+		  $plot['nama_fakultas']=$namafk;
+		  $plot['id_fakultas']=$idfk;
+
+		  $pisah3 = explode("|", $plot['nama_prodi']);
+		  $namaprodi = $pisah3[0];
+		  $idprodi = $pisah3[1];
+		  $plot['nama_prodi']=$namaprodi;
+		  $plot['id_prodi']=$idprodi;
 
 		  $result = $this->Kemeng_model->tambah_plot($plot);
 		  

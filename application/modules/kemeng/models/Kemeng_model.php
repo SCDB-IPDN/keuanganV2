@@ -215,7 +215,7 @@ class Kemeng_model extends CI_Model
 	public function get_nama_matkul()
 	{
 
-	$result = $this->db->query("SELECT nama_matkul FROM tbl_matkul ");
+	$result = $this->db->query("SELECT nama_matkul, id_matkul FROM tbl_matkul ");
 	return $result;
 
 	}
@@ -223,7 +223,7 @@ class Kemeng_model extends CI_Model
 	public function get_nama_prodi()
 	{
 
-	$result = $this->db->query("SELECT nama_prodi FROM tbl_prodi ");
+	$result = $this->db->query("SELECT nama_prodi, id_prodi FROM tbl_prodi ");
 	return $result;
 
 	}
@@ -231,7 +231,7 @@ class Kemeng_model extends CI_Model
 	public function get_nama_fakultas()
 	{
 
-	$result = $this->db->query("SELECT nama_fakultas FROM tbl_fakultas ");
+	$result = $this->db->query("SELECT nama_fakultas, id_fakultas FROM tbl_fakultas ");
 	return $result;
 
 	}
