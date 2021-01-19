@@ -143,6 +143,7 @@ class Home extends CI_Controller {
       $x['ceksas'] = $ceksas;
       $x['cekpok'] = $cekpok;
 
+      $x['tanggal_rank'] = $this->home_model->get_rank_ipdn()['created_at'];
       $x['rank_kemendagri_persen'] = $this->home_model->get_rank_persen()['persen'];
       $x['rank_kemendagri_ipdn'] = $this->home_model->get_rank_ipdn()['rank'];
 
