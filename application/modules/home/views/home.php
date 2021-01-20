@@ -21,6 +21,7 @@
 						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
 					</div>
 				</div>
+
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
 						<div class="card-body">
@@ -64,7 +65,7 @@
 											<div class="text-grey">
 												<i class=""></i> IPDN
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
 												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
 											</div>
@@ -74,38 +75,19 @@
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
 												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- <div class="col-xl-5 col-lg-4 align-items-center d-flex justify-content-center">
-									<img src="assets/img/svg/img-1.svg" height="150px" class="d-none d-lg-block" />
-								</div> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col-sm-3">
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<h4 class="panel-title">Kalender</h4>
-					<div class="panel-heading-btn">
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="panel-body">
-					<div id="datepicker-inline" class="datepicker-full-width overflow-y-scroll position-relative"><div></div></div>
-				</div>
-			</div>
-		</div> -->
 
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
@@ -127,8 +109,10 @@
 								<i class=""></i> JATINANGOR (SPAN)
 							</div>
 						</div>
+						
 						<div class="d-flex align-items-center mb-1">
-							<a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+							<!-- <a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a> -->
+							<a href="#"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
@@ -148,10 +132,12 @@
 							</div>
 						</div>
 						<?php } ?>
+
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
