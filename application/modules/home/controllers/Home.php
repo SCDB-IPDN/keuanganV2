@@ -97,9 +97,6 @@ class Home extends CI_Controller {
       
       $berita = $this->home_model->listing();
       
-
-      // var_dump($berita);exit;
-
       $x['berita'] = $berita;
       $x['perpustakaan'] = $perpustakaan;
       $x['akademik'] = $akademik;
