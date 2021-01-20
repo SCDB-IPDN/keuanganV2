@@ -220,8 +220,9 @@
 			</li>
 			<?php } ?>
 			<!-- END Fakultas -->
-
+			
 			<!-- ORTALA -->
+			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1)=="ortala" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
@@ -242,6 +243,7 @@
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
 			<!-- END ORTALA -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
