@@ -28,7 +28,7 @@
 							<div class="mb-3 text-grey">
 								<b class="mb-3">RATA-RATA KEMENDAGRI</b>
 								<div class="text-grey">
-									<i class=""></i> Berdasarkan OM-SPAN 
+									<i class=""></i> Berdasarkan OM-SPAN
 								</div>
 								<?php echo date('d/m/Y', strtotime($tanggal_rank)) ?>
 							</div>
@@ -43,7 +43,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-8">
 									<div class="mb-3 text-grey">
-										<b>PERSENTASE OM-SPAN</b>
+										<b>PERSENTASE OM-SPAN (SP2D)</b>
 										<span class="ml-2">
 											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
 										</span>
@@ -61,7 +61,7 @@
 									<hr class="bg-white-transparent-2" />
 									<div class="row text-truncate">
 										<div class="col-6">
-											<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
+											<div class="f-s-12 text-grey"><b>PERSENTASE SAS (SPM)</b></div>
 											<div class="text-grey">
 												<i class=""></i> IPDN
 											</div>
@@ -71,7 +71,7 @@
 											</div>
 										</div>
 										<div class="col-6">
-											<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
+											<div class="f-s-12 text-grey"><b>PERSENTASE POK (SPP)</b></div>
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
@@ -92,7 +92,7 @@
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
-					<h4 class="panel-title">SPAN JATINANGOR</h4>
+					<h4 class="panel-title">OM-SPAN JATINANGOR (SP2D)</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -106,7 +106,7 @@
 							<b class="mb-3">TOTAL PERSENTASE</b> 
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
 							<div class="text-grey">
-								<i class=""></i> JATINANGOR (SPAN)
+								<i class=""></i> OM-SPAN JATINANGOR (SP2D) 
 							</div>
 						</div>
 						
