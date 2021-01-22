@@ -1,17 +1,24 @@
 <?php
 class History_model extends CI_Model
 {
-    public function get_range_span($fromDate, $endDate)
-	{	
-        $result = $this->db->query("SELECT *, alias FROM (SELECT a.*, b.alias FROM tbl_span as a JOIN tbl_satker as b ON a.kode_satker=b.kode_satker WHERE a.created_date between '$fromDate' and '$endDate' ORDER BY a.id_span) as k ORDER BY id_span ASC");
 
-		return $result;
-    }
+    public function get_span($date) {
+
+        $result = $this->db->query("SELECT concat(satker, ' | ', nama) AS nama, nama AS alias, alias AS aliass,
+            pagu_peg, real_peg, (pagu_peg - real_peg) AS sisa_peg, concat(round((100 * real_peg / pagu_peg), 2), '%') AS per_peg,
+            pagu_bar, real_bar, (pagu_bar - real_bar) AS sisa_bar, concat(round((100 * real_bar / pagu_bar), 2), '%') AS per_bar,
+            pagu_mod, real_mod, (pagu_mod - real_mod) AS sisa_mod, concat(round((100 * real_mod / pagu_mod), 2), '%') AS per_mod,
+            @pagu_tot:=pagu_peg + pagu_bar + pagu_mod AS pagu_tot,
+            @real_tot:=real_peg + real_bar + real_mod AS real_tot,
+            @pagu_tot - @real_tot AS sisa_tot,
+            concat(round((100 * @real_tot / @pagu_tot), 2), '%') AS per_tot
+            FROM tbl_spanint JOIN tbl_satker ON tbl_spanint.satker = tbl_satker.kode_satker
+            WHERE length(satker) > 4 AND created_at = '$date' ORDER BY created_at DESC, satker ASC LIMIT 8");
     
-    public function get_range_span_biro($fromDate)
-	{	
-		$result = $this->db->query("SELECT *, alias FROM (SELECT a.*, b.alias FROM tbl_span_biro as a JOIN tbl_satker_biro as b ON a.kode_satker_biro=b.kode_satker_biro WHERE a.created_date = '$fromDate'  ORDER BY a.id_span_biro) as k ORDER BY alias ASC");
+        return $result;
+      }
 
-		return $result;
-    }
+      public function get_date() {
+          return $this->db->query("SELECT created_at FROM tbl_spanint ORDER BY created_at DESC LIMIT 1")->row_array();
+      }
 }

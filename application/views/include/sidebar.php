@@ -45,27 +45,17 @@
 					<li class="<?php echo $this->uri->segment(1) == "d_spanint" && ($this->uri->segment(1) == "d_spanint" || $this->uri->segment(2) == "448302") ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
-							OM-SPAN
+							OM-SPAN (SP2D)
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) != "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint'); ?>">UTAMA</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) != "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint'); ?>">ALL KAMPUS</a></li>
 							<li class="<?php echo $this->uri->segment(1) == "d_spanint" && $this->uri->segment(2) == "448302" ? "active" : ""; ?>"><a href="<?php echo base_url('d_spanint/448302'); ?>">KAMPUS JATINANGOR</a></li>
 						</ul>
 					</li>
-					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							POK
-						</a>
-						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
-						</ul>
-					</li>
-
 					<li class="<?php echo $this->uri->segment(1) == "d_sas" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
-							SAS
+							SAS (SPM)
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "d_sas" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sas'); ?>">UTAMA</a></li>
@@ -73,7 +63,15 @@
 							<li class="<?php echo $this->uri->segment(1) == "d_sasbaru" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sasbaru'); ?>">KAMPUS JATINANGOR</a></li> -->
 						</ul>
 					</li>
-
+					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							POK (SPP)
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<!-- END KEUANGAN -->
@@ -164,7 +162,7 @@
 							HISTORY
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(2) == "span" || $this->uri->segment(2) == "span_jatinangor" ? "active" : ""; ?>"><a href="<?php echo base_url('history/span'); ?>">SPAN</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "span" || $this->uri->segment(2) == "span_jatinangor" ? "active" : ""; ?>"><a href="<?php echo base_url('history/span'); ?>">OM-SPAN</a></li>
 						</ul>
 					</li>
 					<li class="<?php echo $this->uri->segment(1) == "d_peringkat" ? "active" : ""; ?>"><a href="<?php echo base_url('d_peringkat'); ?>">PERINGKAT</a></li>
@@ -227,7 +225,7 @@
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-handshake"></i>
-					<span>ORTALA</span>
+					<span>Ortala</span>
 				</a>
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?> has-sub">

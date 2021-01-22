@@ -5,9 +5,9 @@
 		<li class="breadcrumb-item"><a href="<?php echo base_url('history/span');?>">SPAN</a></li>
 	</ol>
 	<div class="d-sm-flex align-items-center mb-3">
-		<a href="#" class="btn btn-inverse mr-2 text-truncate" id="daterange-filter">
+		<a href="#" class="btn btn-inverse mr-2 text-truncate" id="date-filter">
 			<i class="fa fa-calendar fa-fw text-white-transparent-5 ml-n1"></i> 
-			<span></span>
+			<span><?= ucwords(strtolower($uDate)); ?></span>
 			<b class="caret"></b>
 		</a>
 	</div>
@@ -20,96 +20,49 @@
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
 				<div class ="table-responsive">
 					<div class="panel-body">
-						<form method='post' action='span'>
-							<div class="form-group">
-								<div class="row">
-									<div class="col-sm-2">
-										<label class="col-form-label">Start Date:</label>
-										<input type="date" class="form-control" id="fromDate" name="fromDate" value="<?php echo $fromDate ?>" required/>
-									</div>
-									<div class="col-sm-2">
-										<label class="col-form-label">End Date:</label>
-										<input type="date" class="form-control" id="endDate" name="endDate" value="<?php echo $endDate ?>" required/>
-									</div>
-									<div class="col-sm-0.5">
-										<label class="col-form-label">&nbsp;</label>
-										<button type="submit" class="form-control btn btn-primary btn-sm" name="but_search" value="Search"><i class="fa fa-search"></i></button>
-									</div>
-								</div>
-							</div>
-						</form>
-						<br>
-						<?php if($data != 'Tidak') {?>
-							<table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Tanggal</th>
-										<th>Kode Satker</th>
-										<th>Nama Satker</th>
-										<th>Pagu BP</th>
-										<th>Realisasi BP</th>
-										<th>% BP</th>
-										<th>Pagu BB</th>
-										<th>Realisasi BB</th>
-										<th>% BB</th>
-										<th>Pagu BM</th>
-										<th>Realisasi BM</th>
-										<th>% BM</th>
-										<th>Pagu T</th>
-										<th>Realisasi T</th>
-										<th>% T</th>
-										<th>Sisa</th>
-										<th>Detail</th>
+						<h4 class="text-center">OM-SPAN (SP2D)</h4>
+						<h4 class="text-center">PER <?= $uDate; ?></h4><br>
+						<table id="tablee" class="table table-striped table-bordered" width="100%">
+							<thead valign="middle">
+								<tr align="center">
+									<th rowspan="2" style="vertical-align: middle !important">#</th>
+									<th rowspan="2" style="vertical-align: middle !important">UNIT KERJA</th>
+									<th rowspan="2" style="vertical-align: middle !important">KETERANGAN</th>
+									<th colspan="3" style="vertical-align: middle !important">JENIS BELANJA</th>
+									<th rowspan="2" style="vertical-align: middle !important">TOTAL</th>
+								</tr>
+								<tr align="center">
+									<th style="vertical-align: middle !important">PEGAWAI</th>
+									<th style="vertical-align: middle !important">BARANG</th>
+									<th style="vertical-align: middle !important">MODAL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php $no = 1; ?>
+								<?php foreach (json_decode($data, true) as $x): ?>
+									<tr class="gradeA">
+										<td rowspan="2"><?php echo $no++; ?></td>
+										<td rowspan="2"><?= $x['nama']; ?></td>
+										<td>PAGU<br>REALISASI<br></td>
+										<td align="right"><?= number_format($x['pagu_peg'], 0, ',', '.'); ?><br><?= number_format($x['real_peg'], 0, ',', '.'); ?><br>(<?= $x['per_peg']; ?>)</td>
+										<td align="right"><?= number_format($x['pagu_bar'], 0, ',', '.'); ?><br><?= number_format($x['real_bar'], 0, ',', '.'); ?><br>(<?= $x['per_bar']; ?>)</td>
+										<td align="right"><?= number_format($x['pagu_mod'], 0, ',', '.'); ?><br><?= number_format($x['real_mod'], 0, ',', '.'); ?><br>(<?= $x['per_mod']; ?>)</td>
+										<td align="right"><?= number_format($x['pagu_tot'], 0, ',', '.'); ?><br><?= number_format($x['real_tot'], 0, ',', '.'); ?><br>(<?= $x['per_tot']; ?>)</td>
 									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$no = 0;
-									foreach($data as $row){
-										$no++;
-										?>
-										<tr class="gradeA">
-											<td width="1%"><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
-											<td width="1%"><?= $row->created_date == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->created_date ?></td>
-											<td width="1%"><?= $row->kode_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->kode_satker ?></td>
-											<td width="1%"><?= $row->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama_satker ?></td>
-
-											<td width="1%"><?= number_format($row->pagu_bp ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bp ) ?></td>
-											<td width="1%"><?= number_format($row->realisasi_bp) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bp) ?></td>
-											<td width="1%"><?= $row->persentase_bp == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bp?></td>
-
-											<td width="1%"><?= number_format($row->pagu_bb ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bb ) ?></td>
-											<td width="1%"><?= number_format($row->realisasi_bb) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bb) ?></td>
-											<td width="1%"><?= $row->persentase_bb == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bb?></td>
-
-											<td width="1%"><?= number_format($row->pagu_bm ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_bm ) ?></td>
-											<td width="1%"><?= number_format($row->realisasi_bm) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_bm) ?></td>
-											<td width="1%"><?= $row->persentase_bm == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_bm?></td>
-
-											<td width="1%"><?= number_format($row->pagu_t ) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->pagu_t ) ?></td>
-											<td width="1%"><?= number_format($row->realisasi_t) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->realisasi_t) ?></td>
-											<td width="1%"><?= $row->persentase_t == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->persentase_t?></td>
-
-											<td width="1%"><?= number_format($row->sisa) == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : number_format($row->sisa) ?></td>
-											<?php if($row->kode_satker == 448302){?>
-												<td width="1%"><?= "<a href='span_jatinangor?fromDate=$row->created_date' class='btn btn-primary mr-1' btn-sm><i class='fa fa-eye'></i></a>"?></td>
-											<?php }else{ ?>
-												<td width="1%">Tidak ada detail</td>
-											<?php } ?>
-										</tr>
-									<?php } ?>
-								</tbody>
-							</table>
-						<?php }else{ ?>
-							Silahkan pilih tanggal
-						<?php } ?>
+									<tr>
+										<td>SISA</td>
+										<td align="right"><?= number_format($x['sisa_peg'], 0, ',', '.'); ?></td>
+										<td align="right"><?= number_format($x['sisa_bar'], 0, ',', '.'); ?></td>
+										<td align="right"><?= number_format($x['sisa_mod'], 0, ',', '.'); ?></td>
+										<td align="right"><?= number_format($x['sisa_tot'], 0, ',', '.'); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 				<!-- end panel-body -->
@@ -125,48 +78,19 @@
 <script src="<?php echo base_url().'assets/plugins/bootstrap-daterangepicker/daterangepicker.js'?>"></script>
 <script>
 	// alert('test');
-	$('#daterange-filter span').html(moment().subtract('days', 7).format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
-
-	$('#daterange-filter').daterangepicker({
-		format: 'MM/DD/YYYY',
-		startDate: moment().subtract(7, 'days'),
-		endDate: moment(),
-		minDate: '01/01/2017',
-		maxDate: moment(),
-		dateLimit: { days: 60 },
+	$('#date-filter').daterangepicker({
+		startDate: "<?= $seDate; ?>",
+		endDate: "<?= $seDate; ?>",
+		singleDatePicker: true,
 		showDropdowns: true,
-		showWeekNumbers: true,
-		timePicker: false,
-		timePickerIncrement: 1,
-		timePicker12Hour: true,
-		ranges: {
-			'Today': [moment(), moment()],
-			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-			'This Month': [moment().startOf('month'), moment().endOf('month')],
-			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		maxDate: moment(),
+		minYear: 2017,
+		maxYear: parseInt(moment().format('YYYY'),10)
 		},
-		opens: 'right',
-		drops: 'down',
-		buttonClasses: ['btn', 'btn-sm'],
-		applyClass: 'btn-primary',
-		cancelClass: 'btn-default',
-		separator: ' to ',
-		locale: {
-			applyLabel: 'Submit',
-			cancelLabel: 'Cancel',
-			fromLabel: 'From',
-			toLabel: 'To',
-			customRangeLabel: 'Custom',
-			daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
-			monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			firstDay: 1
+		function(start, end, label) {
+			// $('#date-filter span').html(start.format('DD MMMM YYYY'));
+			$(location).attr('href', "<?= base_url('history/span');?>"+ "/" + start.format('YYYY-MM-DD'));
+			// alert(start.format('YYYY-MM-DD'));
 		}
-	}, function(start, end, label) {
-		$('#daterange-filter span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-		
-		// var gap = end.diff(start, 'days');
-		// $('#daterange-prev-date').html(moment(start).subtract('days', gap).format('D MMMM') + ' & ' + moment(start).subtract('days', 1).format('D MMMM YYYY'));
-	});
+	);
 </script>
