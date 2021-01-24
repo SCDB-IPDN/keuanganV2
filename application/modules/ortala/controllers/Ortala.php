@@ -228,12 +228,246 @@ class Ortala extends CI_Controller {
 				$tanggal,
 				$tahun,
 				$tentang,
+				// $link,
+				$status,
+				$pdf,
+				$opsi
+			);
+		}
+		echo json_encode($uu);
+	}
+
+	public function pp() {
+        if($this->session->userdata('nip') != NULL) {       
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+			$this->load->view('view_pp');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        } else {
+             redirect("user");
+        }
+	}
+	public function get_pp() {
+		$data = $this->ortala_model->get_ortala(2)->result();
+		$uu = array();
+		$no = 1;
+		foreach($data as $d) {
+			$kategori = $d->nama_kat;
+			$nomor = $d->nomor;
+			$tanggal = $d->tanggal;
+			$tahun = $d->tahun;
+			$tentang = $d->tentang;
+			$link = '<a href="'.prep_url($d->link).'" target="blank">'.$d->link.'</a>';
+			$status = $d->status;
+			$file = "./assets/prokum_files/$d->nama_file";
+			if(is_file($file)) {
+				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
+			}
+			else {
+				$pdf ='Tidak ada file';
+			}
+			$opsi = "<a 
+				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+				</a>
+
+				<a 
+				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+				</a>";
+		
+			$uu[] = array(
+				$no++,
+				$kategori,
+				$nomor,
+				$tanggal,
+				$tahun,
+				$tentang,
 				$link,
 				$status,
 				$pdf,
 				$opsi
 			);
 		}
+
+		echo json_encode($uu);
+	}
+	
+	public function permen() {
+        if($this->session->userdata('nip') != NULL) {       
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+			$this->load->view('view_permen');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        } else {
+             redirect("user");
+        }
+	}
+	public function get_permen() {
+		$data = $this->ortala_model->get_ortala(3)->result();
+		$uu = array();
+		$no = 1;
+		foreach($data as $d) {
+			$kategori = $d->nama_kat;
+			$nomor = $d->nomor;
+			$tanggal = $d->tanggal;
+			$tahun = $d->tahun;
+			$tentang = $d->tentang;
+			$link = '<a href="'.prep_url($d->link).'" target="blank">'.$d->link.'</a>';
+			$status = $d->status;
+			$file = "./assets/prokum_files/$d->nama_file";
+			if(is_file($file)) {
+				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
+			}
+			else {
+				$pdf ='Tidak ada file';
+			}
+			$opsi = "<a 
+				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+				</a>
+
+				<a 
+				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+				</a>";
+		
+			$uu[] = array(
+				$no++,
+				$kategori,
+				$nomor,
+				$tanggal,
+				$tahun,
+				$tentang,
+				$link,
+				$status,
+				$pdf,
+				$opsi
+			);
+		}
+
+		echo json_encode($uu);
+	}
+	public function pr() {
+        if($this->session->userdata('nip') != NULL) {       
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+			$this->load->view('view_pr');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        } else {
+             redirect("user");
+        }
+	}
+	public function get_pr() {
+		$data = $this->ortala_model->get_ortala(4)->result();
+		$uu = array();
+		$no = 1;
+		foreach($data as $d) {
+			$kategori = $d->nama_kat;
+			$nomor = $d->nomor;
+			$tanggal = $d->tanggal;
+			$tahun = $d->tahun;
+			$tentang = $d->tentang;
+			$link = '<a href="'.prep_url($d->link).'" target="blank">'.$d->link.'</a>';
+			$status = $d->status;
+			$file = "./assets/prokum_files/$d->nama_file";
+			if(is_file($file)) {
+				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
+			}
+			else {
+				$pdf ='Tidak ada file';
+			}
+			$opsi = "<a 
+				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+				</a>
+
+				<a 
+				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+				</a>";
+		
+			$uu[] = array(
+				$no++,
+				$kategori,
+				$nomor,
+				$tanggal,
+				$tahun,
+				$tentang,
+				$link,
+				$status,
+				$pdf,
+				$opsi
+			);
+		}
+
+		echo json_encode($uu);
+	}
+	public function ho() {
+        if($this->session->userdata('nip') != NULL) {       
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+			$this->load->view('view_ho');
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        } else {
+             redirect("user");
+        }
+	}
+	public function get_ho() {
+		$data = $this->ortala_model->get_ortala(6)->result();
+		$uu = array();
+		$no = 1;
+		foreach($data as $d) {
+			$kategori = $d->nama_kat;
+			$nomor = $d->nomor;
+			$tanggal = $d->tanggal;
+			$tahun = $d->tahun;
+			$tentang = $d->tentang;
+			$link = '<a href="'.prep_url($d->link).'" target="blank">'.$d->link.'</a>';
+			$status = $d->status;
+			$file = "./assets/prokum_files/$d->nama_file";
+			if(is_file($file)) {
+				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
+			}
+			else {
+				$pdf ='Tidak ada file';
+			}
+			$opsi = "<a 
+				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+				</a>
+
+				<a 
+				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+				</a>";
+		
+			$uu[] = array(
+				$no++,
+				$kategori,
+				$nomor,
+				$tanggal,
+				$tahun,
+				$tentang,
+				$link,
+				$status,
+				$pdf,
+				$opsi
+			);
+		}
+
 		echo json_encode($uu);
 	}
 }

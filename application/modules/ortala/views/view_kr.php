@@ -329,7 +329,7 @@ $(document).ready(function() {
 		var nomor_del = del.data('nomor');
 		var tentang_del = del.data('tentang');
 		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus produk hukum nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus Keputusan Rektor nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
 	});
 });
 </script>

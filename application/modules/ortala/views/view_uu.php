@@ -10,7 +10,7 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH PRODUK HUKUM</a></span>
+						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
 						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
 						<!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
 					</h4>
@@ -64,7 +64,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Produk Hukum</h5>
+                    <h5 class="modal-title" id="adduuu">Tambah Undang-Undang</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                     </button>
@@ -94,8 +94,8 @@
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="Status" required>
                                 <option value="" disabled selected> Pilih Status</option>  
-                                <option value="Open">Open</option>
-                                <option value="Done">Done</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
 							</select>
 							
 							<label class="col-form-label">File:</label>
@@ -117,7 +117,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title">Edit Produk Hukum</h5>
+                	<h5 class="modal-title">Edit Tambah Undang-Undang</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -145,8 +145,8 @@
                             
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="status" required>
-                                <option value="Open">Open</option>
-                                <option value="Done">Done</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
 							</select>
 							
 							<label class="col-form-label">File:</label>
@@ -170,7 +170,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title" id="delprokumm">Haaaaaaapus Produk Hukum</h5>
+                	<h5 class="modal-title" id="delprokumm">Hapus Tambah Undang-Undang</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -242,7 +242,7 @@ $(document).ready(function() {
 		var nomor_del = del.data('nomor');
 		var tentang_del = del.data('tentang');
 		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus produk hukum nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus Tambah Undang-Undang nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
 	});
 });
 </script>

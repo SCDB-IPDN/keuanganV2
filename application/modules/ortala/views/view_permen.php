@@ -2,15 +2,15 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Peraturan Pemerintah</a></li>
+    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Peraturan Menteri</a></li>
 	</ol>
-  	<h1 class="page-header">Peraturan Pemerintah</h1>
+  	<h1 class="page-header">Peraturan Menteri</h1>
   	<div class="row">
     	<div class="col-xl-12">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH PERATURAN PEMERINTAH</a></span>
+						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH PERATURAN MENTERI</a></span>
 						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
 						<!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
 					</h4>
@@ -64,7 +64,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Peraturan Pemerintah</h5>
+                    <h5 class="modal-title" id="adduuu">Tambah Peraturan Menteri</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                     </button>
@@ -72,9 +72,9 @@
                 <div class="col-xl">
                     <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-							<input type="hidden" name="id_kat" value="2">
-							<input type="hidden" name="nama_kat" value="Peraturan Pemerintah">
-							<input type="hidden" name="url" value="pp">
+							<input type="hidden" name="id_kat" value="3">
+							<input type="hidden" name="nama_kat" value="Peraturan Menteri">
+							<input type="hidden" name="url" value="permen">
 
                             <label class="col-form-label">Nomor:</label>
                             <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
@@ -117,7 +117,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title">Edit Peraturan Pemerintah</h5>
+                	<h5 class="modal-title">Edit Peraturan Menteri</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -125,7 +125,7 @@
                 <div class="modal-body">
                     <form action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
 						<input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
-						<input type="hidden" name="url" value="pp">
+						<input type="hidden" name="url" value="permen">
 						
                         <div class="form-group">                              
                             <label class="col-form-label">Nomor:</label>
@@ -145,8 +145,8 @@
                             
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="status" required>
-                                <option value="Tidak Aktif">Aktif</option>
-                                <option value="Tidak Aktif">Tidak Aktif</option>
+                                <option value="Open">Open</option>
+                                <option value="Done">Done</option>
 							</select>
 							
 							<label class="col-form-label">File:</label>
@@ -170,7 +170,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title" id="delprokumm">Hapus Peraturan Pemerintah</h5>
+                	<h5 class="modal-title" id="delprokumm">Hapus Peraturan Menteri</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -180,7 +180,7 @@
                         <div class="modal-body" id="del-info"></div>
                         <div class="modal-footer">
 							<input type="hidden" id="del_id_prokum" name="del_id_prokum">
-							<input type="hidden" name="url" value="pp">
+							<input type="hidden" name="url" value="permen">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </div>
@@ -193,7 +193,7 @@
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
 $(document).ready(function() {
-    var url = '<?php echo base_url('ortala/get_pp');?>';
+    var url = '<?php echo base_url('ortala/get_permen');?>';
     $('#data-uu').dataTable({
         buttons: [
         	'copy', 'excel', 'print'
@@ -242,7 +242,7 @@ $(document).ready(function() {
 		var nomor_del = del.data('nomor');
 		var tentang_del = del.data('tentang');
 		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus Peraturan Pemerintah nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus Peraturan Menteri nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
 	});
 });
 </script>
