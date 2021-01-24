@@ -21,6 +21,7 @@
 						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
 					</div>
 				</div>
+
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
 						<div class="card-body">
@@ -29,6 +30,7 @@
 								<div class="text-grey">
 									<i class=""></i> Berdasarkan OM-SPAN
 								</div>
+								<?php echo date('d/m/Y', strtotime($tanggal_rank)) ?>
 							</div>
 							<div class="d-flex align-items-center mb-1">
 								<a href="<?php echo base_url('d_peringkat');?>">
@@ -41,7 +43,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-8">
 									<div class="mb-3 text-grey">
-										<b>PERSENTASE OM-SPAN</b>
+										<b>PERSENTASE OM-SPAN (SP2D)</b>
 										<span class="ml-2">
 											<i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="PERSENTASE SPAN, SAS dan POK" data-placement="top" data-content=""></i>
 										</span>
@@ -59,108 +61,29 @@
 									<hr class="bg-white-transparent-2" />
 									<div class="row text-truncate">
 										<div class="col-6">
-											<div class="f-s-12 text-grey"><b>PERSENTASE SAS</b></div>
+											<div class="f-s-12 text-grey"><b>PERSENTASE SAS (SPM)</b></div>
 											<div class="text-grey">
 												<i class=""></i> IPDN
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php echo $persentase_sas ?>"><?php echo $persentase_sas ?></span>%</div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php echo $persentase_sas ?>%"></div>
+												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
 											</div>
 										</div>
 										<div class="col-6">
-											<div class="f-s-12 text-grey"><b>PERSENTASE POK</b></div>
+											<div class="f-s-12 text-grey"><b>PERSENTASE POK (SPP)</b></div>
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php echo $persentase_pok ?>"><?php echo $persentase_pok ?></span>%</a></div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php echo $persentase_pok ?>%"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- <div class="col-xl-5 col-lg-4 align-items-center d-flex justify-content-center">
-									<img src="assets/img/svg/img-1.svg" height="150px" class="d-none d-lg-block" />
-								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- <div class="col-sm-3">
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<h4 class="panel-title">Kalender</h4>
-					<div class="panel-heading-btn">
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="panel-body">
-					<div id="datepicker-inline" class="datepicker-full-width overflow-y-scroll position-relative"><div></div></div>
-				</div>
-			</div>
-		</div> -->
-		<div class="col-xl-6">
-			<!-- begin tabs -->
-			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
-			</ul>
-			<div class="tab-content" data-sortable-id="index-3">
-				<div class="tab-pane fade active show" id="latest-post">
-					<div class="height-sm" data-scrollbar="true">
-						
-					<?php foreach($berita as $berita) { ?>
-						<ul class="media-list media-list-with-divider">
-							<li class="media media-lg">
-								<a href="javascript:;" class="pull-left">
-									<img class="media-object rounded" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
-								</a>
-								<div class="media-body">
-									<h5 class="media-heading"><?php echo $berita->judul_berita ?></h5>
-									<p><?php echo date('H:i:s | d/m/Y', strtotime($berita->tanggal)) ?></p>
-									<?php $limited_word = word_limiter($berita->isi,10);?>
-        							<?php echo $limited_word ?>
-									<span>
-										<a href="#" data-toggle="modal" data-target="#read<?php echo $berita->id_berita;?>">Baca detail...</a>
-									</span>
-								</div>
-							</li>
-						</ul>
-
-						<!-- Modal -->
-						<div class="modal fade bd-example-modal-xl" id="read<?php echo $berita->id_berita;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-xl" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel"><?php echo $berita->judul_berita ?></h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									</div>
-									<div class="height-lg" data-scrollbar="true">
-										<div class="modal-body">
-											<div class="row">
-												<div class="form-group col-xl-4">
-													<a href="javascript:;" class="pull-left">
-														<img class="rounded" style="width:100%" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
-													</a>
-												</div>
-												<div class="form-group col-xl-8">
-													<?php echo $berita->isi ?>
-												</div>
+												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					<?php }?>
-
 					</div>
 				</div>
 			</div>
@@ -169,7 +92,7 @@
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
-					<h4 class="panel-title">SPAN JATINANGOR</h4>
+					<h4 class="panel-title">OM-SPAN JATINANGOR (SP2D)</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -183,11 +106,13 @@
 							<b class="mb-3">TOTAL PERSENTASE</b> 
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="BIRO KAMPUS JATINANGOR" data-placement="top" data-content="REALISASI SERAPAN ANGGARAN PROGRAM PENDIDIKAN KEPAMONGPRAJAAN IPDN JATINANGOR ." data-original-title="" title=""></i></span>
 							<div class="text-grey">
-								<i class=""></i> JATINANGOR (SPAN)
+								<i class=""></i> OM-SPAN JATINANGOR (SP2D) 
 							</div>
 						</div>
+						
 						<div class="d-flex align-items-center mb-1">
-							<a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+							<!-- <a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a> -->
+							<a href="#"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
@@ -207,10 +132,12 @@
 							</div>
 						</div>
 						<?php } ?>
+
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -281,11 +208,11 @@
 
 		<div class="col-xl-6">
 			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-				<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">APLIKASI</span></a></li>
-				<li class="nav-item"><a href="#purchase" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">STATUS APLIKASI</span></a></li>
+				<li class="nav-item"><a href="#aplikasi" data-toggle="tab" class="nav-link active"><i class="fa fa-globe fa-lg m-r-5"></i> <span class="d-none d-md-inline">APLIKASI</span></a></li>
+				<li class="nav-item"><a href="#status_aplikasi" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">STATUS APLIKASI</span></a></li>
 			</ul>
 			<div class="tab-content" data-sortable-id="index-3">
-				<div class="tab-pane fade active show" id="latest-post">
+				<div class="tab-pane fade active show" id="aplikasi">
 					<div class="height-sm" data-scrollbar="true">
 						<div class="panel-body">
 							<div class="card border-0 bg-white text-black mb-3">
@@ -333,7 +260,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="purchase">
+				<div class="tab-pane fade" id="status_aplikasi">
 					<div class="height-sm" data-scrollbar="true">
 						<div class="card border-0 bg-white text-black text-truncate mb-3">
 							<div class="mb-3 text-black">
@@ -472,6 +399,68 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-xl-6">
+			<!-- begin tabs -->
+			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
+				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
+			</ul>
+			<div class="tab-content" data-sortable-id="index-3">
+				<div class="tab-pane fade active show" id="latest-post">
+					<div class="height-sm" data-scrollbar="true">
+						
+					<?php foreach($berita as $berita) { ?>
+						<ul class="media-list media-list-with-divider">
+							<li class="media media-lg">
+								<a href="javascript:;" class="pull-left">
+									<img class="media-object rounded" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
+								</a>
+								<div class="media-body">
+									<h5 class="media-heading"><?php echo $berita->judul_berita ?></h5>
+									<p><?php echo date('H:i:s | d/m/Y', strtotime($berita->tanggal)) ?></p>
+									<?php $limited_word = word_limiter($berita->isi,10);?>
+        							<?php echo $limited_word ?>
+									<span>
+										<a href="#" data-toggle="modal" data-target="#read<?php echo $berita->id_berita;?>">Baca detail...</a>
+									</span>
+								</div>
+							</li>
+						</ul>
+
+						<!-- Modal -->
+						<div class="modal fade bd-example-modal-xl" id="read<?php echo $berita->id_berita;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-xl" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel"><?php echo $berita->judul_berita ?></h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="height-lg" data-scrollbar="true">
+										<div class="modal-body">
+											<div class="row">
+												<div class="form-group col-xl-4">
+													<a href="javascript:;" class="pull-left">
+														<img class="rounded" style="width:100%" src="<?php echo base_url('assets/img/gallery/'.$berita->gambar) ?>" alt=""/>
+													</a>
+												</div>
+												<div class="form-group col-xl-8">
+													<?php echo $berita->isi ?>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php }?>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
