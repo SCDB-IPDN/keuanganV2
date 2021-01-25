@@ -40,16 +40,20 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
-				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
-				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
+					href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+					data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+					data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+					</a>
+	
+					<a 
+					href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					</a>";
+				}else{
+					$opsi = "Tidak ada Akses";
+			   }
 		
 			$uu[] = array(
 				$no++,
@@ -211,15 +215,20 @@ class Ortala extends CI_Controller {
 				$pdf ='Tidak ada file';
 			}
 
-			$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-link='$d->link' data-status='$d->status' data-file='$d->nama_file'
-				data-tanggal='$d->tanggal' data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
+					href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+					data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+					data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+					</a>
+	
+					<a 
+					href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					</a>";
+				}else{
+					$opsi = "Tidak ada Akses";
+			   }
 		
 			$uu[] = array(
 				$no++,
@@ -268,16 +277,20 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
-				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
-				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
+					href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+					data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+					data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+					</a>
+	
+					<a 
+					href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					</a>";
+				}else{
+					$opsi = "Tidak ada Akses";
+			   }
 		
 			$uu[] = array(
 				$no++,
@@ -327,16 +340,20 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
-				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
-				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
+					href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+					data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+					data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+					</a>
+	
+					<a 
+					href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					</a>";
+				}else{
+					$opsi = "Tidak ada Akses";
+			   }
 		
 			$uu[] = array(
 				$no++,
@@ -385,16 +402,20 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
-				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
-				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
+					href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
+					data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
+					data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
+					</a>
+	
+					<a 
+					href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
+					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					</a>";
+				}else{
+					$opsi = "Tidak ada Akses";
+			   }
 		
 			$uu[] = array(
 				$no++,
@@ -443,6 +464,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
 			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -453,6 +475,9 @@ class Ortala extends CI_Controller {
 				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
 				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
 				</a>";
+			}else{
+				$opsi = "Tidak ada Akses";
+		   }
 		
 			$uu[] = array(
 				$no++,

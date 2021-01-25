@@ -55,7 +55,9 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <span>
+                        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
                             <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_KA">TAMBAH KEPUTUSAN REKTOR</a>
+                            <?php } ?>
                         </span>
                     </h4>
                     <div class="panel-heading-btn">
