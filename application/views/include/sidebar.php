@@ -100,14 +100,14 @@
 			<!-- END KEPEGAWAIAN -->
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
 					<span>Akademik</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
