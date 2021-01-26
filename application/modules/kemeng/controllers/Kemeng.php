@@ -432,12 +432,19 @@ class Kemeng extends CI_Controller
 			'nama_fakultas' => $nama_fakultas->nama_fakultas,
 			'id_prodi' => $id_prodi,
 			'nama_prodi' => $nama_prodi->nama_prodi,
+			'sks' => $sks,
 		];
 		
 		$kemeng = 9;
 		if ($plot['sks'] > $kemeng) {
 			$plot['indeks'] = $plot['sks'] - $kemeng;
 		}
+
+		$pisah = explode("|", $plot['nama']);
+		$nama = $pisah[0];
+		$nip = $pisah[1];
+		$plot['nama']=$nama;
+		$plot['nip']=$nip;
 		
 		  $result = $this->Kemeng_model->tambah_plot($plot);
 		  
