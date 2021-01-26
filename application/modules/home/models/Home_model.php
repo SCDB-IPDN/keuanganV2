@@ -209,7 +209,9 @@ class Home_model extends CI_Model{
 
 	public function get_all_span_biro()
 	{	
-		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 ORDER BY created_at DESC, alias ASC LIMIT 4")->result();
+		$years = date('Y');
+		
+		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 AND created_at LIKE '%$years%' ORDER BY created_at DESC, alias ASC LIMIT 4")->result();
 
 		return $result;
 	}
@@ -275,8 +277,8 @@ class Home_model extends CI_Model{
 	}
 
 	public function get_rank_ipdn() {
-		return $this->db->query("SELECT rank FROM
-			(SELECT @rank:=@rank+1 AS rank, nama, satker,
+		return $this->db->query("SELECT created_at, rank FROM
+			(SELECT @rank:=@rank+1 AS rank, nama, created_at, satker,
 			100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod) AS per_tot
 			FROM
 			tbl_rank, (SELECT @rank := 0) r
