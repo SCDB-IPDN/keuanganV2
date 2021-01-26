@@ -5,6 +5,8 @@ class Kemeng extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->load->helper('url');
     	//load chart_model from model
 		$this->load->model('Kemeng_model');
 	}
@@ -321,6 +323,7 @@ class Kemeng extends CI_Controller
 	}
 
 	function honor() {
+
 		if($this->session->userdata('nip') != NULL) {
 						
 			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
@@ -338,6 +341,7 @@ class Kemeng extends CI_Controller
 	}
 
 	function honor_table($date) {
+
 		$nip = $this->session->userdata('nip');
 		$data = $this->Kemeng_model->get_absen_bulan($date, $nip)->result();
 		// var_dump($data);exit;
@@ -376,6 +380,12 @@ class Kemeng extends CI_Controller
 			  $fk = $this->Kemeng_model->get_nama_fakultas()->result();
 			  $prodi = $this->Kemeng_model->get_nama_prodi()->result();
 
+			  $id_fakultas = $this->session->userdata('role');
+			  $fakulll = $this->Kemeng_model->get_fakultassss($id_fakultas)->result();
+			// var_dump($fakulll);
+			// exit();
+			  $x['fakulll'] = $fakulll;
+
 			  $x['data'] = $data;
 			  $x['tp'] = $tp;
 			  $x['mk'] = $mk;
@@ -396,43 +406,39 @@ class Kemeng extends CI_Controller
 	
 	public function tambah_plot()
 	{
-		  $plot['nama'] = $this->input->post('nama', true);
-		  $plot['nama_matkul'] = $this->input->post('nama_matkul', true);
-		  $plot['nama_prodi'] = $this->input->post('nama_prodi', true);
-		  $plot['tanggal'] = $this->input->post('tanggal', true);
-		  $plot['jam'] = $this->input->post('jam', true);
-		  $plot['kelas'] = $this->input->post('kelas', true);
-		  $plot['semester'] = $this->input->post('semester', true);
-		  $plot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
-		  $plot['sks'] = $this->input->post('sks', true);
-		  $kemeng = 9;
-		  if ($plot['sks'] > $kemeng) {
-			  $plot['indeks'] = $plot['sks'] - $kemeng;
-		  }
-		  $pisah = explode("|", $plot['nama']);
-		  $nama = $pisah[0];
-		  $nip = $pisah[1];
-		  $plot['nama']=$nama;
-		  $plot['nip']=$nip;
+		$nama = $this->input->post('nama', true);
+		$id_matkul = $this->input->post('id_matkul', true);
+		$id_prodi = $this->input->post('prodi', true);
+		$tanggal = $this->input->post('tanggal', true);
+		$jam = $this->input->post('jam', true);
+		$kelas = $this->input->post('kelas', true);
+		$semester = $this->input->post('semester', true);
+		$id_fakultas = $this->input->post('fakultas', true);
+		$sks = $this->input->post('sks', true);
 
-		  $pisah1 = explode("|", $plot['nama_matkul']);
-		  $namamk = $pisah1[0];
-		  $idmk = $pisah1[1];
-		  $plot['nama_matkul']=$namamk;
-		  $plot['id_matkul']=$idmk;
+		$nama_fakultas = $this->Kemeng_model->getRowFakultas($id_fakultas);
+		$nama_prodi = $this->Kemeng_model->getRowProdi($id_prodi);
+		$nama_matkul = $this->Kemeng_model->getRowMatkul($id_matkul);
 
-		  $pisah2 = explode("|", $plot['nama_fakultas']);
-		  $namafk = $pisah2[0];
-		  $idfk = $pisah2[1];
-		  $plot['nama_fakultas']=$namafk;
-		  $plot['id_fakultas']=$idfk;
-
-		  $pisah3 = explode("|", $plot['nama_prodi']);
-		  $namaprodi = $pisah3[0];
-		  $idprodi = $pisah3[1];
-		  $plot['nama_prodi']=$namaprodi;
-		  $plot['id_prodi']=$idprodi;
-
+		$plot = [
+			'nama' => $nama,
+			'nama_matkul' => $nama_matkul->nama_matkul, //ini penulisannya kan pakai tanda panah artinya ini object
+			'id_matkul' => $id_matkul,
+			'tanggal' => $tanggal,
+			'jam' => $jam,
+			'kelas' => $kelas,
+			'semester' => $semester,
+			'id_fakultas' => $id_fakultas,
+			'nama_fakultas' => $nama_fakultas->nama_fakultas,
+			'id_prodi' => $id_prodi,
+			'nama_prodi' => $nama_prodi->nama_prodi,
+		];
+		
+		$kemeng = 9;
+		if ($plot['sks'] > $kemeng) {
+			$plot['indeks'] = $plot['sks'] - $kemeng;
+		}
+		
 		  $result = $this->Kemeng_model->tambah_plot($plot);
 		  
 		  if (!$result) { 							
@@ -454,6 +460,7 @@ class Kemeng extends CI_Controller
 	   $editplot['kelas'] = $this->input->post('kelas', true);
 	   $editplot['semester'] = $this->input->post('semester', true);
 	   $editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
+
    // 	var_dump($editplot);
    // exit();
 	   
@@ -485,7 +492,7 @@ class Kemeng extends CI_Controller
 			$nama_fakultas = $r->nama_fakultas;
 			$nama_prodi = $r->nama_prodi;
 						 
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				 $aksi = "<a href='javascript:; 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
 				 data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
 				 data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
@@ -533,5 +540,17 @@ class Kemeng extends CI_Controller
 	   }
 	   
    }
+
+   public function getProdiByFakultasId($fakultas_id)
+	{
+		$data = $this->Kemeng_model->ProdiByFakultasId($fakultas_id);
+		echo json_encode($data);
+	}
+
+	public function getMatkulByProdiId($prodi_id)
+	{
+		$data = $this->Kemeng_model->MatkulByProdiId($prodi_id);
+		echo json_encode($data);
+	}
   //END PLOT
 }

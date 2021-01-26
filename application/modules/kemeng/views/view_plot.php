@@ -67,13 +67,13 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <form action="kemeng/tambah_plot" method="POST">
+          <form id="FormAdd" action="kemeng/tambah_plot" method="POST">
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-8">
                   <label class="col-form-label">Nama Dosen :</label>
                   <select class="form-control" id="nama" name="nama" required>
-                    <option>--Nama|Nip--</option>
+                    <option> Select Nama</option>
                     <?php foreach ($tp as $rows) { ?>
                       <option value="<?php echo $rows->nama . '|' . $rows->nip; ?>"><?php echo $rows->nama . '|' . $rows->nip; ?>
                       </option>
@@ -83,46 +83,41 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="row">
-                <div class="col-sm-8">
-                  <label class="col-form-label">Nama Matkul :</label>
-                  <select class="form-control" id="nama_matkul" name="nama_matkul" required>
-                    <option>--Nama Matkul--</option>
-                    <?php foreach ($mk as $rows) { ?>
-                      <option value="<?php echo $rows->nama_matkul . '|' . $rows->id_matkul; ?>"><?php echo $rows->nama_matkul . '|' . $rows->id_matkul; ?>
-                      </option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
+            	<div class="row">
+            		<div class="col-xl">
+            			<label class="col-form-label">Nama Fakultas :</label>
+            			<select class="form-control" name="fakultas" id="fakultas">
+            				<option>Select Fakultas</option>
+            				<?php foreach ($fakulll as $x) { ?>
+            				<option value="<?php echo $x->id_fakultas;?>"><?php echo $x->id_fakultas;?> |
+            					<?php echo $x->nama_fakultas;?></option>
+            				<?php } ?>
+            			</select>
+            		</div>
+            	</div>
+            </div>
+            
+            <div class="form-group">
+            	<div class="row">
+            		<div class="col-xl">
+            			<label class="col-form-label">Nama Prodi :</label>
+            			<select class="form-control" name="prodi" id="prodi">
+            				<option>Select Prodi</option>
+
+            			</select>
+            		</div>
+            	</div>
             </div>
             <div class="form-group">
-              <div class="row">
-                <div class="col-sm-8">
-                  <label class="col-form-label">Nama Fakultas :</label>
-                  <select class="form-control" id="nama_fakultas" name="nama_fakultas" required>
-                    <option>--Nama Fakultas--</option>
-                    <?php foreach ($fk as $rows) { ?>
-                      <option value="<?php echo $rows->nama_fakultas . '|' . $rows->id_fakultas; ?>"><?php echo $rows->nama_fakultas . '|' . $rows->id_fakultas; ?>
-                      </option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-sm-8">
-                  <label class="col-form-label">Nama Prodi :</label>
-                  <select class="form-control" id="nama_prodi" name="nama_prodi" required>
-                    <option>--Nama Prodi--</option>
-                    <?php foreach ($prodi as $rows) { ?>
-                      <option value="<?php echo $rows->nama_prodi . '|' . $rows->id_prodi; ?>"><?php echo $rows->nama_prodi . '|' . $rows->id_prodi; ?>
-                      </option>
-                    <?php } ?>
-                  </select>
-                </div>
-              </div>
+            	<div class="row">
+            		<div class="col-xl">
+            			<label class="col-form-label">Nama Matkul :</label>
+            			<select class="form-control" name="id_matkul" id="id_matkul">
+            				<option>Select Matkul</option>
+
+            			</select>
+            		</div>
+            	</div>
             </div>
             <div class="form-group">
               <div class="row">
@@ -143,7 +138,7 @@
             <div class="form-group">
               <label class="col-form-label">Semester :</label>
               <select class="form-control" id="semester" name="semester" required>
-                <option>--Semester--</option>
+                <option>Select Semester</option>
                 <option>GANJIL 2020/2021</option>
                 <option>GENAP 2020/2021</option>
               </select>
@@ -155,6 +150,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
+              <!-- <a href="#" id="checkForm">Check</a> -->
             </div>
           </form>
         </div>
@@ -218,7 +214,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="hapusplot">Hapus Data Matkuliah</h5>
+        <h5 class="modal-title" id="hapusplot">Hapus Data Plot</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -299,3 +295,68 @@
     });
   });
 </script>
+<script>
+        $(document).ready(function() {
+            /**
+             * mengambil data JSON dari Controller Kemeng/getProdiByFakultasId dengan parameter fakultas_id
+             */
+            function getProdi(fakultas_id) {
+                return fetch("<?= site_url('kemeng/getProdiByFakultasId/') ?>" + fakultas_id, {
+                        method: "get",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(response => response);
+            }
+
+            /**
+             * mengambil data JSON dari Controller Kemeng/getMatkulByProdiId dengan parameter prodi_id
+             */
+            function getMatkul(prodi_id) {
+                return fetch("<?= site_url('kemeng/getMatkulByProdiId/') ?>" + prodi_id, {
+                        method: "get",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(response => response);
+            }
+
+            /**
+             * on change event
+             * Ketika ada perubahan di <select name="fakultas" id="fakultas">
+             * maka akan mengambil data dari fungsi getProdi(fakultas_id)
+             * dan mencetak kedalam <select name="prodi" id="prodi">
+             */
+            $('#fakultas').on('change', async function() {
+                let list_prodi = await getProdi($('#fakultas').val()); // memanggil fungsi getProdi diatas
+                let prodi_select = ''; // menampung template literals
+                list_prodi.forEach(row => prodi_select += `<option value="${row.id_prodi}">${row.nama_prodi}</option>`); // perulangan data 
+                $('#prodi').html(prodi_select); // mencetak data
+            })
+
+            /**
+             * on change event
+             * Ketika ada perubahan di <select name="prodi" id="prodi">
+             * maka akan mengambil data dari fungsi getProdi(fakultas_id)
+             * dan mencetak kedalam <select name="matkul" id="matkul">
+             */
+            $('#prodi').on('change', async function() {
+                let list_matkul = await getMatkul($('#prodi').val()); // memanggil fungsi getProdi diatas
+                let matkul_select = ''; // menampung template literals
+                list_matkul.forEach(row => matkul_select += `<option value="${row.id_matkul}">${row.nama_matkul}</option>`); // perulangan data
+                $('#id_matkul').html(matkul_select); // mencetak data
+            });
+
+            // $('#checkForm').on('click', function () {
+            //   let form = $('#FormAdd').serializeArray();
+            //   console.log(form);
+            // })
+
+        });
+    </script>

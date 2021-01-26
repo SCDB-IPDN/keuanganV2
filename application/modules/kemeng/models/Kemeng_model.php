@@ -2,6 +2,7 @@
 <?php
 class Kemeng_model extends CI_Model
 {
+	
 	public function cek_dosen($nip)
 	{
 		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = $nip")->result();
@@ -191,7 +192,7 @@ class Kemeng_model extends CI_Model
 	public function get_all_plot()
 	{
 
-	$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+	$result = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas");
 	return $result;
 
 	}
@@ -248,6 +249,36 @@ class Kemeng_model extends CI_Model
 		$this->db->delete('tbl_plot_dosen');
 	// 	$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id_plot= '$id' ");
 	// 	return $hasil;
+	}
+	
+	public function ProdiByFakultasId($fakultas_id)
+    {
+        $query = $this->db->get_where('tbl_prodi', array('id_fakultas' => $fakultas_id));
+        return $query->result();
+    }
+
+    public function MatkulByProdiId($prodi_id)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_prodi' => $prodi_id));
+        return $query->result();
+	}
+	
+	public function getRowFakultas($id)
+	{
+		$query = $this->db->get_where('tbl_fakultas', ['id_fakultas' => $id]);
+		return $query->row();
+	}
+	
+	public function getRowProdi($id)
+	{
+		$query = $this->db->get_where('tbl_prodi', ['id_prodi' => $id]);
+		return $query->row();
+	}
+	
+	public function getRowMatkul($id)
+	{
+		$query = $this->db->get_where('tbl_matkul', ['id_matkul' => $id]);
+		return $query->row();
 	}
 	//END PLOT
 
