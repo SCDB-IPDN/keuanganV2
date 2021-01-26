@@ -11,4 +11,8 @@ class uploads_model extends CI_Model {
 			$this->db->insert_batch($tbl, $data);
 		}
 	}
+
+	public function log($log){
+        return $this->db->insert('tbl_log', $log);
+    }
 }

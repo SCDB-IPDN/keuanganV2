@@ -290,7 +290,13 @@ class Dosen_dikti extends CI_Controller {
         if (!$result) { 							
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) GAGAL DITAMBAHKAN."); 				
             redirect('dosen_dikti'); 			
-        } else { 								
+        } else {
+            $isi = $input_data['nip'];
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Menambahkan dosen, Nip Dosen = $isi";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->mdosen_dikti->log($log);
+
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
             redirect('dosen_dikti'); 			
         }
@@ -365,7 +371,13 @@ class Dosen_dikti extends CI_Controller {
         if (!$result) { 							
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) GAGAL DI UPDATE."); 				
             redirect('dosen_dikti'); 			
-        } else { 								
+        } else { 		
+            $isi = $input_data['nip'];
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Mengubah dosen, Nip Dosen = $isi";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->mdosen_dikti->log($log);
+
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) BERHASIL Di UPDATE.");			
             redirect('dosen_dikti'); 			
         }
@@ -379,7 +391,12 @@ class Dosen_dikti extends CI_Controller {
         if (!$result) { 							
             $this->session->set_flashdata('dosen-dikti', 'DATA DOSEN GAGAL DIHAPUS.'); 				
             redirect('dosen_dikti'); 			
-        } else { 								
+        } else {
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Menghapus Dosen, Id Dosen = $id";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->mdosen_dikti->log($log);
+
             $this->session->set_flashdata('dosen-dikti', 'DATA DOSEN BERHASIL DIHAPUS.');			
             redirect('dosen_dikti'); 			
         }

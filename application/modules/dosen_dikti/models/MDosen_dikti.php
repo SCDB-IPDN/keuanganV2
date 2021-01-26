@@ -13,6 +13,10 @@ class MDosen_dikti extends CI_Model{
         (SELECT COUNT(*) as total FROM tbl_dosen_pddikti) c")->result();
     }
 
+    public function log($log){
+        return $this->db->insert('tbl_log', $log);
+    }
+
     function tambah_dosen_dikti($input_data){   
         return $this->db->insert('tbl_dosen_pddikti', $input_data);
     }
