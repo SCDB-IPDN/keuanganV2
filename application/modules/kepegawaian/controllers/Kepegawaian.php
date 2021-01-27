@@ -139,7 +139,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('pns', 'DATA PNS GAGAL DITAMBAHKAN.'); 				
                redirect('kepegawaian'); 			
-          } else { 								
+          } else { 			
+               $isi = $input_data['nip'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menambahkan data PNS, NIP = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('pns', 'DATA PNS BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian'); 			
           }
@@ -184,7 +190,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('pns', 'DATA PNS GAGAL DIUBAH.');		
                redirect('kepegawaian'); 			
-          } else { 								
+          } else { 				
+               $isi = $input_data['nip'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Mengubah data PNS, NIP = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('pns', 'DATA PNS BERHASIL DIUBAH.');			
                redirect('kepegawaian'); 			
           }
@@ -194,6 +206,12 @@ class Kepegawaian extends CI_Controller{
      {
           $nip = $this->input->get('nip');
           $this->kepegawaian_model->hapus_pns($nip);
+
+          $log['user'] = $this->session->userdata('nip');
+          $log['Ket'] = "Menghapus data PNS, NIP = $nip";
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $this->kepegawaian_model->log($log);
+
           redirect('kepegawaian');
      }
      //END PNS
@@ -380,7 +398,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) GAGAL DITAMBAHKAN."); 				
                redirect('kepegawaian/dosen'); 			
-          } else { 								
+          } else {
+               $isi = $input_data['nip'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menambahkan data Dosen, NIP = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
                redirect('kepegawaian/dosen'); 			
           }
@@ -410,7 +434,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) GAGAL DIUBAH."); 				
                redirect('kepegawaian/dosen'); 			
-          } else { 								
+          } else { 
+               $isi = $input_data['nip'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Mengubah data Dosen, NIP = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DIUBAH.");			
                redirect('kepegawaian/dosen'); 			
           }
@@ -424,7 +454,12 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('dosen', 'DATA DOSEN GAGAL DIHAPUS.'); 				
                redirect('kepegawaian/dosen'); 			
-          } else { 								
+          } else { 				
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menghapus data Dosen, ID = $id";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('dosen', 'DATA DOSEN BERHASIL DIHAPUS.');			
                redirect('kepegawaian/dosen'); 			
           }
@@ -503,7 +538,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('thl', 'DATA THL GAGAL DITAMBAHKAN.'); 				
                redirect('kepegawaian/thl'); 			
-          } else { 								
+          } else { 					
+               $isi = $input_data['nama'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menambahkan data THL, Nama = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('thl', 'DATA THL BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/thl'); 			
           }
@@ -524,7 +565,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('thl', 'DATA THL GAGAL DIUBAH.');		
                redirect('kepegawaian/thl'); 			
-          } else { 								
+          } else {
+               $isi = $input_data['nama'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Mengubah data THL, Nama = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('thl', 'DATA THL BERHASIL DIUBAH.');			
                redirect('kepegawaian/thl'); 			
           }
@@ -538,7 +585,12 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('thl', 'DATA THL GAGAL DIHAPUS.'); 				
                redirect('kepegawaian/thl'); 			
-          } else { 								
+          } else {
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menghapus data THL, ID = $id_thl";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('thl', 'DATA THL BERHASIL DIHAPUS.');			
                redirect('kepegawaian/thl'); 			
           }
@@ -581,7 +633,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('ta', 'DATA TA GAGAL DITAMBAHKAN.'); 				
                redirect('kepegawaian/ta'); 			
-          } else { 								
+          } else {
+               $isi = $input_data['nama_lengkap'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Menambahkan data TA, Nama = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('ta', 'DATA TA BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/ta'); 			
           }
@@ -600,7 +658,13 @@ class Kepegawaian extends CI_Controller{
           if (!$result) { 							
                $this->session->set_flashdata('ta', 'DATA TA GAGAL DIUBAH.');		
                redirect('kepegawaian/ta'); 			
-          } else { 								
+          } else {
+               $isi = $input_data['nama_lengkap'];
+               $log['user'] = $this->session->userdata('nip');
+               $log['Ket'] = "Mengubah data TA, Nama = $isi";
+               $log['tanggal'] = date('Y-m-d H:i:s');
+               $this->kepegawaian_model->log($log);
+
                $this->session->set_flashdata('ta', 'DATA TA BERHASIL DIUBAH.');			
                redirect('kepegawaian/ta'); 			
           }
@@ -610,6 +674,12 @@ class Kepegawaian extends CI_Controller{
      {
           $nik = $this->input->post('nik');
           $this->kepegawaian_model->hapus_ta($nik);
+
+          $log['user'] = $this->session->userdata('nip');
+          $log['Ket'] = "Menambahkan data TA, NIK = $nik";
+          $log['tanggal'] = date('Y-m-d H:i:s');
+          $this->kepegawaian_model->log($log);
+          
           redirect('kepegawaian/ta');
      }
 }
