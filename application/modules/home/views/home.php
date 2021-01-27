@@ -725,7 +725,7 @@
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="mb-3 text-grey">
-							<b class="mb-3">TOTAL PRODUK HUKUM <br>(<?php echo$last_updated; ?>)</b> 
+							<b class="mb-3">TOTAL PRODUK HUKUM</b> 
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-original-title="" title=""></i></span>
 							<div class="text-grey">
 								<i class=""></i> KAMPUS IPDN
