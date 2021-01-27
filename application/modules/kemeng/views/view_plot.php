@@ -296,67 +296,67 @@
   });
 </script>
 <script>
-        $(document).ready(function() {
-            /**
-             * mengambil data JSON dari Controller Kemeng/getProdiByFakultasId dengan parameter fakultas_id
-             */
-            function getProdi(fakultas_id) {
-                return fetch("<?= site_url('kemeng/getProdiByFakultasId/') ?>" + fakultas_id, {
-                        method: "get",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-Requested-With": "XMLHttpRequest"
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(response => response);
-            }
+	$(document).ready(function () {
+		/**
+		 * mengambil data JSON dari Controller Kemeng/getProdiByFakultasId dengan parameter fakultas_id
+		 */
+		function getProdi(fakultas_id) {
+			return fetch("<?= site_url('kemeng/getProdiByFakultasId/') ?>" + fakultas_id, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
+		}
 
-            /**
-             * mengambil data JSON dari Controller Kemeng/getMatkulByProdiId dengan parameter prodi_id
-             */
-            function getMatkul(prodi_id) {
-                return fetch("<?= site_url('kemeng/getMatkulByProdiId/') ?>" + prodi_id, {
-                        method: "get",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-Requested-With": "XMLHttpRequest"
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(response => response);
-            }
+		/**
+		 * mengambil data JSON dari Controller Kemeng/getMatkulByProdiId dengan parameter prodi_id
+		 */
+		function getMatkul(prodi_id) {
+			return fetch("<?= site_url('kemeng/getMatkulByProdiId/') ?>" + prodi_id, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
+		}
 
-            /**
-             * on change event
-             * Ketika ada perubahan di <select name="fakultas" id="fakultas">
-             * maka akan mengambil data dari fungsi getProdi(fakultas_id)
-             * dan mencetak kedalam <select name="prodi" id="prodi">
-             */
-            $('#fakultas').on('change', async function() {
-                let list_prodi = await getProdi($('#fakultas').val()); // memanggil fungsi getProdi diatas
-                let prodi_select = ''; // menampung template literals
-                list_prodi.forEach(row => prodi_select += `<option value="${row.id_prodi}">${row.nama_prodi}</option>`); // perulangan data 
-                $('#prodi').html(prodi_select); // mencetak data
-            })
+		/**
+		 * on change event
+		 * Ketika ada perubahan di <select name="fakultas" id="fakultas">
+		 * maka akan mengambil data dari fungsi getProdi(fakultas_id)
+		 * dan mencetak kedalam <select name="prodi" id="prodi">
+		 */
+		$('#fakultas').on('change', async function () {
+			let list_prodi = await getProdi($('#fakultas').val()); // memanggil fungsi getProdi diatas
+			let prodi_select = ''; // menampung template literals
+			list_prodi.forEach(row => prodi_select += `<option value="${row.id_prodi}">${row.nama_prodi}</option>`); // perulangan data 
+			$('#prodi').html(prodi_select); // mencetak data
+		})
 
-            /**
-             * on change event
-             * Ketika ada perubahan di <select name="prodi" id="prodi">
-             * maka akan mengambil data dari fungsi getProdi(fakultas_id)
-             * dan mencetak kedalam <select name="matkul" id="matkul">
-             */
-            $('#prodi').on('change', async function() {
-                let list_matkul = await getMatkul($('#prodi').val()); // memanggil fungsi getProdi diatas
-                let matkul_select = ''; // menampung template literals
-                list_matkul.forEach(row => matkul_select += `<option value="${row.id_matkul}">${row.nama_matkul}</option>`); // perulangan data
-                $('#id_matkul').html(matkul_select); // mencetak data
-            });
+		/**
+		 * on change event
+		 * Ketika ada perubahan di <select name="prodi" id="prodi">
+		 * maka akan mengambil data dari fungsi getProdi(fakultas_id)
+		 * dan mencetak kedalam <select name="matkul" id="matkul">
+		 */
+		$('#prodi').on('change', async function () {
+			let list_matkul = await getMatkul($('#prodi').val()); // memanggil fungsi getProdi diatas
+			let matkul_select = ''; // menampung template literals
+			list_matkul.forEach(row => matkul_select += `<option value="${row.id_matkul}">${row.nama_matkul}</option>`); // perulangan data
+			$('#id_matkul').html(matkul_select); // mencetak data
+		});
 
-            // $('#checkForm').on('click', function () {
-            //   let form = $('#FormAdd').serializeArray();
-            //   console.log(form);
-            // })
+		// $('#checkForm').on('click', function () {
+		//   let form = $('#FormAdd').serializeArray();
+		//   console.log(form);
+		// })
 
-        });
-    </script>
+	}); 
+  </script>
