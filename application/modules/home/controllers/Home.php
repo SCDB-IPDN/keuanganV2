@@ -29,13 +29,13 @@ class Home extends CI_Controller {
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
 
-      $last_ortx = $this->home_model->update_last_ort();
-      if($last_ortx[0]->updated_date != NULL){
-        $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
-      }else{
-        $date = '';
-      }
-      $last_updated = $date;
+      // $last_ortx = $this->home_model->update_last_ort();
+      // if($last_ortx[0]->updated_date != NULL){
+      //   $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
+      // }else{
+      //   $date = '';
+      // }
+      // $last_updated = $date;
       // $eselon = $this->home_model->jum_eselon();
 
       // AKADEMIK
@@ -139,7 +139,7 @@ class Home extends CI_Controller {
       $x['prokum'] = $prokum;
       // var_dump($prokum);exit;
       // $x['total_prok'] = $total_prok;
-      $x['last_updated'] = $last_updated;
+      // $x['last_updated'] = $last_updated;
       $x['perek'] = $perek;
       $x['keprek'] = $keprek;
       $x['srt'] = $srt;

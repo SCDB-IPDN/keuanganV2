@@ -69,9 +69,9 @@ class Home_model extends CI_Model{
 		return $prokum;
 	}
 
-	public function update_last_ort(){
-		return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();
-	}
+	// public function update_last_ort(){
+	// 	return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();
+	// }
 
 	public function peraturan_rektor()
 	{
