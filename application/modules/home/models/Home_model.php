@@ -60,6 +60,40 @@ class Home_model extends CI_Model{
 		return $result;
 	}
 
+	// Hukum & ORTALA
+	public function jumlah_prokum()
+	{
+		
+		$prokum = $this->db->query("SELECT COUNT(*) as prokum from tbl_ort where status = 'Aktif' OR status='Done'")->result();
+		
+		return $prokum;
+	}
+
+	public function update_last_ort(){
+		return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();
+	}
+
+	public function peraturan_rektor()
+	{
+		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $perek;
+	}
+
+	public function keputusan_rektor()
+	{
+		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $keprek;
+	}
+
+	public function surat_edaran()
+	{
+		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $srt;
+	}
+
 	public function apps(){
 		$result = $this->db->query("SELECT 
 			app1_1,app1_2,app1_3,nama_1,
