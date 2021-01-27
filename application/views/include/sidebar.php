@@ -306,6 +306,9 @@
 				<li class="<?php echo $this->uri->segment(1) == "pegawai" ? "active" : ""; ?>">
 					<a href="<?php echo base_url('pegawai'); ?>"><i class="fa fa-users"></i> <span>User</span></a>
 				</li>
+				<li class="<?php echo $this->uri->segment(1) == "log" ? "active" : ""; ?>">
+					<a href="<?php echo base_url('log'); ?>"><i class="fa fa-history"></i> <span>Log</span></a>
+				</li>
 			<?php } ?>
 
 			<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
