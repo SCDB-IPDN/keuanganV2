@@ -21,7 +21,15 @@ class Home extends CI_Controller {
       $total_peg = $peg[0]->pns + $peg[0]->thl;
       $eselon = $this->home_model->jum_eselon();
 
-      // AKDEMIK
+      // HUKUM DAN ORTALA
+      $prokum = $this->home_model->jumlah_prokum();
+      $total_prok = $prokum[0]->kr + $prokum[0]->pr + $prokum[0]->ser;
+      $perek = $this->home_model->peraturan_rektor();
+      $keprek = $this->home_model->keputusan_rektor();
+      $srt = $this->home_model->surat_edaran();
+      // $eselon = $this->home_model->jum_eselon();
+
+      // AKADEMIK
       $dosen = $this->home_model->dosen();
       $last_dosenx = $this->home_model->update_last_dosen();
       if($last_dosenx[0]->updated_date != NULL){
@@ -118,6 +126,13 @@ class Home extends CI_Controller {
       
       $x['peg'] = $peg;
       $x['total_peg'] = $total_peg;
+
+      $x['prok'] = $prokum;
+      $x['total_prok'] = $total_prok;
+      $x['perek'] = $perek;
+      $x['keprek'] = $keprek;
+      $x['srt'] = $srt;
+  
 
       $x['dosen'] = $dosen;
       $x['last_dosen'] = $last_dosen;

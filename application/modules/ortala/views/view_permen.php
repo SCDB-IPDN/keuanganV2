@@ -44,7 +44,7 @@
 									<th>TANGGAL</th>
 									<th>TAHUN</th>
 									<th>TENTANG</th>
-									<th>LINK</th>
+									<!-- <th>LINK</th> -->
 									<th>STATUS</th>
 									<th>FILE</th>
 									<th>AKSI</th>
@@ -90,8 +90,8 @@
                             <label class="col-form-label">Tentang:</label>
                             <textarea class="form-control" name="tentang" placeholder="Tentang" required></textarea>
                             
-                            <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" name="link" placeholder="Link" required>
+                            <!-- <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" name="link" placeholder="Link" required> -->
                             
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="Status" required>
@@ -142,8 +142,8 @@
                             <label class="col-form-label">Tentang:</label>
                             <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
                             
-                            <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required>
+                            <!-- <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required> -->
                             
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="status" required>
@@ -226,7 +226,7 @@ $(document).ready(function() {
 		modal.find('#tahun').attr("value", div.data('tahun'));
 		modal.find('#tanggal').attr("value", div.data('tanggal'));
 		modal.find('#tentang').text(div.data('tentang'));
-		modal.find('#link').attr("value", div.data('link'));
+		// modal.find('#link').attr("value", div.data('link'));
 		modal.find(`#status option[value="${status_edit}"]`).attr("selected","selected");
 
 		if(nama_pdf) {

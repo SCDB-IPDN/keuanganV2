@@ -9,9 +9,9 @@
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Ortala</a></li>
-        <li class="breadcrumb-item">Peraturan Rektor</li>
+        <li class="breadcrumb-item">Surat Edaran Rektor</li>
 	</ol>
-    <h1 class="page-header">Peraturan Rektor</h1>
+    <h1 class="page-header">Surat Edaran Rektor</h1>
     <div class="row my-3">
         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
             <div class="card bg-warning mb-3">
@@ -24,7 +24,7 @@
                     <div class="cst-text text-white">
                         <div class="card-body">
                             <h4 class="card-title">Open</h4>
-                            <h5 class="card-text"><?php echo $open_pr ?></h5>
+                            <h5 class="card-text"><?php echo $open_ser ?></h5>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="text-white">
                         <div class="card-body">
                             <h4 class="card-title">Done</h4>
-                            <h5 class="card-text"><?php echo $done_pr ?></h5>
+                            <h5 class="card-text"><?php echo $done_ser ?></h5>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <h4 class="panel-title">
                         <span>
                         <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
-                            <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_PR">TAMBAH PERATURAN REKTOR</a>
+                            <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
                             <?php } ?>
                         </span>
                     </h4>
@@ -99,11 +99,11 @@
 </div>
 
     <!-- Modal ADD -->
-    <div class="modal fade" id="add_PR" tabindex="-1" role="dialog" aria-labelledby="add_PR" aria-hidden="true">
+    <div class="modal fade" id="add_SME" tabindex="-1" role="dialog" aria-labelledby="add_SME" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Peraturan Rektor</h5>
+                    <h5 class="modal-title" id="adduuu">Tambah Surat Edaran Rektor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                     </button>
@@ -111,9 +111,9 @@
                 <div class="col-xl">
                     <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="hidden" name="id_kat" value="4">
-							<input type="hidden" name="nama_kat" value="Peraturan Rektor">
-                            <input type="hidden" name="url" value="pr">
+                            <input type="hidden" name="id_kat" value="10">
+							<input type="hidden" name="nama_kat" value="Surat Edaran Rektor">
+                            <input type="hidden" name="url" value="ser">
                             
                             <label class="col-form-label">Nomor:</label>
                             <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
@@ -158,7 +158,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title">Edit Peraturan Rektor</h5>
+                	<h5 class="modal-title">Edit Surat Edaran Rektor</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -166,7 +166,7 @@
                 <div class="modal-body">
                     <form id="form_edit" action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
                         <input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
-                        <input type="hidden" name="url" value="pr">
+                        <input type="hidden" name="url" value="ser">
 
                         <div class="form-group">                              
                             <label class="col-form-label">Nomor:</label>
@@ -213,7 +213,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title" id="delprokumm">Hapus Peraturan Rektor</h5>
+                	<h5 class="modal-title" id="delprokumm">Hapus Surat Edaran Rektor</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -223,7 +223,7 @@
                         <div class="modal-body" id="del-info"></div>
                         <div class="modal-footer">
                             <input type="hidden" id="del_id_prokum" name="del_id_prokum">
-                            <input type="hidden" name="url" value="pr">
+                            <input type="hidden" name="url" value="ser">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </div>
@@ -236,7 +236,7 @@
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
 $(document).ready(function() {
-    var url = '<?php echo base_url('ortala/get_pr');?>';
+    var url = '<?php echo base_url('ortala/get_ser');?>';
     $('#data-uu').dataTable({
         buttons: [
         	'copy', 'excel', 'print'
@@ -255,7 +255,7 @@ $(document).ready(function() {
     });
     
     // add
-    $('#add_PR').on('show.bs.modal', function () {
+    $('#add_SME').on('show.bs.modal', function () {
 		var modal = $(this);
         var status_add_opt =  modal.find("#status_add");
         
@@ -331,7 +331,7 @@ $(document).ready(function() {
 		var nomor_del = del.data('nomor');
 		var tentang_del = del.data('tentang');
 		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus Peraturan Rektor nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus Surat Edaran Rektor nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
 	});
 });
 </script>
