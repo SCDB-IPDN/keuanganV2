@@ -2,19 +2,19 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Undang-Undang</a></li>
+    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Intruksi Menteri</a></li>
 	</ol>
-  	<h1 class="page-header">Undang-Undang</h1>
+  	<h1 class="page-header">Intruksi Menteri</h1>
   	<div class="row">
     	<div class="col-xl-12">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
 					<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
-						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
+						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH INTRUKSI MENTERI</a></span>
+						<?php } ?>
 						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
 						<!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
-						<?php } ?> 
 					</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -66,7 +66,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Undang-Undang</h5>
+                    <h5 class="modal-title" id="adduuu">Tambah  Intruksi Menteri</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                     </button>
@@ -74,9 +74,9 @@
                 <div class="col-xl">
                     <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-							<input type="hidden" name="id_kat" value="1">
-							<input type="hidden" name="nama_kat" value="Undang-Undang">
-							<input type="hidden" name="url" value="uu">
+							<input type="hidden" name="id_kat" value="8">
+							<input type="hidden" name="nama_kat" value="Intruksi Menteri">
+							<input type="hidden" name="url" value="im">
 
                             <label class="col-form-label">Nomor:</label>
                             <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
@@ -119,7 +119,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title">Edit Tambah Undang-Undang</h5>
+                	<h5 class="modal-title">Edit Intruksi Menteri</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -127,7 +127,7 @@
                 <div class="modal-body">
                     <form action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
 						<input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
-						<input type="hidden" name="url" value="uu">
+						<input type="hidden" name="url" value="im">
 						
                         <div class="form-group">                              
                             <label class="col-form-label">Nomor:</label>
@@ -143,11 +143,11 @@
                             <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
                             
                             <!-- <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required> -->
-                            
+                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required>
+                             -->
                             <label class="col-form-label">Status:</label>
                             <select type="text" class="form-control" name="status" id="status" required>
-                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
 							</select>
 							
@@ -172,7 +172,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                	<h5 class="modal-title" id="delprokumm">Hapus Tambah Undang-Undang</h5>
+                	<h5 class="modal-title" id="delprokumm">Hapus Intruksi Menteri</h5>
                 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                 	</button>
@@ -182,7 +182,7 @@
                         <div class="modal-body" id="del-info"></div>
                         <div class="modal-footer">
 							<input type="hidden" id="del_id_prokum" name="del_id_prokum">
-							<input type="hidden" name="url" value="uu">
+							<input type="hidden" name="url" value="im">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </div>
@@ -195,7 +195,7 @@
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
 $(document).ready(function() {
-    var url = '<?php echo base_url('ortala/get_uu');?>';
+    var url = '<?php echo base_url('ortala/get_im');?>';
     $('#data-uu').dataTable({
         buttons: [
         	'copy', 'excel', 'print'
@@ -226,7 +226,7 @@ $(document).ready(function() {
 		modal.find('#tahun').attr("value", div.data('tahun'));
 		modal.find('#tanggal').attr("value", div.data('tanggal'));
 		modal.find('#tentang').text(div.data('tentang'));
-		// modal.find('#link').attr("value", div.data('link'));
+		modal.find('#link').attr("value", div.data('link'));
 		modal.find(`#status option[value="${status_edit}"]`).attr("selected","selected");
 
 		if(nama_pdf) {
@@ -244,7 +244,7 @@ $(document).ready(function() {
 		var nomor_del = del.data('nomor');
 		var tentang_del = del.data('tentang');
 		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus Tambah Undang-Undang nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus Intruksi Menteri nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
 	});
 });
 </script>
