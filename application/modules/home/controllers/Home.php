@@ -23,10 +23,19 @@ class Home extends CI_Controller {
 
       // HUKUM DAN ORTALA
       $prokum = $this->home_model->jumlah_prokum();
-      $total_prok = $prokum[0]->kr + $prokum[0]->pr + $prokum[0]->ser;
+      // $x['prokum'] =  json_encode($prokum);
+      // var_dump(json_encode($prokum));exit;
       $perek = $this->home_model->peraturan_rektor();
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
+
+      $last_ortx = $this->home_model->update_last_ort();
+      if($last_ortx[0]->updated_date != NULL){
+        $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
+      }else{
+        $date = '';
+      }
+      $last_updated = $date;
       // $eselon = $this->home_model->jum_eselon();
 
       // AKADEMIK
@@ -127,8 +136,10 @@ class Home extends CI_Controller {
       $x['peg'] = $peg;
       $x['total_peg'] = $total_peg;
 
-      $x['prok'] = $prokum;
-      $x['total_prok'] = $total_prok;
+      $x['prokum'] = $prokum;
+      // var_dump($prokum);exit;
+      // $x['total_prok'] = $total_prok;
+      $x['last_updated'] = $last_updated;
       $x['perek'] = $perek;
       $x['keprek'] = $keprek;
       $x['srt'] = $srt;

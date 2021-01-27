@@ -63,8 +63,9 @@ class Home_model extends CI_Model{
 	// Hukum & ORTALA
 	public function jumlah_prokum()
 	{
-		$prokum = $this->db->query("SELECT pr, kr, ser FROM (SELECT count(*)  pr FROM tbl_ort WHERE status = 'done' AND id_kat = 4) as pr, (SELECT count(*) as kr FROM tbl_ort WHERE status = 'done' AND id_kat = 5) as kr, (SELECT count(*) as ser FROM tbl_ort where status = 'done' AND id_kat = 10) as ser")->result();
-
+		
+		$prokum = $this->db->query("SELECT COUNT(*) as prokum from tbl_ort where status = 'Aktif' OR status='Done'")->result();
+		
 		return $prokum;
 	}
 
