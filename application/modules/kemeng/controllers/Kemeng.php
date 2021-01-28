@@ -422,7 +422,7 @@ class Kemeng extends CI_Controller
 
 		$plot = [
 			'nama' => $nama,
-			'nama_matkul' => $nama_matkul->nama_matkul, //ini penulisannya kan pakai tanda panah artinya ini object
+			'nama_matkul' => $nama_matkul->nama_matkul,
 			'id_matkul' => $id_matkul,
 			'tanggal' => $tanggal,
 			'jam' => $jam,
