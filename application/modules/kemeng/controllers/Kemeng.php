@@ -414,7 +414,7 @@ class Kemeng extends CI_Controller
 		$kelas = $this->input->post('kelas', true);
 		$semester = $this->input->post('semester', true);
 		$id_fakultas = $this->input->post('fakultas', true);
-		$sks = $this->input->post('sks', true);
+		$sks = $this->input->post('sks', true); 
 
 		$nama_fakultas = $this->Kemeng_model->getRowFakultas($id_fakultas);
 		$nama_prodi = $this->Kemeng_model->getRowProdi($id_prodi);

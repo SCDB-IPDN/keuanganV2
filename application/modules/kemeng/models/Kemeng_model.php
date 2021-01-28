@@ -192,7 +192,7 @@ class Kemeng_model extends CI_Model
 	public function get_all_plot()
 	{
 
-	$result = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas");
+	$result = $this->db->query("SELECT * FROM tbl_plot_dosen ");
 	return $result;
 
 	}
