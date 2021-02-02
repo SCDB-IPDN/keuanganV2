@@ -13,6 +13,21 @@ class Home_model extends CI_Model{
 		return $query->result();
 	}
 
+	public function ceksas()
+	{
+		$peg = $this->db->query("SELECT * FROM output_sas where tanggal like '%2021%'")->result();
+
+		return $peg;
+	}
+
+	public function cekpok()
+	{
+		$peg = $this->db->query("SELECT * FROM out_pok where tgl like '%2021%'")->result();
+
+		return $peg;
+	}
+
+
 	// Kepegawaian
 	public function jumlah_peg()
 	{
@@ -57,6 +72,40 @@ class Home_model extends CI_Model{
 							FROM tbl_dosen")
 						->result();
 		return $result;
+	}
+
+	// Hukum & ORTALA
+	public function jumlah_prokum()
+	{
+		
+		$prokum = $this->db->query("SELECT COUNT(*) as prokum from tbl_ort where status = 'Aktif' OR status='Done'")->result();
+		
+		return $prokum;
+	}
+
+	// public function update_last_ort(){
+	// 	return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();
+	// }
+
+	public function peraturan_rektor()
+	{
+		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $perek;
+	}
+
+	public function keputusan_rektor()
+	{
+		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $keprek;
+	}
+
+	public function surat_edaran()
+	{
+		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $srt;
 	}
 
 	public function apps(){
@@ -208,7 +257,9 @@ class Home_model extends CI_Model{
 
 	public function get_all_span_biro()
 	{	
-		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 ORDER BY created_at DESC, alias ASC LIMIT 4")->result();
+		$years = date('Y');
+		
+		$result = $this->db->query("SELECT alias, CONCAT(FORMAT(100*(real_peg+real_mod+real_bar)/(pagu_peg+pagu_mod+pagu_bar), 2), '%') as persentase_t FROM tbl_spanint JOIN tbl_satker_biro ON satker = kode_satker_biro  WHERE LENGTH(satker) = 4 AND created_at LIKE '%$years%' ORDER BY created_at DESC, alias ASC LIMIT 4")->result();
 
 		return $result;
 	}
@@ -274,8 +325,8 @@ class Home_model extends CI_Model{
 	}
 
 	public function get_rank_ipdn() {
-		return $this->db->query("SELECT rank FROM
-			(SELECT @rank:=@rank+1 AS rank, nama, satker,
+		return $this->db->query("SELECT created_at, rank FROM
+			(SELECT @rank:=@rank+1 AS rank, nama, created_at, satker,
 			100 * (real_peg + real_bar + real_mod) / (pagu_peg + pagu_bar + pagu_mod) AS per_tot
 			FROM
 			tbl_rank, (SELECT @rank := 0) r
