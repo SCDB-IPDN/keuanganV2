@@ -11,7 +11,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <?php if ($this->session->userdata('role') == 'Admin') { ?>
+            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ) { ?>
               <span><a href="" class="btn btn-sm btn-yellow" data-toggle="modal" data-target="#addplot">TAMBAH PLOT</a></span>
             <?php } ?>
           </h4>
@@ -22,7 +22,7 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
-        <?php if ($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian') { ?>
+        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ) { ?>
         <?php } ?>
         <?php if ($this->session->flashdata('plot') != NULL) { ?>
           <div class="alert alert-success alert-dismissible">
