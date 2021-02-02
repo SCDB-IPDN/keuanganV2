@@ -77,14 +77,14 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="dosen" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
 					<span>Kepegawaian</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" && $this->uri->segment(2)!="ta" && $this->uri->segment(2)!="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" && $this->uri->segment(2)!="ta" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="thl" || $this->uri->segment(2)=="ta" ?"active":"";?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
