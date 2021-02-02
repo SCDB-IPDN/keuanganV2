@@ -9,26 +9,94 @@ class Absensi extends CI_Controller
 		$this->load->model('Absensi_model');
 	}
 
-	
 	function index()
 	{
 		if ($this->session->userdata('nip') != NULL) {
-			$divisi = $this->Absensi_model->get_divisi()->result();
-			$absen = $this ->Absensi_model->get_absensi()->result();
+			$penugasan = $this->Absensi_model->get_divisi()->result();
+			$x['penugasan'] = $penugasan;
+			// var_dump($penugasan);exit();
 
-			$x['divisi'] = json_encode($divisi);
-			$x['absen'] = $absen;
+			$pen = $this->input->post('penugasan', true);
+			// var_dump($pen);exit();
+			$fromDate = $this->input->post('fromDate', true);
+			$endDate = $this->input->post('endDate', true);
+			
 
-			$this->load->view("include/head");
-			$this->load->view("include/top-header");
-			$this->load->view("view_absensi", $x);
-			$this->load->view("include/sidebar");
-			$this->load->view("include/panel");
-			$this->load->view("include/footer");
+			if($pen != NULL && $fromDate != NULL && $endDate != NULL){
+				$data = $this->Absensi_model->get_range_awalakhir($pen, $fromDate, $endDate)->result();
+				// var_dump($data);exit();
+				$x['fromDate'] = $fromDate;
+				$x['penugasan'] = $penugasan;
+				$x['endDate'] = $endDate;
+				$x['data'] = $data;
+			
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view('view_absensi', $x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/panel");
+				$this->load->view("include/footer"); 
+			}else{
+
+				$x['data'] = "Tidak";
+				$x['penugasan'] = $penugasan;
+				$x['fromDate'] = $fromDate;
+				$x['endDate'] = $endDate;
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view('view_absensi', $x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/panel");
+				$this->load->view("include/footer");
+			}
 		} else {
 			redirect("user");
 		}
 	}
+
+	// function presensi()
+	// {
+	// 	if ($this->session->userdata('nip') != NULL) {
+	// 		$divisi = $this->Absensi_model->get_divisi()->result();
+	// 		$x['divisi'] = json_encode($divisi);
+
+	// 		$fromDate = $this->input->post('fromDate', true);
+	// 		$endDate = $this->input->post('endDate', true);
+
+	// 		if($divisi != NULL && $fromDate != NULL && $endDate != NULL){
+	// 			$data = $this->Absensi_model->get_range_awalakhir($divisi, $fromDate, $endDate)->result();
+
+	// 			$x['fromDate'] = $fromDate;
+	// 			$x['divisi'] = $divisi;
+	// 			$x['endDate'] = $endDate;
+	// 			$x['data'] = $data;
+
+	// 			$this->load->view("include/head");
+	// 			$this->load->view("include/top-header");
+	// 			$this->load->view('view_absensi', $x);
+	// 			$this->load->view("include/sidebar");
+	// 			$this->load->view("include/panel");
+	// 			$this->load->view("include/footer"); 
+	// 		}else{
+
+	// 			$x['data'] = "Tidak";
+	// 			$x['divisi'] = $divisi;
+	// 			$x['fromDate'] = $fromDate;
+	// 			$x['endDate'] = $endDate;
+
+	// 			$this->load->view("include/head");
+	// 			$this->load->view("include/top-header");
+	// 			$this->load->view('view_absensi', $x);
+	// 			$this->load->view("include/sidebar");
+	// 			$this->load->view("include/panel");
+	// 			$this->load->view("include/footer");
+	// 		}
+	// 	} else {
+	// 		redirect("user");
+	// 	}
+	// }
 
 	function coba($penugasan = NULL)
 	{

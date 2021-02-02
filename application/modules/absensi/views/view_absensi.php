@@ -1,16 +1,14 @@
-
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="<?php echo base_url('absensi'); ?>">Detail </a></li>
 
   </ol>
+
   <h1 class="page-header"> ABSENSI</h1>
   <div class="row">
     <div class="col-xl-12">
-      <!-- begin panel -->
 
-      <!-- end panel -->
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -22,108 +20,81 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
+
         <div class="table-responsive">
           <div class="panel-body">
-            <h3> DATA DIRI </h3>
-            <br>
-            <div class="row">
-             <div class="col-3">
-              <label for="basic-url">Penugasan  : </label>
-              <input class="form-control" list="penugasann" name="penugasan" id="penugasan">
-              <datalist id="penugasann">
-               <?php foreach (json_decode($divisi, true) as $x) : ?>
 
-                 <option value="<?php echo $x['penugasan'] ?>">
+            <form method='post' action='index'>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <label class="col-form-label">Penugasan :</label>
+                    <select class="form-control" name="penugasan" id="penugasan">
+                      <option  disabled selected>No Selected</option>
+                      <?php foreach ($penugasan as $x) { ?>
+                        <option value="<?php echo $x->penugasan;?>"><?php echo $x->penugasan;?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
 
-                 <?php endforeach; ?>
-               </datalist>
-               <br>
+                  <div class="col-sm-2">
+                    <label class="col-form-label">Start Date:</label>
+                    <input type="date" class="form-control" id="fromDate" name="fromDate" value="<?php echo $fromDate ?>" required/>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label">End Date:</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate" value="<?php echo $endDate ?>" required/>
+                  </div>
+                  <div class="col-sm-0.5">
+                    <label class="col-form-label">&nbsp;</label>
+                    <button type="submit" class="form-control btn btn-primary btn-sm" name="but_search" value="Search"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
 
-             </div>
-           </div>
+            <?php if($data != 'Tidak') {?>
+              <table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+                <thead>
+                  <tr>
 
-         </div>
-       </div>
-       <div class="panel-body">
-         <table class="table table-striped table-bordered table-td-valign-middle" id="absensi" width="100%">
-          <thead>
-            <tr align="center">
+                    <!-- id_user,tgl,nama, masuk,penugasan, -->
+                    <th>#</th>
+                    <!-- <th>ID USER</th> -->
+                    <th>Nama</th>
+                    <th>TANGGAL</th>
+                    <th>MASUK</th>
+                    <th>PULANG</th>
+                    <th>PENUGASAN</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $no = 0;
+                  foreach($data as $row){
+                    $no++;
+                    ?>
+                    <tr class="gradeA">
+                      <td width="1%"><?= $no == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $no ?></td>
+                      <!-- <td width="1%"><?= $row->id_user == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->id_user ?></td> -->
+                      <td width="1%"><?= $row->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama ?></td>
+                      <td width="1%"><?= $row->tgl == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->tgl ?></td>
+                      
+                      <td width="1%"><?= $row->masuk == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->masuk ?></td>
+                      <td width="1%"><?= $row->keluar == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->keluar ?></td>
+                      <td width="1%"><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
 
-              <th>ID ABSEN </th>
-              <th>TANGGAL</th>
-              <th>WAKTU</th>
-              <th>KETERANGAN</th>
-              <th>NAMA</th>
-              <th>PENUGASAN</th>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            <?php }else{ ?>
+              Silahkan pilih tanggal
+            <?php } ?>
 
-            </tr>
-          </thead>
-        </table>
-        
+          </div>
+        </div>
+
       </div>
-
-
     </div>
-
-
-    <div id="ini">
-
-    </div>
-    <br>
-
-
   </div>
-</div>
-<!-- end panel-body -->
-</div>
-<!-- end panel -->
-</div>
-<!-- end col-10 -->
-</div>
-</div>
-
-<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-<link hrf="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet"></link>
-
-<script >
- $(document).on('change', 'input', function(){
-  var options = $('datalist')[0].options;
-  var val = $(this).val();
-  for (var i=0;i<options.length;i++){
-   if (options[i].value === val) {
-     
-    var uri = "<?php echo base_url('absensi').'/coba/'; ?>"+ val;
-    console.log(uri);
-    $('#absensi').dataTable({
-      "searching": false,
-      "paging": false,
-      retrieve: true,
-      dom: 'Bfrtip',
-        buttons: [
-        'copy', 'excel', 'print'
-        ],
-      destroy: true,
-      "ajax": {
-        "url": uri,
-        "dataSrc": ""
-      },
-      "columns": [
-      { "data": "id_absen" },
-      { "data": "tgl" },
-      { "data": "waktu" },
-      { "data": "keterangan"},
-      { "data": "nama"},
-      { "data": "penugasan"}
-      ]
-    });
-    break;
-  }
-}
-});
-
-</script>
-

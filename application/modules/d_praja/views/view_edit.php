@@ -34,7 +34,11 @@
                 <div class="row">
                  <div class="col-xl">
                    <label for="basic-url">Nama</label>
-                   <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" >
+                   <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama == NULL ? "-" :$data[0]->nama ?>" readonly>
+                 </div>
+                 <div class="col-xl">
+                   <label for="basic-url">NPP</label>
+                   <input type="text" class="form-control" id="npp" name="npp" value="<?php echo $data[0]->npp == NULL ? "-" :$data[0]->npp ?>" readonly>
                  </div>
                  <div class="col-xl">
                   <label for="basic-url">NIK</label>
@@ -156,13 +160,18 @@
                 <input type="text" class="form-control"  id="no_pks" name="no_pks" value="<?php echo $data[0]->no_pks == NULL ? "-" : $data[0]->no_pks ?>" >
               </div>
               <div class="col-xl">
-                <label for="basic-url">Kode Prodi</label>
-                <input type="text" class="form-control" id="kode_prodi" name="no_pks"  value="<?php echo  $data[0]->kode_prodi == NULL ? "-" : $data[0]->kode_prodi ?>" >
+                <label for="basic-url">Prodi</label>
+                <input type="text" class="form-control" id="prodi" name="prodi"  value="<?php echo  $data[0]->prodi == NULL ? "-" : $data[0]->prodi ?>" >
               </div>
+             
             </div>
           </div>
           <div class="form-group">
             <div class="row">
+               <div class="col-xl">
+                <label for="basic-url">Fakultas</label>
+                <input type="text" class="form-control" id="prodi" name="prodi"  value="<?php echo  $data[0]->fakultas == NULL ? "-" : $data[0]->prodi ?>" >
+              </div>
               <div class="col-xl">
                 <label for="basic-url">Jenis Pendaftaran</label>
                 <input type="text" class="form-control"  id="jenis_pendaftaran" name="jenis_pendaftaran" value="<?php echo $data[0]->jenis_pendaftaran == NULL ? "-" : $data[0]->jenis_pendaftaran ?>" >
@@ -208,8 +217,8 @@
 
               <div class="col-xl">
                <input type="hidden" class="form-control" id="id_ortu" name="id_ortu" value="<?php echo $data[0]->id_ortu ?>" >
-               <input type="hidden" class="form-control" id="nik_praja" value="<?php echo $data[0]->nik_praja ?>" >
-               <input type="hidden" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama ?>" >
+               <input type="hidden" class="form-control" id="nik_praja">
+               <input type="hidden" class="form-control" id="nama">
                <label for="basic-url">Nama Ayah</label>
                <input type="text" class="form-control" id="nama_ayah" name="nama_ayah"   value="<?php echo $data[0]->nama_ayah == NULL ? "-" : $data[0]->nama_ayah ?>" >
              </div>
@@ -295,8 +304,8 @@
              <div class="row">
               <div class="col-xl">
                 <input type="hidden" class="form-control" id="id_wali" name="id_wali" value="<?php echo $data[0]->id_wali ?>" >
-                <input type="hidden" class="form-control" id="nik_praja"  value="<?php echo $data[0]->nik_praja ?>" >
-                <input type="hidden" class="form-control" id="nama" name="nama" value="<?php echo $data[0]->nama ?>" >
+                <input type="hidden" class="form-control" id="nik_praja">
+                <input type="hidden" class="form-control" id="nama">
                 <label for="basic-url">Nama Wali</label>
                 <input type="text" class="form-control" id="nama_wali" name="nama_wali"  value="<?php echo $data[0]->nama_wali == NULL ? "-" : $data[0]->nama_wali ?>" >
               </div>
