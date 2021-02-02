@@ -711,8 +711,75 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="col-xl-3">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">HUKUM DAN ORTALA</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+					</div>
+				</div>
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white text-truncate mb-3">
+						<div class="mb-3 text-grey">
+							<b class="mb-3">TOTAL PRODUK HUKUM</b> 
+							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-original-title="" title=""></i></span>
+							<div class="text-grey">
+								<i class=""></i> KAMPUS IPDN
+							</div>
+						</div>
+						<div class="d-flex align-items-center mb-1">
+							<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $prokum[0]->prokum ?>"><?php echo $prokum[0]->prokum ?></span> PRODUK HUKUM</h4>
+							<div class="ml-auto">
+								<div id="conversion-rate-sparkline"></div>
+							</div>
+						</div>
+						<br>
+						<!-- <div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								Peraturan Rektor
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?> PEGAWAI</span></div>
+							</div>
+						</div> -->
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								Peraturan Rektor
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $perek[0]->pr; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								Keputusan Rektor
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $keprek[0]->kr; ?></span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+								Surat Edaran Rektor
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="text-right pl-2 f-w-600"><span><?php echo $srt[0]->ser; ?></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+	
 </div>
 
 <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
