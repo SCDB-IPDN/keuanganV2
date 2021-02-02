@@ -502,7 +502,7 @@
       console.log(uri);
 
       $('#data-praja').dataTable({
-        "searching": false,
+        "searching": true,
         // "paging": false,
         responsive: true,
         retrieve: true,
