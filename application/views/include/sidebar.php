@@ -191,8 +191,9 @@
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
-			
-			<!-- Fakultas -->
+
+
+				<!-- Fakultas -->
 			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
@@ -211,6 +212,17 @@
 							<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
 							<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin'){?>
 							<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
+							<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							HONOR ALL
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(3)=="FHTP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FHTP";?>">FHTP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FMP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FMP";?>">FMP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
+						</ul>
+					</li>
 							<?php } ?>
 						</ul>
 					</li>
@@ -218,7 +230,7 @@
 			</li>
 			<?php } ?>
 			<!-- END Fakultas -->
-			
+
 			<!-- ORTALA -->
 			<li class="<?php echo $this->uri->segment(1)=="ortala" ?"active":"";?> has-sub">
 				<a href="javascript:;">

@@ -75,8 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+<<<<<<< HEAD
 	// 'hostname' => 'localhost',
 	'hostname' => '192.168.203.152',
+=======
+
+	// 'hostname' => 'localhost',
+	'hostname' => '192.168.203.153',
+>>>>>>> dev
 	'username' => 'ipdnacid_scdb',
 	'password' => 'yellowminicooper',
 	'database' => 'ipdnacid_scdb',

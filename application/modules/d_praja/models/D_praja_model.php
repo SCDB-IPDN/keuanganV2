@@ -20,14 +20,33 @@ class D_praja_model extends CI_Model
 		return $result;
 	}
 
-	public function get_detail($id)
+	public function get_detail($npp)
 	{
 
 		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'
-			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jeniskelamin FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE praja.id = $id ");
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja JOIN orangtua ON praja.npp = orangtua.npp JOIN wali ON orangtua.npp = wali.npp WHERE praja.npp = '$npp' ");
 
 		return $result;
 	}
+
+	public function get_angkatan()
+	{
+		$result = $this->db->query("SELECT angkatan FROM `praja` GROUP by angkatan");
+
+		return $result;
+	}
+
+
+	public function get_table_praja($angkatan)
+	{
+
+		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE angkatan = $angkatan");
+
+		return $result;
+	}
+
+
 
 	public function get_statuspraja()
 	{
@@ -38,18 +57,18 @@ class D_praja_model extends CI_Model
 		return $result;
 	}
 
-	public function get_nama()
+	public function get_npp()
 	{
 
-		$result = $this->db->query("SELECT nama FROM praja ");
+		$result = $this->db->query("SELECT npp FROM praja ");
 
 		return $result;
 	}
 
-	public function getcoba($nama)
+	public function getcoba($npp)
 	{
-		$nama = strtoupper(str_replace('-', ' ', $nama));
-		$result = $this->db->query("SELECT id,nama,status,angkatan,tingkat FROM praja WHERE nama = '$nama'");
+		// $nama = strtoupper(str_replace('-', ' ', $nama));
+		$result = $this->db->query("SELECT npp,nama,status,angkatan,tingkat FROM praja WHERE npp = '$npp'");
 
 		return $result;
 	}
@@ -66,8 +85,6 @@ class D_praja_model extends CI_Model
 		// angkatan=$angkatan where nama=$nama";
 		
 		$hasil = $this->db->where('id', $id)->update('praja', $editnya);
-		// echo "$hasil";
-		// exit();
 		return $hasil;
 	}
 
