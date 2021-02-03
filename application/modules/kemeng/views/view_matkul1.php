@@ -1,8 +1,7 @@
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/js/morris.css' ?>">
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('d_praja'); ?>">All Matkul</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('kemeng/view_matkul1'); ?>">All Matkul</a></li>
 
   </ol>
   <h1 class="page-header">MATAKULIAH</h1>
@@ -34,7 +33,6 @@
               <strong>Notif!</strong> <?php echo $this->session->flashdata('matkul') ?>
             </div>
           <?php } ?>
-          <!-- <a href="<?php echo base_url('d_praja/export'); ?>">Export Data</a> -->
 
           <div class="panel-body">
             <table id="data-matkul" class="table table-striped table-bordered table-td-valign-middle" width="100%">
@@ -254,7 +252,7 @@
   $(document).ready(function() {
 
     var url = '<?php echo base_url('kemeng/cobain');?>';
-        // alert(url);
+    // alert(url);
 
         $('#data-matkul').dataTable({
             // dom: 'Bfrtip',

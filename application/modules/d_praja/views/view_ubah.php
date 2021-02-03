@@ -25,17 +25,17 @@
         </div>
         <div class="table-responsive">
           <div class="panel-body">
-            <form action="<?php echo base_url('d_praja/tambah_status'); ?>" method="POST">
+            <form action="<?php echo base_url('d_praja/tambah_status'); ?>" method="POST" enctype="multipart/form-data">
               <h3> DATA DIRI </h3>
               <br>
               <div class="row">
                <div class="col-3">
                 <label for="basic-url">Nama  : </label>
-                <input class="form-control" list="namaaa" name="nama" id="nama">
-                <datalist id="namaaa">
+                <input class="form-control" list="nppp" name="npp" id="npp">
+                <datalist id="nppp">
                  <?php foreach (json_decode($data, true) as $x) : ?>
 
-                   <option value="<?php echo $x['nama'] ?>">
+                   <option value="<?php echo $x['npp'] ?>">
 
                    <?php endforeach; ?>
                  </datalist>
@@ -57,8 +57,8 @@
                 <br>
                 <br>
 
-                 <!--  <label for="basic-url">Upload SK : </label>
-                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload"> -->
+                  <label for="basic-url">Upload SK : </label>
+                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload">
                   <br>
               </div>
             </div>
@@ -126,7 +126,8 @@
     // $.ajax({url: "<?php echo base_url('d_praja').'/coba/'; ?>"+convertToSlug(val), success: function(result){
     //   $("#ini").html(result);
     // }});
-    var uri = "<?php echo base_url('d_praja').'/coba/'; ?>" + convertToSlug(val);
+    var uri = "<?php echo base_url('d_praja').'/coba/'; ?>" + val;
+    // alert(uri);
     $('#praja').dataTable({
       "searching": false,
       "paging": false,
@@ -137,7 +138,7 @@
         "dataSrc": ""
       },
       "columns": [
-      { "data": "id" },
+      { "data": "npp" },
       { "data": "nama" },
       { "data": "status" },
       { "data": "angkatan"},
