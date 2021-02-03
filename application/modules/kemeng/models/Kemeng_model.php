@@ -299,5 +299,98 @@ class Kemeng_model extends CI_Model
 		
 		return $query;
 	}
+	//plot dosen
+	public function get_all_plot()
+	{
+
+	$result = $this->db->query("SELECT * FROM tbl_plot_dosen ");
+	return $result;
+
+	}
+
+  	function tambah_plot($plot)
+ 	{
+
+  	$result = $this->db->insert('tbl_plot_dosen', $plot);
+  	return $result;
+
+	}
+	
+	public function get_nama()
+	{
+
+	$result = $this->db->query("SELECT nama, nip FROM tbl_dosen");
+	return $result;
+
+	}
+
+	public function get_nama_matkul()
+	{
+
+	$result = $this->db->query("SELECT nama_matkul, id_matkul FROM tbl_matkul ");
+	return $result;
+
+	}
+
+	public function get_nama_prodi()
+	{
+
+	$result = $this->db->query("SELECT nama_prodi, id_prodi FROM tbl_prodi ");
+	return $result;
+
+	}
+
+	public function get_nama_fakultas()
+	{
+
+	$result = $this->db->query("SELECT nama_fakultas, id_fakultas FROM tbl_fakultas ");
+	return $result;
+
+	}
+	function edit_plot($editplot){
+
+	$id_plot = $editplot['id_plot'];
+	$this->db->where('id_plot', $editplot['id_plot']);
+	$this->db->update('tbl_plot_dosen', $editplot);
+  	}
+
+	function hapus_plot($id){
+
+		$this->db->where(['id_plot' => $id]);
+		$this->db->delete('tbl_plot_dosen');
+	// 	$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id_plot= '$id' ");
+	// 	return $hasil;
+	}
+	
+	public function ProdiByFakultasId($fakultas_id)
+    {
+        $query = $this->db->get_where('tbl_prodi', array('id_fakultas' => $fakultas_id));
+        return $query->result();
+    }
+
+    public function MatkulByProdiId($prodi_id)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_prodi' => $prodi_id));
+        return $query->result();
+	}
+	
+	public function getRowFakultas($id)
+	{
+		$query = $this->db->get_where('tbl_fakultas', ['id_fakultas' => $id]);
+		return $query->row();
+	}
+	
+	public function getRowProdi($id)
+	{
+		$query = $this->db->get_where('tbl_prodi', ['id_prodi' => $id]);
+		return $query->row();
+	}
+	
+	public function getRowMatkul($id)
+	{
+		$query = $this->db->get_where('tbl_matkul', ['id_matkul' => $id]);
+		return $query->row();
+	}
+	//END PLOT
 
 }
