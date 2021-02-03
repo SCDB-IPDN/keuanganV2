@@ -5,7 +5,7 @@
     <li class="breadcrumb-item"><a href="<?php echo base_url('d_praja'); ?>">Detail Praja </a></li>
 
   </ol>
-  <hl class="page-header">DETAIL PRAJA</hl>
+  <hl class="page-header">DETAIL PRAJAjjjjjjjjjjjjjjjjjjjjjjjjj</hl>
   <div class="row">
     <div class="col-xl-12">
       <!-- begin panel -->
@@ -26,10 +26,10 @@
         <div class="table-responsive">
           <div class="panel-body">
 
-
+ 
             <?php foreach (json_decode($data, true) as $x) : ?>
               <form>
-                <h3> DATA DIRI </h3>
+                <h3> DATA DIRI <?= $x['nama']; ?> </h3>
                 <br>
                 <h5> Nama : <?= $x['nama']; ?> </h5>
                 <br>

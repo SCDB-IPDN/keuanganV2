@@ -70,9 +70,13 @@ $route['kemeng/matkul'] = 'kemeng/get_matkul';
 $route['kemeng/prodi'] = 'kemeng/get_prodi';
 $route['d_peringkat/(:any)'] = 'd_peringkat/index/$1';
 $route['kemeng/get_sub_category'] = 'kemeng/get_sub_category';
+$route['kemeng/honor_table_all'] = 'kemeng/honor_table_all';
+$route['absensi/coba/(:any)'] = 'absensi/coba/$1';
 $route['kemeng/get_allp'] = 'kemeng/get_allp';
 $route['kemeng/matkul'] = 'kemeng/get_matkul';
 $route['kemeng/prodi'] = 'kemeng/get_prodi';
 $route['kemeng/fakultas'] = 'kemeng/get_fakultas';
 $route['kemeng/sks'] = 'kemeng/get_sks';
+
 $route['kemeng/honor_table/(:any)'] = 'kemeng/honor_table/$1';
+
