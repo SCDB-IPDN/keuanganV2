@@ -30,7 +30,7 @@
               <br>
               <div class="row">
                <div class="col-3">
-                <label for="basic-url">Nama  : </label>
+                <label for="basic-url">NPP  : </label>
                 <input class="form-control" list="nppp" name="npp" id="npp">
                 <datalist id="nppp">
                  <?php foreach (json_decode($data, true) as $x) : ?>
@@ -48,17 +48,17 @@
                   <option value="cuti">Cuti</option>
                   <option value="diberhentikan">Diberhentikan</option>
                   <option value="turuntingkat">Turun Tingkat</option>
-                  <option value="turuntingkat">Meninggal</option>
+                  <option value="meninggal">Meninggal</option>
                 </select>
                 <br>
                 <label for="basic-url">Keterangan : </label>
-                <textarea cols="50" rows="10" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.."></textarea>
+                <textarea cols="50" rows="10" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.." required=""></textarea>
 
                 <br>
                 <br>
 
                   <label for="basic-url">Upload SK : </label>
-                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload">
+                  <input type="file" class="btn btn-light btn-lg-5" name="fileToUpload" id="fileToUpload" required="">
                   <br>
               </div>
             </div>
@@ -70,7 +70,7 @@
           <thead>
             <tr align="center">
 
-              <th>ID</th>
+              <th>NPP</th>
               <th>Nama</th>
               <th>Status</th>
               <th>Angkatan</th>
