@@ -605,7 +605,7 @@ function tambah_status()
    // $this->db->update_batch('praja', $uptudate, '$data[id]');
 // exit();
 
-  if (!$up && !$nih) {
+  if ( !$nih) {
     $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
     redirect('d_praja/editstatus');
   } else {
