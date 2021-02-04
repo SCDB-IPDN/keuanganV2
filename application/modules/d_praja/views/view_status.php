@@ -74,7 +74,7 @@
                     <td><?= $x['keterangan']; ?></td>
 
                     <?php if($x['bukti'] != NULL){ ?>
-                      <td><a href='<?php echo base_url('uploads/'. $x['bukti'])?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
+                      <td><a href='<?php echo base_url('/assets/uploads_skpraja/'. $x['bukti'])?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
                     <?php }else{ ?>
                       <td><i><font style='color:red;'>SK belum tersedia</font></i></td>
                     <?php } ?>
