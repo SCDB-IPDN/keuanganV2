@@ -5,7 +5,7 @@
     <li class="breadcrumb-item"><a href="<?php echo base_url('d_praja'); ?>">Detail Praja </a></li>
 
   </ol>
-  <hl class="page-header">DETAIL PRAJAjjjjjjjjjjjjjjjjjjjjjjjjj</hl>
+  <hl class="page-header">DETAIL PRAJA</hl>
   <div class="row">
     <div class="col-xl-12">
       <!-- begin panel -->
