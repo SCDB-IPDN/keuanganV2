@@ -542,14 +542,17 @@ function tambah_status()
    $keterangann = $this->input->post('keterangan', true);
    $tgl = date('Y-m-d');
 
-
-   $config['upload_path']          = './uploads/';
+   $nya = array();
+   $config['upload_path']          = './assets/uploads_skpraja/';
    $config['allowed_types']        = 'pdf|docx';
-   $config['max_size']             = 1000;
+   $config['max_size']             = 2000000;
    $this->load->library('upload', $config);
+
    if ($this->upload->do_upload('fileToUpload')){
-    $nya = array();
-    $nya =array(
+
+    // var_dump($tingkatann);exit;
+
+    $nya = array(
       'npp'      => $data['npp'],
       'nama'      => $data['nama'],
       'status'      => $tingkatann,
@@ -560,12 +563,13 @@ function tambah_status()
       'bukti'=> $this->upload->data("file_name")
 
     );
-
+    // var_dump($nya);exit;
+    $this->db->insert('hukuman', $nya);
   }
+  
+  
   // print("<pre>".print_r($nya,true)."</pre>");
   // exit();
-  $up = $this->db->insert('hukuman', $nya);
-
 
 
 
