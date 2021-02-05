@@ -309,6 +309,7 @@ class Kemeng extends CI_Controller
 		}
 
 		echo json_encode($allp);
+	}
 
 	function jadwal_dosen(){
 		if ($this->session->userdata('nip') != NULL) {
@@ -469,7 +470,6 @@ class Kemeng extends CI_Controller
 		}
 
 	}
-}
 
 	//PLOT
 	function plot ()
