@@ -44,7 +44,7 @@
                 <th>Semester</th>
                 <th>Nama Fakultas</th>
                 <th>Nama Progdi</th>
-                <?php if ($this->session->userdata('role') == 'Admin') { ?>
+                <?php if ($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP') { ?>
                   <th>OPSI</th>
                 <?php } ?>
               </tr>

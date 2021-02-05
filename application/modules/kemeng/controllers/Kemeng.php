@@ -602,16 +602,17 @@ class Kemeng extends CI_Controller
 			$nama_prodi = $r->nama_prodi;
 						 
 			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
-				 $aksi = "<a href='javascript:; 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
-				 data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
-				 data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi' data-toggle='modal' data-target='#edit-plot'> <button  data-toggle=
-				 'modal' data-target='#ubah-data' class='btn btn-info'>Ubah</button> </a>
-				 
-				 <a 
-				 href='javascript:;' data-nama='$r->nama' data-id_plot='$r->id_plot'
-				 <button  data-toggle=
-				 'modal' data-target='#hapusplot' class='btn btn-danger'>Hapus</button>
-				 </a>"; ;
+				$aksi = "<a 
+				href='javascript:;' 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
+				data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
+				data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi'
+				data-toggle='modal' data-target='#edit-plot' class='btn btn-info'><i class='fa fas fa-edit'></i>
+				</a>
+				
+				<a 
+				href='javascript:;' data-nama='$r->nama' data-id_plot='$r->id_plot'
+				data-toggle='modal' data-target='#hapusplot' class='btn btn-danger'><i class='fa fas fa-trash'></i>
+				</a>";
 			}else{
 				 $aksi = "";
 			}
