@@ -66,7 +66,6 @@
 												<i class=""></i> IPDN
 											</div>
 											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
-
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
 												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
 											</div>
@@ -76,13 +75,12 @@
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
-
 											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
-
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
 												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
 											</div>
 										</div>
+
 									</div>
 								</div>
 							</div>
@@ -95,7 +93,7 @@
 		<div class="col-xl-3">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
-					<h4 class="panel-title">OM-SPAN JATINANGOR (SP2D)</h4>
+					<h4 class="panel-title"> <a href="<?php echo base_url('d_spanint');?>">OM-SPAN JATINANGOR (SP2D)</h4>
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -114,8 +112,8 @@
 						</div>
 						
 						<div class="d-flex align-items-center mb-1">
-							<!-- <a href="<?php echo base_url('d_spanint/448302');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a> -->
-							<a href="#"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+							<a href="<?php echo base_url('d_spanint');?>"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a>
+							<!-- <a href="#"><h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $persentase_jatinangor[0]->persentase_t ?>"><?php echo $persentase_jatinangor[0]->persentase_t ?></span></h2></a> -->
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
