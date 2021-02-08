@@ -182,6 +182,7 @@ class Kemeng_model extends CI_Model
 
 	function get_honor_allinone($id_fakultas){
 
+
 		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_plot_dosen.nama_matkul,tbl_dosen.jabatan,  sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
 			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
@@ -221,11 +222,12 @@ class Kemeng_model extends CI_Model
 		
 		// echo ("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)");exit();
 
+		if ($bebas != NULL) {
+			$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)")->result();
+			return $query;
+		}
 
-		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)");
 		
-
-		return $query;
 	}
 
 

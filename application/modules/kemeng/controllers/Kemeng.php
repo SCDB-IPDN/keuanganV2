@@ -294,7 +294,7 @@ class Kemeng extends CI_Controller
 			$date_time = explode(" ", $timestamp);
 			$tanggal = $date_time[0];
 			$jam = substr($date_time[1], 0, 5);
-		
+
 			$allp[] = array(
 				$no++,
 				$nip,
@@ -424,13 +424,15 @@ class Kemeng extends CI_Controller
 
 				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
 				$x['ho'] = json_encode($ho);
-
+				// var_dump($ho);exit();
+				
 				$hi = $this->Kemeng_model->cobanip($id_fakultas)->result();
-		
-				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi)->result();
+
+				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi);
 				// var_dump($haha);exit();
 				$x['haha'] = json_encode($haha);
 
+			
 				$this->load->view("include/head");
 				$this->load->view("include/top-header");
 				$this->load->view("view_honor_all",$x);
