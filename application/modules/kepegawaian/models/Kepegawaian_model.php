@@ -18,6 +18,10 @@ class Kepegawaian_model extends CI_Model{
     return $nama_satker;
   }
 
+  public function log($log){
+    return $this->db->insert('tbl_log', $log);
+  } 
+
   //DOSEN
   public function get_all_dosen()
 	{	

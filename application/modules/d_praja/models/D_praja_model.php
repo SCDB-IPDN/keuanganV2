@@ -41,7 +41,17 @@ class D_praja_model extends CI_Model
 	{
 
 		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'
-			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE angkatan = $angkatan");
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE angkatan = $angkatan" );
+
+		return $result;
+	}
+
+
+	public function exportdata($angkatan)
+	{
+
+		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'
+			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja JOIN orangtua ON praja.id = orangtua.id_ortu JOIN wali ON orangtua.id_ortu = wali.id_wali WHERE angkatan = '$angkatan'" );
 
 		return $result;
 	}

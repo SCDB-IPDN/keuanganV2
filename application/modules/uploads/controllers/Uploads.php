@@ -273,6 +273,11 @@ class Uploads extends CI_Controller {
 			}
 			
 			//upload success
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "UPLOAD SPAN";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+			
 			$this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 
 			redirect("uploads/v_span"); 
@@ -382,6 +387,12 @@ class Uploads extends CI_Controller {
 		$this->db->truncate('tbl_span_rank');
 		$this->db->insert_batch('tbl_span_rank', $data);
 		//upload success
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SATKER SPAN";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_span");
@@ -471,6 +482,12 @@ class Uploads extends CI_Controller {
 		$this->db->truncate('tbl_span_rank');
 		$this->db->insert_batch('tbl_span_rank', $biroo);
 		//upload success
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SATKER SPAN BIRO";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_span");
@@ -719,6 +736,11 @@ class Uploads extends CI_Controller {
 			$this->db->insert_batch('out_pok', $data_out);  // PENTING
 			// exit;
 			// //upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD POK";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect("uploads/v_pok");
@@ -833,6 +855,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS JATINANGOR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_jatinangor', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_jatinangor']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/jatinangor");
@@ -928,6 +955,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS PAPUA";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('sarpras_papua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_papua']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/papua");
@@ -1072,6 +1104,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SULSEL";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sulsel']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/sulsel"); 
@@ -1222,6 +1259,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS NTB";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_ntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_ntb']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/ntb");
@@ -1371,6 +1413,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SULUT";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sulut']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/sulut");
@@ -1500,6 +1547,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS JAKARTA";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_jakarta', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_jakarta']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/jakarta");
@@ -1691,6 +1743,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS KALBAR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_kalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_kalbar']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/kalbar");
@@ -1825,6 +1882,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SUMBAR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sumbar']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/sumbar");
@@ -2115,6 +2177,11 @@ class Uploads extends CI_Controller {
 			$this->uploads_model->upsert_batch($data_span, 'tbl_spanint', $newDate);
 			// exit;
 			// //upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD RANK";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+		
 			$this->session->set_flashdata('rank', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect("uploads/v_rank");
@@ -2251,6 +2318,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PAGU";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2359,6 +2431,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SULSEL";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2464,6 +2541,11 @@ class Uploads extends CI_Controller {
 			unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI KALBAR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifkalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2566,6 +2648,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI NTB";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2670,6 +2757,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI PAPUA";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifpapua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2772,6 +2864,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SULUT";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2874,6 +2971,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SUMBAR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2882,7 +2984,7 @@ class Uploads extends CI_Controller {
 
 	public function praja()
 	{
-				// Load plugin PHPExcel nya
+		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
 
@@ -3029,6 +3131,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PRAJA";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('praja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_praja');
@@ -3145,6 +3252,11 @@ class Uploads extends CI_Controller {
 			$this->db->insert_batch('orangtua', $unitortu);
 			$this->db->insert_batch('wali', $unitwali);
 					//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD FUNCTION PRAJA BARU";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_praja');
@@ -3195,6 +3307,12 @@ class Uploads extends CI_Controller {
 				array_push($saveData, $data);
 			}
 			$this->db->insert_batch('tbl_thl', $saveData);
+
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD THL";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_thl'); 
 		}
@@ -3388,6 +3506,12 @@ class Uploads extends CI_Controller {
 		//upload success
 		$this->db->insert_batch('tbl_pns', $data);
 		$this->db->insert_batch('tbl_pelatihan', $pelatihan);
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD PNS";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('pns', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['pns']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_pns");
@@ -3547,6 +3671,11 @@ class Uploads extends CI_Controller {
 
 			$this->db->insert_batch('tbl_pns', $saveData);
 			$this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
+
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PNS2";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
 
 			$this->session->set_flashdata('pns',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_pns'); 
@@ -3740,6 +3869,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD FUNCTION JATINANGOR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('nangor', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -3802,6 +3936,11 @@ class Uploads extends CI_Controller {
 			}
 			$this->db->truncate('tbl_dosen');
 			$this->db->insert_batch('tbl_dosen', $data);
+			
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD DOSEN";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
 
 			$this->session->set_flashdata('dosen', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
@@ -3899,6 +4038,11 @@ class Uploads extends CI_Controller {
 			// exit();
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD ALUMNI";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('alumni', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_alumni');
