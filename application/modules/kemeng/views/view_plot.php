@@ -120,6 +120,10 @@
             	</div>
             </div>
             <div class="form-group">
+            	<label class="col-form-label">Sks :</label>
+            	<input type="text" class="form-control" id="sks" name="sks" readonly="">
+            </div>
+            <div class="form-group">
               <div class="row">
                 <div class="col-xl-3">
                   <label class="col-form-label">Jam :</label>
@@ -142,10 +146,6 @@
                 <option>GANJIL 2020/2021</option>
                 <option>GENAP 2020/2021</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Sks :</label>
-              <input type="text" class="form-control" id="sks" name="sks" required>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -327,6 +327,21 @@
 				.then(response => response);
 		}
 
+    /**
+		 * mengambil data JSON dari Controller Kemeng/getMatkulByProdiId dengan parameter prodi_id
+		 */
+		function getsks(sks) {
+			return fetch("<?= site_url('kemeng/GetSksByMatkul/') ?>" + sks, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
+		}
+
 		/**
 		 * on change event
 		 * Ketika ada perubahan di <select name="fakultas" id="fakultas">
@@ -351,6 +366,12 @@
 			let matkul_select = ''; // menampung template literals
 			list_matkul.forEach(row => matkul_select += `<option value="${row.id_matkul}">${row.nama_matkul}</option>`); // perulangan data
 			$('#id_matkul').html(matkul_select); // mencetak data
+		});
+
+    $('#id_matkul').on('change', async function () {
+			let list_sks = await getsks($('#id_matkul').val());
+			$('#sks').val(list_sks[0].sks); 
+      console.log(list_sks[0].sks)
 		});
 
 		// $('#checkForm').on('click', function () {

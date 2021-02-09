@@ -662,5 +662,11 @@ class Kemeng extends CI_Controller
 		$data = $this->Kemeng_model->MatkulByProdiId($prodi_id);
 		echo json_encode($data);
 	}
+
+	function GetSksByMatkul($sks)
+	{
+		$data = $this->Kemeng_model->SksByMatkul($sks);
+		echo json_encode($data);
+	}
   //END PLOT
 }

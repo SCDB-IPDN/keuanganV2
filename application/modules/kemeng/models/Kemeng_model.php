@@ -373,6 +373,12 @@ class Kemeng_model extends CI_Model
         $query = $this->db->get_where('tbl_matkul', array('id_prodi' => $prodi_id));
         return $query->result();
 	}
+
+	public function SksByMatkul($sks)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_matkul' => $sks));
+        return $query->result();
+	}
 	
 	public function getRowFakultas($id)
 	{
@@ -389,6 +395,11 @@ class Kemeng_model extends CI_Model
 	public function getRowMatkul($id)
 	{
 		$query = $this->db->get_where('tbl_matkul', ['id_matkul' => $id]);
+		return $query->row();
+	}
+	public function getRowSks($id)
+	{
+		$query = $this->db->get_where('tbl_matkul', ['id_prodi' => $id]);
 		return $query->row();
 	}
 	//END PLOT
