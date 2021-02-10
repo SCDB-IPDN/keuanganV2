@@ -125,7 +125,7 @@
             </div>
             <div class="form-group">
               <div class="row">
-                <div class="col-xl-3">
+                <div class="col-xl-4">
                   <label class="col-form-label">Jam :</label>
                   <input type="time" class="form-control" id="jam" name="jam" required>
                 </div>

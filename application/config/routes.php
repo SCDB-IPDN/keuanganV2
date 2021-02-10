@@ -78,6 +78,7 @@ $route['kemeng/prodi'] = 'kemeng/get_prodi';
 $route['kemeng/fakultas'] = 'kemeng/get_fakultas';
 $route['kemeng/sks'] = 'kemeng/get_sks';
 $route['kemeng/plot'] = 'kemeng/plot';
+$route['d_praja/alumni'] = 'd_praja/alumni';
 
 $route['kemeng/honor_table/(:any)'] = 'kemeng/honor_table/$1';
 
