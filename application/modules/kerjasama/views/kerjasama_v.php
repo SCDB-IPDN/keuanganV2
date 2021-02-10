@@ -1,7 +1,7 @@
 <div id="content" class="content">
 	<ol class="breadcrumb float-xl-right">
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Kerjasama</a></li>
+    	<li class="breadcrumb-item"><a href="<?php echo base_url('kerjasama'); ?>">Kerjasama</a></li>
 	</ol>
   	<h1 class="page-header">List Dokumen Kerjasama (MOU)</h1>
   	<div class="row">
@@ -18,7 +18,7 @@
 					<div class="panel-heading-btn">
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn- icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 					</div>
 				</div>
@@ -65,7 +65,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah MOU</h5>
+                    <h5 class="modal-title" id="addmouu">Tambah MOU</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     	<span aria-hidden="true">&times;</span>
                     </button>
@@ -127,8 +127,7 @@
                     <form action="<?php echo base_url('kerjasama/edit_mou'); ?>" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group">                              
-                        <label class="col-form-label">Mitra:</label>
-                            <
+
                             <label class="col-form-label">Mitra:</label>
                             <input type="text" class="form-control" name="mitra" placeholder="Mitra" required>
 
@@ -210,7 +209,7 @@ $(document).ready(function() {
 		"columnDefs": [
 			{ 
 				"orderable": false, 
-				"targets": 7 
+				"targets": 10 
 			}
   		]
 	});
@@ -223,7 +222,7 @@ $(document).ready(function() {
 		var nama_pdf = div.data('file');
 
 		// Isi nilai pada field
-		modal.find('#id').attr("value", div.data('mou'));
+		modal.find('#id').attr("value", div.data('id'));
 		modal.find('#mitra').attr("value", div.data('mitra'));
 		modal.find('#no_mitra').attr("value", div.data('no_mitra'));
 		modal.find('#no_ipdn').attr("value", div.data('no_ipdn'));

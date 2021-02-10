@@ -33,7 +33,7 @@ class Kerjasama extends CI_Controller {
 			$hal = $d->hal;
             $masa_berlaku = $d->masa_berlaku;
             $status = $d->status;
-			$file = "./assets/kerjasama_files/$d->nama_file";
+			$file = "./assets/mou_files/$d->nama_file";
 			if(is_file($file)) {
 				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
 			}
