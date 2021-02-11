@@ -124,6 +124,10 @@
             	<input type="text" class="form-control" id="sks" name="sks" readonly="">
             </div>
             <div class="form-group">
+            	<label class="col-form-label">Semester :</label>
+            	<input type="text" class="form-control" id="semester" name="semester" readonly="">
+            </div>
+            <div class="form-group">
               <div class="row">
                 <div class="col-xl-4">
                   <label class="col-form-label">Jam :</label>
@@ -138,14 +142,6 @@
             <div class="form-group">
               <label class="col-form-label">Kelas :</label>
               <input type="text" class="form-control" id="kelas" name="kelas" required>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Semester :</label>
-              <select class="form-control" id="semester" name="semester" required>
-                <option>Select Semester</option>
-                <option>GANJIL 2020/2021</option>
-                <option>GENAP 2020/2021</option>
-              </select>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -340,6 +336,18 @@
 				})
 				.then(response => response.json())
 				.then(response => response);
+    }
+    
+    function getsemester(semester) {
+			return fetch("<?= site_url('kemeng/GetSemesterByMatkul/') ?>" + semester, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
 		}
 
 		/**
@@ -372,6 +380,12 @@
 			let list_sks = await getsks($('#id_matkul').val());
 			$('#sks').val(list_sks[0].sks); 
       console.log(list_sks[0].sks)
+    });
+    
+    $('#id_matkul').on('change', async function () {
+			let list_semester = await getsemester($('#id_matkul').val());
+			$('#semester').val(list_semester[0].semester); 
+      console.log(list_semeter[0].semester)
 		});
 
 		// $('#checkForm').on('click', function () {

@@ -152,7 +152,7 @@ class D_praja_model extends CI_Model
 
 	function edit_alumni($editalumni){
 
-		$id_alumni = $editalumni['id_alumni'];
+		$id = $editalumni['id_alumni'];
 		$this->db->where('id_alumni', $editalumni['id_alumni']);
 		$this->db->update('alumni', $editalumni);
 	}
@@ -161,8 +161,7 @@ class D_praja_model extends CI_Model
 
 		$this->db->where(['id_alumni' => $id]);
 		$this->db->delete('alumni');
-	// 	$hasil=$this->db->query("DELETE FROM tbl_plot_dosen WHERE id_plot= '$id' ");
-	// 	return $hasil;
+
 	}
 	//END ALUMNI
 

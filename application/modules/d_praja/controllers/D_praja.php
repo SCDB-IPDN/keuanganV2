@@ -442,7 +442,7 @@ function alumni()
     $jk = $r->jk;
     $institusi = $r->institusi;
     $angkatan = $r->angkatan;
-    $instansi = $r->instansi;
+    $instansi = $r->instansi == NULL ? "<i><font style='color:red;'>Instansi Tidak Ada</font></i>" : $r->instansi;
     $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabatan Tidak Ada</font></i>" : $r->jabatan;
     $provinsi = $r->provinsi == NULL ? "<i><font style='color:red;'>Provinsi Tidak Ada</font></i>" : $r->provinsi;
 
@@ -488,7 +488,8 @@ function alumni()
     $editalumni['provinsi'] = $this->input->post('provinsi', true);
     
     $result = $this->D_praja_model->edit_alumni($editalumni);
-      
+    // var_dump($editalumni);
+    // exit();  
     if (!$result) { 	
       $this->session->set_flashdata('alumni', 'DATA BERHASIL DIUBAH.');			
       redirect('d_praja/alumni'); 									
@@ -511,7 +512,7 @@ function alumni()
 		   redirect('d_praja/alumni');		
 	   }
 	   
-   }
+  }
 //END ALUMNI
 
 function hukuman()

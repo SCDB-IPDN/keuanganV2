@@ -668,5 +668,11 @@ class Kemeng extends CI_Controller
 		$data = $this->Kemeng_model->SksByMatkul($sks);
 		echo json_encode($data);
 	}
+
+	function GetSemesterByMatkul($semester)
+	{
+		$data = $this->Kemeng_model->SemesterByMatkul($semester);
+		echo json_encode($data);
+	}
   //END PLOT
 }

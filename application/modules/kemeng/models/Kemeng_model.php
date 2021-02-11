@@ -379,6 +379,12 @@ class Kemeng_model extends CI_Model
         $query = $this->db->get_where('tbl_matkul', array('id_matkul' => $sks));
         return $query->result();
 	}
+
+	public function SemesterByMatkul($semester)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_matkul' => $semester));
+        return $query->result();
+	}
 	
 	public function getRowFakultas($id)
 	{
