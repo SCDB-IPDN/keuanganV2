@@ -161,6 +161,7 @@ class Kemeng_model extends CI_Model
 		
 	}
 
+	//HONOR
 	function get_absen_bulan($date, $nip) {
 		$date_t = explode('-', $date);
 		$index = $this->get_index_honor($nip)->row_array()['index'];
@@ -179,6 +180,7 @@ class Kemeng_model extends CI_Model
 		$res = $this->db->get();
 		return $res;
 	}
+	//END HONOR
 
 	function get_honor_allinone($id_fakultas){
 
@@ -299,7 +301,9 @@ class Kemeng_model extends CI_Model
 		
 		return $query;
 	}
-	//plot dosen
+
+
+	//PLOT
 	public function get_all_plot()
 	{
 

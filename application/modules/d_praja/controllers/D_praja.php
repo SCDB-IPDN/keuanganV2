@@ -448,7 +448,7 @@ function alumni()
 
     if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
         $opsi = "<a 
-				href='javascript:;' 'data-id_alumni='$r->id_alumni' data-nama='$r->nama' data-jk='$r->jk' data-institusi='$r->institusi' 
+				href='javascript:;' data-id_alumni='$r->id_alumni' data-nama='$r->nama' data-jk='$r->jk' data-institusi='$r->institusi' 
 				data-angkatan='$r->angkatan' data-instansi='$r->instansi' data-provinsi='$r->provinsi' data-jabatan='$r->jabatan'
 				data-toggle='modal' data-target='#edit-alumni' class='btn btn-info'><i class='fa fas fa-edit'></i>
 				</a>
@@ -473,6 +473,7 @@ function alumni()
         $opsi,
       );
     }
+    //echo  var_dump($alumni);
     echo json_encode($alumni);
   }
 
@@ -486,10 +487,16 @@ function alumni()
     $editalumni['instansi'] = $this->input->post('instansi', true);
     $editalumni['jabatan'] = $this->input->post('jabatan', true);
     $editalumni['provinsi'] = $this->input->post('provinsi', true);
+     
+    //  var_dump($editalumni);
+    //exit();
+
     
     $result = $this->D_praja_model->edit_alumni($editalumni);
-    // var_dump($editalumni);
-    // exit();  
+
+    // var_dump($result);
+    // exit();
+
     if (!$result) { 	
       $this->session->set_flashdata('alumni', 'DATA BERHASIL DIUBAH.');			
       redirect('d_praja/alumni'); 									

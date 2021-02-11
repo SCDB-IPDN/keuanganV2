@@ -175,6 +175,7 @@
       modal.find('#jabatan').attr("value", div.data('jabatan'));
       modal.find('#provinsi').attr("value", div.data('provinsi'));
     });
+    
     // Untuk sunting
     $('#hapusalumni').on('show.bs.modal', function(event) {
       var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
