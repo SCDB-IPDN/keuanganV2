@@ -113,6 +113,7 @@
 			<!-- END AKADEMIK -->
 
 			<!-- KEPRAJAAN -->
+			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "d_praja" || $this->uri->segment(2) == "alumni" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
@@ -124,6 +125,7 @@
 					<li class="<?php echo $this->uri->segment(2) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li>
 				</ul>
 			</li>
+			<?php } ?>
 			<!-- END KEPRAJAAN -->
 
 			<!-- HUMAS -->
@@ -194,7 +196,7 @@
 
 
 				<!-- Fakultas -->
-			<?php if($this->session->userdata('role') == 'Admin'){ ?>
+			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
