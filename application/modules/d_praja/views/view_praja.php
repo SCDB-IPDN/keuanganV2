@@ -112,7 +112,7 @@
 
  <!-- Modal Ubah -->
  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="show-data" class="modal fade">
-  <div class="modal-dialog" style="max-width: 30%;">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Data Praja</h4>
@@ -147,9 +147,6 @@
          <div role="tabpanel" class="tab-pane fade active show" id="profile">
 
           <table class="table table-striped" cellspacing="0" align="center">
-               <!--  <div role="tabpanel" class="tab-pane fade active show" id="profile">
-
-                <table class="table table-striped"> -->
                   <tbody>
                     <tr>
                       <td>NPP</td>
