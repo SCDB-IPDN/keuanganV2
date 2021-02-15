@@ -87,10 +87,17 @@ class Home extends CI_Controller {
 	    
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
+
+      //alumnijk
+      $jkalumni = $this->home_model->get_jk_alumni();
 	    
       // PRAJA
       $praja = $this->home_model->jumlah_praja();
       $total_praja = $praja[0]->praja;
+
+      //ALUMNI
+      $alumni = $this->home_model->jumlah_alumni();
+      $total_alumni = $alumni[0]->alumni;
 
       // SPAN
       $span = $this->home_model->get_span()->result();
@@ -153,6 +160,7 @@ class Home extends CI_Controller {
       $x['status'] = $status;
       $x['hukuman'] = $hukuman;
       $x['total_praja'] = $total_praja;
+      $x['total_alumni'] = $total_alumni;
       $x['persentase_span'] = $persentase_span;
       $x['persentase_sas'] = $persentase_sas;
       $x['persentase_jatinangor'] = $persentase_jatinangor;
@@ -162,7 +170,9 @@ class Home extends CI_Controller {
       $x['angkatan29'] = $angkatan29;
       $x['angkatan28'] = $angkatan28;
       $x['jkpraja'] = $jkpraja;
+      $x['jkalumni'] = $jkalumni;
       $x['praja'] = $praja;
+      $x['alumni'] = $alumni;
 
       $x['ceksas'] = $ceksas;
       $x['cekpok'] = $cekpok;

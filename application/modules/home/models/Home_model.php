@@ -279,6 +279,13 @@ class Home_model extends CI_Model{
 
 		return $result;
 	}
+
+	public function get_jk_alumni()
+	{ 
+		$result = $this->db->query("SELECT SUM(jk = 'L') AS jumlahP, SUM(jk = 'P') AS jumlahL FROM alumni")->result();
+
+		return $result;
+	}
 	
 	public function jumlah_praja()
 	{
@@ -286,6 +293,14 @@ class Home_model extends CI_Model{
 
 		return $praja;
 	}
+
+	public function jumlah_alumni()
+	{
+		$alumni = $this->db->query("SELECT count(*) as alumni from alumni")->result();
+
+		return $alumni;
+	}
+
 	public function hukuman()
 	{
 		$result = $this->db->query("SELECT SUM(status = 'diberhentikan') as berhenti FROM hukuman")->result();
@@ -301,7 +316,7 @@ class Home_model extends CI_Model{
   }
   public function angkatan_praja()
   {
-    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja")->result();
+    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja where status='aktif'")->result();
 
     return $result;
   }
