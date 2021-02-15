@@ -404,7 +404,8 @@
 		<div class="col-xl-6">
 			<!-- begin tabs -->
 			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-				<li class="nav-item"><a href="berita" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
+				<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">BERITA TERBARU</span></a></li>
+				<li class="nav-item"><a href="#eksternal" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">EKSTERNAL</span></a></li>
 			</ul>
 			<div class="tab-content" data-sortable-id="index-3">
 				<div class="tab-pane fade active show" id="latest-post">
@@ -457,6 +458,37 @@
 						</div>
 					<?php }?>
 
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="eksternal">
+					<div class="height-sm" data-scrollbar="true">
+						<div class="panel-body">
+							<div class="table-responsive">
+								<table id="data-table-buttons" class="table table-striped table-bordered table-td-valign-middle">
+									<thead>
+										<tr>
+											<th class="text-nowrap">No</th>
+											<th class="text-nowrap">Nama Media</th>
+											<th class="text-nowrap">Judul</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											$no =0 ;
+											foreach($eksternal as $row){
+											$no++;    
+										?>
+										<tr>
+											<td><?php echo $no; ?></td>
+											<td><?php echo $row->NamaMedia?></td>
+											<td><a href="<?php echo $row->Link?>" target="_blank"> <?php echo $row->Judul?></a></td>
+										</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -7,11 +7,10 @@ class BeritaEksternal_model extends CI_Model {
         return $query;
     }
 
-
     function tambah_beritaeksternal($input_data)
 	{   
         $add_berita = $this->db->insert('tbl_beritaeksternal', $input_data);
-        return $add_peg;
+        return $add_berita;
     }
 
     function cek_beritaeksternal($judul)
