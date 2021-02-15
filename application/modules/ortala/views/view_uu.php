@@ -1,160 +1,161 @@
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/js/morris.css' ?>">
 <div id="content" class="content">
-  <ol class="breadcrumb float-xl-right">
-    <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Undang-Undang</a></li>
-
-  </ol>
-  <h1 class="page-header">Presensi</h1>
-  <div class="row">
-    <div class="col-xl-12">
-      <!-- begin panel -->
-      
-      <!-- end panel -->
-      <div class="panel panel-inverse">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-          <span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
- <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
-            <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
-          </h4>
-          <div class="panel-heading-btn">
-            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-          </div>
-        </div>
-
-        <!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
-        <div class="table-responsive">
-		  	<?php if ($this->session->flashdata('uu') != NULL) { ?>
-				<div class="alert alert-<?php echo $this->session->flashdata('uu') [0] ?> alert-dismissible">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('uu') [1] ?>
+	<ol class="breadcrumb float-xl-right">
+		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
+    	<li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Undang-Undang</a></li>
+	</ol>
+  	<h1 class="page-header">Undang-Undang</h1>
+  	<div class="row">
+    	<div class="col-xl-12">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+					<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
+						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
+						<!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
+						<?php } ?> 
+					</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
 				</div>
-			<?php } ?> 
-		 
-          <!-- <a href="<?php echo base_url('uu/export'); ?>">Export Data</a> -->
+				<!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
+				<div class="table-responsive">
+					<?php if ($this->session->flashdata('prokum') != NULL) { ?>
+						<div class="alert alert-<?php echo $this->session->flashdata('prokum') [0] ?> alert-dismissible">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('prokum') [1] ?>
+						</div>
+					<?php } ?> 
+			
+					<!-- <a href="<?php //echo base_url('uu/export'); ?>">Export Data</a> -->
 
-          <div class="panel-body">
-            <table id="data-presensi" class="table table-striped table-bordered table-td-valign-middle" width="100%">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>KATEGORI</th>
-                  <TH>NOMOR</TH>
-                  <th>TAHUN</th>
-                  <th>TENTANG</th>
-                  <th>FILE</th>
-                  <th>STATUS</th>
-				  <th>AKSI</th>
-                </tr>
-              </thead>
-
-            </table>
-          </div>
-        </div>
-        <!-- end panel-body -->
-      </div>
-      <!-- end panel -->
-    </div>
-    <!-- end col-10 -->
+					<div class="panel-body">
+						<table id="data-uu" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>KATEGORI</th>
+									<th>NOMOR</th>
+									<th>TANGGAL</th>
+									<th>TAHUN</th>
+									<th>TENTANG</th>
+									<!-- <th>LINK</th> -->
+									<th>STATUS</th>
+									<th>FILE</th>
+									<th>AKSI</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+				<!-- end panel-body -->
+			</div>
+      		<!-- end panel -->
+		</div>
+		<!-- end col-10 -->
+	</div>
+</div>
 
     <!-- Modal ADD prokum -->
-    <div class="modal fade" id="adduu" tabindex="-1" role="dialog" aria-labelledby="adduuu" aria-hidden="true">
+    <div class="modal fade" id="adduu" tabindex="-1" role="dialog" aria-labelledby="adduu" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Produk Hukum</h5>
+                    <h5 class="modal-title" id="adduuu">Tambah Undang-Undang</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    	<span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="col-xl">
-                    <form action="adduu" method="POST">
+                    <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label class="col-form-label">Kategori:</label>
-                            <select class="form-control" id="kat" name="kat" required>
-                                        <option disabled selected> Pilih Kategori</option>
-                                        <?php foreach($kat as $rows){?>
-                                            <option value="<?php echo $rows->nama_kat ?>"><?php echo $rows->nama_kat ?></option>
-                                        <?php } ?>
-                                    </select>
-                              
+							<input type="hidden" name="id_kat" value="1">
+							<input type="hidden" name="nama_kat" value="Undang-Undang">
+							<input type="hidden" name="url" value="uu">
+
                             <label class="col-form-label">Nomor:</label>
-                            <input type="text" class="form-control" id="nomor" name="Nomor" placeholder="Nomor" required>
+                            <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
+
+							<label class="col-form-label">Tanggal:</label>
+							<input type="date" class="form-control" name="tanggal" placeholder="Tanggal" required>
 
                             <label class="col-form-label">Tahun:</label>
-                            <input type="year" class="form-control" id="tahun" name="Tahun" placeholder="Tahun" required>
+                            <input type="year" class="form-control" name="tahun" placeholder="Tahun" required>
                          
                             <label class="col-form-label">Tentang:</label>
-                            <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
+                            <textarea class="form-control" name="tentang" placeholder="Tentang" required></textarea>
                             
-                            <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" id="link" name="Link" placeholder="Link" required>
+                            <!-- <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" name="link" placeholder="Link" required> -->
                             
                             <label class="col-form-label">Status:</label>
-                            <select type="text" class="form-control" name="status" id="Status">
-                                <option disabled selected> Pilih Status</option>  
-                                <option value="aktif">Aktif</option>
-                                <option value="non-aktif">Non Aktif</option>
-                            </select>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                            <select type="text" class="form-control" name="status" id="Status" required>
+                                <option value="" disabled selected> Pilih Status</option>  
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+							</select>
+							
+							<label class="col-form-label">File:</label>
+                            <input type="file" class="form-control" name="file" accept="application/pdf">
+						</div>
+						                        
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        <!-- Modal EDIT prokum -->
-        <div class="modal fade" id="editprokum" tabindex="-1" role="dialog" aria-labelledby="editprokum" aria-hidden="true">
+    <!-- Modal EDIT prokum -->
+    <div class="modal fade" id="editprokum" tabindex="-1" role="dialog" aria-labelledby="editprokum" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editthll">Edit Produk Hukum</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                	<h5 class="modal-title">Edit Tambah Undang-Undang</h5>
+                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                	</button>
                 </div>
                 <div class="modal-body">
-                    <form action="edit_prokum" method="POST">
-                        <input type="hidden" class="form-control" id="id_prokumx" name="id_prokum">
-                        <div class="form-group">
-                        <label class="col-form-label">Kategori:</label>
-                            <select class="form-control" id="kat" name="kat" required>
-                                        <option disabled selected> Pilih Kategori</option>
-                                        <?php foreach($kat as $rows){?>
-                                            <option value="<?php echo $rows->nama_kat ?>"><?php echo $rows->nama_kat ?></option>
-                                        <?php } ?>
-                                    </select>
-                              
+                    <form action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
+						<input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
+						<input type="hidden" name="url" value="uu">
+						
+                        <div class="form-group">                              
                             <label class="col-form-label">Nomor:</label>
-                            <input type="text" class="form-control" id="nomor" name="Nomor" placeholder="Nomor" required>
+                            <input type="text" class="form-control" id="nomor" name="nomor" placeholder="Nomor" required>
 
-                            <label class="col-form-label">Tahun:</label>
-                            <input type="year" class="form-control" id="tahun" name="Tahun" placeholder="Tahun" required>
+							<label class="col-form-label">Tanggal:</label>
+							<input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal" required>
+							
+							<label class="col-form-label">Tahun:</label>
+                            <input type="year" class="form-control" id="tahun" name="tahun" placeholder="Tahun" required>
                             
                             <label class="col-form-label">Tentang:</label>
                             <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
                             
-                            <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" id="link" name="Link" placeholder="Link" required>
+                            <!-- <label class="col-form-label">Link:</label>
+                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required> -->
                             
                             <label class="col-form-label">Status:</label>
-                            <select type="text" class="form-control" name="status" id="Status">
-                                <option disabled selected> Pilih Status</option>  
-                                <option value="aktif">Aktif</option>
-                                <option value="non-aktif">Non Aktif</option>
-                            </select>
+                            <select type="text" class="form-control" name="status" id="status" required>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+							</select>
+							
+							<label class="col-form-label">File:</label>
+							<div id="nama_pdf" class="my-1"></div>
+							<input type="file" id="file_edit" class="form-control" name="file" accept="application/pdf">
+							<p class="mt-1 text-danger" id="pdf_info"></p>
 
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -166,81 +167,84 @@
         </div>
     </div>
 
-    <!-- Modal HAPUS THL -->
+    <!-- Modal HAPUS prokum -->
     <div class="modal fade" id="delprokum" tabindex="-1" role="dialog" aria-labelledby="delprokumm" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="delprokumm">Hapus Produk Hukum</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                	<h5 class="modal-title" id="delprokumm">Hapus Tambah Undang-Undang</h5>
+                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    	<span aria-hidden="true">&times;</span>
+                	</button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="del_prokum">
-                        <div class="modal-body">
-                            <p>Anda yakin mau menghapus Data <input type="text" id="namaxx" disabled> ?</p>
-                        </div>
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('ortala/del_prokum'); ?>">
+                        <div class="modal-body" id="del-info"></div>
                         <div class="modal-footer">
-                            <input type="hidden" id="id_prokumxx" name="id_prokum">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                            <button class="btn btn-danger">Hapus</button>
+							<input type="hidden" id="del_id_prokum" name="del_id_prokum">
+							<input type="hidden" name="url" value="uu">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-danger">Hapus</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-
-  $(document).ready(function() {
-
-    var url = '<?php echo base_url('ortala/get_uu');?>';
-    // alert(url);
-
-        $('#data-uu').dataTable({
-            // dom: 'Bfrtip',
-            dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
-            buttons: [
-            'copy', 'excel', 'print'
-            ],
-            responsive: true,
-            "ajax": {
-              "url": url,
-              "dataSrc": ""
-            }
-          });
-      });
-
-    </script>
-
+	</div>
+	
+<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
-      $(document).ready(function() {
-        // Untuk sunting
-        $('#editprokum').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal          = $(this)
+$(document).ready(function() {
+    var url = '<?php echo base_url('ortala/get_uu');?>';
+    $('#data-uu').dataTable({
+        buttons: [
+        	'copy', 'excel', 'print'
+        ],
+        responsive: true,
+		"ajax": {
+			"url": url,
+			"dataSrc": ""
+		},
+		"columnDefs": [
+			{ 
+				"orderable": false, 
+				"targets": 7 
+			}
+  		]
+	});
+	
+	// Edit
+	$('#editprokum').on('show.bs.modal', function (event) {
+		var div = $(event.relatedTarget); // Tombol dimana modal di tampilkan
+		var modal = $(this);
+		var status_edit = div.data('status');
+		var nama_pdf = div.data('file');
 
-            // Isi nilai pada field
-            modal.find('#kat').attr("value",div.data('kategori'));
-            modal.find('#nomor').attr("value",div.data('nomor'));
-            modal.find('#tahun').attr("value",div.data('tahun'));
-            modal.find('#tentang').attr("value",div.data('tentang'));
-            modal.find('#link').attr("value",div.data('link'));
-            modal.find('#status').attr("value",div.data('status'));
+		// Isi nilai pada field
+		modal.find('#id_prokum').attr("value", div.data('prokum'));
+		modal.find('#nomor').attr("value", div.data('nomor'));
+		modal.find('#tahun').attr("value", div.data('tahun'));
+		modal.find('#tanggal').attr("value", div.data('tanggal'));
+		modal.find('#tentang').text(div.data('tentang'));
+		// modal.find('#link').attr("value", div.data('link'));
+		modal.find(`#status option[value="${status_edit}"]`).attr("selected","selected");
 
-          });
-        // Untuk sunting
-        $('#delprokum').on('show.bs.modal', function (event) {
-            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
-            var modal          = $(this)
+		if(nama_pdf) {
+            modal.find('#nama_pdf').text(nama_pdf);
+            modal.find('#pdf_info').text("*Abaikan field ini jika tidak ingin mengubah file");
+        }
+	});
+		  
+	// Hapus
+	$('#delprokum').on('show.bs.modal', function (event) {
+		var del = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+		var modal = $(this)
 
-            // Isi nilai pada field
-            modal.find('#kat').attr("value",div.data('kategori'));
-            modal.find('#nomor').attr("value",div.data('nomor'));
-            modal.find('#tahun').attr("value",div.data('tahun'));
-            modal.find('#tentang').attr("value",div.data('tentang'));
-            modal.find('#link').attr("value",div.data('link'));
-            modal.find('#status').attr("value",div.data('status'));
-          });
-      });
-    </script>
+		var tahun_del = del.data('tahun');
+		var nomor_del = del.data('nomor');
+		var tentang_del = del.data('tentang');
+		modal.find('#del_id_prokum').attr("value", del.data('id_prokum'));
+		modal.find('#del-info').text(`Anda yakin akan menghapus Tambah Undang-Undang nomor ${nomor_del} tahun ${tahun_del} tentang ${tentang_del}?`);
+	});
+});
+</script>

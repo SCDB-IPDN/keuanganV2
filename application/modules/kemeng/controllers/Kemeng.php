@@ -208,7 +208,7 @@ class Kemeng extends CI_Controller
 		}
 	}
 
- 	function tambah_presensi()
+	function tambah_presensi()
 	{
 		$crot=$this->input->post('nip_dosen', true);
 		$ecek = $this->db->query("SELECT nama FROM tbl_dosen WHERE nip = '$crot'")->result();
@@ -309,6 +309,7 @@ class Kemeng extends CI_Controller
 		}
 
 		echo json_encode($allp);
+	}
 
 	function jadwal_dosen(){
 		if ($this->session->userdata('nip') != NULL) {
@@ -375,7 +376,7 @@ class Kemeng extends CI_Controller
 
 	function honor() {
 		if($this->session->userdata('nip') != NULL) {
-						
+
 			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
 			$x['uDate'] = date_format(new DateTime(),"F Y");
 
@@ -389,6 +390,57 @@ class Kemeng extends CI_Controller
 			redirect("user");
 		}
 	}
+
+
+	function honor_table_all($id_fakultas = NULL){
+		$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
+		
+		echo json_encode($ho);
+		// exit();
+	}
+
+
+
+	function hon_all ($id_fakultas= NULL){
+		// var_dump($id_fakultas);exit();
+		if($this->session->userdata('nip') != NULL) {
+
+			if ($id_fakultas != NULL) {
+
+				switch ($id_fakultas) {
+					case "FHTP":
+						// FHTP
+					$x['title'] = 'FAKULTAS HUKUM TATA PEMERINTAHAN';
+					break;
+					case "FMP":
+						// FMP
+					$x['title'] = 'FAKULTAS MANAJEMEN PEMERINTAHAN';
+					break;
+					case "FPP":
+						// FPP
+					$x['title'] = 'FAKULTAS POLITIK PEMERINTAHAN';
+					break;
+				}
+
+				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
+				$x['ho'] = json_encode($ho);
+
+				$hi = $this->Kemeng_model->cobanip($id_fakultas)->result();
+		
+				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi)->result();
+				// var_dump($haha);exit();
+				$x['haha'] = json_encode($haha);
+
+				$this->load->view("include/head");
+				$this->load->view("include/top-header");
+				$this->load->view("view_honor_all",$x);
+				$this->load->view("include/sidebar");
+				$this->load->view("include/footer");
+			}
+		}
+	}
+
+
 
 	function honor_table($date) {
 		$nip = $this->session->userdata('nip');
@@ -418,5 +470,4 @@ class Kemeng extends CI_Controller
 		}
 
 	}
-}
 }

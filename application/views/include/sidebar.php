@@ -77,14 +77,14 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="dosen" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
 					<span>Kepegawaian</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" && $this->uri->segment(2)!="ta" && $this->uri->segment(2)!="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="kepegawaian" && $this->uri->segment(2)!="thl" && $this->uri->segment(2)!="ta" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian');?>">PNS</a></li>
 					<li class="<?php echo $this->uri->segment(2)=="thl" || $this->uri->segment(2)=="ta" ?"active":"";?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
@@ -100,14 +100,14 @@
 			<!-- END KEPEGAWAIAN -->
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
 					<span>Akademik</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
@@ -191,8 +191,9 @@
 				</ul>
 			</li>
 			<!-- END SARPRAS -->
-			
-			<!-- Fakultas -->
+
+
+				<!-- Fakultas -->
 			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
@@ -211,6 +212,17 @@
 							<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
 							<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin'){?>
 							<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
+							<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							HONOR ALL
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(3)=="FHTP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FHTP";?>">FHTP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FMP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FMP";?>">FMP</a></li>
+					<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
+						</ul>
+					</li>
 							<?php } ?>
 						</ul>
 					</li>
@@ -218,30 +230,39 @@
 			</li>
 			<?php } ?>
 			<!-- END Fakultas -->
-			
+
 			<!-- ORTALA -->
-			<?php if($this->session->userdata('role') == 'Admin'){ ?>
 			<li class="<?php echo $this->uri->segment(1)=="ortala" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
-					<i class="fas fa-handshake"></i>
-					<span>Ortala</span>
+					<i class="fas fa-balance-scale"></i>
+					<span>Hukum dan Ortala</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "ortala"  ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							Produk Hukum
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/uu'); ?>">Undang-Undang</a></li>
-							<!-- <li class="<?php echo $this->uri->segment(1) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('uu'); ?>">Undang-Undang</a></li> -->
+							<li class="<?php echo $this->uri->segment(2) == "uu" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/uu'); ?>">Undang-Undang</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "pp" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/pp'); ?>">Peraturan Pemerintah</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "perpres" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/perpres'); ?>">Peraturan Presiden</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "kepres" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/kepres'); ?>">Keputusan Presiden</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "permen" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/permen'); ?>">Peraturan Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "km" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/km'); ?>">Keputusan Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Intruksi Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "sem" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/sem'); ?>">Surat Edaran Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "pr" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/pr'); ?>">Peraturan Rektor</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "keputusan_rektor" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/keputusan_rektor'); ?>">Keputusan Rektor</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "ser" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/ser'); ?>">Surat Edaran Rektor</a></li>
+						
 							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
 						</ul>
 					</li>
 				</ul>
 			</li>
-			<?php } ?>
+	
 			<!-- END ORTALA -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
@@ -305,6 +326,9 @@
 				</li>
 				<li class="<?php echo $this->uri->segment(1) == "pegawai" ? "active" : ""; ?>">
 					<a href="<?php echo base_url('pegawai'); ?>"><i class="fa fa-users"></i> <span>User</span></a>
+				</li>
+				<li class="<?php echo $this->uri->segment(1) == "log" ? "active" : ""; ?>">
+					<a href="<?php echo base_url('log'); ?>"><i class="fa fa-history"></i> <span>Log</span></a>
 				</li>
 			<?php } ?>
 

@@ -36,6 +36,8 @@ class Home_model extends CI_Model{
 		return $peg;
 	}
 
+
+
 	public function jum_eselon()
 	{
 		$result = $this->db->query("SELECT SUM(eselon LIKE 'I.%') as I, SUM(eselon LIKE 'II.%') as II, SUM(eselon LIKE 'III.%') as III, SUM(eselon LIKE 'IV.%') as IV FROM tbl_pns")->result();
@@ -44,7 +46,7 @@ class Home_model extends CI_Model{
 	}
 
 	public function update_last_dosen(){
-		return $this->db->query("SELECT updated_date FROM tbl_dosen ORDER BY updated_date DESC LIMIT 1")->result();
+		return $this->db->query("SELECT updated_date FROM tbl_dosen_pddikti ORDER BY updated_date DESC LIMIT 1")->result();
 	}
 
 	public function dosen()
@@ -55,9 +57,43 @@ class Home_model extends CI_Model{
 							SUM(jabatan = 'LEKTOR') as lektor, 
 							SUM(jabatan = 'LEKTOR KEPALA') as lektor_kepala, 
 							count(*) as total 
-							FROM tbl_dosen")
+							FROM tbl_dosen_pddikti")
 						->result();
 		return $result;
+	}
+
+	// Hukum & ORTALA
+	public function jumlah_prokum()
+	{
+		
+		$prokum = $this->db->query("SELECT COUNT(*) as prokum from tbl_ort where status = 'Aktif' OR status='Done'")->result();
+		
+		return $prokum;
+	}
+
+	// public function update_last_ort(){
+	// 	return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();
+	// }
+
+	public function peraturan_rektor()
+	{
+		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $perek;
+	}
+
+	public function keputusan_rektor()
+	{
+		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $keprek;
+	}
+
+	public function surat_edaran()
+	{
+		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done'")->result();
+
+		return $srt;
 	}
 
 	public function apps(){
@@ -265,7 +301,7 @@ class Home_model extends CI_Model{
   }
   public function angkatan_praja()
   {
-    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja")->result();
+    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja where status='aktif'")->result();
 
     return $result;
   }

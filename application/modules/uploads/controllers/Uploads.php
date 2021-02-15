@@ -273,6 +273,11 @@ class Uploads extends CI_Controller {
 			}
 			
 			//upload success
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "UPLOAD SPAN";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+			
 			$this->session->set_flashdata('span', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 
 			redirect("uploads/v_span"); 
@@ -309,70 +314,70 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-			$add = false;
-			$nama = "";
-			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-			if (count($tmp) > 0) {
-				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-                        $nama = $txt[0];
-                        switch ($tmp[0]) {
-							case 448302:
+				$add = false;
+				$nama = "";
+				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+				if (count($tmp) > 0) {
+					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+					$nama = $txt[0];
+					switch ($tmp[0]) {
+						case 448302:
 							// IPDN KAMPUS JATINANGOR
-							$add = true;
-							break;
-                            case 352593:
+						$add = true;
+						break;
+						case 352593:
                             // IPDN KAMPUS JAKARTA 
-                            $add = true;
-                            break;
-                            case 677010:
+						$add = true;
+						break;
+						case 677010:
                             // IPDN KAMPUS SULUT
-                            $add = true;
-                            break;
-                            case 677024:
+						$add = true;
+						break;
+						case 677024:
                             // IPDN KAMPUS SULSES
-                            $add = true;
-                            break;	
-                            case 677045:
+						$add = true;
+						break;	
+						case 677045:
                             // IPDN KAMPUS SUMBAR
-                            $add = true;
-                            break;	
-                            case 683070:
+						$add = true;
+						break;	
+						case 683070:
                             // IPDN KAMPUS KALBAR
-                            $add = true;
-                            break;	
-                            case 683084:
+						$add = true;
+						break;	
+						case 683084:
                             // IPDN KAMPUS NTB
-                            $add = true;
-                            break;	
-                            case 683091:
+						$add = true;
+						break;	
+						case 683091:
                             // IPDN KAMPUS PAPUA
-                            $add = true;
-							break;
-						}
-						if ($add) {
-                            array_push($data, array(
-                                'kode_satker'    =>  $tmp[0],
-                                'nama_satker'  =>  $txt[0],
-                                'pagu_bp'      => $row['C'],
-                                'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => substr($row['E'], 1, 6),
-                                'pagu_bb'      => $row['G'],
-                                'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => substr($row['I'], 1, 6),
-                                'pagu_bm'   => $row['K'],
-                                'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => substr($row['M'], 1, 6),
-                                'pagu_t'   => $row['AM'],
-                                'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => substr($row['AO'], 1, 6),
-								'sisa'   => $row['AP'],
-								'created_date' => $datee,
-								
-                    ));
-                }	
+						$add = true;
+						break;
+					}
+					if ($add) {
+						array_push($data, array(
+							'kode_satker'    =>  $tmp[0],
+							'nama_satker'  =>  $txt[0],
+							'pagu_bp'      => $row['C'],
+							'realisasi_bp'      => $row['D'],
+							'persentase_bp'      => substr($row['E'], 1, 6),
+							'pagu_bb'      => $row['G'],
+							'realisasi_bb'   => $row['H'],
+							'persentase_bb'   => substr($row['I'], 1, 6),
+							'pagu_bm'   => $row['K'],
+							'realisasi_bm'   => $row['L'],
+							'persentase_bm'   => substr($row['M'], 1, 6),
+							'pagu_t'   => $row['AM'],
+							'realisasi_t'   => $row['AN'],
+							'persentase_t'   => substr($row['AO'], 1, 6),
+							'sisa'   => $row['AP'],
+							'created_date' => $datee,
+
+						));
+					}	
+				}
 			}
-		}
-		
+
 
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
@@ -382,6 +387,12 @@ class Uploads extends CI_Controller {
 		$this->db->truncate('tbl_span_rank');
 		$this->db->insert_batch('tbl_span_rank', $data);
 		//upload success
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SATKER SPAN";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('satker', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_span");
@@ -415,53 +426,53 @@ class Uploads extends CI_Controller {
 			
 			foreach ($rows as $row) {
 			// echo $row ['B'];
-			$add = false;
-			$nama = "";
-			preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
-			if (count($tmp) > 0) {
-				preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-                        $nama = $txt[0];
-                        switch ($tmp[0]) {
-							case '1294':
+				$add = false;
+				$nama = "";
+				preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+				if (count($tmp) > 0) {
+					preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+					$nama = $txt[0];
+					switch ($tmp[0]) {
+						case '1294':
 							// Pengelolaan Administrasi Umum dan Keuangan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
-							case '1293':
+						$add = true;
+						break;
+						case '1293':
 							// Penyelenggaraan Administrasi Keprajaan dan Kemahasiswaan
-							$add = true;
-							break;
-							case '1286':
+						$add = true;
+						break;
+						case '1286':
 							// Penyelenggaraan Administrasin Kerjasama dan Hukum
-							$add = true;
-							break;
-							case '1292':
+						$add = true;
+						break;
+						case '1292':
 							// Penyelenggaraan Administrasi Akademik dan Perencanaan Pendidikan Kepamongprajaan
-							$add = true;
-							break;
-						}
-						if ($add) {
-                            array_push($biroo, array(
-                                'kode_satker'    =>  $tmp[0],
-                                'nama_satker'  =>  $txt[0],
-                                'pagu_bp'      => $row['C'],
-                                'realisasi_bp'      => $row['D'],
-                                'persentase_bp'      => substr($row['E'], 1, 4),
-                                'pagu_bb'      => $row['G'],
-                                'realisasi_bb'   => $row['H'],
-                                'persentase_bb'   => substr($row['I'], 1, 4),
-                                'pagu_bm'   => $row['K'],
-                                'realisasi_bm'   => $row['L'],
-                                'persentase_bm'   => substr($row['M'], 1, 4),
-                                'pagu_t'   => $row['AM'],
-                                'realisasi_t'   => $row['AN'],
-                                'persentase_t'   => substr($row['AO'], 1, 4),
-								'sisa'   => $row['AP'],
-								'created_date' => $datee,
-								
-                    ));
-                }	
+						$add = true;
+						break;
+					}
+					if ($add) {
+						array_push($biroo, array(
+							'kode_satker'    =>  $tmp[0],
+							'nama_satker'  =>  $txt[0],
+							'pagu_bp'      => $row['C'],
+							'realisasi_bp'      => $row['D'],
+							'persentase_bp'      => substr($row['E'], 1, 4),
+							'pagu_bb'      => $row['G'],
+							'realisasi_bb'   => $row['H'],
+							'persentase_bb'   => substr($row['I'], 1, 4),
+							'pagu_bm'   => $row['K'],
+							'realisasi_bm'   => $row['L'],
+							'persentase_bm'   => substr($row['M'], 1, 4),
+							'pagu_t'   => $row['AM'],
+							'realisasi_t'   => $row['AN'],
+							'persentase_t'   => substr($row['AO'], 1, 4),
+							'sisa'   => $row['AP'],
+							'created_date' => $datee,
+
+						));
+					}	
+				}
 			}
-		}
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -471,6 +482,12 @@ class Uploads extends CI_Controller {
 		$this->db->truncate('tbl_span_rank');
 		$this->db->insert_batch('tbl_span_rank', $biroo);
 		//upload success
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SATKER SPAN BIRO";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('belanja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_span");
@@ -719,6 +736,11 @@ class Uploads extends CI_Controller {
 			$this->db->insert_batch('out_pok', $data_out);  // PENTING
 			// exit;
 			// //upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD POK";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('pok', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect("uploads/v_pok");
@@ -833,6 +855,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS JATINANGOR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_jatinangor', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_jatinangor']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/jatinangor");
@@ -928,6 +955,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS PAPUA";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('sarpras_papua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_papua']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/papua");
@@ -1012,32 +1044,32 @@ class Uploads extends CI_Controller {
 							switch ($tab) {
 								case 0:
 									// tanah
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 1:
 									// aset tak berwujud, aset tetap lainnya, peralatan dan mesin
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$kondisi = $row['L'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$kondisi = $row['L'];
+								break;
 								case 2:
 									// gedung dan bangunan
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$asal = $row['M'];
-									$kondisi = $row['N'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$asal = $row['M'];
+								$kondisi = $row['N'];
+								break;
 								case 3:
 									// jaringan, irigasi, jalan dan jembatan
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$kondisi = $row['M'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$kondisi = $row['M'];
+								break;
 							}
 
 							$thn = $row['F'];
@@ -1072,6 +1104,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SULSEL";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sulsel']['name'].' berhasil diimport!</div>');
 		//redirect halaman
 		redirect("uploads/v_sarpras/sulsel"); 
@@ -1158,35 +1195,35 @@ class Uploads extends CI_Controller {
 							$asal = $kondisi = "";
 							switch ($tab) {
 								case 1:
-									$luas = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$luas = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 2:
-									$jumlah = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$harga_baru = $this->ktt($row['I']);
-									$asal = $row['K'];
-									$kondisi = $row['L'];
-									break;
+								$jumlah = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$harga_baru = $this->ktt($row['I']);
+								$asal = $row['K'];
+								$kondisi = $row['L'];
+								break;
 								case 3:
-									$jumlah = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$jumlah = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 4:
-									$luas = $this->ktt($row['F']);
-									$harga_beli = $this->ktt($row['H']);
-									$asal = $row['J'];
-									$kondisi = $row['K'];
-									break;
+								$luas = $this->ktt($row['F']);
+								$harga_beli = $this->ktt($row['H']);
+								$asal = $row['J'];
+								$kondisi = $row['K'];
+								break;
 								case 5:
-									$harga_beli = $this->ktt($row['G']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$harga_beli = $this->ktt($row['G']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 							}
 
 							$thn = $row['E'];
@@ -1222,6 +1259,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS NTB";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_ntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_ntb']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/ntb");
@@ -1307,35 +1349,35 @@ class Uploads extends CI_Controller {
 
 							switch ($tab) {
 								case 1:
-									$harga_beli = $this->ktt($row['H']);
-									$asal = $row['I'];
-									$kondisi = $row['J'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$asal = $row['I'];
+								$kondisi = $row['J'];
+								break;
 								case 2:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['I']);
-									$asal = $row['J'];
-									$kondisi = $row['K'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['I']);
+								$asal = $row['J'];
+								$kondisi = $row['K'];
+								break;
 								case 3:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 4:
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$asal = $row['L'];
-									$kondisi = $row['M'];
-									break;
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$asal = $row['L'];
+								$kondisi = $row['M'];
+								break;
 								case 5:
-									$luas = $this->ktt($row['H']);
-									$harga_beli = $this->ktt($row['I']);
-									$harga_baru = $this->ktt($row['K']);
-									$asal = $row['M'];
-									$kondisi = $row['N'];
-									break;
+								$luas = $this->ktt($row['H']);
+								$harga_beli = $this->ktt($row['I']);
+								$harga_baru = $this->ktt($row['K']);
+								$asal = $row['M'];
+								$kondisi = $row['N'];
+								break;
 							}
 
 							$thn = $row['F'];
@@ -1371,6 +1413,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SULUT";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sulut']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/sulut");
@@ -1449,22 +1496,22 @@ class Uploads extends CI_Controller {
 
 							switch ($tab) {
 								case 1:
-									$luas = $this->ktt($row['G']);
-									$harga_beli = $this->ktt($row['H']);
-									$harga_baru = $this->ktt($row['J']);
-									$kondisi = $row['L'];
-									break;
+								$luas = $this->ktt($row['G']);
+								$harga_beli = $this->ktt($row['H']);
+								$harga_baru = $this->ktt($row['J']);
+								$kondisi = $row['L'];
+								break;
 								case 2:
-									$harga_beli = $this->ktt($row['G']);
-									$harga_baru = $this->ktt($row['I']);
-									$asal = $row['K'];
-									$kondisi = $row['L'];
-									break;
+								$harga_beli = $this->ktt($row['G']);
+								$harga_baru = $this->ktt($row['I']);
+								$asal = $row['K'];
+								$kondisi = $row['L'];
+								break;
 								case 3:
-									$harga_beli = $this->ktt($row['G']);
-									$harga_baru = $this->ktt($row['I']);
-									$kondisi = $row['K'];
-									break;
+								$harga_beli = $this->ktt($row['G']);
+								$harga_baru = $this->ktt($row['I']);
+								$kondisi = $row['K'];
+								break;
 							}
 
 							$thn = $row['E'];
@@ -1500,6 +1547,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS JAKARTA";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_jakarta', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_jakarta']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/jakarta");
@@ -1591,74 +1643,74 @@ class Uploads extends CI_Controller {
 
 						switch ($tab) {
 							case 1:
-								$luas = $this->ktt($row['F']);
-								$thn = $row['G'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$jumlah = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$asal = $row['L'];
-								$ctest++;
-								break;
+							$luas = $this->ktt($row['F']);
+							$thn = $row['G'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$jumlah = $this->ktt($row['H']);
+							$harga_beli = $this->ktt($row['I']);
+							$asal = $row['L'];
+							$ctest++;
+							break;
 							case 2:
-								$jumlah = $this->ktt($row['F']);
-								$thn = $row['G'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$ctest++;
-								break;
+							$jumlah = $this->ktt($row['F']);
+							$thn = $row['G'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$luas = $this->ktt($row['H']);
+							$harga_beli = $this->ktt($row['I']);
+							$ctest++;
+							break;
 							case 3:
-								$thn = $row['F'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$jumlah = $this->ktt($row['G']);
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$harga_baru = $this->ktt($row['K']);
-								$kondisi = $row['L'];
-								$ctest++;
-								break;
+							$thn = $row['F'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$jumlah = $this->ktt($row['G']);
+							$luas = $this->ktt($row['H']);
+							$harga_beli = $this->ktt($row['I']);
+							$harga_baru = $this->ktt($row['K']);
+							$kondisi = $row['L'];
+							$ctest++;
+							break;
 							case 4:
-								$thn = $row['F'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$jumlah = $this->ktt($row['G']);
-								$luas = $this->ktt($row['H']);
-								$harga_beli = $this->ktt($row['I']);
-								$kondisi = $row['K'];
-								$ctest++;
-								break;
+							$thn = $row['F'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$jumlah = $this->ktt($row['G']);
+							$luas = $this->ktt($row['H']);
+							$harga_beli = $this->ktt($row['I']);
+							$kondisi = $row['K'];
+							$ctest++;
+							break;
 							case 5:
-								$thn = $row['F'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$jumlah = $this->ktt($row['G']);
-								$harga_beli = $this->ktt($row['H']);
-								$kondisi = $row['J'];
-								$ctest++;
-								break;
+							$thn = $row['F'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$jumlah = $this->ktt($row['G']);
+							$harga_beli = $this->ktt($row['H']);
+							$kondisi = $row['J'];
+							$ctest++;
+							break;
 							case 6:
-								$thn = $row['F'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$jumlah = $this->ktt($row['G']);
-								$harga_beli = $this->ktt($row['H']);
-								$ctest++;
-								break;
+							$thn = $row['F'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$jumlah = $this->ktt($row['G']);
+							$harga_beli = $this->ktt($row['H']);
+							$ctest++;
+							break;
 						}
 
 						array_push($data, array(
@@ -1691,6 +1743,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS KALBAR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_kalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_kalbar']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/kalbar");
@@ -1764,36 +1821,36 @@ class Uploads extends CI_Controller {
 
 						switch ($tab) {
 							case 1:
-								$uraian = $row['D'];
-								$nup = $row['E'];
-								$harga_beli = $this->ktt($row['H']);
-								$luas = $this->ktt($row['I']);
-								$kondisi = $row['J'];
-								$ctest++;
-								break;
+							$uraian = $row['D'];
+							$nup = $row['E'];
+							$harga_beli = $this->ktt($row['H']);
+							$luas = $this->ktt($row['I']);
+							$kondisi = $row['J'];
+							$ctest++;
+							break;
 							case 2:
-								$uraian = $row['D'];
-								$merk = $row['E'];
-								$harga_beli = $this->ktt($row['F']);
-								$thn = $row['G'];
-								if (strlen($thn) > 4) {
-									preg_match("/[0-9]{4}\b/", $thn, $thnT);
-									$thn = $thnT[0];
-								}
-								$kondisi = $row['H'];
-								$ctest++;
-								break;
+							$uraian = $row['D'];
+							$merk = $row['E'];
+							$harga_beli = $this->ktt($row['F']);
+							$thn = $row['G'];
+							if (strlen($thn) > 4) {
+								preg_match("/[0-9]{4}\b/", $thn, $thnT);
+								$thn = $thnT[0];
+							}
+							$kondisi = $row['H'];
+							$ctest++;
+							break;
 							case 3:
-								$nup = $row['D'];
-								$uraian = $row['E'];
-								$harga_beli = $this->ktt($row['G']);
+							$nup = $row['D'];
+							$uraian = $row['E'];
+							$harga_beli = $this->ktt($row['G']);
 								// $thn = $row['H'];
 								// if (strlen($thn) > 4) {
 								// 	preg_match("/[0-9]{4}\b/", $thn, $thnT);
 								// 	$thn = $thnT[0];
 								// }
-								$ctest++;
-								break;
+							$ctest++;
+							break;
 						}
 
 						array_push($data, array(
@@ -1825,6 +1882,11 @@ class Uploads extends CI_Controller {
 		}
 
 		//upload success
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD SARPRAS SUMBAR";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+		
 		$this->session->set_flashdata('sarpras_sumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['sarpras_sumbar']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_sarpras/sumbar");
@@ -1874,226 +1936,226 @@ class Uploads extends CI_Controller {
 					switch ($nf) {
 						case 1:
 							// file eselon 1
-							foreach ($rows as $row) {
+						foreach ($rows as $row) {
 							preg_match('/\b[0-9]{5}\b/', $row['B'], $tmp);
 								// echo count($tmp);
-								if (count($tmp) > 0) {
-									if ($tmp[0] != "01001") {
-										preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-										array_push($data, array(
-											'satker'    =>  $tmp[0],
-											'nama'  =>  $txt[0],
-											'pagu_peg' => $row['C'],
-											'real_peg' => $row['D'],
-											'pagu_bar' => $row['G'],
-											'real_bar' => $row['H'],
-											'pagu_mod' => $row['K'],
-											'real_mod' => $row['L'],
-											'created_at' => $newDate
-										));
-									}
+							if (count($tmp) > 0) {
+								if ($tmp[0] != "01001") {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data, array(
+										'satker'    =>  $tmp[0],
+										'nama'  =>  $txt[0],
+										'pagu_peg' => $row['C'],
+										'real_peg' => $row['D'],
+										'pagu_bar' => $row['G'],
+										'real_bar' => $row['H'],
+										'pagu_mod' => $row['K'],
+										'real_mod' => $row['L'],
+										'created_at' => $newDate
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 						case 2:
 							// file satker
-							$pool = 0;
-							$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
-							foreach ($rows as $row) {
-								$add = $spanint = false;
-								$nama = "";
-								preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
+						$pool = 0;
+						$pagu_peg_a = $pagu_mod_a = $pagu_bar_a = $real_peg_a = $real_mod_a = $real_bar_a = $satker_a = $nama_a = 0;
+						foreach ($rows as $row) {
+							$add = $spanint = false;
+							$nama = "";
+							preg_match('/\b[0-9]{6}\b/', $row['B'], $tmp);
 								// echo count($tmp);
-								if (count($tmp) > 0) {
-									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-									$nama = $txt[0];
+							if (count($tmp) > 0) {
+								preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+								$nama = $txt[0];
 
-									switch ($tmp[0]) {
-										case 403200:
+								switch ($tmp[0]) {
+									case 403200:
 											// SETJEN
-											$add = true;
-											break;
-										case 483005:
+									$add = true;
+									break;
+									case 483005:
 											// DKPP
-											$add = true;
-											break;
-										case 448302:
+									$add = true;
+									break;
+									case 448302:
 											// IPDN
 											// $add = true;
-											$satker_a = $tmp[0];
-											$nama_a = $txt[0];
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$satker_a = $tmp[0];
+									$nama_a = $txt[0];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											$nama = "IPDN KAMPUS JATINANGOR";
-											break;
-										case 352593:
+									$pool++;
+									$spanint = true;
+									$nama = "IPDN KAMPUS JATINANGOR";
+									break;
+									case 352593:
 											// IPDN JAKARTA
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 677010:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677010:
 											// IPDN SULUT
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 677024:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677024:
 											// IPDN SULSEL
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 677045:
+									$pool++;
+									$spanint = true;
+									break;
+									case 677045:
 											// IPDN SUMBAR
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 683070:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683070:
 											// IPDN KALBAR
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 683084:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683084:
 											// IPDN NTB
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-										case 683091:
+									$pool++;
+									$spanint = true;
+									break;
+									case 683091:
 											// IPDN PAPUA
 											// $add = true;
-											$pagu_peg_a += $row['C'];
-											$real_peg_a += $row['D'];
-											$pagu_bar_a += $row['G'];
-											$real_bar_a += $row['H'];
-											$pagu_mod_a += $row['K'];
-											$real_mod_a += $row['L'];
+									$pagu_peg_a += $row['C'];
+									$real_peg_a += $row['D'];
+									$pagu_bar_a += $row['G'];
+									$real_bar_a += $row['H'];
+									$pagu_mod_a += $row['K'];
+									$real_mod_a += $row['L'];
 
-											$pool++;
-											$spanint = true;
-											break;
-									}
-                
-									if ($add) {
-										array_push($data, array(
-											'satker'	=>  $tmp[0],
-											'nama'		=>  $nama,
-											'pagu_peg'	=> $row['C'],
-											'real_peg'	=> $row['D'],
-											'pagu_bar'	=> $row['G'],
-											'real_bar'	=> $row['H'],
-											'pagu_mod'	=> $row['K'],
-											'real_mod'	=> $row['L'],
-											'created_at'	=> $newDate
-										));
-									} elseif ($pool == 8) {
-										array_push($data, array(
-											'satker'	=>  $satker_a,
-											'nama'		=>  $nama_a,
-											'pagu_peg'	=> $pagu_peg_a,
-											'real_peg'	=> $real_peg_a,
-											'pagu_bar'	=> $pagu_bar_a,
-											'real_bar'	=> $real_bar_a,
-											'pagu_mod'	=> $pagu_mod_a,
-											'real_mod'	=> $real_mod_a,
-											'created_at'	=> $newDate
-										));
-									} 
+									$pool++;
+									$spanint = true;
+									break;
+								}
 
-									if ($spanint) {
-										array_push($data_span, array(
-											'satker'	=>  $tmp[0],
-											'nama'		=>  $nama,
-											'pagu_peg'	=> $row['C'],
-											'real_peg'	=> $row['D'],
-											'pagu_bar'	=> $row['G'],
-											'real_bar'	=> $row['H'],
-											'pagu_mod'	=> $row['K'],
-											'real_mod'	=> $row['L'],
-											'created_at'	=> $newDate
-										));
-									}
+								if ($add) {
+									array_push($data, array(
+										'satker'	=>  $tmp[0],
+										'nama'		=>  $nama,
+										'pagu_peg'	=> $row['C'],
+										'real_peg'	=> $row['D'],
+										'pagu_bar'	=> $row['G'],
+										'real_bar'	=> $row['H'],
+										'pagu_mod'	=> $row['K'],
+										'real_mod'	=> $row['L'],
+										'created_at'	=> $newDate
+									));
+								} elseif ($pool == 8) {
+									array_push($data, array(
+										'satker'	=>  $satker_a,
+										'nama'		=>  $nama_a,
+										'pagu_peg'	=> $pagu_peg_a,
+										'real_peg'	=> $real_peg_a,
+										'pagu_bar'	=> $pagu_bar_a,
+										'real_bar'	=> $real_bar_a,
+										'pagu_mod'	=> $pagu_mod_a,
+										'real_mod'	=> $real_mod_a,
+										'created_at'	=> $newDate
+									));
+								} 
+
+								if ($spanint) {
+									array_push($data_span, array(
+										'satker'	=>  $tmp[0],
+										'nama'		=>  $nama,
+										'pagu_peg'	=> $row['C'],
+										'real_peg'	=> $row['D'],
+										'pagu_bar'	=> $row['G'],
+										'real_bar'	=> $row['H'],
+										'pagu_mod'	=> $row['K'],
+										'real_mod'	=> $row['L'],
+										'created_at'	=> $newDate
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 						case 3:
 							// file kegiatan (biro)
-							$biro = array('1286', '1292', '1293', '1294');
-							foreach ($rows as $row) {
-								preg_match('/\b[0-9]{4}\b/', $row['B'], $tmp);
-								if (count($tmp) > 0) {
-									if (in_array($tmp[0], $biro)) {
-										preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
-										array_push($data_span, array(
-											'satker'	=>  $tmp[0],
-											'nama'		=>  $txt[0],
-											'pagu_peg'	=> $row['C'],
-											'real_peg'	=> $row['D'],
-											'pagu_bar'	=> $row['G'],
-											'real_bar'	=> $row['H'],
-											'pagu_mod'	=> $row['K'],
-											'real_mod'	=> $row['L'],
-											'created_at'	=> $newDate
-										));
-									}
+						$biro = array('1286', '1292', '1293', '1294');
+						foreach ($rows as $row) {
+							preg_match('/\b[0-9]{4}\b/', $row['B'], $tmp);
+							if (count($tmp) > 0) {
+								if (in_array($tmp[0], $biro)) {
+									preg_match('/[A-Za-z]+[A-Za-z ]+/', $row['B'], $txt);
+									array_push($data_span, array(
+										'satker'	=>  $tmp[0],
+										'nama'		=>  $txt[0],
+										'pagu_peg'	=> $row['C'],
+										'real_peg'	=> $row['D'],
+										'pagu_bar'	=> $row['G'],
+										'real_bar'	=> $row['H'],
+										'pagu_mod'	=> $row['K'],
+										'real_mod'	=> $row['L'],
+										'created_at'	=> $newDate
+									));
 								}
 							}
-							$nf = 1;
-							break;
+						}
+						$nf = 1;
+						break;
 					}
 				}
 			}
@@ -2115,6 +2177,11 @@ class Uploads extends CI_Controller {
 			$this->uploads_model->upsert_batch($data_span, 'tbl_spanint', $newDate);
 			// exit;
 			// //upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD RANK";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+		
 			$this->session->set_flashdata('rank', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect("uploads/v_rank");
@@ -2129,12 +2196,14 @@ class Uploads extends CI_Controller {
 	{
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['pagu']['name']) && in_array($_FILES['pagu']['type'], $file_mimes)) {
+			// var_dump($file_mimes);exit();
 
 			$arr_file = explode('.', $_FILES['pagu']['name']);
 			$extension = end($arr_file);
+			// var_dump($extension);exit;
 
 			if($extension != 'xlsx') {
-				$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				$this->session->set_flashdata('notifpagu', '<div class="alert alert-danger"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
 				redirect("uploads/v_sas"); 
 			} else {
@@ -2142,6 +2211,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
+			// var_dump($reader->load($_FILES['pagu']['tmp_name']));exit;
 
 
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
@@ -2194,7 +2264,7 @@ class Uploads extends CI_Controller {
 						$unit = $id_b."<br>".(($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit).$row['AI']."<br>";
 						$temp = explode(".", $row['AI']);
 						$satker_biro = $temp[0];
-						// echo $unit;
+						// var_dump($satker_biro);exit();
 
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 						// echo $id_c;
@@ -2248,6 +2318,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PAGU";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2356,6 +2431,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SULSEL";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2461,6 +2541,11 @@ class Uploads extends CI_Controller {
 			unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI KALBAR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifkalbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2563,6 +2648,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI NTB";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifntb', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2667,6 +2757,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI PAPUA";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifpapua', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2769,6 +2864,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SULUT";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsulut', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2871,6 +2971,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD REALISASI SUMBAR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('notifsumbar', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -2879,7 +2984,7 @@ class Uploads extends CI_Controller {
 
 	public function praja()
 	{
-				// Load plugin PHPExcel nya
+		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
 
@@ -2913,32 +3018,39 @@ class Uploads extends CI_Controller {
 			$nullcc = 0;
 			while(!$stop) {
 				$row = $sheet[$num++];
+				// var_dump($round(val)w);exit();
 				if ($row['B'] == NULL) {
 					$nullcc++;
 					if ($nullcc == 4) {
 						$stop = true;    
 					}
-				} elseif (strlen($row['D']) == 1){
+				} elseif (strlen($row['C']) == 1){
 					$nullcc = 0;
 					$angkatan = 31;
-					$kurangtahun = 2020 - $row['AZ'];
+					$kurangtahun = 2020 - $row['BA'];
 					$hasil = 0;
 
-					if ($row['AZ'] == 2020)  {
+					$bb = explode(".", $row['F']);
+					$cc = $bb[0];
+
+					if ($row['BA'] == 2020)  {
 						$hasil = $angkatan;
-					}elseif($row['AZ'] < 2020 || $row['AZ'] > 2020 ){
+					}elseif($row['BA'] < 2020 || $row['BA'] > 2020 ){
 						$hasil= $angkatan-$kurangtahun;
 					}
 
+
+					
 					array_push($unitpraja, array(
-						'no_spcp'      => $row['B'],
-						'nama'      => $row['C'],
-						'jk'      => $row['D'],
-						'nisn'      => $row['E'],
-						'npwp'      => $row['F'],
+						'no_spcp'      => $row['A'],
+						'nama'      => $row['B'],
+						'jk'      => $row['C'],
+						'nisn'      => $row['D'],
+						'npwp'      => $row['E'],
+						'npp'      => $row['F'],
 						'nik_praja'      => $row['G'],
 						'tmpt_lahir'      => $row['H'],
-						'tgl_lahir'      => $row['I'],
+						'tgl_lahir'      =>  date("Y-m-d", strtotime($row['I'])),
 						'agama'      => $row['J'],
 						'alamat'      => $row['K'],
 						'rt'      => $row['L'],
@@ -2957,21 +3069,22 @@ class Uploads extends CI_Controller {
 						'kewarganegaraan'      => $row['AM'],
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
-						'kode_prodi'      => $row['AW'],
-						'jenis_pendaftaran'      =>  $row['AX'],
-						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AY'])),
-						'tahun_masuk_kuliah'      => $row['AZ'],
-						'pembiayaan'      => $row['BA'],
-						'jalur_masuk'      => $row['BB'],
+						'prodi'      => $row['AW'],
+						'fakultas'      => $row['AX'],
+						'jenis_pendaftaran'      =>  $row['AY'],
+						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
+						'tahun_masuk_kuliah'      => $row['BA'],
+						'pembiayaan'      => $row['BB'],
+						'jalur_masuk'      => $row['BC'],
 						'status' => $stat,
-						'tingkat' => $row['AZ'] - date('Y') +1,
-						'angkatan' => $hasil
+						'tingkat' => 2020-$row['BA']+1,
+						'angkatan' => $cc
 					));
-
-
+					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
+					// var_dump($row['BA']-date('Y')+1);exit();
 					array_push($unitortu, array(
-						'nik_praja'      => $row['G'],
-						'nama'      => $row['C'],
+						'npp'      => $row['F'],
+						'nama'      => $row['B'],
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
@@ -2991,8 +3104,8 @@ class Uploads extends CI_Controller {
 
 
 					array_push($unitwali, array(
-						'nik_praja'      => $row['G'],
-						'nama'      => $row['C'],
+						'npp'      => $row['F'],
+						'nama'      => $row['B'],
 						'nik_wali'      => $row['AP'],
 						'nama_wali'      => $row['AQ'],
 						'tgllahir_wali'      => $row['AR'],
@@ -3006,18 +3119,23 @@ class Uploads extends CI_Controller {
 				}
 
 			}
-			// print("<pre>".print_r($unitpraja,true)."</pre>");
-			// exit();
-			$this->db->truncate('praja');
+
+			// var_dump($unitpraja);exit();
+			// $this->db->truncate('praja');
 			$this->db->insert_batch('praja', $unitpraja);
-			$this->db->truncate('orangtua');
+			// $this->db->truncate('orangtua');
 			$this->db->insert_batch('orangtua', $unitortu);
-			$this->db->truncate('wali');
+			// $this->db->truncate('wali');
 			$this->db->insert_batch('wali', $unitwali);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PRAJA";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('praja', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_praja');
@@ -3134,6 +3252,11 @@ class Uploads extends CI_Controller {
 			$this->db->insert_batch('orangtua', $unitortu);
 			$this->db->insert_batch('wali', $unitwali);
 					//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD FUNCTION PRAJA BARU";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('prajabaru', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_praja');
@@ -3184,6 +3307,12 @@ class Uploads extends CI_Controller {
 				array_push($saveData, $data);
 			}
 			$this->db->insert_batch('tbl_thl', $saveData);
+
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD THL";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('thl',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_thl'); 
 		}
@@ -3368,7 +3497,7 @@ class Uploads extends CI_Controller {
 					}				
 				}
 			}
-				
+
 			// print("<pre>".print_r($data,true)."</pre>");
 			// print("<pre>".print_r($pelatihan,true)."</pre>");
 			// exit;
@@ -3377,6 +3506,12 @@ class Uploads extends CI_Controller {
 		//upload success
 		$this->db->insert_batch('tbl_pns', $data);
 		$this->db->insert_batch('tbl_pelatihan', $pelatihan);
+		
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "UPLOAD PNS";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		$this->uploads_model->log($log);
+
 		$this->session->set_flashdata('pns', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data '.$_FILES['pns']['name'].' berhasil diimport!</div>');
 			//redirect halaman
 		redirect("uploads/v_pns");
@@ -3536,6 +3671,11 @@ class Uploads extends CI_Controller {
 
 			$this->db->insert_batch('tbl_pns', $saveData);
 			$this->db->insert_batch('tbl_pelatihan', $savedDataTrain); 
+
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD PNS2";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
 
 			$this->session->set_flashdata('pns',"<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"); 
 			redirect('uploads/v_pns'); 
@@ -3729,6 +3869,11 @@ class Uploads extends CI_Controller {
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD FUNCTION JATINANGOR";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('nangor', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
@@ -3791,6 +3936,11 @@ class Uploads extends CI_Controller {
 			}
 			$this->db->truncate('tbl_dosen');
 			$this->db->insert_batch('tbl_dosen', $data);
+			
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD DOSEN";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
 
 			$this->session->set_flashdata('dosen', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b><br>Data berhasil diimport!</div>');
 			//redirect halaman
@@ -3879,7 +4029,7 @@ class Uploads extends CI_Controller {
 					));
 						// exit;
 
-						
+
 				}
 				$numrow++;
 			}
@@ -3888,6 +4038,11 @@ class Uploads extends CI_Controller {
 			// exit();
 
 			//upload success
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "UPLOAD ALUMNI";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->uploads_model->log($log);
+
 			$this->session->set_flashdata('alumni', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_alumni');

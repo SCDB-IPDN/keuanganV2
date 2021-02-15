@@ -26,10 +26,10 @@
         <div class="table-responsive">
           <div class="panel-body">
 
-
+ 
             <?php foreach (json_decode($data, true) as $x) : ?>
               <form>
-                <h3> DATA DIRI </h3>
+                <h3> DATA DIRI <?= $x['nama']; ?> </h3>
                 <br>
                 <h5> Nama : <?= $x['nama']; ?> </h5>
                 <br>
