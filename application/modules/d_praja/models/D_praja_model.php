@@ -160,33 +160,19 @@ class D_praja_model extends CI_Model
 		return $result;
 	}
 
-	public function get_detail_alumni($id)
-	{
-		$result = $this->db->query("SELECT * FROM alumni WHERE alumni.id = $id ");
-		return $result;
+	function edit_alumni($editalumni){
+
+		$id = $editalumni['id_alumni'];
+		$this->db->where('id_alumni', $editalumni['id_alumni']);
+		$this->db->update('alumni', $editalumni);
 	}
 
-	public function edit_alumni($alumni)
-	{
-		$id = $alumni['id'];
+	function hapus_alumni($id){
 
-		// $hasil ="UPDATE praja SET email=$email,alamat=$alamat,rt=$rt,rw=$rw,nama_dusun=$nama_dusun,
-		// kelurahan=$kelurahan,kecamatan=$kecamatan,kab_kota=$kab_kota,kode_pos=$kode_pos,
-		// provinsi=$provinsi,tlp_pribadi=$tlp_pribadi,status=$status,tingkat=$tingkat,
-		// angkatan=$angkatan where nama=$nama";
-		
-		$hasil = $this->db->where('id', $id)->update('alumni', $alumni);
-		// echo "$hasil";
-		// exit();
-		return $hasil;
+		$this->db->where(['id_alumni' => $id]);
+		$this->db->delete('alumni');
+
 	}
-
-	public function get_provinsi_alumni()
-	{
-		$prov=$this->db->query("SELECT provinsi , count(provinsi) as jumlah from alumni group by provinsi");
-		return $prov;
-	}
-
 	//END ALUMNI
 
 }

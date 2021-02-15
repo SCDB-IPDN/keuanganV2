@@ -11,9 +11,7 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ) { ?>
               <span><a href="" class="btn btn-sm btn-yellow" data-toggle="modal" data-target="#addplot">TAMBAH PLOT</a></span>
-            <?php } ?>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -22,8 +20,6 @@
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
           </div>
         </div>
-        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ) { ?>
-        <?php } ?>
         <?php if ($this->session->flashdata('plot') != NULL) { ?>
           <div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -120,8 +116,16 @@
             	</div>
             </div>
             <div class="form-group">
+            	<label class="col-form-label">Sks :</label>
+            	<input type="text" class="form-control" id="sks" name="sks" readonly="">
+            </div>
+            <div class="form-group">
+            	<label class="col-form-label">Semester :</label>
+            	<input type="text" class="form-control" id="semester" name="semester" readonly="">
+            </div>
+            <div class="form-group">
               <div class="row">
-                <div class="col-xl-3">
+                <div class="col-xl-4">
                   <label class="col-form-label">Jam :</label>
                   <input type="time" class="form-control" id="jam" name="jam" required>
                 </div>
@@ -134,18 +138,6 @@
             <div class="form-group">
               <label class="col-form-label">Kelas :</label>
               <input type="text" class="form-control" id="kelas" name="kelas" required>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Semester :</label>
-              <select class="form-control" id="semester" name="semester" required>
-                <option>Select Semester</option>
-                <option>GANJIL 2020/2021</option>
-                <option>GENAP 2020/2021</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Sks :</label>
-              <input type="text" class="form-control" id="sks" name="sks" required>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -327,6 +319,33 @@
 				.then(response => response);
 		}
 
+    /**
+		 * mengambil data JSON dari Controller Kemeng/getMatkulByProdiId dengan parameter prodi_id
+		 */
+		function getsks(sks) {
+			return fetch("<?= site_url('kemeng/GetSksByMatkul/') ?>" + sks, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
+    }
+    
+    function getsemester(semester) {
+			return fetch("<?= site_url('kemeng/GetSemesterByMatkul/') ?>" + semester, {
+					method: "get",
+					headers: {
+						"Content-Type": "application/json",
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				})
+				.then(response => response.json())
+				.then(response => response);
+		}
+
 		/**
 		 * on change event
 		 * Ketika ada perubahan di <select name="fakultas" id="fakultas">
@@ -351,6 +370,18 @@
 			let matkul_select = ''; // menampung template literals
 			list_matkul.forEach(row => matkul_select += `<option value="${row.id_matkul}">${row.nama_matkul}</option>`); // perulangan data
 			$('#id_matkul').html(matkul_select); // mencetak data
+		});
+
+    $('#id_matkul').on('change', async function () {
+			let list_sks = await getsks($('#id_matkul').val());
+			$('#sks').val(list_sks[0].sks); 
+      console.log(list_sks[0].sks)
+    });
+    
+    $('#id_matkul').on('change', async function () {
+			let list_semester = await getsemester($('#id_matkul').val());
+			$('#semester').val(list_semester[0].semester); 
+      console.log(list_semeter[0].semester)
 		});
 
 		// $('#checkForm').on('click', function () {

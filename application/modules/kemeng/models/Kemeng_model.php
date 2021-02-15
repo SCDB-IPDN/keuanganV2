@@ -161,6 +161,7 @@ class Kemeng_model extends CI_Model
 		
 	}
 
+	//HONOR
 	function get_absen_bulan($date, $nip) {
 		$date_t = explode('-', $date);
 		$index = $this->get_index_honor($nip)->row_array()['index'];
@@ -179,6 +180,7 @@ class Kemeng_model extends CI_Model
 		$res = $this->db->get();
 		return $res;
 	}
+	//END HONOR
 
 	function get_honor_allinone($id_fakultas){
 
@@ -299,13 +301,19 @@ class Kemeng_model extends CI_Model
 		
 		return $query;
 	}
-	//plot dosen
-	public function get_all_plot()
+
+
+	//PLOT
+	public function get_all_plot($id_fakultas)
 	{
+		if ($id_fakultas != "Admin"){
+			$makul = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas Where tbl_fakultas.id_fakultas ='$id_fakultas' ");
+		}else{
 
-	$result = $this->db->query("SELECT * FROM tbl_plot_dosen ");
-	return $result;
+			$makul = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas ");
+		}
 
+		return $makul;
 	}
 
   	function tambah_plot($plot)
@@ -373,6 +381,18 @@ class Kemeng_model extends CI_Model
         $query = $this->db->get_where('tbl_matkul', array('id_prodi' => $prodi_id));
         return $query->result();
 	}
+
+	public function SksByMatkul($sks)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_matkul' => $sks));
+        return $query->result();
+	}
+
+	public function SemesterByMatkul($semester)
+    {
+        $query = $this->db->get_where('tbl_matkul', array('id_matkul' => $semester));
+        return $query->result();
+	}
 	
 	public function getRowFakultas($id)
 	{
@@ -389,6 +409,11 @@ class Kemeng_model extends CI_Model
 	public function getRowMatkul($id)
 	{
 		$query = $this->db->get_where('tbl_matkul', ['id_matkul' => $id]);
+		return $query->row();
+	}
+	public function getRowSks($id)
+	{
+		$query = $this->db->get_where('tbl_matkul', ['id_prodi' => $id]);
 		return $query->row();
 	}
 	//END PLOT
