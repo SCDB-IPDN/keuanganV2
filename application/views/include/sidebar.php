@@ -26,6 +26,12 @@
 			</li>
 		</ul>
 		<ul class="nav">
+			<li class="has-sub">
+				<a href="https://ipdn.ac.id" target="_blank">
+					<i class="fas fa-globe"></i>
+					<span>IPDN</span>
+				</a>
+			</li>
 			<li class="nav-header">Navigation</li>
 			<li class="<?php echo $this->uri->segment(1) == "home" ? "active" : ""; ?> has-sub">
 				<a href="<?php echo base_url('home'); ?>">
@@ -33,6 +39,7 @@
 					<span>Dashboard</span>
 				</a>
 			</li>
+
 
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
@@ -72,6 +79,7 @@
 							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
 						</ul>
 					</li>
+					<li class=""><a href="https://perdin.ipdn.ac.id" target="_blank">PERDIN</a></li>
 				</ul>
 			</li>
 			<!-- END KEUANGAN -->
@@ -100,14 +108,15 @@
 			<!-- END KEPEGAWAIAN -->
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
 					<span>Akademik</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
+					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
@@ -195,6 +204,7 @@
 			<!-- END SARPRAS -->
 
 
+
 				<!-- Fakultas -->
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
@@ -266,8 +276,64 @@
 					</li>
 				</ul>
 			</li>
-	
 			<!-- END ORTALA -->
+
+			<!-- PERPUSTAKAAN -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-book"></i>
+					<span>Perpustakaan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://elib.ipdn.ac.id" target="_blank">ELIB</a></li>
+					<li class=""><a href="https://er.elib.ipdn.ac.id" target="_blank">ER-ELIB</a></li>
+					<li class=""><a href="https://eprints.ipdn.ac.id" target="_blank">E-PRINT</a></li>
+				</ul>
+			</li>
+			<!-- END PERPUSTAKAAN -->
+
+			<!-- RISET -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-refresh"></i>
+					<span>Riset</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://ojs.ipdn.ac.id" target="_blank">OJS</a></li>
+				</ul>
+			</li>
+			<!-- END RISET -->
+
+			<!-- TP -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-desktop"></i>
+					<span>Teknologi Pendidikan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://mail.ipdn.ac.id" target="_blank">EMAIL</a></li>
+					<li class=""><a href="https://mcu.ipdn.ac.id" target="_blank">MCU</a></li>
+					<li class=""><a href="https://livestreaming.ipdn.ac.id" target="_blank">STREAMING</a></li>
+				</ul>
+			</li>
+			<!-- END TP -->
+
+			<!-- LAINNYA -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-info"></i>
+					<span>Lainnya</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
+					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI) ANGKATAN 31</a></li>
+				</ul>
+			</li>
+			<!-- END LAINNYA -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
 			<li class="nav-header">Data</li>
@@ -330,6 +396,9 @@
 				</li>
 				<li class="<?php echo $this->uri->segment(1) == "pegawai" ? "active" : ""; ?>">
 					<a href="<?php echo base_url('pegawai'); ?>"><i class="fa fa-users"></i> <span>User</span></a>
+				</li>
+				<li class="<?php echo $this->uri->segment(1) == "log" ? "active" : ""; ?>">
+					<a href="<?php echo base_url('log'); ?>"><i class="fa fa-history"></i> <span>Log</span></a>
 				</li>
 			<?php } ?>
 

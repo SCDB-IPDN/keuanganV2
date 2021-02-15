@@ -21,8 +21,11 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-              <span><a href="<?php echo base_url('d_praja');?>" class="btn btn-sm btn-warning">Kembali</a></span>
-            <span><a href="<?php echo base_url('d_praja/ubahstatus');?>" class="btn btn-sm btn-green">UBAH STATUS PRAJA</a></span>
+            <span><a href="<?php echo base_url('d_praja');?>" class="btn btn-sm btn-warning">Kembali</a></span>
+            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){?>
+              <span><a href="<?php echo base_url('d_praja/ubahstatus');?>" class="btn btn-sm btn-green">UBAH STATUS PRAJA</a></span>
+            <?php } ?>
+
 
             <!-- <span><a href="" class="btn btn-sm btn-red" data-toggle="modal" data-target="#editstatus">UBAH STATUS PRAJA</a></span> -->
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
@@ -50,7 +53,7 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th> ID </th>
+                  <!-- <th>NPP</th> -->
                   <th>NAMA</th>
                   <th>TINGKAT</th>
                   <th>ANGKATAN</th>
@@ -64,13 +67,18 @@
                 <?php foreach (json_decode($data, true) as $x) : ?>
                   <tr>
                     <td><?php echo $no++; ?></td>
-                    <td><?= $x['id']; ?></td>
                     <td><?= $x['nama']; ?></td>
                     <td><?= $x['tingkat']; ?></td>
                     <td><?= $x['angkatan']; ?>
                     <td><?= $x['status']; ?></td>
                     <td><?= $x['keterangan']; ?></td>
-                    <td><a href='<?php echo base_url('uploads/'. $x['bukti'])?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
+
+                    <?php if($x['bukti'] != NULL){ ?>
+                      <td><a href='<?php echo base_url('/assets/uploads_skpraja/'. $x['bukti'])?>' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-download'></i></a></td>
+                    <?php }else{ ?>
+                      <td><i><font style='color:red;'>SK belum tersedia</font></i></td>
+                    <?php } ?>
+                    
                     
                   </tr>
                 <?php endforeach; ?>
