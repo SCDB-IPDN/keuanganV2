@@ -19,23 +19,23 @@
         </div>
 
         <div class="card-body">
-              <div class="row">
-                                <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('notifberita') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>BeritaEksternal/uploadaja" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL nya Yaa</label>
-                                            <span class="ml-2">
-                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
-                                            </span>
-                                            <input for="struk" type="file" name="struk" class="form-control">
-                                        </div>
+          <div class="row">
+            <div class="col-xl-7 col-lg-8">
+              <?php echo $this->session->flashdata('notifberita') ?>
+              <form method="POST" action="<?php echo base_url() ?>BeritaEksternal/uploadaja" enctype="multipart/form-data">
+                  <div class="form-group">
+                      <label for="exampleInputEmail2">UNGGAH FILE EXCEL nya Yaa</label>
+                      <span class="ml-2">
+                          <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
+                      </span>
+                      <input for="struk" type="file" name="struk" class="form-control">
+                  </div>
 
-                                        <button id="struk" type="submit" class="btn btn-success">UPLOAD Filenya Ya</button>
-                                    </form>
-                                </div>
-                </div>
-           </div>
+                  <button id="struk" type="submit" class="btn btn-success">UPLOAD Filenya Ya</button>
+              </form>
+            </div>
+          </div>
+        </div>
 
         <?php if($this->session->flashdata('error') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
@@ -57,31 +57,30 @@
               </tr>
             </thead>
             <tbody>
-            <?php
-                $no =0 ;
-                foreach($data as $row){
-                $no++;    
-            ?>
+              <?php
+                  $no =0 ;
+                  foreach($data as $row){
+                  $no++;    
+              ?>
               <tr>
-              <td><?php echo $no; ?></td>
-              <td><?php echo $row->NamaMedia; ?></td>
-              <td><?php echo $row->Judul; ?></td>
-              <td> <a href="<?php echo $row->Link?>"> <?php echo $row->Link?></a></td>
-              <!-- <a href="tanggal"> tanggal</a> -->
-              <td><?php echo $row->Tanggal; ?></td>
-              <td>
-                <button type="button" class="btn btn-primary" 
-                data-toggle="modal" data-target="#edit<?php echo 
-                $row->Id?>"><i class="fas fa-edit"></i></button>
-                
-                <button type="button" class="btn btn-danger" 
-                data-toggle="modal" data-target="#Hapus<?php echo 
-                $row->Id?>"><i class="fas fa-trash"></i></button>
-              </td>
+                <td><?php echo $no; ?></td>
+                <td><?php echo $row->NamaMedia; ?></td>
+                <td><?php echo $row->Judul; ?></td>
+                <td> <a href="<?php echo $row->Link?>"> <?php echo $row->Link?></a></td>
+                <td><?php echo $row->Tanggal; ?></td>
+                <td>
+                  <button type="button" class="btn btn-primary" 
+                  data-toggle="modal" data-target="#edit<?php echo 
+                  $row->Id?>"><i class="fas fa-edit"></i></button>
+                  
+                  <button type="button" class="btn btn-danger" 
+                  data-toggle="modal" data-target="#Hapus<?php echo 
+                  $row->Id?>"><i class="fas fa-trash"></i></button>
+                </td>
               
               </tr>
+
               <!--Modal EDIT-->
-              </div>
               <div class="modal fade" Id="edit<?php echo 
                 $row->Id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -113,7 +112,7 @@
 
                         <div class="form-group">
                           <label for="Tanggal" class="col-form-label">Tanggal:</label>
-                          <input type="text" class="form-control" id="Tanggal" name="Tanggal" value="<?php echo $row->Tanggal;?>"required>
+                          <input type="date" class="form-control" id="Tanggal" name="Tanggal" value="<?php echo $row->Tanggal;?>"required>
                         </div>
 
                         <div class="modal-footer">
@@ -125,19 +124,19 @@
                    </div>
                 </div>
               </div>
-                        
 
               <!--Modal Hapus-->
               <div class="modal fade" Id="Hapus<?php echo $row->Id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Yakin Nih Akan Hapus Data <?php echo $row->Judul;?></h10>
+                      <h5 class="modal-title" id="exampleModalLabel"> HAPUS </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
+                        <p>Yakin Nih Akan Hapus Data <?php echo $row->Judul;?><p>
                         <form method="post"action="BeritaEksternal/hapus_BeritaEksternal">
                           <input type="hidden" name="Id" value="<?php echo $row->Id;?>">
 
@@ -150,73 +149,58 @@
                     </div>  
                   </div>
                 </div>
-
               </div>
-            </div>
-          </div>
-
-        <?php } ?>
-      </tbody>
-    </table>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- end panel-body -->
+      </div>
+      <!-- end panel -->
+    </div>
+    <!-- end col-10 -->
   </div>
-  <!-- end panel-body -->
-</div>
-<!-- end panel -->
-</div>
-<!-- end col-10 -->
-</div>
   
-              <!--Model Tambah--> 
-              </div>
-              <div class="modal fade" id="Tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Tambah Berita Eksternal</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form method="post"action="BeritaEksternal/tambah_beritaeksternal">
+  <!--Model Tambah--> 
+  <div class="modal fade" id="Tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Berita Eksternal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post"action="BeritaEksternal/tambah_beritaeksternal">
 
-                        <div class="form-group">
-                          <label for="NamaMedia" class="col-form-label">Nama Media:</label>
-                          <input type="text" class="form-control" id="NamaMedia" name="NamaMedia" required>
-                        </div>
+            <div class="form-group">
+              <label for="NamaMedia" class="col-form-label">Nama Media:</label>
+              <input type="text" class="form-control" id="NamaMedia" name="NamaMedia" required>
+            </div>
 
-                        <div class="form-group">
-                          <label for="Judul" class="col-form-label">Judul:</label>
-                          <input type="text" class="form-control" id="Judul" name="Judul" required>
-                        </div>
+            <div class="form-group">
+              <label for="Judul" class="col-form-label">Judul:</label>
+              <input type="text" class="form-control" id="Judul" name="Judul" required>
+            </div>
 
-                        <div class="form-group">
-                          <label for="Link" class="col-form-label">Link:</label>
-                          <input type="text" class="form-control" id="Link" name="Link" required>
-                        </div>
+            <div class="form-group">
+              <label for="Link" class="col-form-label">Link:</label>
+              <input type="text" class="form-control" id="Link" name="Link" required>
+            </div>
 
-                        <div class="form-group">
-                          <label for="Tanggal" class="col-form-label">Tanggal:</label>
-                          <input type="text" class="form-control" id="Tanggal" name="Tanggal" required>
-                        </div>
+            <div class="form-group">
+              <label for="Tanggal" class="col-form-label">Tanggal:</label>
+              <input type="date" class="form-control" id="Tanggal" name="Tanggal" required>
+            </div>
 
-                        <!-- <div class="form-group">
-                          <label class="col-form-label">JenisBarang:</label>
-                          <select name="JenisBarang" class="form-control">
-                                <option value="">Pilih . . .</option>
-                                <option value="Baru">Baru</option>
-                                <option value="Peremajaan">Peremajaan</option>
-                          </select>
-                        </div>         -->
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
 
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                      </div>     
-                      
-                      </form>
-                    </div>
-      
+          </form>
+        </div>
       </div>
     </div>
   </div>
