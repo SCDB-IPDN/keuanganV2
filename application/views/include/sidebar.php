@@ -127,7 +127,7 @@
 			<!-- END KEPRAJAAN -->
 
 			<!-- HUMAS -->
-			<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "beritaeksternal" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-handshake"></i>
