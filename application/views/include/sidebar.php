@@ -86,7 +86,7 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"  || $this->uri->segment(1)=="absensi"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
@@ -111,7 +111,6 @@
 							PRESENSI
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "absensi" && $this->uri->segment(2) == "users" ? "active" : ""; ?>"><a href="<?php echo base_url('absensi/users'); ?>">+ USER PRESENSI</a></li>
 							<li class=""><a href="https://presensi.ipdn.ac.id" target="_blank">APPS PRESENSI</a></li>
 							<li class="<?php echo $this->uri->segment(1) == "absensi" ? "active" : ""; ?>"><a href="<?php echo base_url('absensi'); ?>">REKAP DATA</a></li>
 						</ul>

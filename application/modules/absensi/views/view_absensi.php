@@ -24,7 +24,7 @@
         <div class="table-responsive">
           <div class="panel-body">
 
-            <form method='post' action='index'>
+            <form method='post' action='absensi'>
               <div class="form-group">
                 <div class="row">
                   <div class="col-sm-2">
