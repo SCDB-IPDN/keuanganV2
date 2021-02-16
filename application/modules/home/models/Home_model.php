@@ -13,6 +13,12 @@ class Home_model extends CI_Model{
 		return $query->result();
 	}
 
+	function get_data()
+	{
+        $query = $this->db->query("SELECT * FROM tbl_beritaeksternal");
+        return $query;
+    }
+
 	public function ceksas()
 	{
 		$peg = $this->db->query("SELECT * FROM output_sas where tanggal like '%2021%'")->result();
@@ -35,8 +41,6 @@ class Home_model extends CI_Model{
 
 		return $peg;
 	}
-
-
 
 	public function jum_eselon()
 	{
@@ -130,25 +134,28 @@ class Home_model extends CI_Model{
 	public function angkatan_31()
 	{
 
-   	$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
-   	return $result;
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
+		return $result;
 	
 	}
-	 public function angkatan_30()
+
+	public function angkatan_30()
 	{
-   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
-   return $result;
-	 }
-	 public function angkatan_29()
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
+		return $result;
+	}
+
+	public function angkatan_29()
 	{
-   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
-   return $result;
-	 }
-	 public function angkatan_28()
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
+		return $result;
+	}
+
+	public function angkatan_28()
 	{
-   $result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
-   return $result;
-	 }
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
+		return $result;
+	}
 
 	public function app_perpus()
 	{
@@ -298,13 +305,14 @@ class Home_model extends CI_Model{
 		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
 
 		return $result;
-  }
-  public function angkatan_praja()
-  {
-    $result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja where status='aktif'")->result();
+  	}
 
-    return $result;
-  }
+	public function angkatan_praja()
+	{
+		$result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja where status='aktif'")->result();
+
+		return $result;
+	}
 	
 	public function get_rank_persen() {
 		
