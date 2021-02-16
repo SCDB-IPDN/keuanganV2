@@ -32,10 +32,10 @@ class Kerjasama_m extends CI_Model{
 	// 	return $this->db->count_all_results();
 	// }
 	
-	// public function getById($id)
-	// {
-	// 	return $this->db->get_where('tbl_ort', ['id_prokum' => $id])->row();
-    // }
+	public function getById($id)
+	{
+		return $this->db->get_where('tbl_kerjasama', ['id' => $id])->row();
+    }
     
     /*function get_kategori()
     {   
