@@ -52,7 +52,7 @@ class BeritaEksternal extends CI_Controller
 
         if (!$result) 
         { 							
-            $this->session->set_flashdata('BeritaBeritaEksternal', 'BERITA GAGAL DITAMBAHKAN.'); 				
+            $this->session->set_flashdata('BeritaEksternal', 'BERITA GAGAL DITAMBAHKAN.'); 				
             redirect('BeritaEksternal'); 			
         } 
         else 
@@ -80,7 +80,7 @@ class BeritaEksternal extends CI_Controller
         } 
         else 
         { 								
-            $this->session->set_flashdata('BeritaEksternal', 'DATA USEBERITA EKSTERNAL BERHASIL DIUBAH.');			
+            $this->session->set_flashdata('BeritaEksternal', 'DATA BERITA EKSTERNAL BERHASIL DIUBAH.');			
             redirect('BeritaEksternal'); 			
         }
     }
@@ -89,12 +89,13 @@ class BeritaEksternal extends CI_Controller
     {
         $id_berita=$this->input->post('Id');
         $this->BeritaEksternal_model->hapus_BeritaEksternal($id_berita);
+        $this->session->set_flashdata('BeritaEksternal', 'DATA BERITA EKSTERNAL BERHASIL DIHAPUS.');
         redirect('BeritaEksternal');
     }
 
     public function uploadaja()
     {
-                // Load plugin PHPExcel nya
+        // Load plugin PHPExcel nya
         $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         if(isset($_FILES['struk']['name']) && in_array($_FILES['struk']['type'], $file_mimes)) {
 
