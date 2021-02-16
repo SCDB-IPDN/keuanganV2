@@ -26,6 +26,13 @@
 			</li>
 		</ul>
 		<ul class="nav">
+			<li class="has-sub">
+				<a href="https://ipdn.ac.id" target="_blank">
+					<i class="fas fa-globe"></i>
+					<span>IPDN</span>
+				</a>
+			</li>
+
 			<li class="nav-header">Navigation</li>
 			<li class="<?php echo $this->uri->segment(1) == "home" ? "active" : ""; ?> has-sub">
 				<a href="<?php echo base_url('home'); ?>">
@@ -33,6 +40,7 @@
 					<span>Dashboard</span>
 				</a>
 			</li>
+
 
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
@@ -72,12 +80,13 @@
 							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
 						</ul>
 					</li>
+					<li class=""><a href="https://perdin.ipdn.ac.id" target="_blank">PERDIN</a></li>
 				</ul>
 			</li>
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"  || $this->uri->segment(1)=="absensi"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
@@ -95,19 +104,32 @@
 							<li class="<?php echo $this->uri->segment(2) == "ta" ? "active" : ""; ?>"><a href="<?php echo base_url('kepegawaian/ta'); ?>">TA</a></li>
 						</ul>
 					</li>
+
+					<li class="<?php echo $this->uri->segment(1)=="absensi" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							PRESENSI
+						</a>
+						<ul class="sub-menu">
+							<li class=""><a href="https://presensi.ipdn.ac.id" target="_blank">APPS PRESENSI</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "absensi" ? "active" : ""; ?>"><a href="<?php echo base_url('absensi'); ?>">REKAP DATA</a></li>
+						</ul>
+					</li>
+
 				</ul>
 			</li>
 			<!-- END KEPEGAWAIAN -->
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(2)=="dosen"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
 					<span>Akademik</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(2)=="dosen" ?"active":"";?>"><a href="<?php echo base_url('kepegawaian/dosen');?>">DOSEN</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
+					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
@@ -129,21 +151,21 @@
 			<!-- END KEPRAJAAN -->
 
 			<!-- HUMAS -->
-			<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "beritaeksternal" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-handshake"></i>
 					<span>Humas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							BERITA
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
-							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+							<li class="<?php echo $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('beritaeksternal'); ?>">EKSTERNAL</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -194,8 +216,7 @@
 			</li>
 			<!-- END SARPRAS -->
 
-
-				<!-- Fakultas -->
+			<!-- Fakultas -->
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
@@ -255,7 +276,7 @@
 							<li class="<?php echo $this->uri->segment(2) == "kepres" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/kepres'); ?>">Keputusan Presiden</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "permen" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/permen'); ?>">Peraturan Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "km" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/km'); ?>">Keputusan Menteri</a></li>
-							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Intruksi Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Instruksi Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "sem" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/sem'); ?>">Surat Edaran Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "pr" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/pr'); ?>">Peraturan Rektor</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "keputusan_rektor" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/keputusan_rektor'); ?>">Keputusan Rektor</a></li>
@@ -266,8 +287,80 @@
 					</li>
 				</ul>
 			</li>
-	
 			<!-- END ORTALA -->
+
+			<!-- PERPUSTAKAAN -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-book"></i>
+					<span>Perpustakaan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://elib.ipdn.ac.id" target="_blank">ELIB</a></li>
+					<li class=""><a href="https://er.elib.ipdn.ac.id" target="_blank">ER-ELIB</a></li>
+					<li class=""><a href="https://eprints.ipdn.ac.id" target="_blank">E-PRINT</a></li>
+				</ul>
+			</li>
+			<!-- END PERPUSTAKAAN -->
+
+			<!-- RISET -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-refresh"></i>
+					<span>Riset</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://ojs.ipdn.ac.id" target="_blank">OJS</a></li>
+				</ul>
+			</li>
+			<!-- END RISET -->
+
+			<!-- TP -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-desktop"></i>
+					<span>Teknologi Pendidikan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://mail.ipdn.ac.id" target="_blank">EMAIL</a></li>
+					<li class=""><a href="https://mcu.ipdn.ac.id" target="_blank">MCU</a></li>
+					<li class=""><a href="https://livestreaming.ipdn.ac.id" target="_blank">STREAMING</a></li>
+				</ul>
+			</li>
+			<!-- END TP -->
+
+			<!-- LAINNYA -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-info"></i>
+					<span>Lainnya</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
+
+					<li class=""><a href="http://pddikti.ipdn.ac.id/login" target="_blank">PDDIKTI</a></li>
+					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI)</a></li>
+				<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<span>PILKADA 2020</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://forms.gle/Sc7zgiaxPKTWeu1i8" target="_blank">FORM KUESIONER</a></li>
+					<li class=""><a href="https://bit.ly/3qlwi9P" target="_blank">HASIL KUESIONER</a></li>
+					<li class=""><a href="https://forms.gle/uVGs43WqNdyaHsPA6" target="_blank">FORM MONITORING</a></li>
+					<li class=""><a href="https://bit.ly/2NrqYTA" target="_blank">HASIL MONITORING</a></li>
+					<li class=""><a href="https://forms.gle/YBvKx2kGitw95cLb6 " target="_blank">FORM REKAPITULASI</a></li>
+					<li class=""><a href="https://bit.ly/3qpY2tG" target="_blank">HASIL FORM REKAPITULASI</a></li>
+				</ul>
+			</li>
+				</ul>
+			</li>
+			<!-- END LAINNYA -->
 
 			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
 			<li class="nav-header">Data</li>
@@ -330,6 +423,9 @@
 				</li>
 				<li class="<?php echo $this->uri->segment(1) == "pegawai" ? "active" : ""; ?>">
 					<a href="<?php echo base_url('pegawai'); ?>"><i class="fa fa-users"></i> <span>User</span></a>
+				</li>
+				<li class="<?php echo $this->uri->segment(1) == "log" ? "active" : ""; ?>">
+					<a href="<?php echo base_url('log'); ?>"><i class="fa fa-history"></i> <span>Log</span></a>
 				</li>
 			<?php } ?>
 
