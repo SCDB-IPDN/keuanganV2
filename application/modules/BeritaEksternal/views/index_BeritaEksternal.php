@@ -27,14 +27,14 @@
               <?php echo $this->session->flashdata('notifberita') ?>
               <form method="POST" action="<?php echo base_url() ?>BeritaEksternal/uploadaja" enctype="multipart/form-data">
                   <div class="form-group">
-                      <label for="exampleInputEmail2">UNGGAH FILE EXCEL nya Yaa</label>
+                      <label for="exampleInputEmail2">UNGGAH FILE EXCEL</label>
                       <span class="ml-2">
                           <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                       </span>
                       <input for="struk" type="file" name="struk" class="form-control">
                   </div>
 
-                  <button id="struk" type="submit" class="btn btn-success">UPLOAD Filenya Ya</button>
+                  <button id="struk" type="submit" class="btn btn-success">UPLOAD FILE</button>
               </form>
             </div>
           </div>
