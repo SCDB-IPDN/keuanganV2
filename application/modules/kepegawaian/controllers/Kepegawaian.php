@@ -33,7 +33,7 @@ class Kepegawaian extends CI_Controller{
                $catatan = $r->catatan_mutasi == NULL ? "<i><font style='color:red;'>Catatan Mutasi tidak ada</font></i>" : $r->catatan_mutasi;
                $no_kapreg = $r->no_kapreg == NULL ? "<i><font style='color:red;'>No Kapreg tidak ada</font></i>" : $r->no_kapreg;
                $eselon = $r->eselon == NULL ? "<i><font style='color:red;'>Eselon tidak ada</font></i>" : $r->eselon;
-                            
+
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
                     $aksi = "<a href='javascript:;' data-no='$r->no' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-bagian='$r->bagian' data-tempat_lahir='$r->tempat_lahir' data-tanggal_lahir='$r->tanggal_lahir' data-no_urut_pangkat='$r->no_urut_pangkat' data-pangkat='$r->pangkat' data-gol_ruang='$r->gol_ruang' data-tmt_pangkat='$r->tmt_pangkat' data-jabatan='$r->jabatan' data-tmt_jabatan='$r->tmt_jabatan' data-jurusan='$r->jurusan' data-nama_pt='$r->nama_pt' data-tahun_lulus='$r->tahun_lulus' data-tingkat_pendidikan='$r->tingkat_pendidikan' data-usia='$r->usia' data-masa_kerja='$r->masa_kerja' data-catatan_mutasi='$r->catatan_mutasi' data-no_kapreg='$r->no_kapreg' data-eselon='$r->eselon' data-toggle='modal' data-target='#editpns' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-toggle='modal' data-target='#hapuspns' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
@@ -76,7 +76,7 @@ class Kepegawaian extends CI_Controller{
 
                $x['data'] = $data;
                $x['tp'] = $tp;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_pns', $x);
@@ -89,7 +89,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_pns()
-	{		
+     {		
           // USIA
           $tanggal = new DateTime($this->input->post('tanggal_lahir', true));
           $today = new DateTime('today');
@@ -126,7 +126,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['eselon'] = $this->input->post('eselon', true);
 
           $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
-        
+
           if(!$cek_peg){
                $result = $this->kepegawaian_model->tambah_pns($input_data);
           }else{
@@ -149,7 +149,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('pns', 'DATA PNS BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian'); 			
           }
-    }
+     }
 
      public function edit_pns()
      {
@@ -235,7 +235,7 @@ class Kepegawaian extends CI_Controller{
                $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
                $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
                $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
-                            
+
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
                     $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
@@ -279,7 +279,7 @@ class Kepegawaian extends CI_Controller{
                $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
                $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
                $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
-                            
+
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
                     $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
@@ -323,7 +323,7 @@ class Kepegawaian extends CI_Controller{
                $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabata tidak ada</font></i>" : $r->jabatan;
                $pangkat = $r->pangkat == NULL ? "<i><font style='color:red;'>Pangkat(Gol) tidak ada</font></i>" : $r->pangkat;
                $updated_date = $r->updated_date == NULL ? "-" : date('d/m/Y', strtotime($r->updated_date));
-                            
+
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
                     $aksi = " <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-nip='$r->nip' data-nidn='$r->nidn' data-serdos='$r->serdos' data-bidang_ilmu='$r->bidang_ilmu' data-nik='$r->nik' data-alamat='$r->alamat' data-jabatan='$r->jabatan' data-pangkat='$r->pangkat' data-toggle='modal' data-target='#editdosen' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_dosen='$r->id_dosen' data-nama='$r->nama' data-toggle='modal' data-target='#hapusdosen' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
@@ -362,7 +362,7 @@ class Kepegawaian extends CI_Controller{
                }else{
                     redirect("kepegawaian/dosen");
                }
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_dosen', $x);
@@ -375,7 +375,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_dosen()
-	{
+     {
           $datex = new DateTime();
           $date = $datex->format('Y-m-d');
 
@@ -408,10 +408,10 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
                redirect('kepegawaian/dosen'); 			
           }
-    }
+     }
 
      public function edit_dosen()
-	{
+     {
           $datex = new DateTime();
           $date = $datex->format('Y-m-d');
           
@@ -444,7 +444,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DIUBAH.");			
                redirect('kepegawaian/dosen'); 			
           }
-    }
+     }
 
      function hapus_dosen()
      {
@@ -480,7 +480,7 @@ class Kepegawaian extends CI_Controller{
                $dik = $r->dik == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->dik;
                $penugasan = $r->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->penugasan;
                $nama_satker = $r->nama_satker == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $r->nama_satker;
-                            
+
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Kepegawaian'){
                     $aksi = " <a href='javascript:;' data-id_thl='$r->id_thl' data-nama='$r->nama' data-tempat_lahir='$r->tempat_lahir' data-tanggal_lahir='$r->tanggal_lahir' data-dik='$r->dik' data-penugasan='$r->penugasan' data-nama_satker='$r->nama_satker' data-toggle='modal' data-target='#editthl' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-id_thl='$r->id_thl' data-nama='$r->nama' data-toggle='modal' data-target='#hapusthl' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
                }else{
@@ -512,7 +512,7 @@ class Kepegawaian extends CI_Controller{
                $x['data'] = $data;
                $x['tp'] = $tp;
                $x['ns'] = $ns;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_thl', $x);
@@ -525,17 +525,39 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_thl()
-	{		
+     {	
+          $date = new DateTime($this->input->post('tanggal_lahir', true));
+          $result = $date->format('dmY');
+
+          $cek_data = $this->kepegawaian_model->cek_dataakhir();
+
+          if($cek_data != NULL){
+               $dataterakhir = $cek_data[0]->id_thl;     
+          }else{
+               $dataterakhir = 0;
+          }
+          
+          $dataterakhir++;
+          $username = $result.$dataterakhir;
+
           $input_data['nama'] = $this->input->post('nama', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
           $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
           $input_data['nama_satker'] = $this->input->post('nama_satker', true);
+          $input_data['username'] = $username;
 
+          $input_users['nama'] = $this->input->post('nama', true);
+          $input_users['username'] = $username;
+          $input_users['password'] = md5("123456");
+          $input_users['penugasan'] = $this->input->post('penugasan', true);
+          $input_users['level'] = 'Karyawan';
+          // var_dump($hasil);exit();
+          $result1 = $this->kepegawaian_model->tambah_thlusers($input_users);
           $result = $this->kepegawaian_model->tambah_thl($input_data);
 
-          if (!$result) { 							
+          if (!$result && !$result1) { 							
                $this->session->set_flashdata('thl', 'DATA THL GAGAL DITAMBAHKAN.'); 				
                redirect('kepegawaian/thl'); 			
           } else { 					
@@ -548,7 +570,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('thl', 'DATA THL BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/thl'); 			
           }
-    }
+     }
 
      public function edit_thl()
      {
@@ -607,7 +629,7 @@ class Kepegawaian extends CI_Controller{
 
                $x['data'] = $data;
                $x['tp'] = $tp;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_ta', $x);
@@ -620,7 +642,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_ta()
-	{		
+     {		
           $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
           $input_data['nik'] = $this->input->post('nik', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
@@ -643,7 +665,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('ta', 'DATA TA BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/ta'); 			
           }
-    }
+     }
 
      public function edit_ta()
      {

@@ -138,6 +138,13 @@ class Kepegawaian_model extends CI_Model{
     return $add_ta;
   }
 
+
+  function tambah_thlusers($input_users)
+  {   
+    $add_ta = $this->db->insert('tbl_users_presensi', $input_users);
+    return $add_ta;
+  }
+
   function edit_ta($input_data)
   {       
     $nik = $input_data['nik'];
@@ -150,5 +157,13 @@ class Kepegawaian_model extends CI_Model{
     $hasil=$this->db->query("DELETE FROM tbl_ta WHERE nik='$nik'");
     return $hasil;
   }
+
+   function cek_dataakhir()
+    {   
+
+      $cek_thl = $this->db->query("SELECT id_thl FROM tbl_thl order by id_thl DESC limit 1")->result();
+      return $cek_thl;
+    }
+
   // END TA
 }

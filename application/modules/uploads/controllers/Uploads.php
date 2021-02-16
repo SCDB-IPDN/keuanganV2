@@ -3575,9 +3575,19 @@ class Uploads extends CI_Controller {
 				}
 
 				$loadexcel  = $reader->load($_FILES['thl']['tmp_name']);
-				$excel = $loadexcel->getActiveSheet();
+				$excel = $loadexcel->getSheetByName('Sheet1');
 				$rowCount = $excel->getHighestDataRow();
 				$saveData   = array();
+				$saveData2   = array();
+
+				$cek_data = $this->uploads_model->cek_dataakhir();
+
+	            if($cek_data != NULL){
+	               $dataterakhir = $cek_data[0]->id_thl;     
+	            }else{
+	               $dataterakhir = 0;
+	            }
+
 				for ($i=7; $i<=$rowCount; $i++){
 					$nama = $excel->getCellByColumnAndRow(2, $i)->getValue();
 					$ttl = $excel->getCellByColumnAndRow(3, $i)->getValue();
@@ -3588,17 +3598,35 @@ class Uploads extends CI_Controller {
 					$dik =  $excel->getCellByColumnAndRow(4, $i)->getValue();
 					$penugasan =  $excel->getCellByColumnAndRow(5, $i)->getValue();
 					$satker =  $excel->getCellByColumnAndRow(6, $i)->getValue();
+
+					$date = $tanggal_lahir;
+		            $result = date('dmY', strtotime($date));
+		          
+		            $dataterakhir++;
+		            $username = $result.$dataterakhir;
+					
 					$data = array(
 						'nama' => $nama,
 						'tempat_lahir' => $tempat_lahir,
+						'username' => $username,
 						'tanggal_lahir' => $tanggal_lahir,
 						'dik' => $dik,
 						'penugasan' => $penugasan,
 						'nama_satker' => $satker
 					);
 					array_push($saveData, $data);
+
+					$data2 = array(
+						'nama' => $nama,
+						'username' => $username,
+						'password' => md5('123456'),
+						'level' => 'Karyawan',
+						'penugasan' =>  $penugasan
+					);
+					array_push($saveData2, $data2);
 				}
 				$this->db->insert_batch('tbl_thl', $saveData);
+				$this->db->insert_batch('tbl_users_presensi', $saveData2);
 
 				$log['user'] = $this->session->userdata('nip');
 				$log['Ket'] = "UPLOAD THL";
