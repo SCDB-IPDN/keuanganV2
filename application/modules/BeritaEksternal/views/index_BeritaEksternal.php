@@ -7,8 +7,10 @@
     <div class="col-xl-12">
       <div class="panel panel-inverse">
         <div class="panel-heading">
-          <h4 class="panel-title"> 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Tambah" data-whatever="@getbootstrap">Tambah</button>
+          <h4 class="panel-title">
+          <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?> 
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Tambah" data-whatever="@getbootstrap">Tambah</button>
+          <?php } ?>
           </h4>
           <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -18,6 +20,7 @@
           </div>
         </div>
 
+        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
         <div class="card-body">
           <div class="row">
             <div class="col-xl-7 col-lg-8">
@@ -36,6 +39,7 @@
             </div>
           </div>
         </div>
+        <?php } ?>
 
         <?php if($this->session->flashdata('error') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
@@ -68,6 +72,7 @@
                 <td><?php echo $row->Judul; ?></td>
                 <td> <a href="<?php echo $row->Link?>"> <?php echo $row->Link?></a></td>
                 <td><?php echo $row->Tanggal; ?></td>
+                <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
                 <td>
                   <button type="button" class="btn btn-primary" 
                   data-toggle="modal" data-target="#edit<?php echo 
@@ -77,7 +82,9 @@
                   data-toggle="modal" data-target="#Hapus<?php echo 
                   $row->Id?>"><i class="fas fa-trash"></i></button>
                 </td>
-              
+                <?php }else{ ?>
+                <td> Tidak Ada Akses </td>
+                <?php } ?>
               </tr>
 
               <!--Modal EDIT-->
