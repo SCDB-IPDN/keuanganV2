@@ -273,7 +273,7 @@
 							<li class="<?php echo $this->uri->segment(2) == "kepres" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/kepres'); ?>">Keputusan Presiden</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "permen" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/permen'); ?>">Peraturan Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "km" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/km'); ?>">Keputusan Menteri</a></li>
-							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Intruksi Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Instruksi Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "sem" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/sem'); ?>">Surat Edaran Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "pr" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/pr'); ?>">Peraturan Rektor</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "keputusan_rektor" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/keputusan_rektor'); ?>">Keputusan Rektor</a></li>
