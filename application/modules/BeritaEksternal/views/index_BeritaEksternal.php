@@ -41,10 +41,10 @@
         </div>
         <?php } ?>
 
-        <?php if($this->session->flashdata('error') != NULL){ ?>
+        <?php if($this->session->flashdata('BeritaEksternal') != NULL){ ?>
         <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Notif!</strong> <?php echo $this->session->flashdata('error') ?>
+          <strong>Notif!</strong> <?php echo $this->session->flashdata('BeritaEksternal') ?>
         </div>
         <?php } ?>
 
