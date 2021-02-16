@@ -338,7 +338,23 @@
 				</a>
 				<ul class="sub-menu">
 					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
+					<li class=""><a href="http://pddikti.ipdn.ac.id/login" target="_blank">PDDIKTI</a></li>
 					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI) ANGKATAN 31</a></li>
+				<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<span>PILKADA 2020</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://forms.gle/Sc7zgiaxPKTWeu1i8" target="_blank">FORM KUESIONER</a></li>
+					<li class=""><a href="https://bit.ly/3qlwi9P" target="_blank">HASIL KUESIONER</a></li>
+					<li class=""><a href="https://forms.gle/uVGs43WqNdyaHsPA6" target="_blank">FORM MONITORING</a></li>
+					<li class=""><a href="https://bit.ly/2NrqYTA" target="_blank">HASIL MONITORING</a></li>
+					<li class=""><a href="https://forms.gle/YBvKx2kGitw95cLb6 " target="_blank">FORM REKAPITULASI</a></li>
+					<li class=""><a href="https://bit.ly/3qpY2tG" target="_blank">HASIL FORM REKAPITULASI</a></li>
+				</ul>
+			</li>
+
 				</ul>
 			</li>
 			<!-- END LAINNYA -->
