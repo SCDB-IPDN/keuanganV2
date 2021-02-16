@@ -338,7 +338,7 @@
 				</a>
 				<ul class="sub-menu">
 					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
-					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI) ANGKATAN 31</a></li>
+					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI)</a></li>
 				</ul>
 			</li>
 			<!-- END LAINNYA -->
