@@ -46,7 +46,7 @@ class Home_model extends CI_Model{
 	}
 
 	public function update_last_dosen(){
-		return $this->db->query("SELECT updated_date FROM tbl_dosen ORDER BY updated_date DESC LIMIT 1")->result();
+		return $this->db->query("SELECT updated_date FROM tbl_dosen_pddikti ORDER BY updated_date DESC LIMIT 1")->result();
 	}
 
 	public function dosen()
@@ -57,7 +57,7 @@ class Home_model extends CI_Model{
 							SUM(jabatan = 'LEKTOR') as lektor, 
 							SUM(jabatan = 'LEKTOR KEPALA') as lektor_kepala, 
 							count(*) as total 
-							FROM tbl_dosen")
+							FROM tbl_dosen_pddikti")
 						->result();
 		return $result;
 	}

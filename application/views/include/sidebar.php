@@ -26,6 +26,12 @@
 			</li>
 		</ul>
 		<ul class="nav">
+			<li class="has-sub">
+				<a href="https://ipdn.ac.id" target="_blank">
+					<i class="fas fa-globe"></i>
+					<span>IPDN</span>
+				</a>
+			</li>
 			<li class="nav-header">Navigation</li>
 			<li class="<?php echo $this->uri->segment(1) == "home" ? "active" : ""; ?> has-sub">
 				<a href="<?php echo base_url('home'); ?>">
@@ -33,6 +39,7 @@
 					<span>Dashboard</span>
 				</a>
 			</li>
+
 
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
@@ -60,21 +67,23 @@
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "d_sas" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sas'); ?>">UTAMA</a></li>
 							<!-- <li class="<?php echo $this->uri->segment(1) == "coba" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sas/coba'); ?>">KAMPUS JATINANGOR</a></li>
-								<li class="<?php echo $this->uri->segment(1) == "d_sasbaru" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sasbaru'); ?>">KAMPUS JATINANGOR</a></li> -->
-							</ul>
-						</li>
-						<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
-							<a href="javascript:;">
-								<b class="caret"></b>
-								POK (SPP)
-							</a>
-							<ul class="sub-menu">
-								<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<!-- END KEUANGAN -->
+							<li class="<?php echo $this->uri->segment(1) == "d_sasbaru" ? "active" : ""; ?>"><a href="<?php echo base_url('d_sasbaru'); ?>">KAMPUS JATINANGOR</a></li> -->
+						</ul>
+					</li>
+					<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							POK (SPP)
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
+						</ul>
+					</li>
+					<li class=""><a href="https://perdin.ipdn.ac.id" target="_blank">PERDIN</a></li>
+				</ul>
+			</li>
+			<!-- END KEUANGAN -->
+
 
 				<!-- KEPEGAWAIAN -->
 				<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
@@ -98,19 +107,23 @@
 					</ul>
 				</li>
 				<!-- END KEPEGAWAIAN -->
+      
 
-				<!-- AKADEMIK -->
-				<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
-					<a href="javascript:;">
-						<b class="caret"></b>
-						<i class="fas fa-school"></i>
-						<span>Akademik</span>
-					</a>
-					<ul class="sub-menu">
-						<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
-					</ul>
-				</li>
-				<!-- END AKADEMIK -->
+			<!-- AKADEMIK -->
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-school"></i>
+					<span>Akademik</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
+					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
+				</ul>
+			</li>
+			<!-- END AKADEMIK -->
+
+
 
 				<!-- KEPRAJAAN -->
 				<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?> has-sub">
@@ -284,26 +297,76 @@
 
 
 
+			<!-- PERPUSTAKAAN -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-book"></i>
+					<span>Perpustakaan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://elib.ipdn.ac.id" target="_blank">ELIB</a></li>
+					<li class=""><a href="https://er.elib.ipdn.ac.id" target="_blank">ER-ELIB</a></li>
+					<li class=""><a href="https://eprints.ipdn.ac.id" target="_blank">E-PRINT</a></li>
+				</ul>
+			</li>
+			<!-- END PERPUSTAKAAN -->
 
+			<!-- RISET -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-refresh"></i>
+					<span>Riset</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://ojs.ipdn.ac.id" target="_blank">OJS</a></li>
+				</ul>
+			</li>
+			<!-- END RISET -->
 
+			<!-- TP -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-desktop"></i>
+					<span>Teknologi Pendidikan</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://mail.ipdn.ac.id" target="_blank">EMAIL</a></li>
+					<li class=""><a href="https://mcu.ipdn.ac.id" target="_blank">MCU</a></li>
+					<li class=""><a href="https://livestreaming.ipdn.ac.id" target="_blank">STREAMING</a></li>
+				</ul>
+			</li>
+			<!-- END TP -->
 
-				<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
-					<li class="nav-header">Data</li>
-					<li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_dosen" || $this->uri->segment(2)=="v_pns" || $this->uri->segment(2)=="v_thl" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja" || $this->uri->segment(2)=="v_rank"?"active":"";?> has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							<i class="fa fa-upload"></i>
-							<span>Upload</span>
-						</a>
-						<ul class="sub-menu">
-							<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' ){?>
-								<li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li>
-							<?php } ?>
+			<!-- LAINNYA -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-info"></i>
+					<span>Lainnya</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
+					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI) ANGKATAN 31</a></li>
+				</ul>
+			</li>
+			<!-- END LAINNYA -->
 
-							<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' ){?>
-								<li class="<?php echo $this->uri->segment(2)=="v_pok"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pok');?>">POK</a></li>
-							<?php } ?>
-
+			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
+			<li class="nav-header">Data</li>
+				<li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_dosen" || $this->uri->segment(2)=="v_pns" || $this->uri->segment(2)=="v_thl" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja" || $this->uri->segment(2)=="v_rank"?"active":"";?> has-sub">
+					<a href="javascript:;">
+						<b class="caret"></b>
+						<i class="fa fa-upload"></i>
+						<span>Upload</span>
+					</a>
+					<ul class="sub-menu">
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' ){?>
+						<li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li>
+						<?php } ?>
+            
 							<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Keuangan' ){?>
 								<li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
 							<?php } ?>
