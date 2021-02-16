@@ -1,7 +1,7 @@
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('absensi'); ?>">Detail </a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('absensi'); ?>">Rekap Presensi </a></li>
 
   </ol>
 
@@ -31,6 +31,7 @@
                     <label class="col-form-label">Penugasan :</label>
                     <select class="form-control" name="penugasan" id="penugasan">
                       <option  disabled selected>No Selected</option>
+                      <option value="all">All Penugasan</option>
                       <?php foreach ($penugasan as $x) { ?>
                         <option value="<?php echo $x->penugasan;?>"><?php echo $x->penugasan;?></option>
                       <?php } ?>
@@ -79,7 +80,6 @@
                       <!-- <td width="1%"><?= $row->id_user == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->id_user ?></td> -->
                       <td width="1%"><?= $row->nama == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->nama ?></td>
                       <td width="1%"><?= $row->tgl == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->tgl ?></td>
-                      
                       <td width="1%"><?= $row->masuk == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->masuk ?></td>
                       <td width="1%"><?= $row->keluar == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->keluar ?></td>
                       <td width="1%"><?= $row->penugasan == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->penugasan ?></td>
