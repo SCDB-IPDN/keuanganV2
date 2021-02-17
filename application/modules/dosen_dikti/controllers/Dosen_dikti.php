@@ -24,7 +24,7 @@ class Dosen_dikti extends CI_Controller {
 
             $this->load->view("include/head");
             $this->load->view("include/top-header");
-            $this->load->view('view_dosen', $x);
+            $this->load->view('View_dosen', $x);
             $this->load->view("include/sidebar");
             $this->load->view("include/panel");
             $this->load->view("include/footer");
