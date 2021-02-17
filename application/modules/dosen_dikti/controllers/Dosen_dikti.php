@@ -4,14 +4,14 @@ class Dosen_dikti extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('mdosen_dikti');
+        $this->load->model('MDosen_dikti');
     }
 
     function index(){
 
         if($this->session->userdata('nip') != NULL){
 
-            $belum = $this->mdosen_dikti->belum();
+            $belum = $this->MDosen_dikti->belum();
             $kurang_nidn = $belum[0]->total - $belum[0]->nidn;
             $kurang_serdos = $belum[0]->total - $belum[0]->serdos;
 
@@ -34,7 +34,7 @@ class Dosen_dikti extends CI_Controller {
     }
 
     function table_dosen_dikti() {
-        $data = $this->mdosen_dikti->get_all_dosen()->result();
+        $data = $this->MDosen_dikti->get_all_dosen()->result();
 
         $no = 1;
         $apa = array();
@@ -285,7 +285,7 @@ class Dosen_dikti extends CI_Controller {
 
         $nama = $this->input->post('nama', true);
 
-        $result = $this->mdosen_dikti->tambah_dosen_dikti($input_data);
+        $result = $this->MDosen_dikti->tambah_dosen_dikti($input_data);
 
         if (!$result) { 							
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) GAGAL DITAMBAHKAN."); 				
@@ -295,7 +295,7 @@ class Dosen_dikti extends CI_Controller {
             $log['user'] = $this->session->userdata('nip');
             $log['Ket'] = "Menambahkan dosen, Nip Dosen = $isi";
             $log['tanggal'] = date('Y-m-d H:i:s');
-            $this->mdosen_dikti->log($log);
+            $this->MDosen_dikti->log($log);
 
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
             redirect('dosen_dikti'); 			
@@ -366,7 +366,7 @@ class Dosen_dikti extends CI_Controller {
 
         $nama = $this->input->post('nama', true);
 
-        $result = $this->mdosen_dikti->update_dosen_dikti($input_data);
+        $result = $this->MDosen_dikti->update_dosen_dikti($input_data);
 
         if (!$result) { 							
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) GAGAL DI UPDATE."); 				
@@ -376,7 +376,7 @@ class Dosen_dikti extends CI_Controller {
             $log['user'] = $this->session->userdata('nip');
             $log['Ket'] = "Mengubah dosen, Nip Dosen = $isi";
             $log['tanggal'] = date('Y-m-d H:i:s');
-            $this->mdosen_dikti->log($log);
+            $this->MDosen_dikti->log($log);
 
             $this->session->set_flashdata("dosen-dikti", "DATA DOSEN ($nama) BERHASIL Di UPDATE.");			
             redirect('dosen_dikti'); 			
@@ -386,7 +386,7 @@ class Dosen_dikti extends CI_Controller {
     function hapus_dosen_dikti(){ 
 
         $id = $this->input->post('id');
-        $result = $this->mdosen_dikti->hapus_dosen_dikti($id);
+        $result = $this->MDosen_dikti->hapus_dosen_dikti($id);
 
         if (!$result) { 							
             $this->session->set_flashdata('dosen-dikti', 'DATA DOSEN GAGAL DIHAPUS.'); 				
@@ -395,7 +395,7 @@ class Dosen_dikti extends CI_Controller {
             $log['user'] = $this->session->userdata('nip');
             $log['Ket'] = "Menghapus Dosen, Id Dosen = $id";
             $log['tanggal'] = date('Y-m-d H:i:s');
-            $this->mdosen_dikti->log($log);
+            $this->MDosen_dikti->log($log);
 
             $this->session->set_flashdata('dosen-dikti', 'DATA DOSEN BERHASIL DIHAPUS.');			
             redirect('dosen_dikti'); 			
