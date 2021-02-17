@@ -294,7 +294,7 @@ class Kemeng extends CI_Controller
 			$date_time = explode(" ", $timestamp);
 			$tanggal = $date_time[0];
 			$jam = substr($date_time[1], 0, 5);
-		
+
 			$allp[] = array(
 				$no++,
 				$nip,
@@ -376,7 +376,7 @@ class Kemeng extends CI_Controller
 
 	function honor() {
 		if($this->session->userdata('nip') != NULL) {
-
+			
 			$x['seDate'] = date_format(new DateTime(),"m/d/yy");
 			$x['uDate'] = date_format(new DateTime(),"F Y");
 
@@ -390,7 +390,6 @@ class Kemeng extends CI_Controller
 			redirect("user");
 		}
 	}
-
 
 	function honor_table_all($id_fakultas = NULL){
 		$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
@@ -424,13 +423,15 @@ class Kemeng extends CI_Controller
 
 				$ho = $this->Kemeng_model->get_honor_allinone($id_fakultas)->result();
 				$x['ho'] = json_encode($ho);
-
+				// var_dump($ho);exit();
+				
 				$hi = $this->Kemeng_model->cobanip($id_fakultas)->result();
-		
-				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi)->result();
+
+				$haha = $this->Kemeng_model->nihcoba($id_fakultas,$hi);
 				// var_dump($haha);exit();
 				$x['haha'] = json_encode($haha);
 
+				
 				$this->load->view("include/head");
 				$this->load->view("include/top-header");
 				$this->load->view("view_honor_all",$x);
@@ -439,37 +440,58 @@ class Kemeng extends CI_Controller
 			}
 		}
 	}
-
-
-
+	
 	function honor_table($date) {
 		$nip = $this->session->userdata('nip');
 		$data = $this->Kemeng_model->get_absen_bulan($date, $nip)->result();
 		// var_dump($data);exit;
 		if ($data) {
 			$html = "<table id='data-table-buttons' class='table table-striped table-bordered table-td-valign-middle' width='100%'>";
+			$html .= '<thead>';
 			$html .= '<tr>';
 			$html .= '<th>No.</th>';
+			$span = 0;
 			foreach($data[0] as $key=>$value){
+				$span++;
 				$html .= '<th>' . htmlspecialchars($key) . '</th>';
 			}
 			$html .= '</tr>';
+			$html .= '</thead>';
 
 			// data rows
+			$html .= '<tbody>';
 			$cc = 1;
-			foreach( $data as $key=>$value){
+			$th = 0;
+			foreach($data as $key=>$value){
+				$al = "";
 				$html .= '<tr>';
 				$html .= '<td>' . $cc++ . '</td>';
 				foreach($value as $key2=>$value2){
-					$html .= '<td>' . htmlspecialchars(ucwords($value2)) . '</td>';
+					if ($key2 == 'Jumlah Honor') {
+						// $th += str_replace(".", "", $value2);
+						$th += intval(preg_replace("/[^0-9]/", "", $value2));
+					}
+					if ($key2 == "Durasi (SKS)") {
+						$al = "align='right'";
+					}
+					$html .= "<td $al>" . htmlspecialchars(ucwords($value2)) . '</td>';
 				}
 				$html .= '</tr>';
 			}
+			$html .= '</tbody>';
+			$html .= '<tfoot>';
+			$html .= "<tr align='right'>";
+			$html .= "<th colspan='$span'>Total</th>";
+			
+			$html .= '<th>' . htmlspecialchars(number_format($th, 0, ',', '.')) . '</th>';
+			
+			$html .= '</tr>';
+			$html .= '</tfoot>';
 			$html .= '</table>';
 			echo $html;
-		}
-
 	}
+
+}
 
 	//PLOT
 	function plot ()

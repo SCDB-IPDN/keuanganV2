@@ -4,7 +4,7 @@ class Kemeng_model extends CI_Model
 {
 	public function cek_dosen($nip)
 	{
-		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = $nip")->result();
+		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = '$nip'")->result();
 
 		return $result;
 	}
@@ -14,7 +14,7 @@ class Kemeng_model extends CI_Model
 		if($nip == 'admin'){
 			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE semester = '$semester'")->result();
 		}else{
-			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = $nip AND semester = '$semester'")->result();
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = '$nip' AND semester = '$semester'")->result();
 		}
 
 		return $result;
@@ -88,7 +88,7 @@ class Kemeng_model extends CI_Model
 		$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_absensi.id_matkul");
 
 		if ($id_absensi != "Admin"){
-			$this->db->where("tbl_absensi.tbl_absensi", $id_absensi);
+			$this->db->where("tbl_absensi.id_fakultas", $id_absensi);
 		} else {
 			$this->db->group_by("tbl_absensi.id_absensi");
 		}
@@ -122,24 +122,24 @@ class Kemeng_model extends CI_Model
 	{
 
 		return $this->db->distinct()->select("id_matkul, nama_matkul")
-					->order_by("nama_matkul", "ASC")
-					->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas, "id_prodi" => $prodi]);
+		->order_by("nama_matkul", "ASC")
+		->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas, "id_prodi" => $prodi]);
 	}
 
 
 	public function get_prodi($nip, $fakultas)
 	{
 		return $this->db->distinct()->select("id_prodi, nama_prodi")
-					->order_by("nama_prodi", "ASC")
-					->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas]);
+		->order_by("nama_prodi", "ASC")
+		->get_where("tbl_plot_dosen", ["nip" => $nip, "id_fakultas" => $fakultas]);
 
 	}
 
 	public function get_fakultas($nip)
 	{
 		return $this->db->distinct()->select("id_fakultas, nama_fakultas")
-					->order_by("nama_fakultas", "ASC")
-					->get_where("tbl_plot_dosen", ["nip" => $nip]);
+		->order_by("nama_fakultas", "ASC")
+		->get_where("tbl_plot_dosen", ["nip" => $nip]);
 	}
 
 	public function get_sks($nip, $fakultas, $prodi, $matkul)
@@ -165,24 +165,27 @@ class Kemeng_model extends CI_Model
 	function get_absen_bulan($date, $nip) {
 		$date_t = explode('-', $date);
 		$index = $this->get_index_honor($nip)->row_array()['index'];
+
 		// echo $index;exit;
 		
 		$this->db->select("tbl_absensi.id_matkul AS 'Kode Mata Kuliah', tbl_matkul.nama_matkul AS 'Nama Mata Kuliah',
-			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', tbl_absensi.tanggal AS 'Tanggal',
-			tbl_absensi.sks AS 'DURASI (SKS)', FORMAT(tbl_absensi.sks*$index,0,'de_DE') AS 'Honor'");
+			LOWER(tbl_prodi.nama_prodi) AS 'Program Studi', UPPER(tbl_absensi.kelas) AS 'Kelas', DATE(tbl_absensi.timestamp) AS 'Tanggal',
+			TIME(tbl_absensi.timestamp) AS 'Shift', tbl_absensi.sks AS 'Durasi (SKS)', FORMAT($index,0,'de_DE') AS 'Honor Per SKS',
+			tbl_absensi.indeks AS 'Indeks', FORMAT(tbl_absensi.indeks*$index,0,'de_DE') AS 'Jumlah Honor'");
 		$this->db->from('tbl_absensi');
 		$this->db->join('tbl_matkul', "tbl_absensi.id_matkul=tbl_matkul.id_matkul");
 		$this->db->join('tbl_prodi', "tbl_matkul.id_prodi = tbl_prodi.id_prodi");
-		$this->db->where('YEAR(tbl_absensi.tanggal)', $date_t[1]);
-		$this->db->where('MONTH(tbl_absensi.tanggal)', $date_t[0]);
+		$this->db->where('YEAR(tbl_absensi.timestamp)', $date_t[1]);
+		$this->db->where('MONTH(tbl_absensi.timestamp)', $date_t[0]);
 		$this->db->where('tbl_absensi.nip', $nip);
-		$this->db->order_by('tbl_absensi.tanggal', 'ASC');
+		$this->db->order_by('DATE(tbl_absensi.timestamp)', 'ASC');
 		$res = $this->db->get();
 		return $res;
 	}
 	//END HONOR
 
 	function get_honor_allinone($id_fakultas){
+
 
 		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_plot_dosen.nama_matkul,tbl_dosen.jabatan,  sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
@@ -223,11 +226,12 @@ class Kemeng_model extends CI_Model
 		
 		// echo ("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)");exit();
 
+		if ($bebas != NULL) {
+			$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)")->result();
+			return $query;
+		}
 
-		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)");
 		
-
-		return $query;
 	}
 
 
@@ -267,7 +271,7 @@ class Kemeng_model extends CI_Model
 		$res = $this->db->get();
 		return $res;
 	}
-
+	
 	function get_all_dosen(){
 
 		$query = "SELECT * from tbl_plot_dosen ";
