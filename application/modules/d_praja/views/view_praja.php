@@ -65,8 +65,6 @@
 
                <option value="<?php echo $x['angkatan'] ?>"></option>
 
-
-
              <?php endforeach; ?>
 
            </datalist>
