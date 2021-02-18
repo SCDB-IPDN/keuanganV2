@@ -59,7 +59,7 @@
 
             <label for="basic-url">Angkatan  : </label>
 
-            <input class="form-control" list="angkatann" name="angkatan" id="angkatannn">
+            <input class="form-control" list="angkatann">
             <datalist id="angkatann">
              <?php foreach (json_decode($angkatan, true) as $x) : ?>
 
