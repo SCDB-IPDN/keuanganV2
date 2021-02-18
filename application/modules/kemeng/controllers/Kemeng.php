@@ -639,7 +639,7 @@ class Kemeng extends CI_Controller
 				data-toggle='modal' data-target='#hapusplot' class='btn btn-danger'><i class='fa fas fa-trash'></i>
 				</a>";
 			}else{
-				 $aksi = "";
+				 $aksi = "Tidak Ada Akses";
 			}
   
 			$plot[] = array(
