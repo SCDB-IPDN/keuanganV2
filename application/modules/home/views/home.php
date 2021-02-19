@@ -495,29 +495,7 @@
 			</div>
 			
 
-			<div class="col-xl-6">
-				<!-- begin tabs -->
-				<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
-					<li class="nav-item"><a href="#latest-post" data-toggle="tab" class="nav-link active"><i class="fa fa-newspaper fa-lg m-r-5"></i> <span class="d-none d-md-inline">2020</span></a></li>
-					<li class="nav-item"><a href="#eksternal" data-toggle="tab" class="nav-link"><i class="fa fa-list fa-lg m-r-5"></i> <span class="d-none d-md-inline">2021</span></a></li>
-				</ul>
-				<div class="tab-content" data-sortable-id="index-3">
-					<div class="tab-pane fade active show" id="latest-post">
-						<div class="height-sm" data-scrollbar="true">
-							
-						</div>
-					</div>
-
-					<div class="tab-pane fade" id="eksternal">
-						<div class="height-sm" data-scrollbar="true">
-							<div class="panel-body">
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+		
 
 			<div class="col-xl-3">
 				<div class="panel panel-inverse">
