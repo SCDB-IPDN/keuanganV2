@@ -217,7 +217,7 @@
 
 
 			<!-- Fakultas -->
-			<?php if($this->session->userdata('role') == 'Admin'){ ?>
+			<?php if($this->session->userdata('role') == 'SuperAdmin'){ ?>
 			<li class="<?php echo $this->uri->segment(1) == "kemeng"  || $this->uri->segment(2)=="view_matkul" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
@@ -233,19 +233,19 @@
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2) == NULL ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
-							<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin'){?>
+							<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin' ||$this->session->userdata('role') == 'SuperAdmin'){?>
 							<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
 							<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							HONOR ALL
-						</a>
-						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(3)=="FHTP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FHTP";?>">FHTP</a></li>
-					<li class="<?php echo $this->uri->segment(3)=="FMP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FMP";?>">FMP</a></li>
-					<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
-						</ul>
-					</li>
+								<a href="javascript:;">
+									<b class="caret"></b>
+									HONOR ALL
+								</a>
+								<ul class="sub-menu">
+									<li class="<?php echo $this->uri->segment(3)=="FHTP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FHTP";?>">FHTP</a></li>
+									<li class="<?php echo $this->uri->segment(3)=="FMP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FMP";?>">FMP</a></li>
+									<li class="<?php echo $this->uri->segment(3)=="FPP"?"active":"";?>"><a href="<?php echo base_url('kemeng/hon_all/')."/FPP";?>">FPP</a></li>
+								</ul>
+							</li>
 							<?php } ?>
 						</ul>
 					</li>
@@ -344,7 +344,7 @@
 			</li>
 			<!-- END LAINNYA -->
 
-			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
+			<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Bmn'  ){?>
 			<li class="nav-header">Data</li>
 				<li class="<?php echo $this->uri->segment(2)=="v_span" || $this->uri->segment(2)=="v_dosen" || $this->uri->segment(2)=="v_pns" || $this->uri->segment(2)=="v_thl" || $this->uri->segment(2)=="v_pok" || $this->uri->segment(2)=="v_sas" || $this->uri->segment(2)=="v_sarpras" || $this->uri->segment(2)=="v_praja" || $this->uri->segment(2)=="v_rank"?"active":"";?> has-sub">
 					<a href="javascript:;">
@@ -353,19 +353,19 @@
 						<span>Upload</span>
 					</a>
 					<ul class="sub-menu">
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keuangan' || $this->session->userdata('role') == 'Perencanaan' ){?>
 						<li class="<?php echo $this->uri->segment(2)=="v_span"?"active":"";?>"><a href="<?php echo base_url('uploads/v_span');?>">SPAN</a></li>
 						<?php } ?>
 
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keuangan' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keuangan' ){?>
 						<li class="<?php echo $this->uri->segment(2)=="v_pok"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pok');?>">POK</a></li>
 						<?php } ?>
 
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Keuangan' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Perencanaan' || $this->session->userdata('role') == 'Keuangan' ){?>
 						<li class="<?php echo $this->uri->segment(2)=="v_sas"?"active":"";?>"><a href="<?php echo base_url('uploads/v_sas');?>">SAS</a></li>
 						<?php } ?>
 
-						<?php if($this->session->userdata('role') == 'Admin' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' ){?>
 						<li class="<?php echo $this->uri->segment(2)=="v_praja"?"active":"";?>"><a href="<?php echo base_url('uploads/v_praja');?>">PRAJA</a></li>
 						<li class="<?php echo $this->uri->segment(2)=="v_alumni"?"active":"";?>"><a href="<?php echo base_url('uploads/v_alumni');?>">ALUMNI</a></li>
 						<li class="<?php echo $this->uri->segment(2)=="v_pns"?"active":"";?>"><a href="<?php echo base_url('uploads/v_pns');?>">PNS</a></li>
@@ -373,11 +373,11 @@
 						<li class="<?php echo $this->uri->segment(2)=="v_dosen"?"active":"";?>"><a href="<?php echo base_url('uploads/v_dosen');?>">DOSEN</a></li>
 						<?php } ?>
 
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Perencanaan' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Perencanaan' ){?>
 						<li class="<?php echo $this->uri->segment(2)=="v_rank"?"active":"";?>"><a href="<?php echo base_url('uploads/v_rank');?>">PERINGKAT</a></li>
 						<?php } ?>
 						
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Bmn' ){?>
+						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Bmn' ){?>
 						<li class="<?php echo $this->uri->segment(3)=="jatinangor" || $this->uri->segment(3)=="sulsel" || $this->uri->segment(3)=="papua" || $this->uri->segment(3)=="ntb" || $this->uri->segment(3)=="sulut" ? "active" : ""; ?> has-sub">
 							<a href="javascript:;">
 								<b class="caret"></b>
@@ -399,7 +399,7 @@
 				</li>
 			<?php } ?>
 
-			<?php if ($this->session->userdata('role') == 'Admin') { ?>
+			<?php if ($this->session->userdata('role') == 'SuperAdmin') { ?>
 				<li class="<?php echo $this->uri->segment(1) == "apps" ? "active" : ""; ?>">
 					<a href="<?php echo base_url('apps'); ?>"><i class="fa fa-list"></i> <span>Aplikasi</span></a>
 				</li>

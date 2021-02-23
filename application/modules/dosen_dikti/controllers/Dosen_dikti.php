@@ -94,7 +94,7 @@ class Dosen_dikti extends CI_Controller {
             $lembaga = $r->lembaga == NULL ? "<i><font>Tidak ada data</font></i>": $r->lembaga;
             $tahun_penelitian = $r->tahun_penelitian == NULL ? "<i><font>Tidak ada data</font></i>": $r->tahun_penelitian;
 
-            if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){
+            if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
                 $aksi = " <a href='javascript:;'
                 data-id='$r->id'
                 data-nama='$r->nama'
