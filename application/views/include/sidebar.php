@@ -314,6 +314,21 @@
 			</li>
 			<!-- END RISET -->
 
+			<!-- PASCA SARJANA -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-map-marker"></i>
+					<span>Pasca Sarjana</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://pasca.ipdn.ac.id" target="_blank">WEB PASCA</a></li>
+					<li class=""><a href="http://sika.ipdn.ac.id/pasca/pmb/admin-aplikasi" target="_blank">ADMIN PMB</a></li>
+					<li class=""><a href="http://sika.ipdn.ac.id/pmb " target="_blank">LAMAN PMB</a></li>
+				</ul>
+			</li>
+			<!-- END PASCA SARJANA -->
+
 			<!-- TP -->
 			<li class="has-sub">
 				<a href="javascript:;">
