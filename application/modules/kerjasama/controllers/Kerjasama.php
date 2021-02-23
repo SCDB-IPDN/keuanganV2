@@ -22,18 +22,18 @@ class Kerjasama extends CI_Controller {
 	}
 	
 	public function get_mou() {
-		$data = $this->kerjasama_m->get_mou->result();
+		$data = $this->kerjasama_m->get_mou();
 		$mou = array();
 		$no = 1;
 		foreach($data as $d) {
 			$mitra = $d->mitra;
 			$no_mitra = $d->no_mitra;
-			$no_ipdn = $d->no_ipdn;
+			$no_int = $d->no_int;
 			$tmt = $d->tmt;
 			$hal = $d->hal;
             $masa_berlaku = $d->masa_berlaku;
             $status = $d->status;
-			$file = "./assets/mou_files/$d->nama_file";
+			$file = "./assets/mou_files/$d->file";
 			if(is_file($file)) {
 				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
 			}
@@ -42,14 +42,15 @@ class Kerjasama extends CI_Controller {
 			}
 			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'kerjasama'){
 				$opsi = "<a 
-					href='javascript:;' data-mou='$d->id' data-mitra='$d->mitra' data-hal='$d->hal' data-file='$d->nama_file'
-				    data-status='$d->status' data-tmt='$d->tmt'
+					href='javascript:;' data-mou='$d->id' data-mitra='$d->mitra' data-no_mitra='$d->no_mitra' 
+					data-no_int='$d->no_int' data-tmt='$d->tmt' data-hal='$d->hal' data-masa_berlaku='$d->masa_berlaku'
+					data-status='$d->status' data-file='$d->file'
 					data-toggle='modal' data-target='#editmou' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
 					</a>
 	
 					<a 
-					href='javascript:;' data-id='$d->id' data-mitra='$d->mitra' data-hal='$d->hal'
-					data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
+					href='javascript:;' data-id='$d->id' data-mitra='$d->mitra' data-hal='$d->hal' data-no_ipdn='$d->no_int'
+					data-toggle='modal' data-target='#delmou' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
 					</a>";
 				}else{
 					$opsi = "Tidak ada Akses";
@@ -59,7 +60,7 @@ class Kerjasama extends CI_Controller {
 				$no++,
 				$mitra,
 				$no_mitra,
-				$no_ipdn,
+				$no_int,
 				$tmt,
                 $hal,
                 $masa_berlaku,
@@ -73,10 +74,9 @@ class Kerjasama extends CI_Controller {
 	}
 
     public function add_mou() {
-		// $url = $this->input->post('url', true);
 		$data['mitra'] = $this->input->post('mitra', true);
 		$data['no_mitra'] = $this->input->post('no_mitra', true);
-		$data['no_ipdn'] = $this->input->post('no_ipdn', true);
+		$data['no_int'] = $this->input->post('no_int', true);
 		$data['tmt'] = $this->input->post('tmt', true);
 		$data['hal'] = $this->input->post('hal', true);
 		$data['masa_berlaku'] = $this->input->post('masa_berlaku', true);
@@ -85,7 +85,6 @@ class Kerjasama extends CI_Controller {
 		if(!empty($_FILES['file']['name'])) {
 			$config['upload_path'] = './assets/mou_files';
 			$config['allowed_types'] = 'pdf';
-			//$config['max_size'] = 2048; //KB
 			$config['encrypt_name'] = true;
 
 			$this->load->library('upload', $config);
@@ -96,7 +95,7 @@ class Kerjasama extends CI_Controller {
 				redirect("kerjasama/mou"); 
 			}
 			else {
-				$data['nama_file'] = $this->upload->data('file_name');
+				$data['file'] = $this->upload->data('file_name');
 			}
 		}
 			
@@ -113,10 +112,9 @@ class Kerjasama extends CI_Controller {
     }
     
     public function del_mou() {
-		$id = $this->input->post('del_id');
-		// $url = $this->input->post('url', true);
+		$id = $this->input->post('del_id_mou');
 		$mou = $this->kerjasama_m->getById($id);
-		$file = "./assets/mou_files/$mou->nama_file";
+		$file = "./assets/mou_files/$mou->file";
 		if(is_file($file)) {
 			unlink($file);
 		}
@@ -133,11 +131,10 @@ class Kerjasama extends CI_Controller {
     }
     
     public function edit_mou() {
-		// $url = $this->input->post('url', true);
-		$id = $this->input->post('id', true);
+		$id = $this->input->post('id_mou', true);
 		$editmou['mitra'] = $this->input->post('mitra', true);
 		$editmou['no_mitra'] = $this->input->post('no_mitra', true);
-		$editmou['no_ipdn'] = $this->input->post('no_ipdn', true);
+		$editmou['no_int'] = $this->input->post('no_int', true);
 		$editmou['tmt'] = $this->input->post('tmt', true);
 		$editmou['hal'] = $this->input->post('hal', true);
         $editmou['masa_berlaku'] = $this->input->post('masa_berlaku', true);
@@ -146,7 +143,6 @@ class Kerjasama extends CI_Controller {
 		if(!empty($_FILES['file']['name'])) {
 			$config['upload_path'] = './assets/mou_files';
 			$config['allowed_types'] = 'pdf';
-			//$config['max_size'] = 2048; //KB
 			$config['encrypt_name'] = true;
 
 			$this->load->library('upload', $config);
@@ -158,11 +154,11 @@ class Kerjasama extends CI_Controller {
 			}
 			else {
 				$pdf = $this->kerjasama_m->getById($id);
-				$file = "./assets/mou_files/$pdf->nama_file";
+				$file = "./assets/mou_files/$pdf->file";
 				if(is_file($file)) {
 					unlink($file);
 				}
-				$editmou['nama_file'] = $this->upload->data('file_name');
+				$editmou['file'] = $this->upload->data('file_name');
 			}
 		}
 
@@ -176,4 +172,13 @@ class Kerjasama extends CI_Controller {
 			redirect("kerjasama/mou");
 		}
     }
+
+	public function tmt_year() {
+		$tmt_list = $this->kerjasama_m->filter_tmt();
+		$tmt = [];
+		foreach($tmt_list as $t) {
+			$tmt[] =  $t['YEAR(`tmt`)'];
+		}
+		echo json_encode($tmt);
+	}
 }
