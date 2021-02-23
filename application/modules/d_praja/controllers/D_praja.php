@@ -198,86 +198,90 @@ class D_praja extends CI_Controller
        data-penghasilan_wali='$r->penghasilan_wali'
        data-tlp_wali='$r->tlp_wali'
 
-       data-toggle='modal' data-target='#show-data' class='btn btn-info'><i class='fa fas fa-eye'></i>
-       </a> <a href='d_praja/edt/$r->npp' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>  ";
+       data-toggle='modal' data-target='#show-data' class='btn btn-success'><i class='fa fas fa-eye'></i>
+       </a> <a href='d_praja/edt/$r->npp' class='btn btn-primary'><i class='fa fas fa-edit'></i></a>  ";
 
        
         // $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>  <a href='d_praja/edt/$r->id' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>  ";
         // <a href='#' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#editpraja$r->id'><i class='fa fas fa-edit'></i></a>
      }else{
-      $opsi = "<a href='d_praja/detail/$r->id' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
+      $opsi = "<a 
+       href='javascript:;' 
+       data-id='$r->id' 
+       data-nama='$r->nama' 
+       data-npp='$r->npp' 
+       data-jk='$r->jk' 
+       data-nisn='$r->nisn' 
+       data-no_spcp='$r->no_spcp' 
+       data-npwp='$r->npwp' 
+       data-nik_praja='$r->nik_praja' 
+       data-tmpt_lahir='$r->tmpt_lahir' 
+       data-tgl_lahir='$r->tgl_lahir' 
+       data-agama='$r->agama' 
+       data-alamat='$r->alamat'
+       data-rt='$r->rt'
+       data-rw='$r->rw'
+       data-email='$r->email'
+       data-nama_dusun='$r->nama_dusun'
+       data-kelurahan='$r->kelurahan'
+       data-alamat='$r->alamat'
+       data-kecamatan='$r->kecamatan'
+       data-kode_pos='$r->kode_pos'
+       data-provinsi='$r->provinsi'
+       data-jenis_tinggal='$r->jenis_tinggal'
+       data-alat_transport='$r->alat_transport'
+       data-tlp_rumah='$r->tlp_rumah'
+       data-tlp_pribadi='$r->tlp_pribadi'
+       data-kewarganegaraan='$r->kewarganegaraan'
+       data-penerima_pks='$r->penerima_pks'
+       data-no_pks='$r->no_pks'
+       data-prodi='$r->prodi'
+       data-jenis_pendaftaran='$r->jenis_pendaftaran'
+       data-tgl_masuk_kuliah='$r->tgl_masuk_kuliah'
+       data-tahun_masuk_kuliah='$r->tahun_masuk_kuliah'
+       data-pembiayaan='$r->pembiayaan'
+       data-jalur_masuk='$r->jalur_masuk'
+       data-tingkat='$r->tingkat'
+       data-angkatan='$r->angkatan'
+       data-status='$r->status'
+       data-fakultas='$r->fakultas'
+       data-id_ortu='$r->id_ortu'
+       data-nik_ayah='$r->nik_ayah'
+       data-nama_ayah='$r->nama_ayah'
+       data-tgllahir_ayah='$r->tgllahir_ayah'
+       data-pendidikan_ayah='$r->pendidikan_ayah'
+       data-pekerjaan_ayah='$r->pekerjaan_ayah'
+       data-penghasilan_ayah='$r->penghasilan_ayah'
+       data-tlp_ayah='$r->tlp_ayah'
+       data-nik_ibu='$r->nik_ibu'
+       data-nama_ibu='$r->nama_ibu'
+       data-tgllahir_ibu='$r->tgllahir_ibu'
+       data-pendidikan_ibu='$r->pendidikan_ibu'
+       data-pekerjaan_ibu='$r->pekerjaan_ibu'
+       data-penghasilan_ibu='$r->penghasilan_ibu'
+       data-id_wali='$r->id_wali'
+       data-nik_wali='$r->nik_wali'
+       data-tgllahir_wali='$r->tgllahir_wali'
+       data-pendidikan_wali='$r->pendidikan_wali'
+       data-pekerjaan_wali='$r->pekerjaan_wali'
+       data-penghasilan_wali='$r->penghasilan_wali'
+       data-tlp_wali='$r->tlp_wali'
+
+       data-toggle='modal' data-target='#show-data' class='btn btn-success'><i class='fa fas fa-eye'></i>
+       </a>";
     }
-
-    $ex = "<a 
-    href='javascript:;' 
-    data-angkatan='$r->angkatan' 
-    <a href='d_praja/export/$r->angkatan' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></a>  ";
-
 
     // $eksel = "<a href='d_praja/export/$r->angkatan' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
 
     $dataall[] = array(
       $no++,
-      $opsi,
       $npp ,
       $nama,
       $jk,
-      $nisn ,
-      $no_spcp ,
-      $npwp ,
-      $nik_praja ,
-      $tmpt_lahir ,
-      $tgl_lahir,
-      $agama,
-      $alamat ,
-      $rt,
-      $rw ,
-      $nama_dusun ,
-      $kelurahan ,
-      $kecamatan,
-      $kode_pos,
-      $kab_kota ,
-      $provinsi ,
-      $jenis_tinggal ,
-      $alat_transport ,
-      $tlp_rumah ,
-      $tlp_pribadi,
-      $email ,
-      $kewarganegaraan ,
-      $penerima_pks ,
-      $no_pks ,
-      $prodi ,
-      $jenis_pendaftaran ,
-      $tgl_masuk_kuliah ,
-      $tahun_masuk_kuliah,
-      $pembiayaan ,
-      $jalur_masuk,
-      $tingkat ,
-      $angkatan ,
       $status ,
-      $fakultas ,
-      $id_ortu ,
-      $nik_ayah ,
-      $nama_ayah ,
-      $tgllahir_ayah ,
-      $pendidikan_ayah ,
-      $pekerjaan_ayah ,
-      $penghasilan_ayah ,
-      $tlp_ayah ,
-      $nik_ibu,
-      $nama_ibu ,
-      $tgllahir_ibu ,
-      $pendidikan_ibu ,
-      $pekerjaan_ibu ,
-      $penghasilan_ibu ,
-      $id_wali ,
-      $nik_wali ,
-      $nama_wali,
-      $tgllahir_wali ,
-      $pendidikan_wali ,
-      $pekerjaan_wali,
-      $penghasilan_wali,
-      $tlp_wali 
+      $tingkat ,
+      $angkatan,
+      $opsi
     );
   }
   echo json_encode($dataall);
@@ -696,7 +700,7 @@ foreach($semua_pengguna as $pengguna) {
    // var_dump($pengguna);exit();
 
  $spreadsheet ->setActiveSheetIndex(0)
- ->setCellValue('A'. $kolom, $no_spcp = $pengguna->no_spcp )
+ ->setCellValue('A'. $kolom, $pengguna->no_spcp )
  ->setCellValue('B'. $kolom, $pengguna->nama)
  ->setCellValue('C'. $kolom, $pengguna->jk)
  ->setCellValue('D'. $kolom, $pengguna->nisn )

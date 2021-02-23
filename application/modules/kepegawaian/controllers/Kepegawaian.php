@@ -76,7 +76,7 @@ class Kepegawaian extends CI_Controller{
 
                $x['data'] = $data;
                $x['tp'] = $tp;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_pns', $x);
@@ -89,7 +89,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_pns()
-	{		
+     {		
           // USIA
           $tanggal = new DateTime($this->input->post('tanggal_lahir', true));
           $today = new DateTime('today');
@@ -126,7 +126,7 @@ class Kepegawaian extends CI_Controller{
           $input_data['eselon'] = $this->input->post('eselon', true);
 
           $cek_peg = $this->kepegawaian_model->cek_pegawai($input_data['nip']);
-        
+
           if(!$cek_peg){
                $result = $this->kepegawaian_model->tambah_pns($input_data);
           }else{
@@ -149,7 +149,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('pns', 'DATA PNS BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian'); 			
           }
-    }
+     }
 
      public function edit_pns()
      {
@@ -362,7 +362,7 @@ class Kepegawaian extends CI_Controller{
                }else{
                     redirect("kepegawaian/dosen");
                }
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_dosen', $x);
@@ -375,7 +375,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_dosen()
-	{
+     {
           $datex = new DateTime();
           $date = $datex->format('Y-m-d');
 
@@ -408,10 +408,10 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DITAMBAHKAN.");			
                redirect('kepegawaian/dosen'); 			
           }
-    }
+     }
 
      public function edit_dosen()
-	{
+     {
           $datex = new DateTime();
           $date = $datex->format('Y-m-d');
           
@@ -444,7 +444,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata("dosen", "DATA DOSEN ($nama) BERHASIL DIUBAH.");			
                redirect('kepegawaian/dosen'); 			
           }
-    }
+     }
 
      function hapus_dosen()
      {
@@ -512,7 +512,7 @@ class Kepegawaian extends CI_Controller{
                $x['data'] = $data;
                $x['tp'] = $tp;
                $x['ns'] = $ns;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_thl', $x);
@@ -525,17 +525,39 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_thl()
-	{		
+     {	
+          $date = new DateTime($this->input->post('tanggal_lahir', true));
+          $result = $date->format('dmY');
+
+          $cek_data = $this->kepegawaian_model->cek_dataakhir();
+
+          if($cek_data != NULL){
+               $dataterakhir = $cek_data[0]->id_thl;     
+          }else{
+               $dataterakhir = 0;
+          }
+          
+          $dataterakhir++;
+          $username = $result.$dataterakhir;
+
           $input_data['nama'] = $this->input->post('nama', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
           $input_data['tanggal_lahir'] = $this->input->post('tanggal_lahir', true);
           $input_data['dik'] = $this->input->post('dik', true);
           $input_data['penugasan'] = $this->input->post('penugasan', true);
           $input_data['nama_satker'] = $this->input->post('nama_satker', true);
+          $input_data['username'] = $username;
 
+          $input_users['nama'] = $this->input->post('nama', true);
+          $input_users['username'] = $username;
+          $input_users['password'] = md5("123456");
+          $input_users['penugasan'] = $this->input->post('penugasan', true);
+          $input_users['level'] = 'Karyawan';
+          // var_dump($hasil);exit();
+          $result1 = $this->kepegawaian_model->tambah_thlusers($input_users);
           $result = $this->kepegawaian_model->tambah_thl($input_data);
 
-          if (!$result) { 							
+          if (!$result && !$result1) { 							
                $this->session->set_flashdata('thl', 'DATA THL GAGAL DITAMBAHKAN.'); 				
                redirect('kepegawaian/thl'); 			
           } else { 					
@@ -548,7 +570,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('thl', 'DATA THL BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/thl'); 			
           }
-    }
+     }
 
      public function edit_thl()
      {
@@ -607,7 +629,7 @@ class Kepegawaian extends CI_Controller{
 
                $x['data'] = $data;
                $x['tp'] = $tp;
-          
+
                $this->load->view("include/head");
                $this->load->view("include/top-header");
                $this->load->view('view_ta', $x);
@@ -620,7 +642,7 @@ class Kepegawaian extends CI_Controller{
      }
 
      public function tambah_ta()
-	{		
+     {		
           $input_data['nama_lengkap'] = $this->input->post('nama_lengkap', true);
           $input_data['nik'] = $this->input->post('nik', true);
           $input_data['tempat_lahir'] = $this->input->post('tempat_lahir', true);
@@ -643,7 +665,7 @@ class Kepegawaian extends CI_Controller{
                $this->session->set_flashdata('ta', 'DATA TA BERHASIL DITAMBAHKAN.');			
                redirect('kepegawaian/ta'); 			
           }
-    }
+     }
 
      public function edit_ta()
      {

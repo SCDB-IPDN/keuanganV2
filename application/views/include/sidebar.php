@@ -86,7 +86,7 @@
 			<!-- END KEUANGAN -->
 
 			<!-- KEPEGAWAIAN -->
-			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="kepegawaian" || $this->uri->segment(2)=="thl"  || $this->uri->segment(1)=="absensi"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-id-card"></i>
@@ -111,7 +111,6 @@
 							PRESENSI
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "absensi" && $this->uri->segment(2) == "users" ? "active" : ""; ?>"><a href="<?php echo base_url('absensi/users'); ?>">+ USER PRESENSI</a></li>
 							<li class=""><a href="https://presensi.ipdn.ac.id" target="_blank">APPS PRESENSI</a></li>
 							<li class="<?php echo $this->uri->segment(1) == "absensi" ? "active" : ""; ?>"><a href="<?php echo base_url('absensi'); ?>">REKAP DATA</a></li>
 						</ul>
@@ -150,21 +149,21 @@
 			<!-- END KEPRAJAAN -->
 
 			<!-- HUMAS -->
-			<li class="<?php echo $this->uri->segment(1)=="berita" ?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "beritaeksternal" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-handshake"></i>
 					<span>Humas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							BERITA
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
-							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+							<li class="<?php echo $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('beritaeksternal'); ?>">EKSTERNAL</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -274,7 +273,7 @@
 							<li class="<?php echo $this->uri->segment(2) == "kepres" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/kepres'); ?>">Keputusan Presiden</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "permen" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/permen'); ?>">Peraturan Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "km" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/km'); ?>">Keputusan Menteri</a></li>
-							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Intruksi Menteri</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "im" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/im'); ?>">Instruksi Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "sem" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/sem'); ?>">Surat Edaran Menteri</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "pr" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/pr'); ?>">Peraturan Rektor</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "keputusan_rektor" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/keputusan_rektor'); ?>">Keputusan Rektor</a></li>
@@ -339,7 +338,23 @@
 				</a>
 				<ul class="sub-menu">
 					<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
-					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI) ANGKATAN 31</a></li>
+
+					<li class=""><a href="http://pddikti.ipdn.ac.id/login" target="_blank">PDDIKTI</a></li>
+					<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI)</a></li>
+				<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<span>PILKADA 2020</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://forms.gle/Sc7zgiaxPKTWeu1i8" target="_blank">FORM KUESIONER</a></li>
+					<li class=""><a href="https://bit.ly/3qlwi9P" target="_blank">HASIL KUESIONER</a></li>
+					<li class=""><a href="https://forms.gle/uVGs43WqNdyaHsPA6" target="_blank">FORM MONITORING</a></li>
+					<li class=""><a href="https://bit.ly/2NrqYTA" target="_blank">HASIL MONITORING</a></li>
+					<li class=""><a href="https://forms.gle/YBvKx2kGitw95cLb6 " target="_blank">FORM REKAPITULASI</a></li>
+					<li class=""><a href="https://bit.ly/3qpY2tG" target="_blank">HASIL FORM REKAPITULASI</a></li>
+				</ul>
+			</li>
 				</ul>
 			</li>
 			<!-- END LAINNYA -->
