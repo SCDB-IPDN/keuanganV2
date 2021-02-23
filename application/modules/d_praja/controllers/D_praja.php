@@ -133,7 +133,7 @@ class D_praja extends CI_Controller
 
 
 
-      if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Keprajaan'){
+      if($this->session->userdata('role') == 'Admin' ||  $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan'){
 
 
       $opsi = "<a 
