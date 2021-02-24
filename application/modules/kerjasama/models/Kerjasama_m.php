@@ -32,4 +32,8 @@ class Kerjasama_m extends CI_Model
 	{
 		return $this->db->get_where('tbl_kerjasama', ['id' => $id])->row();
     }
+
+	public function log($log){
+		return $this->db->insert('tbl_log', $log);
+	}
 }

@@ -4,7 +4,7 @@ class Kerjasama extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-		$this->load->model('kerjasama_m');
+		$this->load->model('Kerjasama_m');
 		$this->load->helper('url');
     }
 
@@ -22,7 +22,7 @@ class Kerjasama extends CI_Controller {
 	}
 	
 	public function get_mou() {
-		$data = $this->kerjasama_m->get_mou();
+		$data = $this->Kerjasama_m->get_mou();
 		$mou = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -40,7 +40,7 @@ class Kerjasama extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'kerjasama'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'kerjasama'){
 				$opsi = "<a 
 					href='javascript:;' data-mou='$d->id' data-mitra='$d->mitra' data-no_mitra='$d->no_mitra' 
 					data-no_int='$d->no_int' data-tmt='$d->tmt' data-hal='$d->hal' data-masa_berlaku='$d->masa_berlaku'
@@ -99,13 +99,20 @@ class Kerjasama extends CI_Controller {
 			}
 		}
 			
-		$result = $this->kerjasama_m->add_mou($data);
+		$result = $this->Kerjasama_m->add_mou($data);
 
-		if ($result) { 				
+		if ($result) { 			
+			
+			$isi = $data['no_int'];
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Menambahkan MOU, Nomor IPDN = $isi";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->Kerjasama_m->log($log);
+
 			$this->session->set_flashdata('mou', ['success', 'Data MOU berhasil disimpan']);
-			redirect("kerjasama/mou"); 			
+			redirect("kerjasama/mou"); 	
 		} 
-		else { 								
+		else {
 			$this->session->set_flashdata('mou', ['danger', 'Data MOU gagal disimpan']); 
 			redirect("kerjasama/mou"); 	
 		}
@@ -113,15 +120,21 @@ class Kerjasama extends CI_Controller {
     
     public function del_mou() {
 		$id = $this->input->post('del_id_mou');
-		$mou = $this->kerjasama_m->getById($id);
+		$mou = $this->Kerjasama_m->getById($id);
 		$file = "./assets/mou_files/$mou->file";
 		if(is_file($file)) {
 			unlink($file);
 		}
 
-		$hasil = $this->kerjasama_m->del_mou($id);
+		$hasil = $this->Kerjasama_m->del_mou($id);
 
-		if ($hasil) { 								
+		if ($hasil) { 	
+	
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Menghapus MOU, Nomor IPDN = $id";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->Kerjasama_m->log($log);
+
 			$this->session->set_flashdata('mou', ['success', 'Data MOU berhasil dihapus']);			
 			redirect("kerjasama/mou");		
 		} else { 								
@@ -153,7 +166,7 @@ class Kerjasama extends CI_Controller {
 				redirect("kerjasama/mou"); 
 			}
 			else {
-				$pdf = $this->kerjasama_m->getById($id);
+				$pdf = $this->Kerjasama_m->getById($id);
 				$file = "./assets/mou_files/$pdf->file";
 				if(is_file($file)) {
 					unlink($file);
@@ -162,9 +175,16 @@ class Kerjasama extends CI_Controller {
 			}
 		}
 
-		$result = $this->kerjasama_m->edit_mou($id, $editmou);
+		$result = $this->Kerjasama_m->edit_mou($id, $editmou);
 
-		if ($result) { 		
+		if ($result) { 
+			
+			$isi = $editmou['no_int'];
+            $log['user'] = $this->session->userdata('nip');
+            $log['Ket'] = "Mengubah MOU, Nomor IPDN = $isi";
+            $log['tanggal'] = date('Y-m-d H:i:s');
+            $this->Kerjasama_m->log($log);
+
 			$this->session->set_flashdata('mou', ['success', 'Data MOU berhasil diubah']);	
 			redirect("kerjasama/mou");
 		} else {
@@ -174,7 +194,7 @@ class Kerjasama extends CI_Controller {
     }
 
 	public function tmt_year() {
-		$tmt_list = $this->kerjasama_m->filter_tmt();
+		$tmt_list = $this->Kerjasama_m->filter_tmt();
 		$tmt = [];
 		foreach($tmt_list as $t) {
 			$tmt[] =  $t['YEAR(`tmt`)'];

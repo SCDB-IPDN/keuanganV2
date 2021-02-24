@@ -9,7 +9,7 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'kerjasama'){?>
+						<?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'kerjasama'){?>
 							<span>
 								<a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addmou">TAMBAH MOU</a>
 							</span>
@@ -43,7 +43,7 @@
 									<th>No</th>
 									<th>MITRA</th>
 									<th>NO MITRA</th>
-									<th>NO INT</th>
+									<th>NO IPDN</th>
 									<th>TMT</th>
 									<th>HAL</th>
 									<th>MASA BERLAKU</th>
@@ -83,7 +83,7 @@
 						<label class="col-form-label">No Mitra:</label>
 						<input type="text" class="form-control" name="no_mitra" placeholder="Nomor Mitra" required>
 
-						<label class="col-form-label">NO INT:</label>
+						<label class="col-form-label">NO IPDN:</label>
 						<input type="text" class="form-control" name="no_int" placeholder="Nomor IPDN" required>
 
 						<label class="col-form-label">TMT:</label>
@@ -137,7 +137,7 @@
 						<label class="col-form-label">No Mitra:</label>
 						<input type="text" class="form-control" name="no_mitra" id="no_mitra" placeholder="Nomor Mitra" required>
 
-						<label class="col-form-label">NO INT:</label>
+						<label class="col-form-label">NO IPDN:</label>
 						<input type="text" class="form-control" name="no_int" id="no_int" placeholder="Nomor IPDN" required>
 
 						<label class="col-form-label">TMT:</label>
