@@ -40,7 +40,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -215,7 +215,7 @@ class Ortala extends CI_Controller {
 				$pdf ='Tidak ada file';
 			}
 
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' ||  $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -277,7 +277,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -340,7 +340,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -407,7 +407,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -469,8 +469,9 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
+
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -554,7 +555,7 @@ class Ortala extends CI_Controller {
 				$pdf ='Tidak ada file';
 			}
 
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -639,6 +640,7 @@ class Ortala extends CI_Controller {
 		}
 		echo json_encode($uu);
 	}
+
 	public function kepres() {
 		if($this->session->userdata('nip') != NULL) {       
 			$this->load->view("include/head");
@@ -670,8 +672,9 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
+
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -732,8 +735,9 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
+
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -795,8 +799,10 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
+
+
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -857,8 +863,9 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
+
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
