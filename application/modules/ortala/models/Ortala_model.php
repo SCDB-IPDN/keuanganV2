@@ -7,6 +7,14 @@ class Ortala_model extends CI_Model{
 		return $getuu;
     }
 
+     public function get_ortala1($id_kat,$tahun)
+	{
+		$getuu = $this->db->query("SELECT * FROM tbl_ort where id_kat = '$id_kat' and tahun='$tahun' ");
+
+		return $getuu;
+    }
+
+
     function add_prokum($data)
 	{   
 		$addprokum = $this->db->insert('tbl_ort', $data);
@@ -36,6 +44,21 @@ class Ortala_model extends CI_Model{
 		return $this->db->get_where('tbl_ort', ['id_prokum' => $id])->row();
     }
     
+
+    public function getTahun()
+	{
+
+		$haha = $this->db->query("SELECT DISTINCT tahun FROM tbl_ort")->result_array();
+		return $haha;
+    }
+
+ //      public function getTahun()
+	// {
+
+	// 	$haha = $this->db->query("SELECT tahun FROM tbl_ort GROUP BY tahun")->result_array();
+	// 	return $haha;
+ //    }
+
     /*function get_kategori()
     {   
         $getkat = $this->db->query("SELECT * FROM tbl_ort_kat")->result();
