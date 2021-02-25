@@ -61,6 +61,7 @@
                   <th class="text-nowrap">Catatan Mutasi</th>
                   <th class="text-nowrap">No Kapreg</th>
                   <th class="text-nowrap">Eselon</th>
+                  <th class="text-nowrap">Jabatan Lainnya</th>
                   <th class="text-nowrap">Aksi</th>
                 </tr>
               </thead>
