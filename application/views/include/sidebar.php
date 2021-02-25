@@ -163,7 +163,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
-							<li class="<?php echo $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('beritaeksternal'); ?>">EKSTERNAL</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('BeritaEksternal'); ?>">EKSTERNAL</a></li>
 						</ul>
 					</li>
 				</ul>
