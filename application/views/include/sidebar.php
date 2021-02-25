@@ -152,7 +152,7 @@
 			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "beritaeksternal" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
-					<i class="fas fa-handshake"></i>
+					<i class="fas fa-users"></i>
 					<span>Humas</span>
 				</a>
 				<ul class="sub-menu">
@@ -280,6 +280,28 @@
 							<li class="<?php echo $this->uri->segment(2) == "ser" ? "active" : ""; ?>"><a href="<?php echo base_url('ortala/ser'); ?>">Surat Edaran Rektor</a></li>
 						
 							<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<!-- END ORTALA -->
+
+			<!-- Kerja Sama -->
+			<li class="<?php echo $this->uri->segment(1)=="kerjasama" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-handshake"></i>
+					<span>Kerja Sama</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1) == "mou"  ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							Kerja Sama
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(2) == "mou" ? "active" : ""; ?>"><a href="<?php echo base_url('kerjasama/mou'); ?>">Perjanjian Kerja Sama</a></li>
+									<!-- <li class=""><a href="#">EKSTERNAL</a></li> -->
 						</ul>
 					</li>
 				</ul>
