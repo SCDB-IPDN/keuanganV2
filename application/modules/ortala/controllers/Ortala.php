@@ -4,7 +4,7 @@ class Ortala extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('ortala_model');
+		$this->load->model('Ortala_model');
 		$this->load->helper('url');
 	}
 
@@ -22,7 +22,7 @@ class Ortala extends CI_Controller {
 	}
 	
 	public function get_uu() {
-		$data = $this->ortala_model->get_ortala(1)->result();
+		$data = $this->Ortala_model->get_ortala(1)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -40,7 +40,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -101,9 +101,16 @@ class Ortala extends CI_Controller {
 			}
 		}
 
-		$result = $this->ortala_model->add_prokum($data);
+		$result = $this->Ortala_model->add_prokum($data);
 
-		if ($result) { 				
+		if ($result) { 			
+			
+			$isi = $data['tentang'];
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "Menambahkan Produk Hukum, tentang = $isi";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->Ortala_model->log($log);
+
 			$this->session->set_flashdata('prokum', ['success', 'Data Produk Hukum berhasil disimpan']);
 			redirect("ortala/$url"); 			
 		} 
@@ -116,15 +123,21 @@ class Ortala extends CI_Controller {
 	public function del_prokum() {
 		$id_prokum = $this->input->post('del_id_prokum');
 		$url = $this->input->post('url', true);
-		$prokum = $this->ortala_model->getById($id_prokum);
+		$prokum = $this->Ortala_model->getById($id_prokum);
 		$file = "./assets/prokum_files/$prokum->nama_file";
 		if(is_file($file)) {
 			unlink($file);
 		}
 
-		$hasil = $this->ortala_model->del_prokum($id_prokum);
+		$hasil = $this->Ortala_model->del_prokum($id_prokum);
 
-		if ($hasil) { 								
+		if ($hasil) { 	
+			
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "Menghapus Produk Hukum, ID = $id_prokum";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->Ortala_model->log($log);
+
 			$this->session->set_flashdata('prokum', ['success', 'Data Produk Hukum berhasil dihapus']);			
 			redirect("ortala/$url");		
 		} else { 								
@@ -157,7 +170,7 @@ class Ortala extends CI_Controller {
 				redirect("ortala/$url"); 
 			}
 			else {
-				$pdf = $this->ortala_model->getById($id_prokum);
+				$pdf = $this->Ortala_model->getById($id_prokum);
 				$file = "./assets/prokum_files/$pdf->nama_file";
 				if(is_file($file)) {
 					unlink($file);
@@ -166,9 +179,16 @@ class Ortala extends CI_Controller {
 			}
 		}
 
-		$result = $this->ortala_model->edit_prokum($id_prokum, $editprokum);
+		$result = $this->Ortala_model->edit_prokum($id_prokum, $editprokum);
 
 		if ($result) { 		
+
+			$isi = $editprokum['tentang'];
+			$log['user'] = $this->session->userdata('nip');
+			$log['Ket'] = "Mengubah Produk Hukum, tentang = $isi";
+			$log['tanggal'] = date('Y-m-d H:i:s');
+			$this->Ortala_model->log($log);
+
 			$this->session->set_flashdata('prokum', ['success', 'Data Produk Hukum berhasil diubah']);	
 			redirect("ortala/$url");
 		} else {
@@ -179,8 +199,8 @@ class Ortala extends CI_Controller {
 
 	public function keputusan_rektor() {
 		if($this->session->userdata('nip') != NULL) {       
-			$open_ka =  $this->ortala_model->get_status_count(5, "Open");
-			$done_ka =  $this->ortala_model->get_status_count(5, "Done");
+			$open_ka =  $this->Ortala_model->get_status_count(5, "Open");
+			$done_ka =  $this->Ortala_model->get_status_count(5, "Done");
 
 			$x["open_ka"] = $open_ka;
 			$x["done_ka"] = $done_ka;
@@ -196,7 +216,7 @@ class Ortala extends CI_Controller {
 	}
 
 	public function get_ka() {
-		$data = $this->ortala_model->get_ortala(5)->result();
+		$data = $this->Ortala_model->get_ortala(5)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -215,7 +235,7 @@ class Ortala extends CI_Controller {
 				$pdf ='Tidak ada file';
 			}
 
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' ||  $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -259,7 +279,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_pp() {
-		$data = $this->ortala_model->get_ortala(2)->result();
+		$data = $this->Ortala_model->get_ortala(2)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -277,7 +297,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -322,7 +342,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_permen() {
-		$data = $this->ortala_model->get_ortala(3)->result();
+		$data = $this->Ortala_model->get_ortala(3)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -340,7 +360,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -373,8 +393,8 @@ class Ortala extends CI_Controller {
 	}
 	public function pr() {
 		if($this->session->userdata('nip') != NULL) {       
-			$open_pr =  $this->ortala_model->get_status_count(4, "Open");
-			$done_pr =  $this->ortala_model->get_status_count(4, "Done");
+			$open_pr =  $this->Ortala_model->get_status_count(4, "Open");
+			$done_pr =  $this->Ortala_model->get_status_count(4, "Done");
 
 			$x["open_pr"] = $open_pr;
 			$x["done_pr"] = $done_pr;
@@ -389,7 +409,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_pr() {
-		$data = $this->ortala_model->get_ortala(4)->result();
+		$data = $this->Ortala_model->get_ortala(4)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -407,7 +427,7 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -451,7 +471,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_km() {
-		$data = $this->ortala_model->get_ortala(6)->result();
+		$data = $this->Ortala_model->get_ortala(6)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -469,9 +489,8 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-			$opsi = "<a 
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -507,11 +526,11 @@ class Ortala extends CI_Controller {
 
 	public function ser() {
 		if($this->session->userdata('nip') != NULL) {       
-			$open_ser =  $this->ortala_model->get_status_count(10, "Open");
-			$done_ser =  $this->ortala_model->get_status_count(10, "Done");
+			$open_ser =  $this->Ortala_model->get_status_count(10, "Open");
+			$done_ser =  $this->Ortala_model->get_status_count(10, "Done");
 
-			$tahun =  $this->ortala_model->getTahun();
-			// var_dump($tahun);exit();
+			// $tahun =  $this->Ortala_model->getTahun();
+			// // var_dump($tahun);exit();
 			// var_dump($tahun);exit();
 
 			$x["open_ser"] = $open_ser;
@@ -529,14 +548,8 @@ class Ortala extends CI_Controller {
 		}
 	}
 
-	public function tahun_ser() {
-		$tahun =  $this->ortala_model->getTahun();
-		// var_dump($tahun);exit();
-		echo json_encode($tahun);
-	}
-
 	public function get_ser() {
-		$data = $this->ortala_model->get_ortala(10)->result();
+		$data = $this->Ortala_model->get_ortala(10)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -555,62 +568,7 @@ class Ortala extends CI_Controller {
 				$pdf ='Tidak ada file';
 			}
 
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-				$opsi = "<a 
-				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
-				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
-				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
-				</a>
-
-				<a 
-				href='javascript:;' data-id_prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang'
-				data-toggle='modal' data-target='#delprokum' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i>
-				</a>";
-			}else{
-				$opsi = "Tidak ada Akses";
-			}
-
-			$uu[] = array(
-				$no++,
-				$kategori,
-				$nomor,
-				$tanggal,
-				$tahun,
-				$tentang,
-				// $link,
-				$status,
-				$pdf,
-				$opsi
-			);
-		}
-		echo json_encode($uu);
-	}
-
-	public function get_ser_tahun() {
-
-
-		$tahun = $this->input->post('tahun', true);
-		$data = $this->ortala_model->get_ortala1(10,$tahun)->result();
-		// var_dump($data);exit();
-		$uu = array();
-		$no = 1;
-		foreach($data as $d) {
-			$kategori = $d->nama_kat;
-			$nomor = $d->nomor;
-			$tanggal = $d->tanggal;
-			$tahun = $d->tahun;
-			$tentang = $d->tentang;
-			$link = '<a href="'.prep_url($d->link).'" target="blank">'.$d->link.'</a>';
-			$status = $d->status;
-			$file = "./assets/prokum_files/$d->nama_file";
-			if(is_file($file)) {
-				$pdf = '<a href="'.base_url().$file.'" target="blank"><i class="far fa-file-pdf fa-2x text-danger"></i></a>';
-			}
-			else {
-				$pdf ='Tidak ada file';
-			}
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
 				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
@@ -654,7 +612,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_kepres() {
-		$data = $this->ortala_model->get_ortala(7)->result();
+		$data = $this->Ortala_model->get_ortala(7)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -672,9 +630,8 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-			$opsi = "<a 
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -717,7 +674,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_perpres() {
-		$data = $this->ortala_model->get_ortala(9)->result();
+		$data = $this->Ortala_model->get_ortala(9)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -735,9 +692,8 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-			$opsi = "<a 
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -781,7 +737,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_sem() {
-		$data = $this->ortala_model->get_ortala(11)->result();
+		$data = $this->Ortala_model->get_ortala(11)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -799,10 +755,8 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-			$opsi = "<a 
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -845,7 +799,7 @@ class Ortala extends CI_Controller {
 		}
 	}
 	public function get_im() {
-		$data = $this->ortala_model->get_ortala(8)->result();
+		$data = $this->Ortala_model->get_ortala(8)->result();
 		$uu = array();
 		$no = 1;
 		foreach($data as $d) {
@@ -863,9 +817,8 @@ class Ortala extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
-			$opsi = "<a 
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){
+				$opsi = "<a 
 				href='javascript:;' data-prokum='$d->id_prokum' data-nomor='$d->nomor'  data-tahun='$d->tahun' data-tentang='$d->tentang' data-file='$d->nama_file'
 				data-link='$d->link' data-status='$d->status' data-tanggal='$d->tanggal'
 				data-toggle='modal' data-target='#editprokum' class='btn btn-sm btn-info'><i class='fa fas fa-edit'></i>
@@ -896,5 +849,15 @@ class Ortala extends CI_Controller {
 		echo json_encode($uu);
 	}
 
+	public function get_year_filter() {
+		$id_kat = $this->input->post('id_kat');
+		$year_list = $this->Ortala_model->get_year($id_kat);
+		$years = [];
+		foreach($year_list as $year) {
+			$years[] = $year->tahun;
+		}
+		echo json_encode($years);
+	}
 
+	
 }
