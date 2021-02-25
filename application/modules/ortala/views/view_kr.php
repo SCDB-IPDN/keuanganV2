@@ -55,7 +55,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <span>
-                        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
+                        <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
                             <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_KA">TAMBAH KEPUTUSAN REKTOR</a>
                             <?php } ?>
                         </span>
@@ -75,7 +75,16 @@
                         </div>
                     <?php } ?> 
                     <div class="panel-body">
-                        <table id="data-uu" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+
+                    <tbody>
+							<tr>
+								<td>
+									<select name="filter" id="filter_year" class="form-control col-sm-2 mb-3"></select>
+								</td>
+							</tr>
+						</tbody>
+
+                        <table id="data-ka" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                             <thead>
                                 <tr>
                                 <th>No</th>
@@ -235,25 +244,91 @@
 	
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
+function filter_year(){
+    var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+	$.ajax({
+		type: 'POST',
+		url: `${base_url}/ortala/get_year_filter`,
+		data: { 
+			'id_kat': 5 // keputusan rektor
+		},
+		success: function(data){
+			$("#filter_year").html('<option value="" selected>Filter Tahun</option>'); 
+			var dataObj = jQuery.parseJSON(data);
+			if(dataObj) {
+				$(dataObj).each(function() {
+					var option = $('<option />');
+					option.attr('value', this).text(this);           
+					$("#filter_year").append(option);
+				});
+			}
+			else {
+				$("#filter_year").html('<option value="">Pilihan tidak ada</option>');
+			}
+		}
+	}); 
+}
+
 $(document).ready(function() {
+
+	filter_year();
     var url = '<?php echo base_url('ortala/get_ka');?>';
-    $('#data-uu').dataTable({
+    var ka_table = $('#data-ka').DataTable({
+		dom: 'lBfrtip',
         buttons: [
-        	'copy', 'excel', 'print'
+			{
+				extend: 'copy',
+				className: 'ml-5',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'csv',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'excel',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'pdf',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'print',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			}
         ],
         responsive: true,
 		"ajax": {
 			"url": url,
 			"dataSrc": ""
 		},
-		"columnDefs": [
-			{ 
-				"orderable": false, 
-				"targets": [7, 6]
-			}
-  		]
-    });
-    
+
+        
+		// "columnDefs": [
+		// 	{ 
+		// 		"orderable": false, 
+		// 		"targets": 9 
+		// 	}
+  		// ]
+	});
+
+	$('#filter_year').on( 'change', function () {
+		ka_table
+        .column(4)
+        .search(this.value)
+        .draw();
+	});
     // add
     $('#add_KA').on('show.bs.modal', function () {
 		var modal = $(this);

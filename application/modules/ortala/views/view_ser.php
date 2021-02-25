@@ -55,7 +55,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <span>
-                            <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'ortala'){?>
+                            <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
                                 <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
                             <?php } ?>
                         </span>
@@ -69,13 +69,6 @@
                 </div>
                 <br>
 
-
-                <div class="col-xl">
-                    <select name="tahun" id="tahun" class="form-control">
-                    </select>
-                </div>
-
-
                 <div class="table-responsive">
                     <?php if ($this->session->flashdata('prokum') != NULL) { ?>
                         <div class="alert alert-<?php echo $this->session->flashdata('prokum') [0] ?> alert-dismissible">
@@ -84,7 +77,16 @@
                         </div>
                     <?php } ?> 
                     <div class="panel-body">
-                        <table id="data-uu" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+
+                    <tbody>
+							<tr>
+								<td>
+									<select name="filter" id="filter_year" class="form-control col-sm-2 mb-3"></select>
+								</td>
+							</tr>
+						</tbody>
+
+                        <table id="data-ser" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -245,89 +247,93 @@
         </div>
     </div>
 
-    <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+<script>
+function filter_year(){
+    var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+	$.ajax({
+		type: 'POST',
+		url: `${base_url}/ortala/get_year_filter`,
+		data: { 
+			'id_kat': 10 // ser
+		},
+		success: function(data){
+			$("#filter_year").html('<option value="" selected>Filter Tahun</option>'); 
+			var dataObj = jQuery.parseJSON(data);
+			if(dataObj) {
+				$(dataObj).each(function() {
+					var option = $('<option />');
+					option.attr('value', this).text(this);           
+					$("#filter_year").append(option);
+				});
+			}
+			else {
+				$("#filter_year").html('<option value="">Pilihan tidak ada</option>');
+			}
+		}
+	}); 
+}
 
-    <script>
-        function tmt_year(){
+$(document).ready(function() {
 
-            $.ajax({
-                type:'POST',
-                url:'ortala/tahun_ser',
-                success: function(data){
-                    $("#tahun").html('<option value="" selected> Filter Tahun </option>');
-                    var dataObj = jQuery.parseJSON(data); 
-                    for (var i=0;i<dataObj.length;i++) {
-                       
+	filter_year();
+    var url = '<?php echo base_url('ortala/get_ser');?>';
+    var ser_table = $('#data-ser').DataTable({
+		dom: 'lBfrtip',
+        buttons: [
+			{
+				extend: 'copy',
+				className: 'ml-5',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'csv',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'excel',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'pdf',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'print',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			}
+        ],
+        responsive: true,
+		"ajax": {
+			"url": url,
+			"dataSrc": ""
+		},
 
-                        if(dataObj) {
-                            $(dataObj).each(function() {
-                                var option = $('<option />');
-                                option.attr('value', this.tahun).text(this.tahun);           
-                                $("#tahun").append(option);
-                            });
-                        }
-                        else {
-                            $("#tahun").html('<option value="">Pilihan tidak ada</option>');
-                        }
-                        
-                        // $(dataObj).each(function(){
-                        //     var option = $('<option/>');
-                        //     option.attr('value', this.tahun).text(this.tahun);
-                        //     $('#tahun').append(option);
+        
+		// "columnDefs": [
+		// 	{ 
+		// 		"orderable": false, 
+		// 		"targets": 9 
+		// 	}
+  		// ]
+	});
 
-                        // });
-
-                        
-                    }  
-                    
-                    // if(dataObj){
-                    //     $(dataObj).each(function(){
-                    //         var option = $('<option/>');
-                    //         $('#tahun').val(option.data(dataObj));
-
-                    //     });
-
-                    // }else{
-                    //     $("#tahun").html('<option value=""> Pilihan Tidak Ada </option>');
-                    // }
-                }
-
-
-            });
-
-        }
-
-        $(document).ready(function() {
-
-            tmt_year();
-            var url = '<?php echo base_url('ortala/get_ser');?>';
-            var list = $('#data-uu').dataTable({
-                buttons: [
-                'copy', 'excel', 'print'
-                ],
-                responsive: true,
-                "ajax": {
-                   "url": url,
-                   "dataSrc": ""
-               },
-               "columnDefs": [
-               { 
-                "orderable": false, 
-                "targets": [7, 6]
-            }
-            ]
-        });
-
-            $('#tahun').on('change', function(){
-                list
-                .column(4)
-                .search(this.value)
-                .draw();
-
-
-            });
-
-
+	$('#filter_year').on( 'change', function () {
+		ser_table
+        .column(4)
+        .search(this.value)
+        .draw();
+	});
     // add
     $('#add_SME').on('show.bs.modal', function () {
       var modal = $(this);
