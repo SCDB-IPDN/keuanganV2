@@ -3353,27 +3353,28 @@ class Uploads extends CI_Controller {
 						'kode_pos'      =>$row['Q'],
 						'kab_kota'      => $row['R'],
 						'provinsi'      => $row['S'],
-						'jenis_tinggal'      => $row['T'],
+						'jenis_tinggal'      => $this->jenistinggal($row['T']),
 						'alat_transport'      => $row['U'],
 						'tlp_rumah'      => $row['V'],
 						'tlp_pribadi'      => $row['W'],
 						'email'      => $row['X'],
-						'kewarganegaraan'      => $row['AM'],
+						'kewarganegaraan'      => $this->negara($row['AM']),
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
 						'prodi'      => $row['AW'],
 						'fakultas'      => $row['AX'],
-						'jenis_pendaftaran'      =>  $row['AY'],
+						'jenis_pendaftaran'      =>  $this->jenispend($row['AY']),
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
 						'tahun_masuk_kuliah'      => $row['BA'],
-						'pembiayaan'      => $row['BB'],
-						'jalur_masuk'      => $row['BC'],
+						'pembiayaan'      => $this->jenispembiayaan($row['BB']),
+						'jalur_masuk'      => $this->jalurmasuk($row['BC']),
 						'status' => $stat,
 						'tingkat' => 2020-$row['BA']+1,
-						'angkatan' => $cc
+						'angkatan' => $cc,
+						'mulai_semester' => $this->semester($row['BD'])
 					));
 					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
-					// var_dump($row['BA']-date('Y')+1);exit();
+
 					array_push($unitortu, array(
 						'npp'      => $row['F'],
 						'nama'      => $row['B'],
@@ -3412,13 +3413,15 @@ class Uploads extends CI_Controller {
 
 			}
 
+			print("<pre>".print_r($unitpraja,true)."</pre>");
+			exit();
 			// var_dump($unitpraja);exit();
-			// $this->db->truncate('praja');
-			$this->db->insert_batch('praja', $unitpraja);
-			// $this->db->truncate('orangtua');
-			$this->db->insert_batch('orangtua', $unitortu);
-			// $this->db->truncate('wali');
-			$this->db->insert_batch('wali', $unitwali);
+			// // $this->db->truncate('praja');
+			// $this->db->insert_batch('praja', $unitpraja);
+			// // $this->db->truncate('orangtua');
+			// $this->db->insert_batch('orangtua', $unitortu);
+			// // $this->db->truncate('wali');
+			// $this->db->insert_batch('wali', $unitwali);
 			//delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
@@ -4379,6 +4382,153 @@ class Uploads extends CI_Controller {
 		}
 	}
 
+
+	function jenispend($s) {
+		$jp = array(
+			'Peserta Didik Baru' => 1,
+			'Pindahan' => 2,
+			'Naik kelas' => 3,
+			'Akselerasi' => 4,
+			'Mengulang' => 5,
+			'Lanjutan semester' => 6,
+			'Pindahan Alih Bentuk' => 8,
+			'Alih Jenjang' => 11,
+			'Lintas Jalur' => 12,
+			'Rekognisi Pembelajaran Lampau (RPL)' => 13,
+			'Course' => 14,
+			'Fast Track' => 15,
+
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = 0;
+
+		foreach ($jp as $key => $value) {
+			while (strpos($s, $key) === 0) {
+				$result += $value;
+				$s = substr($s, strlen($key));
+			}
+		}
+		return $result;
+	}
+
+	function jalurmasuk($s) {
+		$jm = array(
+			'SBMPTN' => 1,
+			'SNMPTN' => 2,
+			'PMDK' => 3,
+			'Prestasi' => 4,
+			'Seleksi Mandiri PTN' => 5,
+			'Seleksi Mandiri PTS' => 6,
+			'Ujian Masuk Bersama PTN (UMB-PT)' => 7,
+			'Ujian Masuk Bersama PTS (UMB-PTS)' => 8,
+			'Program Internasional' => 9,
+			'Kerjasama Pemerintahan' => 11,
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = 0;
+
+		foreach ($jm as $key => $value) {
+			while (strpos($s, $key) === 0) {
+				$result += $value;
+				$s = substr($s, strlen($key));
+			}
+		}
+		return $result;
+	}
+
+
+	function jenispembiayaan($s) {
+		$jt = array(
+			'Mandiri' => 1,
+			'Beasiswa Tidak Penuh' => 2,
+			'Beasiswa Penuh' => 3,
+			'Bidikmisi' => 4,
+
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = 0;
+
+		foreach ($jt as $key => $value) {
+			while (strpos($s, $key) === 0) {
+				$result += $value;
+				$s = substr($s, strlen($key));
+			}
+		}
+		return $result;
+	}
+
+	function negara($s) {
+		$nn = array(
+			'WNI' => 'ID',
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = "";
+
+		foreach ($nn as $en => $in) {
+			if (strtoupper($in) == 0) {
+				$result = $in;
+			}
+		}
+		return strtoupper($result);
+	}
+
+
+	function semester($s) {
+		$ss = array(
+			'20191' => '2019/2020 Ganjil',
+			'20192' => '2019/2020 Genap',
+			'20193' => '2019/2020 Pendek',
+			'20201' => '2020/2021 Ganjil',
+			'20202' => '2020/2021 Genap',
+			'20203' => '2020/2021 Pendek',
+			'20211' => '2021/2022 Ganjil',
+			'20212' => '2021/2022 Genap',
+			'20213' => '2021/2022 Pendek',
+
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = "";
+
+		foreach ($ss as $key => $value) {
+			while (strtoupper($key) === 0) {
+				$s = substr($ss, strlen($key));
+			}
+		}
+		return $result;
+	}
+
+
+	function jenistinggal($s) {
+		$jtt = array(
+			'Bersama orang tua' => 1,
+			'Bersama Wali' => 2,
+			'Kost' => 3,
+			'Asrama' => 4,
+			'Panti Asuhan' => 5,
+			'Lainnya' => 99,
+
+		);
+
+		// $roman = 'MMMCMXCIX';
+		$result = 0;
+
+		foreach ($jtt as $key => $value) {
+			while (strpos($s, strtoupper($key)) === 0) {
+				$result += $value;
+				$s = substr($s, strlen($key));
+			}
+		}
+		return $result;
+	}
+
+
+
+
 	function rti($s) {
 		$romans = array(
 			'M' => 1000,
@@ -4407,6 +4557,10 @@ class Uploads extends CI_Controller {
 		}
 		return $result;
 	}
+
+
+	
+
 
 	function ite($s) {
 		$months = array(

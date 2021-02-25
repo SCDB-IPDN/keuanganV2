@@ -419,7 +419,7 @@ class D_praja extends CI_Controller
      $log['user'] = $this->session->userdata('nip');
      $log['Ket'] = "Mengedit Data Praja, NPP Praja = $isi";
      $log['tanggal'] = date('Y-m-d H:i:s');
-     var_dump($log);exit();
+     // var_dump($log);exit();
      $this->D_praja_model->log($log);
 
      $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
@@ -626,6 +626,7 @@ function tambah_status()
    $log['user'] = $this->session->userdata('nip');
    $log['Ket'] = "Mengedit Status Praja, NPP Praja = $isi";
    $log['tanggal'] = date('Y-m-d H:i:s');
+   // var_dump($log);exit();
    $this->D_praja_model->log($log);
 
    $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
