@@ -149,21 +149,21 @@
 			<!-- END KEPRAJAAN -->
 
 			<!-- HUMAS -->
-			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "beritaeksternal" ?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "BeritaEksternal" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-handshake"></i>
 					<span>Humas</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1) == "BeritaEksternal" ? "active" : ""; ?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
 							BERITA
 						</a>
 						<ul class="sub-menu">
 							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
-							<li class="<?php echo $this->uri->segment(1) == "beritaeksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('beritaeksternal'); ?>">EKSTERNAL</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "BeritaEksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('BeritaEksternal'); ?>">EKSTERNAL</a></li>
 						</ul>
 					</li>
 				</ul>
