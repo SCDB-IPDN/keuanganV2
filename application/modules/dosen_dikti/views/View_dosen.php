@@ -44,7 +44,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                    <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Akademik'){?>
+                    <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){?>
                         <span><a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#adddosen-dikti">TAMBAH DOSEN</a></span>
                     <?php } ?>
                     </h4>
