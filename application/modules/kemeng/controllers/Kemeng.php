@@ -134,10 +134,10 @@ class Kemeng extends CI_Controller
 
 		if (!$result) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIUBAH.');		
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIUBAH.');			
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		}
 	}
 
@@ -157,17 +157,17 @@ class Kemeng extends CI_Controller
 
 			$this->session->set_flashdata('matkul', 'KODE MATKUL SUDAH TERDAFTAR!!');
 			$x['alert'] = 'ada';			
-			redirect('Kemeng/view_matkul',$x);
+			redirect('kemeng/view_matkul',$x);
 		}
 
 		$result = $this->Kemeng_model->tambahmatkul($input_data);
 
 		if (!$result) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DITAMBAHKAN!!');		
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DITAMBAHKAN.');			
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		}
 	}
 
@@ -180,10 +180,10 @@ class Kemeng extends CI_Controller
 
 		if (!$hasil) { 							
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH GAGAL DIHAPUS.');				
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		} else { 								
 			$this->session->set_flashdata('matkul', 'DATA MATAKULIAH BERHASIL DIHAPUS.');	
-			redirect('Kemeng/view_matkul'); 			
+			redirect('kemeng/view_matkul'); 			
 		}
 		
 	}
@@ -628,7 +628,7 @@ class Kemeng extends CI_Controller
 						 
 			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				$aksi = "<a 
-				href='javascript:;' 'data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
+				href='javascript:;' data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
 				data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 
 				data-nama_fakultas='$r->nama_fakultas' data-nama_prodi='$r->nama_prodi'
 				data-toggle='modal' data-target='#edit-plot' class='btn btn-info'><i class='fa fas fa-edit'></i>
