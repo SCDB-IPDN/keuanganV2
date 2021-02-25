@@ -344,6 +344,30 @@
 			</li>
 			<!-- END TP -->
 
+			<!-- FRONTEND -->
+			<li class="<?= $this->uri->segment(1) == "frontend"  ? "active" : ""; ?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-rocket"></i>
+					<span>Frontend SCDB</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?= $this->uri->segment(2)=="d_frontend" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend'); ?>">Dashboard</a></li>
+
+				<li class="<?= $this->uri->segment(2)=="k_frontend" ? "active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<span>Konten</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?= $this->uri->segment(3)=="menu" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/menu'); ?>">Menu</a></li>
+					<li class="<?= $this->uri->segment(3)=="galeri" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/galeri'); ?>">Galeri</a></li>
+				</ul>
+			</li>
+				</ul>
+			</li>
+			<!-- END FRONTEND -->
+
 			<!-- LAINNYA -->
 			<li class="has-sub">
 				<a href="javascript:;">
