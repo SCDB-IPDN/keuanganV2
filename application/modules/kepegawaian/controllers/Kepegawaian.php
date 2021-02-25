@@ -33,7 +33,6 @@ class Kepegawaian extends CI_Controller{
                $catatan = $r->catatan_mutasi == NULL ? "<i><font style='color:red;'>Catatan Mutasi tidak ada</font></i>" : $r->catatan_mutasi;
                $no_kapreg = $r->no_kapreg == NULL ? "<i><font style='color:red;'>No Kapreg tidak ada</font></i>" : $r->no_kapreg;
                $eselon = $r->eselon == NULL ? "<i><font style='color:red;'>Eselon tidak ada</font></i>" : $r->eselon;
-               $jabatan_dosen = $r->jabatan_dosen == NULL ? "<i><font style='color:red;'>Jabatan Dosen tidak ada</font></i>" : $r->jabatan_dosen;
                             
                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Kepegawaian'){
                     $aksi = "<a href='javascript:;' data-no='$r->no' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-bagian='$r->bagian' data-tempat_lahir='$r->tempat_lahir' data-tanggal_lahir='$r->tanggal_lahir' data-no_urut_pangkat='$r->no_urut_pangkat' data-pangkat='$r->pangkat' data-gol_ruang='$r->gol_ruang' data-tmt_pangkat='$r->tmt_pangkat' data-jabatan='$r->jabatan' data-tmt_jabatan='$r->tmt_jabatan' data-jurusan='$r->jurusan' data-nama_pt='$r->nama_pt' data-tahun_lulus='$r->tahun_lulus' data-tingkat_pendidikan='$r->tingkat_pendidikan' data-usia='$r->usia' data-masa_kerja='$r->masa_kerja' data-catatan_mutasi='$r->catatan_mutasi' data-no_kapreg='$r->no_kapreg' data-eselon='$r->eselon' data-toggle='modal' data-target='#editpns' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> <a href='javascript:;' data-nip='$r->nip' data-nama_lengkap='$r->nama_lengkap' data-toggle='modal' data-target='#hapuspns' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
@@ -61,7 +60,6 @@ class Kepegawaian extends CI_Controller{
                     $catatan,
                     $no_kapreg,
                     $eselon,
-                    $jabatan_dosen,
                     $aksi
                );
           }
