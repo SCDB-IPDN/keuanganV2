@@ -10,7 +10,7 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-					<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
+					<?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
 						<span><a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#adduu">TAMBAH UNDANG-UNDANG</a></span>
 						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
 						<!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
@@ -35,6 +35,14 @@
 					<!-- <a href="<?php //echo base_url('uu/export'); ?>">Export Data</a> -->
 
 					<div class="panel-body">
+					<tbody>
+							<tr>
+								<td>
+									<select name="filter" id="filter_year" class="form-control col-sm-2 mb-3"></select>
+								</td>
+							</tr>
+						</tbody>
+
 						<table id="data-uu" class="table table-striped table-bordered table-td-valign-middle" width="100%">
 							<thead>
 								<tr>
@@ -194,25 +202,88 @@
 	
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
+function filter_year(){
+    var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+	$.ajax({
+		type: 'POST',
+		url: `${base_url}/ortala/get_year_filter`,
+		data: { 
+			'id_kat': 1 // uu
+		},
+		success: function(data){
+			$("#filter_year").html('<option value="" selected>Filter Tahun</option>'); 
+			var dataObj = jQuery.parseJSON(data);
+			if(dataObj) {
+				$(dataObj).each(function() {
+					var option = $('<option />');
+					option.attr('value', this).text(this);           
+					$("#filter_year").append(option);
+				});
+			}
+			else {
+				$("#filter_year").html('<option value="">Pilihan tidak ada</option>');
+			}
+		}
+	}); 
+}
+
 $(document).ready(function() {
+	filter_year();
     var url = '<?php echo base_url('ortala/get_uu');?>';
-    $('#data-uu').dataTable({
+    var uu_table = $('#data-uu').DataTable({
+		dom: 'lBfrtip',
         buttons: [
-        	'copy', 'excel', 'print'
+			{
+				extend: 'copy',
+				className: 'ml-5',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'csv',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'excel',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'pdf',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'print',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			}
         ],
         responsive: true,
 		"ajax": {
 			"url": url,
 			"dataSrc": ""
-		},
-		"columnDefs": [
-			{ 
-				"orderable": false, 
-				"targets": 7 
-			}
-  		]
+		}
+		// "columnDefs": [
+		// 	{ 
+		// 		"orderable": false, 
+		// 		"targets": 9 
+		// 	}
+  		// ]
 	});
-	
+
+	$('#filter_year').on( 'change', function () {
+		uu_table
+        .column(4)
+        .search(this.value)
+        .draw();
+	});
 	// Edit
 	$('#editprokum').on('show.bs.modal', function (event) {
 		var div = $(event.relatedTarget); // Tombol dimana modal di tampilkan

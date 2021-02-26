@@ -25,6 +25,7 @@ class Home extends CI_Controller {
       $prokum = $this->home_model->jumlah_prokum();
       // $x['prokum'] =  json_encode($prokum);
       // var_dump(json_encode($prokum));exit;
+      $sisa = $this->home_model->ortala_sisa();
       $perek = $this->home_model->peraturan_rektor();
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
@@ -76,10 +77,10 @@ class Home extends CI_Controller {
       $angkatan29 = $this->home_model->angkatan_29();
       // ANGKATAN 28
       $angkatan28 = $this->home_model->angkatan_28();
-	    
+
       //prajajk
       $jkpraja = $this->home_model->get_jk_praja();
-	    
+
       // PRAJA
       $praja = $this->home_model->jumlah_praja();
       $total_praja = $praja[0]->praja;
@@ -107,7 +108,7 @@ class Home extends CI_Controller {
       
       $berita = $this->home_model->listing();
       $eksternal = $this->home_model->get_data()->result();
-        
+
       $x['eksternal'] = $eksternal;
       $x['berita'] = $berita;
       $x['perpustakaan'] = $perpustakaan;
@@ -136,10 +137,11 @@ class Home extends CI_Controller {
       // var_dump($prokum);exit;
       // $x['total_prok'] = $total_prok;
       // $x['last_updated'] = $last_updated;
+      $x['sisa'] = $sisa;
       $x['perek'] = $perek;
       $x['keprek'] = $keprek;
       $x['srt'] = $srt;
-  
+
 
       $x['dosen'] = $dosen;
       $x['last_dosen'] = $last_dosen;
@@ -177,9 +179,9 @@ class Home extends CI_Controller {
 
     }else{
         //jika session belum terdaftar, maka redirect ke halaman login
-        redirect("user");
+      redirect("user");
     }
-	
+
   }
 
   // // Read berita
@@ -189,14 +191,14 @@ class Home extends CI_Controller {
 	// 	$berita = $this->home_model->read($slug_berita);
 
   //   $x['berita'] = $berita;
-            
+
   //   $this->load->view("include/head");
   //   $this->load->view("include/top-header");
   //   $this->load->view('read', $x);
   //   $this->load->view("include/sidebar");
   //   $this->load->view("include/panel");
   //   $this->load->view("include/footer");
-    
+
 	// }
 }
 ?>

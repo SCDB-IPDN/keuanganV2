@@ -65,7 +65,9 @@ class Kepegawaian_model extends CI_Model{
   // PNS
   public function get_all_pns()
 	{	
-    $result = $this->db->query("SELECT * FROM tbl_pns");
+    // $result = $this->db->query("SELECT * FROM tbl_pns");
+
+    $result = $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)");
 
     return $result;
   }
