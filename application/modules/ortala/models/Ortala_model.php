@@ -36,10 +36,17 @@ class Ortala_model extends CI_Model{
 		return $this->db->get_where('tbl_ort', ['id_prokum' => $id])->row();
     }
     
-    /*function get_kategori()
-    {   
-        $getkat = $this->db->query("SELECT * FROM tbl_ort_kat")->result();
-        return $getkat;
-    }*/
+
+	public function get_year($id_kat)
+	{
+		$this->db->distinct()->select('tahun');
+		$this->db->where('id_kat', $id_kat);
+		return $this->db->get('tbl_ort')->result();
+	}
+
+	public function log($log){
+		return $this->db->insert('tbl_log', $log);
+	  } 
+
 
 }
