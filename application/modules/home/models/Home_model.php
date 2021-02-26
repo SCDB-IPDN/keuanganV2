@@ -81,31 +81,58 @@ class Home_model extends CI_Model{
 
 	public function ortala_sisa()
 	{
-		$sisa = $this->db->query("SELECT SUM(id_kat = 1)+SUM(id_kat = 2)+SUM(id_kat = 3)+SUM(id_kat = 6)+SUM(id_kat = 7)+SUM(id_kat = 8)+SUM(id_kat = 9) as sisa FROM tbl_ort WHERE status = 'Aktif'")->result();
+		$sisa = $this->db->query("SELECT SUM(id_kat = 1)+SUM(id_kat = 2)+SUM(id_kat = 3)+SUM(id_kat = 6)+SUM(id_kat = 7)+SUM(id_kat = 8)+SUM(id_kat = 9) as sisa FROM tbl_ort WHERE status = 'Aktif' ")->result();
 
 		return $sisa;
 	}
 
+
+
 	public function peraturan_rektor()
 	{
-		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done'")->result();
+		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done' and tahun='2021' ")->result();
 
 		return $perek;
 	}
 
 	public function keputusan_rektor()
 	{
-		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done'")->result();
+		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done' and tahun='2021' ")->result();
 
 		return $keprek;
 	}
 
 	public function surat_edaran()
 	{
-		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done'")->result();
+		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done' and tahun='2021'")->result();
 
 		return $srt;
 	}
+
+
+
+
+	public function peraturan_rektor1()
+	{
+		$perek = $this->db->query("SELECT SUM(id_kat = 4) as pr FROM tbl_ort WHERE status = 'done' and tahun='2020' ")->result();
+
+		return $perek;
+	}
+
+	public function keputusan_rektor1()
+	{
+		$keprek = $this->db->query("SELECT SUM(id_kat = 5) as kr FROM tbl_ort WHERE status = 'done' and tahun='2020' ")->result();
+
+		return $keprek;
+	}
+
+	public function surat_edaran1()
+	{
+		$srt = $this->db->query("SELECT SUM(id_kat = 10) as ser FROM tbl_ort WHERE status = 'done' and tahun='2020'")->result();
+
+		return $srt;
+	}
+
 
 	public function apps(){
 		$result = $this->db->query("SELECT 
