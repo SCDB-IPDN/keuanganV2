@@ -55,14 +55,8 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <span>
-<<<<<<< HEAD
                             <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
                                 <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
-=======
-                        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
-                            <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
-
->>>>>>> 4aeb3d99b925460dc0bfe40a4b3f69c198aef188
                             <?php } ?>
                         </span>
                     </h4>
