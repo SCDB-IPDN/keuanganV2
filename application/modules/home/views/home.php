@@ -837,7 +837,7 @@
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-							Produk Hukum Lainnya 2021
+							Produk Hukum Lainnya
 						</div>
 						<div class="d-flex align-items-center ml-auto">
 							<div class="text-right pl-2 f-w-600"><span><?php echo $sisa[0]->sisa; ?></span></div>
