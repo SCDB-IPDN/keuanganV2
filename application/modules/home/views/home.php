@@ -778,34 +778,66 @@
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-							Peraturan Rektor
+							Peraturan Rektor 2020
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $perek1[0]->pr; ?></span></div>
+						</div>
+					</div><div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+							Peraturan Rektor 2021
 						</div>
 						<div class="d-flex align-items-center ml-auto">
 							<div class="text-right pl-2 f-w-600"><span><?php echo $perek[0]->pr; ?></span></div>
 						</div>
 					</div>
+					<br>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-							Keputusan Rektor
+							Keputusan Rektor 2020
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $keprek1[0]->kr; ?></span></div>
+						</div>
+					</div>
+
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+							Keputusan Rektor 2021
 						</div>
 						<div class="d-flex align-items-center ml-auto">
 							<div class="text-right pl-2 f-w-600"><span><?php echo $keprek[0]->kr; ?></span></div>
 						</div>
 					</div>
+					<br>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
-							Surat Edaran Rektor
+							Surat Edaran Rektor 2020
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $srt1[0]->ser; ?></span></div>
+						</div>
+					</div>
+
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+							Surat Edaran Rektor 2021 
 						</div>
 						<div class="d-flex align-items-center ml-auto">
 							<div class="text-right pl-2 f-w-600"><span><?php echo $srt[0]->ser; ?></span></div>
 						</div>
 					</div>
+					<br>
+
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-							Produk Hukum Lainnya
+							Produk Hukum Lainnya 2021
 						</div>
 						<div class="d-flex align-items-center ml-auto">
 							<div class="text-right pl-2 f-w-600"><span><?php echo $sisa[0]->sisa; ?></span></div>

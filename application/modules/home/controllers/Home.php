@@ -30,6 +30,11 @@ class Home extends CI_Controller {
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
 
+  
+      $perek1 = $this->home_model->peraturan_rektor1();
+      $keprek1 = $this->home_model->keputusan_rektor1();
+      $srt1 = $this->home_model->surat_edaran1();
+
       // $last_ortx = $this->home_model->update_last_ort();
       // if($last_ortx[0]->updated_date != NULL){
       //   $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
@@ -145,6 +150,11 @@ class Home extends CI_Controller {
       $x['perek'] = $perek;
       $x['keprek'] = $keprek;
       $x['srt'] = $srt;
+
+    
+      $x['perek1'] = $perek1;
+      $x['keprek1'] = $keprek1;
+      $x['srt1'] = $srt1;
 
 
       $x['dosen'] = $dosen;
