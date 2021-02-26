@@ -227,7 +227,36 @@ $(document).ready(function() {
     var list_mou = $('#data-mou').DataTable({
         dom: 'Bfrtip',
 		buttons: [
-        	'copy', 'csv', 'excel', 'pdf', 'print'
+			{
+				extend: 'copy',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'csv',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'excel',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'pdf',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'print',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			}
         ],
         responsive: true,
 		"ajax": {
@@ -241,6 +270,14 @@ $(document).ready(function() {
 			}
   		]
 	});
+
+	$('#filter_year').on( 'change', function () {
+		list_mou
+        .column( 4 )
+        .search( this.value )
+        .draw();
+	});
+	
 
 	$('#filter_year').on( 'change', function () {
 		list_mou
