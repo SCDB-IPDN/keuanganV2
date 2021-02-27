@@ -29,6 +29,10 @@ class Home extends CI_Controller {
       $perek = $this->home_model->peraturan_rektor();
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
+
+      // Kerja Sama
+      $pks = $this->home_model->jumlah_pks();
+  
       $perek1 = $this->home_model->peraturan_rektor1();
       $keprek1 = $this->home_model->keputusan_rektor1();
       $srt1 = $this->home_model->surat_edaran1();
