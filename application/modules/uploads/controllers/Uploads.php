@@ -3448,14 +3448,7 @@ class Uploads extends CI_Controller {
 						'status' => $stat,
 						'tingkat' => 2020-$row['BA']+1,
 						'angkatan' => $cc,
-						'mulai_semester' => $this->semesterr($row['BD'])
-					));
-					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
-
-
-					array_push($unitortu, array(
-						'npp'      => $row['F'],
-						'nama'      => $row['B'],
+						'mulai_semester' => $this->semesterr($row['BD']),
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
@@ -3469,14 +3462,7 @@ class Uploads extends CI_Controller {
 						'pendidikan_ibu'      =>$this->pendidik($row['AI']),
 						'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
 						'penghasilan_ibu'      => $this->penghasil($row['AK']),
-						'tlp_ibu'      => $row['AL']
-
-					));
-
-
-					array_push($unitwali, array(
-						'npp'      => $row['F'],
-						'nama'      => $row['B'],
+						'tlp_ibu'      => $row['AL'],
 						'nik_wali'      => $row['AP'],
 						'nama_wali'      => $row['AQ'],
 						'tgllahir_wali'      => $row['AR'],
@@ -3486,6 +3472,42 @@ class Uploads extends CI_Controller {
 						'tlp_wali'      => $row['AV']
 
 					));
+					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
+
+
+					// array_push($unitortu, array(
+					// 	'npp'      => $row['F'],
+					// 	'nama'      => $row['B'],
+					// 	'nik_ayah'      => $row['Y'],
+					// 	'nama_ayah'      => $row['Z'],
+					// 	'tgllahir_ayah'      => $row['AA'],
+					// 	'pendidikan_ayah'      => $this->pendidik($row['AB']),
+					// 	'pekerjaan_ayah'      => $this->pekerja($row['AC']),
+					// 	'penghasilan_ayah'      => $this->penghasil($row['AD']),
+					// 	'tlp_ayah'      => $row['AE'],
+					// 	'nik_ibu'      => $row['AF'],
+					// 	'nama_ibu'      => $row['AG'],
+					// 	'tgllahir_ibu'      => $row['AH'],
+					// 	'pendidikan_ibu'      =>$this->pendidik($row['AI']),
+					// 	'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
+					// 	'penghasilan_ibu'      => $this->penghasil($row['AK']),
+					// 	'tlp_ibu'      => $row['AL']
+
+					// ));
+
+
+					// array_push($unitwali, array(
+					// 	'npp'      => $row['F'],
+					// 	'nama'      => $row['B'],
+					// 	'nik_wali'      => $row['AP'],
+					// 	'nama_wali'      => $row['AQ'],
+					// 	'tgllahir_wali'      => $row['AR'],
+					// 	'pendidikan_wali'      => $row['AS'],
+					// 	'pekerjaan_wali'      => $this->pekerja($row['AT']),
+					// 	'penghasilan_wali'      => $this->penghasil($row['AU']),
+					// 	'tlp_wali'      => $row['AV']
+
+					// ));
 
 				}
 
@@ -3495,11 +3517,11 @@ class Uploads extends CI_Controller {
 			// exit();
 			// var_dump($unitpraja);exit();
 			// $this->db->truncate('praja');
-			$this->db->insert_batch('praja', $unitpraja);
+			$this->db->insert_batch('praja_baru', $unitpraja);
 			// // $this->db->truncate('orangtua');
-			$this->db->insert_batch('orangtua', $unitortu);
+			// $this->db->insert_batch('orangtua', $unitortu);
 			// // $this->db->truncate('wali');
-			$this->db->insert_batch('wali', $unitwali);
+			// $this->db->insert_batch('wali', $unitwali);
 			// delete file from server
 			// unlink(realpath('excel/'.$data_upload['file_name']));
 
