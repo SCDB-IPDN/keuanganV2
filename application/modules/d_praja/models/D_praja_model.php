@@ -20,6 +20,11 @@ class D_praja_model extends CI_Model
 		return $result;
 	}
 
+	
+	public function log($log){
+		return $this->db->insert('tbl_log', $log);
+	}
+
 	public function get_detail($npp)
 	{
 

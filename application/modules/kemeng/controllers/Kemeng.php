@@ -129,6 +129,13 @@ class Kemeng extends CI_Controller
 		$ubahmatakuliah['id_fakultas'] = $this->input->post('id_fakultas', true);
 		$ubahmatakuliah['sks'] = $this->input->post('sks', true);
 		$ubahmatakuliah['semester'] = $this->input->post('semester', true);
+
+		$isi = $plot['nama_matkul'];
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "Mengubah Data Matkul, nama = $isi";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		//  var_dump($log);exit();
+		$this->Kemeng_model->log($log);
 		
 		$result = $this->Kemeng_model->ubah($ubahmatakuliah);
 
@@ -548,16 +555,16 @@ class Kemeng extends CI_Controller
 
 		$plot = [
 			'nama' => $nama,
-			'nama_matkul' => $nama_matkul->nama_matkul,
+			'nama_matkul' => $nama_matkul,
 			'id_matkul' => $id_matkul,
 			'tanggal' => $tanggal,
 			'jam' => $jam,
 			'kelas' => $kelas,
 			'semester' => $semester,
 			'id_fakultas' => $id_fakultas,
-			'nama_fakultas' => $nama_fakultas->nama_fakultas,
+			'nama_fakultas' => $nama_fakultas,
 			'id_prodi' => $id_prodi,
-			'nama_prodi' => $nama_prodi->nama_prodi,
+			'nama_prodi' => $nama_prodi,
 			'sks' => $sks,
 		];
 		
@@ -571,6 +578,13 @@ class Kemeng extends CI_Controller
 		$nip = $pisah[1];
 		$plot['nama']=$nama;
 		$plot['nip']=$nip;
+
+		$isi = $plot['nama'];
+		$log['user'] = $this->session->userdata('nip');
+		$log['Ket'] = "Menambah Data Plot, nama = $isi";
+		$log['tanggal'] = date('Y-m-d H:i:s');
+		//  var_dump($log);exit();
+		$this->Kemeng_model->log($log);
 		
 		  $result = $this->Kemeng_model->tambah_plot($plot);
 		  
@@ -594,8 +608,12 @@ class Kemeng extends CI_Controller
 	   $editplot['semester'] = $this->input->post('semester', true);
 	   $editplot['nama_fakultas'] = $this->input->post('nama_fakultas', true);
 
-   // 	var_dump($editplot);
-   // exit();
+	   $isi = $plot['nama'];
+	   $log['user'] = $this->session->userdata('nip');
+	   $log['Ket'] = "Mengubah Data Plot, nama = $isi";
+	   $log['tanggal'] = date('Y-m-d H:i:s');
+	    var_dump($log);exit();
+	   $this->Kemeng_model->log($log);
 	   
 	   $result = $this->Kemeng_model->edit_plot($editplot);
 		   

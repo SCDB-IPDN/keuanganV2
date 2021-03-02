@@ -57,6 +57,10 @@ class Kemeng_model extends CI_Model
 		return $makul;
 	}
 
+	public function log($log){
+		return $this->db->insert('tbl_log', $log);
+	}
+
 
 	function get_sub_category($category_id){
 		$query = $this->db->get_where('tbl_prodi', array('id_fakultas' => $category_id));
@@ -127,7 +131,7 @@ class Kemeng_model extends CI_Model
 	}
 
 
-	public function get_prodi($nip, $fakultas)
+	function get_prodi($nip, $fakultas)
 	{
 		return $this->db->distinct()->select("id_prodi, nama_prodi")
 		->order_by("nama_prodi", "ASC")
@@ -322,10 +326,8 @@ class Kemeng_model extends CI_Model
 
   	function tambah_plot($plot)
  	{
-
   	$result = $this->db->insert('tbl_plot_dosen', $plot);
   	return $result;
-
 	}
 	
 	public function get_nama()
