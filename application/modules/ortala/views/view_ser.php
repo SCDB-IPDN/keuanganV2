@@ -10,7 +10,7 @@
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="<?php echo base_url('ortala'); ?>">Ortala</a></li>
         <li class="breadcrumb-item">Surat Edaran Rektor</li>
-	</ol>
+    </ol>
     <h1 class="page-header">Surat Edaran Rektor</h1>
     <div class="row my-3">
         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
@@ -49,14 +49,14 @@
         </div>
     </div>  
 
-  	<div class="row">
+    <div class="row">
     	<div class="col-xl-12">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <span>
-                        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
-                            <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
+                            <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'ortala'){?>
+                                <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#add_SME">TAMBAH SURAT EDARAN REKTOR</a>
                             <?php } ?>
                         </span>
                     </h4>
@@ -67,6 +67,8 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
+                <br>
+
                 <div class="table-responsive">
                     <?php if ($this->session->flashdata('prokum') != NULL) { ?>
                         <div class="alert alert-<?php echo $this->session->flashdata('prokum') [0] ?> alert-dismissible">
@@ -75,203 +77,281 @@
                         </div>
                     <?php } ?> 
                     <div class="panel-body">
-                        <table id="data-uu" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+
+                    <tbody>
+							<tr>
+								<td>
+									<select name="filter" id="filter_year" class="form-control col-sm-2 mb-3"></select>
+								</td>
+							</tr>
+						</tbody>
+
+                        <table id="data-ser" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                             <thead>
                                 <tr>
-                                <th>No</th>
-									<th>KATEGORI</th>
-									<th>NOMOR</th>
-									<th>TANGGAL</th>
-									<th>TAHUN</th>
-									<th>TENTANG</th>
-									<!-- <th>LINK</th> -->
-									<th>STATUS</th>
-									<th>FILE</th>
-									<th>AKSI</th>
+                                    <th>No</th>
+                                    <th>KATEGORI</th>
+                                    <th>NOMOR</th>
+                                    <th>TANGGAL</th>
+                                    <th>TAHUN</th>
+                                    <th>TENTANG</th>
+                                    <!-- <th>LINK</th> -->
+                                    <th>STATUS</th>
+                                    <th>FILE</th>
+                                    <th>AKSI</th>
                                 </tr>
                             </thead>
                         </table>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>
 </div>
 
-    <!-- Modal ADD -->
-    <div class="modal fade" id="add_SME" tabindex="-1" role="dialog" aria-labelledby="add_SME" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="adduuu">Tambah Surat Edaran Rektor</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="col-xl">
-                    <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id_kat" value="10">
-							<input type="hidden" name="nama_kat" value="Surat Edaran Rektor">
-                            <input type="hidden" name="url" value="ser">
-                            
-                            <label class="col-form-label">Nomor:</label>
-                            <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
+<!-- Modal ADD -->
+<div class="modal fade" id="add_SME" tabindex="-1" role="dialog" aria-labelledby="add_SME" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adduuu">Tambah Surat Edaran Rektor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="col-xl">
+            <form action="<?php echo base_url('ortala/add_prokum'); ?>" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="hidden" name="id_kat" value="10">
+                    <input type="hidden" name="nama_kat" value="Surat Edaran Rektor">
+                    <input type="hidden" name="url" value="ser">
 
-                            <label class="col-form-label">Tanggal:</label>
-							<input type="date" class="form-control" name="tanggal" placeholder="Tanggal" required>
+                    <label class="col-form-label">Nomor:</label>
+                    <input type="text" class="form-control" name="nomor" placeholder="Nomor" required>
 
-                            <label class="col-form-label">Tahun:</label>
-                            <input type="year" class="form-control" name="tahun" placeholder="Tahun" required>
-                         
-                            <label class="col-form-label">Tentang:</label>
-                            <textarea class="form-control" name="tentang" placeholder="Tentang" required></textarea>
-                            
+                    <label class="col-form-label">Tanggal:</label>
+                    <input type="date" class="form-control" name="tanggal" placeholder="Tanggal" required>
+
+                    <label class="col-form-label">Tahun:</label>
+                    <input type="year" class="form-control" name="tahun" placeholder="Tahun" required>
+
+                    <label class="col-form-label">Tentang:</label>
+                    <textarea class="form-control" name="tentang" placeholder="Tentang" required></textarea>
+
                             <!-- <label class="col-form-label">Link:</label>
                             <input type="text" class="form-control" name="link" placeholder="Link" required>
-                             -->
-                            <label class="col-form-label">Status:</label>
-                            <select type="text" class="form-control" name="status" id="status_add" required>
-                                <option value="" selected disabled >Pilih Status</option>  
-                                <option value="Open">Open</option>
-                                <option value="Done">Done</option>
-                            </select>
+                        -->
+                        <label class="col-form-label">Status:</label>
+                        <select type="text" class="form-control" name="status" id="status_add" required>
+                            <option value="" selected disabled >Pilih Status</option>  
+                            <option value="Open">Open</option>
+                            <option value="Done">Done</option>
+                        </select>
 
-                            <div id="div-add-show" class="hide">
-                                <label class="col-form-label">File:</label>
-                                <input type="file" class="form-control" name="file" id="file_add" accept="application/pdf">
-                            </div>
-						</div>
-						                        
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <div id="div-add-show" class="hide">
+                            <label class="col-form-label">File:</label>
+                            <input type="file" class="form-control" name="file" id="file_add" accept="application/pdf">
+                        </div>
+                    </div>
 
-    <!-- Modal EDIT -->
-    <div class="modal fade" id="editprokum" tabindex="-1" role="dialog" aria-labelledby="editprokum" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                	<h5 class="modal-title">Edit Surat Edaran Rektor</h5>
-                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
-                	</button>
-                </div>
-                <div class="modal-body">
-                    <form id="form_edit" action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
-                        <input type="hidden" name="url" value="ser">
+                    <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       <button type="submit" class="btn btn-primary" value="Cek">Simpan</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+</div>
 
-                        <div class="form-group">                              
-                            <label class="col-form-label">Nomor:</label>
-                            <input type="text" class="form-control" id="nomor" name="nomor" placeholder="Nomor" required>
+<!-- Modal EDIT -->
+<div class="modal fade" id="editprokum" tabindex="-1" role="dialog" aria-labelledby="editprokum" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+             <h5 class="modal-title">Edit Surat Edaran Rektor</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+            <form id="form_edit" action="<?php echo base_url('ortala/edit_prokum'); ?>" method="POST" enctype="multipart/form-data">
+                <input type="hidden" class="form-control" id="id_prokum" name="id_prokum">
+                <input type="hidden" name="url" value="ser">
 
-                            <label class="col-form-label">Tahun:</label>
-                            <input type="year" class="form-control" id="tahun" name="tahun" placeholder="Tahun" required>
+                <div class="form-group">                              
+                    <label class="col-form-label">Nomor:</label>
+                    <input type="text" class="form-control" id="nomor" name="nomor" placeholder="Nomor" required>
 
-                            <label class="col-form-label">Tanggal:</label>
-							<input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal" required>
-                            
-                            <label class="col-form-label">Tentang:</label>
-                            <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
-                            
+                    <label class="col-form-label">Tahun:</label>
+                    <input type="year" class="form-control" id="tahun" name="tahun" placeholder="Tahun" required>
+
+                    <label class="col-form-label">Tanggal:</label>
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal" required>
+
+                    <label class="col-form-label">Tentang:</label>
+                    <textarea class="form-control" id="tentang" name="tentang" placeholder="Tentang" required></textarea>
+
                             <!-- <label class="col-form-label">Link:</label>
-                            <input type="text" class="form-control" id="link" name="link" placeholder="Link" required> -->
-                            
-                            <label class="col-form-label">Status:</label>
-                            <select type="text" class="form-control" name="status" id="status" required>
-                                <option value="Open">Open</option>
-                                <option value="Done">Done</option>
-                            </select>
+                                <input type="text" class="form-control" id="link" name="link" placeholder="Link" required> -->
 
-                            <div id="div-edit-show" class="hide">
-                                <label class="col-form-label">File:</label>
-                                <div id="nama_pdf" class="my-1"></div>
-                                <input type="file" id="file_edit" class="form-control" name="file" accept="application/pdf">
-                                <p class="mt-1 text-danger" id="pdf_info"></p>
+                                <label class="col-form-label">Status:</label>
+                                <select type="text" class="form-control" name="status" id="status" required>
+                                    <option value="Open">Open</option>
+                                    <option value="Done">Done</option>
+                                </select>
+
+                                <div id="div-edit-show" class="hide">
+                                    <label class="col-form-label">File:</label>
+                                    <div id="nama_pdf" class="my-1"></div>
+                                    <input type="file" id="file_edit" class="form-control" name="file" accept="application/pdf">
+                                    <p class="mt-1 text-danger" id="pdf_info"></p>
+                                </div>
+
                             </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
-                        </div>
-                    </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal HAPUS -->
-    <div class="modal fade" id="delprokum" tabindex="-1" role="dialog" aria-labelledby="delprokumm" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                	<h5 class="modal-title" id="delprokumm">Hapus Surat Edaran Rektor</h5>
-                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    	<span aria-hidden="true">&times;</span>
-                	</button>
-                </div>
-                <div class="modal-body">
+        <!-- Modal HAPUS -->
+        <div class="modal fade" id="delprokum" tabindex="-1" role="dialog" aria-labelledby="delprokumm" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                     <h5 class="modal-title" id="delprokumm">Hapus Surat Edaran Rektor</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="<?php echo base_url('ortala/del_prokum'); ?>">
                         <div class="modal-body" id="del-info"></div>
                         <div class="modal-footer">
                             <input type="hidden" id="del_id_prokum" name="del_id_prokum">
                             <input type="hidden" name="url" value="ser">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-	</div>
-	
+    </div>
+
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
 <script>
+function filter_year(){
+    var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+	$.ajax({
+		type: 'POST',
+		url: `${base_url}/ortala/get_year_filter`,
+		data: { 
+			'id_kat': 10 // ser
+		},
+		success: function(data){
+			$("#filter_year").html('<option value="" selected>Filter Tahun</option>'); 
+			var dataObj = jQuery.parseJSON(data);
+			if(dataObj) {
+				$(dataObj).each(function() {
+					var option = $('<option />');
+					option.attr('value', this).text(this);           
+					$("#filter_year").append(option);
+				});
+			}
+			else {
+				$("#filter_year").html('<option value="">Pilihan tidak ada</option>');
+			}
+		}
+	}); 
+}
+
 $(document).ready(function() {
+
+	filter_year();
     var url = '<?php echo base_url('ortala/get_ser');?>';
-    $('#data-uu').dataTable({
+    var ser_table = $('#data-ser').DataTable({
+		dom: 'lBfrtip',
         buttons: [
-        	'copy', 'excel', 'print'
+			{
+				extend: 'copy',
+				className: 'ml-5',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'csv',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'excel',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'pdf',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			},
+			{
+				extend: 'print',
+				exportOptions: {
+					columns: 'th:not(:last-child)'
+				}
+			}
         ],
         responsive: true,
 		"ajax": {
 			"url": url,
 			"dataSrc": ""
 		},
-		"columnDefs": [
-			{ 
-				"orderable": false, 
-				"targets": [7, 6]
-			}
-  		]
-    });
-    
+
+        
+		// "columnDefs": [
+		// 	{ 
+		// 		"orderable": false, 
+		// 		"targets": 9 
+		// 	}
+  		// ]
+	});
+
+	$('#filter_year').on( 'change', function () {
+		ser_table
+        .column(4)
+        .search(this.value)
+        .draw();
+	});
     // add
     $('#add_SME').on('show.bs.modal', function () {
-		var modal = $(this);
-        var status_add_opt =  modal.find("#status_add");
-        
-        $(status_add_opt).change(function() {
-            var status_add_val = $(this).val();
-            if(status_add_val === "Done") {
-                $("#div-add-show").removeClass("hide");
-                $("#file_add").prop('required', true);
-            }
-            else {
-                $("#div-add-show").addClass("hide");
-                $("#file_add").prop('required', false);
-            }
-        });
+      var modal = $(this);
+      var status_add_opt =  modal.find("#status_add");
+
+      $(status_add_opt).change(function() {
+        var status_add_val = $(this).val();
+        if(status_add_val === "Done") {
+            $("#div-add-show").removeClass("hide");
+            $("#file_add").prop('required', true);
+        }
+        else {
+            $("#div-add-show").addClass("hide");
+            $("#file_add").prop('required', false);
+        }
     });
-	
+  });
+
 	// edit
 	$('#editprokum').on('show.bs.modal', function (event) {
 		var div = $(event.relatedTarget);
@@ -280,11 +360,11 @@ $(document).ready(function() {
         var status_edit_opt =  modal.find("#status");
         var nama_pdf = div.data('file');
 
-		modal.find('#id_prokum').attr("value", div.data('prokum'));
-		modal.find('#nomor').attr("value", div.data('nomor'));
+        modal.find('#id_prokum').attr("value", div.data('prokum'));
+        modal.find('#nomor').attr("value", div.data('nomor'));
         modal.find('#tanggal').attr("value", div.data('tanggal'));
-		modal.find('#tahun').attr("value", div.data('tahun'));
-		modal.find('#tentang').text(div.data('tentang'));
+        modal.find('#tahun').attr("value", div.data('tahun'));
+        modal.find('#tentang').text(div.data('tentang'));
         // modal.find('#link').attr("value", div.data('link'));
 
         if(nama_pdf) {
@@ -315,7 +395,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $('#editprokum').on('hidden.bs.modal', function(){
         var modal = $(this);
         modal.find('#nama_pdf').text('');
