@@ -323,7 +323,7 @@
 				<ul class="sub-menu">
 					<li class=""><a href="https://pasca.ipdn.ac.id" target="_blank">WEB PASCA</a></li>
 					<li class=""><a href="http://sika.ipdn.ac.id/pasca/pmb/admin-aplikasi" target="_blank">ADMIN PMB</a></li>
-					<li class=""><a href="http://sika.ipdn.ac.id/pmb " target="_blank">LAMAN PMB</a></li>
+					<li class=""><a href="http://sika.ipdn.ac.id/pasca/pmb/" target="_blank">LAMAN PMB</a></li>
 				</ul>
 			</li>
 			<!-- END PASCA SARJANA -->
