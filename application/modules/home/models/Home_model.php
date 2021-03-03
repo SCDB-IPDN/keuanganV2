@@ -316,7 +316,7 @@ class Home_model extends CI_Model{
 
 	public function get_jk_praja()
 	{ 
-		$result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja")->result();
+		$result = $this->db->query("SELECT SUM(jk = 'p') AS jumlahP, SUM(jk = 'l') AS jumlahL FROM praja_baru")->result();
 
 		return $result;
 	}
@@ -330,7 +330,7 @@ class Home_model extends CI_Model{
 	
 	public function jumlah_praja()
 	{
-		$praja = $this->db->query("SELECT count(*) as praja from praja WHERE status='aktif'")->result();
+		$praja = $this->db->query("SELECT count(*) as praja from praja_baru WHERE status='aktif'")->result();
 
 		return $praja;
 	}
@@ -351,14 +351,14 @@ class Home_model extends CI_Model{
 	
 	public function status_praja()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as tt, SUM(status = 'aktif') as aktif, SUM(status = 'cuti') as cuti FROM praja_baru")->result();
 
 		return $result;
   }
 
 	public function angkatan_praja()
 	{
-		$result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja where status='aktif'")->result();
+		$result = $this->db->query("SELECT SUM(angkatan = '31') as angkatan31, SUM(angkatan = '30') as angkatan30, SUM(angkatan = '29') as angkatan29, SUM(angkatan = '28') as angkatan28 FROM praja_baru where status='aktif'")->result();
 
 		return $result;
 	}
