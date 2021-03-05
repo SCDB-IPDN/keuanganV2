@@ -3308,6 +3308,7 @@ class Uploads extends CI_Controller {
 			$stop = false;
 			$num = 1;
 			$nullcc = 0;
+			$biaya_masuk = 0;
 			while(!$stop) {
 				$row = $sheet[$num++];
 				// var_dump($round(val)w);exit();
@@ -3440,8 +3441,8 @@ class Uploads extends CI_Controller {
 						'prodi'      => $this->prodi($row['AW']),
 						'fakultas'      => $row['AX'],
 						'jenis_pendaftaran'      =>  $this->jenispend($row['AY']),
-						// 'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
-						'tgl_masuk_kuliah'      =>  $row['AZ'],
+						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
+						// 'tgl_masuk_kuliah'      =>  $row['AZ'],
 						'tahun_masuk_kuliah'      => $row['BA'],
 						'pembiayaan'      => $this->jenispembiayaan($row['BB']),
 						'jalur_masuk'      => $this->jalurmasuk($row['BC']),
@@ -3449,6 +3450,7 @@ class Uploads extends CI_Controller {
 						'tingkat' => 2020-$row['BA']+1,
 						'angkatan' => $cc,
 						'mulai_semester' => $this->semesterr($row['BD']),
+						'biaya_masuk' => $biaya_masuk,
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
