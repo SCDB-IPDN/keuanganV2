@@ -40,7 +40,7 @@ class Kerjasama extends CI_Controller {
 			else {
 				$pdf ='Tidak ada file';
 			}
-			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'kerjasama'){
+			if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Kerjasama'){
 				$opsi = "<a 
 					href='javascript:;' data-mou='$d->id' data-mitra='$d->mitra' data-no_mitra='$d->no_mitra' 
 					data-no_int='$d->no_int' data-tmt='$d->tmt' data-hal='$d->hal' data-masa_berlaku='$d->masa_berlaku'

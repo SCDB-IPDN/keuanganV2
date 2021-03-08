@@ -9,7 +9,7 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'kerjasama'){?>
+						<?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Kerjasama'){?>
 							<span>
 								<a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addmou">TAMBAH MOU</a>
 							</span>
