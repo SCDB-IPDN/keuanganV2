@@ -3,7 +3,7 @@
 		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
     	<li class="breadcrumb-item"><a href="<?php echo base_url('kerjasama'); ?>">Kerjasama</a></li>
 	</ol>
-  	<h1 class="page-header">List Dokumen Kerjasama (MOU)</h1>
+  	<h1 class="page-header">List Dokumen Nota Kesepahaman / Perjanjian Kerja sama</h1>
   	<div class="row">
     	<div class="col-xl-12">
 			<div class="panel panel-inverse">
@@ -11,7 +11,7 @@
 					<h4 class="panel-title">
 						<?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Kerjasama'){?>
 							<span>
-								<a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addmou">TAMBAH MOU</a>
+								<a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addmou">TAMBAH NOTA KESEPAHAMAN / PERJANJIAN KERJA SAMA</a>
 							</span>
 						<?php } ?> 
 					</h4>
