@@ -504,7 +504,7 @@
             <select class="form-control" name="provinsi" id="provinsi" required="">
               <option value="">-Pilih Provinsi-</option>
               <?php foreach ($wilayah as $x) { ?>
-                <option value="<?php echo $x->id_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
+                <option value="<?php echo $x->nama_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
               <?php } ?>
             </select>
           </div>
