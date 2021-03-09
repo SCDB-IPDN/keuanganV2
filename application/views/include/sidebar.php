@@ -128,28 +128,7 @@
 			</li>
 			<!-- END ORTALA -->
 
-			<!-- HUMAS -->
-			<li class="<?php echo $this->uri->segment(1)=="berita" || $this->uri->segment(1) == "BeritaEksternal" ?"active":"";?> has-sub">
-				<a href="javascript:;">
-					<b class="caret"></b>
-					<i class="fas fa-handshake"></i>
-					<span>Humas</span>
-				</a>
-				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1) == "BeritaEksternal" ? "active" : ""; ?> has-sub">
-						<a href="javascript:;">
-							<b class="caret"></b>
-							BERITA
-						</a>
-						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
-							<li class="<?php echo $this->uri->segment(1) == "BeritaEksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('BeritaEksternal'); ?>">EKSTERNAL</a></li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<!-- END HUMAS -->
-
+			
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
 				<a href="javascript:;">
@@ -241,6 +220,37 @@
 				</ul>
 			</li>
 			<!-- END KEPRAJAAN -->
+
+			<!-- KERJA SAMA DAN HUMAS -->
+			<li class="<?php echo $this->uri->segment(1)=="kerjasama" || $this->uri->segment(1)=="berita" || $this->uri->segment(1)=="BeritaEksternal" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-id-card"></i>
+					<span>Kerja Sama & Humas</span>
+				</a>
+				<ul class="sub-menu">
+				<li class="<?php echo $this->uri->segment(1)=="kerjasama" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							Kerja Sama
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "kerjasama" ? "active" : ""; ?>"><a href="<?php echo base_url('kerjasama/mou'); ?>">Nota Kesepahaman / Perjanjian Kerja Sama</a></li>
+						</ul>
+					</li>
+				<li class="<?php echo $this->uri->segment(1) == "berita" || $this->uri->segment(1)=="BeritaEksternal" ? "active" : ""; ?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							HUMAS
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1) == "berita" ? "active" : ""; ?>"><a href="<?php echo base_url('berita'); ?>">INTERNAL</a></li>
+							<li class="<?php echo $this->uri->segment(1) == "BeritaEksternal" ? "active" : ""; ?>"><a href="<?php echo base_url('BeritaEksternal'); ?>">EKSTERNAL</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<!-- END kerja sama dan humas -->
 
 			<!-- PASCA SARJANA -->
 			<li class="has-sub">
