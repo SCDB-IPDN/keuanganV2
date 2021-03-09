@@ -1,6 +1,81 @@
 <?php
 class Frontend_model extends CI_Model {
 
+    // LAMAN LINK
+    function get_link()
+    {
+        $query = $this->db->query("SELECT * FROM tbl_flink");
+        return $query;
+    }
+
+    function add_link($table, $data)
+    {
+        $this->db->insert($table,$data);
+    }
+
+    function edit_link($data)
+    {       
+        $id = $data['id'];
+        $hasil = $this->db->where('id', $id)->update('tbl_flink', $data);
+        
+        return $hasil;    
+    }
+
+    function del_link($id){
+        $query=$this->db->query("DELETE FROM tbl_flink WHERE id='$id'");
+        return $query;
+    }
+
+    // THEMES
+    function get_themes()
+    {
+        $query = $this->db->query("SELECT * FROM tbl_fthemes");
+        return $query;
+    }
+
+    function add_themes($table, $data)
+    {
+        $this->db->insert($table,$data);
+    }
+
+    function edit_themes($data)
+    {       
+        $id = $data['id'];
+        $hasil = $this->db->where('id', $id)->update('tbl_fthemes', $data);
+        
+        return $hasil;    
+    }
+
+    function del_themes($id){
+        $query=$this->db->query("DELETE FROM tbl_fthemes WHERE id='$id'");
+        return $query;
+    }
+
+    // WEBSITE
+    function get_website()
+    {
+        $query = $this->db->query("SELECT * FROM tbl_fwebsite");
+        return $query;
+    }
+
+    function add_website($table, $data)
+    {
+        $this->db->insert($table,$data);
+    }
+
+    function edit_website($data)
+    {       
+        $id = $data['id'];
+        $hasil = $this->db->where('id', $id)->update('tbl_fwebsite', $data);
+        
+        return $hasil;    
+    }
+
+    function del_website($id){
+        $query=$this->db->query("DELETE FROM tbl_fwebsite WHERE id='$id'");
+        return $query;
+    }
+
     // MENU
     function get_menu()
     {

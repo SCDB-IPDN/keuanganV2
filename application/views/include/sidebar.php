@@ -352,18 +352,20 @@
 					<span>Frontend SCDB</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?= $this->uri->segment(2)=="d_frontend" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend'); ?>">Dashboard</a></li>
-
-				<li class="<?= $this->uri->segment(2)=="k_frontend" ? "active":"";?> has-sub">
-				<a href="javascript:;">
-					<b class="caret"></b>
-					<span>Konten</span>
-				</a>
-				<ul class="sub-menu">
-					<li class="<?= $this->uri->segment(3)=="menu" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/menu'); ?>">Menu</a></li>
-					<li class="<?= $this->uri->segment(3)=="galeri" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/galeri'); ?>">Galeri</a></li>
-				</ul>
-			</li>
+					<li class="<?= $this->uri->segment(2)=="d_frontend" && $this->uri->segment(3)!="themes" && $this->uri->segment(3)!="laman_link" && $this->uri->segment(3)!="website" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend'); ?>">Dashboard</a></li>
+					<li class="<?= $this->uri->segment(3)=="themes" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend/themes'); ?>">Themes</a></li>
+					<li class="<?= $this->uri->segment(3)=="website" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend/website'); ?>">Website</a></li>
+					<li class="<?= $this->uri->segment(3)=="laman_link" ? "active":"";?>"><a href="<?= base_url('frontend/d_frontend/laman_link'); ?>">Laman Link</a></li>
+					<li class="<?= $this->uri->segment(2)=="k_frontend" ? "active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<span>Konten</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="<?= $this->uri->segment(3)=="menu" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/menu'); ?>">Menu</a></li>
+							<li class="<?= $this->uri->segment(3)=="galeri" ? "active":"";?>"><a href="<?= base_url('frontend/k_frontend/galeri'); ?>">Galeri</a></li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<!-- END FRONTEND -->

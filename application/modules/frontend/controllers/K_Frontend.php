@@ -37,7 +37,7 @@ class K_Frontend extends CI_Controller {
 			'link' => $this->input->post('link'),
 			'icon' => $this->input->post('icon'),
 			'is_main_menu' => $this->input->post('is_main_menu'),
-			'crated_by' => $user,
+			'created_by' => $user,
 			'date_create' => date('Y-m-d h-m-i'),
 			'status' => 'Created'
 		);
@@ -60,7 +60,7 @@ class K_Frontend extends CI_Controller {
 		$data['link'] = $this->input->post('link', true);
 		$data['icon'] = $this->input->post('icon', true);
 		$data['is_main_menu'] = $this->input->post('is_main_menu', true);
-		$data['crated_by'] = $this->session->userdata('nama');
+		$data['created_by'] = $this->session->userdata('nama');
 		$data['date_create'] = date('Y-m-d h-m-i');
 		$data['status'] = 'Update';
 
@@ -151,7 +151,7 @@ class K_Frontend extends CI_Controller {
 		$user = $this->session->userdata('nama');
 
 		$data = array(
-			'crated_by' => $user,
+			'created_by' => $user,
 			'judul' => $this->input->post('judul'),
 			'keterangan' => $this->input->post('keterangan'),
 			'date_created' => date('Y-m-d h-m-i'),
@@ -180,7 +180,7 @@ class K_Frontend extends CI_Controller {
 		$data['id'] = $this->input->post('id');
 		$data['judul'] = $this->input->post('judul', true);
 		$data['keterangan'] = $this->input->post('keterangan', true);
-		$data['crated_by'] = $this->session->userdata('nama');
+		$data['created_by'] = $this->session->userdata('nama');
 		$data['date_created'] = date('Y-m-d h-m-i');
 		$data['status'] = 'Update';
 
