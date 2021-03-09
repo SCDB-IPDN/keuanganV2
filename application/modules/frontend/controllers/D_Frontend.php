@@ -56,7 +56,7 @@ class D_Frontend extends CI_Controller {
 			'berkas' => '0'
 		);
 
-		$result = $this->frontend_model->add_themes('tbl_fwebsite', $data);
+		$result = $this->frontend_model->add_themes('tbl_fthemes', $data);
 
 		if (!$result) { 							
 			$this->session->set_flashdata('themes', 'DATA THEMES BERHASIL DITAMBAH.');		
@@ -107,7 +107,7 @@ class D_Frontend extends CI_Controller {
 			'berkas' => '1'
 		);
 
-		$result= $this->frontend_model->update_berkas('tbl_fwebsite',$data, $id);
+		$result= $this->frontend_model->update_berkas('tbl_fthemes',$data, $id);
 		$this->session->set_flashdata('themes', 'THEMES BERHASIL HIDDEN.');			
 		redirect('frontend/d_frontend/themes');
 	}
@@ -119,7 +119,7 @@ class D_Frontend extends CI_Controller {
 			'berkas' => '0'
 		);
 
-		$result= $this->frontend_model->update_berkas('tbl_fwebsite',$data, $id);
+		$result= $this->frontend_model->update_berkas('tbl_fthemes',$data, $id);
 		$this->session->set_flashdata('themes', 'THEMES BERHASIL DITAMPILKAN.');			
 		redirect('frontend/d_frontend/themes');
 	}
