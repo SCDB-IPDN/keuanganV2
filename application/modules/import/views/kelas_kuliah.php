@@ -58,6 +58,7 @@
                                     <input type="hidden" name="kode_prodi" value="<?= $kode_prodi ?>">
                                 </div>
                                 <button type="submit" class="btn btn-success">Upload Data</button>
+                                <a href="<?php echo base_url() ?>assets/download/kelas_sample_baru.xlsx" class="btn btn-primary">Template</a>
                             </form>
                         </div>
                     </div>
