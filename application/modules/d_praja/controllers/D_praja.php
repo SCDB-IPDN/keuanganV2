@@ -74,6 +74,9 @@ class D_praja extends CI_Controller
       $fakulll = $this->D_praja_model->get_fakultas()->result();
       $x['fakulll'] = $fakulll;
 
+      $wilayah = $this->D_praja_model->get_will()->result();
+      $x['wilayah'] = $wilayah;
+
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
@@ -86,9 +89,22 @@ class D_praja extends CI_Controller
     }
   }
 
-    function get_sub_category(){
+  function get_sub_category(){
     $category_id = $this->input->post('prodi',TRUE);
     $data = $this->D_praja_model->get_sub_category($category_id)->result();
+    echo json_encode($data);
+  }
+
+
+  function get_sub_provinsi(){
+    $prov = $this->input->post('kab_kota',TRUE);
+    $data = $this->D_praja_model->get_sub_provinsi($prov)->result();
+    echo json_encode($data);
+  }
+
+  function get_sub_kabkota(){
+    $kec = $this->input->post('kecamatan',TRUE);
+    $data = $this->D_praja_model->get_sub_kabkota($kec)->result();
     echo json_encode($data);
   }
 

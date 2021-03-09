@@ -384,4 +384,37 @@ class D_praja_model extends CI_Model
 		$fakul = $this->db->query("SELECT * FROM program_studi group BY kode_fakultas");
 		return $fakul;
 	}
+
+	public function get_will()
+	{
+		$fakul = $this->db->query("SELECT * FROM `wilayah` GROUP BY id_provinsi ");
+		return $fakul;
+	}
+
+	function get_sub_provinsi($prov){
+
+		$this->db->select('*');
+		$this->db->from('wilayah');
+		$this->db->where(array('id_provinsi' => $prov));
+		$this->db->group_by('id_kabkota');
+		$query = $this->db->get();
+
+
+		// $query =$this->db->get_where('wilayah', ['id_provinsi' => $prov]);
+
+		return $query;
+	}
+
+	function get_sub_kabkota($kab){
+
+		$this->db->select('*');
+		$this->db->from('wilayah');
+		$this->db->where(array('id_kabkota' => $kab));
+		$query = $this->db->get();
+
+
+		// $query =$this->db->get_where('wilayah', ['id_provinsi' => $prov]);
+
+		return $query;
+	}
 }

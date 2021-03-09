@@ -500,11 +500,20 @@
           </div>
           <div class="col-xl-2">
             <label class="col-form-label">Provinsi:</label>
-            <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." required="">
+            <!-- <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." required=""> -->
+            <select class="form-control" name="provinsi" id="provinsi" required="">
+              <option value="">-Pilih Provinsi-</option>
+              <?php foreach ($wilayah as $x) { ?>
+                <option value="<?php echo $x->id_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
+              <?php } ?>
+            </select>
           </div>
           <div class="col-xl">
             <label class="col-form-label">Kota/Kabupaten:</label>
-            <input type="text" class="form-control" id="kab_kota" name="kab_kota" placeholder="Kabupaten/Kota ...." required="">
+            <!-- <input type="text" class="form-control" id="kab_kota" name="kab_kota" placeholder="Kabupaten/Kota ...." required=""> -->
+            <select class="form-control" name="kab_kota" id="kab_kota" required="">
+              <option>-Pilih Kab/kota-</option>
+            </select>
           </div>
           <div class="col-xl">
             <label class="col-form-label">Kelurahan:</label>
@@ -524,7 +533,10 @@
         </div>
         <div class="col-xl">
           <label class="col-form-label">Kecamatan:</label>
-          <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan ...." required="">
+          <!-- <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan ...." required=""> -->
+          <select class="form-control" name="kecamatan" id="kecamatan" required="">
+              <option>-Pilih Kecamatan-</option>
+            </select>
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Kode Pos:</label>
@@ -1144,6 +1156,67 @@
             html += '<option value='+data[i].id_prodi+'>'+data[i].nama_program_studi+'</option>';
           }
           $('#prodi').html(html);
+
+        }
+      });
+      return false;
+    }); 
+
+  });
+</script>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#provinsi').change(function(){ 
+      var kab_kota=$(this).val();
+      console.log(kab_kota); 
+      $.ajax({
+        url : "<?php echo site_url('d_praja/get_sub_provinsi');?>",
+        method : "POST",
+        data : {kab_kota: kab_kota},
+        async : true,
+        dataType : 'json',
+        success: function(data){
+
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html += '<option value='+data[i].id_kabkota+'>'+data[i].nama_kabkota+'</option>';
+          }
+          $('#kab_kota').html(html);
+
+        }
+      });
+      return false;
+    }); 
+
+  });
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#kab_kota').change(function(){ 
+      var kecamatan=$(this).val();
+      console.log(kecamatan); 
+      $.ajax({
+        url : "<?php echo site_url('d_praja/get_sub_kabkota');?>",
+        method : "POST",
+        data : {kecamatan: kecamatan},
+        async : true,
+        dataType : 'json',
+        success: function(data){
+
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html += '<option value='+data[i].id_kecamatan+'>'+data[i].kecamatan+'</option>';
+          }
+          $('#kecamatan').html(html);
 
         }
       });
