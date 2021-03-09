@@ -505,10 +505,8 @@ class Kemeng extends CI_Controller
 	{
 		 if($this->session->userdata('nip') != NULL)
 		 {
-			$id_fakultas = $this->session->userdata('role');
-			$data = $this->Kemeng_model->get_all_plot($id_fakultas)->result();
-			$x['data'] = $data;
-
+			  $data = $this->Kemeng_model->get_all_plot()->result();
+			  $x['data'] = $data;
 			  $tp = $this->Kemeng_model->get_nama()->result();
 			  $mk = $this->Kemeng_model->get_nama_matkul()->result();
 			  $fk = $this->Kemeng_model->get_nama_fakultas()->result();
@@ -552,19 +550,19 @@ class Kemeng extends CI_Controller
 		$nama_fakultas = $this->Kemeng_model->getRowFakultas($id_fakultas);
 		$nama_prodi = $this->Kemeng_model->getRowProdi($id_prodi);
 		$nama_matkul = $this->Kemeng_model->getRowMatkul($id_matkul);
-
+ 
 		$plot = [
 			'nama' => $nama,
-			'nama_matkul' => $nama_matkul,
+			'nama_matkul' => $nama_matkul->nama_matkul,
 			'id_matkul' => $id_matkul,
 			'tanggal' => $tanggal,
 			'jam' => $jam,
 			'kelas' => $kelas,
 			'semester' => $semester,
 			'id_fakultas' => $id_fakultas,
-			'nama_fakultas' => $nama_fakultas,
+			'nama_fakultas' => $nama_fakultas->nama_fakultas,
 			'id_prodi' => $id_prodi,
-			'nama_prodi' => $nama_prodi,
+			'nama_prodi' => $nama_prodi->nama_prodi,
 			'sks' => $sks,
 		];
 		

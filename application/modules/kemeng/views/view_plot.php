@@ -84,7 +84,7 @@
             			<label class="col-form-label">Nama Fakultas :</label>
             			<select class="form-control" name="fakultas" id="fakultas">
             				<option>Select Fakultas</option>
-            				<?php foreach ($fakulll as $x) { ?>
+            				<?php foreach ($fk as $x) { ?>
             				<option value="<?php echo $x->id_fakultas;?>"><?php echo $x->id_fakultas;?> |
             					<?php echo $x->nama_fakultas;?></option>
             				<?php } ?>

@@ -312,16 +312,10 @@ class Kemeng_model extends CI_Model
 
 
 	//PLOT
-	public function get_all_plot($id_fakultas)
+	public function get_all_plot()
 	{
-		if ($id_fakultas != "Admin"){
-			$makul = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas Where tbl_fakultas.id_fakultas ='$id_fakultas' ");
-		}else{
-
-			$makul = $this->db->query("SELECT *, tbl_plot_dosen.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_plot_dosen JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_plot_dosen.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_plot_dosen.id_fakultas ");
-		}
-
-		return $makul;
+	$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+	return $result;
 	}
 
   	function tambah_plot($plot)
