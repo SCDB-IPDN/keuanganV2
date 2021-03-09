@@ -371,4 +371,17 @@ class D_praja_model extends CI_Model
 		$hasil = $this->db->where('id', $id)->update('praja', $editpraja);
 		return $hasil;
 	}
+
+
+	function get_sub_category($category_id){
+		$query = $this->db->get_where('program_studi', array('kode_fakultas' => $category_id));
+
+		return $query;
+	}
+
+	public function get_fakultas()
+	{
+		$fakul = $this->db->query("SELECT * FROM program_studi group BY kode_fakultas");
+		return $fakul;
+	}
 }

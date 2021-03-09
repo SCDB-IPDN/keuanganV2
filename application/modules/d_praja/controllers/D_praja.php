@@ -71,6 +71,9 @@ class D_praja extends CI_Controller
       $mulaisemester = $this->D_praja_model->mulaisemester()->result();
       $x['mulaisemester'] = $mulaisemester;
 
+      $fakulll = $this->D_praja_model->get_fakultas()->result();
+      $x['fakulll'] = $fakulll;
+
 
       $this->load->view("include/head");
       $this->load->view("include/top-header");
@@ -83,7 +86,11 @@ class D_praja extends CI_Controller
     }
   }
 
-
+    function get_sub_category(){
+    $category_id = $this->input->post('prodi',TRUE);
+    $data = $this->D_praja_model->get_sub_category($category_id)->result();
+    echo json_encode($data);
+  }
 
   // function get_table_p($angkatan = NULL)
   // {
@@ -480,7 +487,7 @@ class D_praja extends CI_Controller
      $editnya['tingkat'] = $this->input->post('tingkat', true);
      $editnya['angkatan'] = $this->input->post('angkatan', true);
      $editnya['status'] = $this->input->post('status', true);
-     $editnya['fakultas'] = $this->input->post('fakultas', true);
+     $editnya['fakultas'] = $this->input->post('fk', true);
      $editnya['prodi'] = $this->input->post('prodi', true);
      $editnya['kewarganegaraan'] = $this->input->post('kewarganegaraan', true);
      $editnya['jenis_pendaftaran'] = $this->input->post('jenis_pendaftaran', true);
@@ -518,8 +525,8 @@ class D_praja extends CI_Controller
      $editnya['tlp_wali'] = $this->input->post('tlp_wali', true);
 
 
-     $result = $this->D_praja_model->view_edit($editnya);
-     // var_dump($editnya);exit();
+     // $result = $this->D_praja_model->view_edit($editnya);
+     var_dump($editnya);exit();
      // echo "$result";exit();
 
      if (!$result) {
