@@ -44,7 +44,7 @@
 			<li class="nav-header">Menu</li>
 
 			<!-- AKADEMIK -->
-			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti"?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" || $this->uri->segment(1)=="import"?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-school"></i>
@@ -53,6 +53,33 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
 					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
+					<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fas fa-upload"></i>
+							<span>Import</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
+								<a href="javascript:;">
+									<b class="caret"></b>
+									<i class="fa fa-file-import"></i>
+									<span>Kelas dan Krs</span>
+								</a>
+								<ul class="sub-menu">
+									<li class="<?php echo $this->uri->segment(1) == "import"  ? "active" : ""; ?> has-sub">
+										<a href="<?php echo base_url('import/view_kk'); ?>">Kelas Kuliah</a>
+									</li>
+									<li class="<?php echo $this->uri->segment(2) == "krs"  ? "active" : ""; ?> has-sub">
+										<a href="<?php echo base_url('import/view_kk'); ?>">Krs</a>
+									</li>
+									<li class="<?php echo $this->uri->segment(2) == "dosen_ajar"  ? "active" : ""; ?> has-sub">
+										<a href="<?php echo base_url('import/view_kk'); ?>">Dosen Ajar</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<!-- END AKADEMIK -->
@@ -127,21 +154,6 @@
 				</ul>
 			</li>
 			<!-- END ORTALA -->
-
-			<!-- IMPORT -->
-			<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
-				<a href="javascript:;">
-					<b class="caret"></b>
-					<i class="fas fa-file-import"></i>
-					<span>Import</span>
-				</a>
-				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "import"  ? "active" : ""; ?> has-sub">
-						<a href="<?php echo base_url('import/view_kk'); ?>">Kelas Kuliah</a>
-					</li>
-				</ul>
-			</li>
-			<!-- END IMPORT -->
 			
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
