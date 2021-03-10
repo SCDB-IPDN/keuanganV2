@@ -75,4 +75,61 @@ class Import_model extends CI_Model {
             return FALSE;
         }
     }
+
+    // kelulusan
+
+    public function getkelulusan($data){
+        return $this->db->query("SELECT * FROM tbl_kelulusan where prodi = '$data'")->result();
+    }
+
+    public function kelulusan($table, $data){
+        $result = $this->db->insert_batch($table, $data);
+
+        if($result){
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b> Data Gagal diimport!</div>');
+            return FALSE;
+        }
+    }
+
+    public function tambah_kelulusan($input_data){
+
+        $result = $this->db->insert('tbl_kelulusan', $input_data);
+
+        if($result){
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-success"><b>Tambah Data Kelulusan Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-warning"><b>Tambah Data Kelulusan gagal!</b></div>');
+            return FALSE;
+        }
+    }
+
+    public function edit_kelulusan($id, $input_data){
+
+        $result = $this->db->where('id', $id)->update('tbl_kelulusan', $input_data);
+
+        if($result){
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-success"><b>Ubah Data Kelulusan Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-warning"><b>Ubah Data Kelulusan gagal!</b></div>');
+            return FALSE;
+        }
+    }
+
+    public function hapus_kelulusan($id){
+
+        $result = $this->db->where('id', $id)->delete('tbl_kelulusan');
+
+        if($result){
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-success"><b>Ubah Data Kelulusan Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('kelulusan', '<div class="alert alert-warning"><b>Ubah Data Kelulusan gagal!</b></div>');
+            return FALSE;
+        }
+    }
 }
