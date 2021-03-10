@@ -75,12 +75,92 @@
                                 <th class="text-nowrap">Bahasan</th>
                                 <th class="text-nowrap">Tanggal Mulai Efektif</th>
                                 <th class="text-nowrap">Tanggal Akhir Efektif</th>
+                                <th class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                     </table>
                 </div>
                 <?php } ?>
                 
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal EDIT KK -->
+    <div class="modal fade" id="edit_datakk" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Edit Kelas Kuliah</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo base_url('import/edit_kk');?>" method="POST">
+                        <input type="hidden" class="form-control" id="idx" name="id">
+                        <input type="hidden" name="prodi" value="<?= $kode_prodi ?>">
+                        <div class="form-group">
+                            <label class="col-form-label">Semester:</label>
+                            <input type="text" class="form-control" id="semesterx" name="semester" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Kode Matakuliah:</label>
+                            <input type="text" class="form-control" id="kode_mkx" name="kode_mk"  required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Nama Matakuliah:</label>
+                            <input type="text" class="form-control" id="nama_mkx" name="nama_mk"  required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Nama Kelas:</label>
+                            <input type="text" class="form-control" id="kelasx" name="kelas"  required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Bahasan:</label>
+                            <input type="text" class="form-control" id="bahasanx" name="bahasan"  required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Tanggal Mulai Efektif:</label>
+                            <input type="text" class="form-control" id="tanggal_mulaix" name="tanggal_mulai_efektif"  required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Tanggal Akhir Efektif:</label>
+                            <input type="text" class="form-control" id="tanggal_akhirx" name="tanggal_akhir_efektif"  required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HAPUS THL -->
+    <div class="modal fade" id="hapus_datakk" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Hapus Dosen Ajar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('import/hapus_kk');?>">
+                        <div class="modal-body">
+                            <p>Anda yakin mau menghapus Data ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="idxx" name="id">
+                            <input type="hidden" name="prodi" value="<?= $kode_prodi ?>">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                            <button class="btn btn-danger">Hapus</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -107,6 +187,32 @@ $(document).ready(function() {
             }
         });
     }
+
+    // Untuk sunting
+    $('#edit_datakk').on('show.bs.modal', function (event) {
+        var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+        var modal          = $(this)
+
+        // Isi nilai pada field
+        modal.find('#idx').attr("value",div.data('id'));
+        modal.find('#semesterx').attr("value",div.data('semester'));
+        modal.find('#kode_mkx').attr("value",div.data('kode_mk'));
+        modal.find('#nama_mkx').attr("value",div.data('nama_mk'));
+        modal.find('#kelasx').attr("value",div.data('kelas'));
+        modal.find('#bahasanx').attr("value",div.data('bahasan'));
+        modal.find('#tanggal_mulaix').attr("value",div.data('tanggal_mulai'));
+        modal.find('#tanggal_akhirx').attr("value",div.data('tanggal_akhir'));
+        
+    });
+
+    // Untuk sunting
+    $('#hapus_datakk').on('show.bs.modal', function (event) {
+        var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+        var modal          = $(this)
+
+        // Isi nilai pada field
+        modal.find('#idxx').attr("value",div.data('id'));
+    });
 });
 </script>
 
