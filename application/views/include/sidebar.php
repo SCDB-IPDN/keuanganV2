@@ -53,6 +53,7 @@
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
 					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
+					<?php if ($this->session->userdata('role') == 'SuperAdmin') { ?>
 					<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
 						<a href="javascript:;">
 							<b class="caret"></b>
@@ -67,18 +68,19 @@
 									<span>Kelas dan Krs</span>
 								</a>
 								<ul class="sub-menu">
-									<li class="<?php echo $this->uri->segment(1) == "import"  ? "active" : ""; ?> has-sub">
+									<li class="<?php echo $this->uri->segment(2) == "kelas_kuliah" || $this->uri->segment(2) == "view_kk"  ? "active" : ""; ?> has-sub">
 										<a href="<?php echo base_url('import/view_kk'); ?>">Kelas Kuliah</a>
 									</li>
 									<li class="<?php echo $this->uri->segment(2) == "krs"  ? "active" : ""; ?> has-sub">
 										<a href="<?php echo base_url('import/view_kk'); ?>">Krs</a>
 									</li>
-									<li class="<?php echo $this->uri->segment(2) == "dosen_ajar"  ? "active" : ""; ?> has-sub">
-										<a href="<?php echo base_url('import/view_kk'); ?>">Dosen Ajar</a>
+									<li class="<?php echo $this->uri->segment(2) == "dosen_ajar" || $this->uri->segment(2) == "view_da"  ? "active" : ""; ?> has-sub">
+										<a href="<?php echo base_url('import/view_da'); ?>">Dosen Ajar</a>
 									</li>
 								</ul>
 							</li>
 						</ul>
+						<?php } ?>
 					</li>
 				</ul>
 			</li>
