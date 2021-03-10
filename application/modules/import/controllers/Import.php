@@ -52,6 +52,20 @@ class Import extends CI_Controller
             $bahasan = $r->bahasan == NULL ? "<i><font>Tidak ada data</font></i>": $r->bahasan;
             $tanggal_mulai = $r->tanggal_mulai_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tanggal_mulai_efektif;
             $tanggal_akhir = $r->tanggal_akhir_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tanggal_akhir_efektif;
+            $action = " <a href='javascript:;'
+                data-id='$r->id'
+                data-semester='$r->semester'
+                data-kode_mk='$r->kode_mk'
+                data-nama_mk='$r->nama_mk'
+                data-kelas='$r->kelas'
+                data-bahasan='$r->bahasan' 
+                data-tanggal_mulai='$r->tanggal_mulai_efektif'
+                data-tanggal_akhir='$r->tanggal_akhir_efektif' 
+                data-toggle='modal' data-target='#edit_datakk' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$r->id'
+                data-toggle='modal' data-target='#hapus_datakk' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
 
             $hasil[] = array(
                 $semester,
@@ -60,11 +74,44 @@ class Import extends CI_Controller
                 $kelas,
                 $bahasan,
                 $tanggal_mulai,
-                $tanggal_akhir
+                $tanggal_akhir,
+                $action
             );
         }
         
         echo json_encode($hasil);
+    }
+
+    public function edit_kk(){
+
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['nama_mk'] = $this->input->post('nama_mk', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['bahasan'] = $this->input->post('bahasan', true);
+        $input_data['tanggal_mulai_efektif'] = $this->input->post('tanggal_mulai_efektif', true);
+        $input_data['tanggal_akhir_efektif'] = $this->input->post('tanggal_akhir_efektif', true);
+
+        if($this->import_model->edit_kk($id, $input_data)){
+            redirect('import/kelas_kuliah/'.$kode_prodi);
+        }else{
+            redirect('import/kelas_kuliah/'.$kode_prodi);
+        }
+    }
+
+    public function hapus_kk(){
+
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->hapus_kk($id)){
+            redirect('import/kelas_kuliah/'.$kode_prodi);
+        }else{
+            redirect('import/kelas_kuliah/'.$kode_prodi);
+        }
     }
 
     public function uploadkk()

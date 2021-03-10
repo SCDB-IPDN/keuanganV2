@@ -8,7 +8,9 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#tambah_datada"><i class="fa fa-plus-square"></i></a>
+                        <?php if($this->uri->segment(2) == "dosen_ajar") { ?>
+                            <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#tambah_datada"><i class="fa fa-plus-square"></i></a>
+                        <?php } ?>
                     </h4>
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -205,13 +207,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="<?php echo base_url('import/hapus_da');?>">Hapus Dosen Ajar</h5>
+                <h5 class="modal-title">Hapus Dosen Ajar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="hapus_thl">
+                    <form class="form-horizontal" method="post" action="<?php echo base_url('import/hapus_da');?>">
                         <div class="modal-body">
                             <p>Anda yakin mau menghapus Data ?</p>
                         </div>
