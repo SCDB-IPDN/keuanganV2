@@ -30,6 +30,8 @@ class Home extends CI_Controller {
       $keprek = $this->home_model->keputusan_rektor();
       $srt = $this->home_model->surat_edaran();
 
+      // Kerja Sama
+      $pks = $this->home_model->jumlah_pks();
   
       $perek1 = $this->home_model->peraturan_rektor1();
       $keprek1 = $this->home_model->keputusan_rektor1();
@@ -150,6 +152,7 @@ class Home extends CI_Controller {
       $x['total_peg'] = $total_peg;
 
       $x['prokum'] = $prokum;
+      $x['pks'] = $pks;
       // var_dump($prokum);exit;
       // $x['total_prok'] = $total_prok;
       // $x['last_updated'] = $last_updated;

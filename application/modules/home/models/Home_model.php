@@ -65,6 +65,14 @@ class Home_model extends CI_Model{
 						->result();
 		return $result;
 	}
+//Kerja sama
+public function jumlah_pks()
+{
+		
+	$pks = $this->db->query("SELECT COUNT(*) as pks from tbl_kerjasama where status = 'Masih Berlaku'")->result();
+	
+	return $pks;
+}
 
 	// Hukum & ORTALA
 	public function jumlah_prokum()
@@ -74,6 +82,7 @@ class Home_model extends CI_Model{
 		
 		return $prokum;
 	}
+
 
 	// public function update_last_ort(){
 	// 	return $this->db->query("SELECT updated_date FROM tbl_ort ORDER BY updated_date DESC LIMIT 1")->result();

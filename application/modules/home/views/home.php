@@ -896,9 +896,39 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-
+	<!-- <div class="col-xl-4">
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+				<h4 class="panel-title">PERJANJIAN KERJA SAMA</h4>
+				<div class="panel-heading-btn">
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+					
+				</div>
+			</div>
+			<div class="panel-body bg-dark">
+				<div class="card border-0 bg-dark text-white text-truncate mb-3">
+					<div class="mb-3 text-grey">
+						<b class="mb-3">TOTAL PERJANJIAN KERJA SAMA</b> 
+						<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-original-title="" title=""></i></span>
+						<div class="text-grey">
+							<i class=""></i> KAMPUS IPDN
+						</div>
+					</div>
+					<div class="d-flex align-items-center mb-1">
+						<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $pks[0]->pks ?>"><?php echo $pks[0]->pks ?></span> PERJANJIAN KERJA SAMA</h4>
+						<div class="ml-auto">
+							<div id="conversion-rate-sparkline"></div>
+						</div>
+					</div>
+					<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	
 </div>
 
 
