@@ -39,6 +39,7 @@
 								<th class="text-nowrap">Link</th>
 								<th class="text-nowrap">Pending Time</th>
 								<th class="text-nowrap">Status</th>
+								<th class="text-nowrap">Modul</th>
 								<th class="text-nowrap">Show/Hide</th>
 								<th class="text-nowrap">Aksi</th>
 							</tr>
@@ -55,6 +56,7 @@
 									<td><?= $row->link == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->link ?></td>
 									<td><?= $row->pending == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->pending ?></td>
 									<td><?= $row->status == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->status ?></td>
+									<td><?= $row->modul == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row->modul ?></td>
 									<td>
 										<?php if ($row->berkas == 0) { ?>
 										<a href="<?= base_url('frontend/d_frontend/show_l/'.$row->id);?>" class="btn btn-sm btn-success" style="color:#fff;cursor:pointer"><i class="fa fas fa-eye"></i> Show</a>
