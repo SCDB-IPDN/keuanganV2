@@ -129,6 +129,20 @@
 			</li>
 			<!-- END ORTALA -->
 
+			<!-- IMPORT -->
+			<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-file-import"></i>
+					<span>Import</span>
+				</a>
+				<ul class="sub-menu">
+					<li class="<?php echo $this->uri->segment(1) == "import"  ? "active" : ""; ?> has-sub">
+						<a href="<?php echo base_url('import/view_kk'); ?>">Kelas Kuliah</a>
+					</li>
+				</ul>
+			</li>
+			<!-- END IMPORT -->
 			
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
