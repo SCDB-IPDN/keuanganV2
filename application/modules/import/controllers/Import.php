@@ -4,11 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed ');
 require('./application/third_party/phpoffice/vendor/autoload.php');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Import extends CI_Controller 
 {
+    protected $xlsx_mimes = [
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',  // the one and only ms office xlsx mime type!
+    ];
 
     public function __construct(){
         parent::__construct();
@@ -241,8 +245,7 @@ class Import extends CI_Controller
         }
     }
 
-    public function uploadda()
-    {        
+    public function uploadda() {        
         $kode_prodi = $this->input->post('kode_prodi');
         
         $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -321,7 +324,9 @@ class Import extends CI_Controller
         $data = $this->import_model->getkelulusan($data);
         $hasil = array();
 
+        $i = 1;
         foreach($data as $r){
+            $no = $i;
             $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
             $nama_mhs = $r->nama_mhs == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_mhs;
             $jenis_keluar = $r->jenis_keluar == NULL ? "<i><font>Tidak ada data</font></i>": $r->jenis_keluar;            
@@ -343,15 +348,15 @@ class Import extends CI_Controller
                 data-ipk='$r->ipk' 
                 data-no_ijazah='$r->no_ijazah' 
                 data-smt_keluar='$r->smt_keluar' 
-                data-prodi='$r->prodi' 
                 
                 data-toggle='modal' data-target='#edit_datakelulusan' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
                 
                 <a href='javascript:;' 
-                data-id='$r->id'
+                data-id='$r->id' data-nama='$r->nama_mhs'
                 data-toggle='modal' data-target='#hapus_datakelulusan' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
 
             $hasil[] = array(
+                $no,
                 $npp,
                 $nama_mhs,
                 $jenis_keluar,
@@ -364,6 +369,7 @@ class Import extends CI_Controller
                 $prodi,
                 $action
             );
+            $i++;
         }
          
         echo json_encode($hasil);
@@ -384,7 +390,7 @@ class Import extends CI_Controller
         $input_data['smt_keluar'] = $this->input->post('smt_keluar', true);
         $input_data['prodi'] = $kode_prodi;
 
-        if($this->import_model->tambah_da($input_data)){
+        if($this->import_model->tambah_kelulusan($input_data)){
             redirect('import/kelulusan/'.$kode_prodi);
         }else{
             redirect('import/kelulusan/'.$kode_prodi);
@@ -418,65 +424,283 @@ class Import extends CI_Controller
         $kode_prodi = $this->input->post('prodi', true);        
         $id = $this->input->post('id', true);
 
-        if($this->import_model->hapus_da($id)){
+        if($this->import_model->hapus_kelulusan($id)){
             redirect('import/kelulusan/'.$kode_prodi);
         }else{
             redirect('import/kelulusan/'.$kode_prodi);
         }
     }
 
-    public function uploadkelulusan()
-    {        
+    public function uploadkelulusan() {        
         $kode_prodi = $this->input->post('kode_prodi');
-        
-        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        if(isset($_FILES['kel']['name']) && in_array($_FILES['kel']['type'], $file_mimes)) {
 
-            $arr_file = explode('.', $_FILES['kel']['name']);
-            $extension = end($arr_file);
+        if(!empty($_FILES['da']['name'])) {
+            $file = explode('.', $_FILES['da']['name']);
+            $extension = end($file);
+            if($extension === 'xlsx' && in_array($_FILES['da']['type'], $this->xlsx_mimes)) {
+                $reader = new Xlsx();
+                $excel = $reader->load($_FILES['da']['tmp_name']);
+                $sheet = $excel->getActiveSheet();
+                $rowCount = $sheet->getHighestDataRow();
+                $nim = $sheet->getCellByColumnAndRow(1, 2)->getValue();
+                $nama = $sheet->getCellByColumnAndRow(2, 2)->getValue();
+                if (is_numeric($nim) && is_string($nama)) {
+                    $data = [];
+                    for ($i=2; $i<=$rowCount; $i++) {
+                        $nim = $sheet->getCellByColumnAndRow(1, $i)->getValue();
+                        $nama = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+                        $jenis_keluar = $sheet->getCellByColumnAndRow(3, $i)->getValue();
+                        $tgl_keluar = $sheet->getCellByColumnAndRow(4, $i)->getValue();
+                        $tgl_keluar = Date::excelToDateTimeObject($tgl_keluar)->format('Y-m-d');
+                        $yudisium = $sheet->getCellByColumnAndRow(5, $i)->getValue();
+                        $tgl_yudisium = $sheet->getCellByColumnAndRow(6, $i)->getValue();
+                        $tgl_yudisium = Date::excelToDateTimeObject($tgl_yudisium)->format('Y-m-d');
+                        $ipk = $sheet->getCellByColumnAndRow(7, $i)->getValue();
+                        $no_ijasah = $sheet->getCellByColumnAndRow(8, $i)->getValue();
+                        $smt_keluar = $sheet->getCellByColumnAndRow(9, $i)->getValue();
 
-            if($extension != 'xlsx') {
-                $this->session->set_flashdata('kelulusan', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
-                redirect("import/kelulusan/$kode_prodi"); 
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-
-            $loadexcel  = $reader->load($_FILES['kel']['tmp_name']);
-            $list_sheet = $loadexcel->getSheetNames();
-            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
-
-            $data = array();
-            $numrow = 0;
-
-            foreach($sheetData as $row){
-                if($numrow > 0){
-                    
-                    if($row['A'] != NULL){             
-                        array_push($data, array(
-                            'npp'      => $row['A'],
-                            'nama_mhs'          => $row['B'],
-                            'jenis_keluar'    => $row['C'],
-                            'tgl_keluar'       => $row['D'],
-                            'sk_yudisium'    => $row['E'],
-                            'tgl_sk_yudisium'    => $row['F'],
-                            'ipk'     => $row['G'],
-                            'no_ijazah'      => $row['H'],
-                            'smt_keluar'      => $row['I'],
-                            'prodi'         => $kode_prodi 
-                        ));
+                        array_push($data, [
+                            'npp' => $nim,
+                            'nama_mhs' => $nama,
+                            'jenis_keluar' => $jenis_keluar,
+                            'tgl_keluar' => $tgl_keluar, 
+                            'sk_yudisium' => $yudisium,
+                            'tgl_sk_yudisium' => $tgl_yudisium,
+                            'ipk' => $ipk,
+                            'no_ijazah' => $no_ijasah, 
+                            'smt_keluar' => $smt_keluar,
+                            'prodi' => $kode_prodi
+                        ]);
                     }
-                }
-               $numrow++;
-            }
 
-            if($this->import_model->kelulusan('tbl_kelulusan', $data)){
-                redirect('import/kelulusan/'.$kode_prodi);
-            }else{
+                    $save = $this->import_model->upload_excel('tbl_kelulusan', $data);
+                    if($save) {
+                        $this->session->set_flashdata('kelulusan', ['success', "<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"]);
+                    }
+                    else {
+                        $this->session->set_flashdata('kelulusan', ['danger', "<b>PROSES IMPORT GAGAL!</b> Data Gagal diimport!"]);
+                    }
+                    redirect('import/kelulusan/'.$kode_prodi);
+                }
+                else {
+                    $error = "<b>PROSES IMPORT DATA GAGAL!</b> File tidak sesuai";
+                    $this->session->set_flashdata('kelulusan', ['danger', $error]);
+                    redirect('import/kelulusan/'.$kode_prodi);
+                }
+            }
+            else {
+                $error = "<b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah";
+                $this->session->set_flashdata('kelulusan', ['danger', $error]);
                 redirect('import/kelulusan/'.$kode_prodi);
             }
         }
+        else {
+            $error = "Pilih file excel terlebih dahulu";
+            $this->session->set_flashdata('kelulusan', ['danger', $error]);
+            redirect('import/kelulusan/'.$kode_prodi);
+        }
     }
 
+    // AKM
+    public function view_akm(){
+        $x['prodi'] = $this->import_model->getprodi();
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('akm',$x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function akm($data){
+        $x['kode_prodi'] = $data;
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('akm', $x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function data_akm($data){
+        $db_result = $this->import_model->akm_get($data);
+        $result = [];
+
+        $i = 1;
+        foreach($db_result as $res){
+            $no = $i;
+            $npp = $res->npp == NULL ? "<i><font>Tidak ada data</font></i>": $res->npp;
+            $nama_mhs = $res->nama_mhs == NULL ? "<i><font>Tidak ada data</font></i>": $res->nama_mhs;
+            $smt = $res->smt == NULL ? "<i><font>Tidak ada data</font></i>": $res->smt;
+            $sks = $res->sks == NULL ? "<i><font>Tidak ada data</font></i>": $res->sks;
+            $ip_smt = $res->ip_smt == NULL ? "<i><font>Tidak ada data</font></i>": $res->ip_smt;
+            $sks_kum = $res->sks_kum == NULL ? "<i><font>Tidak ada data</font></i>": $res->sks_kum;
+            $ip_kum = $res->ip_kum == NULL ? "<i><font>Tidak ada data</font></i>": $res->ip_kum;
+            $status = $res->status == NULL ? "<i><font>Tidak ada data</font></i>": $res->status;
+            $biaya = $res->biaya == NULL ? "<i><font>Tidak ada data</font></i>": $res->biaya;
+            $prodi = $res->prodi == NULL ? "<i><font>Tidak ada data</font></i>": $res->prodi;
+
+            $action = " <a href='javascript:;'
+                data-id='$res->id'
+                data-npp='$res->npp'
+                data-nama='$res->nama_mhs'
+                data-smt='$res->smt'
+                data-sks='$res->sks'
+                data-ip_smt='$res->ip_smt' 
+                data-sks_kum='$res->sks_kum' 
+                data-ip_kum='$res->ip_kum' 
+                data-status='$res->status' 
+                data-biaya='$res->biaya' 
+                data-toggle='modal' 
+                data-target='#edit_data_akm' 
+                class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$res->id' data-nama='$res->nama_mhs'
+                data-toggle='modal' data-target='#hapus_data_akm' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+
+            $result[] = array(
+                $no,
+                $npp,
+                $nama_mhs,
+                $smt,
+                $sks,
+                $ip_smt,
+                $sks_kum,
+                $ip_kum,
+                $status,
+                $biaya,
+                $prodi,
+                $action
+            );
+            $i++;
+        }
+         
+        echo json_encode($result);
+    }
+
+    public function upload_akm() {        
+        $kode_prodi = $this->input->post('kode_prodi');
+
+        if(!empty($_FILES['akm']['name'])) {
+            $file = explode('.', $_FILES['akm']['name']);
+            $extension = end($file);
+            if($extension === 'xlsx' && in_array($_FILES['akm']['type'], $this->xlsx_mimes)) {
+                $reader = new Xlsx();
+                $excel = $reader->load($_FILES['akm']['tmp_name']);
+                $sheet = $excel->getActiveSheet();
+                $rowCount = $sheet->getHighestDataRow();
+                $nim = $sheet->getCellByColumnAndRow(2, 2)->getValue();
+                $nama = $sheet->getCellByColumnAndRow(3, 2)->getValue();
+                if (is_numeric($nim) && is_string($nama)) {
+                    $data = [];
+                    for ($i=2; $i<=$rowCount; $i++) {
+                        $nim = $sheet->getCellByColumnAndRow(2, $i)->getValue();
+                        $nama = $sheet->getCellByColumnAndRow(3, $i)->getValue();
+                        $smt = $sheet->getCellByColumnAndRow(4, $i)->getValue();
+                        $sks = $sheet->getCellByColumnAndRow(5, $i)->getValue();
+                        $ip_smt = $sheet->getCellByColumnAndRow(6, $i)->getValue();
+                        $sks_kum = $sheet->getCellByColumnAndRow(7, $i)->getValue();
+                        $ip_kum = $sheet->getCellByColumnAndRow(8, $i)->getValue();
+                        $status = $sheet->getCellByColumnAndRow(9, $i)->getValue();
+                        $biaya = $sheet->getCellByColumnAndRow(10, $i)->getValue();
+
+                        array_push($data, [
+                            'npp' => $nim,
+                            'nama_mhs' => $nama,
+                            'smt' => $smt,
+                            'sks' => $sks, 
+                            'ip_smt' => $ip_smt,
+                            'sks_kum' => $sks_kum,
+                            'ip_kum' => $ip_kum,
+                            'status' => $status, 
+                            'biaya' => $biaya,
+                            'prodi' => $kode_prodi
+                        ]);
+                    }
+
+                    $save = $this->import_model->upload_excel('tbl_akm', $data);
+                    if($save) {
+                        $this->session->set_flashdata('akm', ['success', "<b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!"]);
+                    }
+                    else {
+                        $this->session->set_flashdata('akm', ['danger', "<b>PROSES IMPORT GAGAL!</b> Data Gagal diimport!"]);
+                    }
+                    redirect('import/akm/'.$kode_prodi);
+                    
+                }
+                else {
+                    $error = "<b>PROSES IMPORT DATA GAGAL!</b> File tidak sesuai";
+                    $this->session->set_flashdata('akm', ['danger', $error]);
+                    redirect('import/akm/'.$kode_prodi);
+                }
+            }
+            else {
+                $error = "<b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah";
+                $this->session->set_flashdata('akm', ['danger', $error]);
+                redirect('import/akm/'.$kode_prodi);
+            }
+        }
+        else {
+            $error = "Pilih file excel terlebih dahulu";
+            $this->session->set_flashdata('akm', ['danger', $error]);
+            redirect('import/akm/'.$kode_prodi);
+        }
+    }
+
+    public function tambah_akm() {
+        $kode_prodi = $this->input->post('prodi', true);        
+        $data['npp'] = $this->input->post('npp', true);
+        $data['nama_mhs'] = $this->input->post('nama', true);
+        $data['smt'] = $this->input->post('smt', true);
+        $data['sks'] = $this->input->post('sks', true);
+        $data['ip_smt'] = $this->input->post('ip_smt', true);
+        $data['sks_kum'] = $this->input->post('sks_kumulatif', true);
+        $data['ip_kum'] = $this->input->post('ip_kumulatif', true);
+        $data['status'] = $this->input->post('status', true);
+        $data['biaya'] = $this->input->post('biaya', true);
+        $data['prodi'] = $kode_prodi;
+
+        if($this->import_model->akm_add($data)) {
+            $this->session->set_flashdata('akm', ['success', "<b>Tambah data AKM berhasil!</b>"]);
+        }else{
+            $this->session->set_flashdata('akm', ['danger', "<b>Tambah data AKM gagal!</b>"]);
+        }
+        redirect('import/akm/'.$kode_prodi);
+    }
+
+    public function edit_akm() {
+        $kode_prodi = $this->input->post('prodi', true);
+        $id = $this->input->post('id', true);    
+        $data['npp'] = $this->input->post('npp', true);
+        $data['nama_mhs'] = $this->input->post('nama', true);
+        $data['smt'] = $this->input->post('smt', true);
+        $data['sks'] = $this->input->post('sks', true);
+        $data['ip_smt'] = $this->input->post('ips', true);
+        $data['sks_kum'] = $this->input->post('sksk', true);
+        $data['ip_kum'] = $this->input->post('ipk', true);
+        $data['status'] = $this->input->post('status', true);
+        $data['biaya'] = $this->input->post('biaya', true);
+
+        if($this->import_model->akm_edit($id, $data)) {
+            $this->session->set_flashdata('akm', ['success', "<b>Ubah Data AKM Berhasil!</b>"]);
+        } else {
+            $this->session->set_flashdata('akm', ['danger', "<b>Ubah Data AKM gagal!</b>"]);
+        }
+        redirect('import/akm/'.$kode_prodi);
+    }
+
+    public function hapus_akm() {
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->akm_delete($id)) {
+            $this->session->set_flashdata('akm', ['success', "<b>Hapus data AKM berhasil!</b>"]);
+        } else {
+            $this->session->set_flashdata('akm', ['danger', "<b>Hapus data AKM gagal!</b>"]);
+        }
+        redirect('import/akm/'.$kode_prodi);
+    }
 }

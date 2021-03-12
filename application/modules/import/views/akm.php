@@ -1,12 +1,12 @@
 <div id="content" class="content">
     <ol class="breadcrumb float-xl-right">
         <li class="breadcrumb-item"><a href="<?php echo base_url('home');?>">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="<?php echo base_url('import/view_kelulusan');?>">Kelulusan</a></li>
-        <?php if($this->uri->segment(2) == "kelulusan") { ?>
+        <li class="breadcrumb-item"><a href="<?php echo base_url('import/view_akm');?>">AKM</a></li>
+        <?php if($this->uri->segment(2) == "akm") { ?>
         <li class="breadcrumb-item"><a href="#"><?= $kode_prodi ?></a></li>
         <?php } ?>
     </ol>
-    <h1 class="page-header">Manage Kelulusan</h1>
+    <h1 class="page-header">Manage AKM</h1>
     <div class="row">
         <div class="col-xl-12">
             <div class="panel panel-inverse">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
 
-                <?php if($this->uri->segment(2) == "view_kelulusan") { ?>
+                <?php if($this->uri->segment(2) == "view_akm") { ?>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-12">
@@ -38,7 +38,7 @@
                                         <?php $no = 1; foreach($prodi as $r) { ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td><a href="<?= base_url('import/kelulusan/'.$r->kode_prodi); ?>"><?= $r->nama_program_studi; ?></a></td>
+                                                <td><a href="<?= base_url('import/akm/'.$r->kode_prodi); ?>"><?= $r->nama_program_studi; ?></a></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
@@ -49,55 +49,57 @@
                     </div>
                 <?php } ?>
 
-                <?php if($this->uri->segment(2) == "kelulusan") { ?>
-                                    <div class="card-body">
-                <span>
+                <?php if($this->uri->segment(2) == "akm") { ?>
+                    <div class="card-body">
+
+                    <span>
                             <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Prodi'){?>
                                 <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah_datakelulusan">TAMBAH DATA KELULUSAN</a>
                             <?php } ?>
                         </span>
                         <br>
                         <br>
+
                         <div class="row">
                             <div class="col-sm-12">
-                                <?php if ($this->session->flashdata('kelulusan') != NULL) { ?>
-                                    <div class="alert alert-<?php echo $this->session->flashdata('kelulusan') [0] ?> alert-dismissible">
+                                <?php if ($this->session->flashdata('akm') != NULL) { ?>
+                                    <div class="alert alert-<?php echo $this->session->flashdata('akm') [0] ?> alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('kelulusan') [1] ?>
+                                        <strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('akm') [1] ?>
                                     </div>
                                 <?php } ?>
                             </div>
                             <div class="col-xl-7 col-lg-8">
-                                <form method="POST" action="<?php echo base_url() ?>import/uploadkelulusan" enctype="multipart/form-data">
+                                <form method="POST" action="<?php echo base_url() ?>import/upload_akm" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail2">Upload Data Excel</label>
+                                        <label>Upload Data Excel</label>
                                         <span class="ml-2">
                                             <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                         </span>
-                                        <input type="file" name="da" class="form-control" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                        <input type="file" name="akm" class="form-control" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                                         <input type="hidden" id="kode_prodi" name="kode_prodi" value="<?= $kode_prodi ?>">
                                     </div>
                                     <button type="submit" class="btn btn-success">Upload Data</button>
-                                    <a href="<?php echo base_url() ?>assets/download/sample_template_kelulusan.xlsx" class="btn btn-primary">Template</a>
+                                    <a href="<?php echo base_url() ?>assets/download/sample_template_akm.xlsx" class="btn btn-primary">Template</a>
                                 </form>
                             </div>
                         </div>
                     </div>
 
                     <div class="panel-body">
-                        <table id="data-kelulusan" class="table table-striped table-bordered table-td-valign-middle">
+                        <table id="data-akm" class="table table-striped table-bordered table-td-valign-middle">
                             <thead>
                                 <tr>
                                     <th class="text-nowrap">#</th>
                                     <th class="text-nowrap">NPP</th>
                                     <th class="text-nowrap">Nama</th>
-                                    <th class="text-nowrap">Jenis Keluar</th>
-                                    <th class="text-nowrap">Tanggal Keluar</th>
-                                    <th class="text-nowrap">SK Yudisium</th>
-                                    <th class="text-nowrap">Tanggal SK Yudisium</th>
-                                    <th class="text-nowrap">IPK</th>
-                                    <th class="text-nowrap">No Seri Ijazah</th>
-                                    <th class="text-nowrap">Semester Keluar</th>
+                                    <th class="text-nowrap">Semester</th>
+                                    <th class="text-nowrap">SKS</th>
+                                    <th class="text-nowrap">IP Semester</th>
+                                    <th class="text-nowrap">SKS Kumulatif</th>
+                                    <th class="text-nowrap">IP Kumulatif</th>
+                                    <th class="text-nowrap">Status</th>
+                                    <th class="text-nowrap">Biaya</th>
                                     <th class="text-nowrap">Prodi</th>
                                     <th class="text-nowrap">Action</th>
                                 </tr>
@@ -112,17 +114,17 @@
 </div>
 
 <!-- Tambah  -->
-<div class="modal fade" id="tambah_datakelulusan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="tambah_data_akm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Data Kelulusan</h5>
+                <h5 class="modal-title">Tambah Data AKM</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url('import/tambah_kelulusan');?>" method="POST">
+                <form action="<?php echo base_url('import/tambah_akm');?>" method="POST">
                     <input type="hidden" name="prodi" value="<?= $kode_prodi ?>">
                     <div class="form-group">
                         <label class="col-form-label">NPP:</label>
@@ -130,35 +132,35 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nama:</label>
-                        <input type="text" class="form-control" name="nama_mhs" placeholder="Nama" required>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Jenis Keluar:</label>
-                        <input type="number" class="form-control" name="jenis_keluar" placeholder="Jenis Keluar" required>
+                        <label class="col-form-label">Semester:</label>
+                        <input type="number" class="form-control" name="smt" placeholder="Semester" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Tanggal Keluar:</label>
-                        <input type="date" class="form-control" name="tgl_keluar" required>
+                        <label class="col-form-label">SKS:</label>
+                        <input type="number" class="form-control" name="sks" placeholder="SKS" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">SK Yudisium:</label>
-                        <input type="text" class="form-control" name="sk_yudisium" placeholder="SK Yudisium" required>
+                        <label class="col-form-label">IP Semester:</label>
+                        <input type="number" step="0.01" max="4.00" class="form-control" name="ip_smt" placeholder="IP Semester" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Tanggal SK Yudisium:</label>
-                        <input type="date" class="form-control" name="tgl_sk_yudisium" required>
+                        <label class="col-form-label">SKS Kumulatif:</label>
+                        <input type="number" class="form-control" name="sks_kumulatif" placeholder="SKS Kumulatif" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">IPK:</label>
-                        <input type="number" step="0.01" max="4.00" class="form-control" name="ipk" placeholder="IPK" required>
+                        <label class="col-form-label">IP Kumulatif:</label>
+                        <input type="number" step="0.01" max="4.00" class="form-control" name="ip_kumulatif" placeholder="IP Kumulatif" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">No Seri Ijazah:</label>
-                        <input type="text" class="form-control" name="no_ijazah" placeholder="No Seri Ijazah">
+                        <label class="col-form-label">Status:</label>
+                        <input type="text" class="form-control" name="status" placeholder="Status">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Semester Keluar:</label>
-                        <input type="number" class="form-control" name="smt_keluar" placeholder="Semester Keluar">
+                        <label class="col-form-label">Biaya:</label>
+                        <input type="text" class="form-control" name="biaya" placeholder="Biaya Kuliah Semester">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -171,54 +173,54 @@
 </div>
 
 <!-- edit -->
-<div class="modal fade" id="edit_datakelulusan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="edit_data_akm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Edit Data Kelulusan</h5>
+                <h5 class="modal-title">Edit Data AKM</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url('import/edit_kelulusan');?>" method="POST">
-                    <input type="hidden" class="form-control" id="idx" name="id">
+                <form action="<?php echo base_url('import/edit_akm');?>" method="POST">
+                    <input type="hidden" class="form-control" id="id" name="id">
                     <input type="hidden" name="prodi" value="<?= $kode_prodi ?>">
                     <div class="form-group">
                         <label class="col-form-label">NPP:</label>
-                        <input type="number" class="form-control" name="npp" id="nppx" placeholder="NPP" required>
+                        <input type="number" class="form-control" name="npp" id="npp" placeholder="NPP" required>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nama:</label>
-                        <input type="text" class="form-control" name="nama_mhs" id="nama_mhsx" placeholder="Nama" required>
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Mahasiswa" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Jenis Keluar:</label>
-                        <input type="number" class="form-control" name="jenis_keluar" id="jenis_keluarx" placeholder="Jenis Keluar" required>
+                        <label class="col-form-label">Semester:</label>
+                        <input type="number" class="form-control" name="smt" id="smt" placeholder="Semester" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Tanggal Keluar:</label>
-                        <input type="date" class="form-control" name="tgl_keluar" id="tgl_keluarx" required>
+                        <label class="col-form-label">SKS:</label>
+                        <input type="number" class="form-control" name="sks" id="sks" placeholder="SKS" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">SK Yudisium:</label>
-                        <input type="text" class="form-control" name="sk_yudisium" id="sk_yudisiumx" placeholder="SK Yudisium" required>
+                        <label class="col-form-label">IP Semester:</label>
+                        <input type="number" step="0.01" max="4.00" class="form-control" name="ips" id="ips" placeholder="IP Semester" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Tanggal SK Yudisium:</label>
-                        <input type="date" class="form-control" name="tgl_sk_yudisium" id="tgl_sk_yudisiumx" required>
+                        <label class="col-form-label">SKS Kumulatif:</label>
+                        <input type="number" class="form-control" name="sksk" id="sksk" placeholder="SKS Kumulatif" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">IPK:</label>
-                        <input type="number" step="0.01" max="4.00" class="form-control" name="ipk" id="ipkx" placeholder="IPK" required>
+                        <label class="col-form-label">IP Kumulatif:</label>
+                        <input type="number" step="0.01" max="4.00" class="form-control" name="ipk" id="ipk" placeholder="IP Kumulatif" required>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">No Seri Ijazah:</label>
-                        <input type="text" class="form-control" name="no_ijazah" id="no_ijazahx" placeholder="No Seri Ijazah">
+                        <label class="col-form-label">Status:</label>
+                        <input type="text" class="form-control" name="status" id="status" placeholder="Status">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Semester Keluar:</label>
-                        <input type="number" class="form-control" name="smt_keluar" id="smt_keluarx" placeholder="Semester Keluar">
+                        <label class="col-form-label">Biaya:</label>
+                        <input type="text" class="form-control" name="biaya" id="biaya" placeholder="Biaya Kuliah Semester">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -231,17 +233,17 @@
 </div>
 
 <!-- hapus -->
-<div class="modal fade" id="hapus_datakelulusan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="hapus_data_akm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Hapus Data Kelulusan</h5>
+                <h5 class="modal-title">Hapus Data AKM</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" action="<?php echo base_url('import/hapus_kelulusan'); ?>">
+                <form class="form-horizontal" method="post" action="<?php echo base_url('import/hapus_akm'); ?>">
                     <div class="modal-body">
                         <p id="del-info"></p>
                     </div>
@@ -261,12 +263,11 @@
 <script>
 $(document).ready(function() {
 
-    if ($('#data-kelulusan').length !== 0) {
+    if ($('#data-akm').length !== 0) {
         var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
         var kode_prodi = $("#kode_prodi").val();
-        var url = `${base_url}/import/datakelulusan/${kode_prodi}`;
-
-        $('#data-kelulusan').dataTable({
+        var url = `${base_url}/import/data_akm/${kode_prodi}`;
+        $('#data-akm').dataTable({
             dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
             buttons: [
                 {
@@ -292,38 +293,42 @@ $(document).ready(function() {
             "ajax": {
                 "url": url,
                 "dataSrc": ""
-            }
+            },
+            "columnDefs": [
+			{ 
+				"orderable": false, 
+				"targets": [10, 11] 
+			}
+  		]
         });
     }
 
     // edit
-    $('#edit_datakelulusan').on('show.bs.modal', function (event) {
-        var edit = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+    $('#edit_data_akm').on('show.bs.modal', function (event) {
+        var edit = $(event.relatedTarget)
         var modal = $(this)
 
-        // Isi nilai pada field
-        modal.find('#idx').attr("value",edit.data('id'));
-        modal.find('#nppx').attr("value",edit.data('npp'));
-        modal.find('#nama_mhsx').attr("value",edit.data('nama_mhs'));
-        modal.find('#jenis_keluarx').attr("value",edit.data('jenis_keluar'));
-        modal.find('#tgl_keluarx').attr("value",edit.data('tgl_keluar'));
-        modal.find('#sk_yudisiumx').attr("value",edit.data('sk_yudisium'));
-        modal.find('#tgl_sk_yudisiumx').attr("value",edit.data('tgl_sk_yudisium'));
-        modal.find('#ipkx').attr("value",edit.data('ipk'));
-        modal.find('#no_ijazahx').attr("value",edit.data('no_ijazah'));
-        modal.find('#smt_keluarx').attr("value",edit.data('smt_keluar'));
-        
+        modal.find('#id').attr("value",edit.data('id'));
+        modal.find('#npp').attr("value",edit.data('npp'));
+        modal.find('#nama').attr("value",edit.data('nama'));
+        modal.find('#smt').attr("value",edit.data('smt'));
+        modal.find('#sks').attr("value",edit.data('sks'));
+        modal.find('#ips').attr("value",edit.data('ip_smt'));
+        modal.find('#sksk').attr("value",edit.data('sks_kum'));
+        modal.find('#ipk').attr("value",edit.data('ip_kum'));
+        modal.find('#status').attr("value",edit.data('status'));
+        modal.find('#biaya').attr("value",edit.data('biaya'));
     });
 
     // hapus
-    $('#hapus_datakelulusan').on('show.bs.modal', function (event) {
+    $('#hapus_data_akm').on('show.bs.modal', function (event) {
         var del = $(event.relatedTarget);
 		var modal = $(this);
 
 		var id_del = del.data('id');
 		var nama_del = del.data('nama');
 		modal.find('#delete_id').attr("value", del.data('id'));
-		modal.find('#del-info').text(`Anda yakin akan menghapus data kelulusan ${nama_del}?`);
+		modal.find('#del-info').text(`Anda yakin akan menghapus data AKM ${nama_del}?`);
     });
 });
 </script>
