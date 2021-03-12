@@ -8,7 +8,11 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#tambah_datakelulusan"><i class="fa fa-plus-square"></i></a>
+                    <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Prodi'){?>
+							<span>
+								<a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah_datakelulusan">TAMBAH DATA KELULUSAN</a>
+							</span>
+						<?php } ?> 
                     </h4>
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -56,7 +60,7 @@
                                     <span class="ml-2">
                                         <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                     </span>
-                                    <input type="file" name="da" class="form-control">
+                                    <input type="file" name="kel" class="form-control">
                                     <input type="hidden" name="kode_prodi" value="<?= $kode_prodi ?>">
                                 </div>
                                 <button type="submit" class="btn btn-success">Upload Data</button>
