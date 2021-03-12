@@ -18,6 +18,12 @@ class User extends CI_Controller {
 			redirect('home');
 		}
 	}
+
+	// CHOOSE TAMPILAN
+	public function choose()
+	{
+		$this->load->view('choose-login');
+	}
  
 	public function proses()
 	{
