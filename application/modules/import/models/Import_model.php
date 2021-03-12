@@ -35,12 +35,12 @@ class Import_model extends CI_Model {
         }
     }
 
-    public function getkurkum($data,$prr){
-        return $this->db->query("SELECT * FROM tbl_kurkum where prodi = '$data'")->result();
+    public function getkurkum($data){
+        return $this->db->query("SELECT * FROM tbl_kurkum where prodi = '$data' ")->result();
     }
 
-    public function getmatkulkurkum($data,$pr){
-        return $this->db->query("SELECT * FROM tbl_kurkum_matkul where nama_kurikulum = '$data' and prodi = '$pr' ")->result();
+    public function getmatkulkurkum($prodi,$nama_kurikulum){
+        return $this->db->query("SELECT * FROM tbl_kurkum_matkul where prodi = '$prodi' and nama_kurikulum = '$nama_kurikulum' ")->result();
     }
 
     function cekdata($nama_kurikulum)
@@ -68,4 +68,18 @@ class Import_model extends CI_Model {
 
 		return $ubahkurikulum; 	
 	}
+
+     function del_matkul($kode_mk){
+
+        $hasil=$this->db->query("DELETE FROM tbl_kurkum_matkul WHERE kode_mk = '$kode_mk' ");
+        return $hasil;
+    }
+
+    public function ubah_matkul($ubahmatkul){
+        
+        $kode_mk = $ubahmatkul['kode_mk'];
+        $ubahmatkul = $this->db->where('kode_mk', $kode_mk)->update('tbl_kurkum_matkul', $ubahmatkul);
+
+        return $ubahmatkul;  
+    }
 }
