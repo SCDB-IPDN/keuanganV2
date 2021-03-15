@@ -170,6 +170,165 @@ class Import extends CI_Controller
         }
     }
 
+    // Krs
+    public function view_krs(){
+        $x['prodi'] = $this->import_model->getprodi();
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('krs',$x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function krs($data){
+        $x['kode_prodi'] = $data;
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('krs', $x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function datakrs($data){
+        $data = $this->import_model->getkrs($data);
+        $hasil = array();
+
+        foreach($data as $r){
+            $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
+            $nama = $r->nama == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama;
+            $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;            
+            $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
+            $nama_mk = $r->nama_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_mk;
+            $kelas = $r->kelas == NULL ? "<i><font>Tidak ada data</font></i>": $r->kelas;
+            $action = " <a href='javascript:;'
+                data-id='$r->id'
+                data-npp='$r->npp'
+                data-nama='$r->nama'
+                data-semester='$r->semester'
+                data-kode_mk='$r->kode_mk'
+                data-nama_mk='$r->nama_mk' 
+                data-kelas='$r->kelas'
+                data-toggle='modal' data-target='#edit_krs' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$r->id'
+                data-toggle='modal' data-target='#hapus_krs' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+
+            $hasil[] = array(
+                $npp,
+                $nama,
+                $semester,
+                $kode_mk,
+                $nama_mk,
+                $kelas,
+                $action
+            );
+        }
+        
+        echo json_encode($hasil);
+    }
+
+    public function tambah_krs(){
+        $kode_prodi = $this->input->post('prodi', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['nama_mk'] = $this->input->post('nama_mk', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['prodi'] = $kode_prodi;
+
+        if($this->import_model->tambah_krs($input_data)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function edit_krs(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['nama_mk'] = $this->input->post('nama_mk', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+
+        if($this->import_model->edit_krs($id, $input_data)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function hapus_krs(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->hapus_krs($id)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function uploadkrs() {        
+        $kode_prodi = $this->input->post('kode_prodi');
+        
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['krs']['name']) && in_array($_FILES['krs']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['krs']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+                redirect("import/krs/$kode_prodi"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $loadexcel  = $reader->load($_FILES['krs']['tmp_name']);
+            $list_sheet = $loadexcel->getSheetNames();
+            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 0;
+
+            foreach($sheetData as $row){
+                if($numrow > 0){
+                    
+                    if($row['A'] != NULL){             
+                        array_push($data, array(
+                            'npp'      => $row['B'],
+                            'nama'          => $row['C'],
+                            'semester'    => $row['D'],
+                            'kode_mk'       => $row['E'],
+                            'nama_mk'    => $row['F'],
+                            'kelas'    => $row['G'],
+                            'prodi'         => $kode_prodi 
+                        ));
+                    }
+                }
+               $numrow++;
+            }
+
+            if($this->import_model->krs('tbl_krs', $data)){
+                redirect('import/krs/'.$kode_prodi);
+            }else{
+                redirect('import/krs/'.$kode_prodi);
+            }
+        }
+    }
+
     // Dosen Ajar
     public function view_da(){
         $x['prodi'] = $this->import_model->getprodi();

@@ -61,7 +61,7 @@
 							<span>Import</span>
 						</a>
 						<ul class="sub-menu">
-							<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
+							<li class="<?php echo $this->uri->segment(2) == "kelas_kuliah" || $this->uri->segment(2) == "view_kk" || $this->uri->segment(2) == "krs" || $this->uri->segment(2) == "view_krs" || $this->uri->segment(2) == "dosen_ajar" || $this->uri->segment(2) == "view_da" ?"active":"";?> has-sub">
 								<a href="javascript:;">
 									<b class="caret"></b>
 									<i class="fa fa-file-import"></i>
@@ -71,14 +71,16 @@
 									<li class="<?php echo $this->uri->segment(2) == "kelas_kuliah" || $this->uri->segment(2) == "view_kk"  ? "active" : ""; ?> has-sub">
 										<a href="<?php echo base_url('import/view_kk'); ?>">Kelas Kuliah</a>
 									</li>
-									<li class="<?php echo $this->uri->segment(2) == "krs"  ? "active" : ""; ?> has-sub">
-										<a href="<?php echo base_url('import/view_kk'); ?>">Krs</a>
+									<li class="<?php echo $this->uri->segment(2) == "krs" || $this->uri->segment(2) == "view_krs" ? "active" : ""; ?> has-sub">
+										<a href="<?php echo base_url('import/view_krs'); ?>">Krs</a>
 									</li>
 									<li class="<?php echo $this->uri->segment(2) == "dosen_ajar" || $this->uri->segment(2) == "view_da"  ? "active" : ""; ?> has-sub">
 										<a href="<?php echo base_url('import/view_da'); ?>">Dosen Ajar</a>
 									</li>
 								</ul>
 							</li>
+							<li class="<?php echo $this->uri->segment(2) == "view_akm" || $this->uri->segment(2) == "akm" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_akm'); ?>">Akm</a></li>
+							<li class="<?php echo $this->uri->segment(2) == "view_kelulusan" || $this->uri->segment(2) == "kelulusan" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_kelulusan'); ?>">Kelulusan</a></li>
 						</ul>
 						<?php } ?>
 					</li>

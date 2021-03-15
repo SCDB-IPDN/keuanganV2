@@ -49,6 +49,59 @@ class Import_model extends CI_Model {
         }
     }
 
+    // KRS
+    public function getkrs($data){
+        return $this->db->query("SELECT * FROM tbl_krs where prodi = '$data'")->result();
+    }
+
+    public function krs($table, $data){
+        $result = $this->db->insert_batch($table, $data);
+
+        if($result){
+            $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('krs', '<div class="alert alert-warning"><b>PROSES IMPORT GAGAL!</b> Data Gagal diimport!</div>');
+            return FALSE;
+        }
+    }
+
+    public function tambah_krs($input_data){
+        $result = $this->db->insert('tbl_krs', $input_data);
+
+        if($result){
+            $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>Tambah Data Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('krs', '<div class="alert alert-warning"><b>Tambah Data gagal!</b></div>');
+            return FALSE;
+        }
+    }
+
+    public function edit_krs($id, $input_data){
+        $result = $this->db->where('id', $id)->update('tbl_krs', $input_data);
+
+        if($result){
+            $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>Ubah Data Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('krs', '<div class="alert alert-warning"><b>Ubah Data gagal!</b></div>');
+            return FALSE;
+        }
+    }
+
+    public function hapus_krs($id){
+        $result = $this->db->where('id', $id)->delete('tbl_krs');
+
+        if($result){
+            $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>Hapus Data Berhasil!</b></div>');
+            return TRUE;
+        }else{
+            $this->session->set_flashdata('krs', '<div class="alert alert-warning"><b>Hapus Data gagal!</b></div>');
+            return FALSE;
+        }
+    }
+
     // Dosen Ajar
     public function getda($data){
         return $this->db->query("SELECT * FROM tbl_dosen_ajar where prodi = '$data'")->result();

@@ -51,15 +51,12 @@
 
                 <?php if($this->uri->segment(2) == "akm") { ?>
                     <div class="card-body">
-
-                    <span>
+                        <span>
                             <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Prodi'){?>
-                                <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah_datakelulusan">TAMBAH DATA KELULUSAN</a>
+                                <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tambah_data_akm">TAMBAH DATA AKM</a>
                             <?php } ?>
                         </span>
-                        <br>
-                        <br>
-
+                        <br><br>
                         <div class="row">
                             <div class="col-sm-12">
                                 <?php if ($this->session->flashdata('akm') != NULL) { ?>
