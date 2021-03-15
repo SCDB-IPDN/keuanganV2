@@ -46,23 +46,17 @@
 			<!-- end brand -->
 			<!-- begin login-content -->
 			<div class="login-content">
-				<form action="<?php echo base_url(); ?>user/proses" method="POST" class="margin-bottom-0">
-					<div class="login-buttons">
-						<a href="<?php echo base_url('user/t_umum'); ?>">
-							<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Umum</span>
-						</a>
-					</div>
-					<br>
-					<div class="login-buttons">
-						<a href="<?php echo base_url('user'); ?>">
-							<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Password</span>
-						</a>
-					</div>
-					<div class="m-t-20">
-						<!-- Not a member yet? Click <a href="http://ipdn.ac.id/tiket/">here</a> to register. -->
-						Tidak memiliki akun? Click <a href="http://ipdn.ac.id/tiket/" target="_blank">disini</a> untuk mendaftar.
-					</div>
-				</form>
+				<div class="login-buttons">
+					<a href="<?php echo base_url('user/t_umum'); ?>">
+						<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Umum</span>
+					</a>
+				</div>
+				<br>
+				<div class="login-buttons">
+					<a href="<?php echo base_url('user'); ?>">
+						<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Password</span>
+					</a>
+				</div>
 			</div>
 			<!-- end login-content -->
 		</div>
