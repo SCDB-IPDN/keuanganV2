@@ -34,6 +34,10 @@
 		<div class="login login-v2" data-pageload-addclass="animated fadeIn">
 			<!-- begin brand -->
 			<div class="login-header">
+				<a href="http://192.168.203.68/W-IPDN/Group/keuanganV2/user/choose">
+					<span type="submit" class="btn btn-success btn-sm"><i class="fas fa-arrow-left"></i></span>
+				</a>
+				<hr>
 				<div class="brand">
 					<span class="logo"></span> <b>LOGIN</b>
 					<small>SCDB IPDN v1.0 &copy; <?php echo date('Y') ?></small>

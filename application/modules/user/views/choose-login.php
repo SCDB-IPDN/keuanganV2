@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>SCDB IPDN | Login</title>
+	<title>SCDB IPDN | Pilihan Tampilan</title>
 	<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/5/56/Lambang_IPDN.png">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
@@ -34,6 +34,16 @@
 		<div class="login login-v2" data-pageload-addclass="animated fadeIn">
 			<!-- begin brand -->
 			<div class="login-header">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="login-buttons">
+							<a href="http://192.168.203.68/W-IPDN/Group/FrontendV2">
+								<span type="submit" class="btn btn-success btn-sm"><i class="fas fa-arrow-left"></i></span>
+							</a>
+							<hr>
+						</div>
+					</div>
+				</div>
 				<div class="brand">
 					<span class="logo"></span> <b>SCDB IPDN</b>
 					<small>SCDB IPDN v1.0 &copy; <?php echo date('Y') ?></small>
@@ -47,11 +57,11 @@
 			<!-- begin login-content -->
 			<div class="login-content">
 				<p>Silahkan pilih tampilan yang akan dibuka, jika anda memiliki NIP dan Password disarankan masuk ke tampilan password.</p>
-				<hr>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="login-buttons">
 							<a href="<?= $t_umum ?>">
+								<br>
 								<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Umum</span>
 							</a>
 						</div>
@@ -59,6 +69,7 @@
 					<div class="col-md-6">
 						<div class="login-buttons">
 							<a href="<?= $t_password ?>">
+								<br>
 								<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Password</span>
 							</a>
 						</div>
@@ -92,4 +103,9 @@
 
 <script type="text/javascript">
 	$("#password").password('toggle');
+</script>
+<script>
+function goBack() {
+  window.history.back();
+}
 </script>
