@@ -35,7 +35,7 @@
 			<!-- begin brand -->
 			<div class="login-header">
 				<div class="brand">
-					<span class="logo"></span> <b>NON-ANIMASI</b>
+					<span class="logo"></span> <b>SCDB IPDN</b>
 					<small>SCDB IPDN v1.0 &copy; <?php echo date('Y') ?></small>
 				</div>
 				<div class="icon">
@@ -46,16 +46,23 @@
 			<!-- end brand -->
 			<!-- begin login-content -->
 			<div class="login-content">
-				<div class="login-buttons">
-					<a href="<?php echo base_url('user/t_umum'); ?>">
-						<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Umum</span>
-					</a>
-				</div>
-				<br>
-				<div class="login-buttons">
-					<a href="<?php echo base_url('user'); ?>">
-						<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Password</span>
-					</a>
+				<p>Silahkan pilih tampilan yang akan dibuka, jika anda memiliki NIP dan Password disarankan masuk ke tampilan password.</p>
+				<hr>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="login-buttons">
+							<a href="<?= $t_umum ?>">
+								<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Umum</span>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="login-buttons">
+							<a href="<?= $t_password ?>">
+								<span type="submit" class="btn btn-success btn-block btn-lg">Tampilan Password</span>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- end login-content -->

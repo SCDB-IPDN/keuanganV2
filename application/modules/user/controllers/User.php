@@ -7,6 +7,7 @@ class User extends CI_Controller {
         parent::__construct();
         //load model
         $this->load->model('user_model');
+        $this->load->model('choose_model');
     }
 
     public function index()
@@ -21,8 +22,19 @@ class User extends CI_Controller {
 
 	// CHOOSE TAMPILAN
 	public function choose()
-	{
-		$this->load->view('choose-login');
+	{	
+		$t_umum = $this->choose_model->get_link_umum();
+		$t_password = $this->choose_model->get_link_password();
+
+		if ($t_umum && $t_password != NULL) {
+			$x['t_umum'] = $t_umum[0]->link;
+			$x['t_password'] = $t_password[0]->link;
+		} else {
+			$x['t_umum'] = 'Link Kosong';
+			$x['t_password'] = 'Link Kosong';
+		}
+
+		$this->load->view('choose-login',$x);
 	}
  
 	public function proses()
