@@ -28,12 +28,13 @@ class D_praja_model extends CI_Model
 	public function get_detail($npp)
 	{
 
-		$result = $this->db->query("SELECT id,no_spcp, nama,CASE WHEN jk= 'P' THEN 'Perempuan'WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk, nisn,npwp,npp,nik_praja,tmpt_lahir,tgl_lahir, alamat,rt,rw,nama_dusun,kelurahan,kode_pos,kab_kota,provinsi,tlp_pribadi,tlp_rumah,email,penerima_pks,no_pks,tgl_masuk_kuliah,
-			tahun_masuk_kuliah,status,tingkat,angkatan,fakultas,mulai_semester,biaya_masuk,nik_ayah , nama_ayah , tgllahir_ayah ,tlp_ayah ,nik_ibu ,nama_ibu ,tgllahir_ibu,tlp_ibu , nik_wali,
+		$result = $this->db->query("SELECT id,no_spcp, nama,CASE WHEN jk= 'P' THEN 'Perempuan'WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk, nisn,npwp,npp,nik_praja,tmpt_lahir,tgl_lahir,alamat,rt,rw,nama_dusun,kelurahan,kode_pos,kab_kota,provinsi,tlp_pribadi,tlp_rumah,email,penerima_pks,no_pks,tgl_masuk_kuliah,
+			tahun_masuk_kuliah,status,tingkat,angkatan,mulai_semester,biaya_masuk,nik_ayah , nama_ayah , tgllahir_ayah ,tlp_ayah ,nik_ibu ,nama_ibu ,tgllahir_ibu,tlp_ibu , nik_wali,
 			nama_wali ,tgllahir_wali ,tlp_wali,
 			(SELECT nama_jenis_daftar FROM jenis_pendaftaran WHERE jenis_pendaftaran = id_jenis_daftar) as jenis_pendaftaran,
 			(SELECT nama_jalur_masuk  FROM jalur_masuk WHERE jalur_masuk = id_jalur_masuk) as jalur_masuk ,
 			(SELECT nama_program_studi FROM program_studi WHERE prodi = id_prodi) as prodi,
+			
 			(SELECT nama_negara FROM negara WHERE kewarganegaraan = id_negara) as kewarganegaraan,
 			(SELECT nama_jenis_tinggal FROM jenis_tinggal WHERE jenis_tinggal = id_jenis_tinggal) as jenis_tinggal,
 			(SELECT nama_alat_transportasi FROM alat_transportasi WHERE alat_transport = id_alat_transportasi) as alat_transport,

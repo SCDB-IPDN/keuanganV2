@@ -14,6 +14,12 @@
     color: #F4AFAB;
   }
 
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+  }
+
 </style>
 
 <link rel="stylesheet" href="<?php echo base_url() . 'assets/js/morris.css' ?>">
@@ -117,7 +123,7 @@
 </div>
 
 
-<!-- Modal Ubah -->
+<!-- Modal View -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="show-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -153,105 +159,107 @@
         <div class="tab-content">
          <div role="tabpanel" class="tab-pane fade active show" id="profile">
 
-          <table class="table table-striped" cellspacing="0" align="center">
+          <table class="table table-striped" align="center">
             <tbody>
+              <br>
+
               <tr>
-                <td>NPP</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nppx"  style="height:10px;"></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NPP"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nppx" ></td>
               </tr>
               <tr>
-                <td>NAMA PRAJA</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="namax" style="height:10px;"></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Nama Praja"></td>
+                <td><input type="text" readonly="" class="form-control-plaintext" id="namax"></td>
               </tr>
               <tr>
-                <td>JENIS KELAMIN</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="jkx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Jenis Kelamin"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="jkx"></td>
               </tr>
               <tr>
-                <td >TEMPAT TANGGAL LAHIR</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="tmpt_lahirx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Tempat Tanggal Lahir"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="tmpt_lahirx" ></td>
 
               </tr>
               <tr>
-                <td>NISN</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nisnx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NISN"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nisnx" ></td>
               </tr>
               <tr>
-                <td>NPWP</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="npwpx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NPWP"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="npwpx" ></td>
               </tr>
               <tr>
-                <td>NO SPCP</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="no_spcpx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NO SPCP"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="no_spcpx" ></td>
               </tr>
               <tr>
 
-                <td>NIK</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nik_prajax" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NIK"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nik_prajax" ></td>
               </tr>
               <tr>
-                <td>AGAMA</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="agamax" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Agama"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="agamax" ></td>
               </tr>
               <tr>
-                <td>ALAMAT</td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Alamat"></td>
                 <td><input type="text" readonly class="form-control-plaintext" id="alamatx" style="height:10px;"></td>
               </tr>
               <tr>
-                <td>RT</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="rtx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="RT"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="rtx" ></td>
               </tr>
               <tr>
-                <td>RW</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="rwx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="RW"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="rwx" ></td>
               </tr>
               <tr>
-                <td>NAMA DUSUN</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="nama_dusunx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Nama Dusun"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="nama_dusunx" ></td>
               </tr>
               <tr>
-                <td>KELURAHAN</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="kelurahanx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Kelurahan"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="kelurahanx" ></td>
               </tr>
               <tr>
-                <td>KECAMATAN</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="kecamatanx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Kecamatan"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="kecamatanx" ></td>
               </tr>
               <tr>
-                <td>KODE POS</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="kode_posx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Kode Pos"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="kode_posx" ></td>
               </tr>
               <tr>
-                <td>JENIS TINGGAL</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="jenis_tinggalx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Jenis Tinggal"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="jenis_tinggalx" ></td>
               </tr>
               <tr>
-                <td>ALAT TRANSPORT</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="alat_transportx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Alat Transportasi"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="alat_transportx" ></td>
               </tr>
               <tr>
-                <td>TLP RUMAH</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="tlp_rumahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Tlp Rumah"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="tlp_rumahx" ></td>
               </tr>
               <tr>
-                <td>NO HP</td>
-                <td> <input type="text" readonly class="form-control-plaintext" id="tlp_pribadix" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="No Hp"></td>
+                <td> <input type="text" readonly class="form-control-plaintext" id="tlp_pribadix" ></td>
               </tr>
               <tr>
-                <td>EMAIL</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="emailx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Email"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="emailx" ></td>
               </tr>
               <tr>
-                <td>TINGKAT</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="tingkatx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Tingkat"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="tingkatx" ></td>
               </tr>
               <tr>
-                <td>ANGKATAN</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="angkatanx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Angkatan"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="angkatanx" ></td>
               </tr>
               <tr>
-                <td>STATUS</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="statusx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Status"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="statusx" ></td>
               </tr>
             </tbody></table>
 
@@ -260,53 +268,54 @@
           <div role="tabpanel" class="tab-pane fade" id="ortu">
             <table class="table table-striped">
              <tbody>
-              <tr>
-                <td>NIK AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nik_ayahx" style="height:10px; "></td>
+               <br>
+               <tr>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NIK Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nik_ayahx" ></td>
               </tr>
               <tr>
-                <td>NAMA AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nama_ayahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Nama Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nama_ayahx" ></td>
               </tr>
               <tr>
-                <td>TANGGAL LAHIR AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_ayahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Tanggal Lahir Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_ayahx" ></td>
               </tr>
               <tr>
-                <td>PENDIDIKAN AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_ayahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Pendidikan Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_ayahx" ></td>
               </tr>
               <tr>
-                <td>PEKERJAAN AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_ayahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Pekerjaan Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_ayahx" ></td>
               </tr>
               <tr>
-                <td>PENGHASILAN AYAH</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_ayahx" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Penghasilan Ayah"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_ayahx" ></td>
               </tr>       
               <tr>
-                <td>NIK IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nik_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="NIK Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nik_ibux" ></td>
               </tr>
               <tr>
-                <td>NAMA IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="nama_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Nama Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="nama_ibux" ></td>
               </tr>
               <tr>
-                <td>TANGGAL LAHIR IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Tanggal Lahir Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_ibux" ></td>
               </tr>
               <tr>
-                <td>PENDIDIKAN IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Pendidikan Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_ibux" ></td>
               </tr>
               <tr>
-                <td>PEKERJAAN IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Pekerjaan Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_ibux" ></td>
               </tr>
               <tr>
-                <td>PENGHASILAN IBU</td>
-                <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_ibux" style="height:10px; "></td>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Penghasilan Ibu"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_ibux" ></td>
               </tr>                     
             </tbody>
           </table>
@@ -316,29 +325,30 @@
         <div role="tabpanel" class="tab-pane fade" id="wali">
           <table class="table table-striped">
            <tbody>
-            <tr>
-              <td>NIK WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="nik_walix" style="height:10px; "></td>
+             <br>
+             <tr>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="NIK Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="nik_walix" ></td>
             </tr>
             <tr>
-              <td>NAMA WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="nama_walix" style="height:10px; "></td>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="Nama Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="nama_walix" ></td>
             </tr>
             <tr>
-              <td>TANGGAL LAHIR WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_walix" style="height:10px; "></td>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="Tanggal Lahir Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="tgllahir_walix" ></td>
             </tr>
             <tr>
-              <td>PENDIDIKAN WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_walix" style="height:10px; "></td>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="Pendidikan Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="pendidikan_walix" ></td>
             </tr>
             <tr>
-              <td>PEKERJAAN WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_walix" style="height:10px; "></td>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="Pekerjaan Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="pekerjaan_walix" ></td>
             </tr>
             <tr>
-              <td>PENGHASILAN WALI</td>
-              <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_walix" style="height:10px; "></td>
+              <td><input type="text" readonly class="form-control-plaintext" placeholder="Penghasilan Wali"></td>
+              <td><input type="text" readonly class="form-control-plaintext" id="penghasilan_walix" ></td>
             </tr>       
 
           </tbody>
@@ -349,38 +359,39 @@
       <div role="tabpanel" class="tab-pane fade" id="lain">
         <table class="table table-striped">
          <tbody>
-          <tr>
-            <td>FAKULTAS</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="fakultasx" style="height:10px; "></td>
+           <br>
+           <tr>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Fakultas"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="fakultasx" ></td>
           </tr>
           <tr>
-            <td>PRODI</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="prodix" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Prodi"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="prodix" ></td>
           </tr>
           <tr>
-            <td>KEWARGANEGARAAN</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="kewarganegaraanx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Kewarganegaraan"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="kewarganegaraanx" ></td>
           </tr>
           <tr>
-            <td>JENIS PENDAFTARAN</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="jenis_pendaftaranx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Jenis Pendaftaran"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="jenis_pendaftaranx" ></td>
           </tr>
 
           <tr>
-            <td>TANGGAL MASUK KULIAH</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="tgl_masuk_kuliahx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Tanggal Masuk Kuliah"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="tgl_masuk_kuliahx" ></td>
           </tr>
           <tr>
-            <td>TAHUN MASUK KULIAH</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="tahun_masuk_kuliahx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Tahun Masuk Kuliah"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="tahun_masuk_kuliahx" ></td>
           </tr>
           <tr>
-            <td>PEMBIAYAAN</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="pembiayaanx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Jenis Pembiayaan"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="pembiayaanx" ></td>
           </tr>       
           <tr>
-            <td>JALUR MASUK</td>
-            <td><input type="text" readonly class="form-control-plaintext" id="jalur_masukx" style="height:10px; "></td>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Jalur Masuk"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="jalur_masukx" ></td>
           </tr>               
         </tbody>
       </table>
@@ -504,7 +515,7 @@
             <select class="form-control" name="provinsi" id="provinsi" required="">
               <option value="">-Pilih Provinsi-</option>
               <?php foreach ($wilayah as $x) { ?>
-                <option value="<?php echo $x->nama_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
+                <option value="<?php echo $x->id_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
               <?php } ?>
             </select>
           </div>
@@ -519,9 +530,6 @@
             <label class="col-form-label">Kelurahan:</label>
             <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan ...." required="">
           </div>
-
-
-
         </div>
       </div>
 
@@ -535,8 +543,8 @@
           <label class="col-form-label">Kecamatan:</label>
           <!-- <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan ...." required=""> -->
           <select class="form-control" name="kecamatan" id="kecamatan" required="">
-              <option>-Pilih Kecamatan-</option>
-            </select>
+            <option>-Pilih Kecamatan-</option>
+          </select>
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Kode Pos:</label>
@@ -586,6 +594,7 @@
         <div class="col-xl">
           <label class="col-form-label">Fakultas:</label>
           <select class="form-control" name="fk" id="fk" required="">
+            <!-- <option value="<?php echo $x->nama_fakultas;?>"><?php echo $x->nama_fakultas;?></option> -->
             <option value="">-Pilih Fakultas-</option>
             <?php foreach ($fakulll as $x) { ?>
               <option value="<?php echo $x->kode_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
@@ -594,7 +603,9 @@
         </div>
         <div class="col-xl">
           <label class="col-form-label">Prodi:</label>
+          <!-- nama_program_studi -->
           <select class="form-control" name="prodi" id="prodi" required="">
+            <option value="<?php echo $x->nama_program_studi;?>"><?php echo $x->nama_program_studi;?></option>
             <option>-Pilih Program Studi-</option>
           </select>
         </div>
