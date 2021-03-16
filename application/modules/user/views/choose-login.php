@@ -37,7 +37,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="login-buttons">
-							<a href="http://192.168.203.68/W-IPDN/Group/FrontendV2">
+							<a href="<?= $t_utama ?>">
 								<span type="submit" class="btn btn-success btn-sm"><i class="fas fa-arrow-left"></i></span>
 							</a>
 							<hr>

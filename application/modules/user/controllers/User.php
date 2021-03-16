@@ -13,8 +13,16 @@ class User extends CI_Controller {
     public function index()
 	{
 		if($this->session->userdata('nip') == NULL)
-		{
-			$this->load->view('login');
+		{	
+			$t_pilihan = $this->choose_model->get_link_pilihan();
+
+			if ($t_pilihan != NULL) {
+				$x['t_pilihan'] = $t_pilihan[0]->link;
+			} else {
+				$x['t_pilihan'] = 'Link Kosong';
+			}
+
+			$this->load->view('login',$x);
 		}else{
 			redirect('home');
 		}
@@ -23,13 +31,16 @@ class User extends CI_Controller {
 	// CHOOSE TAMPILAN
 	public function choose()
 	{	
+		$t_utama = $this->choose_model->get_link_utama();
 		$t_umum = $this->choose_model->get_link_umum();
 		$t_password = $this->choose_model->get_link_password();
 
-		if ($t_umum && $t_password != NULL) {
+		if ($t_utama && $t_umum && $t_password != NULL) {
+			$x['t_utama'] = $t_utama[0]->link;
 			$x['t_umum'] = $t_umum[0]->link;
 			$x['t_password'] = $t_password[0]->link;
 		} else {
+			$x['t_utama'] = 'Link Kosong';
 			$x['t_umum'] = 'Link Kosong';
 			$x['t_password'] = 'Link Kosong';
 		}
