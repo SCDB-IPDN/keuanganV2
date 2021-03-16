@@ -28,7 +28,6 @@ class D_praja extends CI_Controller
       $angkatan = $this->D_praja_model->get_angkatan()->result();
       $x['angkatan'] = json_encode($angkatan);
 
-
       $prov = $this->D_praja_model->get_provinsi()->result();
       $x['prov'] = $prov;
 
@@ -76,6 +75,8 @@ class D_praja extends CI_Controller
 
       $wilayah = $this->D_praja_model->get_will()->result();
       $x['wilayah'] = $wilayah;
+
+      
 
 
       $this->load->view("include/head");

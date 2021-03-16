@@ -3515,11 +3515,11 @@ class Uploads extends CI_Controller {
 
 			}
 
-			print("<pre>".print_r($unitpraja,true)."</pre>");
-			exit();
+			// print("<pre>".print_r($unitpraja,true)."</pre>");
+			// exit();
 			// var_dump($unitpraja);exit();
 			// $this->db->truncate('praja');
-			// $this->db->insert_batch('praja_baru', $unitpraja);
+			$this->db->insert_batch('praja_baru', $unitpraja);
 			// // $this->db->truncate('orangtua');
 			// $this->db->insert_batch('orangtua', $unitortu);
 			// // $this->db->truncate('wali');
@@ -4748,41 +4748,32 @@ class Uploads extends CI_Controller {
 		return $result;
 	}
 
-	function prodi($s) {
-		$prod = array(
-			"POLITIK INDONESIA TERAPAN" => '24d1a130-3af6-4f57-ab30-06131d701209',
-			"TEKNOLOGI REKAYASA INFORMASI PEMERINTAHAN" => 'e5ad2f00-89d8-45ee-a6e4-0a4b04b3f3a1',
-			"STUDI KEPENDUDUKAN DAN PENCATATAN SIPIL" => '1f8b17bb-85ea-4c21-833b-295a61e8be12',
-			"MANAJEMEN SUMBER DAYA MANUSIA" => 'caabc219-ee2e-453b-9afb-5451d9107420',
-			"MANAJEMEN SUMBER DAYA MANUSIA SEKTOR PUBLIK" => 'c0322bbc-b0b2-4e73-a23c-3b46fae3f774',
-			"PEMBANGUNAN EKONOMI DAN PEMBERDAYAAN MASYARAKAT" => 'f2db54aa-5a23-4c9d-bbc3-1bd56ad0863d',
-			"KEBIJAKAN PEMERINTAHAN" => 'a2f19c26-8acf-43f9-af9b-4d1d47c05c0a',
-			"MANAJEMEN SUMBER DAYA APARATUR" => 'b1b35fdb-37d0-425d-88c4-94eba8706b80',
-			"KEUANGAN DAERAH" => '653236f3-5299-4b37-b219-97d25a93280b',
-			"POLITIK PEMERINTAHAN" => '337f1a82-131a-40b3-b4f7-a7eed89237f8',
-			"STUDI KEBIJAKAN PUBLIK" => '43abc93c-6e89-449d-9c70-70afe75527b9',
-			"MANAJEMEN KEAMANAN DAN KESELATAMAN PUBLIK" => '022e0cd9-c7c6-4e0e-aecb-b9506642f946',
-			"MANAJEMEN PEMERINTAHAN" => '0ba84683-2802-41e1-b547-bc7b81ec44ae',
-			"PEMBANGUNAN DAN PEMBERDAYAAN" => 'f59b170e-8041-477f-8bbf-ad66c0f6af51',
-			"ADMINISTRASI KEPENDUDUKAN DAN CATATAN SIPIL" => '5d8eff93-68a4-4f2a-832d-b85ae59d9fa1',
-			"KEUANGAN PUBLIK" => '7ed35eba-1c9d-474b-9a19-d5da4e9ccc6c',
-			"ADMINISTRASI PEMERINTAHAN DAERAH" => '4b2970da-2353-4101-bfab-cfaf4126071a',
-			"PRAKTIK PERPOLISIAN TATA PAMONG" => '71e82f5f-24a0-4ca3-a0ee-eed587948f84',
-			"MANAJEMEN PEMBANGUNAN" => '77155c68-a799-405b-911e-eedb03435b91',
-			"MANAJEMEN KEUANGAN" => '187a1750-7aa6-43a6-a729-f1a45cf992cf'
+	function prodi($prod) {
+
+		
+		$prod =str_replace("POLITIK INDONESIA TERAPAN","24d1a130-3af6-4f57-ab30-06131d701209",$prod);
+		$prod =str_replace("TEKNOLOGI REKAYASA INFORMASI PEMERINTAHAN","e5ad2f00-89d8-45ee-a6e4-0a4b04b3f3a1",$prod);
+		$prod =str_replace("STUDI KEPENDUDUKAN DAN PENCATATAN SIPIL","1f8b17bb-85ea-4c21-833b-295a61e8be12",$prod);
+		$prod =str_replace("MANAJEMEN SUMBER DAYA MANUSIA","caabc219-ee2e-453b-9afb-5451d9107420",$prod);
+		$prod =str_replace("MANAJEMEN SUMBER DAYA MANUSIA SEKTOR PUBLIK","c0322bbc-b0b2-4e73-a23c-3b46fae3f774",$prod);
+		$prod =str_replace("PEMBANGUNAN EKONOMI DAN PEMBERDAYAAN MASYARAKAT","f2db54aa-5a23-4c9d-bbc3-1bd56ad0863d",$prod);
+		$prod =str_replace("KEBIJAKAN PEMERINTAHAN","a2f19c26-8acf-43f9-af9b-4d1d47c05c0a",$prod);
+		$prod =str_replace("MANAJEMEN SUMBER DAYA APARATUR","b1b35fdb-37d0-425d-88c4-94eba8706b80",$prod);
+		$prod =str_replace("KEUANGAN DAERAH","653236f3-5299-4b37-b219-97d25a93280b",$prod);
+		$prod =str_replace("POLITIK PEMERINTAHAN","337f1a82-131a-40b3-b4f7-a7eed89237f8",$prod);
+		$prod =str_replace("STUDI KEBIJAKAN PUBLIK","43abc93c-6e89-449d-9c70-70afe75527b9",$prod);
+		$prod =str_replace("MANAJEMEN KEAMANAN DAN KESELATAMAN PUBLIK","022e0cd9-c7c6-4e0e-aecb-b9506642f946",$prod);
+		$prod =str_replace("MANAJEMEN PEMERINTAHAN","0ba84683-2802-41e1-b547-bc7b81ec44ae",$prod);
+		$prod =str_replace("PEMBANGUNAN DAN PEMBERDAYAAN","f59b170e-8041-477f-8bbf-ad66c0f6af51",$prod);
+		$prod =str_replace("ADMINISTRASI KEPENDUDUKAN DAN CATATAN SIPIL","5d8eff93-68a4-4f2a-832d-b85ae59d9fa1",$prod);
+		$prod =str_replace("KEUANGAN PUBLIK","7ed35eba-1c9d-474b-9a19-d5da4e9ccc6c",$prod);
+		$prod =str_replace("ADMINISTRASI PEMERINTAHAN DAERAH","4b2970da-2353-4101-bfab-cfaf4126071a",$prod);
+		$prod =str_replace("PRAKTIK PERPOLISIAN TATA PAMONG","71e82f5f-24a0-4ca3-a0ee-eed587948f84",$prod);
+		$prod =str_replace("MANAJEMEN PEMBANGUNAN","77155c68-a799-405b-911e-eedb03435b91",$prod);
+		$prod =str_replace("MANAJEMEN KEUANGAN","187a1750-7aa6-43a6-a729-f1a45cf992cf",$prod);
 
 
-		);
-
-		// $roman = 'MMMCMXCIX';
-		$result = "";
-
-		foreach ($prod as $en => $in) {
-			if ($in == $prod) {
-				$result = $in;
-			}
-		}
-		return strtoupper($result);
+		return $prod;
 	}
 
 

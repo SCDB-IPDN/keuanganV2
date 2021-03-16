@@ -8,15 +8,64 @@ class Praja extends CI_Controller {
     }
 
     public function index() {
-      if($this->session->userdata('nip') != NULL) {     
+      if($this->session->userdata('nip') != NULL) {    
+        
+        $data = $this->Praja_model->get_table()->result();
+        $x['data'] = $data;
         
         $prov = $this->Praja_model->get_provinsi()->result();
         $x['prov'] = $prov;
-        // var_dump($prov);exit;
+        
+        $agamaa = $this->Praja_model->agama()->result();
+        $x['agamaa'] = $agamaa;
+
+        
+      $jenistinggal = $this->Praja_model->jenistinggal()->result();
+      $x['jenistinggal'] = $jenistinggal;
+
+      $prodi = $this->Praja_model->prodi()->result();
+      $x['prodi'] = $prodi;
+
+      $kewarganegaraan = $this->Praja_model->kewarganegaraan()->result();
+      $x['kewarganegaraan'] = $kewarganegaraan;
+
+      $jenispendaftaran = $this->Praja_model->jenispendaftaran()->result();
+      $x['jenispendaftaran'] = $jenispendaftaran;
+
+      $pembiayaan = $this->Praja_model->pembiayaan()->result();
+      $x['pembiayaan'] = $pembiayaan;
+
+      $jalurmasuk = $this->Praja_model->jalurmasuk()->result();
+      $x['jalurmasuk'] = $jalurmasuk;
+
+      $pendidikan = $this->Praja_model->pendidikan()->result();
+      $x['pendidikan'] = $pendidikan;
+
+      $pekerjaan = $this->Praja_model->pekerjaan()->result();
+      $x['pekerjaan'] = $pekerjaan;
+
+      $penghasilan = $this->Praja_model->penghasilan()->result();
+      $x['penghasilan'] = $penghasilan;
+
+      $alattransportasi = $this->Praja_model->alattransportasi()->result();
+      $x['alattransportasi'] = $alattransportasi;
+
+      $mulaisemester = $this->Praja_model->mulaisemester()->result();
+      $x['mulaisemester'] = $mulaisemester;
+
+      $fakulll = $this->Praja_model->get_fakultas()->result();
+      $x['fakulll'] = $fakulll;
+
+      $wilayah = $this->Praja_model->get_will()->result();
+      $x['wilayah'] = $wilayah;
+
+        
+
+        // var_dump($agama);exit;
 
           $this->load->view("include/head");
           $this->load->view("include/top-header");
-          $this->load->view('view_praja');
+          $this->load->view('view_praja',$x);
           $this->load->view("include/sidebar");
           $this->load->view("include/panel");
           $this->load->view("include/footer");
@@ -35,78 +84,22 @@ class Praja extends CI_Controller {
     }
 
     function get_praja(){
-      // $data = $this->D_praja_model->get_praja()->result();
+      // $data = $this->Praja_model->get_praja()->result();
       $data = $this->Praja_model->get_table()->result();
       // var_dump($data);exit;
       $x['data'] = $data;
+
       $dataall = array();
   
       $no = 1;
       foreach($data as $r) {
-        $id = $r->id;
         $npp = $r->npp;
         $nama = $r->nama;
         $jk = $r->jk;
-        $tmpt_lahir = $r->tmpt_lahir;
-        $tgl_lahir = $r->tgl_lahir;
-        $nisn = $r->nisn;
-        $npwp = $r->npwp;
-        $no_spcp = $r->no_spcp;
-        $nik_praja = $r->nik_praja;
-        $agama = $r->agama;
-        $alamat = $r->alamat;
-        $rt = $r->rt;
-        $rw = $r->rw;
-        $provinsi = $r->provinsi;
-        $kab_kota = $r->kab_kota;
-        $kelurahan = $r->kelurahan;
-        $nama_dusun = $r->nama_dusun;
-        $kecamatan = $r->kecamatan;
-        $kode_pos = $r->kode_pos;
-        $jenis_tinggal = $r->jenis_tinggal;
-        $tlp_pribadi = $r->tlp_pribadi;
-        $tlp_rumah = $r->tlp_rumah;
-        $email = $r->email;
         $tingkat = $r->tingkat;
         $angkatan = $r->angkatan;
         $status = $r->status;
-        $fakultas = $r->fakultas;
-        $prodi = $r->prodi;
-        $kewarganegaraan = $r->kewarganegaraan;
-        $jenis_pendaftaran = $r->jenis_pendaftaran;
-        $tgl_masuk_kuliah = $r->tgl_masuk_kuliah;
-        $tahun_masuk_kuliah = $r->tahun_masuk_kuliah;
-        $pembiayaan = $r->pembiayaan;
-        $alat_transport = $r->alat_transport;
-        $biaya_masuk = $r->biaya_masuk;
-        $jalur_masuk = $r->jalur_masuk;
-        $penerima_pks = $r->penerima_pks;
-        $no_pks = $r->no_pks;
-        $mulai_semester = $r->mulai_semester;
-  
-        $nik_ayah = $r->nik_ayah;
-        $nama_ayah = $r->nama_ayah;
-        $tgllahir_ayah = $r->tgllahir_ayah;
-        $pendidikan_ayah = $r->pendidikan_ayah;
-        $pekerjaan_ayah = $r->pekerjaan_ayah;
-        $penghasilan_ayah = $r->penghasilan_ayah;
-        $tlp_ayah = $r->tlp_ayah;
-        $nik_ibu = $r->nik_ibu;
-        $nama_ibu = $r->nama_ibu;
-        $tgllahir_ibu = $r->tgllahir_ibu;
-        $pendidikan_ibu = $r->pendidikan_ibu;
-        $pekerjaan_ibu = $r->pekerjaan_ibu;
-        $penghasilan_ibu = $r->penghasilan_ibu;
-        $tlp_ibu = $r->tlp_ibu;
-  
-        $nik_wali = $r->nik_wali;
-        $nama_wali = $r->nama_wali;
-        $tgllahir_wali = $r->tgllahir_wali;
-        $pendidikan_wali = $r->pendidikan_wali;
-        $pekerjaan_wali = $r->pekerjaan_wali;
-        $penghasilan_wali = $r->penghasilan_wali;
-        $tlp_wali = $r->tlp_wali;
-  
+
         if($this->session->userdata('role') == 'Admin' ||  $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan'){
 
           $opsi = "<a 
@@ -338,5 +331,44 @@ class Praja extends CI_Controller {
       }
       echo json_encode($dataall);
     }
+
+    function get_sub_category(){
+      $category_id = $this->input->post('prodi',TRUE);
+      $data = $this->Praja_model->get_sub_category($category_id)->result();
+      echo json_encode($data);
+    }
+  
+  
+    function get_sub_provinsi(){
+      $prov = $this->input->post('kab_kota',TRUE);
+      $data = $this->Praja_model->get_sub_provinsi($prov)->result();
+      echo json_encode($data);
+    }
+  
+    function get_sub_kabkota(){
+      $kec = $this->input->post('kecamatan',TRUE);
+      $data = $this->Praja_model->get_sub_kabkota($kec)->result();
+      echo json_encode($data);
+    }
+
+  function editstatus()
+  {
+    if ($this->session->userdata('nip') != NULL) {
+      $data = $this->Praja_model->get_statuspraja()->result();
+      $x['data'] = json_encode($data);
+
+      $pra = $this->Praja_model->get_praja()->result();
+      $x['pra'] = $pra;
+
+      $this->load->view("include/head");
+      $this->load->view("include/top-header");
+      $this->load->view("view_status", $x);
+      $this->load->view("include/sidebar");
+      $this->load->view("include/panel");
+      $this->load->view("include/footer");
+    } else {
+      redirect("user");
+    }
+  }
     
 }

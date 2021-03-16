@@ -81,4 +81,91 @@ class Praja_model extends CI_Model
 
 		return $result;
 	}
+
+	public function agama(){
+		return $this->db->query("SELECT * FROM agama " );
+	}
+
+	public function jenistinggal(){
+		return$this->db->query("SELECT * FROM jenis_tinggal " );
+	}
+
+	public function prodi(){
+		return$this->db->query("SELECT * FROM program_studi " );
+	}
+
+	public function kewarganegaraan(){
+		return$this->db->query("SELECT * FROM negara " );
+	}
+
+	public function jenispendaftaran(){
+		return $this->db->query("SELECT * FROM jenis_pendaftaran " );
+	}
+
+	public function pembiayaan(){
+		return $this->db->query("SELECT * FROM jenis_pembiayaan " );
+	}
+
+	public function jalurmasuk(){
+		return $this->db->query("SELECT * FROM jalur_masuk " );
+	}
+
+	public function pendidikan(){
+		return $this->db->query("SELECT * FROM jenjang_pendidikan " );
+	}
+
+
+	public function pekerjaan(){
+		return $this->db->query("SELECT * FROM pekerjaan " );
+	}
+
+	public function penghasilan(){
+		return $this->db->query("SELECT * FROM penghasilan " );
+	}
+
+	public function alattransportasi(){
+		return $this->db->query("SELECT * FROM alat_transportasi " );
+	}
+
+	public function mulaisemester(){
+		return $this->db->query("SELECT * FROM semester " );
+	}
+	
+	public function get_fakultas()
+	{
+		return $this->db->query("SELECT * FROM program_studi group BY kode_fakultas");
+	}
+
+	public function get_will()
+	{
+		return  $this->db->query("SELECT * FROM `wilayah` GROUP BY id_provinsi ");
+	}
+
+	function get_sub_provinsi($prov){
+
+		$this->db->select('*');
+		$this->db->from('wilayah');
+		$this->db->where(array('id_provinsi' => $prov));
+		$this->db->group_by('id_kabkota');
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	function get_sub_kabkota($kab){
+
+		$this->db->select('*');
+		$this->db->from('wilayah');
+		$this->db->where(array('id_kabkota' => $kab));
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	public function get_statuspraja()
+	{
+		return$this->db->query("SELECT * FROM hukuman");
+	}
+
+
 }
