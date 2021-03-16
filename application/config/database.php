@@ -77,9 +77,13 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	// 'hostname' => '192.168.203.153',
+<<<<<<< HEAD
 	// 'username' => 'ipdnacid_scdb',
 	'username' => 'root',
 	// 'password' => 'yellowminicooper',
+=======
+	'username' => 'root',
+>>>>>>> 2ef797952cbff89cf94f44895ff90755a9103e39
 	'password' => '',
 	'database' => 'ipdnacid_scdb',
 	'dbdriver' => 'mysqli',

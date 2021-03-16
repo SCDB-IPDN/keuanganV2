@@ -170,6 +170,164 @@ class Import extends CI_Controller
         }
     }
 
+    // Krs
+    public function view_krs(){
+        $x['prodi'] = $this->import_model->getprodi();
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('krs',$x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function krs($data){
+        $x['kode_prodi'] = $data;
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('krs', $x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function datakrs($data){
+        $data = $this->import_model->getkrs($data);
+        $hasil = array();
+
+        foreach($data as $r){
+            $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
+            $nama = $r->nama == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama;
+            $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;            
+            $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
+            $nama_mk = $r->nama_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_mk;
+            $kelas = $r->kelas == NULL ? "<i><font>Tidak ada data</font></i>": $r->kelas;
+            $action = " <a href='javascript:;'
+                data-id='$r->id'
+                data-npp='$r->npp'
+                data-nama='$r->nama'
+                data-semester='$r->semester'
+                data-kode_mk='$r->kode_mk'
+                data-nama_mk='$r->nama_mk' 
+                data-kelas='$r->kelas'
+                data-toggle='modal' data-target='#edit_krs' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$r->id'
+                data-toggle='modal' data-target='#hapus_krs' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+
+            $hasil[] = array(
+                $npp,
+                $nama,
+                $semester,
+                $kode_mk,
+                $nama_mk,
+                $kelas,
+                $action
+            );
+        }
+        
+        echo json_encode($hasil);
+    }
+
+    public function tambah_krs(){
+        $kode_prodi = $this->input->post('prodi', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['nama_mk'] = $this->input->post('nama_mk', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['prodi'] = $kode_prodi;
+
+        if($this->import_model->tambah_krs($input_data)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function edit_krs(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['nama_mk'] = $this->input->post('nama_mk', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+
+        if($this->import_model->edit_krs($id, $input_data)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function hapus_krs(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->hapus_krs($id)){
+            redirect('import/krs/'.$kode_prodi);
+        }else{
+            redirect('import/krs/'.$kode_prodi);
+        }
+    }
+
+    public function uploadkrs() {        
+        $kode_prodi = $this->input->post('kode_prodi');
+        
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['krs']['name']) && in_array($_FILES['krs']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['krs']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('krs', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+                redirect("import/krs/$kode_prodi"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $loadexcel  = $reader->load($_FILES['krs']['tmp_name']);
+            $list_sheet = $loadexcel->getSheetNames();
+            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 0;
+
+            foreach($sheetData as $row){
+                if($numrow > 0){
+                    
+                    if($row['A'] != NULL){             
+                        array_push($data, array(
+                            'npp'      => $row['B'],
+                            'nama'          => $row['C'],
+                            'semester'    => $row['D'],
+                            'kode_mk'       => $row['E'],
+                            'nama_mk'    => $row['F'],
+                            'kelas'    => $row['G'],
+                            'prodi'         => $kode_prodi 
+                        ));
+                    }
+                }
+               $numrow++;
+            }
+
+            if($this->import_model->krs('tbl_krs', $data)){
+                redirect('import/krs/'.$kode_prodi);
+            }else{
+                redirect('import/krs/'.$kode_prodi);
+            }
+        }
+    }
 
     // Dosen Ajar
     public function view_da(){
@@ -341,6 +499,183 @@ class Import extends CI_Controller
                 redirect('import/dosen_ajar/'.$kode_prodi);
             }else{
                 redirect('import/dosen_ajar/'.$kode_prodi);
+            }
+        }
+    }
+
+    // Nilai
+    public function view_nilai(){
+        $x['prodi'] = $this->import_model->getprodi();
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('nilai',$x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function nilai($data){
+        $x['kode_prodi'] = $data;
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('nilai', $x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function datanilai($data){
+        $data = $this->import_model->getnilai($data);
+        $hasil = array();
+
+        foreach($data as $r){
+            $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
+            $nama = $r->nama == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama;          
+            $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
+            $matkul = $r->matkul == NULL ? "<i><font>Tidak ada data</font></i>": $r->matkul;
+            $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;
+            $kelas = $r->kelas == NULL ? "<i><font>Tidak ada data</font></i>": $r->kelas;
+            $nilai_huruf = $r->nilai_huruf == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_huruf;
+            $nilai_indeks = $r->nilai_indeks == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_indeks;
+            $nilai_angka = $r->nilai_angka == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_angka;
+            $action = " <a href='javascript:;'
+                data-id='$r->id'
+                data-npp='$r->npp'
+                data-nama='$r->nama'
+                data-kode_mk='$r->kode_mk'
+                data-matkul='$r->matkul' 
+                data-semester='$r->semester' 
+                data-kelas='$r->kelas' 
+                data-nilai_huruf='$r->nilai_huruf'
+                data-nilai_indeks='$r->nilai_indeks'
+                data-nilai_angka='$r->nilai_angka' 
+                data-toggle='modal' data-target='#edit_nilai' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$r->id'
+                data-toggle='modal' data-target='#hapus_nilai' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+
+            $hasil[] = array(
+                $npp,
+                $nama,
+                $kode_mk,
+                $matkul,
+                $semester,
+                $kelas,
+                $nilai_huruf,
+                $nilai_indeks,
+                $nilai_angka,
+                $action
+            );
+        }
+        
+        echo json_encode($hasil);
+    }
+
+    public function tambah_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['matkul'] = $this->input->post('matkul', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['nilai_huruf'] = $this->input->post('nilai_huruf', true);
+        $input_data['nilai_indeks'] = $this->input->post('nilai_indeks', true);
+        $input_data['nilai_angka'] = $this->input->post('nilai_angka', true);
+        $input_data['prodi'] = $kode_prodi;
+
+        if($this->import_model->tambah_nilai($input_data)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function edit_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['matkul'] = $this->input->post('matkul', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['nilai_huruf'] = $this->input->post('nilai_huruf', true);
+        $input_data['nilai_indeks'] = $this->input->post('nilai_indeks', true);
+        $input_data['nilai_angka'] = $this->input->post('nilai_angka', true);
+
+        if($this->import_model->edit_nilai($id, $input_data)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function hapus_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->hapus_nilai($id)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function uploadnilai() {        
+        $kode_prodi = $this->input->post('kode_prodi');
+        
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['nilai']['name']) && in_array($_FILES['nilai']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['nilai']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('nilai', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+                redirect("import/nilai/$kode_prodi"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $loadexcel  = $reader->load($_FILES['nilai']['tmp_name']);
+            $list_sheet = $loadexcel->getSheetNames();
+            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 0;
+
+            foreach($sheetData as $row){
+                if($numrow > 0){
+                    
+                    if($row['A'] != NULL){             
+                        array_push($data, array(
+                            'npp'      => $row['B'],
+                            'nama'          => $row['C'],
+                            'kode_mk'       => $row['D'],
+                            'matkul'    => $row['E'],
+                            'semester'    => $row['F'],
+                            'kelas'     => $row['G'],
+                            'nilai_huruf'      => $row['H'],
+                            'nilai_indeks'      => $row['I'],
+                            'nilai_angka'      => $row['J'],
+                            'prodi'         => $kode_prodi 
+                        ));
+                    }
+                }
+               $numrow++;
+            }
+
+            if($this->import_model->nilai('tbl_nilai_perkuliahan', $data)){
+                redirect('import/nilai/'.$kode_prodi);
+            }else{
+                redirect('import/nilai/'.$kode_prodi);
             }
         }
     }
@@ -752,327 +1087,328 @@ class Import extends CI_Controller
         redirect('import/akm/'.$kode_prodi);
     }
 
-           // kurikulum
+        // kurikulum
 
-     public function view_kurkum(){
-        $x['prodi'] = $this->import_model->getprodi();
-        // var_dump($x['prodi']);exit();
+        public function view_kurkum(){
+            $x['prodi'] = $this->import_model->getprodi();
+            // var_dump($x['prodi']);exit();
+        
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('kurikulum',$x);
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        }
     
-        $this->load->view("include/head");
-        $this->load->view("include/top-header");
-        $this->load->view('kurikulum',$x);
-        $this->load->view("include/sidebar");
-        $this->load->view("include/panel");
-        $this->load->view("include/footer");
-    }
-
-    public function kurkum_pamong($data){
-        $x['kode_prodi'] = $data;
-        
-        $x['getkurkum'] = $this->import_model->getkurkum($data);
-
-        $ho = $this->import_model->getkurkum($data);
-        $x['ho'] = json_encode($ho);
-
-        
-        $this->load->view("include/head");
-        $this->load->view("include/top-header");
-        $this->load->view('kurikulum', $x);
-        $this->load->view("include/sidebar");
-        $this->load->view("include/panel");
-        $this->load->view("include/footer");
-    }
-
-
-
-    public function kurkum_matkul(){
-        $x['getkurkum'] = $this->uri->segment(4);
-        $x['getprodi'] = $this->uri->segment(3);
-
-        // var_dump($this->uri->segment(4));exit;
-        $this->load->view("include/head");
-        $this->load->view("include/top-header");
-        $this->load->view('kurikulum',$x);
-        $this->load->view("include/sidebar");
-        $this->load->view("include/panel");
-        $this->load->view("include/footer");
-    }
-
-    public function uploadkurkum()
-    {        
-        $nama_kurikulum = $this->input->post('getkurkum');
-        $prodi = $this->input->post('getprodi');
-        // var_dump($prodi);exit;
-        
-        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        if(isset($_FILES['kurkum']['name']) && in_array($_FILES['kurkum']['type'], $file_mimes)) {
-
-            $arr_file = explode('.', $_FILES['kurkum']['name']);
-            $extension = end($arr_file);
-
-            if($extension != 'xlsx') {
-                $this->session->set_flashdata('kurkum_matkul', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
-                redirect("import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum"); 
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-            }
-
-            $loadexcel  = $reader->load($_FILES['kurkum']['tmp_name']);
-            $list_sheet = $loadexcel->getSheetNames();
-            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
-
-            $data = array();
-            $numrow = 0;
-
-            foreach($sheetData as $row){
-                if($numrow > 0){
-                    
-                    if($row['A'] != NULL){             
-                        array_push($data, array(
-                            'kode_mk'                  => $row['A'],
-                            'nama_mk'                  => $row['B'],
-                            'jenis_mk'                 => $row['C'],
-                            'sks_tatapmuka'            => $row['D'],
-                            'sks_praktek'              => $row['E'],
-                            'sks_lapangan'             => $row['F'],
-                            'sks_simulasi'             => $row['G'],
-                            'tgl_mulai_efektif'        => $row['H'],
-                            'tgl_akhir_efektif'        => $row['I'],
-                            'semester'                 => $row['J'],
-                            'nama_kurikulum'           => $nama_kurikulum,
-                            'prodi'                    => $prodi
-                        ));
-                    }
+        public function kurkum_pamong($data){
+            $x['kode_prodi'] = $data;
+            
+            $x['getkurkum'] = $this->import_model->getkurkum($data);
+    
+            $ho = $this->import_model->getkurkum($data);
+            $x['ho'] = json_encode($ho);
+    
+            
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('kurikulum', $x);
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        }
+    
+    
+    
+        public function kurkum_matkul(){
+            $x['getkurkum'] = $this->uri->segment(4);
+            $x['getprodi'] = $this->uri->segment(3);
+    
+            // var_dump($this->uri->segment(4));exit;
+            $this->load->view("include/head");
+            $this->load->view("include/top-header");
+            $this->load->view('kurikulum',$x);
+            $this->load->view("include/sidebar");
+            $this->load->view("include/panel");
+            $this->load->view("include/footer");
+        }
+    
+        public function uploadkurkum()
+        {        
+            $nama_kurikulum = $this->input->post('getkurkum');
+            $prodi = $this->input->post('getprodi');
+            // var_dump($prodi);exit;
+            
+            $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            if(isset($_FILES['kurkum']['name']) && in_array($_FILES['kurkum']['type'], $file_mimes)) {
+    
+                $arr_file = explode('.', $_FILES['kurkum']['name']);
+                $extension = end($arr_file);
+    
+                if($extension != 'xlsx') {
+                    $this->session->set_flashdata('kurkum_matkul', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+    
+                    redirect("import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum"); 
+                } else {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
                 }
-               $numrow++;
-            }
-
-            if($this->import_model->kurkum_matkul('tbl_kurkum_matkul', $data)){
-                redirect('import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum);
-            }else{
-                redirect('import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum);
-            }
-        }
-    }
-
-    public function datakurkum($data){
-        $data = $this->import_model->getkurkum($data);
-        $hasil = array();
-
-        foreach($data as $r){
-
-
-            $nama_kurikulum ="<a href='../kurkum_matkul/$r->prodi/$r->nama_kurikulum'></i>$r->nama_kurikulum</a>";
-            $mulai_kurikulum = $r->mulai_kurikulum == NULL ? "<i><font>Tidak ada data</font></i>": $r->mulai_kurikulum;
-            $lulus = $r->lulus == NULL ? "<i><font>Tidak ada data</font></i>": $r->lulus;
-            $wajib = $r->wajib == NULL ? "<i><font>Tidak ada data</font></i>": $r->wajib;
-            $pilihan = $r->pilihan == NULL ? "<i><font>Tidak ada data</font></i>": $r->pilihan;
-
-            if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
-                $opsi = "<a 
-                href='javascript:;' data-nama_kurikulum='$r->nama_kurikulum' data-mulai_kurikulum='$r->mulai_kurikulum' 
-                data-lulus='$r->lulus' data-wajib='$r->wajib' data-pilihan='$r->pilihan'
-                data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
-                </a>
-
-                <a 
-                href='javascript:;' data-nama_kurikulum='$r->nama_kurikulum'
-                data-toggle='modal' data-target='#hapus-kurikulum' class='btn btn-danger'><i class='fa fas fa-trash'></i>
-                </a>";
-            }else{
-                $opsi = "";
-            }
-        
-            $hasil[] = array(
-                $nama_kurikulum,
-                $mulai_kurikulum,
-                $lulus,
-                $wajib,
-                $pilihan,
-                $opsi
-            );
-        }
-        
-        echo json_encode($hasil);
-    }
-
-
-    public function datamatkulkurum(){
-        $prodi = $this->uri->segment(3);
-        // var_dump($prodi);exit();
-        $nama_kurikulum = $this->uri->segment(4);
-
-        $data = $this->import_model->getmatkulkurkum($prodi,$nama_kurikulum);
-        // var_dump($data);exit;
-        $hasil = array();
-
-        foreach($data as $r){
-
-            
-            $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
-            $nama_mk = $r->nama_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_mk;
-            $jenis_mk = $r->jenis_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->jenis_mk;
-            $sks_tatapmuka = $r->sks_tatapmuka == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_tatapmuka;
-            $sks_praktek = $r->sks_praktek == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_praktek;
-            $sks_lapangan = $r->sks_lapangan == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_lapangan;
-            $sks_simulasi = $r->sks_simulasi == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_simulasi;
-            $tgl_mulai_efektif = $r->tgl_mulai_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tgl_mulai_efektif;
-            $tgl_akhir_efektif = $r->tgl_akhir_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tgl_akhir_efektif;
-            $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;
-            // $nama_kurikulum = $r->nama_kurikulum == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_kurikulum;
-            
-
-            if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
-                $opsi = "<a 
-                href='javascript:;' data-kode_mk='$r->kode_mk' data-nama_mk='$r->nama_mk' 
-                data-jenis_mk='$r->jenis_mk' data-sks_tatapmuka='$r->sks_tatapmuka' data-sks_praktek='$r->sks_praktek'
-                data-sks_praktek='$r->sks_lapangan' data-sks_praktek='$r->sks_simulasi' data-sks_praktek='$r->tgl_mulai_efektif' 
-                data-tgl_akhir_efektif='$r->tgl_akhir_efektif' data-semester='$r->semester'
-                data-toggle='modal' data-target='#edit-data-matkul' class='btn btn-info'><i class='fa fas fa-edit'></i>
-                </a>
-
-                <a 
-                href='javascript:;' data-kode_mk='$r->kode_mk'
-                data-toggle='modal' data-target='#hapus-kurikulum-matkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
-                </a>";
-            }else{
-                $opsi = "";
-            }
-        
-            $hasil[] = array(
-                $kode_mk ,
-                $nama_mk ,
-                $jenis_mk ,
-                $sks_tatapmuka ,
-                $sks_praktek,
-                $sks_lapangan,
-                $sks_simulasi ,
-                $tgl_mulai_efektif,
-                $tgl_akhir_efektif,
-                $semester,
-                // $nama_kurikulum,
-                $opsi
-            );
-        }
-        
-        echo json_encode($hasil);
-    }
-
-    function tambahkurikulum(){
-
-        $input_data['nama_kurikulum'] = $this->input->post('nama_kurikulum', true);
-        $input_data['mulai_kurikulum'] = $this->input->post('mulai_kurikulum', true);
-        $input_data['lulus'] = $this->input->post('lulus', true);
-        $input_data['wajib'] = $this->input->post('wajib', true);
-        $input_data['pilihan'] = $this->input->post('pilihan', true);
-        $input_data['prodi'] = $this->input->post('prodi', true); 
-
-        $prod =  $this->input->post('prodi', true); 
-
-        $result = $this->import_model->tambahkurikulum($input_data);
-        // var_dump($result);exit;
-
-        if (!$result) {                             
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DITAMBAHKAN!!');      
-            redirect('import/kurkum_pamong/'.$prod);            
-        } else {                                
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DITAMBAHKAN.');            
-            redirect('import/kurkum_pamong/'.$prod);            
-        }
-    }
-
-    function ubahkurikulum(){
-
     
-        $ubahkurkum['nama_kurikulum'] = $this->input->post('nama_kurikulum', true);
-        $ubahkurkum['mulai_kurikulum'] = $this->input->post('mulai_kurikulum', true);
-        $ubahkurkum['lulus'] = $this->input->post('lulus', true);
-        $ubahkurkum['wajib'] = $this->input->post('wajib', true);
-        $ubahkurkum['pilihan'] = $this->input->post('pilihan', true);
-        $ubahkurkum['prodi'] = $this->input->post('prodi', true);
-        
-        $prod =  $this->input->post('prodi', true); 
-
-        $result = $this->import_model->ubah_kurikulum($ubahkurkum);
-
-        if (!$result) {                             
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DIUBAH.');        
-            redirect('import/kurkum_pamong/'.$prod);            
-        } else {                                
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DIUBAH.');         
-            redirect('import/kurkum_pamong/'.$prod);            
-        }
-    }
-
-    function hapuskurikulum()
-    {
-        $nama_kurikulum = $this->input->post('nama_kurikulum');
-        // var_dump($nama_kurikulum);exit();
-        $prod =  $this->input->post('prodi'); 
-
-        $hasil = $this->import_model->del_kurikulum($nama_kurikulum);
-        // var_dump($hasil);exit;
-
-        if (!$hasil) {                          
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DIHAPUS.');               
-            redirect('import/kurkum_pamong/'.$prod);            
-        } else {                                
-            $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DIHAPUS.');    
-            redirect('import/kurkum_pamong/'.$prod);            
-        }
-        
-    }
-
-
-     function ubahkurikulumatkul(){
-
+                $loadexcel  = $reader->load($_FILES['kurkum']['tmp_name']);
+                $list_sheet = $loadexcel->getSheetNames();
+                $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
     
-        $ubahmatkul['kode_mk'] = $this->input->post('kode_mk', true);
-        $ubahmatkul['nama_mk'] = $this->input->post('nama_mk', true);
-        $ubahmatkul['jenis_mk'] = $this->input->post('jenis_mk', true);
-        $ubahmatkul['sks_tatapmuka'] = $this->input->post('sks_tatapmuka', true);
-        $ubahmatkul['sks_praktek'] = $this->input->post('sks_praktek', true);
-        $ubahmatkul['sks_lapangan'] = $this->input->post('sks_lapangan', true);
-        $ubahmatkul['sks_simulasi'] = $this->input->post('sks_simulasi', true);
-        $ubahmatkul['tgl_mulai_efektif'] = $this->input->post('tgl_mulai_efektif', true);
-        $ubahmatkul['tgl_akhir_efektif'] = $this->input->post('tgl_akhir_efektif', true);
-        $ubahmatkul['semester'] = $this->input->post('semester', true);
-
-        
-        $prod =  $this->input->post('prodi', true); 
-        $nama_kurikulum =  $this->input->post('nama_kurikulum', true); 
-
-
-        $result = $this->import_model->ubah_matkul($ubahmatkul);
-
-        if (!$result) {                             
-            $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH GAGAL DIUBAH.');        
-            redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
-        } else {                                
-            $this->session->set_flashdata('kurkum_matkul', 'DATA  MATA KULIAH BERHASIL DIUBAH.');         
-            redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+                $data = array();
+                $numrow = 0;
+    
+                foreach($sheetData as $row){
+                    if($numrow > 0){
+                        
+                        if($row['A'] != NULL){             
+                            array_push($data, array(
+                                'kode_mk'                  => $row['A'],
+                                'nama_mk'                  => $row['B'],
+                                'jenis_mk'                 => $row['C'],
+                                'sks_tatapmuka'            => $row['D'],
+                                'sks_praktek'              => $row['E'],
+                                'sks_lapangan'             => $row['F'],
+                                'sks_simulasi'             => $row['G'],
+                                'tgl_mulai_efektif'        => $row['H'],
+                                'tgl_akhir_efektif'        => $row['I'],
+                                'semester'                 => $row['J'],
+                                'nama_kurikulum'           => $nama_kurikulum,
+                                'prodi'                    => $prodi
+                            ));
+                        }
+                    }
+                   $numrow++;
+                }
+    
+                if($this->import_model->kurkum_matkul('tbl_kurkum_matkul', $data)){
+                    redirect('import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum);
+                }else{
+                    redirect('import/kurkum_matkul/'.$prodi.'/'.$nama_kurikulum);
+                }
+            }
         }
-    }
-
-    function hapuskurikulummatkul()
-    {
-        $kode_mk = $this->input->post('kode_mk');
-        // var_dump($nama_kurikulum);exit();
-        $prod =  $this->input->post('prodi'); 
-        $nama_kurikulum =  $this->input->post('nama_kurikulum'); 
-
-        $hasil = $this->import_model->del_matkul($kode_mk);
-        // var_dump($hasil);exit;
-
-        if (!$hasil) {                          
-            $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH GAGAL DIHAPUS.');               
-            redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
-        } else {                                
-            $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH BERHASIL DIHAPUS.');    
-            redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+    
+        public function datakurkum($data){
+            $data = $this->import_model->getkurkum($data);
+            $hasil = array();
+    
+            foreach($data as $r){
+    
+    
+                $nama_kurikulum ="<a href='../kurkum_matkul/$r->prodi/$r->nama_kurikulum'></i>$r->nama_kurikulum</a>";
+                $mulai_kurikulum = $r->mulai_kurikulum == NULL ? "<i><font>Tidak ada data</font></i>": $r->mulai_kurikulum;
+                $lulus = $r->lulus == NULL ? "<i><font>Tidak ada data</font></i>": $r->lulus;
+                $wajib = $r->wajib == NULL ? "<i><font>Tidak ada data</font></i>": $r->wajib;
+                $pilihan = $r->pilihan == NULL ? "<i><font>Tidak ada data</font></i>": $r->pilihan;
+    
+                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
+                    $opsi = "<a 
+                    href='javascript:;' data-nama_kurikulum='$r->nama_kurikulum' data-mulai_kurikulum='$r->mulai_kurikulum' 
+                    data-lulus='$r->lulus' data-wajib='$r->wajib' data-pilihan='$r->pilihan'
+                    data-toggle='modal' data-target='#edit-data' class='btn btn-info'><i class='fa fas fa-edit'></i>
+                    </a>
+    
+                    <a 
+                    href='javascript:;' data-nama_kurikulum='$r->nama_kurikulum'
+                    data-toggle='modal' data-target='#hapus-kurikulum' class='btn btn-danger'><i class='fa fas fa-trash'></i>
+                    </a>";
+                }else{
+                    $opsi = "";
+                }
+            
+                $hasil[] = array(
+                    $nama_kurikulum,
+                    $mulai_kurikulum,
+                    $lulus,
+                    $wajib,
+                    $pilihan,
+                    $opsi
+                );
+            }
+            
+            echo json_encode($hasil);
         }
+    
+    
+        public function datamatkulkurum(){
+            $prodi = $this->uri->segment(3);
+            // var_dump($prodi);exit();
+            $nama_kurikulum = $this->uri->segment(4);
+    
+            $data = $this->import_model->getmatkulkurkum($prodi,$nama_kurikulum);
+            // var_dump($data);exit;
+            $hasil = array();
+    
+            foreach($data as $r){
+    
+                
+                $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
+                $nama_mk = $r->nama_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_mk;
+                $jenis_mk = $r->jenis_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->jenis_mk;
+                $sks_tatapmuka = $r->sks_tatapmuka == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_tatapmuka;
+                $sks_praktek = $r->sks_praktek == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_praktek;
+                $sks_lapangan = $r->sks_lapangan == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_lapangan;
+                $sks_simulasi = $r->sks_simulasi == NULL ? "<i><font>Tidak ada data</font></i>": $r->sks_simulasi;
+                $tgl_mulai_efektif = $r->tgl_mulai_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tgl_mulai_efektif;
+                $tgl_akhir_efektif = $r->tgl_akhir_efektif == NULL ? "<i><font>Tidak ada data</font></i>": $r->tgl_akhir_efektif;
+                $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;
+                // $nama_kurikulum = $r->nama_kurikulum == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama_kurikulum;
+                
+    
+                if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
+                    $opsi = "<a 
+                    href='javascript:;' data-kode_mk='$r->kode_mk' data-nama_mk='$r->nama_mk' 
+                    data-jenis_mk='$r->jenis_mk' data-sks_tatapmuka='$r->sks_tatapmuka' data-sks_praktek='$r->sks_praktek'
+                    data-sks_praktek='$r->sks_lapangan' data-sks_praktek='$r->sks_simulasi' data-sks_praktek='$r->tgl_mulai_efektif' 
+                    data-tgl_akhir_efektif='$r->tgl_akhir_efektif' data-semester='$r->semester'
+                    data-toggle='modal' data-target='#edit-data-matkul' class='btn btn-info'><i class='fa fas fa-edit'></i>
+                    </a>
+    
+                    <a 
+                    href='javascript:;' data-kode_mk='$r->kode_mk'
+                    data-toggle='modal' data-target='#hapus-kurikulum-matkul' class='btn btn-danger'><i class='fa fas fa-trash'></i>
+                    </a>";
+                }else{
+                    $opsi = "";
+                }
+            
+                $hasil[] = array(
+                    $kode_mk ,
+                    $nama_mk ,
+                    $jenis_mk ,
+                    $sks_tatapmuka ,
+                    $sks_praktek,
+                    $sks_lapangan,
+                    $sks_simulasi ,
+                    $tgl_mulai_efektif,
+                    $tgl_akhir_efektif,
+                    $semester,
+                    // $nama_kurikulum,
+                    $opsi
+                );
+            }
+            
+            echo json_encode($hasil);
+        }
+    
+        function tambahkurikulum(){
+    
+            $input_data['nama_kurikulum'] = $this->input->post('nama_kurikulum', true);
+            $input_data['mulai_kurikulum'] = $this->input->post('mulai_kurikulum', true);
+            $input_data['lulus'] = $this->input->post('lulus', true);
+            $input_data['wajib'] = $this->input->post('wajib', true);
+            $input_data['pilihan'] = $this->input->post('pilihan', true);
+            $input_data['prodi'] = $this->input->post('prodi', true); 
+    
+            $prod =  $this->input->post('prodi', true); 
+    
+            $result = $this->import_model->tambahkurikulum($input_data);
+            // var_dump($result);exit;
+    
+            if (!$result) {                             
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DITAMBAHKAN!!');      
+                redirect('import/kurkum_pamong/'.$prod);            
+            } else {                                
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DITAMBAHKAN.');            
+                redirect('import/kurkum_pamong/'.$prod);            
+            }
+        }
+    
+        function ubahkurikulum(){
+    
         
-    }
+            $ubahkurkum['nama_kurikulum'] = $this->input->post('nama_kurikulum', true);
+            $ubahkurkum['mulai_kurikulum'] = $this->input->post('mulai_kurikulum', true);
+            $ubahkurkum['lulus'] = $this->input->post('lulus', true);
+            $ubahkurkum['wajib'] = $this->input->post('wajib', true);
+            $ubahkurkum['pilihan'] = $this->input->post('pilihan', true);
+            $ubahkurkum['prodi'] = $this->input->post('prodi', true);
+            
+            $prod =  $this->input->post('prodi', true); 
+    
+            $result = $this->import_model->ubah_kurikulum($ubahkurkum);
+    
+            if (!$result) {                             
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DIUBAH.');        
+                redirect('import/kurkum_pamong/'.$prod);            
+            } else {                                
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DIUBAH.');         
+                redirect('import/kurkum_pamong/'.$prod);            
+            }
+        }
+    
+        function hapuskurikulum()
+        {
+            $nama_kurikulum = $this->input->post('nama_kurikulum');
+            // var_dump($nama_kurikulum);exit();
+            $prod =  $this->input->post('prodi'); 
+    
+            $hasil = $this->import_model->del_kurikulum($nama_kurikulum);
+            // var_dump($hasil);exit;
+    
+            if (!$hasil) {                          
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM GAGAL DIHAPUS.');               
+                redirect('import/kurkum_pamong/'.$prod);            
+            } else {                                
+                $this->session->set_flashdata('kurkum', 'DATA KURIKULUM BERHASIL DIHAPUS.');    
+                redirect('import/kurkum_pamong/'.$prod);            
+            }
+            
+        }
+    
+    
+         function ubahkurikulumatkul(){
+    
+        
+            $ubahmatkul['kode_mk'] = $this->input->post('kode_mk', true);
+            $ubahmatkul['nama_mk'] = $this->input->post('nama_mk', true);
+            $ubahmatkul['jenis_mk'] = $this->input->post('jenis_mk', true);
+            $ubahmatkul['sks_tatapmuka'] = $this->input->post('sks_tatapmuka', true);
+            $ubahmatkul['sks_praktek'] = $this->input->post('sks_praktek', true);
+            $ubahmatkul['sks_lapangan'] = $this->input->post('sks_lapangan', true);
+            $ubahmatkul['sks_simulasi'] = $this->input->post('sks_simulasi', true);
+            $ubahmatkul['tgl_mulai_efektif'] = $this->input->post('tgl_mulai_efektif', true);
+            $ubahmatkul['tgl_akhir_efektif'] = $this->input->post('tgl_akhir_efektif', true);
+            $ubahmatkul['semester'] = $this->input->post('semester', true);
+    
+            
+            $prod =  $this->input->post('prodi', true); 
+            $nama_kurikulum =  $this->input->post('nama_kurikulum', true); 
+    
+    
+            $result = $this->import_model->ubah_matkul($ubahmatkul);
+    
+            if (!$result) {                             
+                $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH GAGAL DIUBAH.');        
+                redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+            } else {                                
+                $this->session->set_flashdata('kurkum_matkul', 'DATA  MATA KULIAH BERHASIL DIUBAH.');         
+                redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+            }
+        }
+    
+        function hapuskurikulummatkul()
+        {
+            $kode_mk = $this->input->post('kode_mk');
+            // var_dump($nama_kurikulum);exit();
+            $prod =  $this->input->post('prodi'); 
+            $nama_kurikulum =  $this->input->post('nama_kurikulum'); 
+    
+            $hasil = $this->import_model->del_matkul($kode_mk);
+            // var_dump($hasil);exit;
+    
+            if (!$hasil) {                          
+                $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH GAGAL DIHAPUS.');               
+                redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+            } else {                                
+                $this->session->set_flashdata('kurkum_matkul', 'DATA MATA KULIAH BERHASIL DIHAPUS.');    
+                redirect('import/kurkum_matkul/'.$prod.'/'.$nama_kurikulum);            
+            }
+            
+        }
+
 
 }
