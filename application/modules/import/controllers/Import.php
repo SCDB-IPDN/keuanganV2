@@ -503,6 +503,183 @@ class Import extends CI_Controller
         }
     }
 
+    // Nilai
+    public function view_nilai(){
+        $x['prodi'] = $this->import_model->getprodi();
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('nilai',$x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function nilai($data){
+        $x['kode_prodi'] = $data;
+
+        $this->load->view("include/head");
+        $this->load->view("include/top-header");
+        $this->load->view('nilai', $x);
+        $this->load->view("include/sidebar");
+        $this->load->view("include/panel");
+        $this->load->view("include/footer");
+    }
+
+    public function datanilai($data){
+        $data = $this->import_model->getnilai($data);
+        $hasil = array();
+
+        foreach($data as $r){
+            $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
+            $nama = $r->nama == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama;          
+            $kode_mk = $r->kode_mk == NULL ? "<i><font>Tidak ada data</font></i>": $r->kode_mk;
+            $matkul = $r->matkul == NULL ? "<i><font>Tidak ada data</font></i>": $r->matkul;
+            $semester = $r->semester == NULL ? "<i><font>Tidak ada data</font></i>": $r->semester;
+            $kelas = $r->kelas == NULL ? "<i><font>Tidak ada data</font></i>": $r->kelas;
+            $nilai_huruf = $r->nilai_huruf == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_huruf;
+            $nilai_indeks = $r->nilai_indeks == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_indeks;
+            $nilai_angka = $r->nilai_angka == NULL ? "<i><font>Tidak ada data</font></i>": $r->nilai_angka;
+            $action = " <a href='javascript:;'
+                data-id='$r->id'
+                data-npp='$r->npp'
+                data-nama='$r->nama'
+                data-kode_mk='$r->kode_mk'
+                data-matkul='$r->matkul' 
+                data-semester='$r->semester' 
+                data-kelas='$r->kelas' 
+                data-nilai_huruf='$r->nilai_huruf'
+                data-nilai_indeks='$r->nilai_indeks'
+                data-nilai_angka='$r->nilai_angka' 
+                data-toggle='modal' data-target='#edit_nilai' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
+                
+                <a href='javascript:;' 
+                data-id='$r->id'
+                data-toggle='modal' data-target='#hapus_nilai' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+
+            $hasil[] = array(
+                $npp,
+                $nama,
+                $kode_mk,
+                $matkul,
+                $semester,
+                $kelas,
+                $nilai_huruf,
+                $nilai_indeks,
+                $nilai_angka,
+                $action
+            );
+        }
+        
+        echo json_encode($hasil);
+    }
+
+    public function tambah_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['matkul'] = $this->input->post('matkul', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['nilai_huruf'] = $this->input->post('nilai_huruf', true);
+        $input_data['nilai_indeks'] = $this->input->post('nilai_indeks', true);
+        $input_data['nilai_angka'] = $this->input->post('nilai_angka', true);
+        $input_data['prodi'] = $kode_prodi;
+
+        if($this->import_model->tambah_nilai($input_data)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function edit_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+        
+        $input_data['npp'] = $this->input->post('npp', true);
+        $input_data['nama'] = $this->input->post('nama', true);
+        $input_data['kode_mk'] = $this->input->post('kode_mk', true);
+        $input_data['matkul'] = $this->input->post('matkul', true);
+        $input_data['semester'] = $this->input->post('semester', true);
+        $input_data['kelas'] = $this->input->post('kelas', true);
+        $input_data['nilai_huruf'] = $this->input->post('nilai_huruf', true);
+        $input_data['nilai_indeks'] = $this->input->post('nilai_indeks', true);
+        $input_data['nilai_angka'] = $this->input->post('nilai_angka', true);
+
+        if($this->import_model->edit_nilai($id, $input_data)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function hapus_nilai(){
+        $kode_prodi = $this->input->post('prodi', true);        
+        $id = $this->input->post('id', true);
+
+        if($this->import_model->hapus_nilai($id)){
+            redirect('import/nilai/'.$kode_prodi);
+        }else{
+            redirect('import/nilai/'.$kode_prodi);
+        }
+    }
+
+    public function uploadnilai() {        
+        $kode_prodi = $this->input->post('kode_prodi');
+        
+        $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        if(isset($_FILES['nilai']['name']) && in_array($_FILES['nilai']['type'], $file_mimes)) {
+
+            $arr_file = explode('.', $_FILES['nilai']['name']);
+            $extension = end($arr_file);
+
+            if($extension != 'xlsx') {
+                $this->session->set_flashdata('nilai', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+
+                redirect("import/nilai/$kode_prodi"); 
+            } else {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            }
+
+            $loadexcel  = $reader->load($_FILES['nilai']['tmp_name']);
+            $list_sheet = $loadexcel->getSheetNames();
+            $sheetData = $loadexcel->getSheetByName($list_sheet[0])->toArray(null, true, true ,true);
+
+            $data = array();
+            $numrow = 0;
+
+            foreach($sheetData as $row){
+                if($numrow > 0){
+                    
+                    if($row['A'] != NULL){             
+                        array_push($data, array(
+                            'npp'      => $row['B'],
+                            'nama'          => $row['C'],
+                            'kode_mk'       => $row['D'],
+                            'matkul'    => $row['E'],
+                            'semester'    => $row['F'],
+                            'kelas'     => $row['G'],
+                            'nilai_huruf'      => $row['H'],
+                            'nilai_indeks'      => $row['I'],
+                            'nilai_angka'      => $row['J'],
+                            'prodi'         => $kode_prodi 
+                        ));
+                    }
+                }
+               $numrow++;
+            }
+
+            if($this->import_model->nilai('tbl_nilai_perkuliahan', $data)){
+                redirect('import/nilai/'.$kode_prodi);
+            }else{
+                redirect('import/nilai/'.$kode_prodi);
+            }
+        }
+    }
+
     // kelulusan
     public function view_kelulusan(){
         $x['prodi'] = $this->import_model->getprodi();
