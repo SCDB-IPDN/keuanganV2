@@ -456,7 +456,7 @@ class Import extends CI_Controller
                     if($row['A'] != NULL){             
                         array_push($data, array(
                             'npp'      => $row['A'],
-                            'nama'          => $row['B'],
+                            'nama_mhs'          => $row['B'],
                             'jenis_keluar'    => $row['C'],
                             'tgl_keluar'       => $row['D'],
                             'sk_yudisium'    => $row['E'],
