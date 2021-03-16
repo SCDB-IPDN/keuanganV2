@@ -3515,11 +3515,11 @@ class Uploads extends CI_Controller {
 
 			}
 
-			// print("<pre>".print_r($unitpraja,true)."</pre>");
-			// exit();
+			print("<pre>".print_r($unitpraja,true)."</pre>");
+			exit();
 			// var_dump($unitpraja);exit();
 			// $this->db->truncate('praja');
-			$this->db->insert_batch('praja_baru', $unitpraja);
+			// $this->db->insert_batch('praja_baru', $unitpraja);
 			// // $this->db->truncate('orangtua');
 			// $this->db->insert_batch('orangtua', $unitortu);
 			// // $this->db->truncate('wali');
@@ -4750,29 +4750,27 @@ class Uploads extends CI_Controller {
 
 	function prodi($s) {
 		$prod = array(
-			'Politik Indonesia Terapan' => '24d1a130-3af6-4f57-ab30-06131d701209',
-			'Teknologi Rekayasa Informasi Pemerintahan' => 'e5ad2f00-89d8-45ee-a6e4-0a4b04b3f3a1',
-			'Studi Kependudukan dan Pencatatan Sipil' => '1f8b17bb-85ea-4c21-833b-295a61e8be12',
-			'Manajemen Sumber Daya Manusia' => 'caabc219-ee2e-453b-9afb-5451d9107420',
-			'Manajemen Sumber Daya Manusia Sektor Publik' => 'c0322bbc-b0b2-4e73-a23c-3b46fae3f774',
-			'Pembangunan Ekonomi dan Pemberdayaan Masyarakat' => 'f2db54aa-5a23-4c9d-bbc3-1bd56ad0863d',
-			'Kebijakan Pemerintahan' => 'a2f19c26-8acf-43f9-af9b-4d1d47c05c0a',
-			'Manajemen Sumber Daya Aparatur' => 'b1b35fdb-37d0-425d-88c4-94eba8706b80',
-			'Keuangan Daerah' => '653236f3-5299-4b37-b219-97d25a93280b',
-			'Politik Pemerintahan' => '337f1a82-131a-40b3-b4f7-a7eed89237f8',
-			'Studi Kebijakan Publik' => '43abc93c-6e89-449d-9c70-70afe75527b9',
-			'Ilmu Pemerintahan' => 'ee56c0d5-2d84-4681-b906-6fd48a175783',
-			'Manajemen Keamanan dan Keselataman Publik' => '022e0cd9-c7c6-4e0e-aecb-b9506642f946',
-			'Manajemen Pemerintahan' => '0ba84683-2802-41e1-b547-bc7b81ec44ae',
-			'Pembangunan dan Pemberdayaan' => 'f59b170e-8041-477f-8bbf-ad66c0f6af51',
-			'Administrasi Kependudukan dan Catatan Sipil' => '5d8eff93-68a4-4f2a-832d-b85ae59d9fa1',
-			'Keuangan Publik' => '7ed35eba-1c9d-474b-9a19-d5da4e9ccc6c',
-			'Profesi Kepamongprajaan' => 'bd3cabfd-2d92-4672-b379-c64a237f26b4',
-			'Studi Pemerintahan' => 'c3096daf-ac73-48ad-8a97-c0aef31bd759',
-			'Administrasi Pemerintahan Daerah' => '4b2970da-2353-4101-bfab-cfaf4126071a',
-			'Praktik Perpolisian Tata Pamong' => '71e82f5f-24a0-4ca3-a0ee-eed587948f84',
-			'Manajemen Pembangunan' => '77155c68-a799-405b-911e-eedb03435b91',
-			'Manajemen Keuangan' => '187a1750-7aa6-43a6-a729-f1a45cf992cf',
+			"POLITIK INDONESIA TERAPAN" => '24d1a130-3af6-4f57-ab30-06131d701209',
+			"TEKNOLOGI REKAYASA INFORMASI PEMERINTAHAN" => 'e5ad2f00-89d8-45ee-a6e4-0a4b04b3f3a1',
+			"STUDI KEPENDUDUKAN DAN PENCATATAN SIPIL" => '1f8b17bb-85ea-4c21-833b-295a61e8be12',
+			"MANAJEMEN SUMBER DAYA MANUSIA" => 'caabc219-ee2e-453b-9afb-5451d9107420',
+			"MANAJEMEN SUMBER DAYA MANUSIA SEKTOR PUBLIK" => 'c0322bbc-b0b2-4e73-a23c-3b46fae3f774',
+			"PEMBANGUNAN EKONOMI DAN PEMBERDAYAAN MASYARAKAT" => 'f2db54aa-5a23-4c9d-bbc3-1bd56ad0863d',
+			"KEBIJAKAN PEMERINTAHAN" => 'a2f19c26-8acf-43f9-af9b-4d1d47c05c0a',
+			"MANAJEMEN SUMBER DAYA APARATUR" => 'b1b35fdb-37d0-425d-88c4-94eba8706b80',
+			"KEUANGAN DAERAH" => '653236f3-5299-4b37-b219-97d25a93280b',
+			"POLITIK PEMERINTAHAN" => '337f1a82-131a-40b3-b4f7-a7eed89237f8',
+			"STUDI KEBIJAKAN PUBLIK" => '43abc93c-6e89-449d-9c70-70afe75527b9',
+			"MANAJEMEN KEAMANAN DAN KESELATAMAN PUBLIK" => '022e0cd9-c7c6-4e0e-aecb-b9506642f946',
+			"MANAJEMEN PEMERINTAHAN" => '0ba84683-2802-41e1-b547-bc7b81ec44ae',
+			"PEMBANGUNAN DAN PEMBERDAYAAN" => 'f59b170e-8041-477f-8bbf-ad66c0f6af51',
+			"ADMINISTRASI KEPENDUDUKAN DAN CATATAN SIPIL" => '5d8eff93-68a4-4f2a-832d-b85ae59d9fa1',
+			"KEUANGAN PUBLIK" => '7ed35eba-1c9d-474b-9a19-d5da4e9ccc6c',
+			"ADMINISTRASI PEMERINTAHAN DAERAH" => '4b2970da-2353-4101-bfab-cfaf4126071a',
+			"PRAKTIK PERPOLISIAN TATA PAMONG" => '71e82f5f-24a0-4ca3-a0ee-eed587948f84',
+			"MANAJEMEN PEMBANGUNAN" => '77155c68-a799-405b-911e-eedb03435b91',
+			"MANAJEMEN KEUANGAN" => '187a1750-7aa6-43a6-a729-f1a45cf992cf'
+
 
 		);
 
@@ -4780,7 +4778,7 @@ class Uploads extends CI_Controller {
 		$result = "";
 
 		foreach ($prod as $en => $in) {
-			if (strtoupper($in) == 0) {
+			if ($in == $prod) {
 				$result = $in;
 			}
 		}

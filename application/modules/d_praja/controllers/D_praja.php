@@ -20,8 +20,8 @@ class D_praja extends CI_Controller
   function index()
   {
     if ($this->session->userdata('nip') != NULL) {
-      // $data = $this->D_praja_model->get_praja()->result();
-      // $x['data'] = json_encode($data);
+      $data = $this->D_praja_model->get_praja()->result();
+      $x['data'] =$data;
       // var_dump($data);exit();
       // $x['tingkat'] = $tingkat;
 
@@ -124,8 +124,6 @@ class D_praja extends CI_Controller
     // $data = $this->D_praja_model->get_praja()->result();
     $data = $this->D_praja_model->get_table($angkatan)->result();
     $x['data'] = $data;
-    // $ex = $this->D_praja_model->exportdata($angkatan)->result();
-    // var_dump($data);exit();
     $dataall = array();
 
     $no = 1;
@@ -369,7 +367,7 @@ class D_praja extends CI_Controller
         data-tingkat='$r->tingkat'
         data-angkatan='$r->angkatan'
         data-status='$r->status'
-        data-fakultas='$r->fakultas''
+        data-fakultas='$r->fakultas'
         data-prodi='$r->prodi'
         data-kewarganegaraan='$r->kewarganegaraan'
         data-jenis_pendaftaran='$r->jenis_pendaftaran'

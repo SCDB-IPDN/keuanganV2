@@ -50,7 +50,7 @@ class D_praja_model extends CI_Model
 			(SELECT nama_agama FROM agama  WHERE agama = id_agama) as agama,
 			(SELECT nama_semester FROM semester WHERE mulai_semester = id_semester) as mulai_semester,
 			(SELECT nama_pembiayaan FROM jenis_pembiayaan  WHERE pembiayaan = id_pembiayaan) as pembiayaan,
-			(SELECT nm_wil FROM data_wilayah WHERE kecamatan = id_wil) as kecamatan FROM praja_baru WHERE praja_baru.npp = '$npp' ");
+			(SELECT kecamatan FROM wilayah WHERE kecamatan = id_kecamatan) as kecamatan FROM praja_baru WHERE praja_baru.npp = '$npp' ");
 
 		return $result;
 	}
@@ -83,7 +83,7 @@ class D_praja_model extends CI_Model
 			(SELECT nama_agama FROM agama  WHERE agama = id_agama) as agama,
 			(SELECT nama_pembiayaan FROM jenis_pembiayaan  WHERE pembiayaan = id_pembiayaan) as pembiayaan,
 			(SELECT nama_semester FROM semester WHERE mulai_semester = id_semester) as mulai_semester,
-			(SELECT nm_wil FROM data_wilayah WHERE kecamatan = id_wil) as kecamatan
+			(SELECT kecamatan FROM wilayah WHERE kecamatan = id_kecamatan) as kecamatan
 
 			FROM praja_baru WHERE angkatan = $angkatan ");
 
@@ -361,7 +361,7 @@ class D_praja_model extends CI_Model
 
 	public function get_provinsi()
 	{
-		$prov = $this->db->query("SELECT provinsi , count(provinsi) as jumlah from praja_baru group by provinsi");
+		$prov = $this->db->query("SELECT provinsi , COUNT(provinsi) as jumlah from praja_baru group by provinsi");
 		return $prov;
 	}
 

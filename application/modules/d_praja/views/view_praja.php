@@ -593,8 +593,9 @@
 
         <div class="col-xl">
           <label class="col-form-label">Fakultas:</label>
+          <!-- <label class="col-form-label"></label> -->
           <select class="form-control" name="fk" id="fk" required="">
-            <!-- <option value="<?php echo $x->nama_fakultas;?>"><?php echo $x->nama_fakultas;?></option> -->
+          <option value="<?php echo  $data[0]->fakultas ?>"><?php echo  $data[0]->fakultas ?></option>
             <option value="">-Pilih Fakultas-</option>
             <?php foreach ($fakulll as $x) { ?>
               <option value="<?php echo $x->kode_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
@@ -605,7 +606,7 @@
           <label class="col-form-label">Prodi:</label>
           <!-- nama_program_studi -->
           <select class="form-control" name="prodi" id="prodi" required="">
-            <option value="<?php echo $x->nama_program_studi;?>"><?php echo $x->nama_program_studi;?></option>
+            <!-- <option value="<?php echo $x->id_prodi;?>"><?php echo $x->nama_program_studi;?></option> -->
             <option>-Pilih Program Studi-</option>
           </select>
         </div>
