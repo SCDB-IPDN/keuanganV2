@@ -159,6 +159,25 @@
 				</ul>
 			</li>
 			<!-- END ORTALA -->
+
+			<!-- KAMPUS -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-university"></i>
+					<span>Kampus</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://jakarta.ipdn.ac.id">Kampus Jakarta</a></li>
+					<li class=""><a href="#">Kampus Kalimantan Barat</a></li>
+					<li class=""><a href="#">Kampus Nusa Tenggara Barat</a></li>
+					<li class=""><a href="#">Kampus Papua</a></li>
+					<li class=""><a href="#">Kampus Sulawesi Selatan</a></li>
+					<li class=""><a href="#">Kampus Sulawesi Utara</a></li>
+					<li class=""><a href="#">Kampus Sumatera Barat</a></li>
+				</ul>
+			</li>
+			<!-- END KAMPUS -->
 			
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
