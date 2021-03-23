@@ -87,7 +87,7 @@ class Kemeng_model extends CI_Model
 		$this->db->join("tbl_prodi", "tbl_prodi.id_prodi =  tbl_absensi.id_prodi");
 		$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_absensi.id_matkul");
 
-		if ($id_absensi != "Admin"){
+		if ($id_absensi != "SuperAdmin"){
 			$this->db->where("tbl_absensi.tbl_absensi", $id_absensi);
 		} else {
 			$this->db->group_by("tbl_absensi.id_absensi");
