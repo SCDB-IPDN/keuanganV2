@@ -540,7 +540,7 @@ class D_praja extends CI_Controller
      $editnya['tlp_wali'] = $this->input->post('tlp_wali', true);
 
 
-     // $result = $this->D_praja_model->view_edit($editnya);
+     $result = $this->D_praja_model->view_edit($editnya);
      var_dump($editnya);exit();
      // echo "$result";exit();
 

@@ -978,7 +978,7 @@
 
     $('#export').on('click', function() {
 
-      var id=$(this).attr("data-id");
+      var id = $(this).attr("data-id");
       $.ajax({
         success: function(dataResult){
           window.open("<?php echo base_url('d_praja').'/export/'; ?>"+ val);

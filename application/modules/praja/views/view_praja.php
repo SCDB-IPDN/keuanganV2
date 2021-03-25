@@ -20,17 +20,18 @@
 					</div>
 				</div>
 				<div class="table-responsive">
-					<?php if ($this->session->flashdata('mou') != NULL) { ?>
-						<div class="alert alert-<?php echo $this->session->flashdata('mou') [0] ?> alert-dismissible">
-							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							<strong><i class="fa fa-info-circle"></i></strong> <?php echo $this->session->flashdata('mou') [1] ?>
-						</div>
-					<?php } ?> 
+					<?php if($this->session->flashdata('praja') != NULL){ ?>
+            <div class="alert alert-success alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
+            </div>
+          <?php } ?>
 					<div class="panel-body">
 						<tbody>
 							<tr>
 								<td>
 									<select name="filter" id="filter_angkatan" class="form-control col-sm-2 mb-3"></select>
+                   <button type="button" id="export" class="btn btn-info">Export Data</button>
 								</td>
 							</tr>
 						</tbody>
@@ -138,7 +139,7 @@
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Alamat"></td>
-                <td><input type="text" readonly class="form-control-plaintext" id="alamatx" style="height:10px;"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="alamatx" ></td>
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="RT"></td>
@@ -155,6 +156,10 @@
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Kelurahan"></td>
                 <td> <input type="text" readonly class="form-control-plaintext" id="kelurahanx" ></td>
+              </tr>
+               <tr>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Kabupaten"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="kab_kotax" ></td>
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Kecamatan"></td>
@@ -354,7 +359,7 @@
        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 
      </div>
-     <form class="form-horizontal" action="<?php echo base_url('d_praja/view_edit')?>" method="post" enctype="multipart/form-data" role="form">
+     <form class="form-horizontal" action="<?php echo base_url('praja/view_edit')?>" method="post" enctype="multipart/form-data" role="form">
 
        <div class="modal-body">
         <div class="d-flex align-items-center">
@@ -378,7 +383,7 @@
             <div class="col-xl-2">
               <div class="form-group">
                 <label class="col-form-label">Jenis Kelamin:</label>
-                <select name="jk" id="jk" class="form-control" required="">
+                <select name="jk" id="jk" class="form-control" required=""> 
                   <option value="" >-Pilih Jenis Kelamin-</option>
                   <option value="L">Laki-Laki</option>
                   <option value="P">Perempuan</option>
@@ -444,9 +449,10 @@
             <label class="col-form-label">Provinsi:</label>
             <!-- <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." required=""> -->
             <select class="form-control" name="provinsi" id="provinsi" required="">
+
               <option value="">-Pilih Provinsi-</option>
               <?php foreach ($wilayah as $x) { ?>
-                <option value="<?php echo $x->id_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
+                <option value="<?php echo $x->nama_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
               <?php } ?>
             </select>
           </div>
@@ -484,6 +490,7 @@
         <div class="col-xl">
           <label class="col-form-label">Jenis Tinggal:</label>
           <select class="form-control" name="jenis_tinggal" id="jenis_tinggal" required="">
+             
             <option value="">-Pilih Jenis Tinggal-</option>
             <?php foreach ($jenistinggal as $x) { ?>
               <option value="<?php echo $x->id_jenis_tinggal;?>"><?php echo $x->nama_jenis_tinggal;?></option>
@@ -526,6 +533,7 @@
           <label class="col-form-label">Fakultas:</label>
           <!-- <label class="col-form-label"></label> -->
           <select class="form-control" name="fk" id="fk" required="">
+           <!--  <option value="<?php echo $data[0]->fakultas?>"><?php echo $data[0]->fakultas ?></option> -->
             <option value="">-Pilih Fakultas-</option>
             <?php foreach ($fakulll as $x) { ?>
               <option value="<?php echo $x->kode_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
@@ -534,8 +542,9 @@
         </div>
         <div class="col-xl">
           <label class="col-form-label">Prodi:</label>
-          <!-- nama_program_studi -->
+          
           <select class="form-control" name="prodi" id="prodi" required="">
+            <!-- <option value="<?php echo $data[0]->prodi?>"><?php echo $data[0]->nama_prodi ?></option> -->
             <!-- <option value="<?php echo $x->id_prodi;?>"><?php echo $x->nama_program_studi;?></option> -->
             <option>-Pilih Program Studi-</option>
           </select>
@@ -550,6 +559,7 @@
        <div class="col-xl">
         <label class="col-form-label">Kewarganegaraan:</label>
         <select class="form-control" name="kewarganegaraan" id="kewarganegaraan" required="">
+          <option value="<?php echo $data[0]->kewarganegaraan?>"><?php echo $data[0]->nama_kewarganegaraan ?></option>
           <option value="">-Pilih Kewarganegaraan-</option>
           <?php foreach ($kewarganegaraan as $x) { ?>
             <option value="<?php echo $x->id_negara;?>"><?php echo $x->nama_negara;?></option>
@@ -560,6 +570,7 @@
       <div class="col-xl">
         <label class="col-form-label">Jenis Pendaftaran:</label>
         <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran" required="">
+          <option value="<?php echo $data[0]->jenis_pendaftaran?>"><?php echo $data[0]->nama_jenis_pendaftaran ?></option>
           <option value="">-Pilih Jenis Pendaftaran-</option>
           <?php foreach ($jenispendaftaran as $x) { ?>
             <option value="<?php echo $x->id_jenis_daftar;?>"><?php echo $x->nama_jenis_daftar;?></option>
@@ -633,7 +644,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">NO KPS:</label>
-  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." required="">
+  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." >
 </div>
 </div>
 </div>
@@ -868,6 +879,7 @@ $(document).ready(function() {
 	// list MOU
 	get_angkatan();
     var url = '<?php echo base_url('praja/get_praja');?>';
+
     var list_mou = $('#data-praja').DataTable({
       dom: 'Bfrtip',
 		  buttons: [
@@ -880,12 +892,32 @@ $(document).ready(function() {
         }
 	});
 
+
 	$('#filter_angkatan').on( 'change', function () {
 		list_mou
         .column(6)
         .search( this.value )
         .draw();
+    
+      var val = this.value;
+      console.log(val);
+
+
+     $('#export').on('click', function() {
+       $.ajax({
+
+        success: function(url){
+          window.open("<?php echo base_url('praja').'/export/'; ?>"+ val);
+        }
+      });
+
+    });
+
+
+
 	});
+
+
 		  
 });
 
@@ -1034,7 +1066,7 @@ $(document).ready(function() {
         var prodi=$(this).val();
         console.log(prodi); 
         $.ajax({
-          url : "<?php echo site_url('d_praja/get_sub_category');?>",
+          url : "<?php echo site_url('praja/get_sub_category');?>",
           method : "POST",
           data : {prodi: prodi},
           async : true,
@@ -1058,7 +1090,7 @@ $(document).ready(function() {
         var kab_kota=$(this).val();
         console.log(kab_kota); 
         $.ajax({
-          url : "<?php echo site_url('d_praja/get_sub_provinsi');?>",
+          url : "<?php echo site_url('praja/get_sub_provinsi');?>",
           method : "POST",
           data : {kab_kota: kab_kota},
           async : true,
@@ -1081,7 +1113,7 @@ $(document).ready(function() {
       var kecamatan=$(this).val();
       console.log(kecamatan); 
       $.ajax({
-        url : "<?php echo site_url('d_praja/get_sub_kabkota');?>",
+        url : "<?php echo site_url('praja/get_sub_kabkota');?>",
         method : "POST",
         data : {kecamatan: kecamatan},
         async : true,
@@ -1091,7 +1123,7 @@ $(document).ready(function() {
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html += '<option value='+data[i].id_kecamatan+'>'+data[i].kecamatan+'</option>';
+            html += '<option value='+data[i].id_kecamatan+'>'+data[i].nama_kecamatan+'</option>';
           }
           $('#kecamatan').html(html);
 

@@ -21,12 +21,13 @@
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <span><a href="<?php echo base_url('d_praja');?>" class="btn btn-sm btn-warning">Kembali</a></span>
+            <span><a href="<?php echo base_url('praja');?>" class="btn btn-sm btn-warning">Kembali</a></span>
             <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan'){?>
               <span><a href="<?php echo base_url('d_praja/ubahstatus');?>" class="btn btn-sm btn-green">UBAH STATUS PRAJA</a></span>
+              <span>
+                <a href="" class="btn btn-sm btn-green" data-toggle="modal" data-target="#editstatus">UBAH STATUS PRAJA</a>
+              </span>
             <?php } ?>
-
-
             <!-- <span><a href="" class="btn btn-sm btn-red" data-toggle="modal" data-target="#editstatus">UBAH STATUS PRAJA</a></span> -->
             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
             <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
@@ -78,8 +79,6 @@
                     <?php }else{ ?>
                       <td><i><font style='color:red;'>SK belum tersedia</font></i></td>
                     <?php } ?>
-                    
-                    
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -92,8 +91,97 @@
     </div>
     <!-- end col-10 -->
 
+  </div>
 
+  <!-- Modal EDIT MOU -->
+  <div class="modal fade" id="editstatus" tabindex="-1" role="dialog" aria-labelledby="editstatus" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Status Praja</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo base_url('Praja/tambah_status'); ?>" method="POST" enctype="multipart/form-data">
+        
+              <div class="form-group">   
+                <div>
+                  <label>NPP</label><br>
+                  <input list="data_mahasiswa" class="form-control" type="text" name="npp" id="npp" placeholder="Masukan NPP Praja" onchange="return autofill();">
+                </div>
+                <br>
+                <div>
+                  <label>NAMA</label><br>
+                  <input type="text" class="form-control" name="nama" id="nama" readonly="">
+                </div>
+                <br>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm">
+                     <label>Status</label><br>
+                     <input type="text" class="form-control" name="status" id="status" readonly="">
+                   </div>
+                   <div class="col-sm">
+                    <label>Tingkat</label><br>
+                    <input type="text" class="form-control" name="tingkat" id="tingkat" readonly="">     
+                  </div>
+                  <div class="col-sm">
+                   <label>Angkatan</label><br>
+                   <input type="text" class="form-control" name="angkatan" id="angkatan" readonly="">  
+                 </div>
+               </div>
+             </div>
+             <label for="basic-url"> Edit Status : </label>
+             <select class="form-control" name="status" id="status" required="">
+                <option value="">Pilih Status</option>
+                <option value="aktif">Aktif</option>
+                <option value="cuti">Cuti</option>
+                <option value="diberhentikan">Diberhentikan</option>
+                <option value="turuntingkat">Turun Tingkat</option>
+                <option value="meninggal">Meninggal</option>
+            </select>
+            <br>
+            <label for="basic-url">Keterangan : </label>
+            <textarea cols="10" rows="4" class="form-control" id="keterangan" name="keterangan" placeholder="keterangan.." required=""></textarea>
+            <br>
+            <label for="basic-url">Upload SK : </label>
+            <input type="file" class="btn btn-light" name="fileToUpload" id="fileToUpload" required="">
+          </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" value="Cek">Ubah</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
 
-    <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-    <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-    <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+
+<script>
+  function autofill(){
+    var npp =document.getElementById('npp').value;
+    $.ajax({
+      url:"<?php echo base_url();?>praja/cari",
+      data:'&npp='+npp,
+      success:function(data){
+        var hasil = JSON.parse(data);  
+
+        $.each(hasil, function(key,val){ 
+          document.getElementById('npp').value=val.npp;
+          document.getElementById('nama').value=val.nama;
+          document.getElementById('status').value=val.status;
+          document.getElementById('tingkat').value=val.tingkat; 
+          document.getElementById('angkatan').value=val.angkatan;   
+
+        });
+      }
+    });             
+  }
+</script>
