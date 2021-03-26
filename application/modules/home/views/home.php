@@ -65,9 +65,9 @@
 											<div class="text-grey">
 												<i class=""></i> IPDN
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?= $ceksas == NULL ? 0 : $persentase_sas ?>"><?= $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
+												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?= $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -75,9 +75,9 @@
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?= $cekpok == NULL ? 0 : $persentase_pok ?>"><?= $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
+												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?= $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
 											</div>
 										</div>
 
