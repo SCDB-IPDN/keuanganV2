@@ -600,15 +600,10 @@ class Uploads extends CI_Controller {
 								} else {
 									$nullcc = 0;
 									// echo $row['A']."<br>";
-									if (strpos($row['A'], 'tgl')) {
+									$newDate = date("Y-m-d");
+									if ($num > 6) {
 										// echo $row['A']."<br>";
-										$tgl = explode("tgl. ", $row['A']);
-										$tgl_last = count($tgl)-1;
-										$tgl = $this->ite($tgl[$tgl_last]);
-										$newDate = date("Y-m-d", strtotime($tgl));
-										// echo $newDate."<br>";
-									} else if ($num > 6) {
-										$regex = '/^[0-9]{4}\.[0-9]{3}$/';
+										$regex = '/^[0-9]{4}\.[A-Z]{3}$/';
 										if (preg_match($regex, $row['A'])) {
 											// echo $row['A']." ".str_replace("_x000D_", "",$row['B'])." ".preg_replace("/[^0-9]/", "", $row['C'])." ".preg_replace("/[^0-9]/", "", $row['D'])." ".preg_replace("/[^0-9]/", "", $row['E'])."<br>";
 											// echo $row['A']." ".str_replace("_x000D_", "",$row['B'])."<br>";

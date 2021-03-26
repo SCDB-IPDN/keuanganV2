@@ -61,6 +61,7 @@
 							<span>Import</span>
 						</a>
 						<ul class="sub-menu">
+							<li class="<?php echo $this->uri->segment(2) == "view_kurkum" || $this->uri->segment(2) == "kurikulum" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_kurkum'); ?>">Kurikulum</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "kelas_kuliah" || $this->uri->segment(2) == "view_kk" || $this->uri->segment(2) == "krs" || $this->uri->segment(2) == "view_krs" || $this->uri->segment(2) == "dosen_ajar" || $this->uri->segment(2) == "view_da" ?"active":"";?> has-sub">
 								<a href="javascript:;">
 									<b class="caret"></b>
@@ -82,7 +83,6 @@
 							<li class="<?php echo $this->uri->segment(2) == "view_nilai" || $this->uri->segment(2) == "nilai" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_nilai'); ?>">Nilai Perkuliahan</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "view_akm" || $this->uri->segment(2) == "akm" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_akm'); ?>">Akm</a></li>
 							<li class="<?php echo $this->uri->segment(2) == "view_kelulusan" || $this->uri->segment(2) == "kelulusan" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_kelulusan'); ?>">Kelulusan</a></li>
-							<li class="<?php echo $this->uri->segment(2) == "view_kurkum" || $this->uri->segment(2) == "kurikulum" ? "active" : ""; ?>"><a href="<?php echo base_url('import/view_kurkum'); ?>">Kurikulum</a></li>
 						</ul>
 						<?php } ?>
 					</li>
@@ -160,6 +160,25 @@
 				</ul>
 			</li>
 			<!-- END ORTALA -->
+
+			<!-- KAMPUS -->
+			<li class="has-sub">
+				<a href="javascript:;">
+					<b class="caret"></b>
+					<i class="fas fa-university"></i>
+					<span>Kampus</span>
+				</a>
+				<ul class="sub-menu">
+					<li class=""><a href="https://jakarta.ipdn.ac.id">Kampus Jakarta</a></li>
+					<li class=""><a href="#">Kampus Kalimantan Barat</a></li>
+					<li class=""><a href="#">Kampus Nusa Tenggara Barat</a></li>
+					<li class=""><a href="#">Kampus Papua</a></li>
+					<li class=""><a href="#">Kampus Sulawesi Selatan</a></li>
+					<li class=""><a href="#">Kampus Sulawesi Utara</a></li>
+					<li class=""><a href="#">Kampus Sumatera Barat</a></li>
+				</ul>
+			</li>
+			<!-- END KAMPUS -->
 			
 			<!-- KEUANGAN -->
 			<li class="<?php echo $this->uri->segment(1) == "d_spanint" || $this->uri->segment(1) == "d_pok" || $this->uri->segment(1) == "d_sas" || $this->uri->segment(2) == "biro" ? "active" : ""; ?> has-sub">
