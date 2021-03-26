@@ -1,65 +1,85 @@
 <div id="content" class="content">
-	<ol class="breadcrumb float-xl-right">
-		<li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    	<li class="breadcrumb-item"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
-	</ol>
-  	<h1 class="page-header">Data Keprajaan</h1>
-  	<div class="row">
-    	<div class="col-xl-12">
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-          <span><a href="<?php echo base_url('praja/editstatus');?>" class="btn btn-sm btn-warning"> STATUS PRAJA</a></span>
+  <ol class="breadcrumb float-xl-right">
+    <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
+  </ol>
+  <h1 class="page-header">Data Keprajaan</h1>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="panel panel-inverse">
+        <div class="panel-heading">
+          <h4 class="panel-title"></h4>
+          <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <h4 class="text-center">Jumlah Praja Di Setiap Provinsi</h4>
+            
+            <!-- <div id="graph" class="height-sm width-xl"></div> -->
+            <canvas id="myChart" height="70"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-inverse">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span><a href="<?php echo base_url('praja/editstatus');?>" class="btn btn-sm btn-warning">STATUS PRAJA</a></span>
+          </h4>
+          <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
 
-					</h4>
-					<div class="panel-heading-btn">
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-					</div>
-				</div>
-				<div class="table-responsive">
-					<?php if($this->session->flashdata('praja') != NULL){ ?>
+        <div class="table-responsive">
+          <br>
+          
+          <?php if($this->session->flashdata('praja') != NULL){ ?>
             <div class="alert alert-success alert-dismissible">
               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
               <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
             </div>
           <?php } ?>
-					<div class="panel-body">
-						<tbody>
-							<tr>
-								<td>
-									<select name="filter" id="filter_angkatan" class="form-control col-sm-2 mb-3"></select>
+          <div class="panel-body">
+            <tbody>
+              <tr>
+                <td>
+                  <select name="filter" id="filter_angkatan" class="form-control col-sm-2 mb-3"></select>
                    <button type="button" id="export" class="btn btn-info">Export Data</button>
-								</td>
-							</tr>
-						</tbody>
-						<table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>NPP</th>
-									<th>Nama Lengkap</th>
-									<th>Jenis Kelamin</th>
-									<th>Status</th>
-									<th>Tingkat</th>
-									<th>Angkatan</th>
+                </td>
+              </tr>
+            </tbody>
+            <table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NPP</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Status</th>
+                  <th>Tingkat</th>
+                  <th>Angkatan</th>
+                  <th>Penempatan</th>
                   <th>Opsi</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-				</div>
-				<!-- end panel-body -->
-			</div>
-      		<!-- end panel -->
-		</div>
-		<!-- end col-10 -->
-	</div>
-</div>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
 
-<!-- Modal View -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal View -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="show-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -848,53 +868,89 @@
 </div>
 </div>
 <!-- END Modal Ubah -->
-	
+  
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+      <?php
+      if (count($prov)>0) {
+        foreach ($prov as $data) {
+          echo "'" .$data->provinsi ."',";
+        }
+      }
+      ?>
+      ],
+      datasets: [{
+        label: 'Jumlah Praja',
+        backgroundColor: '#ADD8E6',
+        borderColor: '##93C3D2',
+        data: [
+        <?php
+        if (count($prov)>0) {
+         foreach ($prov as $data) {
+          echo $data->jumlah . ", ";
+        }
+      }
+      ?>
+      ]
+    }]
+  },
+});
+
+</script>
+
+
 <script>
 function get_angkatan(){
     var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
-	$.ajax({
-		type: 'POST',
-		url: `${base_url}/praja/angkat`,
-		success: function(data){
-			$("#filter_angkatan").html('<option value="" selected>Filter Angkatan</option>'); 
-			var dataObj = jQuery.parseJSON(data);
+  $.ajax({
+    type: 'POST',
+    url: `${base_url}/praja/angkat`,
+    success: function(data){
+      $("#filter_angkatan").html('<option value="" selected>Filter Angkatan</option>'); 
+      var dataObj = jQuery.parseJSON(data);
       // console.log(dataObj);
-			if(dataObj) {
-				$(dataObj).each(function() {
-					var option = $('<option />');
-					option.attr('value', this).text(this);   
+      if(dataObj) {
+        $(dataObj).each(function() {
+          var option = $('<option />');
+          option.attr('value', this).text(this);   
           // console.log(option.attr('value', this).text(this));     
-					$("#filter_angkatan").append(option);
-				});
-			}
-			else {
-				$("#filter_angkatan").html('<option value="">Pilihan tidak ada</option>');
-			}
-		}
-	}); 
+          $("#filter_angkatan").append(option);
+        });
+      }
+      else {
+        $("#filter_angkatan").html('<option value="">Pilihan tidak ada</option>');
+      }
+    }
+  }); 
 }
 
 $(document).ready(function() {
-	// list MOU
-	get_angkatan();
+  // list MOU
+  get_angkatan();
     var url = '<?php echo base_url('praja/get_praja');?>';
 
     var list_mou = $('#data-praja').DataTable({
       dom: 'Bfrtip',
-		  buttons: [
+      buttons: [
        
         ],
         responsive: true,
-		    "ajax": {
+        "ajax": {
         "url": url,
         "dataSrc": ""
         }
-	});
+  });
 
 
-	$('#filter_angkatan').on( 'change', function () {
-		list_mou
+  $('#filter_angkatan').on( 'change', function () {
+    list_mou
         .column(6)
         .search( this.value )
         .draw();
@@ -915,10 +971,10 @@ $(document).ready(function() {
 
 
 
-	});
+  });
 
 
-		  
+      
 });
 
   $(document).ready(function() {

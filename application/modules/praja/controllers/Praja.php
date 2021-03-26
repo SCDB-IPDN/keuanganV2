@@ -103,6 +103,7 @@ class Praja extends CI_Controller {
         $tingkat = $r->tingkat;
         $angkatan = $r->angkatan;
         $status = $r->status;
+        $penempatan = $r->penempatan;
 
         if($this->session->userdata('role') == 'Admin' ||  $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan'){
 
@@ -171,6 +172,7 @@ class Praja extends CI_Controller {
           data-pekerjaan_wali='$r->pekerjaan_wali'
           data-penghasilan_wali='$r->penghasilan_wali'
           data-tlp_wali='$r->tlp_wali'
+          data-penempatan='$r->penempatan'
   
   
           data-toggle='modal' data-target='#show-data' class='btn btn-success'><i class='fa fas fa-eye'></i>
@@ -241,6 +243,7 @@ class Praja extends CI_Controller {
           data-pekerjaan_wali='$r->pekerjaan_wali'
           data-penghasilan_wali='$r->penghasilan_wali'
           data-tlp_wali='$r->tlp_wali'
+          data-penempatan='$r->penempatan'
   
   
           data-toggle='modal' data-target='#edit-data-praja' class='btn btn-primary'><i class='fa fas fa-edit'></i></a>   ";
@@ -314,6 +317,7 @@ class Praja extends CI_Controller {
           data-pekerjaan_wali='$r->pekerjaan_wali'
           data-penghasilan_wali='$r->penghasilan_wali'
           data-tlp_wali='$r->tlp_wali'
+          data-penempatan='$r->penempatan'
   
   
           data-toggle='modal' data-target='#show-data' class='btn btn-success'><i class='fa fas fa-eye'></i>
@@ -330,6 +334,7 @@ class Praja extends CI_Controller {
           $status ,
           $tingkat ,
           $angkatan,
+          $penempatan,
           $opsi
         );
       }

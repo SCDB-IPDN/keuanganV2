@@ -3303,6 +3303,7 @@ class Uploads extends CI_Controller {
 			$unitwali = array();
 			$numrow = 1;
 			$stat = 'aktif';
+			$penempatan = 'IPDN Kampus Jatinangor';
 			// $date = STR_TO_DATE($row['AY'], '%d.%m.%y');
 
 			$stop = false;
@@ -3471,7 +3472,8 @@ class Uploads extends CI_Controller {
 						'pendidikan_wali'      => $row['AS'],
 						'pekerjaan_wali'      => $this->pekerja($row['AT']),
 						'penghasilan_wali'      => $this->penghasil($row['AU']),
-						'tlp_wali'      => $row['AV']
+						'tlp_wali'      => $row['AV'],
+						'penempatan' => $penempatan
 
 					));
 					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();

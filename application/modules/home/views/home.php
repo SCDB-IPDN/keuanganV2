@@ -569,6 +569,15 @@
 									<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->berhenti; ?></span></div>
 								</div>
 							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+									MENINGGAL
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->meninggal; ?></span></div>
+								</div>
+							</div>
 						</br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
