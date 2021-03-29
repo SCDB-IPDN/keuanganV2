@@ -261,7 +261,7 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK CPNS:</label>
-                                <input type="number" class="form-control" id="no_sk_cpns" name="no_sk_cpns" placeholder="No SK CPNS.." required>
+                                <input type="text" class="form-control" id="no_sk_cpns" name="no_sk_cpns" placeholder="No SK CPNS.." required>
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -273,7 +273,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK PENGANGKATAN:</label>
-                                <input type="number" class="form-control" id="no_sk_pengangkatan" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
+                                <input type="text" class="form-control" id="no_sk_pengangkatan" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
                             </div>
                         </div>
                         <div class="col-xl-4">
@@ -459,7 +459,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">No Surat Tugas:</label>
-                                <input type="number" class="form-control" id="no_surat_tugas" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
+                                <input type="text" class="form-control" id="no_surat_tugas" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
                             </div>
                         </div>
                         <div class="col-xl-4">
@@ -660,7 +660,7 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK CPNS:</label>
-                                <input type="number" class="form-control" id="no_sk_cpnsx" name="no_sk_cpns" placeholder="No SK CPNS.." required>
+                                <input type="text" class="form-control" id="no_sk_cpnsx" name="no_sk_cpns" placeholder="No SK CPNS.." required>
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -672,7 +672,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK PENGANGKATAN:</label>
-                                <input type="number" class="form-control" id="no_sk_pengangkatanx" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
+                                <input type="text" class="form-control" id="no_sk_pengangkatanx" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
                             </div>
                         </div>
                         <div class="col-xl-4">
@@ -702,7 +702,7 @@
                         <div class="col-xl-5">
                             <div class="form-group">
                                 <label class="col-form-label">Alamat:</label>
-                                <textarea class="form-control" id="alamat" name="alamatx" rows="4" cols="50" placeholder="Alamat.." required></textarea>
+                                <textarea class="form-control" id="alamatx" name="alamat" rows="4" cols="50" placeholder="Alamat.." required></textarea>
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -858,7 +858,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">No Surat Tugas:</label>
-                                <input type="number" class="form-control" id="no_surat_tugasx" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
+                                <input type="text" class="form-control" id="no_surat_tugasx" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
                             </div>
                         </div>
                         <div class="col-xl-4">
