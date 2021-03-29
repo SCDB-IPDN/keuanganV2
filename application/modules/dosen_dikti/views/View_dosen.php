@@ -213,19 +213,25 @@
                                 <input type="number" class="form-control" id="nidn_nup_nidk" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NIK:</label>
                                 <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">NIP:</label>
+                                <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP.." required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NPWP:</label>
                                 <input type="number" class="form-control" id="npwp" name="npwp" placeholder="NPWP.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Ikatan Kerja:</label>
                                 <input type="text" class="form-control" id="ikatan_kerja" name="ikatan_kerja" placeholder="Ikatan Kerja.." required>
@@ -612,19 +618,25 @@
                                 <input type="number" class="form-control" id="nidn_nup_nidkx" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NIK:</label>
                                 <input type="number" class="form-control" id="nikx" name="nik" placeholder="NIK.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">NIP:</label>
+                                <input type="number" class="form-control" id="nipx" name="nip" placeholder="NIP.." required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NPWP:</label>
                                 <input type="number" class="form-control" id="npwpx" name="npwp" placeholder="NPWP.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Ikatan Kerja:</label>
                                 <input type="text" class="form-control" id="ikatan_kerjax" name="ikatan_kerja" placeholder="Ikatan Kerja.." required>
