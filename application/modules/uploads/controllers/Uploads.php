@@ -2217,6 +2217,8 @@ class Uploads extends CI_Controller {
 			$numrow = 1;
 			$bag = '';
 			$id_c = 0;
+			$id_b = 0;
+			$cbiro = 0;
 			$satker_jatinangor = 448302;
 			$tgl = date('Y-m-d');
 
@@ -2538,9 +2540,9 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-	public function uploadSASjakarta()
+	public function uploadRealisasiJakarta()
 	{
-		// Load plugin PHPExcel nya
+				// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['jakarta']['name']) && in_array($_FILES['jakarta']['type'], $file_mimes)) {
 
@@ -2557,100 +2559,91 @@ class Uploads extends CI_Controller {
 
 			$loadexcel  = $reader->load($_FILES['jakarta']['tmp_name']);
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
-
-			$dataoutput = array();
-			$datasuboutput = array();
-			$datakegiatan = array();
-			$datakomponen = array();
-			$datasubkomponen = array();
-			$dataakun = array();
+			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
 			$satker_jakarta = 352593;
 			$tgl = date('Y-m-d');
-			$regex = '/^[0-9]{4}\.[0-9]{3}$/';
+
+			$this->db->where('kode_satker', $satker_jakarta);
+			$this->db->delete('unit_sas');
+
+			$this->db->where('kode_satker', $satker_jakarta);
+			$this->db->delete('output_sas');
 
 
-			// $this->db->where('kode_satker', $satker_sulsel);
-			// $this->db->delete('unit_sas');
+			foreach($sheet as $row){
+				if($numrow > 1){
+					$ket1 = trim($row['AI']);
+					// echo "$ket1<br>";
+					$ket = substr($ket1, 9);
+					
+					$temp = explode(" ", $ket1);
 
-			// $this->db->where('kode_satker', $satker_sulsel);
-			// $this->db->delete('output_sas');
+					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
+					$regex1 = '/^[0-9]{4}\.[0-9]{3}\.[0-9]{3}$/';
+					// var_dump(preg_match($regex, $temp[0]));exit();
+					if (preg_match($regex, $temp[0])) {
+						$cunit++;
+						$satker_biro = explode(".", $temp[0]);
 
-
-			// foreach($sheet as $row){
-			// 	if($numrow > 1){
-			// 		$ket = trim($row['AI']);
-			// 		$ket1 = explode(' ', $ket);
-			// 		$carikode = $ket1[0];
-			// 		// var_dump($kode);exit();
-
-			// 		if(strlen($carikode) == 4){
-			// 			$keterangann = trim($row['AI']);
-			// 			$kodennya = explode(' ', $keterangann);
-			// 			$makakodenya = $kodennya[0];
-
-			// 			$keterangan = substr($keterangann, 5);
-			// 			$kodenya = explode(' ', $keterangan);
-			// 			$kode = $kodenya[0];
+						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
 
 
+						$unitjakarta = array();
+						array_push($unitjakarta, array(
+							'kode_satker'      => $satker_jakarta,
+							'id_c'      => $id_c,
+							'id_b'      => $satker_biro[0],
+							'ket'      => $ket,
+							'tanggal' => $tgl
+						));
+						// exit;
+						$this->db->insert_batch('unit_sas', $unitjakarta);
 
 
-			// 			$id_b = "kegiatan".".".$makakodenya;
+					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 4);
+					    // var_dump($ket1);exit();
 
-			// 			array_push($datakegiatan, array(
-			// 				'id_b'      => $id_b,
-			// 				'satker'      =>$satker_jakarta,
-			// 				'ket'      => $keterangan
-			// 			));
+						$pagu = $row['AB'];
+					   // echo "pagunya"."$pagu";
+						$realisasi = $row['AC'];
+					   // echo "realisasi"."$realisasi";
+					   // echo $row['A']."<br>" ;
 
+						$outputjakarta = array();
+						array_push($outputjakarta, array(
+							'kode_satker' => $satker_jakarta,
+							'id_b'      => $satker_biro[0],
+							'id_c'      => $id_c,
+							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+						// exit;
+						$this->db->insert_batch('output_sas', $outputjakarta);
 
-			// 		}elseif (){
-			// 			$keterangann = trim($row['AI']);
-			// 			$ket1 = explode(' ', $ket);
-			// 			$ket1 = $ket1[0];
-			// 			$id_c = "output".".".$makakodenya.".".$ket1;
-			// 			// var_dump($id_c);exit();
+					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
+					   // echo "$sql2";
+					   // echo "<br>";
+					   // $this->db->query($sql2);
+					}
 
-			// 			array_push($dataoutput, array(
-			// 				'id_b'      => $id_b,
-			// 				'id_c'      => $id_c,
-			// 				'satker'      =>$satker_jakarta,
-			// 				'ket'      => $keterangan
-			// 			));
-			// 			// print("<pre>".print_r($dataoutput,true)."</pre>");
-			// 			// exit();
-
-			// 		}elseif ((strlen($carikode) == 3) && (strpos($carikode, "00") === 0)){
-			// 			$keterangann = trim($row['AI']);
-			// 			$ket1 = explode(' ', $ket);
-			// 			$ket1 = $ket1[0];
-			// 			$id_c = "output".".".$makakodenya.".".$ket1;
-			// 			// var_dump($id_c);exit();
-
-			// 			array_push($dataoutput, array(
-			// 				'id_b'      => $id_b,
-			// 				'id_c'      => $id_c,
-			// 				'satker'      =>$satker_jakarta,
-			// 				'ket'      => $keterangan
-			// 			));
-
-
-
-			// 		}
-			// 		$numrow++;
-			// 	}
-
-			// $this->db->truncate('unit');
-			// $this->db->insert_batch('output', $dataoutput);
+				}
+				$numrow++;
+			}
+			// $this->db->truncate('realisasi_kalbar');
+			// $this->db->insert_batch('realisasi_kalbar', $data);
 			//delete file from server
-			// unlink(realpath('excel/'.$data_upload['file_name']));
+			unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
 			$log['user'] = $this->session->userdata('nip');
-			$log['Ket'] = "UPLOAD REALISASI SULSEL";
+			$log['Ket'] = "UPLOAD REALISASI JAKARTA";
 			$log['tanggal'] = date('Y-m-d H:i:s');
 			$this->uploads_model->log($log);
 
@@ -2660,11 +2653,9 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-
-
-	public function uploadRealisasiSulsel()
+		public function uploadRealisasiSulsel()
 	{
-		// Load plugin PHPExcel nya
+				// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		if(isset($_FILES['sulsel']['name']) && in_array($_FILES['sulsel']['type'], $file_mimes)) {
 
@@ -2672,7 +2663,7 @@ class Uploads extends CI_Controller {
 			$extension = end($arr_file);
 
 			if($extension != 'xlsx') {
-				$this->session->set_flashdata('sulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+				$this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
 				redirect("uploads/v_sas"); 
 			} else {
@@ -2681,7 +2672,6 @@ class Uploads extends CI_Controller {
 
 			$loadexcel  = $reader->load($_FILES['sulsel']['tmp_name']);
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
-
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -2689,32 +2679,76 @@ class Uploads extends CI_Controller {
 			$satker_sulsel = 677024;
 			$tgl = date('Y-m-d');
 
+			$this->db->where('kode_satker', $satker_sulsel);
+			$this->db->delete('unit_sas');
 
-			// $this->db->where('kode_satker', $satker_sulsel);
-			// $this->db->delete('unit_sas');
-
-			// $this->db->where('kode_satker', $satker_sulsel);
-			// $this->db->delete('output_sas');
+			$this->db->where('kode_satker', $satker_sulsel);
+			$this->db->delete('output_sas');
 
 
 			foreach($sheet as $row){
-				if($numrow > 7){
+				if($numrow > 1){
+					$ket1 = trim($row['AI']);
+					// echo "$ket1<br>";
+					$ket = substr($ket1, 9);
+					
+					$temp = explode(" ", $ket1);
 
-					if(strlen($kode) == 4){
-						$keterangan = trim($row['AI']);
-						// var_dump($keterangan);exit();
+					$regex = '/^[0-9]{4}\.[A-Z]{3}$/';
+					$regex1 = '/^[0-9]{4}\.[A-Z]{3}\.[0-9]{3}$/';
+					// var_dump(preg_match($regex, $temp[0]));exit();
+					if (preg_match($regex, $temp[0])) {
+						$cunit++;
+						$satker_biro = explode(".", $temp[0]);
+
+						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+
+
+						$unitsulsel = array();
+						array_push($unitsulsel, array(
+							'kode_satker'      => $satker_sulsel,
+							'id_c'      => $id_c,
+							'id_b'      => $satker_biro[0],
+							'ket'      => $ket,
+							'tanggal' => $tgl
+						));
+						// exit;
+						$this->db->insert_batch('unit_sas', $unitsulsel);
+
+
+					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
+						$ket1 = trim($row['AI']);
+						$ket1 = substr($ket1, 4);
+					    // var_dump($ket1);exit();
+
+						$pagu = $row['AB'];
+					   // echo "pagunya"."$pagu";
+						$realisasi = $row['AC'];
+					   // echo "realisasi"."$realisasi";
+					   // echo $row['A']."<br>" ;
+
+						$outputsulsel = array();
+						array_push($outputsulsel, array(
+							'kode_satker' => $satker_sulsel,
+							'id_b'      => $satker_biro[0],
+							'id_c'      => $id_c,
+							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+							'ket'      => $ket1,
+							'tanggal' => $tgl
+						));
+						// exit;
+						$this->db->insert_batch('output_sas', $outputsulsel);
 
 					}
-
-
 
 				}
 				$numrow++;
 			}
-			// $this->db->truncate('unit');
-			// $this->db->insert_batch('output', $dataoutput);
+			// $this->db->truncate('realisasi_kalbar');
+			// $this->db->insert_batch('realisasi_kalbar', $data);
 			//delete file from server
-			// unlink(realpath('excel/'.$data_upload['file_name']));
+			unlink(realpath('excel/'.$data_upload['file_name']));
 
 			//upload success
 			$log['user'] = $this->session->userdata('nip');
@@ -2727,6 +2761,10 @@ class Uploads extends CI_Controller {
 			redirect('uploads/v_sas');
 		}
 	}
+
+
+
+
 
 	public function uploadRealisasiKalbar()
 	{
@@ -2871,19 +2909,25 @@ class Uploads extends CI_Controller {
 			$this->db->where('kode_satker', $satker_ntb);
 			$this->db->delete('output_sas');
 
+			
 			foreach($sheet as $row){
-				if($numrow > 6){
-					$ket1 = trim($row['AB']);
+				if($numrow > 1){
+					$ket1 = trim($row['AI']);
 					// echo "$ket1<br>";
 					$ket = substr($ket1, 9);
+					
 					$temp = explode(" ", $ket1);
-					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
+
+					$regex = '/^[0-9]{4}\.[A-Z]{3}$/';
+					$regex1 = '/^[0-9]{4}\.[A-Z]{3}\.[0-9]{3}$/';
+					// var_dump(preg_match($regex, $temp[0]));exit();
 					if (preg_match($regex, $temp[0])) {
 						$cunit++;
 						$satker_biro = explode(".", $temp[0]);
 
-
 						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+
+
 						$unitntb = array();
 						array_push($unitntb, array(
 							'kode_satker'      => $satker_ntb,
@@ -2894,36 +2938,32 @@ class Uploads extends CI_Controller {
 						));
 						// exit;
 						$this->db->insert_batch('unit_sas', $unitntb);
-					// $sql1 = "INSERT INTO unit_sas values (".$satker_ntb.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-					// echo "$sql1";
-					// echo "<br>";
-					// $this->db->query($sql1);
 
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
-						$ket1 = trim($row['AB']);
+
+					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
+						$ket1 = trim($row['AI']);
 						$ket1 = substr($ket1, 4);
-					   // echo "$ket1<br>";
+					    // var_dump($ket1);exit();
 
-						$pagu = $row['B'];
+						$pagu = $row['AB'];
 					   // echo "pagunya"."$pagu";
-						$realisasi = $row['C'];
+						$realisasi = $row['AC'];
+					   // echo "realisasi"."$realisasi";
+					   // echo $row['A']."<br>" ;
 
 						$outputntb = array();
 						array_push($outputntb, array(
 							'kode_satker' => $satker_ntb,
 							'id_b'      => $satker_biro[0],
 							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['AC']),
-							'realisasi' => preg_replace("/[^0-9]/", "", $row['AD']),
+							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
 							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
 						// exit;
 						$this->db->insert_batch('output_sas', $outputntb);
-				 // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_ntb.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['AC']).",".preg_replace("/[^0-9]/", "", $row['AD']).",'".$ket1."') ";
-				 // echo "$sql2";
-				 // echo "<br>";
-				 // $this->db->query($sql2);
+
 					}
 
 				}

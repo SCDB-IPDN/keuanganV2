@@ -22,7 +22,7 @@
 							<div class="row">
                                 <div class="col-xl-7 col-lg-8">
                                     <?php echo $this->session->flashdata('notifpagu') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadSASjatinangor" enctype="multipart/form-data">
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadPagu" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="exampleInputEmail2">UNGGAH FILE EXCEL JATINANGOR</label>
                                             <span class="ml-2">
@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-xl-7 col-lg-8">
                                     <?php echo $this->session->flashdata('jakarta') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadSASjakarta" enctype="multipart/form-data">
+                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiJakarta" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="exampleInputEmail2">UNGGAH FILE EXCEL JAKARTA</label>
                                             <span class="ml-2">
@@ -56,20 +56,20 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="card-body">
-							<div class="row">
+                     <div class="card-body">
+                            <div class="row">
                                 <div class="col-xl-7 col-lg-8">
                                     <?php echo $this->session->flashdata('notifsulsel') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiSulsel" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SULSEL</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SULAWESI SELATAN</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
-                                            <input for="biroN" type="file" name="sulsel" class="form-control">
+                                            <input for="sulsel" type="file" name="sulsel" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SULSEL</button>
+                                        <button id="sulsel" type="submit" class="btn btn-success">UPLOAD REKAP JAKARTA</button>
                                     </form>
                                 </div>
                             </div>

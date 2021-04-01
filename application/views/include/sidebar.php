@@ -266,7 +266,7 @@
 					<span>Keprajaan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja'); ?>">PRAJA</a></li>
+					<li class="<?php echo $this->uri->segment(1) == "praja" ? "active" : ""; ?>"><a href="<?php echo base_url('praja'); ?>">PRAJA</a></li>
 					<!-- <li class="<?php echo $this->uri->segment(1) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li> -->
 				</ul>
 			</li>
