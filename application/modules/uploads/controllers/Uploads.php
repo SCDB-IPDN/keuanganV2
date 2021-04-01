@@ -2653,7 +2653,7 @@ class Uploads extends CI_Controller {
 		}
 	}
 
-		public function uploadRealisasiSulsel()
+	public function uploadRealisasiSulsel()
 	{
 				// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -2686,62 +2686,54 @@ class Uploads extends CI_Controller {
 			$this->db->delete('output_sas');
 
 
+
+
 			foreach($sheet as $row){
 				if($numrow > 1){
-					$ket1 = trim($row['AI']);
-					// echo "$ket1<br>";
-					$ket = substr($ket1, 9);
-					
-					$temp = explode(" ", $ket1);
 
-					$regex = '/^[0-9]{4}\.[A-Z]{3}$/';
-					$regex1 = '/^[0-9]{4}\.[A-Z]{3}\.[0-9]{3}$/';
-					// var_dump(preg_match($regex, $temp[0]));exit();
-					if (preg_match($regex, $temp[0])) {
+					if ($row['A'] == 2){
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+						$ket = trim($row['AI']);
 
+						$ex = explode(' ', $ket);
+						$satker_biro = $ex[0];
+						// var_dump($satker_biro);exit();
+						$keterangan = substr($ket, 5);
 
 						$unitsulsel = array();
 						array_push($unitsulsel, array(
 							'kode_satker'      => $satker_sulsel,
-							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
-							'ket'      => $ket,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
 							'tanggal' => $tgl
 						));
-						// exit;
+
 						$this->db->insert_batch('unit_sas', $unitsulsel);
+					}elseif($row['A'] == 3){
 
-
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
-						$ket1 = trim($row['AI']);
-						$ket1 = substr($ket1, 4);
-					    // var_dump($ket1);exit();
-
-						$pagu = $row['AB'];
-					   // echo "pagunya"."$pagu";
-						$realisasi = $row['AC'];
-					   // echo "realisasi"."$realisasi";
-					   // echo $row['A']."<br>" ;
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0];
 
 						$outputsulsel = array();
 						array_push($outputsulsel, array(
-							'kode_satker' => $satker_sulsel,
-							'id_b'      => $satker_biro[0],
-							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
-							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
-							'ket'      => $ket1,
-							'tanggal' => $tgl
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      =>$satker_sulsel,
+							'ket'      => $keterangan,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' =>preg_replace("/[^0-9]/", "", $row['AC']),
+							'tanggal' =>$tgl
 						));
-						// exit;
+						print("<pre>".print_r($outputsulsel,true)."</pre>");
 						$this->db->insert_batch('output_sas', $outputsulsel);
 
 					}
-
+					
 				}
 				$numrow++;
 			}

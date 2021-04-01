@@ -16,7 +16,7 @@ class D_sas_modelbaru extends CI_Model
 
     public function get_output($kegiatan)
     {
-        $output = $this->db->query("SELECT outputnya_sas.ket as nama ,outputnya_sas.id_c, akun_sas.id_c as satker, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN outputnya_sas ON outputnya_sas.id_c = akun_sas.id_c WHERE akun_sas.id_b = $kegiatan GROUP BY akun_sas.id_c ORDER BY akun_sas.id_c ");
+        $output = $this->db->query("SELECT outputnya_sas.ket as nama ,outputnya_sas.id_c, SUM(akun_sas.pagu) as pagu, SUM(akun_sas.realisasi) as realisasi FROM akun_sas JOIN outputnya_sas ON outputnya_sas.id_c = akun_sas.id_c WHERE akun_sas.id_b = $kegiatan GROUP BY akun_sas.id_c ORDER BY akun_sas.id_c ");
         return $output;
     }
 
