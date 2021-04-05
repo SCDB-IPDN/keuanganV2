@@ -65,14 +65,28 @@ class Home_model extends CI_Model{
 						->result();
 		return $result;
 	}
-//Kerja sama
-public function jumlah_pks()
-{
+
+	public function penempatanDosen(){
+		return $this->db->query("SELECT 
+			SUM(kampus LIKE 'JATINANGOR') as jatinangor,
+			SUM(kampus LIKE 'JAKARTA') as jakarta,
+			SUM(kampus LIKE 'SUMATERA BARAT') as sumbar,
+			SUM(kampus LIKE 'KALIMANTAN BARAT') as kalbar,
+			SUM(kampus LIKE 'SULAWESI SELATAN') as sulsel,
+			SUM(kampus LIKE 'SULAWESI UTARA') as sulut,
+			SUM(kampus LIKE 'NTB') as ntb,
+			SUM(kampus LIKE 'PAPUA') as papua
+			FROM tbl_dosen_pddikti")->result();
+	}
+
+	//Kerja sama
+	public function jumlah_pks()
+	{
+			
+		$pks = $this->db->query("SELECT COUNT(*) as pks from tbl_kerjasama where status = 'Masih Berlaku'")->result();
 		
-	$pks = $this->db->query("SELECT COUNT(*) as pks from tbl_kerjasama where status = 'Masih Berlaku'")->result();
-	
-	return $pks;
-}
+		return $pks;
+	}
 
 	// Hukum & ORTALA
 	public function jumlah_prokum()

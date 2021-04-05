@@ -161,6 +161,7 @@ class Home extends CI_Controller {
 
 
       $x['dosen'] = $dosen;
+      $x['penempatanDosen'] = $this->home_model->penempatanDosen()[0];
       $x['last_dosen'] = $last_dosen;
       
       $x['angkatan'] = $angkatan;
