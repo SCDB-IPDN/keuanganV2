@@ -69,7 +69,7 @@
                                             <input for="sulsel" type="file" name="sulsel" class="form-control">
                                         </div>
 
-                                        <button id="sulsel" type="submit" class="btn btn-success">UPLOAD REKAP JAKARTA</button>
+                                        <button id="sulsel" type="submit" class="btn btn-success">UPLOAD REKAP SULAWESI SELATAN</button>
                                     </form>
                                 </div>
                             </div>
@@ -81,14 +81,14 @@
                                     <?php echo $this->session->flashdata('notifkalbar') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiKalbar" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL KALBAR</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL KALIMANTAN BARAT</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
                                             <input for="biroN" type="file" name="kalbar" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP KALBAR</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP KALIMANTAN BARAT</button>
                                     </form>
                                 </div>
                             </div>
@@ -100,14 +100,14 @@
                                     <?php echo $this->session->flashdata('notifntb') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiNTB" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL NTB</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL NUSA TENGGARA BARAT</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
                                             <input for="biroN" type="file" name="ntb" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP NTB</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP NUSA TENGGARA BARAT</button>
                                     </form>
                                 </div>
                             </div>
@@ -138,14 +138,14 @@
                                     <?php echo $this->session->flashdata('notifsulut') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiSulut" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SULUT</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SULAWESI UTARA</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
                                             <input for="biroN" type="file" name="sulut" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SULUT</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SULAWESI UTARA</button>
                                     </form>
                                 </div>
                             </div>
@@ -157,37 +157,18 @@
                                     <?php echo $this->session->flashdata('notifsumbar') ?>
                                     <form method="POST" action="<?php echo base_url() ?>uploads/uploadRealisasiSumbar" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SUMBAR</label>
+                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL SUMATERA BARAT</label>
                                             <span class="ml-2">
                                                 <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
                                             </span>
                                             <input for="biroN" type="file" name="sumbar" class="form-control">
                                         </div>
 
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SUMBAR</button>
+                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP SUMATERA BARAT</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-
-                         <!-- <div class="card-body">
-                            <div class="row">
-                                <div class="col-xl-7 col-lg-8">
-                                    <?php echo $this->session->flashdata('notifnangor') ?>
-                                    <form method="POST" action="<?php echo base_url() ?>uploads/uploadJatinangor" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2">UNGGAH FILE EXCEL JATINANGOR</label>
-                                            <span class="ml-2">
-                                                <i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Format yang diupload .xlsx" data-placement="top" data-content=""></i>
-                                            </span>
-                                            <input for="biroN" type="file" name="nangor" class="form-control">
-                                        </div>
-
-                                        <button id="biroN" type="submit" class="btn btn-success">UPLOAD REKAP Jatinangor</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

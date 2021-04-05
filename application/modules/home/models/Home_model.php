@@ -21,7 +21,7 @@ class Home_model extends CI_Model{
 
 	public function ceksas()
 	{
-		$peg = $this->db->query("SELECT * FROM output_sas where tanggal like '%2021%'")->result();
+		$peg = $this->db->query("SELECT * FROM suboutput_sas where tanggal like '%2021%'")->result();
 
 		return $peg;
 	}
@@ -311,7 +311,7 @@ public function jumlah_pks()
 
 	public function get_all_sas()
 	{	
-		$result = $this->db->query("SELECT (100*sum(output_sas.realisasi)/sum(output_sas.pagu)) as persen FROM output_sas JOIN tbl_satker ON output_sas.kode_satker = tbl_satker.kode_satker")->result();
+		$result = $this->db->query("SELECT (100*sum(suboutput_sas.realisasi)/sum(suboutput_sas.pagu)) as persen FROM suboutput_sas JOIN tbl_satker ON suboutput_sas.kode_satker = tbl_satker.kode_satker")->result();
 
 		return $result;
 	}

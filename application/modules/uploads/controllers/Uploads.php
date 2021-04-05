@@ -2189,39 +2189,29 @@ class Uploads extends CI_Controller {
 
 	public function uploadPagu()
 	{
+		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['pagu']['name']) && in_array($_FILES['pagu']['type'], $file_mimes)) {
-			// var_dump($file_mimes);exit();
+		if (isset($_FILES['pagu']['name']) && in_array($_FILES['pagu']['type'], $file_mimes)) {
 
 			$arr_file = explode('.', $_FILES['pagu']['name']);
 			$extension = end($arr_file);
-			// var_dump($extension);exit;
 
-			if($extension != 'xlsx') {
-				$this->session->set_flashdata('notifpagu', '<div class="alert alert-danger"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
+			if ($extension != 'xlsx') {
+				$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
-				redirect("uploads/v_sas"); 
+				redirect("uploads/v_sas");
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
 			$loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
-			// var_dump($reader->load($_FILES['pagu']['tmp_name']));exit;
-
-
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
-
-
-			$dataunit = array();
-			$dataoutput = array();
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+			$data = array();
 			$numrow = 1;
-			$bag = '';
-			$id_c = 0;
-			$id_b = 0;
-			$cbiro = 0;
+			$cbiro = 1;
+			$cunit = 0;
 			$satker_jatinangor = 448302;
 			$tgl = date('Y-m-d');
-
 
 			$this->db->where('kode_satker', $satker_jatinangor);
 			$this->db->delete('unit_sas');
@@ -2229,316 +2219,95 @@ class Uploads extends CI_Controller {
 			$this->db->where('kode_satker', $satker_jatinangor);
 			$this->db->delete('output_sas');
 
+			$this->db->where('kode_satker', $satker_jatinangor);
+			$this->db->delete('suboutput_sas');
 
-			foreach($sheet as $row){
-				if($numrow > 1){
-					if ($row['A'] == 2){
-						$cunit = 0;
-						$coutput = 0;
-						if (strpos($row['AI'], 'Perencanaan')) {
-							$cbiro = 1;
-							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
-							// echo "ID BIRO : ".$id_b." <br>";
-						}elseif (strpos($row['AI'], 'Keuangan')) {
-							$cbiro = 2;
-							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
-							// echo "ID BIRO : ".$id_b." <br>";
-						}elseif (strpos($row['AI'], 'Alumni')) {
-							$cbiro = 3;
-							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
-							// echo "ID BIRO : ".$id_b." <br>";
-						}elseif (strpos($row['AI'], 'Hukum')) {
-							$cbiro = 4;
-							$id_b = ($cbiro<10)?"10".$cbiro:"1".$cbiro;
-							// echo "ID BIRO : ".$id_b." <br>";
-						}
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
 
-
-					} elseif ($row['A'] == 3) {
-
-					// if ($row['A'] == 3) {
+					if ($row['A'] == 2) {
 						$cunit++;
-						$unit = $id_b."<br>".(($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit).$row['AI']."<br>";
-						$temp = explode(".", $row['AI']);
-						$satker_biro = $temp[0];
-						// var_dump($satker_biro);exit();
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
-						// echo $id_c;
 						$ket = trim($row['AI']);
-						$temp = explode(".", $ket);
-						$satker_biro = $temp[0];
-						$ket = substr($ket, 9);
 
-						
-						//echo "<br><br>";
-
-						array_push($dataunit, array(
-							'kode_satker' => $satker_jatinangor,
-							'id_b'      => $satker_biro,
-							'id_c'      =>$id_c,
-							'ket'      => $ket,
-							'tanggal' => $tgl
-						));
-
-
-					} elseif ($row['A'] ==5) {
-						$coutput++;                        
-						$ket1 = trim($row['AI']);
-						$ket1 = substr($ket1, 4);
-						array_push($dataoutput, array(
-							'kode_satker' => $satker_jatinangor,
-							'id_b'      => $satker_biro,
-							'id_c'      =>$id_c,
-							// 'id_u'      => ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
-							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
-							'ket'      => $ket1,
-							'tanggal' => $tgl
-						));
-
-					}
-				}
-				$numrow++;
-			}
-			// echo "<br>";
-			// var_dump($data);
-
-			// echo "</pre>";
-			// exit();
-
-			// $this->db->truncate('unit');
-			$this->db->insert_batch('unit_sas', $dataunit);
-			// $this->db->truncate('output');
-			$this->db->insert_batch('output_sas', $dataoutput);
-			//delete file from server
-			// unlink(realpath('excel/'.$data_upload['file_name']));
-
-			//upload success
-			$log['user'] = $this->session->userdata('nip');
-			$log['Ket'] = "UPLOAD PAGU";
-			$log['tanggal'] = date('Y-m-d H:i:s');
-			$this->uploads_model->log($log);
-
-			$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
-			//redirect halaman
-			redirect('uploads/v_sas');
-
-		}
-	}
-
-	public function uploadSASjatinangor()
-	{
-		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['pagu']['name']) && in_array($_FILES['pagu']['type'], $file_mimes)) {
-			// var_dump($file_mimes);exit();
-
-			$arr_file = explode('.', $_FILES['pagu']['name']);
-			$extension = end($arr_file);
-			// var_dump($extension);exit;
-
-			if($extension != 'xlsx') {
-				$this->session->set_flashdata('notifpagu', '<div class="alert alert-danger"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
-
-				redirect("uploads/v_sas"); 
-			} else {
-				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-			}
-
-			$loadexcel  = $reader->load($_FILES['pagu']['tmp_name']);
-			// var_dump($reader->load($_FILES['pagu']['tmp_name']));exit;
-
-
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
-
-
-			$dataoutput = array();
-			$datasuboutput = array();
-			$datakegiatan = array();
-			$datakomponen = array();
-			$datasubkomponen = array();
-			$dataakun = array();
-			$numrow = 1;
-			$dkomponen = 0;
-			$dsubkomponen = 0;
-			$dsubkomponen = 0;
-			$dakun = 0;
-			
-			$satker_jatinangor = 448302;
-			$tgl = date('Y-m-d');
-
-
-			// $this->db->where('kode_satker', $satker_jatinangor);
-			// $this->db->delete('unit_sas');
-
-			// $this->db->where('kode_satker', $satker_jatinangor);
-			// $this->db->delete('output_sas');
-
-
-			foreach($sheet as $row){
-				if($numrow > 1){
-					if ($row['A'] == 2){
-						$ket = trim($row['AI']);
 						$ex = explode(' ', $ket);
-						$id_b = $ex[0];
+						$satker_biro = $ex[0] . "." . $satker_jatinangor;
+						// var_dump($satker_biro);exit();
 						$keterangan = substr($ket, 5);
 
-						array_push($datakegiatan, array(
-							'id_b'      => $id_b,
-							'satker'      =>$satker_jatinangor,
-							'ket'      => $keterangan
+						$unitjatinangor = array();
+						array_push($unitjatinangor, array(
+							'kode_satker'      => $satker_jatinangor,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
+							'tanggal' => $tgl
 						));
-						
 
+						$this->db->insert_batch('unit_sas', $unitjatinangor);
 					} elseif ($row['A'] == 3) {
-						$ket = trim($row['AI']);
-						$ex = explode(' ', $ket);
-						$id_c = $ex[0];
-						// var_dump($id_c);exit;
-						$keterangan = substr($ket, 9);
 
-						array_push($dataoutput, array(
-							'id_b'      => $id_b,
-							'id_c'      => $id_c,
-							'satker'      =>$satker_jatinangor,
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0] . "." . $satker_jatinangor;
+						$iduntuksuboutput = $ex[0];
+
+
+						$outputjatinangor = array();
+						array_push($outputjatinangor, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      => $satker_jatinangor,
 							'ket'      => $keterangan
 						));
-						
-						
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
+						$this->db->insert_batch('output_sas', $outputjatinangor);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
 
-					} elseif ($row['A'] ==4) {
-						$ket = trim($row['AI']);
-						$ex = explode(' ', $ket);
-						$id = $ex[0];
-
-						$id_d = $id_c.".".$id;
-						
-						$keterangan = substr($ket, 4);
-						// var_dump($keterangan);exit;
-						array_push($datasuboutput, array(
-							'id_b'      => $id_b,
-							'id_c'      => $id_c,
-							'id_d'      => $id_d,
-							'satker'      =>$satker_jatinangor,
-							'ket'      => $keterangan
-						));
-						// print("<pre>".print_r($datasuboutput,true)."</pre>");
-						// exit();
-
-					} elseif ($row['A'] == 5) {
-						$dkomponen++;
-						$ket = trim($row['AI']);
-						$ex = explode(' ', $ket);
-						$id = $ex[0];
-
-						$ex1 = explode('.', $id_c);
-						$id1 = $ex1[1];
-
-						$id_e = "komp".".".$id1."."."0".$dkomponen;
-						// var_dump($id_e);exit;
-						
-						$keterangan = substr($ket, 4);
-						// var_dump($keterangan);exit;
-						array_push($datakomponen, array(
-							'id_b'      => $id_b,
-							'id_c'      => $id_c,
-							'id_d'      => $id_d,
-							'id_e'      => $id_e,
-							'satker'      =>$satker_jatinangor,
-							'ket'      => $keterangan
-						));
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
 
 
-					} elseif ($row['A'] == 6) {
-						$dsubkomponen++;
-						$ket = trim($row['AI']);
-						$ex = explode(' ', $ket);
-						$id = $ex[0];
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_jatinangor;
 
-						$ex1 = explode('.', $id_c);
-						$id1 = $ex1[1];
-
-						$id_f = "subkomp".".".$id1."."."0".$dsubkomponen;
-						
-						
-						$keterangan = substr($ket, 4);
-						// var_dump($keterangan);exit;
-						array_push($datasubkomponen, array(
-							'id_b'      => $id_b,
-							'id_c'      => $id_c,
-							'id_d'      => $id_d,
-							'id_e'      => $id_e,
-							'id_f'      => $id_f,
-							'satker'      =>$satker_jatinangor,
-							'ket'      => $keterangan
-						));
-						// print("<pre>".print_r($datasubkomponen,true)."</pre>");
-						// exit();
-
-					} elseif ($row['A'] == 7) {
-						$dakun++;
-						$ket = trim($row['AI']);
-						$ex = explode(' ', $ket);
-						$id = $ex[0];
-
-						$ex1 = explode('.', $id_c);
-						$id1 = $ex1[1];
-
-						$id_g = "akun".".".$id1."."."0".$dakun;
-
-						array_push($dataakun, array(
-							'id_b'      => $id_b,
-							'id_c'      => $id_c,
-							'id_d'      => $id_d,
-							'id_e'      => $id_e,
-							'id_f'      => $id_f,
-							'id_g'      => $id_g,
-							'satker'      =>$satker_jatinangor,
-							'ket'      => $ket,
+						$suboutjatinangor = array();
+						array_push($suboutjatinangor, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_jatinangor,
+							'ket'      => $keterangan1,
 							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
-							'realisasi' =>preg_replace("/[^0-9]/", "", $row['AC']),
-							'tgl' =>$tgl
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+							'tanggal' => $tgl
 						));
-						
+						// print("<pre>".print_r($suboutputsulsel,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutjatinangor);
 					}
 				}
 				$numrow++;
 			}
-			// echo "<br>";
-			// var_dump($data);
-
-			// echo "</pre>";
-			// exit();
-			// print("<pre>".print_r($dataakun,true)."</pre>");
-			// exit();
-
-			$this->db->truncate('kegiatan_sas');
-			$this->db->insert_batch('kegiatan_sas', $datakegiatan);
-			$this->db->truncate('outputnya_sas');
-			$this->db->insert_batch('outputnya_sas', $dataoutput);
-			$this->db->truncate('suboutput_sas');
-			$this->db->insert_batch('suboutput_sas', $datasuboutput);
-			$this->db->truncate('komponen_sas');
-			$this->db->insert_batch('komponen_sas', $datakomponen);
-			$this->db->truncate('subkomponen_sas');
-			$this->db->insert_batch('subkomponen_sas', $datasubkomponen);
-			$this->db->truncate('akun_sas');
-			$this->db->insert_batch('akun_sas', $dataakun);
+			// $this->db->truncate('realisasi_kalbar');
+			// $this->db->insert_batch('realisasi_kalbar', $data);
 			//delete file from server
-			// unlink(realpath('excel/'.$data_upload['file_name']));
+			unlink(realpath('excel/' . $data_upload['file_name']));
 
 			//upload success
 			$log['user'] = $this->session->userdata('nip');
-			$log['Ket'] = "UPLOAD SAS JATINANGOR";
+			$log['Ket'] = "UPLOAD REALISASI JATINANGOR";
 			$log['tanggal'] = date('Y-m-d H:i:s');
 			$this->uploads_model->log($log);
 
 			$this->session->set_flashdata('notifpagu', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
 			//redirect halaman
 			redirect('uploads/v_sas');
-
 		}
 	}
+
 
 	public function uploadRealisasiJakarta()
 	{
@@ -2655,23 +2424,23 @@ class Uploads extends CI_Controller {
 
 	public function uploadRealisasiSulsel()
 	{
-				// Load plugin PHPExcel nya
+		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['sulsel']['name']) && in_array($_FILES['sulsel']['type'], $file_mimes)) {
+		if (isset($_FILES['sulsel']['name']) && in_array($_FILES['sulsel']['type'], $file_mimes)) {
 
 			$arr_file = explode('.', $_FILES['sulsel']['name']);
 			$extension = end($arr_file);
 
-			if($extension != 'xlsx') {
+			if ($extension != 'xlsx') {
 				$this->session->set_flashdata('notifsulsel', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
-				redirect("uploads/v_sas"); 
+				redirect("uploads/v_sas");
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
 			$loadexcel  = $reader->load($_FILES['sulsel']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -2685,19 +2454,19 @@ class Uploads extends CI_Controller {
 			$this->db->where('kode_satker', $satker_sulsel);
 			$this->db->delete('output_sas');
 
+			$this->db->where('kode_satker', $satker_sulsel);
+			$this->db->delete('suboutput_sas');
 
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
 
-
-			foreach($sheet as $row){
-				if($numrow > 1){
-
-					if ($row['A'] == 2){
+					if ($row['A'] == 2) {
 						$cunit++;
 
 						$ket = trim($row['AI']);
 
 						$ex = explode(' ', $ket);
-						$satker_biro = $ex[0];
+						$satker_biro = $ex[0] . "." . $satker_sulsel;
 						// var_dump($satker_biro);exit();
 						$keterangan = substr($ket, 5);
 
@@ -2711,36 +2480,56 @@ class Uploads extends CI_Controller {
 						));
 
 						$this->db->insert_batch('unit_sas', $unitsulsel);
-					}elseif($row['A'] == 3){
+					} elseif ($row['A'] == 3) {
 
 						$ket = trim($row['AI']);
 						$keterangan = substr($ket, 8);
 						// var_dump($keterangan);exit();
 						$ex = explode(' ', $ket);
-						$id = $ex[0];
+						$id = $ex[0] . "." . $satker_sulsel;
+						$iduntuksuboutput = $ex[0];
+
 
 						$outputsulsel = array();
 						array_push($outputsulsel, array(
 							'id_b'      => $satker_biro,
 							'id_c'      => $id,
-							'kode_satker'      =>$satker_sulsel,
-							'ket'      => $keterangan,
-							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
-							'realisasi' =>preg_replace("/[^0-9]/", "", $row['AC']),
-							'tanggal' =>$tgl
+							'kode_satker'      => $satker_sulsel,
+							'ket'      => $keterangan
 						));
-						print("<pre>".print_r($outputsulsel,true)."</pre>");
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
 						$this->db->insert_batch('output_sas', $outputsulsel);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
 
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
+
+
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_sulsel;
+
+						$suboutputsulsel = array();
+						array_push($suboutputsulsel, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_sulsel,
+							'ket'      => $keterangan1,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
+							'tanggal' => $tgl
+						));
+						// print("<pre>".print_r($suboutputsulsel,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutputsulsel);
 					}
-					
 				}
 				$numrow++;
 			}
 			// $this->db->truncate('realisasi_kalbar');
 			// $this->db->insert_batch('realisasi_kalbar', $data);
 			//delete file from server
-			unlink(realpath('excel/'.$data_upload['file_name']));
+			unlink(realpath('excel/' . $data_upload['file_name']));
 
 			//upload success
 			$log['user'] = $this->session->userdata('nip');
@@ -2871,23 +2660,23 @@ class Uploads extends CI_Controller {
 
 	public function uploadRealisasiNTB()
 	{
-				// Load plugin PHPExcel nya
+		// Load plugin PHPExcel nya
 		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		if(isset($_FILES['ntb']['name']) && in_array($_FILES['ntb']['type'], $file_mimes)) {
+		if (isset($_FILES['ntb']['name']) && in_array($_FILES['ntb']['type'], $file_mimes)) {
 
 			$arr_file = explode('.', $_FILES['ntb']['name']);
 			$extension = end($arr_file);
 
-			if($extension != 'xlsx') {
+			if ($extension != 'xlsx') {
 				$this->session->set_flashdata('ntb', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
 
-				redirect("uploads/v_sas"); 
+				redirect("uploads/v_sas");
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
 			$loadexcel  = $reader->load($_FILES['ntb']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -2901,63 +2690,79 @@ class Uploads extends CI_Controller {
 			$this->db->where('kode_satker', $satker_ntb);
 			$this->db->delete('output_sas');
 
-			
-			foreach($sheet as $row){
-				if($numrow > 1){
-					$ket1 = trim($row['AI']);
-					// echo "$ket1<br>";
-					$ket = substr($ket1, 9);
-					
-					$temp = explode(" ", $ket1);
+			$this->db->where('kode_satker', $satker_ntb);
+			$this->db->delete('suboutput_sas');
 
-					$regex = '/^[0-9]{4}\.[A-Z]{3}$/';
-					$regex1 = '/^[0-9]{4}\.[A-Z]{3}\.[0-9]{3}$/';
-					// var_dump(preg_match($regex, $temp[0]));exit();
-					if (preg_match($regex, $temp[0])) {
+
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
+
+					if ($row['A'] == 2) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+						$ket = trim($row['AI']);
 
+						$ex = explode(' ', $ket);
+						$satker_biro = $ex[0] . "." . $satker_ntb;
+						// var_dump($satker_biro);exit();
+						$keterangan = substr($ket, 5);
 
 						$unitntb = array();
 						array_push($unitntb, array(
 							'kode_satker'      => $satker_ntb,
-							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
-							'ket'      => $ket,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
 							'tanggal' => $tgl
 						));
-						// exit;
+
 						$this->db->insert_batch('unit_sas', $unitntb);
+					} elseif ($row['A'] == 3) {
+
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0];
+
+						$id = $ex[0] . "." . $satker_ntb;
+						$iduntuksuboutput = $ex[0];
 
 
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
-						$ket1 = trim($row['AI']);
-						$ket1 = substr($ket1, 4);
-					    // var_dump($ket1);exit();
-
-						$pagu = $row['AB'];
-					   // echo "pagunya"."$pagu";
-						$realisasi = $row['AC'];
-					   // echo "realisasi"."$realisasi";
-					   // echo $row['A']."<br>" ;
 
 						$outputntb = array();
 						array_push($outputntb, array(
-							'kode_satker' => $satker_ntb,
-							'id_b'      => $satker_biro[0],
-							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      => $satker_ntb,
+							'ket'      => $keterangan
+						));
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
+						$this->db->insert_batch('output_sas', $outputntb);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
+
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
+
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_ntb;
+
+
+						$suboutputntb = array();
+						array_push($suboutputntb, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_ntb,
+							'ket'      => $keterangan1,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
-							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
-						// exit;
-						$this->db->insert_batch('output_sas', $outputntb);
-
+						// print("<pre>".print_r($suboutputntb,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutputntb);
 					}
-
 				}
 				$numrow++;
 			}
