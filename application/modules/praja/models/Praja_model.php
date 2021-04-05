@@ -49,7 +49,7 @@ class Praja_model extends CI_Model
 			(SELECT nama_semester FROM semester WHERE mulai_semester = id_semester) as mulai_semester,
 			(SELECT nama_pembiayaan FROM jenis_pembiayaan  WHERE pembiayaan = id_pembiayaan) as pembiayaan,
 			(SELECT nama_kabkota FROM wilayah WHERE kab_kota = kab_kota) as kab_kota,
-			(SELECT kecamatan FROM wilayah WHERE kecamatan = id_kecamatan) as kecamatan FROM praja_baru WHERE praja_baru.npp = '$npp' ");
+			(SELECT nama_kecamatan FROM wilayah WHERE kecamatan = id_kecamatan) as kecamatan FROM praja_baru WHERE praja_baru.npp = '$npp' ");
 
 		return $result;
 	}
