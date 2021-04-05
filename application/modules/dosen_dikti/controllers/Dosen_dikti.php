@@ -93,6 +93,7 @@ class Dosen_dikti extends CI_Controller {
             $judul_penelitian = $r->judul_penelitian == NULL ? "<i><font>Tidak ada data</font></i>": $r->judul_penelitian;
             $lembaga = $r->lembaga == NULL ? "<i><font>Tidak ada data</font></i>": $r->lembaga;
             $tahun_penelitian = $r->tahun_penelitian == NULL ? "<i><font>Tidak ada data</font></i>": $r->tahun_penelitian;
+            $kampus = $r->kampus == NULL ? "<i><font>Tidak ada data</font></i>": $r->kampus;
 
             if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
                 $aksi = " <a href='javascript:;'
@@ -149,7 +150,8 @@ class Dosen_dikti extends CI_Controller {
                 data-tmt_surat_tugas='$r->tmt_surat_tugas'
                 data-judul_penelitian='$r->judul_penelitian'
                 data-lembaga='$r->lembaga'
-                data-tahun_penelitian='$r->tahun_penelitian' 
+                data-tahun_penelitian='$r->tahun_penelitian'
+                data-kampus='$r->kampus'
                 data-toggle='modal' data-target='#editdosen-dikti' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
                 
                 <a href='javascript:;' 
@@ -211,7 +213,8 @@ class Dosen_dikti extends CI_Controller {
                 data-tmt_surat_tugas='$r->tmt_surat_tugas'
                 data-judul_penelitian='$r->judul_penelitian'
                 data-lembaga='$r->lembaga'
-                data-tahun_penelitian='$r->tahun_penelitian' 
+                data-tahun_penelitian='$r->tahun_penelitian'
+                data-kampus='$r->kampus'
                 data-toggle='modal' data-target='#editdosen-dikti' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a>";
             }else{
                 $aksi = "Tidak ada Akses";
@@ -272,7 +275,8 @@ class Dosen_dikti extends CI_Controller {
                 $tmt_surat_tugas,
                 $judul_penelitian,
                 $lembaga,
-                $tahun_penelitian
+                $tahun_penelitian,
+                $kampus
             );
         }
         
@@ -337,6 +341,7 @@ class Dosen_dikti extends CI_Controller {
         $input_data['judul_penelitian'] = $this->input->post('judul_penelitian', true);
         $input_data['lembaga'] = $this->input->post('lembaga', true);
         $input_data['tahun_penelitian'] = $this->input->post('tahun_penelitian', true);
+        $input_data['kampus'] = $this->input->post('kampus', true);
 
         $input_data['updated_date'] = $date;
 
@@ -418,6 +423,7 @@ class Dosen_dikti extends CI_Controller {
         $input_data['judul_penelitian'] = $this->input->post('judul_penelitian', true);
         $input_data['lembaga'] = $this->input->post('lembaga', true);
         $input_data['tahun_penelitian'] = $this->input->post('tahun_penelitian', true);
+        $input_data['kampus'] = $this->input->post('kampus', true);
 
         $input_data['updated_date'] = $date;
 

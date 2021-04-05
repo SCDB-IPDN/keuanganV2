@@ -147,6 +147,7 @@ $(document).ready(function() {
             modal.find('#judul_penelitianx').val(div.data('judul_penelitian'));
             modal.find('#lembagax').attr("value",div.data('lembaga')); 
             modal.find('#tahun_penelitianx').attr("value",div.data('tahun_penelitian'));
+            modal.find('#kampusx').val(div.data('kampus'));
 
         });
 

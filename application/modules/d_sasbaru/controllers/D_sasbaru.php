@@ -25,6 +25,7 @@ class D_sasbaru extends CI_Controller
                $data = $this->d_sas_modelbaru->get_output($link)->result();
                $x['data'] = json_encode($data);
              // var_dump($data);exit();
+            
            }elseif(strlen($link) == 8) {
                $data = $this->d_sas_modelbaru->get_suboutput($link)->result();
                $x['data'] = json_encode($data);
