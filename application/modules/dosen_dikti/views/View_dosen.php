@@ -121,6 +121,7 @@
                                     <th class="text-nowrap">JUDUL PENELITIAN</th>
                                     <th class="text-nowrap">LEMBAGA</th>
                                     <th class="text-nowrap">TAHUN PENELITIAN</th>
+                                    <th class="text-nowrap">KAMPUS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,13 +158,13 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Tempat Lahir:</label>
-                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir.." required>
+                                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Tanggal Lahir:</label>
-                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
                             </div>
                         </div>
                         <div class="col-xl-2">
@@ -179,7 +180,7 @@
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Agama:</label>
-                                <select name="agama" class="form-control" required>
+                                <select name="agama" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Tidak diisi">Tidak diisi</option>
                                     <option value="ISLAM">ISLAM</option>
@@ -194,7 +195,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Nama Ibu:</label>
-                                <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu.." required>
+                                <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu..">
                             </div>
                         </div>
                         <div class="col-xl-2">
@@ -213,22 +214,28 @@
                                 <input type="number" class="form-control" id="nidn_nup_nidk" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK.." required>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NIK:</label>
-                                <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK.." required>
+                                <input type="number" class="form-control" id="nik" name="nik" placeholder="NIK..">
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">NIP:</label>
+                                <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP.." required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NPWP:</label>
-                                <input type="number" class="form-control" id="npwp" name="npwp" placeholder="NPWP.." required>
+                                <input type="number" class="form-control" id="npwp" name="npwp" placeholder="NPWP..">
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Ikatan Kerja:</label>
-                                <input type="text" class="form-control" id="ikatan_kerja" name="ikatan_kerja" placeholder="Ikatan Kerja.." required>
+                                <input type="text" class="form-control" id="ikatan_kerja" name="ikatan_kerja" placeholder="Ikatan Kerja..">
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -255,115 +262,115 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Jenis Pegawai:</label>
-                                <input type="text" class="form-control" id="jenis_pegawai" name="jenis_pegawai" placeholder="Jenis Pegawai.." required>
+                                <input type="text" class="form-control" id="jenis_pegawai" name="jenis_pegawai" placeholder="Jenis Pegawai..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK CPNS:</label>
-                                <input type="number" class="form-control" id="no_sk_cpns" name="no_sk_cpns" placeholder="No SK CPNS.." required>
+                                <input type="text" class="form-control" id="no_sk_cpns" name="no_sk_cpns" placeholder="No SK CPNS..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">TANGGAL SK CPNS:</label>
-                                <input type="date" class="form-control" id="tanggal_sk_cpns" name="tanggal_sk_cpns" required>
+                                <input type="date" class="form-control" id="tanggal_sk_cpns" name="tanggal_sk_cpns">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK PENGANGKATAN:</label>
-                                <input type="number" class="form-control" id="no_sk_pengangkatan" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
+                                <input type="text" class="form-control" id="no_sk_pengangkatan" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">TANGGAL SK PENGANGKATAN:</label>
-                                <input type="date" class="form-control" id="tanggal_sk_pengangkatan" name="tanggal_sk_pengangkatan" required>
+                                <input type="date" class="form-control" id="tanggal_sk_pengangkatan" name="tanggal_sk_pengangkatan">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Lembaga Pengangkatan:</label>
-                                <input type="text" class="form-control" id="lembaga_pengangkatan" name="lembaga_pengangkatan" placeholder="Lembaga Pengangkatan.." required>
+                                <input type="text" class="form-control" id="lembaga_pengangkatan" name="lembaga_pengangkatan" placeholder="Lembaga Pengangkatan..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Pangkat/Golongan:</label>
-                                <input type="text" class="form-control" id="pangkat_golongan" name="pangkat_golongan" placeholder="Pangkat/Golongan.." required>
+                                <input type="text" class="form-control" id="pangkat_golongan" name="pangkat_golongan" placeholder="Pangkat/Golongan..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Sumber Gaji:</label>
-                                <input type="text" class="form-control" id="sumber_gaji" name="sumber_gaji" placeholder="Sumber Gaji.." required>
+                                <input type="text" class="form-control" id="sumber_gaji" name="sumber_gaji" placeholder="Sumber Gaji..">
                             </div>
                         </div>
                         <div class="col-xl-5">
                             <div class="form-group">
                                 <label class="col-form-label">Alamat:</label>
-                                <textarea class="form-control" id="alamat" name="alamat" rows="4" cols="50" placeholder="Alamat.." required></textarea>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="4" cols="50" placeholder="Alamat.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Dusun:</label>
-                                <input type="text" class="form-control" id="dusun" name="dusun" placeholder="Dusun.." required>
+                                <input type="text" class="form-control" id="dusun" name="dusun" placeholder="Dusun..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">RT:</label>
-                                <input type="number" class="form-control" id="rt" name="rt" placeholder="RT.." required>
+                                <input type="number" class="form-control" id="rt" name="rt" placeholder="RT..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">RW:</label>
-                                <input type="number" class="form-control" id="rw" name="rw" placeholder="RW.." required>
+                                <input type="number" class="form-control" id="rw" name="rw" placeholder="RW..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Kelurahan:</label>
-                                <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan.." required>
+                                <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Kecamatan:</label>
-                                <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan.." required>
+                                <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Kodepos:</label>
-                                <input type="number" class="form-control" id="kodepos" name="kodepos" placeholder="Kodepos.." required>
+                                <input type="number" class="form-control" id="kodepos" name="kodepos" placeholder="Kodepos..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Telepon:</label>
-                                <input type="number" class="form-control" id="telepon" name="telepon" placeholder="Telepon.." required>
+                                <input type="number" class="form-control" id="telepon" name="telepon" placeholder="Telepon..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Handphone:</label>
-                                <input type="number" class="form-control" id="hp" name="hp" placeholder="Handphone.." required>
+                                <input type="number" class="form-control" id="hp" name="hp" placeholder="Handphone..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email.." required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Status Pernikahan:</label>
-                                <select name="status_pernikahan" class="form-control" required>
+                                <select name="status_pernikahan" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Belum Kawin">Belum Kawin</option>
                                     <option value="Kawin">Kawin</option>
@@ -375,7 +382,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Kebutuhan Khusus:</label>
-                                <select name="mampu_menghandle_kebutuhan_khusus" class="form-control" required>
+                                <select name="mampu_menghandle_kebutuhan_khusus" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -385,7 +392,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Braile:</label>
-                                <select name="mampu_menghandle_braile" class="form-control" required>
+                                <select name="mampu_menghandle_braile" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -395,7 +402,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Bahasa Isyarat:</label>
-                                <select name="mampu_menghandle_bahasa_isyarat" class="form-control" required>
+                                <select name="mampu_menghandle_bahasa_isyarat" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -405,13 +412,13 @@
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Sertifikasi Dosen:</label>
-                                <textarea class="form-control" id="sertifikasi_dosen" name="sertifikasi_dosen" rows="4" cols="50" placeholder="Sertifikasi Dosen.." required></textarea>
+                                <textarea class="form-control" id="sertifikasi_dosen" name="sertifikasi_dosen" rows="4" cols="50" placeholder="Sertifikasi Dosen.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Bidang Ilmu:</label>
-                                <textarea class="form-control" id="bidang_ilmu" name="bidang_ilmu" rows="4" cols="50" placeholder="Bidang Ilmu.." required></textarea>
+                                <textarea class="form-control" id="bidang_ilmu" name="bidang_ilmu" rows="4" cols="50" placeholder="Bidang Ilmu.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-4">
@@ -429,67 +436,83 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">SK Jabatan:</label>
-                                <input type="text" class="form-control" id="sk_jabatan" name="sk_jabatan" placeholder="SK Jabatan.." required>
+                                <input type="text" class="form-control" id="sk_jabatan" name="sk_jabatan" placeholder="SK Jabatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">TMT Jabatan:</label>
-                                <input type="text" class="form-control" id="tmt_jabatan" name="tmt_jabatan" placeholder="TMT Jabatan.." required>
+                                <input type="text" class="form-control" id="tmt_jabatan" name="tmt_jabatan" placeholder="TMT Jabatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Tahun Ajaran:</label>
-                                <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" placeholder="Tahun Ajaran.." required>
+                                <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" placeholder="Tahun Ajaran..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Perguruan Tinggi:</label>
-                                <input type="text" class="form-control" id="perguruan_tinggi" name="perguruan_tinggi" placeholder="Perguruan Tinggi.." required>
+                                <input type="text" class="form-control" id="perguruan_tinggi" name="perguruan_tinggi" placeholder="Perguruan Tinggi..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Program Studi:</label>
-                                <input type="text" class="form-control" id="program_studi" name="program_studi" placeholder="Program Studi.." required>
+                                <input type="text" class="form-control" id="program_studi" name="program_studi" placeholder="Program Studi..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">No Surat Tugas:</label>
-                                <input type="number" class="form-control" id="no_surat_tugas" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
+                                <input type="text" class="form-control" id="no_surat_tugas" name="no_surat_tugas" placeholder="No Surat Tugas..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">TMT Surat Tugas:</label>
-                                <input type="text" class="form-control" id="tmt_surat_tugas" name="tmt_surat_tugas" placeholder="TMT Surat Tugas.." required>
+                                <input type="text" class="form-control" id="tmt_surat_tugas" name="tmt_surat_tugas" placeholder="TMT Surat Tugas..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Tanggal Surat Tugas:</label>
-                                <input type="date" class="form-control" id="tanggal_surat_tugas" name="tanggal_surat_tugas" required>
+                                <input type="date" class="form-control" id="tanggal_surat_tugas" name="tanggal_surat_tugas">
                             </div>
                         </div>
                         <div class="col-xl-12">
                             <div class="form-group">
                                 <label class="col-form-label">Judul Penelitian:</label>
-                                <textarea class="form-control" id="judul_penelitian" name="judul_penelitian" placeholder="Judul Penelitian.." required></textarea>
+                                <textarea class="form-control" id="judul_penelitian" name="judul_penelitian" placeholder="Judul Penelitian.."></textarea>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Lembaga:</label>
-                                <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="Lembaga.." required>
+                                <input type="text" class="form-control" id="lembaga" name="lembaga" placeholder="Lembaga..">
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Tahun Penelitian:</label>
-                                <input type="text" class="form-control" id="tahun_penelitian" name="tahun_penelitian" placeholder="Tahun Penelitian.." required>
+                                <input type="text" class="form-control" id="tahun_penelitian" name="tahun_penelitian" placeholder="Tahun Penelitian..">
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label class="col-form-label">KAMPUS:</label>
+                                <select name="kampus" class="form-control" required>
+                                    <option value="">Pilih...</option>
+                                    <option value="JATINANGOR">JATINANGOR</option>
+                                    <option value="JAKARTA">JAKARTA</option>
+                                    <option value="SUMATERA BARAT">SUMATERA BARAT</option>
+                                    <option value="KALIMANTAN BARAT">KALIMANTAN BARAT</option>
+                                    <option value="SULAWESI SELATAN">SULAWESI SELATAN</option>
+                                    <option value="SULAWESI UTARA">SULAWESI UTARA</option>
+                                    <option value="NTB">NTB</option>
+                                    <option value="PAPUA">PAPUA</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -498,25 +521,25 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Nama Suami/Istri *:</label>
-                                <input type="text" class="form-control" id="nama_suami_istri" name="nama_suami_istri" placeholder="Nama Suami/Istri.." required>
+                                <input type="text" class="form-control" id="nama_suami_istri" name="nama_suami_istri" placeholder="Nama Suami/Istri..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Nip Suami/Istri *:</label>
-                                <input type="text" class="form-control" id="nip_suami_istri" name="nip_suami_istri" placeholder="Nip Suami/Istri.." required>
+                                <input type="text" class="form-control" id="nip_suami_istri" name="nip_suami_istri" placeholder="Nip Suami/Istri..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">TMT PNS *:</label>
-                                <input type="text" class="form-control" id="tmt_pns" name="tmt_pns" placeholder="TMT PNS.." required>
+                                <input type="text" class="form-control" id="tmt_pns" name="tmt_pns" placeholder="TMT PNS..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">PEKERJAAN *:</label>
-                                <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="PEKERJAAN.." required>
+                                <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="PEKERJAAN..">
                             </div>
                         </div>
                     </div>
@@ -550,25 +573,25 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama.." required>
+                                <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Tempat Lahir:</label>
-                                <input type="text" class="form-control" id="tempat_lahirx" name="tempat_lahir" placeholder="Tempat Lahir.." required>
+                                <input type="text" class="form-control" id="tempat_lahirx" name="tempat_lahir" placeholder="Tempat Lahir..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Tanggal Lahir:</label>
-                                <input type="date" class="form-control" id="tanggal_lahirx" name="tanggal_lahir" required>
+                                <input type="date" class="form-control" id="tanggal_lahirx" name="tanggal_lahir">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Jenis Kelamin:</label>
-                                <select name="jenis_kelamin" id="jenis_kelaminx" class="form-control" required>
+                                <select name="jenis_kelamin" id="jenis_kelaminx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="L">LAKI-LAKI</option>
                                     <option value="P">PEREMPUAN</option>
@@ -578,7 +601,7 @@
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Agama:</label>
-                                <select name="agama" id="agamax" class="form-control" required>
+                                <select name="agama" id="agamax" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Tidak diisi">Tidak diisi</option>
                                     <option value="ISLAM">ISLAM</option>
@@ -593,13 +616,13 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Nama Ibu:</label>
-                                <input type="text" class="form-control" id="nama_ibux" name="nama_ibu" placeholder="Nama Ibu.." required>
+                                <input type="text" class="form-control" id="nama_ibux" name="nama_ibu" placeholder="Nama Ibu..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Status Aktif:</label>
-                                <select name="status_aktif" id="status_aktifx" class="form-control" required>
+                                <select name="status_aktif" id="status_aktifx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Aktif">Aktif</option>
                                     <option value="Tidak Aktif">Tidak Aktif</option>
@@ -609,31 +632,37 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NIDN/NUP/NIDK:</label>
-                                <input type="number" class="form-control" id="nidn_nup_nidkx" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK.." required>
+                                <input type="number" class="form-control" id="nidn_nup_nidkx" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK..">
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NIK:</label>
-                                <input type="number" class="form-control" id="nikx" name="nik" placeholder="NIK.." required>
+                                <input type="number" class="form-control" id="nikx" name="nik" placeholder="NIK..">
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <label class="col-form-label">NIP:</label>
+                                <input type="number" class="form-control" id="nipx" name="nip" placeholder="NIP..">
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NPWP:</label>
-                                <input type="number" class="form-control" id="npwpx" name="npwp" placeholder="NPWP.." required>
+                                <input type="number" class="form-control" id="npwpx" name="npwp" placeholder="NPWP..">
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Ikatan Kerja:</label>
-                                <input type="text" class="form-control" id="ikatan_kerjax" name="ikatan_kerja" placeholder="Ikatan Kerja.." required>
+                                <input type="text" class="form-control" id="ikatan_kerjax" name="ikatan_kerja" placeholder="Ikatan Kerja..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Status Pegawai:</label>
-                                <select id="status_pegawaix" name="status_pegawai" class="form-control" required>
+                                <select id="status_pegawaix" name="status_pegawai" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="24">IJIN BELAJAR</option>
                                     <option value="1">AKTIF</option>
@@ -654,115 +683,115 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Jenis Pegawai:</label>
-                                <input type="text" class="form-control" id="jenis_pegawaix" name="jenis_pegawai" placeholder="Jenis Pegawai.." required>
+                                <input type="text" class="form-control" id="jenis_pegawaix" name="jenis_pegawai" placeholder="Jenis Pegawai..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK CPNS:</label>
-                                <input type="number" class="form-control" id="no_sk_cpnsx" name="no_sk_cpns" placeholder="No SK CPNS.." required>
+                                <input type="text" class="form-control" id="no_sk_cpnsx" name="no_sk_cpns" placeholder="No SK CPNS..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">TANGGAL SK CPNS:</label>
-                                <input type="date" class="form-control" id="tanggal_sk_cpnsx" name="tanggal_sk_cpns" required>
+                                <input type="date" class="form-control" id="tanggal_sk_cpnsx" name="tanggal_sk_cpns">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NO SK PENGANGKATAN:</label>
-                                <input type="number" class="form-control" id="no_sk_pengangkatanx" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN.." required>
+                                <input type="text" class="form-control" id="no_sk_pengangkatanx" name="no_sk_pengangkatan" placeholder="NO SK PENGANGKATAN..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">TANGGAL SK PENGANGKATAN:</label>
-                                <input type="date" class="form-control" id="tanggal_sk_pengangkatanx" name="tanggal_sk_pengangkatan" required>
+                                <input type="date" class="form-control" id="tanggal_sk_pengangkatanx" name="tanggal_sk_pengangkatan">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Lembaga Pengangkatan:</label>
-                                <input type="text" class="form-control" id="lembaga_pengangkatanx" name="lembaga_pengangkatan" placeholder="Lembaga Pengangkatan.." required>
+                                <input type="text" class="form-control" id="lembaga_pengangkatanx" name="lembaga_pengangkatan" placeholder="Lembaga Pengangkatan..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Pangkat/Golongan:</label>
-                                <input type="text" class="form-control" id="pangkat_golonganx" name="pangkat_golongan" placeholder="Pangkat/Golongan.." required>
+                                <input type="text" class="form-control" id="pangkat_golonganx" name="pangkat_golongan" placeholder="Pangkat/Golongan..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Sumber Gaji:</label>
-                                <input type="text" class="form-control" id="sumber_gajix" name="sumber_gaji" placeholder="Sumber Gaji.." required>
+                                <input type="text" class="form-control" id="sumber_gajix" name="sumber_gaji" placeholder="Sumber Gaji..">
                             </div>
                         </div>
                         <div class="col-xl-5">
                             <div class="form-group">
                                 <label class="col-form-label">Alamat:</label>
-                                <textarea class="form-control" id="alamat" name="alamatx" rows="4" cols="50" placeholder="Alamat.." required></textarea>
+                                <textarea class="form-control" id="alamatx" name="alamat" rows="4" cols="50" placeholder="Alamat.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Dusun:</label>
-                                <input type="text" class="form-control" id="dusunx" name="dusun" placeholder="Dusun.." required>
+                                <input type="text" class="form-control" id="dusunx" name="dusun" placeholder="Dusun..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">RT:</label>
-                                <input type="number" class="form-control" id="rtx" name="rt" placeholder="RT.." required>
+                                <input type="number" class="form-control" id="rtx" name="rt" placeholder="RT..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">RW:</label>
-                                <input type="number" class="form-control" id="rwx" name="rw" placeholder="RW.." required>
+                                <input type="number" class="form-control" id="rwx" name="rw" placeholder="RW..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Kelurahan:</label>
-                                <input type="text" class="form-control" id="kelurahanx" name="kelurahan" placeholder="Kelurahan.." required>
+                                <input type="text" class="form-control" id="kelurahanx" name="kelurahan" placeholder="Kelurahan..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Kecamatan:</label>
-                                <input type="text" class="form-control" id="kecamatanx" name="kecamatan" placeholder="Kecamatan.." required>
+                                <input type="text" class="form-control" id="kecamatanx" name="kecamatan" placeholder="Kecamatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Kodepos:</label>
-                                <input type="number" class="form-control" id="kodeposx" name="kodepos" placeholder="Kodepos.." required>
+                                <input type="number" class="form-control" id="kodeposx" name="kodepos" placeholder="Kodepos..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Telepon:</label>
-                                <input type="number" class="form-control" id="teleponx" name="telepon" placeholder="Telepon.." required>
+                                <input type="number" class="form-control" id="teleponx" name="telepon" placeholder="Telepon..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Handphone:</label>
-                                <input type="number" class="form-control" id="hpx" name="hp" placeholder="Handphone.." required>
+                                <input type="number" class="form-control" id="hpx" name="hp" placeholder="Handphone..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="emailx" name="email" placeholder="Email.." required>
+                                <input type="email" class="form-control" id="emailx" name="email" placeholder="Email..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Status Pernikahan:</label>
-                                <select name="status_pernikahan" id="status_pernikahanx" class="form-control" required>
+                                <select name="status_pernikahan" id="status_pernikahanx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Belum Kawin">Belum Kawin</option>
                                     <option value="Kawin">Kawin</option>
@@ -774,7 +803,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Kebutuhan Khusus:</label>
-                                <select name="mampu_menghandle_kebutuhan_khusus" id="mampu_menghandle_kebutuhan_khususx" class="form-control" required>
+                                <select name="mampu_menghandle_kebutuhan_khusus" id="mampu_menghandle_kebutuhan_khususx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -784,7 +813,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Braile:</label>
-                                <select name="mampu_menghandle_braile" id="mampu_menghandle_brailex" class="form-control" required>
+                                <select name="mampu_menghandle_braile" id="mampu_menghandle_brailex" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -794,7 +823,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Mampu Menghandle Bahasa Isyarat:</label>
-                                <select name="mampu_menghandle_bahasa_isyarat" id="mampu_menghandle_bahasa_isyaratx" class="form-control" required>
+                                <select name="mampu_menghandle_bahasa_isyarat" id="mampu_menghandle_bahasa_isyaratx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -804,19 +833,19 @@
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Sertifikasi Dosen:</label>
-                                <textarea class="form-control" id="sertifikasi_dosenx" name="sertifikasi_dosen" rows="4" cols="50" placeholder="Sertifikasi Dosen.." required></textarea>
+                                <textarea class="form-control" id="sertifikasi_dosenx" name="sertifikasi_dosen" rows="4" cols="50" placeholder="Sertifikasi Dosen.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Bidang Ilmu:</label>
-                                <textarea class="form-control" id="bidang_ilmux" name="bidang_ilmu" rows="4" cols="50" placeholder="Bidang Ilmu.." required></textarea>
+                                <textarea class="form-control" id="bidang_ilmux" name="bidang_ilmu" rows="4" cols="50" placeholder="Bidang Ilmu.."></textarea>
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Jabatan:</label>
-                                <select name="jabatan" id="jabatanx" class="form-control" required>
+                                <select name="jabatan" id="jabatanx" class="form-control">
                                     <option value="">Pilih...</option>
                                     <option value="Guru Besar">Guru Besar</option>
                                     <option value="Lektor Kepala">Lektor Kepala</option>
@@ -828,67 +857,83 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">SK Jabatan:</label>
-                                <input type="text" class="form-control" id="sk_jabatanx" name="sk_jabatan" placeholder="SK Jabatan.." required>
+                                <input type="text" class="form-control" id="sk_jabatanx" name="sk_jabatan" placeholder="SK Jabatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">TMT Jabatan:</label>
-                                <input type="text" class="form-control" id="tmt_jabatanx" name="tmt_jabatan" placeholder="TMT Jabatan.." required>
+                                <input type="text" class="form-control" id="tmt_jabatanx" name="tmt_jabatan" placeholder="TMT Jabatan..">
                             </div>
                         </div>
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Tahun Ajaran:</label>
-                                <input type="text" class="form-control" id="tahun_ajaranx" name="tahun_ajaran" placeholder="Tahun Ajaran.." required>
+                                <input type="text" class="form-control" id="tahun_ajaranx" name="tahun_ajaran" placeholder="Tahun Ajaran..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Perguruan Tinggi:</label>
-                                <input type="text" class="form-control" id="perguruan_tinggix" name="perguruan_tinggi" placeholder="Perguruan Tinggi.." required>
+                                <input type="text" class="form-control" id="perguruan_tinggix" name="perguruan_tinggi" placeholder="Perguruan Tinggi..">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">Program Studi:</label>
-                                <input type="text" class="form-control" id="program_studix" name="program_studi" placeholder="Program Studi.." required>
+                                <input type="text" class="form-control" id="program_studix" name="program_studi" placeholder="Program Studi..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">No Surat Tugas:</label>
-                                <input type="number" class="form-control" id="no_surat_tugasx" name="no_surat_tugas" placeholder="No Surat Tugas.." required>
+                                <input type="text" class="form-control" id="no_surat_tugasx" name="no_surat_tugas" placeholder="No Surat Tugas..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">TMT Surat Tugas:</label>
-                                <input type="text" class="form-control" id="tmt_surat_tugasx" name="tmt_surat_tugas" placeholder="TMT Surat Tugas.." required>
+                                <input type="text" class="form-control" id="tmt_surat_tugasx" name="tmt_surat_tugas" placeholder="TMT Surat Tugas..">
                             </div>
                         </div>
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Tanggal Surat Tugas:</label>
-                                <input type="date" class="form-control" id="tanggal_surat_tugasx" name="tanggal_surat_tugas" required>
+                                <input type="date" class="form-control" id="tanggal_surat_tugasx" name="tanggal_surat_tugas">
                             </div>
                         </div>
                         <div class="col-xl-12">
                             <div class="form-group">
                                 <label class="col-form-label">Judul Penelitian:</label>
-                                <textarea class="form-control" id="judul_penelitianx" name="judul_penelitian" placeholder="Judul Penelitian.." required></textarea>
+                                <textarea class="form-control" id="judul_penelitianx" name="judul_penelitian" placeholder="Judul Penelitian.."></textarea>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Lembaga:</label>
-                                <input type="text" class="form-control" id="lembagax" name="lembaga" placeholder="Lembaga.." required>
+                                <input type="text" class="form-control" id="lembagax" name="lembaga" placeholder="Lembaga..">
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Tahun Penelitian:</label>
-                                <input type="text" class="form-control" id="tahun_penelitianx" name="tahun_penelitian" placeholder="Tahun Penelitian.." required>
+                                <input type="text" class="form-control" id="tahun_penelitianx" name="tahun_penelitian" placeholder="Tahun Penelitian..">
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label class="col-form-label">KAMPUS:</label>
+                                <select name="kampus" id="kampusx" class="form-control" required>
+                                    <option value="">Pilih...</option>
+                                    <option value="JATINANGOR">JATINANGOR</option>
+                                    <option value="JAKARTA">JAKARTA</option>
+                                    <option value="SUMATERA BARAT">SUMATERA BARAT</option>
+                                    <option value="KALIMANTAN BARAT">KALIMANTAN BARAT</option>
+                                    <option value="SULAWESI SELATAN">SULAWESI SELATAN</option>
+                                    <option value="SULAWESI UTARA">SULAWESI UTARA</option>
+                                    <option value="NTB">NTB</option>
+                                    <option value="PAPUA">PAPUA</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -897,25 +942,25 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Nama Suami/Istri *:</label>
-                                <input type="text" class="form-control" id="nama_suami_istrix" name="nama_suami_istri" placeholder="Nama Suami/Istri.." required>
+                                <input type="text" class="form-control" id="nama_suami_istrix" name="nama_suami_istri" placeholder="Nama Suami/Istri..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Nip Suami/Istri *:</label>
-                                <input type="text" class="form-control" id="nip_suami_istrix" name="nip_suami_istri" placeholder="Nip Suami/Istri.." required>
+                                <input type="text" class="form-control" id="nip_suami_istrix" name="nip_suami_istri" placeholder="Nip Suami/Istri..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">TMT PNS *:</label>
-                                <input type="text" class="form-control" id="tmt_pnsx" name="tmt_pns" placeholder="TMT PNS.." required>
+                                <input type="text" class="form-control" id="tmt_pnsx" name="tmt_pns" placeholder="TMT PNS..">
                             </div>
                         </div>
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">PEKERJAAN *:</label>
-                                <input type="text" class="form-control" id="pekerjaanx" name="pekerjaan" placeholder="PEKERJAAN.." required>
+                                <input type="text" class="form-control" id="pekerjaanx" name="pekerjaan" placeholder="PEKERJAAN..">
                             </div>
                         </div>
                     </div>

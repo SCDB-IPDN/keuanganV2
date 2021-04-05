@@ -1,41 +1,11 @@
-
-
-
-<style type="text/css">
-  .icon-praja {
-    color: #E0AFA0;
-  }
-
-  .icon-ortu {
-    color: #C08497;
-  }
-
-  .icon-wali {
-    color: #F4AFAB;
-  }
-
-
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: black;
-    opacity: 1; /* Firefox */
-  }
-
-</style>
-
-<link rel="stylesheet" href="<?php echo base_url() . 'assets/js/morris.css' ?>">
 <div id="content" class="content">
   <ol class="breadcrumb float-xl-right">
     <li class="breadcrumb-item"><a href="<?php echo base_url('home'); ?>">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="<?php echo base_url('d_praja'); ?>">Praja</a></li>
-
+    <li class="breadcrumb-item"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
   </ol>
-
-
-  <h1 class="page-header">PRAJA</h1>
-
+  <h1 class="page-header">Data Keprajaan</h1>
   <div class="row">
     <div class="col-xl-12">
-      <!-- begin panel -->
       <div class="panel panel-inverse">
         <div class="panel-heading">
           <h4 class="panel-title"></h4>
@@ -55,75 +25,61 @@
           </div>
         </div>
       </div>
+      <div class="panel panel-inverse">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span><a href="<?php echo base_url('praja/editstatus');?>" class="btn btn-sm btn-warning">STATUS PRAJA</a></span>
+          </h4>
+          <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <br>
+          
+          <?php if($this->session->flashdata('praja') != NULL){ ?>
+            <div class="alert alert-success alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
+            </div>
+          <?php } ?>
+          <div class="panel-body">
+            <tbody>
+              <tr>
+                <td>
+                  <select name="filter" id="filter_angkatan" class="form-control col-sm-2 mb-3"></select>
+                   <button type="button" id="export" class="btn btn-info">Export Data</button>
+                </td>
+              </tr>
+            </tbody>
+            <table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NPP</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Status</th>
+                  <th>Tingkat</th>
+                  <th>Angkatan</th>
+                  <th>Penempatan</th>
+                  <th>Opsi</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+
+
+      </div>
     </div>
   </div>
 
-  <!-- end panel -->
-  <div class="panel panel-inverse">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <span><a href="<?php echo base_url('d_praja/editstatus');?>" class="btn btn-sm btn-warning"> STATUS PRAJA</a></span>
-        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-square"></i></button> -->
-        <!-- <a href="" class="btn btn-icon btn-sm btn-inverse" data-toggle="modal" data-target="#addpeg"><i class="fa fa-plus-square"></i></a> -->
-      </h4>
-      <div class="panel-heading-btn">
-        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-      </div>
-    </div>
-
-
-    <!-- <p><a href="export.php"><button>Export Data ke Excel</button></a></p> -->
-    <div class="table-responsive">
-      <?php if ($this->session->flashdata('praja') != NULL) { ?>
-        <div class="alert alert-success alert-dismissible">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Notif!</strong> <?php echo $this->session->flashdata('praja') ?>
-        </div>
-      <?php } ?>
-
-      <br>
-      <div class="col-xl-2">
-        <label for="basic-url">Angkatan  : </label>
-        <input class="form-control" list="angkatann" >
-        <datalist id="angkatann">
-         <?php foreach (json_decode($angkatan, true) as $x) : ?>
-           <option value="<?php echo $x['angkatan'] ?>"></option>
-         <?php endforeach; ?>
-
-       </datalist>
-       <br>
-       <button type="button" data-id="5" id="export" class="btn btn-info">Export Data</button>
-       <br>
-     </div>
-     <div class="panel-body">
-       <div class ="table-responsive">
-        <table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
-          <!-- <button href='#' class='btn btn-sm btn-warning' btn-sm><i class='fa fa-edit'></i></button> -->
-          <thead>
-            <tr>
-             <th class="text-nowrap">NO </th>
-             <th class="text-nowrap">NPP</th>
-             <th class="text-nowrap">NAMA</th>
-             <th class="text-nowrap">JENIS KELAMIN </th>
-             <th class="text-nowrap">STATUS </th>
-             <th class="text-nowrap">TINGKAT</th>
-             <th class="text-nowrap">ANGKATAN </th>
-             <th class="text-nowrap">OPSI </th>
-             
-           </tr>
-         </thead>
-       </table>
-     </div>
-   </div>
-
- </div>
-</div>
-
-
-<!-- Modal View -->
+  <!-- Modal View -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="show-data" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -203,7 +159,7 @@
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Alamat"></td>
-                <td><input type="text" readonly class="form-control-plaintext" id="alamatx" style="height:10px;"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="alamatx" ></td>
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="RT"></td>
@@ -220,6 +176,10 @@
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Kelurahan"></td>
                 <td> <input type="text" readonly class="form-control-plaintext" id="kelurahanx" ></td>
+              </tr>
+               <tr>
+                <td><input type="text" readonly class="form-control-plaintext" placeholder="Kabupaten"></td>
+                <td><input type="text" readonly class="form-control-plaintext" id="kab_kotax" ></td>
               </tr>
               <tr>
                 <td><input type="text" readonly class="form-control-plaintext" placeholder="Kecamatan"></td>
@@ -419,7 +379,7 @@
        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
 
      </div>
-     <form class="form-horizontal" action="<?php echo base_url('d_praja/view_edit')?>" method="post" enctype="multipart/form-data" role="form">
+     <form class="form-horizontal" action="<?php echo base_url('praja/view_edit')?>" method="post" enctype="multipart/form-data" role="form">
 
        <div class="modal-body">
         <div class="d-flex align-items-center">
@@ -443,7 +403,7 @@
             <div class="col-xl-2">
               <div class="form-group">
                 <label class="col-form-label">Jenis Kelamin:</label>
-                <select name="jk" id="jk" class="form-control" required="">
+                <select name="jk" id="jk" class="form-control" required=""> 
                   <option value="" >-Pilih Jenis Kelamin-</option>
                   <option value="L">Laki-Laki</option>
                   <option value="P">Perempuan</option>
@@ -479,15 +439,11 @@
               <label class="col-form-label">NIK:</label>
               <input type="text" class="form-control" id="nik_praja" name="nik_praja" placeholder="NIK Praja ...." required="">
             </div>
- <!--            <div class="col-xl">
-              <label class="col-form-label">Agama:</label>
-              <input type="text" class="form-control" id="agama" name="agama" placeholder="NIK Praja ....">
-            </div> -->
             <div class="col-xl">
               <label class="col-form-label">Agama:</label>
-              <select name="agama" id="agama" class="form-control" required>
+              <select name="agama" id="agama" class="form-control" required> 
                <option value="">-Pilih Agama-</option>
-               <?php foreach ($agama as $x) { ?>
+               <?php foreach ($agamaa as $x) { ?>
                 <option value="<?php echo $x->id_agama;?>"><?php echo $x->nama_agama;?></option>
               <?php } ?>
             </select>
@@ -513,9 +469,10 @@
             <label class="col-form-label">Provinsi:</label>
             <!-- <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." required=""> -->
             <select class="form-control" name="provinsi" id="provinsi" required="">
+
               <option value="">-Pilih Provinsi-</option>
               <?php foreach ($wilayah as $x) { ?>
-                <option value="<?php echo $x->id_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
+                <option value="<?php echo $x->nama_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
               <?php } ?>
             </select>
           </div>
@@ -553,6 +510,7 @@
         <div class="col-xl">
           <label class="col-form-label">Jenis Tinggal:</label>
           <select class="form-control" name="jenis_tinggal" id="jenis_tinggal" required="">
+             
             <option value="">-Pilih Jenis Tinggal-</option>
             <?php foreach ($jenistinggal as $x) { ?>
               <option value="<?php echo $x->id_jenis_tinggal;?>"><?php echo $x->nama_jenis_tinggal;?></option>
@@ -595,7 +553,7 @@
           <label class="col-form-label">Fakultas:</label>
           <!-- <label class="col-form-label"></label> -->
           <select class="form-control" name="fk" id="fk" required="">
-          <option value="<?php echo  $data[0]->fakultas ?>"><?php echo  $data[0]->fakultas ?></option>
+           <!--  <option value="<?php echo $data[0]->fakultas?>"><?php echo $data[0]->fakultas ?></option> -->
             <option value="">-Pilih Fakultas-</option>
             <?php foreach ($fakulll as $x) { ?>
               <option value="<?php echo $x->kode_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
@@ -604,8 +562,9 @@
         </div>
         <div class="col-xl">
           <label class="col-form-label">Prodi:</label>
-          <!-- nama_program_studi -->
+          
           <select class="form-control" name="prodi" id="prodi" required="">
+            <!-- <option value="<?php echo $data[0]->prodi?>"><?php echo $data[0]->nama_prodi ?></option> -->
             <!-- <option value="<?php echo $x->id_prodi;?>"><?php echo $x->nama_program_studi;?></option> -->
             <option>-Pilih Program Studi-</option>
           </select>
@@ -620,6 +579,7 @@
        <div class="col-xl">
         <label class="col-form-label">Kewarganegaraan:</label>
         <select class="form-control" name="kewarganegaraan" id="kewarganegaraan" required="">
+          <option value="<?php echo $data[0]->kewarganegaraan?>"><?php echo $data[0]->nama_kewarganegaraan ?></option>
           <option value="">-Pilih Kewarganegaraan-</option>
           <?php foreach ($kewarganegaraan as $x) { ?>
             <option value="<?php echo $x->id_negara;?>"><?php echo $x->nama_negara;?></option>
@@ -630,6 +590,7 @@
       <div class="col-xl">
         <label class="col-form-label">Jenis Pendaftaran:</label>
         <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran" required="">
+          <option value="<?php echo $data[0]->jenis_pendaftaran?>"><?php echo $data[0]->nama_jenis_pendaftaran ?></option>
           <option value="">-Pilih Jenis Pendaftaran-</option>
           <?php foreach ($jenispendaftaran as $x) { ?>
             <option value="<?php echo $x->id_jenis_daftar;?>"><?php echo $x->nama_jenis_daftar;?></option>
@@ -703,7 +664,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">NO KPS:</label>
-  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." required="">
+  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." >
 </div>
 </div>
 </div>
@@ -907,12 +868,8 @@
 </div>
 </div>
 <!-- END Modal Ubah -->
-
-
-
+  
 <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
-<script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
@@ -949,39 +906,64 @@
 </script>
 
 
-<script >
- $(document).on('change', 'input', function(){
-  var options = $('datalist')[0].options;
-  var val = $(this).val();
-  for (var i=0;i<options.length;i++){
-   if (options[i].value === val) {
+<script>
+function get_angkatan(){
+    var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+  $.ajax({
+    type: 'POST',
+    url: `${base_url}/praja/angkat`,
+    success: function(data){
+      $("#filter_angkatan").html('<option value="" selected>Filter Angkatan</option>'); 
+      var dataObj = jQuery.parseJSON(data);
+      // console.log(dataObj);
+      if(dataObj) {
+        $(dataObj).each(function() {
+          var option = $('<option />');
+          option.attr('value', this).text(this);   
+          // console.log(option.attr('value', this).text(this));     
+          $("#filter_angkatan").append(option);
+        });
+      }
+      else {
+        $("#filter_angkatan").html('<option value="">Pilihan tidak ada</option>');
+      }
+    }
+  }); 
+}
 
-    var uri = "<?php echo base_url('d_praja').'/cobain/'; ?>"+ val;
-    console.log(uri);
-    $('#data-praja').dataTable({
-      "searching": true,
-        // "paging": false,
-        responsive: true,
-        retrieve: true,
-        dom: 'Bfrtip',
-        buttons: [
-        'copy', 'excel', 'print'
+$(document).ready(function() {
+  // list MOU
+  get_angkatan();
+    var url = '<?php echo base_url('praja/get_praja');?>';
+
+    var list_mou = $('#data-praja').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+       
         ],
-        destroy: true,
+        responsive: true,
         "ajax": {
-          "url": uri,
-          "dataSrc": ""
+        "url": url,
+        "dataSrc": ""
         }
-      });
+  });
 
 
+  $('#filter_angkatan').on( 'change', function () {
+    list_mou
+        .column(6)
+        .search( this.value )
+        .draw();
+    
+      var val = this.value;
+      console.log(val);
 
-    $('#export').on('click', function() {
 
-      var id = $(this).attr("data-id");
-      $.ajax({
-        success: function(dataResult){
-          window.open("<?php echo base_url('d_praja').'/export/'; ?>"+ val);
+     $('#export').on('click', function() {
+       $.ajax({
+
+        success: function(url){
+          window.open("<?php echo base_url('praja').'/export/'; ?>"+ val);
         }
       });
 
@@ -989,17 +971,12 @@
 
 
 
-    
+  });
 
-    break;
-  }
 
-}
+      
 });
 
-</script>
-
-<script>
   $(document).ready(function() {
         // Untuk show data
         $('#show-data').on('show.bs.modal', function (event) {
@@ -1069,12 +1046,8 @@
             modal.find('#tlp_walix').attr("value",div.data('tlp_wali'));
 
           });
-});
-</script>
 
-<script>
-  $(document).ready(function() {
-        // Untuk sunting
+            // Untuk sunting
         $('#edit-data-praja').on('show.bs.modal', function (event) {
             var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
             var modal          = $(this)
@@ -1144,79 +1117,59 @@
             modal.find('#tlp_wali').attr("value",div.data('tlp_wali'));
             
           });
-});
-</script>
 
+      $('#fk').change(function(){ 
+        var prodi=$(this).val();
+        console.log(prodi); 
+        $.ajax({
+          url : "<?php echo site_url('praja/get_sub_category');?>",
+          method : "POST",
+          data : {prodi: prodi},
+          async : true,
+          dataType : 'json',
+          success: function(data){
 
-<script type="text/javascript">
-  $(document).ready(function(){
+            var html = '';
+            var i;
+            for(i=0; i<data.length; i++){
+              html += '<option value='+data[i].id_prodi+'>'+data[i].nama_program_studi+'</option>';
+            }
+            $('#prodi').html(html);
 
-    $('#fk').change(function(){ 
-      var prodi=$(this).val();
-      console.log(prodi); 
-      $.ajax({
-        url : "<?php echo site_url('d_praja/get_sub_category');?>",
-        method : "POST",
-        data : {prodi: prodi},
-        async : true,
-        dataType : 'json',
-        success: function(data){
-
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html += '<option value='+data[i].id_prodi+'>'+data[i].nama_program_studi+'</option>';
           }
-          $('#prodi').html(html);
-
-        }
-      });
-      return false;
-    }); 
-
-  });
-</script>
+        });
+        return false;
+      }); 
 
 
+      $('#provinsi').change(function(){ 
+        var kab_kota=$(this).val();
+        console.log(kab_kota); 
+        $.ajax({
+          url : "<?php echo site_url('praja/get_sub_provinsi');?>",
+          method : "POST",
+          data : {kab_kota: kab_kota},
+          async : true,
+          dataType : 'json',
+          success: function(data){
 
-<script type="text/javascript">
-  $(document).ready(function(){
+            var html = '';
+            var i;
+            for(i=0; i<data.length; i++){
+              html += '<option value='+data[i].id_kabkota+'>'+data[i].nama_kabkota+'</option>';
+            }
+            $('#kab_kota').html(html);
 
-    $('#provinsi').change(function(){ 
-      var kab_kota=$(this).val();
-      console.log(kab_kota); 
-      $.ajax({
-        url : "<?php echo site_url('d_praja/get_sub_provinsi');?>",
-        method : "POST",
-        data : {kab_kota: kab_kota},
-        async : true,
-        dataType : 'json',
-        success: function(data){
-
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html += '<option value='+data[i].id_kabkota+'>'+data[i].nama_kabkota+'</option>';
           }
-          $('#kab_kota').html(html);
+        });
+        return false;
+      }); 
 
-        }
-      });
-      return false;
-    }); 
-
-  });
-</script>
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-
-    $('#kab_kota').change(function(){ 
+      $('#kab_kota').change(function(){ 
       var kecamatan=$(this).val();
       console.log(kecamatan); 
       $.ajax({
-        url : "<?php echo site_url('d_praja/get_sub_kabkota');?>",
+        url : "<?php echo site_url('praja/get_sub_kabkota');?>",
         method : "POST",
         data : {kecamatan: kecamatan},
         async : true,
@@ -1226,7 +1179,7 @@
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html += '<option value='+data[i].id_kecamatan+'>'+data[i].kecamatan+'</option>';
+            html += '<option value='+data[i].id_kecamatan+'>'+data[i].nama_kecamatan+'</option>';
           }
           $('#kecamatan').html(html);
 
@@ -1235,5 +1188,7 @@
       return false;
     }); 
 
-  });
+});
+
+
 </script>

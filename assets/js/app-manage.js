@@ -96,7 +96,7 @@ $(document).ready(function() {
             modal.find('#idx').attr("value",div.data('id')); 
             modal.find('#namax').attr("value",div.data('nama')); 
             modal.find('#tempat_lahirx').attr("value",div.data('tempat_lahir')); 
-            modal.find('#jenis_kelaminx').attr("value",div.data('jenis_kelamin')); 
+            modal.find('#jenis_kelaminx').val(div.data('jenis_kelamin')); 
             modal.find('#tanggal_lahirx').attr("value",div.data('tanggal_lahir')); 
             modal.find('#agamax').val(div.data('agama')); 
             modal.find('#nama_ibux').attr("value",div.data('nama_ibu')); 
@@ -147,6 +147,7 @@ $(document).ready(function() {
             modal.find('#judul_penelitianx').val(div.data('judul_penelitian'));
             modal.find('#lembagax').attr("value",div.data('lembaga')); 
             modal.find('#tahun_penelitianx').attr("value",div.data('tahun_penelitian'));
+            modal.find('#kampusx').val(div.data('kampus'));
 
         });
 

@@ -93,6 +93,7 @@ class Dosen_dikti extends CI_Controller {
             $judul_penelitian = $r->judul_penelitian == NULL ? "<i><font>Tidak ada data</font></i>": $r->judul_penelitian;
             $lembaga = $r->lembaga == NULL ? "<i><font>Tidak ada data</font></i>": $r->lembaga;
             $tahun_penelitian = $r->tahun_penelitian == NULL ? "<i><font>Tidak ada data</font></i>": $r->tahun_penelitian;
+            $kampus = $r->kampus == NULL ? "<i><font>Tidak ada data</font></i>": $r->kampus;
 
             if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Akademik'){
                 $aksi = " <a href='javascript:;'
@@ -149,13 +150,72 @@ class Dosen_dikti extends CI_Controller {
                 data-tmt_surat_tugas='$r->tmt_surat_tugas'
                 data-judul_penelitian='$r->judul_penelitian'
                 data-lembaga='$r->lembaga'
-                data-tahun_penelitian='$r->tahun_penelitian' 
+                data-tahun_penelitian='$r->tahun_penelitian'
+                data-kampus='$r->kampus'
                 data-toggle='modal' data-target='#editdosen-dikti' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a> 
                 
                 <a href='javascript:;' 
                 data-id='$r->id' 
                 data-nama='$r->nama' 
                 data-toggle='modal' data-target='#hapusdosen-dikti' class='btn btn-sm btn-danger'><i class='fa fas fa-trash'></i></a>";
+            }else if($this->session->userdata('nip') == $r->nip){
+                $aksi = " <a href='javascript:;'
+                data-id='$r->id'
+                data-nama='$r->nama'
+                data-tempat_lahir='$r->tempat_lahir'
+                data-jenis_kelamin='$r->jenis_kelamin'
+                data-tanggal_lahir='$r->tanggal_lahir'
+                data-agama='$r->agama'
+                data-nama_ibu='$r->nama_ibu'
+                data-status_aktif='$r->status_aktif'
+                data-nidn_nup_nidk='$r->nidn_nup_nidk'
+                data-nik='$r->nik'
+                data-nip='$r->nip'
+                data-npwp='$r->npwp'
+                data-ikatan_kerja='$r->ikatan_kerja'
+                data-status_pegawai='$r->status_pegawai'
+                data-jenis_pegawai='$r->jenis_pegawai'
+                data-no_sk_cpns='$r->no_sk_cpns'
+                data-tanggal_sk_cpns='$r->tanggal_sk_cpns'
+                data-no_sk_pengangkatan='$r->no_sk_pengangkatan'
+                data-tanggal_sk_pengangkatan='$r->tanggal_sk_pengangkatan'
+                data-lembaga_pengangkatan='$r->lembaga_pengangkatan'
+                data-pangkat_golongan='$r->pangkat_golongan'
+                data-sumber_gaji='$r->sumber_gaji'
+                data-alamat='$r->alamat'
+                data-dusun='$r->dusun'
+                data-rt='$r->rt'
+                data-rw='$r->rw'
+                data-kelurahan='$r->kelurahan'
+                data-kodepos='$r->kodepos'
+                data-kecamatan='$r->kecamatan'
+                data-telepon='$r->telepon'
+                data-hp='$r->hp'
+                data-email='$r->email'
+                data-status_pernikahan='$r->status_pernikahan'
+                data-nama_suami_istri='$r->nama_suami_istri'
+                data-nip_suami_istri='$r->nip_suami_istri'
+                data-tmt_pns='$r->tmt_pns'
+                data-pekerjaan='$r->pekerjaan'
+                data-mampu_menghandle_kebutuhan_khusus='$r->mampu_menghandle_kebutuhan_khusus'
+                data-mampu_menghandle_braile='$r->mampu_menghandle_braile'
+                data-mampu_menghandle_bahasa_isyarat='$r->mampu_menghandle_bahasa_isyarat'
+                data-sertifikasi_dosen='$r->sertifikasi_dosen'
+                data-bidang_ilmu='$r->bidang_ilmu'
+                data-jabatan='$r->jabatan'
+                data-sk_jabatan='$r->sk_jabatan'
+                data-tmt_jabatan='$r->tmt_jabatan'
+                data-tahun_ajaran='$r->tahun_ajaran'
+                data-perguruan_tinggi='$r->perguruan_tinggi'
+                data-program_studi='$r->program_studi'
+                data-no_surat_tugas='$r->no_surat_tugas'
+                data-tanggal_surat_tugas='$r->tanggal_surat_tugas'
+                data-tmt_surat_tugas='$r->tmt_surat_tugas'
+                data-judul_penelitian='$r->judul_penelitian'
+                data-lembaga='$r->lembaga'
+                data-tahun_penelitian='$r->tahun_penelitian'
+                data-kampus='$r->kampus'
+                data-toggle='modal' data-target='#editdosen-dikti' class='btn btn-sm btn-primary'><i class='fa fas fa-edit'></i></a>";
             }else{
                 $aksi = "Tidak ada Akses";
             }
@@ -215,7 +275,8 @@ class Dosen_dikti extends CI_Controller {
                 $tmt_surat_tugas,
                 $judul_penelitian,
                 $lembaga,
-                $tahun_penelitian
+                $tahun_penelitian,
+                $kampus
             );
         }
         
@@ -280,6 +341,7 @@ class Dosen_dikti extends CI_Controller {
         $input_data['judul_penelitian'] = $this->input->post('judul_penelitian', true);
         $input_data['lembaga'] = $this->input->post('lembaga', true);
         $input_data['tahun_penelitian'] = $this->input->post('tahun_penelitian', true);
+        $input_data['kampus'] = $this->input->post('kampus', true);
 
         $input_data['updated_date'] = $date;
 
@@ -361,6 +423,7 @@ class Dosen_dikti extends CI_Controller {
         $input_data['judul_penelitian'] = $this->input->post('judul_penelitian', true);
         $input_data['lembaga'] = $this->input->post('lembaga', true);
         $input_data['tahun_penelitian'] = $this->input->post('tahun_penelitian', true);
+        $input_data['kampus'] = $this->input->post('kampus', true);
 
         $input_data['updated_date'] = $date;
 

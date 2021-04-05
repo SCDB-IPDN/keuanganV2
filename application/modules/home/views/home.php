@@ -65,9 +65,9 @@
 											<div class="text-grey">
 												<i class=""></i> IPDN
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?php $ceksas == NULL ? 0 : $persentase_sas ?>"><?php $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_sas');?>"><span data-animation="number" data-value="<?= $ceksas == NULL ? 0 : $persentase_sas ?>"><?= $ceksas == NULL ? 0 : $persentase_sas ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
+												<div class="progress-bar bg-warning progress-bar-striped rounded-right progress-bar-animated" style="width: <?= $ceksas == NULL ? 0 : $persentase_sas ?>%"></div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -75,9 +75,9 @@
 											<div class="text-grey">
 												<i class=""></i> JATINANGOR
 											</div>
-											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?php $cekpok == NULL ? 0 : $persentase_pok ?>"><?php $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
+											<div class="f-s-18 m-b-5 f-w-600 p-b-1"><a href="<?php echo base_url('d_pok');?>"><span data-animation="number" data-value="<?= $cekpok == NULL ? 0 : $persentase_pok ?>"><?= $cekpok == NULL ? 0 : $persentase_pok ?></span>%</a></div>
 											<div class="progress progress-xs rounded-lg rounded-corner bg-dark-darker m-b-5 active">
-												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?php $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
+												<div class="progress-bar bg-blue progress-bar-striped rounded-right progress-bar-animated" style="width: <?= $cekpok == NULL ? 0 : $persentase_pok ?>%"></div>
 											</div>
 										</div>
 
@@ -142,7 +142,7 @@
 			<div class="col-xl-3">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
-						<h4 class="panel-title">DOSEN</h4>
+						<h4 class="panel-title">KEPEGAWAIAN</h4>
 						<div class="panel-heading-btn">
 							<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 							<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -153,53 +153,85 @@
 					<div class="panel-body bg-dark">
 						<div class="card border-0 bg-dark text-white text-truncate mb-3">
 							<div class="mb-3 text-grey">
-								<b class="mb-3">TOTAL DOSEN (<?php echo$last_dosen; ?>)</b> 
-								<!-- <span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data DOSEN Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span> -->
+								<b class="mb-3">TOTAL PEGAWAI</b> 
+								<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
 								<div class="text-grey">
 									<i class=""></i> KAMPUS IPDN
 								</div>
 							</div>
 							<div class="d-flex align-items-center mb-1">
-								<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $dosen[0]->total; ?>"><?php echo $dosen[0]->total; ?></span> DOSEN</h2>
+								<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span> PEGAWAI</h4>
 								<div class="ml-auto">
 									<div id="conversion-rate-sparkline"></div>
 								</div>
 							</div>
-							<br><br>
+							<br>
 							<div class="d-flex mb-2">
 								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-									GURU BESAR
+									PNS
 								</div>
 								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
-								</div>
-							</div>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
-									LEKTOR KEPALA
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor_kepala; ?></span></div>
-								</div>
-							</div>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
-									LEKTOR
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor; ?></span></div>
+									<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?> PEGAWAI</span></div>
 								</div>
 							</div>
 							<div class="d-flex mb-2">
 								<div class="d-flex align-items-center">
 									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-									ASISTEN AHLI
+									Eselon I
 								</div>
 								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->asisten_ahli; ?></span></div>
+									<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?> PEGAWAI</span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+									Eselon II
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+									Eselon III
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?> PEGAWAI</span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-primary f-s-8 mr-2"></i>
+									Eselon IV
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?> PEGAWAI</span></div>
+								</div>
+							</div>
+							<br>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									NON-PNS
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+									TENAGA KONTRAK
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?> PEGAWAI</span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+									TENAGA AHLI
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->ta; ?> PEGAWAI</span></div>
 								</div>
 							</div>
 						</div>
@@ -569,6 +601,15 @@
 									<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->berhenti; ?></span></div>
 								</div>
 							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+									MENINGGAL
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->meninggal; ?></span></div>
+								</div>
+							</div>
 						</br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
@@ -648,10 +689,11 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="col-xl-3">
 		<div class="panel panel-inverse">
 			<div class="panel-heading">
-				<h4 class="panel-title">KEPEGAWAIAN</h4>
+				<h4 class="panel-title">DOSEN</h4>
 				<div class="panel-heading-btn">
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
@@ -662,91 +704,133 @@
 			<div class="panel-body bg-dark">
 				<div class="card border-0 bg-dark text-white text-truncate mb-3">
 					<div class="mb-3 text-grey">
-						<b class="mb-3">TOTAL PEGAWAI</b> 
-						<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
+						<b class="mb-3">TOTAL DOSEN (<?php echo$last_dosen; ?>)</b> 
+						<!-- <span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data DOSEN Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span> -->
 						<div class="text-grey">
 							<i class=""></i> KAMPUS IPDN
 						</div>
 					</div>
 					<div class="d-flex align-items-center mb-1">
-						<h4 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $total_peg ?>"><?php echo $total_peg ?></span> PEGAWAI</h4>
+						<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $dosen[0]->total; ?>"><?php echo $dosen[0]->total; ?></span> DOSEN</h2>
 						<div class="ml-auto">
 							<div id="conversion-rate-sparkline"></div>
 						</div>
 					</div>
-					<br>
+					<br><br>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							PNS
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							GURU BESAR
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->pns; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->guru_besar; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-orange f-s-8 mr-2"></i>
+							LEKTOR KEPALA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor_kepala; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+							LEKTOR
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->lektor; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
 							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-							Eselon I
+							ASISTEN AHLI
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->I; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $dosen[0]->asisten_ahli; ?></span></div>
+						</div>
+					</div>
+					<br><p> KAMPUS </p>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							JATINANGOR
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->jatinangor; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-							Eselon II
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							JAKARTA
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->II; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->jakarta; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							<i class="fa fa-circle text-warning f-s-8 mr-2"></i>
-							Eselon III
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							SUMBAR
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->III; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->sumbar; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							<i class="fa fa-circle text-primary f-s-8 mr-2"></i>
-							Eselon IV
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							KALBAR
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $eselon[0]->IV; ?> PEGAWAI</span></div>
-						</div>
-					</div>
-					<br>
-					<div class="d-flex mb-2">
-						<div class="d-flex align-items-center">
-							NON-PNS
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->kalbar; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-							TENAGA KONTRAK
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							SULSEL
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->thl; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->sulsel; ?></span></div>
 						</div>
 					</div>
 					<div class="d-flex mb-2">
 						<div class="d-flex align-items-center">
-							<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-							TENAGA AHLI
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							SULUT
 						</div>
 						<div class="d-flex align-items-center ml-auto">
-							<div class="text-right pl-2 f-w-600"><span><?php echo $peg[0]->ta; ?> PEGAWAI</span></div>
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->sulut; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							NTB
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->ntb; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+							<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+							PAPUA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="text-right pl-2 f-w-600"><span><?php echo $penempatanDosen->papua; ?></span></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div class="col-xl-3">
 		<div class="panel panel-inverse">
 			<div class="panel-heading">
