@@ -33,8 +33,8 @@
                       </span>
                       <input for="struk" type="file" name="struk" class="form-control">
                   </div>
-
                   <button id="struk" type="submit" class="btn btn-success">UPLOAD FILE</button>
+                  <a href="<?php echo base_url() ?>assets/download/beritaeks.xlsx" class="btn btn-primary">TEMPLATE</a>
               </form>
             </div>
           </div>
