@@ -573,7 +573,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama..">
+                                <input type="text" class="form-control" id="namax" name="nama" placeholder="Nama.." required>
                             </div>
                         </div>
                         <div class="col-xl-3">
@@ -591,7 +591,7 @@
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Jenis Kelamin:</label>
-                                <select name="jenis_kelamin" id="jenis_kelaminx" class="form-control">
+                                <select name="jenis_kelamin" id="jenis_kelaminx" class="form-control" required>
                                     <option value="">Pilih...</option>
                                     <option value="L">LAKI-LAKI</option>
                                     <option value="P">PEREMPUAN</option>
@@ -622,7 +622,7 @@
                         <div class="col-xl-2">
                             <div class="form-group">
                                 <label class="col-form-label">Status Aktif:</label>
-                                <select name="status_aktif" id="status_aktifx" class="form-control">
+                                <select name="status_aktif" id="status_aktifx" class="form-control" required>
                                     <option value="">Pilih...</option>
                                     <option value="Aktif">Aktif</option>
                                     <option value="Tidak Aktif">Tidak Aktif</option>
@@ -632,7 +632,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">NIDN/NUP/NIDK:</label>
-                                <input type="number" class="form-control" id="nidn_nup_nidkx" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK..">
+                                <input type="number" class="form-control" id="nidn_nup_nidkx" name="nidn_nup_nidk" placeholder="NIDN/NUP/NIDK.." required>
                             </div>
                         </div>
                         <div class="col-xl-6">
@@ -644,7 +644,7 @@
                         <div class="col-xl-6">
                             <div class="form-group">
                                 <label class="col-form-label">NIP:</label>
-                                <input type="number" class="form-control" id="nipx" name="nip" placeholder="NIP..">
+                                <input type="number" class="form-control" id="nipx" name="nip" placeholder="NIP.." required>
                             </div>
                         </div>
                         <div class="col-xl-6">
@@ -662,7 +662,7 @@
                         <div class="col-xl-3">
                             <div class="form-group">
                                 <label class="col-form-label">Status Pegawai:</label>
-                                <select id="status_pegawaix" name="status_pegawai" class="form-control">
+                                <select id="status_pegawaix" name="status_pegawai" class="form-control" required>
                                     <option value="">Pilih...</option>
                                     <option value="24">IJIN BELAJAR</option>
                                     <option value="1">AKTIF</option>
@@ -845,7 +845,7 @@
                         <div class="col-xl-4">
                             <div class="form-group">
                                 <label class="col-form-label">Jabatan:</label>
-                                <select name="jabatan" id="jabatanx" class="form-control">
+                                <select name="jabatan" id="jabatanx" class="form-control" required>
                                     <option value="">Pilih...</option>
                                     <option value="Guru Besar">Guru Besar</option>
                                     <option value="Lektor Kepala">Lektor Kepala</option>
