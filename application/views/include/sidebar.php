@@ -261,19 +261,26 @@
 			</li>
 			<!-- END KEPEGAWAIAN -->
 
-			<!-- KEPRAJAAN -->
-			<li class="<?php echo $this->uri->segment(1) == "d_praja" ? "active" : ""; ?> has-sub">
+
+
+			<!-- Keprajaan -->
+			<li class="<?php echo $this->uri->segment(1)=="praja" || $this->uri->segment(2)=="alumni" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-graduation-cap"></i>
 					<span>Keprajaan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "praja" ? "active" : ""; ?>"><a href="<?php echo base_url('praja'); ?>">PRAJA</a></li>
-					<!-- <li class="<?php echo $this->uri->segment(1) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('d_praja/alumni'); ?>">ALUMNI</a></li> -->
+					<li class="<?php echo $this->uri->segment(1) == "praja" && $this->uri->segment(2)!="alumni" ? "active" : ""; ?> has-sub">
+
+						<li class="<?php echo $this->uri->segment(1) == "praja" ? "active" : ""; ?>"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
+						<li class="<?php echo $this->uri->segment(2) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('praja/alumni'); ?>">Alumni</a></li>
+
+					</li>
 				</ul>
 			</li>
-			<!-- END KEPRAJAAN -->
+			<!-- END keprajaan -->
+
 
 			<!-- KERJA SAMA DAN HUMAS -->
 			<li class="<?php echo $this->uri->segment(1)=="kerjasama" || $this->uri->segment(1)=="berita" || $this->uri->segment(1)=="BeritaEksternal" ?"active":"";?> has-sub">

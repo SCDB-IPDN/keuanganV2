@@ -142,28 +142,28 @@ class Praja_model extends CI_Model
 
 		$hasil = $this->db->query("UPDATE praja_baru 
 			SET no_spcp = '$no_spcp',nama = '$nama',jk = '$jk',nisn = '$nisn',npwp = '$npwp',npp = '$npp',nik_praja = '$nik_praja',tmpt_lahir = '$tmpt_lahir',tgl_lahir = '$tgl_lahir',alamat = '$alamat',rt = $rt,rw = $rw,nama_dusun = '$nama_dusun',kelurahan = '$kelurahan',kode_pos = '$kode_pos',kab_kota = '$kab_kota',provinsi = '$provinsi',tlp_pribadi = '$tlp_pribadi',tlp_rumah = '$tlp_rumah',email = '$email',penerima_pks = '$penerima_pks',no_pks = '$no_pks',tgl_masuk_kuliah = '$tgl_masuk_kuliah',tahun_masuk_kuliah = '$tahun_masuk_kuliah',status = '$status',tingkat = '$tingkat',angkatan = '$angkatan',fakultas = '$fakultas',biaya_masuk = '$biaya_masuk',mulai_semester = '$mulai_semester',nik_ayah  = '$nik_ayah ',nama_ayah  = '$nama_ayah ',tgllahir_ayah  = '$tgllahir_ayah ',tlp_ayah  = '$tlp_ayah ',nik_ibu  = '$nik_ibu ',nama_ibu  = '$nama_ibu ',tgllahir_ibu = '$tgllahir_ibu',tlp_ibu  = '$tlp_ibu ',nik_wali = '$nik_wali',nama_wali  = '$nama_wali ',tgllahir_wali  = '$tgllahir_wali ',tlp_wali = '$tlp_wali',
-				jenis_pendaftaran =(SELECT id_jenis_daftar FROM jenis_pendaftaran WHERE jenis_pendaftaran = id_jenis_daftar LIMIT 1),
-				jalur_masuk =(SELECT id_jalur_masuk FROM jalur_masuk WHERE jalur_masuk = id_jalur_masuk LIMIT 1),
-				prodi = (SELECT id_prodi FROM program_studi WHERE prodi = id_prodi LIMIT 1) ,
-				kewarganegaraan = (SELECT id_negara FROM negara WHERE kewarganegaraan = id_negara LIMIT 1) ,
-				jenis_tinggal = (SELECT id_jenis_tinggal FROM jenis_tinggal WHERE jenis_tinggal = id_jenis_tinggal LIMIT 1),
-				alat_transport = (SELECT id_alat_transportasi FROM alat_transportasi WHERE alat_transport = id_alat_transportasi LIMIT 1),
-				pendidikan_ayah =  (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_ayah = id_jenjang_didik LIMIT 1),
-				penghasilan_ayah =(SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_ayah = id_penghasilan LIMIT 1) ,
-				pekerjaan_ayah = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_ayah = id_pekerjaan LIMIT 1),
+			jenis_pendaftaran =(SELECT id_jenis_daftar FROM jenis_pendaftaran WHERE jenis_pendaftaran = id_jenis_daftar LIMIT 1),
+			jalur_masuk =(SELECT id_jalur_masuk FROM jalur_masuk WHERE jalur_masuk = id_jalur_masuk LIMIT 1),
+			prodi = (SELECT id_prodi FROM program_studi WHERE prodi = id_prodi LIMIT 1) ,
+			kewarganegaraan = (SELECT id_negara FROM negara WHERE kewarganegaraan = id_negara LIMIT 1) ,
+			jenis_tinggal = (SELECT id_jenis_tinggal FROM jenis_tinggal WHERE jenis_tinggal = id_jenis_tinggal LIMIT 1),
+			alat_transport = (SELECT id_alat_transportasi FROM alat_transportasi WHERE alat_transport = id_alat_transportasi LIMIT 1),
+			pendidikan_ayah =  (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_ayah = id_jenjang_didik LIMIT 1),
+			penghasilan_ayah =(SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_ayah = id_penghasilan LIMIT 1) ,
+			pekerjaan_ayah = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_ayah = id_pekerjaan LIMIT 1),
 
-				penghasilan_ibu = (SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_ibu = id_penghasilan LIMIT 1),
-				pekerjaan_ibu = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_ibu = id_pekerjaan LIMIT 1),
-				pendidikan_ibu = (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_ibu = id_jenjang_didik LIMIT 1),
+			penghasilan_ibu = (SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_ibu = id_penghasilan LIMIT 1),
+			pekerjaan_ibu = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_ibu = id_pekerjaan LIMIT 1),
+			pendidikan_ibu = (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_ibu = id_jenjang_didik LIMIT 1),
 
-				pendidikan_wali = (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_wali = id_jenjang_didik LIMIT 1),
-				penghasilan_wali = (SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_wali = id_penghasilan LIMIT 1),
-				pekerjaan_wali = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_wali = id_pekerjaan LIMIT 1),
+			pendidikan_wali = (SELECT id_jenjang_didik FROM jenjang_pendidikan WHERE pendidikan_wali = id_jenjang_didik LIMIT 1),
+			penghasilan_wali = (SELECT id_penghasilan FROM penghasilan  WHERE penghasilan_wali = id_penghasilan LIMIT 1),
+			pekerjaan_wali = (SELECT id_pekerjaan FROM pekerjaan  WHERE pekerjaan_wali = id_pekerjaan LIMIT 1),
 
-				agama = (SELECT id_agama FROM agama  WHERE agama = id_agama LIMIT 1),
-				pembiayaan = (SELECT id_pembiayaan FROM jenis_pembiayaan  WHERE pembiayaan = id_pembiayaan LIMIT 1),
-				mulai_semester = (SELECT id_semester FROM semester WHERE mulai_semester = id_semester LIMIT 1),
-				kecamatan = (SELECT id_wil FROM data_wilayah WHERE kecamatan = id_wil LIMIT 1) 
+			agama = (SELECT id_agama FROM agama  WHERE agama = id_agama LIMIT 1),
+			pembiayaan = (SELECT id_pembiayaan FROM jenis_pembiayaan  WHERE pembiayaan = id_pembiayaan LIMIT 1),
+			mulai_semester = (SELECT id_semester FROM semester WHERE mulai_semester = id_semester LIMIT 1),
+			kecamatan = (SELECT id_wil FROM data_wilayah WHERE kecamatan = id_wil LIMIT 1) 
 			WHERE npp ='$npp'
 			");
 
@@ -285,6 +285,28 @@ class Praja_model extends CI_Model
 			WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM praja_baru WHERE angkatan = '$angkatan'" );
 		return $result;
 	}
+
+	  //ALUMNI
+	public function get_alumni()
+	{
+		$result = $this->db->query("SELECT *, CASE WHEN jk= 'P' THEN 'Perempuan'WHEN jk= 'L' THEN 'Laki-Laki' ELSE 'Belum Ada ' END AS jk FROM alumni");
+		return $result;
+	}
+
+	function edit_alumni($editalumni){
+
+		$id = $editalumni['id_alumni'];
+		$this->db->where('id_alumni', $editalumni['id_alumni']);
+		$this->db->update('alumni', $editalumni);
+	}
+
+	function hapus_alumni($id){
+
+		$this->db->where(['id_alumni' => $id]);
+		$this->db->delete('alumni');
+
+	}
+  //END ALUMNI
 
 
 }

@@ -688,5 +688,129 @@ class Praja extends CI_Controller {
 
    $writer->save('php://output');
   }
+
+//ALUMNI
+
+function alumni()
+{
+  if ($this->session->userdata('nip') != NULL) {
+    $data = $this->Praja_model->get_alumni()->result();
+    $x['data'] = $data;
+      // var_dump($data);
+      // exit();
+    $this->load->view("include/head");
+    $this->load->view("include/top-header");
+    $this->load->view("view_alumni", $x);
+    $this->load->view("include/sidebar");
+    $this->load->view("include/panel");
+    $this->load->view("include/footer");
+  } else {
+    redirect("user");
+  }
+}
+  
+  function table_alumni(){
+    $data = $this->Praja_model->get_alumni()->result();
+
+    $alumni = array();
+    $no = 1;
+    
+    foreach($data as $r) {
+
+    $nama = $r->nama;
+    $jk = $r->jk;
+    $institusi = $r->institusi;
+    $angkatan = $r->angkatan;
+    $instansi = $r->instansi == NULL ? "<i><font style='color:red;'>Instansi Tidak Ada</font></i>" : $r->instansi;
+    $jabatan = $r->jabatan == NULL ? "<i><font style='color:red;'>Jabatan Tidak Ada</font></i>" : $r->jabatan;
+    $provinsi = $r->provinsi == NULL ? "<i><font style='color:red;'>Provinsi Tidak Ada</font></i>" : $r->provinsi;
+
+    if($this->session->userdata('role') == 'Admin' ||  $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan'){
+        $opsi = "<a 
+        href='javascript:;' data-id_alumni='$r->id_alumni' data-nama='$r->nama' data-jk='$r->jk' data-institusi='$r->institusi' 
+        data-angkatan='$r->angkatan' data-instansi='$r->instansi' data-provinsi='$r->provinsi' data-jabatan='$r->jabatan'
+        data-toggle='modal' data-target='#edit-alumni' class='btn btn-info'><i class='fa fas fa-edit'></i>
+        </a>
+        
+        <a 
+        href='javascript:;' data-nama='$r->nama' data-id_alumni='$r->id_alumni'
+        data-toggle='modal' data-target='#hapusalumni' class='btn btn-danger'><i class='fa fas fa-trash'></i>
+        </a>";
+      }else{
+         $opsi = "Tidak Ada Akses";
+      }
+
+      $alumni[] = array(
+        $no++,
+        $nama,
+        $jk,
+        $institusi,
+        $angkatan,
+        $instansi,
+        $jabatan,
+        $provinsi,
+        $opsi,
+      );
+    }
+    //echo  var_dump($alumni);
+    echo json_encode($alumni);
+  }
+
+  function edit_alumni(){
+
+    $editalumni['id_alumni'] = $this->input->post('id_alumni', true);
+    $editalumni['nama'] = $this->input->post('nama', true);
+    $editalumni['jk'] = $this->input->post('jk', true);
+    $editalumni['institusi'] = $this->input->post('institusi', true);
+    $editalumni['angkatan'] = $this->input->post('angkatan', true);
+    $editalumni['instansi'] = $this->input->post('instansi', true);
+    $editalumni['jabatan'] = $this->input->post('jabatan', true);
+    $editalumni['provinsi'] = $this->input->post('provinsi', true);
+     
+    //  var_dump($editalumni);
+    //exit();
+    $isi = $editalumni['nama'];
+    $log['user'] = $this->session->userdata('nip');
+    $log['Ket'] = "Mengedit Data Alumni, Nama Alumni = $isi";
+    $log['tanggal'] = date('Y-m-d H:i:s');
+    //  var_dump($log);exit();
+    $this->Praja_model->log($log);
+    
+    $result = $this->Praja_model->edit_alumni($editalumni);
+
+    // var_dump($result);
+    // exit();
+
+    if (!$result) {   
+      $this->session->set_flashdata('alumni', 'DATA BERHASIL DIUBAH.');     
+      redirect('praja/alumni');                   
+    } else {                
+      $this->session->set_flashdata('alumni', 'DATA GAGAL DIUBAH.');    
+      redirect('praja/alumni');       
+    }
+  }
+
+  function hapus_alumni()
+   {
+     $id = $this->input->post('id_alumni');
+     $hasil = $this->Praja_model->hapus_alumni($id);
+
+     $isi = $editalumni['id_alumni'];
+     $log['user'] = $this->session->userdata('nip');
+     $log['Ket'] = "Mengedit Data Alumni, Nama Alumni = $isi";
+     $log['tanggal'] = date('Y-m-d H:i:s');
+    //  var_dump($log);exit();
+    $this->Praja_model->log($log);
+
+     if (!$hasil) {     
+       $this->session->set_flashdata('alumni', 'DATA BERHASIL DIHAPUS.'); 
+       redirect('praja/alumni');                  
+     } else {                 
+       $this->session->set_flashdata('alumni', 'DATA GAGAL DIHAPUS.');        
+       redirect('praja/alumni');    
+     }
+     
+  }
+//END ALUMNI
     
 }
