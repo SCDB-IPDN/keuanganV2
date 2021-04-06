@@ -143,6 +143,7 @@ class Home extends CI_Controller {
       
       $x['peg'] = $peg;
       $x['total_peg'] = $total_peg;
+      $x['penempatanPeg'] = $this->home_model->penempatanPeg()[0];
 
       $x['prokum'] = $prokum;
       $x['pks'] = $pks;
