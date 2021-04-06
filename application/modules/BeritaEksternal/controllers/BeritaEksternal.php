@@ -123,12 +123,18 @@ class BeritaEksternal extends CI_Controller
             foreach($sheetData as $row){
                 
                 if($numrow > 1){
-                    array_push($data, array(
-                        'NamaMedia'       => $row['B'],
-                        'Judul'           => $row['C'],
-                        'Link'            => $row['E'],
-                        'Tanggal'         => $row['D']   
-                    ));
+                    if(isset($row['B']) && isset($row['C']) && isset($row['D']) && isset($row['E'])){
+                        array_push($data, array(
+                            'NamaMedia'       => $row['B'],
+                            'Judul'           => $row['C'],
+                            'Link'            => $row['E'],
+                            'Tanggal'         => $row['D']   
+                        ));
+                    }else{
+                        $this->session->set_flashdata('notifberita', '<div class="alert alert-success"><b>PROSES IMPORT GAGAL !!!</b> Pastikan format isian excel sesuai template!</div>');
+                        //redirect halaman
+                        redirect('BeritaEksternal');
+                    }
                 }
                $numrow++;
             }
