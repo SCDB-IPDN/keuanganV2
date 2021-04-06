@@ -924,19 +924,19 @@
 				<div class="panel-body bg-dark">
 					<div class="card border-0 bg-dark text-white text-truncate mb-3">
 						<div class="mb-3 text-grey">
-							<b class="mb-3">TOTAL DOSEN (<?php echo$last_dosen; ?>)</b> 
+							<b class="mb-3">TOTAL DOSEN (<?php echo $last_dosen; ?>)</b> 
 							<!-- <span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data DOSEN Berdasarkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span> -->
 							<div class="text-grey">
 								<i class=""></i> KAMPUS IPDN
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
-							<h2 class="text-white mb-0"><span data-animation="number" data-value="<?php echo $dosen[0]->total; ?>"><?php echo $dosen[0]->total; ?></span> DOSEN</h2>
+							<h4 class="text-white mb-0"><a href="<?php echo base_url('dosen_dikti');?>" style="color:white;"><span data-animation="number" data-value="<?php echo $dosen[0]->total ?>"><?php echo $dosen[0]->total ?></span> DOSEN</a></h4>
 							<div class="ml-auto">
 								<div id="conversion-rate-sparkline"></div>
 							</div>
 						</div>
-						<br><br>
+						<br>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
@@ -1051,7 +1051,6 @@
 			</div>
 		</div>
 
-		
 		<!-- <div class="col-xl-4">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -1085,8 +1084,6 @@
 			</div>
 		</div> -->
 	</div>
-
-
 
 	<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
