@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
+        <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
         <div class="card-body">
           <div class="row">
             <div class="col-xl-7 col-lg-8">
