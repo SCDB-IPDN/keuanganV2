@@ -3,7 +3,7 @@ class BeritaEksternal_model extends CI_Model {
 
     function get_data()
 	{
-        $query = $this->db->query("SELECT * FROM tbl_beritaeksternal");
+        $query = $this->db->query("SELECT * FROM tbl_beritaeksternal ORDER BY id DESC");
         return $query;
     }
 
