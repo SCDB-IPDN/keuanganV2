@@ -122,8 +122,6 @@ class BeritaEksternal extends CI_Controller
             $numrow = 0;
             //$tgl = date('Y-m-d');
 
-
-
             foreach($sheetData as $row){
                 
                 if($numrow > 1){
@@ -140,7 +138,7 @@ class BeritaEksternal extends CI_Controller
             }
             //$this->db->truncate('realisasi_papua');
             //print("<pre>".print_r($data,true)."<pre>");exit;
-            $this->db->insert_batch('tbl_BeritaEksternal', $data);
+            $this->db->insert_batch('tbl_beritaeksternal', $data);
 
 
             //delete file from server
