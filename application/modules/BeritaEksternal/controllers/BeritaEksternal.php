@@ -101,7 +101,6 @@ class BeritaEksternal extends CI_Controller
 
             $arr_file = explode('.', $_FILES['struk']['name']);
             $extension = end($arr_file);
-            // var_dump($extension);exit();
 
             if($extension != 'xlsx') {
                 $this->session->set_flashdata('notifberita', '<div class="alert alert-success"><b>PROSES IMPORT DATA GAGAL!</b> Format file yang anda masukkan salah!</div>');
@@ -120,29 +119,22 @@ class BeritaEksternal extends CI_Controller
 
             $data = array();
             $numrow = 0;
-            //$tgl = date('Y-m-d');
 
             foreach($sheetData as $row){
                 
                 if($numrow > 1){
-                   // var_dump($row['B']);exit();
-                        array_push($data, array(
-                            'NamaMedia'       => $row['B'],
-                            'Judul'           => $row['C'],
-                            'Link'            => $row['E'],
-                            'Tanggal'         => $row['D']   
-                        ));
-                        
+                    array_push($data, array(
+                        'NamaMedia'       => $row['B'],
+                        'Judul'           => $row['C'],
+                        'Link'            => $row['E'],
+                        'Tanggal'         => $row['D']   
+                    ));
                 }
                $numrow++;
             }
-            //$this->db->truncate('realisasi_papua');
-            //print("<pre>".print_r($data,true)."<pre>");exit;
+
+            // INSERT TO DATABASE
             $this->db->insert_batch('tbl_beritaeksternal', $data);
-
-
-            //delete file from server
-            // unlink(realpath('excel/'.$data_upload['file_name']));
 
             //upload success
             $this->session->set_flashdata('notifberita', '<div class="alert alert-success"><b>PROSES IMPORT BERHASIL!</b> Data berhasil diimport!</div>');
@@ -150,79 +142,4 @@ class BeritaEksternal extends CI_Controller
             redirect('BeritaEksternal');
         }
     }
-
-    // public function uploadaja()
-    // {
-    //     $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        
-    //     if(isset($_FILES['beritaeksternal']['nama'])&& in_array($_FILES['beritaeksternal']['type'],$file_mimes))
-    //     {
-
-    //         $jenisfile=explode(".",($_FILES['beritaeksternal']['nama']));
-    //         $extension=end($jenisfile);
-
-    //         //var_dump($extension);exit;
-
-    //         if($extension != "xlsx")
-    //         {
-    //             $this->session->set_flashdata('notifstruk','Gagal Upload, exstension tidak sesuai!');
-    //             redirect('BeritaEksternal');
-    //         }
-    //         else
-    //         {
-    //             $reader= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-    //         }
-
-    //         $loadexcel = $reader->load($_FILES['struk']['tmp_name']);
-
-    //         $sheat = $loadexcel->getActiveSheet()->toArray(null,true,true,true);
-
-    //         $list_sheet = $loadexcel->getSheetNames();
-
-    //         $sheetData = $loadexcel->getSheetByName($list_sheet[1])->toArray();
-
-
-    //         $numrow = 1;
-    //         $cunit = 0;
-    //         $beritaeks = array();
-    //         $tgl = date('Y-m-d');
-    //         //$lokasi = "JATINANGOR";
-            
-    //         foreach($sheat as $row)
-    //         {
-    //             $numrow++;                
-    //             if($numrow > 1)
-    //             {
-    //             var_dump($row['B']);exit();
-
-    //             array_push($beritaeks,array( 
-    //                 'NamaBerita'      => $row['B'],
-    //                 'Judul'           => $row['C'],
-    //                 'Link'            => $row['E'],
-    //                 'Tanggal'         => $row['D']   
-    //             ));
-    
-    //             }
-    //         }
-
-    //     // print("<pre>".print_r($beritaeks,true)."<pre>");exit;
-
-    //     $eksekusi = $this->db->insert_batch('tbl_BeritaEksternal',$beritaeks);
-
-    //     }
-    //     //var_dump($unitsas);exit();
-       
-
-    //     if ($eksekusi) 
-    //     {
-    //         $this->session->set_flashdata('notifstruk','Berhasil Berhasil Berhasil!!!');
-    //         redirect('BeritaEksternal');         
-    //     }
-    //     else
-    //     {
-    //         $this->session->set_flashdata('notifstruk','Gagaaalllll!');
-    //         redirect('BeritaEksternal');
-
-    //     }
-    // }
 }
