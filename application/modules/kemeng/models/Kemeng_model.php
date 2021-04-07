@@ -4,7 +4,7 @@ class Kemeng_model extends CI_Model
 {
 	public function cek_dosen($nip)
 	{
-		$result = $this->db->query("SELECT nip FROM tbl_dosen WHERE nip = '$nip'")->result();
+		$result = $this->db->query("SELECT nip FROM tbl_dosen_pddikti WHERE nip = '$nip'")->result();
 
 		return $result;
 	}
@@ -182,14 +182,14 @@ class Kemeng_model extends CI_Model
 	//END HONOR
 
 	function get_honor_allinone($id_fakultas){
-		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_plot_dosen.nama_matkul,tbl_dosen.jabatan,  sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
+		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_plot_dosen.nama_matkul,tbl_dosen_pddikti.jabatan,  sum(tbl_plot_dosen.sks) as totalsks, 9 as kewajiban, 
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
 			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
 			END AS kelebihan,
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN (SUM(tbl_plot_dosen.sks)-9)*(tbl_honor_dosen.index)
 			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
 			END AS total
-			FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan
+			FROM tbl_dosen_pddikti JOIN tbl_plot_dosen on tbl_dosen_pddikti.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen_pddikti.jabatan
 			WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' GROUP BY tbl_plot_dosen.nip ");
 		
 		return $query;
@@ -210,7 +210,7 @@ class Kemeng_model extends CI_Model
 		$bebas= preg_replace('/[^0-9\",]/', '', $dadah);
 		
 		if ($bebas != NULL) {
-			$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen JOIN tbl_plot_dosen on tbl_dosen.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)")->result();
+			$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama_matkul,tbl_plot_dosen.sks, 9 as kewajiban FROM tbl_dosen_pddikti JOIN tbl_plot_dosen on tbl_dosen_pddikti.nip= tbl_plot_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen_pddikti.jabatan WHERE tbl_plot_dosen.id_fakultas ='$id_fakultas' and tbl_plot_dosen.nip IN ($bebas)")->result();
 			return $query;
 		}
 	}
@@ -222,14 +222,14 @@ class Kemeng_model extends CI_Model
 	}
 
 	function get_fakulhonor(){
-		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_dosen.jabatan, sum(tbl_plot_dosen.sks) as totalsks,9 as kewajiban,
+		$query = $this->db->query("SELECT tbl_plot_dosen.nip,tbl_plot_dosen.nama,tbl_dosen_pddikti.jabatan, sum(tbl_plot_dosen.sks) as totalsks,9 as kewajiban,
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN SUM(tbl_plot_dosen.sks)-9
 			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
 			END AS kelebihan,
 			CASE WHEN SUM(tbl_plot_dosen.sks) > 9  THEN (SUM(tbl_plot_dosen.sks)-9)*(tbl_honor_dosen.index)
 			WHEN SUM(tbl_plot_dosen.sks) <= 9 then 0
 			END AS total
-			FROM `tbl_plot_dosen` join tbl_dosen on tbl_plot_dosen.nip = tbl_dosen.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen.jabatan
+			FROM `tbl_plot_dosen` join tbl_dosen_pddikti on tbl_plot_dosen.nip = tbl_dosen_pddikti.nip JOIN tbl_honor_dosen on tbl_honor_dosen.jabatan = tbl_dosen_pddikti.jabatan
 			group by tbl_plot_dosen.nip");
 
 		return $query;
@@ -237,9 +237,9 @@ class Kemeng_model extends CI_Model
 
 	function get_index_honor($nip) {
 		$this->db->select("index");
-		$this->db->from("tbl_dosen");
-		$this->db->join('tbl_honor_dosen', "tbl_dosen.jabatan=tbl_honor_dosen.jabatan");
-		$this->db->where('tbl_dosen.nip', $nip);
+		$this->db->from("tbl_dosen_pddikti");
+		$this->db->join('tbl_honor_dosen', "tbl_dosen_pddikti.jabatan=tbl_honor_dosen.jabatan");
+		$this->db->where('tbl_dosen_pddikti.nip', $nip);
 		$res = $this->db->get();
 		return $res;
 	}
@@ -285,7 +285,7 @@ class Kemeng_model extends CI_Model
 	}
 	
 	public function get_nama(){
-		$result = $this->db->query("SELECT nama, nip FROM tbl_dosen");
+		$result = $this->db->query("SELECT nama, nip FROM tbl_dosen_pddikti");
 		return $result;
 	}
 
