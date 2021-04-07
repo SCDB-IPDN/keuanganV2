@@ -345,46 +345,45 @@ class Praja extends CI_Controller {
   {
     if ($this->session->userdata('nip') != NULL) {
 
-     $editnya['nama'] = $this->input->post('nama', true);
+    
      $editnya['npp'] = $this->input->post('npp', true);
+     $editnya['no_spcp'] = $this->input->post('no_spcp', true);
+     $editnya['nama'] = $this->input->post('nama', true);
      $editnya['jk'] = $this->input->post('jk', true);
-     $editnya['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
-     $editnya['tgl_lahir'] = $this->input->post('tgl_lahir', true);
      $editnya['nisn'] = $this->input->post('nisn', true);
      $editnya['npwp'] = $this->input->post('npwp', true);
-     $editnya['no_spcp'] = $this->input->post('no_spcp', true);
      $editnya['nik_praja'] = $this->input->post('nik_praja', true);
-     $editnya['agama'] = $this->input->post('agama', true);
+     $editnya['tmpt_lahir'] = $this->input->post('tmpt_lahir', true);
+     $editnya['tgl_lahir'] = $this->input->post('tgl_lahir', true);
      $editnya['alamat'] = $this->input->post('alamat', true);
      $editnya['rt'] = $this->input->post('rt', true);
      $editnya['rw'] = $this->input->post('rw', true);
-     $editnya['provinsi'] = $this->input->post('provinsi', true);
-     $editnya['kab_kota'] = $this->input->post('kab_kota', true);
-     $editnya['kelurahan'] = $this->input->post('kelurahan', true);
      $editnya['nama_dusun'] = $this->input->post('nama_dusun', true);
-     $editnya['kecamatan'] = $this->input->post('kecamatan', true);
+     $editnya['kelurahan'] = $this->input->post('kelurahan', true);
      $editnya['kode_pos'] = $this->input->post('kode_pos', true);
-     $editnya['jenis_tinggal'] = $this->input->post('jenis_tinggal', true);
+     $editnya['kab_kota'] = $this->input->post('kab_kota', true);
+     $editnya['provinsi'] = $this->input->post('provinsi', true);
+     $editnya['agama'] = $this->input->post('agama', true);
+     $editnya['kecamatan'] = $this->input->post('kecamatan', true);
      $editnya['tlp_pribadi'] = $this->input->post('tlp_pribadi', true);
      $editnya['tlp_rumah'] = $this->input->post('tlp_rumah', true);
      $editnya['email'] = $this->input->post('email', true);
-     $editnya['tingkat'] = $this->input->post('tingkat', true);
-     $editnya['angkatan'] = $this->input->post('angkatan', true);
-     $editnya['status'] = $this->input->post('status', true);
-     $editnya['fakultas'] = $this->input->post('fk', true);
      $editnya['prodi'] = $this->input->post('prodi', true);
-     $editnya['kewarganegaraan'] = $this->input->post('kewarganegaraan', true);
-     $editnya['jenis_pendaftaran'] = $this->input->post('jenis_pendaftaran', true);
-     $editnya['tgl_masuk_kuliah'] = $this->input->post('tgl_masuk_kuliah', true);
-     $editnya['tahun_masuk_kuliah'] = $this->input->post('tahun_masuk_kuliah', true);
-     $editnya['pembiayaan'] = $this->input->post('pembiayaan', true);
-     $editnya['alat_transport'] = $this->input->post('alat_transport', true);
-     $editnya['biaya_masuk'] = $this->input->post('biaya_masuk', true);
-     $editnya['jalur_masuk'] = $this->input->post('jalur_masuk', true);
      $editnya['penerima_pks'] = $this->input->post('penerima_pks', true);
      $editnya['no_pks'] = $this->input->post('no_pks', true);
+     $editnya['tgl_masuk_kuliah'] = $this->input->post('tgl_masuk_kuliah', true);
+     $editnya['tahun_masuk_kuliah'] = $this->input->post('tahun_masuk_kuliah', true);
+     $editnya['status'] = $this->input->post('status', true);
+     $editnya['tingkat'] = $this->input->post('tingkat', true);
+     $editnya['angkatan'] = $this->input->post('angkatan', true);
+     $editnya['fakultas'] = $this->input->post('fk', true);
+     $editnya['biaya_masuk'] = $this->input->post('biaya_masuk', true);
      $editnya['mulai_semester'] = $this->input->post('mulai_semester', true);
-
+     $editnya['jenis_tinggal'] = $this->input->post('jenis_tinggal', true);
+     $editnya['alat_transport'] = $this->input->post('alat_transport', true);
+     $editnya['kewarganegaraan'] = $this->input->post('kewarganegaraan', true);
+     $editnya['pembiayaan'] = $this->input->post('pembiayaan', true);
+     $editnya['jalur_masuk'] = $this->input->post('jalur_masuk', true);
      $editnya['nik_ayah'] = $this->input->post('nik_ayah', true);
      $editnya['nama_ayah'] = $this->input->post('nama_ayah', true);
      $editnya['tgllahir_ayah'] = $this->input->post('tgllahir_ayah', true);
@@ -399,7 +398,6 @@ class Praja extends CI_Controller {
      $editnya['pekerjaan_ibu'] = $this->input->post('pekerjaan_ibu', true);
      $editnya['penghasilan_ibu'] = $this->input->post('penghasilan_ibu', true);
      $editnya['tlp_ibu'] = $this->input->post('tlp_ibu', true);
-
      $editnya['nik_wali'] = $this->input->post('nik_wali', true);
      $editnya['nama_wali'] = $this->input->post('nama_wali', true);
      $editnya['tgllahir_wali'] = $this->input->post('tgllahir_wali', true);
@@ -407,10 +405,11 @@ class Praja extends CI_Controller {
      $editnya['pekerjaan_wali'] = $this->input->post('pekerjaan_wali', true);
      $editnya['penghasilan_wali'] = $this->input->post('penghasilan_wali', true);
      $editnya['tlp_wali'] = $this->input->post('tlp_wali', true);
+     $editnya['jenis_pendaftaran'] = $this->input->post('jenis_pendaftaran', true);
      
      // print("<pre>".print_r($editnya,true)."</pre>");exit();
-      $result = $this->Praja_model->view_edit($editnya);
-     // var_dump($editnya);exit();
+     $result = $this->Praja_model->view_edit($editnya);
+      // var_dump($editnya);exit();
 
      if (!$result) {
       $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');

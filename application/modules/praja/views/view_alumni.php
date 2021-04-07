@@ -58,7 +58,7 @@
           <h4 class="modal-title">Ubah Data Alumni</h4>
           <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
         </div>
-        <form class="form-horizontal" action="<?php echo base_url('d_praja/edit_alumni') ?>" method="POST" enctype="multipart/form-data" role="form">
+        <form class="form-horizontal" action="<?php echo base_url('praja/edit_alumni') ?>" method="POST" enctype="multipart/form-data" role="form">
           <div class="modal-body">
             <div class="form-group">
               <label class="col-form-label">Nama Alumni :</label>
