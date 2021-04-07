@@ -303,7 +303,8 @@ class Kemeng extends CI_Controller
 		if ($this->session->userdata('nip') != NULL) {
 			$nip = $this->session->userdata('nip');
 			$dosen = $this->session->userdata('dosen');
-			if($nip == 'Admin' && $nip != "SuperAdmin"){
+
+			if($nip == 'admin'){
 				$semester = $this->input->post('semester');
 				$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
 				$x['data'] = json_encode($data);
@@ -349,7 +350,6 @@ class Kemeng extends CI_Controller
 					$this->load->view("include/sidebar");
 					$this->load->view("include/panel");
 					$this->load->view("include/footer");
-
 				}
 			}else{
 				redirect("home");
