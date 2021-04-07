@@ -69,7 +69,7 @@
                 <div class="col-sm-8">
                   <label class="col-form-label">Nama Dosen :</label>
                   <select class="form-control" id="nama" name="nama" required>
-                    <option> Select Nama</option>
+                    <option value=""> Select Nama</option>
                     <?php foreach ($tp as $rows) { ?>
                       <option value="<?php echo $rows->nama . '|' . $rows->nip; ?>"><?php echo $rows->nama . '|' . $rows->nip; ?>
                       </option>
