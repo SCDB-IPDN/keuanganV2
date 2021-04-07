@@ -269,8 +269,13 @@ class Kemeng_model extends CI_Model
 	}
 
 	//PLOT
-	public function get_all_plot(){
-		$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+	public function get_all_plot($id_fakultas){
+		if($id_fakultas != 'Admin' && $id_fakultas != 'SuperAdmin'){
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE id_fakultas = '$id_fakultas'");
+		}else{
+			$result = $this->db->query("SELECT * FROM tbl_plot_dosen");
+		}
+
 		return $result;
 	}
 
@@ -294,8 +299,12 @@ class Kemeng_model extends CI_Model
 		return $result;
 	}
 
-	public function get_nama_fakultas(){
-		$result = $this->db->query("SELECT nama_fakultas, id_fakultas FROM tbl_fakultas ");
+	public function get_nama_fakultas($role){
+		if($role != 'Admin' && $role != 'SuperAdmin'){
+			$result = $this->db->query("SELECT nama_fakultas, id_fakultas FROM tbl_fakultas WHERE id_fakultas = '$role'");
+		}else{
+			$result = $this->db->query("SELECT nama_fakultas, id_fakultas FROM tbl_fakultas ");
+		}
 		return $result;
 	}
 
