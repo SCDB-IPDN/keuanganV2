@@ -220,8 +220,6 @@ class Kemeng extends CI_Controller
 		$data['indeks'] = $this->input->post('indeks', true);
 		$result = $this->Kemeng_model->attendence_add($data);
 
-
-
 		if ($result) { 				
 			$this->session->set_flashdata('absen', ['success', 'Data absensi berhasil disimpan']);
 			redirect('kemeng'); 			
@@ -270,7 +268,6 @@ class Kemeng extends CI_Controller
 		$id_absensi = $this->session->userdata('role');
 		$data = $this->Kemeng_model->get_presensi($id_absensi)->result();
 		
-
 		$allp = array();
 
 		$no = 1;
@@ -618,7 +615,7 @@ class Kemeng extends CI_Controller
 			$nama_fakultas = $r->nama_fakultas;
 			$nama_prodi = $r->nama_prodi;
 						
-			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
+			if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'FHTP' || $this->session->userdata('role') == 'FPP' || $this->session->userdata('role') == 'FMP' ){
 				$aksi = "<a 
 				href='javascript:;' data-id_plot='$r->id_plot' data-nama='$r->nama' data-nama_matkul='$r->nama_matkul' data-tanggal='$r->tanggal' 
 				data-jam='$r->jam' data-kelas='$r->kelas' data-semester='$r->semester' 

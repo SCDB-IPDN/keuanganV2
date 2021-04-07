@@ -78,18 +78,19 @@ class Kemeng_model extends CI_Model
 	}
 
 	public function get_presensi($id_absensi)
-	{	
+	{
 		$this->db->select("tbl_absensi.nip, tbl_absensi.nama_dosen, tbl_absensi.kelas, tbl_fakultas.nama_fakultas, tbl_prodi.nama_prodi, tbl_matkul.nama_matkul, tbl_absensi.timestamp");
 		$this->db->from("tbl_absensi");
 		$this->db->join("tbl_fakultas", "tbl_fakultas.id_fakultas =  tbl_absensi.id_fakultas");
 		$this->db->join("tbl_prodi", "tbl_prodi.id_prodi =  tbl_absensi.id_prodi");
 		$this->db->join("tbl_matkul", "tbl_matkul.id_matkul =  tbl_absensi.id_matkul");
 
-		if ($id_absensi != "Admin" || $id_absensi != "SuperAdmin"){
-			$this->db->where("tbl_absensi.tbl_absensi", $id_absensi);
+		if ($id_absensi != "Admin" && $id_absensi != "SuperAdmin"){
+			$this->db->where("tbl_absensi.id_fakultas", $id_absensi);
 		} else {
 			$this->db->group_by("tbl_absensi.id_absensi");
 		}
+		
 		$this->db->order_by("tbl_absensi.timestamp", "DESC");
 		return $this->db->get();
 	}
