@@ -167,20 +167,8 @@
               <input type="text" class="form-control" id="nama" name="nama" readonly="">
             </div>
             <div class="form-group">
-              <label class="col-form-label">Tanggal :</label>
-              <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-            </div>
-            <div class="form-group">
               <label class="col-form-label">Nama Matkul :</label>
               <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" readonly="">
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Jam :</label>
-              <input type="time" class="form-control" id="jam" name="jam" required>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Kelas :</label>
-              <input type="text" class="form-control" id="kelas" name="kelas" required>
             </div>
             <div class="form-group">
               <label class="col-form-label">Semester :</label>
@@ -190,9 +178,25 @@
               <label class="col-form-label">Nama Fakultas :</label>
               <input type="text" class="form-control" id="nama_fakultas" name="nama_fakultas" readonly="">
             </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xl-4">
+                  <label class="col-form-label">Jam :</label>
+                  <input type="time" class="form-control" id="jam" name="jam" required>
+                </div>
+                <div class="col-xl">
+                  <label class="col-form-label">Tanggal :</label>
+                  <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">Kelas :</label>
+              <input type="text" class="form-control" id="kelas" name="kelas" required>
+            </div>
             <div class="modal-footer">
-              <button class="btn btn-info" type="submit"> Simpan&nbsp;</button>
               <button type="button" class="btn btn-warning" data-dismiss="modal"> Batal</button>
+              <button class="btn btn-info" type="submit"> Simpan </button>
             </div>
         </form>
       </div>
