@@ -479,11 +479,11 @@ class Kemeng extends CI_Controller
 	{
 		if($this->session->userdata('nip') != NULL)
 		{
-			$data = $this->Kemeng_model->get_all_plot()->result();
-			$x['data'] = $data;
+			$role = $this->session->userdata('role');
+
 			$tp = $this->Kemeng_model->get_nama()->result();
 			$mk = $this->Kemeng_model->get_nama_matkul()->result();
-			$fk = $this->Kemeng_model->get_nama_fakultas()->result();
+			$fk = $this->Kemeng_model->get_nama_fakultas($role)->result();
 			$prodi = $this->Kemeng_model->get_nama_prodi()->result();
 
 			$id_fakultas = $this->session->userdata('role');
