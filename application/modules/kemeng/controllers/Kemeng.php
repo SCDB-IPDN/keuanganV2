@@ -303,8 +303,7 @@ class Kemeng extends CI_Controller
 		if ($this->session->userdata('nip') != NULL) {
 			$nip = $this->session->userdata('nip');
 			$dosen = $this->session->userdata('dosen');
-
-			if($nip == 'admin'){
+			if($nip == 'Admin' && $id_fakultas != "SuperAdmin"){
 				$semester = $this->input->post('semester');
 				$data = $this->Kemeng_model->jadwal_dosen($nip, $semester);
 				$x['data'] = json_encode($data);

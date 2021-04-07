@@ -11,7 +11,7 @@ class Kemeng_model extends CI_Model
 
 	public function jadwal_dosen($nip, $semester)
 	{
-		if($nip == 'admin'){
+		if($nip == 'Admin' && $id_fakultas != "SuperAdmin"){
 			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE semester = '$semester'")->result();
 		}else{
 			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = '$nip' AND semester = '$semester'")->result();
@@ -31,7 +31,7 @@ class Kemeng_model extends CI_Model
 	public function get_fakultassss($id_fakultas)
 	{
 
-		if ($id_fakultas != "Admin"){
+		if ($id_fakultas != "SuperAdmin" && $id_fakultas != "Admin"){
 			$fakul = $this->db->query("SELECT * FROM tbl_fakultas where id_fakultas='$id_fakultas'");
 		}else{
 
@@ -44,7 +44,7 @@ class Kemeng_model extends CI_Model
 
 	public function get_makul($id_fakultas)
 	{
-		if ($id_fakultas != "Admin"){
+		if ($id_fakultas != "SuperAdmin" && $id_fakultas != "Admin"){
 			$makul = $this->db->query("SELECT *, tbl_matkul.nama_matkul, tbl_fakultas.nama_fakultas FROM tbl_matkul JOIN tbl_prodi ON tbl_prodi.id_prodi = tbl_matkul.id_prodi JOIN tbl_fakultas ON tbl_fakultas.id_fakultas = tbl_matkul.id_fakultas Where tbl_fakultas.id_fakultas ='$id_fakultas' ");
 		}else{
 
