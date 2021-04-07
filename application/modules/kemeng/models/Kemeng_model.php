@@ -11,7 +11,7 @@ class Kemeng_model extends CI_Model
 
 	public function jadwal_dosen($nip, $semester)
 	{
-		if($nip == 'Admin' && $id_fakultas != "SuperAdmin"){
+		if($nip == 'Admin' && $nip != "SuperAdmin"){
 			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE semester = '$semester'")->result();
 		}else{
 			$result = $this->db->query("SELECT * FROM tbl_plot_dosen WHERE nip = '$nip' AND semester = '$semester'")->result();
