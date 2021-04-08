@@ -263,18 +263,17 @@
 			<!-- END KEPEGAWAIAN -->
 
 
-
 			<!-- Keprajaan -->
-			<li class="<?php echo $this->uri->segment(1)=="praja" || $this->uri->segment(2)=="alumni" ?"active":"";?> has-sub">
+			<li class="<?php echo $this->uri->segment(1)=="praja" || $this->uri->segment(1)=="alumni" ?"active":"";?> has-sub">
 				<a href="javascript:;">
 					<b class="caret"></b>
 					<i class="fas fa-graduation-cap"></i>
 					<span>Keprajaan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class="<?php echo $this->uri->segment(1) == "praja" && $this->uri->segment(2)!="alumni" ? "active" : ""; ?> has-sub">
+					<li class="<?php echo $this->uri->segment(1) == "praja" && $this->uri->segment(2) !="alumni" ? "active" : ""; ?> has-sub">
 
-						<li class="<?php echo $this->uri->segment(1) == "praja" ? "active" : ""; ?>"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
+						<li class="<?php echo $this->uri->segment(1) == "praja" && $this->uri->segment(2) !="alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('praja'); ?>">Praja</a></li>
 						<li class="<?php echo $this->uri->segment(2) == "alumni" ? "active" : ""; ?>"><a href="<?php echo base_url('praja/alumni'); ?>">Alumni</a></li>
 
 					</li>
