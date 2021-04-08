@@ -52,7 +52,7 @@
 				</a>
 				<ul class="sub-menu">
 					<li class="<?php echo $this->uri->segment(1)=="dosen_dikti" ?"active":"";?>"><a href="<?php echo base_url('dosen_dikti');?>">DOSEN</a></li>
-					<li class=""><a href="https://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
+					<li class=""><a href="http://sister.ipdn.ac.id" target="_blank">SISTER</a></li>
 					<?php if ($this->session->userdata('role') == 'SuperAdmin') { ?>
 						<li class="<?php echo $this->uri->segment(1)=="import" ?"active":"";?> has-sub">
 							<a href="javascript:;">
@@ -99,17 +99,18 @@
 						<span>Fakultas</span>
 					</a>
 					<ul class="sub-menu">
-						<li class="<?php echo $this->uri->segment(1) == "kemeng" || $this->uri->segment(2) == "view_matkul" || $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?> has-sub">
+						<li class="<?php echo $this->uri->segment(1) == "kemeng" || $this->uri->segment(2) == "view_matkul" || $this->uri->segment(2) == "jadwal_dosen" || $this->uri->segment(2) == "plot" ? "active" : ""; ?> has-sub">
 							<a href="javascript:;">
 								<b class="caret"></b>
 								KEMENG
 							</a>
 							<ul class="sub-menu">
 								<li class="<?php echo $this->uri->segment(1) == "kemeng" && $this->uri->segment(2) == NULL ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng'); ?>">PRESENSI</a></li>
+								<li class="<?php echo $this->uri->segment(2) == "plot" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/plot'); ?>">PLOT</a></li>
 								<li class="<?php echo $this->uri->segment(2) == "view_matkul" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/view_matkul'); ?>">MATKUL</a></li>
 								<?php if($this->session->userdata('dosen') == 'Dosen' || $this->session->userdata('role') == 'Admin' ||$this->session->userdata('role') == 'SuperAdmin'){?>
 									<li class="<?php echo $this->uri->segment(2) == "jadwal_dosen" ? "active" : ""; ?>"><a href="<?php echo base_url('kemeng/jadwal_dosen'); ?>">JADWAL</a></li>
-									<li class="<?php echo $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
+									<li class="<?php echo $this->uri->segment(3)=="FHTP" || $this->uri->segment(3)=="FMP" || $this->uri->segment(3)=="FPP" ?"active":"";?> has-sub">
 										<a href="javascript:;">
 											<b class="caret"></b>
 											HONOR ALL
@@ -169,7 +170,7 @@
 					<span>Kampus</span>
 				</a>
 				<ul class="sub-menu">
-					<li class=""><a href="https://jakarta.ipdn.ac.id">Kampus Jakarta</a></li>
+					<li class=""><a href="http://jakarta.ipdn.ac.id">Kampus Jakarta</a></li>
 					<li class=""><a href="#">Kampus Kalimantan Barat</a></li>
 					<li class=""><a href="#">Kampus Nusa Tenggara Barat</a></li>
 					<li class=""><a href="#">Kampus Papua</a></li>
@@ -221,7 +222,7 @@
 							<li class="<?php echo $this->uri->segment(1) == "d_pok" ? "active" : ""; ?>"><a href="<?php echo base_url('d_pok'); ?>">JATINANGOR</a></li>
 						</ul>
 					</li>
-					<li class=""><a href="https://perdin.ipdn.ac.id" target="_blank">PERDIN</a></li>
+					<li class=""><a href="http://perdin.ipdn.ac.id" target="_blank">PERDIN</a></li>
 				</ul>
 			</li>
 			<!-- END KEUANGAN -->
@@ -321,7 +322,7 @@
 					<span>Pasca Sarjana</span>
 				</a>
 				<ul class="sub-menu">
-					<li class=""><a href="https://pasca.ipdn.ac.id" target="_blank">WEB PASCA</a></li>
+					<li class=""><a href="http://pasca.ipdn.ac.id" target="_blank">WEB PASCA</a></li>
 					<li class=""><a href="http://sika.ipdn.ac.id/pasca/pmb/admin-aplikasi" target="_blank">ADMIN PMB</a></li>
 					<li class=""><a href="http://sika.ipdn.ac.id/pmb " target="_blank">LAMAN PMB</a></li>
 				</ul>
@@ -360,9 +361,9 @@
 					<span>Perpustakaan</span>
 				</a>
 				<ul class="sub-menu">
-					<li class=""><a href="https://elib.ipdn.ac.id" target="_blank">ELIB</a></li>
-					<li class=""><a href="https://er.elib.ipdn.ac.id" target="_blank">ER-ELIB</a></li>
-					<li class=""><a href="https://eprints.ipdn.ac.id" target="_blank">E-PRINT</a></li>
+					<li class=""><a href="http://elib.ipdn.ac.id" target="_blank">ELIB</a></li>
+					<li class=""><a href="http://er.elib.ipdn.ac.id" target="_blank">ER-ELIB</a></li>
+					<li class=""><a href="http://eprints.ipdn.ac.id" target="_blank">E-PRINT</a></li>
 				</ul>
 			</li>
 			<!-- END PERPUSTAKAAN -->
@@ -375,7 +376,7 @@
 					<span>Riset</span>
 				</a>
 				<ul class="sub-menu">
-					<li class=""><a href="https://ojs.ipdn.ac.id" target="_blank">OJS</a></li>
+					<li class=""><a href="http://ojs.ipdn.ac.id" target="_blank">OJS</a></li>
 				</ul>
 			</li>
 			<!-- END RISET -->
@@ -409,9 +410,9 @@
 						<span>Teknologi Pendidikan</span>
 					</a>
 					<ul class="sub-menu">
-						<li class=""><a href="https://mail.ipdn.ac.id" target="_blank">EMAIL</a></li>
-						<li class=""><a href="https://mcu.ipdn.ac.id" target="_blank">MCU</a></li>
-						<li class=""><a href="https://livestreaming.ipdn.ac.id" target="_blank">STREAMING</a></li>
+						<li class=""><a href="http://mail.ipdn.ac.id" target="_blank">EMAIL</a></li>
+						<li class=""><a href="http://mcu.ipdn.ac.id" target="_blank">MCU</a></li>
+						<li class=""><a href="http://livestreaming.ipdn.ac.id" target="_blank">STREAMING</a></li>
 					</ul>
 				</li>
 				<!-- END TP -->
@@ -425,7 +426,7 @@
 						<span>More Apps</span>
 					</a>
 					<ul class="sub-menu">
-						<li class=""><a href="https://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
+						<li class=""><a href="http://sika.ipdn.ac.id" target="_blank">SIKA</a></li>
 						<li class=""><a href="http://pddikti.ipdn.ac.id/login" target="_blank">PDDIKTI</a></li>
 						<li class=""><a href="https://docs.google.com/forms/d/e/1FAIpQLSf-sLnZqvzKaz0sOJLU1CwbTRkKRvddpmBqrs0vtZ6xA4RC8g/viewform" target="_blank">SPCP (VALIDASI)</a></li>
 						<li class="has-sub">

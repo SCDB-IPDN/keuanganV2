@@ -35,6 +35,54 @@ class Home_model extends CI_Model{
 
 
 	// Kepegawaian
+	public function penempatanPeg(){
+		return $this->db->query("SELECT
+		@jatinangor := (total + total2) - (jakarta + jakarta2 + sumbar + sumbar2 + kalbar + kalbar2 + sulsel + sulsel2 + sulut + sulut2 + ntb +ntb2 + papua + papua2)  as t_jatinangor, 
+		@jakarta := jakarta + jakarta2 as t_jakarta, 
+		@sumbar := sumbar + sumbar2 as t_sumbar,
+		@kalbar := kalbar + kalbar2 as t_kalbar,
+		@sulsel := sulsel + sulsel2 as t_sulsel, 
+		@sulut := sulut + sulut2 as t_sulut, 
+		@ntb := ntb + ntb2 as t_ntb, 
+		@papua := papua + papua2 as t_papua,
+		
+		@pjat := total - (jakarta + sumbar + kalbar + sulsel + sulut + ntb + papua)  as pjat,
+		jakarta as pjak,
+		sumbar as psumbar,
+		kalbar as pkalbar,
+		sulsel as psulsel,
+		sulut as psulut,
+		ntb as pntb,
+		papua as ppapua,
+		
+		@thjat := total2 - (jakarta2 + sumbar2 + kalbar2 + sulsel2 + sulut2 + ntb2 + papua2)  as thjat,
+		jakarta2 as thjak,
+		sumbar2 as thsumbar,
+		kalbar2 as thkalbar,
+		sulsel2 as thsulsel,
+		sulut2 as thsulut,
+		ntb2 as thntb,
+		papua2 as thpapua
+
+		FROM 
+		(SELECT count(*) as total FROM tbl_pns) a,
+		(SELECT count(*) as total2 FROM tbl_thl) b,
+		(SELECT count(*) as jakarta FROM tbl_pns WHERE jabatan LIKE '%JAKARTA%') c,
+		(SELECT count(*) as jakarta2 FROM tbl_thl WHERE nama_satker LIKE '%JAKARTA%') d,
+		(SELECT count(*) as sumbar FROM tbl_pns WHERE jabatan LIKE '%SUMATERA BARAT%') e,
+		(SELECT count(*) as sumbar2 FROM tbl_thl WHERE nama_satker LIKE '%SUMATERA BARAT%') f,
+		(SELECT count(*) as kalbar FROM tbl_pns WHERE jabatan LIKE '%KALIMANTAN BARAT%') g,
+		(SELECT count(*) as kalbar2 FROM tbl_thl WHERE nama_satker LIKE '%KALIMANTAN BARAT%') h,
+		(SELECT count(*) as sulsel FROM tbl_pns WHERE jabatan LIKE '%SULAWESI SELATAN%') i,
+		(SELECT count(*) as sulsel2 FROM tbl_thl WHERE nama_satker LIKE '%SULAWESI SELATAN%') j,
+		(SELECT count(*) as sulut FROM tbl_pns WHERE jabatan LIKE '%SULAWESI UTARA%') k,
+		(SELECT count(*) as sulut2 FROM tbl_thl WHERE nama_satker LIKE '%SULAWESI UTARA%') l,
+		(SELECT count(*) as ntb FROM tbl_pns WHERE jabatan LIKE '%NUSA TENGGARA BARAT%') m,
+		(SELECT count(*) as ntb2 FROM tbl_thl WHERE nama_satker LIKE '%NUSA TENGGARA BARAT%') n,
+		(SELECT count(*) as papua FROM tbl_pns WHERE jabatan LIKE '%PAPUA%') o,
+		(SELECT count(*) as papua2 FROM tbl_thl WHERE nama_satker LIKE '%PAPUA%') p")->result();
+	}
+
 	public function jumlah_peg()
 	{
 		$peg = $this->db->query("SELECT pns, thl, ta FROM (SELECT count(*) as pns FROM tbl_pns) as pns, (SELECT count(*) as thl FROM tbl_thl) as thl, (SELECT count(*) as ta FROM tbl_ta) as ta")->result();

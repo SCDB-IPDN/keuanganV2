@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
+        <?php if($this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'Humas'){ ?>
         <div class="card-body">
           <div class="row">
             <div class="col-xl-7 col-lg-8">
@@ -33,8 +33,8 @@
                       </span>
                       <input for="struk" type="file" name="struk" class="form-control">
                   </div>
-
                   <button id="struk" type="submit" class="btn btn-success">UPLOAD FILE</button>
+                  <a href="<?php echo base_url() ?>assets/download/beritaeks.xlsx" class="btn btn-primary">TEMPLATE</a>
               </form>
             </div>
           </div>
