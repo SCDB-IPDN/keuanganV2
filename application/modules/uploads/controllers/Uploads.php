@@ -3035,7 +3035,7 @@ class Uploads extends CI_Controller {
 			}
 
 			$loadexcel  = $reader->load($_FILES['sumbar']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -3048,61 +3048,80 @@ class Uploads extends CI_Controller {
 
 			$this->db->where('kode_satker', $satker_sumbar);
 			$this->db->delete('output_sas');
-			foreach($sheet as $row){
-				if($numrow > 1){
-					$ket1 = trim($row['A']);
-					// echo "$ket1<br>";
-					$ket = substr($ket1, 9);
-					$temp = explode(" ", $ket1);
-					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
-					if (preg_match($regex, $temp[0])) {
-						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+			$this->db->where('kode_satker', $satker_sumbar);
+			$this->db->delete('suboutput_sas');
+
+
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
+
+					if ($row['A'] == 2) {
+						$cunit++;
+
+						$ket = trim($row['AI']);
+
+						$ex = explode(' ', $ket);
+						$satker_biro = $ex[0] . "." . $satker_sumbar;
+						// var_dump($satker_biro);exit();
+						$keterangan = substr($ket, 5);
+
 						$unitsumbar = array();
 						array_push($unitsumbar, array(
-							'kode_satker'  => $satker_sumbar,
-							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
-							'ket'      => $ket,
+							'kode_satker'      => $satker_sumbar,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
 							'tanggal' => $tgl
 						));
-						// exit;
+
 						$this->db->insert_batch('unit_sas', $unitsumbar);
+					} elseif ($row['A'] == 3) {
 
-						// $sql1 = "INSERT INTO unit_sas values (".$satker_sumbar.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-						// echo "$sql1";
-						// echo "<br>";
-						// $this->db->query($sql1);
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0];
 
-						// echo $id_c;
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
-						$ket1 = trim($row['A']);
-						$ket1 = substr($ket1, 4);
-					   // echo "$ket1<br>";
+						$id = $ex[0] . "." . $satker_sumbar;
+						$iduntuksuboutput = $ex[0];
 
-						$pagu = $row['B'];
-					   // echo "pagunya"."$pagu";
-						$realisasi = $row['C'];
+
+
 						$outputsumbar = array();
 						array_push($outputsumbar, array(
-							'kode_satker' => $satker_sumbar,
-							'id_b'      => $satker_biro[0],
-							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
-							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1,
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      => $satker_sumbar,
+							'ket'      => $keterangan
+						));
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
+						$this->db->insert_batch('output_sas', $outputsumbar);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
+
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
+
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_sumbar;
+
+
+						$suboutputsumbar = array();
+						array_push($suboutputsumbar, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_sumbar,
+							'ket'      => $keterangan1,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
 							'tanggal' => $tgl
 						));
-						// exit;
-						$this->db->insert_batch('output_sas', $outputsumbar);
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_sumbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
-					   // echo "$sql2";
-					   // echo "<br>";
-					   // $this->db->query($sql2);
+						// print("<pre>".print_r($suboutputntb,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutputsumbar);
 					}
-
 				}
 				$numrow++;
 			}
