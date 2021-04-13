@@ -1,16 +1,10 @@
 <?php
 class Home_model extends CI_Model{
 	
-	// private $db2;
-
-	// public function __construct(){
-	// 	parent::__construct();
-	// 	$this->db2 = $this->load->database('spcp', TRUE);
-	// }
-
-	// public function spcp(){
-	// 	return $this->db2->query("SELECT count(*) as total FROM cp_up")->result();
-	// }
+	public function spcp(){
+		$db2 = $this->load->database('spcp', TRUE);
+		return $db2->query("SELECT count(*) as total FROM cp_up")->result();
+	}
 
 	public function pendaftar_spcp(){
 		return $this->db->query("SELECT * FROM tbl_pendaftar_spcp")->result();
