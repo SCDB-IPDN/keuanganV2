@@ -105,6 +105,7 @@ $db['database_ipdn'] = array(
 	'password' => '1pdn-Spcp',
 	'database' => 'spcpipdn21',
 	'dbdriver' => 'mysqli',
+	'port'     => '3306',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
