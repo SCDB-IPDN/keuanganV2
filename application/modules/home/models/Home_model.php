@@ -1,10 +1,10 @@
 <?php
 class Home_model extends CI_Model{
 	
-	// public function spcp(){
-	// 	$db2 = $this->load->database('spcp', TRUE);
-	// 	return $db2->query("SELECT count(*) as total FROM cp_up")->result();
-	// }
+	public function spcp(){
+		$db2 = $this->load->database('database_ipdn', TRUE);
+		return $db2->query("SELECT count(*) as total FROM cp_up")->result();
+	}
 
 	public function pendaftar_spcp(){
 		return $this->db->query("SELECT * FROM tbl_pendaftar_spcp")->result();
