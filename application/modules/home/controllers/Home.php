@@ -37,6 +37,9 @@ class Home extends CI_Controller {
       $keprek1 = $this->home_model->keputusan_rektor1();
       $srt1 = $this->home_model->surat_edaran1();
 
+      // SPCP
+      $total_spcp = $this->home_model->spcp()[0];
+
       // $last_ortx = $this->home_model->update_last_ort();
       // if($last_ortx[0]->updated_date != NULL){
       //   $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
@@ -121,6 +124,8 @@ class Home extends CI_Controller {
       $berita = $this->home_model->listing();
       $eksternal = $this->home_model->get_data()->result();
 
+      $x['total_spcp'] = $total_spcp;
+      $x['pendaftar_spcp'] = $this->home_model->pendaftar_spcp()[0];
       $x['eksternal'] = $eksternal;
       $x['berita'] = $berita;
       $x['perpustakaan'] = $perpustakaan;
@@ -203,21 +208,22 @@ class Home extends CI_Controller {
 
   }
 
-  // // Read berita
-	// public function read($slug_berita)
-	// {
-	// 	helper('text');
-	// 	$berita = $this->home_model->read($slug_berita);
+  public function update_spcp(){
+    $id = $this->input->post('id', true); 
 
-  //   $x['berita'] = $berita;
+    $input_data['ms'] = $this->input->post('ms', true); 			
+    $input_data['tms'] = $this->input->post('tms', true);
+    $input_data['bt'] = $this->input->post('bt', true);
+    $input_data['updated_date'] = date('Y-m-d');
 
-  //   $this->load->view("include/head");
-  //   $this->load->view("include/top-header");
-  //   $this->load->view('read', $x);
-  //   $this->load->view("include/sidebar");
-  //   $this->load->view("include/panel");
-  //   $this->load->view("include/footer");
+    $result = $this->home_model->update_spcp($input_data, $id);
 
-	// }
+    if (!$result) { 								
+        redirect('home'); 			
+    } 
+    else {	
+        redirect('home'); 			
+    }
+  }
 }
 ?>
