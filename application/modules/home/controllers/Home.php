@@ -37,9 +37,6 @@ class Home extends CI_Controller {
       $keprek1 = $this->home_model->keputusan_rektor1();
       $srt1 = $this->home_model->surat_edaran1();
 
-      // SPCP
-      // $total_spcp = $this->home_model->spcp()[0];
-
       // $last_ortx = $this->home_model->update_last_ort();
       // if($last_ortx[0]->updated_date != NULL){
       //   $date = date('d F Y', strtotime($last_ortx[0]->updated_date));
@@ -124,7 +121,6 @@ class Home extends CI_Controller {
       $berita = $this->home_model->listing();
       $eksternal = $this->home_model->get_data()->result();
 
-      // $x['total_spcp'] = $total_spcp;
       $x['pendaftar_spcp'] = $this->home_model->pendaftar_spcp()[0];
       $x['eksternal'] = $eksternal;
       $x['berita'] = $berita;
