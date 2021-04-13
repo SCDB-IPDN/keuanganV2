@@ -1,5 +1,24 @@
 <?php
 class Home_model extends CI_Model{
+	
+	private $db2;
+
+	public function __construct(){
+		parent::__construct();
+		$this->db2 = $this->load->database('spcp', TRUE);
+	}
+
+	public function spcp(){
+		return $this->db2->query("SELECT count(*) as total FROM cp_up")->result();
+	}
+
+	public function pendaftar_spcp(){
+		return $this->db->query("SELECT * FROM tbl_pendaftar_spcp")->result();
+	}
+
+	public function update_spcp($input_data, $id){
+		return $this->db->where('id', $id)->update('tbl_pendaftar_spcp', $input_data);
+	}
 
 	// Listing
 	public function listing()
