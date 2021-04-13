@@ -10,7 +10,7 @@
 		</a>
 	</div>
 	<div class="row">
-		<div class="col-xl-12">
+		<div class="col-xl-8">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">KEUANGAN</h4>
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 
-		<!-- <div class="col-xl-4">
+		<div class="col-xl-4">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">SPCP</h4>
@@ -98,7 +98,7 @@
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
 					</div>
 				</div>
 
@@ -107,11 +107,11 @@
 						<div class="card-body">
 							<div class="mb-3 text-grey">
 								<b class="mb-3">JUMLAH PENDAFTAR KE IPDN</b>
-								<?php echo date('d/m/Y') ?>
+								<?php echo date('d M Y', strtotime($pendaftar_spcp->updated_date)) ?>
 							</div>
 							<div class="d-flex align-items-center mb-1">
 								<h3 class="text-white mb-3">
-									<span data-animation="number" data-value="<?= $total_spcp->total ?>"><?= $total_spcp->total ?> </span> PENDAFTAR
+									<span data-animation="number" data-value="<?= $pendaftar_spcp->total ?>"><?= $pendaftar_spcp->total ?> </span> PENDAFTAR
 								</h3>
 							</div>
 							<hr class="bg-white-transparent-2" />
@@ -161,10 +161,10 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		
 		<!-- Modal Update SPCP -->
-		<!-- <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -197,7 +197,7 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<!-- END Modal Update SPCP -->
 
 		<div class="col-xl-6">

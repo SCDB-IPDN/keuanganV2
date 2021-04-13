@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',
-	// 'hostname' => '192.168.203.153',
+	'hostname' => '192.168.203.153',
 	'username' => 'ipdnacid_scdb',
 	'password' => 'yellowminicooper',
 	'database' => 'ipdnacid_scdb',
@@ -97,25 +97,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-// $db['database_ipdn'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => '180.250.19.85',
-// 	'username' => 'spcp',
-// 	'password' => '1pdn-Spcp',
-// 	'database' => 'spcpipdn21',
-// 	'dbdriver' => 'mysqli',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'production'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
