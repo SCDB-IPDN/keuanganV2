@@ -207,10 +207,11 @@ class Home extends CI_Controller {
   public function update_spcp(){
     $id = $this->input->post('id', true); 
 
+    $input_data['memilih'] = $this->input->post('memilih', true); 
     $input_data['ms'] = $this->input->post('ms', true); 			
     $input_data['tms'] = $this->input->post('tms', true);
     $input_data['bt'] = $this->input->post('bt', true);
-    $input_data['updated_date'] = date('Y-m-d');
+    $input_data['updated_date'] = date('Y-m-d H:i:s');
 
     $result = $this->home_model->update_spcp($input_data, $id);
 
