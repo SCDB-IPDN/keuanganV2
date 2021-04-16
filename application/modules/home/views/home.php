@@ -106,22 +106,19 @@
 					<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
 						<div class="card-body">
 							<div class="mb-3 text-grey">
-								<b class="mb-3">JUMLAH PENDAFTAR KE IPDN</b>
-								<?php echo date('d M Y', strtotime($pendaftar_spcp->updated_date)) ?>
+								<b class="mb-3">JUMLAH PENDAFTAR PADA PORTAL BKN YANG MEMILIH IPDN</b>
+								<?php echo date('d M Y H:i', strtotime($pendaftar_spcp->updated_date)) ?>
 							</div>
-							<div class="d-flex align-items-center mb-1">
-								<h3 class="text-white mb-3">
-									<span data-animation="number" data-value="<?= $pendaftar_spcp->total ?>"><?= $pendaftar_spcp->total ?> </span> PENDAFTAR
-								</h3>
-							</div>
+							<h5 class="text-white mb-3">
+								<span data-animation="number" data-value="<?= $pendaftar_spcp->memilih ?>"><?= $pendaftar_spcp->memilih ?> </span> ORANG
+							</h5>
 							<hr class="bg-white-transparent-2" />
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-									<h5 class="text-white mb-3">
-									DATA MS, TMS DAN BT PER - <?php echo date('d M Y', strtotime($pendaftar_spcp->updated_date)) ?>
-									</h5>
-								</div>
-							</div>
+							<h6 class="text-white ">
+								YANG SUDAH MENGUPLOAD DOKUMEN : <?= $pendaftar_spcp->total ?> ORANG
+							</h6>
+							<h6 class="text-white mb-3">
+								YANG SUDAH TERVERIFIKASI : <?= $pendaftar_spcp->terverifikasi ?> ORANG
+							</h6>
 							<div class="d-flex mb-2">
 								<div class="d-flex align-items-center">
 									<i class="fa fa-circle text-green f-s-8 mr-2"></i>
@@ -140,23 +137,18 @@
 									<div class="text-right pl-2 f-w-600"><span><?= $pendaftar_spcp->tms ?> ORANG</span></div>
 								</div>
 							</div>
-							<div class="d-flex mb-2">
+							<br>
+							<div class="d-flex">
 								<div class="d-flex align-items-center">
-									<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-									BELUM TERVERIFIKASI
-								</div>
-								<div class="d-flex align-items-center ml-auto">
-									<div class="text-right pl-2 f-w-600"><span><?= $pendaftar_spcp->bt ?> ORANG</span></div>
+									<h6 class="text-white">
+									YANG BELUM TERVERIFIKASI : <?= $pendaftar_spcp->bt ?> ORANG
+									</h6>
 								</div>
 							</div>
 							<br>
-							<div class="d-flex mb-2">
-								<div class="d-flex align-items-center">
-								<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin'){ ?> 
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update</button>
-								<?php } ?>
-								</div>
-							</div>							
+							<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin'){ ?> 
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update</button>
+							<?php } ?>						
 						</div>
 					</div>
 				</div>
@@ -176,6 +168,11 @@
 					<div class="modal-body">
 						<form method="post"action="home/update_spcp">
 							<input type="hidden" name="id" value="<?= $pendaftar_spcp->id ?>">
+							<div class="form-group">
+								<label class="col-form-label">JUMLAH PENDAFTAR PADA PORTAL BKN YANG MEMILIH IPDN:</label>
+								<input type="number" class="form-control" name="memilih" value="<?= $pendaftar_spcp->memilih ?>" required>
+							</div>
+							<hr class="bg-white-transparent-1" />
 							<div class="form-group">
 								<label class="col-form-label">MEMENUHI SYARAT:</label>
 								<input type="number" class="form-control" name="ms" value="<?= $pendaftar_spcp->ms ?>" required>

@@ -2,7 +2,9 @@
 class Home_model extends CI_Model{
 
 	public function pendaftar_spcp(){
-		return $this->db->query("SELECT *, @total := ms+tms+bt as total FROM tbl_pendaftar_spcp")->result();
+		return $this->db->query("SELECT *, 
+		@terverifikasi := ms+tms as terverifikasi, 
+		@total := ms+tms+bt as total FROM tbl_pendaftar_spcp")->result();
 	}
 
 	public function update_spcp($input_data, $id){
