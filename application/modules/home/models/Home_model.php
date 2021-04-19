@@ -1,6 +1,16 @@
 <?php
 class Home_model extends CI_Model{
 
+	public function pendaftar_spcp(){
+		return $this->db->query("SELECT *, 
+		@terverifikasi := ms+tms as terverifikasi, 
+		@total := ms+tms+bt as total FROM tbl_pendaftar_spcp")->result();
+	}
+
+	public function update_spcp($input_data, $id){
+		return $this->db->where('id', $id)->update('tbl_pendaftar_spcp', $input_data);
+	}
+
 	// Listing
 	public function listing()
 	{

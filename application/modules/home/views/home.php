@@ -10,7 +10,7 @@
 		</a>
 	</div>
 	<div class="row">
-		<div class="col-xl-12">
+		<div class="col-xl-8">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">KEUANGAN</h4>
@@ -89,6 +89,113 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-xl-4">
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<h4 class="panel-title">SPCP</h4>
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+					</div>
+				</div>
+
+				<div class="panel-body bg-dark">
+					<div class="card border-0 bg-dark text-white mb-3 overflow-hidden">
+						<div class="card-body">
+							<div class="mb-3 text-grey">
+								<b class="mb-3">JUMLAH PENDAFTAR PADA PORTAL BKN YANG MEMILIH IPDN</b>
+								<?php echo date('d M Y H:i', strtotime($pendaftar_spcp->updated_date)) ?>
+							</div>
+							<h5 class="text-white mb-3">
+								<span data-animation="number" data-value="<?= $pendaftar_spcp->memilih ?>"><?= $pendaftar_spcp->memilih ?> </span> ORANG
+							</h5>
+							<hr class="bg-white-transparent-2" />
+							<h6 class="text-white ">
+								YANG SUDAH MENGUPLOAD DOKUMEN : <?= $pendaftar_spcp->total ?> ORANG
+							</h6>
+							<h6 class="text-white mb-3">
+								YANG SUDAH TERVERIFIKASI : <?= $pendaftar_spcp->terverifikasi ?> ORANG
+							</h6>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+									MEMENUHI SYARAT
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?= $pendaftar_spcp->ms ?> ORANG</span></div>
+								</div>
+							</div>
+							<div class="d-flex mb-2">
+								<div class="d-flex align-items-center">
+									<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+									TIDAK MEMENUHI SYARAT
+								</div>
+								<div class="d-flex align-items-center ml-auto">
+									<div class="text-right pl-2 f-w-600"><span><?= $pendaftar_spcp->tms ?> ORANG</span></div>
+								</div>
+							</div>
+							<br>
+							<div class="d-flex">
+								<div class="d-flex align-items-center">
+									<h6 class="text-white">
+									YANG BELUM TERVERIFIKASI : <?= $pendaftar_spcp->bt ?> ORANG
+									</h6>
+								</div>
+							</div>
+							<br>
+							<?php if($this->session->userdata('role') == 'Admin' || $this->session->userdata('role') == 'SuperAdmin'){ ?> 
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update" data-whatever="@getbootstrap">Update</button>
+							<?php } ?>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Modal Update SPCP -->
+		<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Update SPCP</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form method="post"action="home/update_spcp">
+							<input type="hidden" name="id" value="<?= $pendaftar_spcp->id ?>">
+							<div class="form-group">
+								<label class="col-form-label">JUMLAH PENDAFTAR PADA PORTAL BKN YANG MEMILIH IPDN:</label>
+								<input type="number" class="form-control" name="memilih" value="<?= $pendaftar_spcp->memilih ?>" required>
+							</div>
+							<hr class="bg-white-transparent-1" />
+							<div class="form-group">
+								<label class="col-form-label">MEMENUHI SYARAT:</label>
+								<input type="number" class="form-control" name="ms" value="<?= $pendaftar_spcp->ms ?>" required>
+							</div>
+							<div class="form-group">
+								<label class="col-form-label">TIDAK MEMENUHI SYARAT:</label>
+								<input type="number" class="form-control" name="tms" value="<?= $pendaftar_spcp->tms ?>" required>
+							</div>
+							<div class="form-group">
+								<label class="col-form-label">BELUM TERVIRIFIKASI:</label>
+								<input type="number" class="form-control" name="bt" value="<?= $pendaftar_spcp->bt ?>" required>
+							</div>
+
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+								<button type="submit" class="btn btn-primary">Ubah</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Modal Update SPCP -->
 
 		<div class="col-xl-6">
 			<ul class="nav nav-tabs nav-tabs-inverse nav-justified nav-justified-mobile" data-sortable-id="index-2">
