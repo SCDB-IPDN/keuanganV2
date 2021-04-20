@@ -1079,7 +1079,7 @@
 								Diploma IV
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>5953</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span>6113</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1088,7 +1088,7 @@
 								S1
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>308</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span>148</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1097,7 +1097,7 @@
 								S2
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>364</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span>361</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1106,7 +1106,7 @@
 								S3
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>243</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span>198</span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">

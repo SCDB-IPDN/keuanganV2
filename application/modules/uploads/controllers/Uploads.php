@@ -2326,13 +2326,15 @@ class Uploads extends CI_Controller {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
+			
+
 			$loadexcel  = $reader->load($_FILES['jakarta']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
 			$cunit = 0;
-			$satker_jakarta = 352593;
+			$satker_jakarta= 352593;
 			$tgl = date('Y-m-d');
 
 			$this->db->where('kode_satker', $satker_jakarta);
@@ -2341,67 +2343,75 @@ class Uploads extends CI_Controller {
 			$this->db->where('kode_satker', $satker_jakarta);
 			$this->db->delete('output_sas');
 
+			$this->db->where('kode_satker', $satker_jakarta);
+			$this->db->delete('suboutput_sas');
 
-			foreach($sheet as $row){
-				if($numrow > 1){
-					$ket1 = trim($row['AI']);
-					// echo "$ket1<br>";
-					$ket = substr($ket1, 9);
-					
-					$temp = explode(" ", $ket1);
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
 
-					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
-					$regex1 = '/^[0-9]{4}\.[0-9]{3}\.[0-9]{3}$/';
-					// var_dump(preg_match($regex, $temp[0]));exit();
-					if (preg_match($regex, $temp[0])) {
+					if ($row['A'] == 2) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+						$ket = trim($row['AI']);
 
+						$ex = explode(' ', $ket);
+						$satker_biro = $ex[0] . "." . $satker_jakarta;
+						// var_dump($satker_biro);exit();
+						$keterangan = substr($ket, 5);
 
-						$unitjakarta = array();
+						$unitjakarta= array();
 						array_push($unitjakarta, array(
 							'kode_satker'      => $satker_jakarta,
-							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
-							'ket'      => $ket,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
 							'tanggal' => $tgl
 						));
-						// exit;
+
 						$this->db->insert_batch('unit_sas', $unitjakarta);
+					} elseif ($row['A'] == 3) {
 
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0] . "." . $satker_jakarta;
+						$iduntuksuboutput = $ex[0];
 
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0) && preg_match($regex1, $row['AJ'])){
-						$ket1 = trim($row['AI']);
-						$ket1 = substr($ket1, 4);
-					    // var_dump($ket1);exit();
-
-						$pagu = $row['AB'];
-					   // echo "pagunya"."$pagu";
-						$realisasi = $row['AC'];
-					   // echo "realisasi"."$realisasi";
-					   // echo $row['A']."<br>" ;
 
 						$outputjakarta = array();
 						array_push($outputjakarta, array(
-							'kode_satker' => $satker_jakarta,
-							'id_b'      => $satker_biro[0],
-							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['AB']),
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      => $satker_jakarta,
+							'ket'      => $keterangan
+						));
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
+						$this->db->insert_batch('output_sas', $outputjakarta);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
+
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
+
+
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_jakarta;
+
+						$suboutputjakarta = array();
+						array_push($suboutputjakarta, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_jakarta,
+							'ket'      => $keterangan1,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
 							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
-							'ket'      => $ket1,
 							'tanggal' => $tgl
 						));
-						// exit;
-						$this->db->insert_batch('output_sas', $outputjakarta);
-
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_kalbar.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
-					   // echo "$sql2";
-					   // echo "<br>";
-					   // $this->db->query($sql2);
+						// print("<pre>".print_r($suboutputsulsel,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutputjakarta);
 					}
-
 				}
 				$numrow++;
 			}
@@ -2563,6 +2573,8 @@ class Uploads extends CI_Controller {
 			} else {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
+
+			$loadexcel  = $reader->load($_FILES['kalbar']['tmp_name']);
 			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;

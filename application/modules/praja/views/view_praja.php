@@ -393,26 +393,28 @@
             <div class="col-xl">
 
               <label class="col-form-label">Nama:</label>
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap ...." required="">
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap ...." >
             </div>
             <div class="col-xl-2">
               <label class="col-form-label">NPP:</label>
-              <input type="text" class="form-control" id="npp" name="npp" placeholder="NPP ...." required="">
+              <input type="text" class="form-control" id="npp" name="npp" placeholder="NPP ....">
             </div>
             
             <div class="col-xl-2">
               <div class="form-group">
                 <label class="col-form-label">Jenis Kelamin:</label>
-                <select name="jk" id="jk" class="form-control" required=""> 
+                <input type="text" class="form-control" id="jk" name="jk" placeholder="jenis kelamin ...." readonly="">
+
+                <!-- <select name="jk" id="jk" class="form-control" required=""> 
                   <option value="" >-Pilih Jenis Kelamin-</option>
                   <option value="L">Laki-Laki</option>
                   <option value="P">Perempuan</option>
-                </select>
+                </select> -->
               </div>
             </div>
             <div class="col-xl">
               <label class="col-form-label">Tempat Lahir:</label>
-              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" placeholder="Tempat Lahir ...." required="">
+              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" placeholder="Tempat Lahir ...." >
             </div>
             <div class="col-xl">
               <label class="col-form-label">Tanggal lahir:</label>
@@ -425,28 +427,29 @@
 
             <div class="col-xl">
               <label class="col-form-label">NISN:</label>
-              <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN ...." required="">
+              <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN ...." >
             </div>
             <div class="col-xl">
               <label class="col-form-label">NPWP:</label>
-              <input type="text" class="form-control" id="npwp" name="npwp" placeholder="NPWP ...." required="">
+              <input type="text" class="form-control" id="npwp" name="npwp" placeholder="NPWP ...." >
             </div>
             <div class="col-xl">
               <label class="col-form-label">NO SPCP:</label>
-              <input type="text" class="form-control" id="no_spcp" name="no_spcp" placeholder="No SPCP ...." required="">
+              <input type="text" class="form-control" id="no_spcp" name="no_spcp" placeholder="No SPCP ...." >
             </div>
             <div class="col-xl">
               <label class="col-form-label">NIK:</label>
-              <input type="text" class="form-control" id="nik_praja" name="nik_praja" placeholder="NIK Praja ...." required="">
+              <input type="text" class="form-control" id="nik_praja" name="nik_praja" placeholder="NIK Praja ...." >
             </div>
             <div class="col-xl">
               <label class="col-form-label">Agama:</label>
-              <select name="agama" id="agama" class="form-control" required> 
+              <input type="text" class="form-control" id="agama" name="agama" placeholder="Agama ...." readonly>
+              <!-- <select name="agama" id="agama" class="form-control" required> 
                <option value="">-Pilih Agama-</option>
                <?php foreach ($agamaa as $x) { ?>
                 <option value="<?php echo $x->id_agama;?>"><?php echo $x->nama_agama;?></option>
               <?php } ?>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>
@@ -455,37 +458,37 @@
 
           <div class="col-xl-3">
             <label class="col-form-label">Alamat:</label>
-            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat ...." required="">
+            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat ...." >
           </div>
           <div class="col-xl-1">
             <label class="col-form-label">RT:</label>
-            <input type="text" class="form-control" id="rt" name="rt" placeholder="RT ...." required="">
+            <input type="text" class="form-control" id="rt" name="rt" placeholder="RT ...." >
           </div>
           <div class="col-xl-1">
             <label class="col-form-label">RW:</label>
-            <input type="text" class="form-control" id="rw" name="rw" placeholder="RW ...." required="">
+            <input type="text" class="form-control" id="rw" name="rw" placeholder="RW ...." >
           </div>
           <div class="col-xl-2">
             <label class="col-form-label">Provinsi:</label>
-            <!-- <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." required=""> -->
-            <select class="form-control" name="provinsi" id="provinsi" required="">
+            <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi ...." readonly>
+            <!-- <select class="form-control" name="provinsi" id="provinsi" required="">
 
               <option value="">-Pilih Provinsi-</option>
               <?php foreach ($wilayah as $x) { ?>
                 <option value="<?php echo $x->nama_provinsi;?>"><?php echo $x->nama_provinsi;?></option>
               <?php } ?>
-            </select>
+            </select> -->
           </div>
           <div class="col-xl">
             <label class="col-form-label">Kota/Kabupaten:</label>
-            <!-- <input type="text" class="form-control" id="kab_kota" name="kab_kota" placeholder="Kabupaten/Kota ...." required=""> -->
-            <select class="form-control" name="kab_kota" id="kab_kota" required="">
+            <input type="text" class="form-control" id="kab_kota" name="kab_kota" placeholder="Kabupaten/Kota ...." readonly>
+            <!-- <select class="form-control" name="kab_kota" id="kab_kota" required="">
               <option>-Pilih Kab/kota-</option>
-            </select>
+            </select> -->
           </div>
           <div class="col-xl">
             <label class="col-form-label">Kelurahan:</label>
-            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan ...." required="">
+            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan ...." >
           </div>
         </div>
       </div>
@@ -494,37 +497,39 @@
         <div class="row">
          <div class="col-xl">
           <label class="col-form-label">Nama Dusun:</label>
-          <input type="text" class="form-control" id="nama_dusun" name="nama_dusun" placeholder="Nama Dusun ...." required="">
+          <input type="text" class="form-control" id="nama_dusun" name="nama_dusun" placeholder="Nama Dusun ...." >
         </div>
         <div class="col-xl">
           <label class="col-form-label">Kecamatan:</label>
-          <!-- <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan ...." required=""> -->
-          <select class="form-control" name="kecamatan" id="kecamatan" required="">
+          <input type="text" class="form-control" id="kecamatan" name="kecamatan" placeholder="Kecamatan ...." readonly>
+          <!-- <select class="form-control" name="kecamatan" id="kecamatan" required="">
             <option>-Pilih Kecamatan-</option>
-          </select>
+          </select> -->
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Kode Pos:</label>
-          <input type="text" class="form-control" id="kode_pos" name="kode_pos" placeholder="Kode Pos ...." required="">
+          <input type="text" class="form-control" id="kode_pos" name="kode_pos" placeholder="Kode Pos ...." >
         </div>
         <div class="col-xl">
           <label class="col-form-label">Jenis Tinggal:</label>
-          <select class="form-control" name="jenis_tinggal" id="jenis_tinggal" required="">
+          <input type="text" class="form-control" id="jenis_tinggal" name="jenis_tinggal" placeholder="jenis_tinggal ...." readonly>
+         
+          <!-- <select class="form-control" name="jenis_tinggal" id="jenis_tinggal" readonly>
              
             <option value="">-Pilih Jenis Tinggal-</option>
             <?php foreach ($jenistinggal as $x) { ?>
               <option value="<?php echo $x->id_jenis_tinggal;?>"><?php echo $x->nama_jenis_tinggal;?></option>
             <?php } ?>
-          </select>
+          </select> --> -->
         </div>
 
         <div class="col-xl-2">
           <label class="col-form-label">No HP:</label>
-          <input type="number" class="form-control" id="tlp_pribadi" name="tlp_pribadi" placeholder="TLP Pribadi ...." required="">
+          <input type="number" class="form-control" id="tlp_pribadi" name="tlp_pribadi" placeholder="TLP Pribadi ...." >
         </div>
         <div class="col-xl-2">
           <label class="col-form-label">No Tlp Rumah:</label>
-          <input type="number" class="form-control" id="tlp_rumah" name="tlp_rumah" placeholder="TLP Rumah ...." required="">
+          <input type="number" class="form-control" id="tlp_rumah" name="tlp_rumah" placeholder="TLP Rumah ...." >
         </div>
 
       </div>
@@ -534,40 +539,39 @@
       <div class="row">
         <div class="col-xl">
           <label class="col-form-label">Email:</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Email ...." required="">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email ...." >
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Tingkat:</label>
-          <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="Tingkat ...." readonly="" >
+          <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="Tingkat ...." >
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Angkatan:</label>
-          <input type="text" class="form-control" id="angkatan" name="angkatan" placeholder="Angkatan ...." readonly="">
+          <input type="text" class="form-control" id="angkatan" name="angkatan" placeholder="Angkatan ...." >
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Status:</label>
-          <input type="text" class="form-control" id="status" name="status" placeholder="Status ...." readonly="">
+          <input type="text" class="form-control" id="status" name="status" placeholder="Status ...." >
         </div>
 
         <div class="col-xl">
           <label class="col-form-label">Fakultas:</label>
-          <!-- <label class="col-form-label"></label> -->
-          <select class="form-control" name="fk" id="fk" required="">
-           <!--  <option value="<?php echo $data[0]->fakultas?>"><?php echo $data[0]->fakultas ?></option> -->
-            <option value="">-Pilih Fakultas-</option>
+          <input type="text" class="form-control" id="fakultas" name="fakultas" placeholder="fakultas ...." readonly="">
+
+          <!-- <select class="form-control" name="fk" id="fk" required="">
+             <option value="">-Pilih Fakultas-</option>
             <?php foreach ($fakulll as $x) { ?>
               <option value="<?php echo $x->kode_fakultas;?>"><?php echo $x->nama_fakultas;?></option>
             <?php } ?>
-          </select>
+          </select> -->
         </div>
         <div class="col-xl">
           <label class="col-form-label">Prodi:</label>
-          
-          <select class="form-control" name="prodi" id="prodi" required="">
-            <!-- <option value="<?php echo $data[0]->prodi?>"><?php echo $data[0]->nama_prodi ?></option> -->
-            <!-- <option value="<?php echo $x->id_prodi;?>"><?php echo $x->nama_program_studi;?></option> -->
+          <input type="text" class="form-control" id="prodi" name="prodi" placeholder="prodi ...." readonly="">
+
+          <!-- <select class="form-control" name="prodi" id="prodi" required="">
             <option>-Pilih Program Studi-</option>
-          </select>
+          </select> -->
         </div>
 
 
@@ -578,43 +582,62 @@
       <div class="row">
        <div class="col-xl">
         <label class="col-form-label">Kewarganegaraan:</label>
+        <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan" placeholder="kewarganegaraan ...." readonly="">
+<!-- 
         <select class="form-control" name="kewarganegaraan" id="kewarganegaraan" required="">
-          <option value="<?php echo $data[0]->kewarganegaraan?>"><?php echo $data[0]->nama_kewarganegaraan ?></option>
-          <option value="">-Pilih Kewarganegaraan-</option>
+        <option value="">-Pilih Kewarganegaraan-</option>
           <?php foreach ($kewarganegaraan as $x) { ?>
             <option value="<?php echo $x->id_negara;?>"><?php echo $x->nama_negara;?></option>
           <?php } ?>
-        </select>
+        </select> -->
       </div>
 
       <div class="col-xl">
         <label class="col-form-label">Jenis Pendaftaran:</label>
+        <input type="text" class="form-control" id="jenis_pendaftaran" name="jenis_pendaftaran" placeholder="jenis_pendaftaran ...." readonly="">
+<!-- 
         <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran" required="">
-          <option value="<?php echo $data[0]->jenis_pendaftaran?>"><?php echo $data[0]->nama_jenis_pendaftaran ?></option>
-          <option value="">-Pilih Jenis Pendaftaran-</option>
+            <option value="">-Pilih Jenis Pendaftaran-</option>
           <?php foreach ($jenispendaftaran as $x) { ?>
             <option value="<?php echo $x->id_jenis_daftar;?>"><?php echo $x->nama_jenis_daftar;?></option>
           <?php } ?>
-        </select>
+        </select> -->
       </div>
 
       <div class="col-xl">
         <label class="col-form-label">Tanggal Masuk Kuliah:</label>
-        <input type="date" class="form-control" id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" required="">
+        <input type="date" class="form-control" id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" >
       </div>
       <div class="col-xl">
         <label class="col-form-label">Tahun Masuk Kuliah:</label>
-        <input type="text" class="form-control" id="tahun_masuk_kuliah" name="tahun_masuk_kuliah" placeholder="Tahun Masuk Kuliah ...." required="">
+        <input type="text" class="form-control" id="tahun_masuk_kuliah" name="tahun_masuk_kuliah" placeholder="Tahun Masuk Kuliah ...." >
       </div>
       <div class="col-xl">
         <label class="col-form-label">Pembiayaan:</label>
-        <select class="form-control" name="pembiayaan" id="pembiayaan" required="">
+        <input type="text" class="form-control" id="pembiayaan" name="pembiayaan" placeholder="pembiayaan ...." readonly="">
+
+        <!-- <select class="form-control" name="pembiayaan" id="pembiayaan" required="">
          <option value="">-Pilih Jenis Pembiayaan-</option>
          <?php foreach ($pembiayaan as $x) { ?>
           <option value="<?php echo $x->id_pembiayaan;?>"><?php echo $x->nama_pembiayaan;?></option>
         <?php } ?>
+      </select> -->
+      </div>
+      <div class="col-xl">
+        <label class="col-form-label">Penempatan:</label>
+        <select class="form-control" name="penempatan" id="penempatan">
+         <option value="">-Pilih Penempatan-</option>
+          <option value="IPDN KAMPUS JATINANGOR">IPDN KAMPUS JATINANGOR</option>
+          <option value="IPDN KAMPUS JAKARTA">IPDN KAMPUS JAKARTA</option>
+          <option value="IPDN KAMPUS SULAWESI UTARA">IPDN KAMPUS SULAWESI UTARA</option>
+          <option value="IPDN KAMPUS SULAWESI SELATAN">IPDN KAMPUS SULAWESI SELATAN</option>
+          <option value="IPDN KAMPUS SUMATERA BARAT">IPDN KAMPUS SUMATERA BARAT</option>
+          <option value="IPDN KAMPUS KALIMANTAN BARAT">IPDN KAMPUS KALIMANTAN BARAT</option>
+          <option value="IPDN KAMPUS NUSA TENGGARA BARAT">IPDN KAMPUS NUSA TENGGARA BARAT</option>
+          <option value="IPDN KAMPUS PAPUA">IPDN KAMPUS PAPUA</option>
       </select>
-    </div>
+      </div>
+
 
   </div>
 </div>
@@ -624,21 +647,25 @@
   <div class="row">
    <div class="col-xl">
     <label class="col-form-label">Mulai Semester:</label>
-    <select class="form-control" name="mulai_semester" id="mulai_semester" required="">
+    <input type="text" class="form-control" id="mulai_semester" name="mulai_semester" placeholder="mulai_semester ...." readonly="">
+
+    <!-- <select class="form-control" name="mulai_semester" id="mulai_semester" required="">
      <option value="">-Pilih Mulai Semester-</option>
      <?php foreach ($mulaisemester as $x) { ?>
       <option value="<?php echo $x->id_semester;?>"><?php echo $x->nama_semester;?></option>
     <?php } ?>
-  </select>           
+  </select>            -->
 </div>
 <div class="col-xl">
   <label class="col-form-label">Alat Transportasi:</label>
-  <select class="form-control" name="alat_transport" id="alat_transport" required="">
+  <input type="text" class="form-control" id="alat_transport" name="alat_transport" placeholder="alat_transport ...." readonly="">
+
+  <!-- <select class="form-control" name="alat_transport" id="alat_transport" required="">
    <option value="">-Pilih Alat Transportasi-</option>
    <?php foreach ($alattransportasi as $x) { ?>
     <option value="<?php echo $x->id_alat_transportasi;?>"><?php echo $x->nama_alat_transportasi;?></option>
   <?php } ?>
-</select>           
+</select>            -->
 </div>
 <div class="col-xl">
   <label class="col-form-label">Biaya Masuk:</label>
@@ -646,16 +673,18 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">Jalur Masuk:</label>
-  <select class="form-control" name="jalur_masuk" id="jalur_masuk" required="">
+  <input type="text" class="form-control" id="jalur_masuk" name="jalur_masuk" placeholder="jalur_masuk ...." readonly="">
+
+  <!-- <select class="form-control" name="jalur_masuk" id="jalur_masuk" required="">
    <option value="">-Pilih Jalur Masuk-</option>
    <?php foreach ($jalurmasuk as $x) { ?>
     <option value="<?php echo $x->id_jalur_masuk;?>"><?php echo $x->nama_jalur_masuk;?></option>
   <?php } ?>
-</select>           
+</select>            -->
 </div>
 <div class="col-xl">
   <label class="col-form-label">Penerima KPS :</label>
-  <select class="form-control" name="penerima_pks" id="penerima_pks" required="">
+  <select class="form-control" name="penerima_pks" id="penerima_pks" >
     <option value="">-Pilih Penerima KPS-</option>
     <option value="YA">Ya</option>
     <option value="TIDAK">Tidak</option>
@@ -682,35 +711,39 @@
   <div class="row">
     <div class="col-xl">
       <label class="col-form-label">NIK Ayah:</label>
-      <input type="text" class="form-control" id="nik_ayah" name="nik_ayah" placeholder="NIK Ayah ...." required="">
+      <input type="text" class="form-control" id="nik_ayah" name="nik_ayah" placeholder="NIK Ayah ....">
     </div>
     <div class="col-xl">
       <label class="col-form-label">Nama Ayah:</label>
-      <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Ayah ...." required="">
+      <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Ayah ...." >
     </div>
     <div class="col-xl">
       <label class="col-form-label">Tanggal Lahir Ayah:</label>
-      <input type="date" class="form-control" id="tgllahir_ayah" name="tgllahir_ayah" required="">
+      <input type="date" class="form-control" id="tgllahir_ayah" name="tgllahir_ayah" >
     </div>
 
     <div class="col-xl">
       <label class="col-form-label">Pendidikan Ayah:</label>
+      <input type="text" class="form-control" id="pendidikan_ayah" name="pendidikan_ayah" placeholder="pendidikan_ayah ...." readonly="">
+<!-- 
       <select class="form-control" name="pendidikan_ayah" id="pendidikan_ayah" required>
        <option value="">-Pilih Pendidikan-</option>
        <?php foreach ($pendidikan as $x) { ?>
         <option value="<?php echo $x->id_jenjang_didik;?>"><?php echo $x->nama_jenjang_didik;?></option>
       <?php } ?>
-    </select>
+    </select> -->
   </div>
 
   <div class="col-xl">
     <label class="col-form-label">Pekerjaan Ayah:</label>
+    <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" placeholder="pekerjaan_ayah ...." readonly="">
+<!-- 
     <select class="form-control" name="pekerjaan_ayah" id="pekerjaan_ayah" required="">
      <option value="">-Pilih Pekerjaan-</option>
      <?php foreach ($pekerjaan as $x) { ?>
       <option value="<?php echo $x->id_pekerjaan;?>"><?php echo $x->nama_pekerjaan;?></option>
     <?php } ?>
-  </select>
+  </select> -->
 </div>
 
 
@@ -722,28 +755,30 @@
 
     <div class="col-xl">
       <label class="col-form-label">Penghasilan Ayah:</label>
-      <select class="form-control" name="penghasilan_ayah" id="penghasilan_ayah" required="">
+      <input type="text" class="form-control" id="penghasilan_ayah" name="penghasilan_ayah" placeholder="penghasilan_ayah ...." readonly="">
+
+      <!-- <select class="form-control" name="penghasilan_ayah" id="penghasilan_ayah" required="">
        <option value="">-Pilih Penghasilan-</option>
        <?php foreach ($penghasilan as $x) { ?>
         <option value="<?php echo $x->id_penghasilan;?>"><?php echo $x->nama_penghasilan;?></option>
       <?php } ?>
-    </select>
+    </select> -->
   </div>
   <div class="col-xl">
     <label class="col-form-label">No Tlp Ayah:</label>
-    <input type="number" class="form-control" id="tlp_ayah" name="tlp_ayah" required="">
+    <input type="number" class="form-control" id="tlp_ayah" name="tlp_ayah" >
   </div>
   <div class="col-xl">
     <label class="col-form-label">NIK ibu:</label>
-    <input type="text" class="form-control" id="nik_ibu" name="nik_ibu" placeholder="NIK Ibu ...." required="">
+    <input type="text" class="form-control" id="nik_ibu" name="nik_ibu" placeholder="NIK Ibu ...." >
   </div>
   <div class="col-xl">
     <label class="col-form-label">Nama ibu:</label>
-    <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu ...." required="">
+    <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu ....">
   </div>
   <div class="col-xl">
     <label class="col-form-label">Tanggal Lahir ibu:</label>
-    <input type="date" class="form-control" id="tgllahir_ibu" name="tgllahir_ibu" required="">
+    <input type="date" class="form-control" id="tgllahir_ibu" name="tgllahir_ibu" >
   </div>
 
 
@@ -755,36 +790,42 @@
   <div class="row">
     <div class="col-xl">
       <label class="col-form-label">Pendidikan ibu:</label>
-      <select class="form-control" name="pendidikan_ibu" id="pendidikan_ibu" required="">
+      <input type="text" class="form-control" id="pendidikan_ibu" name="pendidikan_ibu" placeholder="pendidikan_ibu ...." readonly="">
+
+      <!-- <select class="form-control" name="pendidikan_ibu" id="pendidikan_ibu" required="">
        <option value="">-Pilih Pendidikan-</option>
        <?php foreach ($pendidikan as $x) { ?>
         <option value="<?php echo $x->id_jenjang_didik;?>"><?php echo $x->nama_jenjang_didik;?></option>
       <?php } ?>
-    </select>
+    </select> -->
   </div>
   <div class="col-xl">
     <label class="col-form-label">Pekerjaan ibu:</label>
+    <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" placeholder="pekerjaan_ibu ...." readonly="">
+<!-- 
     <select class="form-control" name="pekerjaan_ibu" id="pekerjaan_ibu" required="">
      <option value="">-Pilih Pekerjaan-</option>
      <?php foreach ($pekerjaan as $x) { ?>
       <option value="<?php echo $x->id_pekerjaan;?>"><?php echo $x->nama_pekerjaan;?></option>
     <?php } ?>
-  </select>
+  </select> -->
 </div>
 
 <div class="col-xl">
  <label class="col-form-label">Penghasilan ibu:</label>
- <select class="form-control" name="penghasilan_ibu" id="penghasilan_ibu" required="">
+ <input type="text" class="form-control" id="penghasilan_ibu" name="penghasilan_ibu" placeholder="penghasilan_ibu ...." readonly="">
+
+ <!-- <select class="form-control" name="penghasilan_ibu" id="penghasilan_ibu" required="">
    <option value="">-Pilih Penghasilan-</option>
    <?php foreach ($penghasilan as $x) { ?>
     <option value="<?php echo $x->id_penghasilan;?>"><?php echo $x->nama_penghasilan;?></option>
   <?php } ?>
-</select>
+</select> -->
 
 </div>
 <div class="col-xl">
   <label class="col-form-label">No TLP Ibu:</label>
-  <input type="number" class="form-control" id="tlp_ibu" name="tlp_ibu" placeholder="No Tlp Ibu ...." required=""> 
+  <input type="number" class="form-control" id="tlp_ibu" name="tlp_ibu" placeholder="No Tlp Ibu ...." > 
 </div>
 </div>
 </div>
@@ -813,12 +854,14 @@
 
     <div class="col-xl">
       <label class="col-form-label">Pendidikan wali:</label>
+      <input type="text" class="form-control" id="pendidikan_wali" name="pendidikan_wali" placeholder="pendidikan_wali ...." readonly="">
+<!-- 
       <select class="form-control" name="pendidikan_wali" id="pendidikan_wali" >
        <option value="">-Pilih Pendidikan-</option>
        <?php foreach ($pendidikan as $x) { ?>
         <option value="<?php echo $x->id_jenjang_didik;?>"><?php echo $x->nama_jenjang_didik;?></option>
       <?php } ?>
-    </select>
+    </select> -->
   </div>
 
 
@@ -829,22 +872,26 @@
   <div class="row">
    <div class="col-xl">
     <label class="col-form-label">Pekerjaan wali:</label>
-    <select class="form-control" name="pekerjaan_wali" id="pekerjaan_wali" >
+    <input type="text" class="form-control" id="pekerjaan_wali" name="pekerjaan_wali" placeholder="pekerjaan_wali ...." readonly="">
+
+    <!-- <select class="form-control" name="pekerjaan_wali" id="pekerjaan_wali" >
      <option value="">-Pilih Pekerjaan-</option>
      <?php foreach ($pekerjaan as $x) { ?>
       <option value="<?php echo $x->id_pekerjaan;?>"><?php echo $x->nama_pekerjaan;?></option>
     <?php } ?>
-  </select>
+  </select> -->
 </div>
 
 <div class="col-xl">
   <label class="col-form-label">Penghasilan wali:</label>
+  <input type="text" class="form-control" id="penghasilan_wali" name="penghasilan_wali" placeholder="penghasilan_wali ...." readonly="">
+<!-- 
   <select class="form-control" name="penghasilan_wali" id="penghasilan_wali" >
    <option value="">-Pilih Penghasilan-</option>
    <?php foreach ($penghasilan as $x) { ?>
     <option value="<?php echo $x->id_penghasilan;?>"><?php echo $x->nama_penghasilan;?></option>
   <?php } ?>
-</select>
+</select> -->
 </div>
 <div class="col-xl">
   <label class="col-form-label">No TLP Wali:</label>
@@ -1092,6 +1139,7 @@ $(document).ready(function() {
             modal.find('#status').attr("value",div.data('status'));
             modal.find('#fk').attr("value",div.data('fakultas'));
             modal.find('#mulai_semester').attr("value",div.data('mulaisemester'));
+            modal.find('#penempatan').attr("value",div.data('penempatan'));
 
             modal.find('#id_ortu').attr("value",div.data('id_ortu'));
             modal.find('#nik_ayah').attr("value",div.data('nik_ayah'));
