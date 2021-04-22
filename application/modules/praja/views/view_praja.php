@@ -352,7 +352,11 @@
           <tr>
             <td><input type="text" readonly class="form-control-plaintext" placeholder="Jalur Masuk"></td>
             <td><input type="text" readonly class="form-control-plaintext" id="jalur_masukx" ></td>
-          </tr>               
+          </tr>   
+          <tr>
+            <td><input type="text" readonly class="form-control-plaintext" placeholder="Penempatan"></td>
+            <td><input type="text" readonly class="form-control-plaintext" id="penempatanx" ></td>
+          </tr>             
         </tbody>
       </table>
 
@@ -393,11 +397,11 @@
             <div class="col-xl">
 
               <label class="col-form-label">Nama:</label>
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap ...." >
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap ...." readonly="">
             </div>
             <div class="col-xl-2">
               <label class="col-form-label">NPP:</label>
-              <input type="text" class="form-control" id="npp" name="npp" placeholder="NPP ....">
+              <input type="text" class="form-control" id="npp" name="npp" placeholder="NPP ...." readonly="">
             </div>
             
             <div class="col-xl-2">
@@ -414,11 +418,11 @@
             </div>
             <div class="col-xl">
               <label class="col-form-label">Tempat Lahir:</label>
-              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" placeholder="Tempat Lahir ...." >
+              <input type="text" class="form-control" id="tmpt_lahir" name="tmpt_lahir" placeholder="Tempat Lahir ...." readonly="">
             </div>
             <div class="col-xl">
               <label class="col-form-label">Tanggal lahir:</label>
-              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required="">
+              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" readonly="">
             </div>
           </div>
         </div>
@@ -427,19 +431,19 @@
 
             <div class="col-xl">
               <label class="col-form-label">NISN:</label>
-              <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN ...." >
+              <input type="text" class="form-control" id="nisn" name="nisn" placeholder="NISN ...." readonly="">
             </div>
             <div class="col-xl">
               <label class="col-form-label">NPWP:</label>
-              <input type="text" class="form-control" id="npwp" name="npwp" placeholder="NPWP ...." >
+              <input type="text" class="form-control" id="npwp" name="npwp" placeholder="NPWP ...." readonly="">
             </div>
             <div class="col-xl">
               <label class="col-form-label">NO SPCP:</label>
-              <input type="text" class="form-control" id="no_spcp" name="no_spcp" placeholder="No SPCP ...." >
+              <input type="text" class="form-control" id="no_spcp" name="no_spcp" placeholder="No SPCP ...." readonly="">
             </div>
             <div class="col-xl">
               <label class="col-form-label">NIK:</label>
-              <input type="text" class="form-control" id="nik_praja" name="nik_praja" placeholder="NIK Praja ...." >
+              <input type="text" class="form-control" id="nik_praja" name="nik_praja" placeholder="NIK Praja ...." readonly="">
             </div>
             <div class="col-xl">
               <label class="col-form-label">Agama:</label>
@@ -458,15 +462,15 @@
 
           <div class="col-xl-3">
             <label class="col-form-label">Alamat:</label>
-            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat ...." >
+            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat ...." readonly="">
           </div>
           <div class="col-xl-1">
             <label class="col-form-label">RT:</label>
-            <input type="text" class="form-control" id="rt" name="rt" placeholder="RT ...." >
+            <input type="text" class="form-control" id="rt" name="rt" placeholder="RT ...." readonly="">
           </div>
           <div class="col-xl-1">
             <label class="col-form-label">RW:</label>
-            <input type="text" class="form-control" id="rw" name="rw" placeholder="RW ...." >
+            <input type="text" class="form-control" id="rw" name="rw" placeholder="RW ...." readonly="" >
           </div>
           <div class="col-xl-2">
             <label class="col-form-label">Provinsi:</label>
@@ -488,7 +492,7 @@
           </div>
           <div class="col-xl">
             <label class="col-form-label">Kelurahan:</label>
-            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan ...." >
+            <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Kelurahan ...." readonly="">
           </div>
         </div>
       </div>
@@ -497,7 +501,7 @@
         <div class="row">
          <div class="col-xl">
           <label class="col-form-label">Nama Dusun:</label>
-          <input type="text" class="form-control" id="nama_dusun" name="nama_dusun" placeholder="Nama Dusun ...." >
+          <input type="text" class="form-control" id="nama_dusun" name="nama_dusun" placeholder="Nama Dusun ...." readonly="">
         </div>
         <div class="col-xl">
           <label class="col-form-label">Kecamatan:</label>
@@ -508,7 +512,7 @@
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Kode Pos:</label>
-          <input type="text" class="form-control" id="kode_pos" name="kode_pos" placeholder="Kode Pos ...." >
+          <input type="text" class="form-control" id="kode_pos" name="kode_pos" placeholder="Kode Pos ...." readonly="">
         </div>
         <div class="col-xl">
           <label class="col-form-label">Jenis Tinggal:</label>
@@ -525,11 +529,11 @@
 
         <div class="col-xl-2">
           <label class="col-form-label">No HP:</label>
-          <input type="number" class="form-control" id="tlp_pribadi" name="tlp_pribadi" placeholder="TLP Pribadi ...." >
+          <input type="number" class="form-control" id="tlp_pribadi" name="tlp_pribadi" placeholder="TLP Pribadi ...." readonly="">
         </div>
         <div class="col-xl-2">
           <label class="col-form-label">No Tlp Rumah:</label>
-          <input type="number" class="form-control" id="tlp_rumah" name="tlp_rumah" placeholder="TLP Rumah ...." >
+          <input type="number" class="form-control" id="tlp_rumah" name="tlp_rumah" placeholder="TLP Rumah ...." readonly="">
         </div>
 
       </div>
@@ -539,19 +543,19 @@
       <div class="row">
         <div class="col-xl">
           <label class="col-form-label">Email:</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Email ...." >
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email ...." readonly="">
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Tingkat:</label>
-          <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="Tingkat ...." >
+          <input type="text" class="form-control" id="tingkat" name="tingkat" placeholder="Tingkat ...." readonly="">
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Angkatan:</label>
-          <input type="text" class="form-control" id="angkatan" name="angkatan" placeholder="Angkatan ...." >
+          <input type="text" class="form-control" id="angkatan" name="angkatan" placeholder="Angkatan ...." readonly="">
         </div>
         <div class="col-xl-1">
           <label class="col-form-label">Status:</label>
-          <input type="text" class="form-control" id="status" name="status" placeholder="Status ...." >
+          <input type="text" class="form-control" id="status" name="status" placeholder="Status ...." readonly="" >
         </div>
 
         <div class="col-xl">
@@ -606,11 +610,11 @@
 
       <div class="col-xl">
         <label class="col-form-label">Tanggal Masuk Kuliah:</label>
-        <input type="date" class="form-control" id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" >
+        <input type="date" class="form-control" id="tgl_masuk_kuliah" name="tgl_masuk_kuliah" readonly="">
       </div>
       <div class="col-xl">
         <label class="col-form-label">Tahun Masuk Kuliah:</label>
-        <input type="text" class="form-control" id="tahun_masuk_kuliah" name="tahun_masuk_kuliah" placeholder="Tahun Masuk Kuliah ...." >
+        <input type="text" class="form-control" id="tahun_masuk_kuliah" name="tahun_masuk_kuliah" placeholder="Tahun Masuk Kuliah ...." readonly="" >
       </div>
       <div class="col-xl">
         <label class="col-form-label">Pembiayaan:</label>
@@ -669,7 +673,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">Biaya Masuk:</label>
-  <input type="text" class="form-control" id="biaya_masuk" name="biaya_masuk" placeholder="Biaya Masuk ...." required="">
+  <input type="text" class="form-control" id="biaya_masuk" name="biaya_masuk" placeholder="Biaya Masuk ...." readonly="">
 </div>
 <div class="col-xl">
   <label class="col-form-label">Jalur Masuk:</label>
@@ -684,7 +688,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">Penerima KPS :</label>
-  <select class="form-control" name="penerima_pks" id="penerima_pks" >
+  <select class="form-control" name="penerima_pks" id="penerima_pks" readonly="">
     <option value="">-Pilih Penerima KPS-</option>
     <option value="YA">Ya</option>
     <option value="TIDAK">Tidak</option>
@@ -693,7 +697,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">NO KPS:</label>
-  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." >
+  <input type="text" class="form-control" id="no_pks" name="no_pks" placeholder="No KPS ...." readonly="">
 </div>
 </div>
 </div>
@@ -711,15 +715,15 @@
   <div class="row">
     <div class="col-xl">
       <label class="col-form-label">NIK Ayah:</label>
-      <input type="text" class="form-control" id="nik_ayah" name="nik_ayah" placeholder="NIK Ayah ....">
+      <input type="text" class="form-control" id="nik_ayah" name="nik_ayah" placeholder="NIK Ayah ...." readonly="">
     </div>
     <div class="col-xl">
       <label class="col-form-label">Nama Ayah:</label>
-      <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Ayah ...." >
+      <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Nama Ayah ...." readonly="">
     </div>
     <div class="col-xl">
       <label class="col-form-label">Tanggal Lahir Ayah:</label>
-      <input type="date" class="form-control" id="tgllahir_ayah" name="tgllahir_ayah" >
+      <input type="date" class="form-control" id="tgllahir_ayah" name="tgllahir_ayah" readonly="">
     </div>
 
     <div class="col-xl">
@@ -766,19 +770,19 @@
   </div>
   <div class="col-xl">
     <label class="col-form-label">No Tlp Ayah:</label>
-    <input type="number" class="form-control" id="tlp_ayah" name="tlp_ayah" >
+    <input type="number" class="form-control" id="tlp_ayah" name="tlp_ayah" readonly="">
   </div>
   <div class="col-xl">
     <label class="col-form-label">NIK ibu:</label>
-    <input type="text" class="form-control" id="nik_ibu" name="nik_ibu" placeholder="NIK Ibu ...." >
+    <input type="text" class="form-control" id="nik_ibu" name="nik_ibu" placeholder="NIK Ibu ...." readonly="">
   </div>
   <div class="col-xl">
     <label class="col-form-label">Nama ibu:</label>
-    <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu ....">
+    <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Nama Ibu ...." readonly="">
   </div>
   <div class="col-xl">
     <label class="col-form-label">Tanggal Lahir ibu:</label>
-    <input type="date" class="form-control" id="tgllahir_ibu" name="tgllahir_ibu" >
+    <input type="date" class="form-control" id="tgllahir_ibu" name="tgllahir_ibu" readonly="">
   </div>
 
 
@@ -825,7 +829,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">No TLP Ibu:</label>
-  <input type="number" class="form-control" id="tlp_ibu" name="tlp_ibu" placeholder="No Tlp Ibu ...." > 
+  <input type="number" class="form-control" id="tlp_ibu" name="tlp_ibu" placeholder="No Tlp Ibu ...." readonly=""> 
 </div>
 </div>
 </div>
@@ -841,15 +845,15 @@
   <div class="row">
     <div class="col-xl">
       <label class="col-form-label">NIK wali:</label>
-      <input type="text" class="form-control" id="nik_wali" name="nik_wali" placeholder="NIK Wali ...." >
+      <input type="text" class="form-control" id="nik_wali" name="nik_wali" placeholder="NIK Wali ...." readonly="">
     </div>
     <div class="col-xl">
       <label class="col-form-label">Nama wali:</label>
-      <input type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali ...." >
+      <input type="text" class="form-control" id="nama_wali" name="nama_wali" placeholder="Nama Wali ...." readonly="">
     </div>
     <div class="col-xl">
       <label class="col-form-label">Tanggal Lahir wali:</label>
-      <input type="date" class="form-control" id="tgllahir_wali" name="tgllahir_wali" >
+      <input type="date" class="form-control" id="tgllahir_wali" name="tgllahir_wali" readonly="">
     </div>
 
     <div class="col-xl">
@@ -895,7 +899,7 @@
 </div>
 <div class="col-xl">
   <label class="col-form-label">No TLP Wali:</label>
-  <input type="text" class="form-control" id="tlp_wali" name="tlp_wali" placeholder="No Tlp Wali ...." >
+  <input type="text" class="form-control" id="tlp_wali" name="tlp_wali" placeholder="No Tlp Wali ...."readonly="" >
 </div>
 </div>
 </div>
@@ -1091,6 +1095,7 @@ $(document).ready(function() {
             modal.find('#pekerjaan_walix').attr("value",div.data('pekerjaan_wali'));
             modal.find('#penghasilan_walix').attr("value",div.data('penghasilan_wali'));
             modal.find('#tlp_walix').attr("value",div.data('tlp_wali'));
+            modal.find('#penempatanx').attr("value",div.data('penempatan'));
 
           });
 

@@ -407,10 +407,12 @@ class Praja extends CI_Controller {
      $editnya['tlp_wali'] = $this->input->post('tlp_wali', true);
     //  $editnya['jenis_pendaftaran'] = $this->input->post('jenis_pendaftaran', true);
      $editnya['penempatan'] = $this->input->post('penempatan', true);
-     
+     $nama = $this->input->post('nama', true);
      // print("<pre>".print_r($editnya,true)."</pre>");exit();
      $result = $this->Praja_model->view_edit($editnya);
       // var_dump($editnya);exit();
+
+   
 
      if (!$result) {
       $this->session->set_flashdata('praja', 'DATA PRAJA GAGAL DIUBAH.');
@@ -424,7 +426,7 @@ class Praja extends CI_Controller {
      // var_dump($log);exit();
      $this->Praja_model->log($log);
 
-     $this->session->set_flashdata('praja', 'DATA PRAJA BERHASIL DIUBAH.');
+     $this->session->set_flashdata('praja', 'DATA PRAJA - '.$nama.' - BERHASIL DIUBAH.');
      redirect('praja');
    }
  } else {
