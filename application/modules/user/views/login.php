@@ -58,15 +58,20 @@
 					<div class="login-buttons">
 						<button type="submit" class="btn btn-success btn-block btn-lg">Login</button>
 					</div>
-					<div class="m-t-20">
+					<div class="m-t-20" align="center">
 						<!-- Not a member yet? Click <a href="http://ipdn.ac.id/tiket/">here</a> to register. -->
 						Tidak memiliki akun? Click <a href="http://ipdn.ac.id/tiket/" target="_blank">disini</a> untuk mendaftar.
+					</div>
+					<div class="m-t-20" align="center">
+						<!-- Not a member yet? Click <a href="http://ipdn.ac.id/tiket/">here</a> to register. -->
+						<i class="fa fa-phone"></i> Call Center Kemendari (021) 50958800
 					</div>
 				</form>
 			</div>
 			<!-- end login-content -->
 		</div>
 		<!-- end login -->
+		
 		
 		<!-- begin login-bg -->
 		<ul class="login-bg-list clearfix">
@@ -76,10 +81,11 @@
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-14.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-14.jpg');?>)"></a></li>
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-13.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-13.jpg');?>)"></a></li>
 			<li><a href="javascript:;" data-click="change-bg" data-img="<?php echo base_url('assets/img/login-bg/login-bg-12.jpg');?>" style="background-image: url(<?php echo base_url('assets/img/login-bg/login-bg-12.jpg');?>)"></a></li>
+		
 		</ul>
 		<!-- end login-bg -->
 	</div>
-
+	
 	
 	<script src="<?php echo base_url('assets/js/app.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/theme/default.min.js'); ?>"></script>
