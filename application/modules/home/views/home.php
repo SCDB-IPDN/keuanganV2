@@ -856,7 +856,7 @@
 			</div>
 		</div>
 			
-		<div class="col-xl-3">
+		<div class="col-xl-6">
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h4 class="panel-title">KEPRAJAAN</h4>
@@ -883,6 +883,8 @@
 							</div>
 						</div>
 						<br>
+				<div class="row">
+					<div class="col-xl">
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
@@ -937,12 +939,192 @@
 								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $hukuman[0]->meninggal; ?></span></div>
 							</div>
 						</div>
-						</br>
+
+					</div>
+				<div class="col-xl">
+					<div class="d-flex mb-2">
+									<div class="d-flex align-items-center">
+										<span style="font-weight : bold;"> JUMLAH PRAJA PER-ANGKATAN :</span>
+									</div>
+								</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
+								MUDA PRAJA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan31; ?></span></div>
+						</div>
+					</div>
+
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								MADYA PRAJA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan30; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
+								NINDYA PRAJA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan29; ?></span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								PRAJA UTAMA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan28; ?></span></div>
+						</div>
+					</div>
+				</div>
+			
+				<div class ="col-xl">
+				<br	>
+				<div class="d-flex mb-2">
+					<div class="d-flex align-items-center">
+						<span style="font-weight : bold;"> JUMLAH PRAJA PER-KAMPUS DAERAH :</span>
+					</div>
+				</div>
+
+				<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS JATINANGOR
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>3959</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS JAKARTA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>308</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS SUMBAR
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>405</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS KALBAR
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>167</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS SULUT
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>334</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS SULSEL
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>398</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS NTB
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>392</span></div>
+						</div>
+					</div>
+					<div class="d-flex mb-2">
+						<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
+								KAMPUS PAPUA
+						</div>
+						<div class="d-flex align-items-center ml-auto">
+							<div class="width-50 text-right pl-2 f-w-600"><span>298</span></div>
+						</div>
+					</div>
+									
+				</div>
+				<div class="col-xl">
+				<br>
+				
+						
+						
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
-								TURUN TINGKAT
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								Diploma IV
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>6113</span></div>
 							</div>
 						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								S1
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>148</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								S2
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>361</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+								S3
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>198</span></div>
+							</div>
+						</div>
+						<div class="d-flex mb-2">
+							<div class="d-flex align-items-center">
+								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
+							Profesi
+							</div>
+							<div class="d-flex align-items-center ml-auto">
+								<div class="width-50 text-right pl-2 f-w-600"><span>60</span></div>
+							</div>
+						</div>
+						<hr class="bg-white-transparent-2" />
+						<div class="d-flex mb-2">
+					<div class="d-flex align-items-center">
+					
+						<span style="font-weight : bold;"> TURUN TINGKAT :</span>
+					</div>
+				</div>
 						<div class="d-flex mb-2">
 							<div class="d-flex align-items-center">
 								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
@@ -970,48 +1152,8 @@
 								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan28[0]->turuntingkat; ?></span></div>
 							</div>
 						</div>
-						</br>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								ANGKATAN
-							</div>
 						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-red f-s-8 mr-2"></i>
-								MUDA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan31; ?></span></div>
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-yellow f-s-8 mr-2"></i>
-								MADYA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan30; ?></span></div>
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-green f-s-8 mr-2"></i>
-								NINDYA PRAJA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan29; ?></span></div>
-							</div>
-						</div>
-						<div class="d-flex mb-2">
-							<div class="d-flex align-items-center">
-								<i class="fa fa-circle text-blue f-s-8 mr-2"></i>
-								PRAJA UTAMA
-							</div>
-							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $angkatan[0]->angkatan28; ?></span></div>
-							</div>
-						</div>	
+					</div>
 					</div>
 				</div>
 			</div>
