@@ -249,26 +249,26 @@ class Home_model extends CI_Model{
 	public function angkatan_31()
 	{
 
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31'")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='31' and tgl like '2021%'")->result();
 		return $result;
 	
 	}
 
 	public function angkatan_30()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30'")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='30' and tgl like '2021%'")->result();
 		return $result;
 	}
 
 	public function angkatan_29()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29'")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='29' and tgl like '2021%'")->result();
 		return $result;
 	}
 
 	public function angkatan_28()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28'")->result();
+		$result = $this->db->query("SELECT SUM(status = 'turuntingkat') as turuntingkat FROM hukuman WHERE angkatan='28' and tgl like '%2021'")->result();
 		return $result;
 	}
 
@@ -410,7 +410,7 @@ class Home_model extends CI_Model{
 	}
 	public function hukuman()
 	{
-		$result = $this->db->query("SELECT SUM(status = 'diberhentikan') as berhenti,SUM(status = 'meninggal') as meninggal  FROM hukuman")->result();
+		$result = $this->db->query("SELECT SUM(status = 'diberhentikan') as berhenti,SUM(status = 'meninggal') as meninggal  FROM hukuman where tgl like '2021%'")->result();
 
 		return $result;
 	}
