@@ -13,9 +13,9 @@ class Apps extends CI_Controller {
 	{
         if($this->session->userdata('nip') != NULL)
         {
-            if($this->session->userdata('role') != 'Admin')
+            if($this->session->userdata('role') != 'Admin' && $this->session->userdata('role') != 'SuperAdmin')
             {
-                $this->load->view('Home');
+                redirect("home");
             }else{
                 
                 $data = $this->apps_model->get_data()->result();
