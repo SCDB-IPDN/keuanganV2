@@ -3222,84 +3222,6 @@ class Uploads extends CI_Controller {
 						$hasil= $angkatan-$kurangtahun;
 					}
 
-					// array_push($unitpraja, array(
-					// 	'no_spcp'      => $row['A'],
-					// 	'nama'      => $row['B'],
-					// 	'jk'      => $row['C'],
-					// 	'nisn'      => $row['D'],
-					// 	'npwp'      => $row['E'],
-					// 	'npp'      => $row['F'],
-					// 	'nik_praja'      => $row['G'],
-					// 	'tmpt_lahir'      => $row['H'],
-					// 	'tgl_lahir'      =>  date("Y-m-d", strtotime($row['I'])),
-					// 	'agama'      => $this->agamaa($row['J']),
-					// 	'alamat'      => $row['K'],
-					// 	'rt'      => $row['L'],
-					// 	'rw'      => $row['M'],
-					// 	'nama_dusun'      => $row['N'],
-					// 	'kelurahan'      => $row['O'],
-					// 	'kecamatan'      => $row['P'],
-					// 	'kode_pos'      =>$row['Q'],
-					// 	'kab_kota'      => $row['R'],
-					// 	'provinsi'      => $row['S'],
-					// 	'jenis_tinggal'      => $row['T'],
-					// 	'alat_transport'      => $row['U'],
-					// 	'tlp_rumah'      => $row['V'],
-					// 	'tlp_pribadi'      => $row['W'],
-					// 	'email'      => $row['X'],
-					// 	'kewarganegaraan'      => $row['AM'],
-					// 	'penerima_pks'      => $row['AN'],
-					// 	'no_pks'      => $row['AO'],
-					// 	'prodi'      => $row['AW'],
-					// 	'fakultas'      => $row['AX'],
-					// 	'jenis_pendaftaran'      =>  $row['AY'],
-					// 	// 'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
-					// 	'tgl_masuk_kuliah'      =>  $row['AZ'],
-					// 	'tahun_masuk_kuliah'      => $row['BA'],
-					// 	'pembiayaan'      => $row['BB'],
-					// 	'jalur_masuk'      => $row['BC'],
-					// 	'status' => $stat,
-					// 	'tingkat' => 2020-$row['BA']+1,
-					// 	'angkatan' => $cc,
-					// 	'mulai_semester' => $row['BD']
-					// ));
-
-					// array_push($unitortu, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_ayah'      => $row['Y'],
-					// 	'nama_ayah'      => $row['Z'],
-					// 	'tgllahir_ayah'      => $row['AA'],
-					// 	'pendidikan_ayah'      => $row['AB'],
-					// 	'pekerjaan_ayah'      => $row['AC'],
-					// 	'penghasilan_ayah'      => $row['AD'],
-					// 	'tlp_ayah'      => $row['AE'],
-					// 	'nik_ibu'      => $row['AF'],
-					// 	'nama_ibu'      => $row['AG'],
-					// 	'tgllahir_ibu'      => $row['AH'],
-					// 	'pendidikan_ibu'      =>$row['AI'],
-					// 	'pekerjaan_ibu'      => $row['AJ'],
-					// 	'penghasilan_ibu'      => $row['AK'],
-					// 	'tlp_ibu'      => $row['AL']
-
-					// ));
-
-
-					// array_push($unitwali, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_wali'      => $row['AP'],
-					// 	'nama_wali'      => $row['AQ'],
-					// 	'tgllahir_wali'      => $row['AR'],
-					// 	'pendidikan_wali'      => $row['AS'],
-					// 	'pekerjaan_wali'      => $row['AT'],
-					// 	'penghasilan_wali'      => $row['AU'],
-					// 	'tlp_wali'      => $row['AV']
-
-					// ));
-
-
-
 					array_push($unitpraja, array(
 						'no_spcp'      => $row['A'],
 						'nama'      => $row['B'],
@@ -3310,7 +3232,7 @@ class Uploads extends CI_Controller {
 						'nik_praja'      => $row['G'],
 						'tmpt_lahir'      => $row['H'],
 						'tgl_lahir'      =>  date("Y-m-d", strtotime($row['I'])),
-						'agama'      => $this->agamaa($row['J']),
+						'agama'      => $row['J'],
 						'alamat'      => $row['K'],
 						'rt'      => $row['L'],
 						'rw'      => $row['M'],
@@ -3320,87 +3242,50 @@ class Uploads extends CI_Controller {
 						'kode_pos'      =>$row['Q'],
 						'kab_kota'      => $row['R'],
 						'provinsi'      => $row['S'],
-						'jenis_tinggal'      => $this->jenistinggal($row['T']),
-						'alat_transport'      => $this->alat($row['U']),
+						'jenis_tinggal'      => $row['T'],
+						'alat_transport'      => $row['U'],
 						'tlp_rumah'      => $row['V'],
 						'tlp_pribadi'      => $row['W'],
 						'email'      => $row['X'],
-						'kewarganegaraan'      => $this->negara($row['AM']),
+						'kewarganegaraan'      => $row['AM'],
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
-						'prodi'      => $this->prodi($row['AW']),
+						'prodi'      => $row['AW'],
 						'fakultas'      => $row['AX'],
-						'jenis_pendaftaran'      =>  $this->jenispend($row['AY']),
+						'jenis_pendaftaran'      =>  $row['AY'],
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
-						// 'tgl_masuk_kuliah'      =>  $row['AZ'],
 						'tahun_masuk_kuliah'      => $row['BA'],
-						'pembiayaan'      => $this->jenispembiayaan($row['BB']),
-						'jalur_masuk'      => $this->jalurmasuk($row['BC']),
+						'pembiayaan'      => $row['BB'],
+						'jalur_masuk'      => $row['BC'],
 						'status' => $stat,
 						'tingkat' => 2020-$row['BA']+1,
 						'angkatan' => $cc,
-						'mulai_semester' => $this->semesterr($row['BD']),
+						'mulai_semester' => $row['BD'],
 						'biaya_masuk' => $biaya_masuk,
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
-						'pendidikan_ayah'      => $this->pendidik($row['AB']),
-						'pekerjaan_ayah'      => $this->pekerja($row['AC']),
-						'penghasilan_ayah'      => $this->penghasil($row['AD']),
+						'pendidikan_ayah'      => $row['AB'],
+						'pekerjaan_ayah'      => $row['AC'],
+						'penghasilan_ayah'      => $row['AD'],
 						'tlp_ayah'      => $row['AE'],
 						'nik_ibu'      => $row['AF'],
 						'nama_ibu'      => $row['AG'],
 						'tgllahir_ibu'      => $row['AH'],
-						'pendidikan_ibu'      =>$this->pendidik($row['AI']),
-						'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
-						'penghasilan_ibu'      => $this->penghasil($row['AK']),
+						'pendidikan_ibu'      =>$row['AI'],
+						'pekerjaan_ibu'      => $row['AJ'],
+						'penghasilan_ibu'      => $row['AK'],
 						'tlp_ibu'      => $row['AL'],
 						'nik_wali'      => $row['AP'],
 						'nama_wali'      => $row['AQ'],
 						'tgllahir_wali'      => $row['AR'],
 						'pendidikan_wali'      => $row['AS'],
-						'pekerjaan_wali'      => $this->pekerja($row['AT']),
-						'penghasilan_wali'      => $this->penghasil($row['AU']),
+						'pekerjaan_wali'      => $row['AT'],
+						'penghasilan_wali'      => $row['AU'],
 						'tlp_wali'      => $row['AV'],
 						'penempatan' => $penempatan
 
 					));
-					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
-
-
-					// array_push($unitortu, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_ayah'      => $row['Y'],
-					// 	'nama_ayah'      => $row['Z'],
-					// 	'tgllahir_ayah'      => $row['AA'],
-					// 	'pendidikan_ayah'      => $this->pendidik($row['AB']),
-					// 	'pekerjaan_ayah'      => $this->pekerja($row['AC']),
-					// 	'penghasilan_ayah'      => $this->penghasil($row['AD']),
-					// 	'tlp_ayah'      => $row['AE'],
-					// 	'nik_ibu'      => $row['AF'],
-					// 	'nama_ibu'      => $row['AG'],
-					// 	'tgllahir_ibu'      => $row['AH'],
-					// 	'pendidikan_ibu'      =>$this->pendidik($row['AI']),
-					// 	'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
-					// 	'penghasilan_ibu'      => $this->penghasil($row['AK']),
-					// 	'tlp_ibu'      => $row['AL']
-
-					// ));
-
-
-					// array_push($unitwali, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_wali'      => $row['AP'],
-					// 	'nama_wali'      => $row['AQ'],
-					// 	'tgllahir_wali'      => $row['AR'],
-					// 	'pendidikan_wali'      => $row['AS'],
-					// 	'pekerjaan_wali'      => $this->pekerja($row['AT']),
-					// 	'penghasilan_wali'      => $this->penghasil($row['AU']),
-					// 	'tlp_wali'      => $row['AV']
-
-					// ));
 
 				}
 
