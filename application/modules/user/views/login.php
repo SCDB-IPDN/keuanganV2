@@ -64,8 +64,12 @@
 					</div>
 					<div class="m-t-20" align="center">
 						<!-- Not a member yet? Click <a href="http://ipdn.ac.id/tiket/">here</a> to register. -->
-						<i class="fa fa-phone"></i> Call Center Kemendari (021) 50958800
+						<i class="fa fa-phone"></i> Call Center Kemendagri (021) 50958800
 					</div>
+					<br>
+					<div class="col-lg-12 text-center" style="padding: 10px;background-color:rgb(255 255 255 / 15%);">
+                        <img src="<?= base_url('assets/img/WBK.png')?>" style="width: 340px;height: 100%;">
+						</div>
 				</form>
 			</div>
 			<!-- end login-content -->
