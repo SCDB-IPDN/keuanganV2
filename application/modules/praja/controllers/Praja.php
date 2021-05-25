@@ -121,69 +121,69 @@ class Praja extends CI_Controller
 
     $no = 1;
     foreach ($data as $r) {
-      $npp = $r->npp;
-      $nama = $r->nama;
-      $jk = $r->jk;
-      $tingkat = $r->tingkat;
-      $angkatan = $r->angkatan;
-      $status = $r->status;
-      $penempatan = $r->penempatan;
-      $fakultas = $r->fakultas;
-      $prodi = $r->prodi;
-      $tmpt_lahir = $r->tmpt_lahir;
-      $tgl_lahir = $r->tgl_lahir;
-      $nisn = $r->nisn;
-      $npwp = $r->npwp;
-      $no_spcp = $r->no_spcp;
-      $nik_praja = $r->nik_praja;
-      $agama = $r->agama;
-      $alamat = $r->alamat;
-      $rt = $r->rt;
-      $rw = $r->rw;
-      $provinsi = $r->provinsi;
-      $kab_kota = $r->kab_kota;
-      $kelurahan = $r->kelurahan;
-      $nama_dusun = $r->nama_dusun;
-      $kecamatan = $r->kecamatan;
-      $kode_pos = $r->kode_pos;
-      $jenis_tinggal = $r->jenis_tinggal;
-      $tlp_pribadi = $r->tlp_pribadi;
-      $tlp_rumah = $r->tlp_rumah;
-      $email = $r->email;
-      $kewarganegaraan = $r->kewarganegaraan;
-      $jenis_pendaftaran = $r->jenis_pendaftaran;
-      $tgl_masuk_kuliah = $r->tgl_masuk_kuliah;
-      $tahun_masuk_kuliah = $r->tahun_masuk_kuliah;
-      $pembiayaan = $r->pembiayaan;
-      $alat_transport = $r->alat_transport;
-      $biaya_masuk = $r->biaya_masuk;
-      $jalur_masuk = $r->jalur_masuk;
-      $penerima_pks = $r->penerima_pks;
-      $no_pks = $r->no_pks;
-      $mulai_semester = $r->mulai_semester;
+      $npp = $r->npp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npp;
+      $nama = $r->nama == NULL ? "<i><font>Tidak ada data</font></i>": $r->nama;
+      $jk = $r->jk == NULL ? "<i><font>Tidak ada data</font></i>": $r->jk ;
+      $tingkat = $r->tingkat == NULL ? "<i><font>Tidak ada data</font></i>": $r->tingkat;
+      $angkatan = $r->angkatan== NULL ? "<i><font>Tidak ada data</font></i>": $r->angkatan;
+      $status = $r->status== NULL ? "<i><font>Tidak ada data</font></i>": $r->status;
+      $penempatan = $r->penempatan== NULL ? "<i><font>Tidak ada data</font></i>": $r->penempatan;
+      $fakultas = $r->fakultas== NULL ? "<i><font>Tidak ada data</font></i>": $r->fakultas;
+      $prodi = $r->prodi== NULL ? "<i><font>Tidak ada data</font></i>": $r->prodi;
+      $tmpt_lahir = $r->tmpt_lahir== NULL ? "<i><font>Tidak ada data</font></i>":$r->tmpt_lahir;
+      $tgl_lahir = $r->tgl_lahir== NULL ? "<i><font>Tidak ada data</font></i>":$r->tgl_lahir;
+      $nisn = $r->nisn== NULL ? "<i><font>Tidak ada data</font></i>":$r->nisn;
+      $npwp = $r->npwp == NULL ? "<i><font>Tidak ada data</font></i>": $r->npwp;
+      $no_spcp = $r->no_spcp== NULL ? "<i><font>Tidak ada data</font></i>":$r->no_spcp;
+      $nik_praja = $r->nik_praja== NULL ? "<i><font>Tidak ada data</font></i>":$r->nik_praja;
+      $agama = $r->agama== NULL ? "<i><font>Tidak ada data</font></i>":$r->agama;
+      $alamat = $r->alamat== NULL ? "<i><font>Tidak ada data</font></i>":$r->alamat;
+      $rt = $r->rt== NULL ? "<i><font>Tidak ada data</font></i>":$r->rt;
+      $rw = $r->rw== NULL ? "<i><font>Tidak ada data</font></i>":$r->rw;
+      $provinsi = $r->provinsi== NULL ? "<i><font>Tidak ada data</font></i>":$r->provinsi;
+      $kab_kota = $r->kab_kota== NULL ? "<i><font>Tidak ada data</font></i>":$r->kab_kota;
+      $kelurahan = $r->kelurahan== NULL ? "<i><font>Tidak ada data</font></i>":$r->kelurahan;
+      $nama_dusun = $r->nama_dusun== NULL ? "<i><font>Tidak ada data</font></i>":$r->nama_dusun;
+      $kecamatan = $r->kecamatan== NULL ? "<i><font>Tidak ada data</font></i>":$r->kecamatan;
+      $kode_pos = $r->kode_pos== NULL ? "<i><font>Tidak ada data</font></i>":$r->kode_pos;
+      $jenis_tinggal = $r->jenis_tinggal== NULL ? "<i><font>Tidak ada data</font></i>":$r->jenis_tinggal;
+      $tlp_pribadi = $r->tlp_pribadi== NULL ? "<i><font>Tidak ada data</font></i>":$r->tlp_rumah;
+      $tlp_rumah = $r->tlp_rumah== NULL ? "<i><font>Tidak ada data</font></i>":$r->email;
+      $email = $r->email== NULL ? "<i><font>Tidak ada data</font></i>":$r->email;
+      $kewarganegaraan = $r->kewarganegaraan== NULL ? "<i><font>Tidak ada data</font></i>":$r->kewarganegaraan;
+      $jenis_pendaftaran = $r->jenis_pendaftaran== NULL ? "<i><font>Tidak ada data</font></i>":$r->jenis_pendaftaran;
+      $tgl_masuk_kuliah = $r->tgl_masuk_kuliah== NULL ? "<i><font>Tidak ada data</font></i>":$r->tgl_masuk_kuliah;
+      $tahun_masuk_kuliah = $r->tahun_masuk_kuliah== NULL ? "<i><font>Tidak ada data</font></i>":$r->tahun_masuk_kuliah;
+      $pembiayaan = $r->pembiayaan== NULL ? "<i><font>Tidak ada data</font></i>": $r->pembiayaan;
+      $alat_transport = $r->alat_transport== NULL ? "<i><font>Tidak ada data</font></i>":$r->alat_transport;
+      $biaya_masuk = $r->biaya_masuk== NULL ? "<i><font>Tidak ada data</font></i>": $r->biaya_masuk;
+      $jalur_masuk = $r->jalur_masuk== NULL ? "<i><font>Tidak ada data</font></i>":$r->jalur_masuk;
+      $penerima_pks = $r->penerima_pks== NULL ? "<i><font>Tidak ada data</font></i>":$r->penerima_pks;
+      $no_pks = $r->no_pks== NULL ? "<i><font>Tidak ada data</font></i>":$r->no_pks;
+      $mulai_semester = $r->mulai_semester== NULL ? "<i><font>Tidak ada data</font></i>":$r->mulai_semester;
 
-      $nik_ayah = $r->nik_ayah;
-      $nama_ayah = $r->nama_ayah;
-      $tgllahir_ayah = $r->tgllahir_ayah;
-      $pendidikan_ayah = $r->pendidikan_ayah;
-      $pekerjaan_ayah = $r->pekerjaan_ayah;
-      $penghasilan_ayah = $r->penghasilan_ayah;
-      $tlp_ayah = $r->tlp_ayah;
-      $nik_ibu = $r->nik_ibu;
-      $nama_ibu = $r->nama_ibu;
-      $tgllahir_ibu = $r->tgllahir_ibu;
-      $pendidikan_ibu = $r->pendidikan_ibu;
-      $pekerjaan_ibu = $r->pekerjaan_ibu;
-      $penghasilan_ibu = $r->penghasilan_ibu;
-      $tlp_ibu = $r->tlp_ibu;
+      $nik_ayah = $r->nik_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->nik_ayah;
+      $nama_ayah = $r->nama_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->nama_ayah;
+      $tgllahir_ayah = $r->tgllahir_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->tgllahir_ayah;
+      $pendidikan_ayah = $r->pendidikan_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->pendidikan_ayah;
+      $pekerjaan_ayah = $r->pekerjaan_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->pekerjaan_ayah;
+      $penghasilan_ayah = $r->penghasilan_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->penghasilan_ayah;
+      $tlp_ayah = $r->tlp_ayah== NULL ? "<i><font>Tidak ada data</font></i>":$r->tlp_ayah;
+      $nik_ibu = $r->nik_ibu== NULL ? "<i><font>Tidak ada data</font></i>":$r->nik_ibu;
+      $nama_ibu = $r->nama_ibu== NULL ? "<i><font>Tidak ada data</font></i>":$r->nama_ibu;
+      $tgllahir_ibu = $r->tgllahir_ibu== NULL ? "<i><font>Tidak ada data</font></i>":$r->tgllahir_ibu;
+      $pendidikan_ibu = $r->pendidikan_ibu == NULL ? "<i><font>Tidak ada data</font></i>":$r->pendidikan_ibu;
+      $pekerjaan_ibu = $r->pekerjaan_ibu == NULL ? "<i><font>Tidak ada data</font></i>":$r->pekerjaan_ibu;
+      $penghasilan_ibu = $r->penghasilan_ibu == NULL ? "<i><font>Tidak ada data</font></i>":$r->penghasilan_ibu;
+      $tlp_ibu = $r->tlp_ibu == NULL ? "<i><font>Tidak ada data</font></i>":$r->tlp_ibu;
 
-      $nik_wali = $r->nik_wali;
-      $nama_wali = $r->nama_wali;
-      $tgllahir_wali = $r->tgllahir_wali;
-      $pendidikan_wali = $r->pendidikan_wali;
-      $pekerjaan_wali = $r->pekerjaan_wali;
-      $penghasilan_wali = $r->penghasilan_wali;
-      $tlp_wali = $r->tlp_wali;
+      $nik_wali = $r->nik_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->nik_wali;
+      $nama_wali = $r->nama_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->nama_wali;
+      $tgllahir_wali = $r->tgllahir_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->tgllahir_wali;
+      $pendidikan_wali = $r->pendidikan_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->pendidikan_wali ;
+      $pekerjaan_wali = $r->pekerjaan_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->pekerjaan_wali;
+      $penghasilan_wali = $r->penghasilan_wali == NULL ? "<i><font>Tidak ada data</font></i>":$r->penghasilan_wali;
+      $tlp_wali = $r->tlp_wali== NULL ? "<i><font>Tidak ada data</font></i>":$r->tlp_wali;
 
       if ($this->session->userdata('role') == 'Admin' ||  $this->session->userdata('role') == 'SuperAdmin' || $this->session->userdata('role') == 'Keprajaan') {
 
@@ -269,8 +269,9 @@ class Praja extends CI_Controller
       // $eksel = "<a href='d_praja/export/$r->angkatan' class='btn btn-sm btn-primary' btn-sm><i class='fa fa-eye'></i></a>";
 
       $dataall[] = array(
-        $opsi,
         $no++,
+        $opsi,
+        
         $npp,
         $nama,
         $jk,

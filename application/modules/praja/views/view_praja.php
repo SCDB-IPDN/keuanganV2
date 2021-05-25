@@ -61,71 +61,71 @@
             <table id="data-praja" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead>
                 <tr>
-                  <th>Opsi</th>
                   <th>No</th>
-                  <th>npp</th>
-                  <th>nama</th>
-                  <th>jk</th>
-                  <th>tingkat</th>
-                  <th>angkatan</th>
-                  <th>status</th>
-                  <th>penempatan</th>
-                  <th>fakultas</th>
-                  <th>prodi</th>
-                  <th>tmpt_lahir</th>
-                  <th>tgl_lahir</th>
-                  <th>nisn</th>
-                  <th>npwp</th>
-                  <th>no_spcp</th>
-                  <th>nik_praja</th>
-                  <th>agama</th>
-                  <th>alamat</th>
-                  <th>rt</th>
-                  <th>rw</th>
-                  <th>provinsi</th>
-                  <th>kab_kota</th>
-                  <th>kelurahan</th>
-                  <th>nama_dusun</th>
-                  <th>kecamatan</th>
-                  <th>kode_pos</th>
-                  <th>jenis_tinggal</th>
-                  <th>tlp_pribadi</th>
-                  <th>tlp_rumah</th>
-                  <th>email</th>
-                  <th>kewarganegaraan</th>
-                  <th>jenis_pendaftaran</th>
-                  <th>tgl_masuk_kuliah</th>
-                  <th>tahun_masuk_kuliah</th>
-                  <th>pembiayaan</th>
-                  <th>alat_transport</th>
-                  <th>biaya_masuk</th>
-                  <th>jalur_masuk</th>
-                  <th>penerima_pks</th>
-                  <th>no_pks</th>
-                  <th>mulai_semester</th>
+                  <th>Opsi</th>
+                  <th>NPP</th>
+                  <th>Nama</th>
+                  <th>Jenis Kelamin</th>
+                  <th>Tingkat</th>
+                  <th>Angkatan</th>
+                  <th>Status</th>
+                  <th>Penempatan</th>
+                  <th>Fakultas</th>
+                  <th>Prodi</th>
+                  <th>Tempat Lahir</th>
+                  <th>Tanggal Lahir</th>
+                  <th>NISN</th>
+                  <th>NPWP</th>
+                  <th>No SPCP</th>
+                  <th>NIK</th>
+                  <th>Agana</th>
+                  <th>Alamat</th>
+                  <th>RT</th>
+                  <th>RW</th>
+                  <th>Provinsi</th>
+                  <th>Kab/Kota</th>
+                  <th>Kelurahan</th>
+                  <th>Nama Dusun</th>
+                  <th>Kecamatan</th>
+                  <th>Kode Pos</th>
+                  <th>Jenis Tinggal</th>
+                  <th>Tlp Pribadi</th>
+                  <th>Tlp Rumah</th>
+                  <th>Email</th>
+                  <th>Kewarganegaraan</th>
+                  <th>Jenis Pendaftaran</th>
+                  <th>Tgl Masuk Kuliah</th>
+                  <th>Tahun Masuk Kuliah</th>
+                  <th>Pembiayaan</th>
+                  <th>Alat Transportasi</th>
+                  <th>Biaya Masuk</th>
+                  <th>Jalur Masuk</th>
+                  <th>Penerima KPS</th>
+                  <th>NO KPS</th>
+                  <th>Mulai Semester</th>
 
-                  <th>nik_ayah</th>
-                  <th>nama_ayah</th>
-                  <th>tgllahir_ayah</th>
-                  <th>pendidikan_ayah</th>
-                  <th>pekerjaan_ayah</th>
-                  <th>penghasilan_ayah</th>
-                  <th>tlp_ayah</th>
-                  <th>nik_ibu</th>
-                  <th>nama_ibu</th>
-                  <th>tgllahir_ibu</th>
-                  <th>pendidikan_ibu</th>
-                  <th>pekerjaan_ibu</th>
-                  <th>penghasilan_ibu</th>
-                  <th>tlp_ibu</th>
+                  <th>NIK Ayah</th>
+                  <th>Nama Ayah </th>
+                  <th>Tgl Lahir Ayah</th>
+                  <th>Pendidikan Ayah</th>
+                  <th>Pekerjaan Ayah</th>
+                  <th>Penghasilan Ayah</th>
+                  <th>Tlp Ayah</th>
+                  <th>NIK Ibu</th>
+                  <th>Nama Ibu</th>
+                  <th>Tgl Lahir Ibu</th>
+                  <th>Pendidikan Ibu</th>
+                  <th>Pekerjaan Ibu</th>
+                  <th>Penghasilan Ibu</th>
+                  <th>Tlp Ibu</th>
 
-                  <th>nik_wali</th>
-                  <th>nama_wali</th>
-                  <th>tgllahir_wali</th>
-                  <th>pendidikan_wali</th>
-                  <th>pekerjaan_wali</th>
-                  <th>penghasilan_wali</th>
-                  <th>tlp_wali</th>
+                  <th>NIK Wali</th>
+                  <th>Nama Wali</th>
+                  <th>Tgl Lahir Wali</th>
+                  <th>Pendidikan Wali</th>
+                  <th>Pekerjaan Wali</th>
+                  <th>Penghasilan Wali</th>
+                  <th>Tlp Wali</th>
 
                 </tr>
               </thead>
