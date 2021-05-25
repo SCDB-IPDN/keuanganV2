@@ -1077,7 +1077,7 @@
 								Diploma IV
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>6113</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_D4[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1086,7 +1086,7 @@
 								S1
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>148</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S1[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1095,7 +1095,7 @@
 								S2
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>361</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S2[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1104,7 +1104,7 @@
 								S3
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>198</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S3[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1113,7 +1113,7 @@
 							Profesi
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>37</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_profesi[0]->total; ?></span></div>
 							</div>
 						</div>
 						<hr class="bg-white-transparent-2" />
