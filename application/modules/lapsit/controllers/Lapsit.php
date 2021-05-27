@@ -134,7 +134,7 @@ class Lapsit extends CI_Controller {
 		$totalNindyaL = $this->countData($totalNindyaLData);
 		$totalNindyaP = $this->countData($totalNindyaPData);
 		
-		$totalTigaValue = $this->renderSatkerTotal($totalNindya, $totalNindyaL, $totalNindyaP, 3);
+		$totalTigaValue = $this->renderSatkerTotal($totalNindya, $totalNindyaL, $totalNindyaP, 'TOTAL PRAJA IPDN KAMPUS DAERAH');
 
 		// Utama JATINANGOR
 		$empatJL = $this->Lapsit_model->getLapsit($date, 'Utama', 1, 'L');
@@ -164,7 +164,7 @@ class Lapsit extends CI_Controller {
 		$totalUtamaL = $this->countData($totalUtamaLData);
 		$totalUtamaP = $this->countData($totalUtamaPData);
 
-		$totalEmpatValue = $this->renderSatkerTotal($totalUtama, $totalUtamaL, $totalUtamaP, 4);
+		$totalEmpatValue = $this->renderSatkerTotal($totalUtama, $totalUtamaL, $totalUtamaP, 'TOTAL PRAJA UTAMA');
 
 		// Total JATINANGOR
 		$totalJData = [$satuJCount, $duaJCount, $empatJCount];
@@ -284,10 +284,10 @@ class Lapsit extends CI_Controller {
 			</tr>';
 	}
 
-	private function renderSatkerTotal($count, $countL, $countP, $number) {
+	private function renderSatkerTotal($count, $countL, $countP, $text) {
 		return '
 			<tr class="bg-light">
-				<td rowspan="3" colspan="2">TOTAL NOMOR '. $number . '</td>
+				<td rowspan="3" colspan="2">'. $text . '</td>
 				<td>L:</td>
 				<td>' . $countL['jumlah'] . '</td>
 				<td rowspan="3">' . $count['kurang'] . '</td>
@@ -489,10 +489,7 @@ class Lapsit extends CI_Controller {
 						<p class="center bold">SATUAN MANGGALA PRAJA</p>
 						<p class="center font14">' . $hariTanggal . '</p>
 					</div>
-					<p class="bold">I.	Rekapitulasi Kekuatan Apel</p>
-					<br>
 					<table>
-					
 						<thead>
 							<tr>
 								<th rowspan="2">NO</th>
@@ -520,8 +517,6 @@ class Lapsit extends CI_Controller {
 						<tbody>' . $tableResult[7] .'</tbody>
 					</table>
 					<div class="page-break"></div>
-					<p class="bold">II.	Hal-hal Menonjol</p>
-					<br>
 					<table>
 						<thead>
 							<tr class="bg-light">
