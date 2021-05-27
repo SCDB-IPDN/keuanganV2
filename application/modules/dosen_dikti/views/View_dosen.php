@@ -63,11 +63,21 @@
                 <?php } ?>
                 <div class="table-responsive">
                     <div class="panel-body">
+                        
+                        <tbody>
+							<tr>
+								<td>
+									<select name="filter" id="filter_kampus" class="form-control col-sm-2 mb-3"></select>
+								</td>
+							</tr>
+						</tbody>
+
                         <table id="tbl-scdb-dosen-dikti" class="table table-striped table-bordered table-td-valign-middle" width="100%">
                             <thead>
                                 <tr>
                                     <th class="text-nowrap">No</th>
                                     <th class="text-nowrap" width="30%">AKSI</th>
+                                    <th class="text-nowrap">KAMPUS</th>
                                     <th class="text-nowrap">NAMA</th>
                                     <th class="text-nowrap">TEMPAT LAHIR</th>
                                     <th class="text-nowrap">JENIS KELAMIN</th>
@@ -121,7 +131,6 @@
                                     <th class="text-nowrap">JUDUL PENELITIAN</th>
                                     <th class="text-nowrap">LEMBAGA</th>
                                     <th class="text-nowrap">TAHUN PENELITIAN</th>
-                                    <th class="text-nowrap">KAMPUS</th>
                                 </tr>
                             </thead>
                             <tbody>
