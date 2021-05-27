@@ -7,6 +7,52 @@ class Kepegawaian extends CI_Controller{
      }
 
      // PNS
+     function index()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $data = $this->kepegawaian_model->get_all_pns()->result();
+               $tp = $this->kepegawaian_model->get_pendidikan();
+
+               $x['data'] = $data;
+               $x['tp'] = $tp;
+
+               $this->load->view("include/head");
+               $this->load->view("include/top-header");
+               $this->load->view('view_pns', $x);
+               $this->load->view("include/sidebar");
+               $this->load->view("include/panel");
+               $this->load->view("include/footer");
+          }else{
+               redirect("user");
+          }
+     }
+
+     function search_pns()
+     {
+          if($this->session->userdata('nip') != NULL)
+          {
+               $penempatan = $this->input->post('penempatan', true);
+               if($penempatan != NULL){
+                    $data = $this->kepegawaian_model->search_pns($penempatan)->result();
+
+                    $x['data'] = $data;
+
+                    $this->load->view("include/head");
+                    $this->load->view("include/top-header");
+                    $this->load->view('search_pns',$x);
+                    $this->load->view("include/sidebar");
+                    $this->load->view("include/panel");
+                    $this->load->view("include/footer");
+
+               }else{
+                    redirect('kepegawaian');
+               }               
+          }else{
+               redirect("user");
+          }
+     }
+
      function table_pns() {
           $data = $this->kepegawaian_model->get_all_pns()->result();
 
@@ -67,27 +113,6 @@ class Kepegawaian extends CI_Controller{
           }
           
           echo json_encode($apa);
-     }
-
-     function index()
-     {
-          if($this->session->userdata('nip') != NULL)
-          {
-               $data = $this->kepegawaian_model->get_all_pns()->result();
-               $tp = $this->kepegawaian_model->get_pendidikan();
-
-               $x['data'] = $data;
-               $x['tp'] = $tp;
-
-               $this->load->view("include/head");
-               $this->load->view("include/top-header");
-               $this->load->view('view_pns', $x);
-               $this->load->view("include/sidebar");
-               $this->load->view("include/panel");
-               $this->load->view("include/footer");
-          }else{
-               redirect("user");
-          }
      }
 
      public function tambah_pns()
