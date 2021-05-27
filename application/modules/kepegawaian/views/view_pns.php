@@ -36,9 +36,34 @@
           <strong>Notif!</strong> <?php echo $this->session->flashdata('pns') ?>
         </div>
         <?php } ?>
-        
+              
         <div class="table-responsive">
           <div class="panel-body">
+
+            <form action="kepegawaian/search_pns" method="POST">
+              <tbody>
+                <tr>
+                  <td>
+                    <select name="penempatan" id="penempatan" class="form-control col-sm-2 mb-3">
+                      <option value="">Pilih Penempatan</option>
+                      <option value="JATINANGOR">JATINANGOR</option>
+                      <option value="JAKARTA">JAKARTA</option>
+                      <option value="SUMATERA BARAT">SUMATERA BARAT</option>
+                      <option value="KALIMANTAN BARAT">KALIMANTAN BARAT</option>
+                      <option value="SULAWESI SELATAN">SULAWESI SELATAN</option>
+                      <option value="SULAWESI UTARA">SULAWESI UTARA</option>
+                      <option value="NUSA TENGGARA BARAT">NUSA TENGGARA BARAT</option>
+                      <option value="PAPUA">PAPUA</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button type="submit" class="btn btn-primary" value="Cek">Search</button>
+                  </td>
+                </tr>
+              </tbody>
+            </form>
+            <br><br>
+
             <table id="tbl-scdb-pns" class="table table-striped table-bordered table-td-valign-middle" width="100%">
               <thead>
                 <tr>
