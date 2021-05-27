@@ -72,9 +72,36 @@ $(document).ready(function() {
     }
 
     if ($('#tbl-scdb-dosen-dikti').length !== 0) {
+
+        function filter_kampus(){
+            var base_url = window.location.origin + "/" + window.location.pathname.split("/")[1] ;
+            $.ajax({
+                type: 'POST',
+                url: `${base_url}/dosen_dikti/get_kampus_filter`,
+                data: { 
+                    'status_aktif': 'Aktif' // uu
+                },
+                success: function(data){
+                    $("#filter_kampus").html('<option value="" selected>Filter Kampus</option>'); 
+                    var dataObj = jQuery.parseJSON(data);
+                    if(dataObj) {
+                        $(dataObj).each(function() {
+                            var option = $('<option />');
+                            option.attr('value', this).text(this);           
+                            $("#filter_kampus").append(option);
+                        });
+                    }
+                    else {
+                        $("#filter_kampus").html('<option value="">Pilihan tidak ada</option>');
+                    }
+                }
+            }); 
+        }
+
+        filter_kampus();
         var url = 'dosen_dikti/table_dosen_dikti';
 
-        $('#tbl-scdb-dosen-dikti').dataTable({
+        var dosen_filter = $('#tbl-scdb-dosen-dikti').DataTable({
             // dom: 'Bfrtip',
             dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
             buttons: [
@@ -85,6 +112,13 @@ $(document).ready(function() {
                 "url": url,
                 "dataSrc": ""
             }
+        });
+
+        $('#filter_kampus').on( 'change', function () {
+            dosen_filter
+            .column(2)
+            .search(this.value)
+            .draw();
         });
 
         // Untuk sunting
