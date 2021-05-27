@@ -2820,8 +2820,10 @@ class Uploads extends CI_Controller {
 				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 
+		
+			
 			$loadexcel  = $reader->load($_FILES['papua']['tmp_name']);
-			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet  = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 			$data = array();
 			$numrow = 1;
 			$cbiro = 1;
@@ -2829,67 +2831,85 @@ class Uploads extends CI_Controller {
 			$satker_papua = 683091;
 			$tgl = date('Y-m-d');
 
-
 			$this->db->where('kode_satker', $satker_papua);
 			$this->db->delete('unit_sas');
 
 			$this->db->where('kode_satker', $satker_papua);
 			$this->db->delete('output_sas');
 
+			$this->db->where('kode_satker', $satker_papua);
+			$this->db->delete('suboutput_sas');
 
-			foreach($sheet as $row){
-				if($numrow > 6){
-					$ket1 = trim($row['A']);
-					// echo "$ket1<br>";
-					$ket = substr($ket1, 9);
-					$temp = explode(" ", $ket1);
-					$regex = '/^[0-9]{4}\.[0-9]{3}$/';
-					if (preg_match($regex, $temp[0])) {
+
+			foreach ($sheet as $row) {
+				if ($numrow > 1) {
+
+					if ($row['A'] == 2) {
 						$cunit++;
-						$satker_biro = explode(".", $temp[0]);
 
-						$id_c = ($cunit<10)?$cbiro."0".$cunit:$cbiro.$cunit;
+						$ket = trim($row['AI']);
+
+						$ex = explode(' ', $ket);
+						$satker_biro = $ex[0] . "." . $satker_papua;
+						// var_dump($satker_biro);exit();
+						$keterangan = substr($ket, 5);
+
 						$unitpapua = array();
 						array_push($unitpapua, array(
 							'kode_satker'      => $satker_papua,
-							'id_c'      => $id_c,
-							'id_b'      => $satker_biro[0],
-							'ket'      => $ket,
+							// 'id_c'      => $id_c,
+							'id_b'      => $satker_biro,
+							'ket'      => $keterangan,
 							'tanggal' => $tgl
 						));
-						// exit;
+
 						$this->db->insert_batch('unit_sas', $unitpapua);
-						// $sql1 = "INSERT INTO unit_sas values (".$satker_papua.",".$id_c.",".$satker_biro[0].",'".$ket."')";
-						// echo "$sql1";
-						// echo "<br>";
-						// $this->db->query($sql1);
+					} elseif ($row['A'] == 3) {
 
-					}elseif((strlen($temp[0]) == 3) && (strpos($temp[0], "00") === 0)){
-						$ket1 = trim($row['A']);
-						$ket1 = substr($ket1, 4);
-					   // echo "$ket1<br>";
+						$ket = trim($row['AI']);
+						$keterangan = substr($ket, 8);
+						// var_dump($keterangan);exit();
+						$ex = explode(' ', $ket);
+						$id = $ex[0];
 
-						$pagu = $row['B'];
-					   // echo "pagunya"."$pagu";
-						$realisasi = $row['C'];
+						$id = $ex[0] . "." . $satker_papua;
+						$iduntuksuboutput = $ex[0];
+
+
+
 						$outputpapua = array();
 						array_push($outputpapua, array(
-							'kode_satker' => $satker_papua,
-							'id_b'      => $satker_biro[0],
-							'id_c'      => $id_c,
-							'pagu'      => preg_replace("/[^0-9]/", "", $row['B']),
-							'realisasi' => preg_replace("/[^0-9]/", "", $row['C']),
-							'ket'      => $ket1,
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'kode_satker'      => $satker_papua,
+							'ket'      => $keterangan
+						));
+						// print("<pre>".print_r($outputsulsel,true)."</pre>");
+						$this->db->insert_batch('output_sas', $outputpapua);
+					} elseif ($row['A'] == 4) {
+						$kettt = trim($row['AI']);
+						$keterangan1 = substr($kettt, 4);
+
+						$kode = explode(' ', $kettt);
+						$kodesub = $kode[0];
+
+						$makakodesub = $iduntuksuboutput . "." . $kodesub . "." . $satker_papua;
+
+
+						$suboutputpapua = array();
+						array_push($suboutputpapua, array(
+							'id_b'      => $satker_biro,
+							'id_c'      => $id,
+							'id_d'      => $makakodesub,
+							'kode_satker'      => $satker_papua,
+							'ket'      => $keterangan1,
+							'pagu' => preg_replace("/[^0-9]/", "", $row['AB']),
+							'realisasi' => preg_replace("/[^0-9]/", "", $row['AC']),
 							'tanggal' => $tgl
 						));
-						// exit;
-						$this->db->insert_batch('output_sas', $outputpapua);
-					   // $sql2 = "INSERT INTO output_sas values (NULL,".$satker_papua.",".$satker_biro[0].",".$id_c.",".preg_replace("/[^0-9]/", "", $row['B']).",".preg_replace("/[^0-9]/", "", $row['C']).",'".$ket1."') ";
-					   // echo "$sql2";
-					   // echo "<br>";
-					   // $this->db->query($sql2);
+						// print("<pre>".print_r($suboutputntb,true)."</pre>");
+						$this->db->insert_batch('suboutput_sas', $suboutputpapua);
 					}
-
 				}
 				$numrow++;
 			}
@@ -3222,84 +3242,6 @@ class Uploads extends CI_Controller {
 						$hasil= $angkatan-$kurangtahun;
 					}
 
-					// array_push($unitpraja, array(
-					// 	'no_spcp'      => $row['A'],
-					// 	'nama'      => $row['B'],
-					// 	'jk'      => $row['C'],
-					// 	'nisn'      => $row['D'],
-					// 	'npwp'      => $row['E'],
-					// 	'npp'      => $row['F'],
-					// 	'nik_praja'      => $row['G'],
-					// 	'tmpt_lahir'      => $row['H'],
-					// 	'tgl_lahir'      =>  date("Y-m-d", strtotime($row['I'])),
-					// 	'agama'      => $this->agamaa($row['J']),
-					// 	'alamat'      => $row['K'],
-					// 	'rt'      => $row['L'],
-					// 	'rw'      => $row['M'],
-					// 	'nama_dusun'      => $row['N'],
-					// 	'kelurahan'      => $row['O'],
-					// 	'kecamatan'      => $row['P'],
-					// 	'kode_pos'      =>$row['Q'],
-					// 	'kab_kota'      => $row['R'],
-					// 	'provinsi'      => $row['S'],
-					// 	'jenis_tinggal'      => $row['T'],
-					// 	'alat_transport'      => $row['U'],
-					// 	'tlp_rumah'      => $row['V'],
-					// 	'tlp_pribadi'      => $row['W'],
-					// 	'email'      => $row['X'],
-					// 	'kewarganegaraan'      => $row['AM'],
-					// 	'penerima_pks'      => $row['AN'],
-					// 	'no_pks'      => $row['AO'],
-					// 	'prodi'      => $row['AW'],
-					// 	'fakultas'      => $row['AX'],
-					// 	'jenis_pendaftaran'      =>  $row['AY'],
-					// 	// 'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
-					// 	'tgl_masuk_kuliah'      =>  $row['AZ'],
-					// 	'tahun_masuk_kuliah'      => $row['BA'],
-					// 	'pembiayaan'      => $row['BB'],
-					// 	'jalur_masuk'      => $row['BC'],
-					// 	'status' => $stat,
-					// 	'tingkat' => 2020-$row['BA']+1,
-					// 	'angkatan' => $cc,
-					// 	'mulai_semester' => $row['BD']
-					// ));
-
-					// array_push($unitortu, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_ayah'      => $row['Y'],
-					// 	'nama_ayah'      => $row['Z'],
-					// 	'tgllahir_ayah'      => $row['AA'],
-					// 	'pendidikan_ayah'      => $row['AB'],
-					// 	'pekerjaan_ayah'      => $row['AC'],
-					// 	'penghasilan_ayah'      => $row['AD'],
-					// 	'tlp_ayah'      => $row['AE'],
-					// 	'nik_ibu'      => $row['AF'],
-					// 	'nama_ibu'      => $row['AG'],
-					// 	'tgllahir_ibu'      => $row['AH'],
-					// 	'pendidikan_ibu'      =>$row['AI'],
-					// 	'pekerjaan_ibu'      => $row['AJ'],
-					// 	'penghasilan_ibu'      => $row['AK'],
-					// 	'tlp_ibu'      => $row['AL']
-
-					// ));
-
-
-					// array_push($unitwali, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_wali'      => $row['AP'],
-					// 	'nama_wali'      => $row['AQ'],
-					// 	'tgllahir_wali'      => $row['AR'],
-					// 	'pendidikan_wali'      => $row['AS'],
-					// 	'pekerjaan_wali'      => $row['AT'],
-					// 	'penghasilan_wali'      => $row['AU'],
-					// 	'tlp_wali'      => $row['AV']
-
-					// ));
-
-
-
 					array_push($unitpraja, array(
 						'no_spcp'      => $row['A'],
 						'nama'      => $row['B'],
@@ -3310,7 +3252,7 @@ class Uploads extends CI_Controller {
 						'nik_praja'      => $row['G'],
 						'tmpt_lahir'      => $row['H'],
 						'tgl_lahir'      =>  date("Y-m-d", strtotime($row['I'])),
-						'agama'      => $this->agamaa($row['J']),
+						'agama'      => $row['J'],
 						'alamat'      => $row['K'],
 						'rt'      => $row['L'],
 						'rw'      => $row['M'],
@@ -3320,87 +3262,50 @@ class Uploads extends CI_Controller {
 						'kode_pos'      =>$row['Q'],
 						'kab_kota'      => $row['R'],
 						'provinsi'      => $row['S'],
-						'jenis_tinggal'      => $this->jenistinggal($row['T']),
-						'alat_transport'      => $this->alat($row['U']),
+						'jenis_tinggal'      => $row['T'],
+						'alat_transport'      => $row['U'],
 						'tlp_rumah'      => $row['V'],
 						'tlp_pribadi'      => $row['W'],
 						'email'      => $row['X'],
-						'kewarganegaraan'      => $this->negara($row['AM']),
+						'kewarganegaraan'      => $row['AM'],
 						'penerima_pks'      => $row['AN'],
 						'no_pks'      => $row['AO'],
-						'prodi'      => $this->prodi($row['AW']),
+						'prodi'      => $row['AW'],
 						'fakultas'      => $row['AX'],
-						'jenis_pendaftaran'      =>  $this->jenispend($row['AY']),
+						'jenis_pendaftaran'      =>  $row['AY'],
 						'tgl_masuk_kuliah'      =>  date("Y-m-d", strtotime($row['AZ'])),
-						// 'tgl_masuk_kuliah'      =>  $row['AZ'],
 						'tahun_masuk_kuliah'      => $row['BA'],
-						'pembiayaan'      => $this->jenispembiayaan($row['BB']),
-						'jalur_masuk'      => $this->jalurmasuk($row['BC']),
+						'pembiayaan'      => $row['BB'],
+						'jalur_masuk'      => $row['BC'],
 						'status' => $stat,
 						'tingkat' => 2020-$row['BA']+1,
 						'angkatan' => $cc,
-						'mulai_semester' => $this->semesterr($row['BD']),
+						'mulai_semester' => $row['BD'],
 						'biaya_masuk' => $biaya_masuk,
 						'nik_ayah'      => $row['Y'],
 						'nama_ayah'      => $row['Z'],
 						'tgllahir_ayah'      => $row['AA'],
-						'pendidikan_ayah'      => $this->pendidik($row['AB']),
-						'pekerjaan_ayah'      => $this->pekerja($row['AC']),
-						'penghasilan_ayah'      => $this->penghasil($row['AD']),
+						'pendidikan_ayah'      => $row['AB'],
+						'pekerjaan_ayah'      => $row['AC'],
+						'penghasilan_ayah'      => $row['AD'],
 						'tlp_ayah'      => $row['AE'],
 						'nik_ibu'      => $row['AF'],
 						'nama_ibu'      => $row['AG'],
 						'tgllahir_ibu'      => $row['AH'],
-						'pendidikan_ibu'      =>$this->pendidik($row['AI']),
-						'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
-						'penghasilan_ibu'      => $this->penghasil($row['AK']),
+						'pendidikan_ibu'      =>$row['AI'],
+						'pekerjaan_ibu'      => $row['AJ'],
+						'penghasilan_ibu'      => $row['AK'],
 						'tlp_ibu'      => $row['AL'],
 						'nik_wali'      => $row['AP'],
 						'nama_wali'      => $row['AQ'],
 						'tgllahir_wali'      => $row['AR'],
 						'pendidikan_wali'      => $row['AS'],
-						'pekerjaan_wali'      => $this->pekerja($row['AT']),
-						'penghasilan_wali'      => $this->penghasil($row['AU']),
+						'pekerjaan_wali'      => $row['AT'],
+						'penghasilan_wali'      => $row['AU'],
 						'tlp_wali'      => $row['AV'],
 						'penempatan' => $penempatan
 
 					));
-					// var_dump( date("Y-m-d", strtotime($row['I'])));exit();
-
-
-					// array_push($unitortu, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_ayah'      => $row['Y'],
-					// 	'nama_ayah'      => $row['Z'],
-					// 	'tgllahir_ayah'      => $row['AA'],
-					// 	'pendidikan_ayah'      => $this->pendidik($row['AB']),
-					// 	'pekerjaan_ayah'      => $this->pekerja($row['AC']),
-					// 	'penghasilan_ayah'      => $this->penghasil($row['AD']),
-					// 	'tlp_ayah'      => $row['AE'],
-					// 	'nik_ibu'      => $row['AF'],
-					// 	'nama_ibu'      => $row['AG'],
-					// 	'tgllahir_ibu'      => $row['AH'],
-					// 	'pendidikan_ibu'      =>$this->pendidik($row['AI']),
-					// 	'pekerjaan_ibu'      => $this->pekerja($row['AJ']),
-					// 	'penghasilan_ibu'      => $this->penghasil($row['AK']),
-					// 	'tlp_ibu'      => $row['AL']
-
-					// ));
-
-
-					// array_push($unitwali, array(
-					// 	'npp'      => $row['F'],
-					// 	'nama'      => $row['B'],
-					// 	'nik_wali'      => $row['AP'],
-					// 	'nama_wali'      => $row['AQ'],
-					// 	'tgllahir_wali'      => $row['AR'],
-					// 	'pendidikan_wali'      => $row['AS'],
-					// 	'pekerjaan_wali'      => $this->pekerja($row['AT']),
-					// 	'penghasilan_wali'      => $this->penghasil($row['AU']),
-					// 	'tlp_wali'      => $row['AV']
-
-					// ));
 
 				}
 
