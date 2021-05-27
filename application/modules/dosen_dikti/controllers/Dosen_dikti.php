@@ -33,6 +33,16 @@ class Dosen_dikti extends CI_Controller {
         }
     }
 
+    function get_kampus_filter(){
+        $status_aktif = $this->input->post('status_aktif');
+		$kampus_list = $this->MDosen_dikti->get_kampus($status_aktif);
+		$kampuss = [];
+		foreach($kampus_list as $status_aktif) {
+			$kampuss[] = $status_aktif->kampus;
+		}
+		echo json_encode($kampuss);
+    }
+
     function table_dosen_dikti() {
         $data = $this->MDosen_dikti->get_all_dosen()->result();
 
@@ -223,6 +233,7 @@ class Dosen_dikti extends CI_Controller {
             $apa[] = array(
                 $no++,
                 $aksi,
+                $kampus,
                 $nama,
                 $tempat_lahir,
                 $jenis_kelamin,
@@ -275,8 +286,7 @@ class Dosen_dikti extends CI_Controller {
                 $tmt_surat_tugas,
                 $judul_penelitian,
                 $lembaga,
-                $tahun_penelitian,
-                $kampus
+                $tahun_penelitian
             );
         }
         

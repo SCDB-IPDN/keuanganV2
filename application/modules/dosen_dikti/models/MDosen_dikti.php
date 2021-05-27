@@ -5,6 +5,12 @@ class MDosen_dikti extends CI_Model{
         return $this->db->query("SELECT * FROM tbl_dosen_pddikti ORDER BY updated_date DESC");
     }
 
+    function get_kampus($status_aktif){
+        $this->db->distinct()->select('kampus');
+		$this->db->where('status_aktif', $status_aktif);
+		return $this->db->get('tbl_dosen_pddikti')->result();
+    }
+
     public function belum(){
         return $this->db->query("SELECT serdos, nidn, total
         FROM 
