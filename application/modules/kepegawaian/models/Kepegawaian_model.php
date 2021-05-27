@@ -72,6 +72,57 @@ class Kepegawaian_model extends CI_Model{
     return $result;
   }
 
+  public function search_pns($penempatan)
+	{
+    if($penempatan == 'JATINANGOR'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'JATINANGOR' as penempatan
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan NOT LIKE '%JAKARTA%' 
+        AND a.jabatan NOT LIKE '%SUMATERA BARAT%'
+        AND a.jabatan NOT LIKE '%KALIMANTAN BARAT%'
+        AND a.jabatan NOT LIKE '%SULAWESI SELATAN%'
+        AND a.jabatan NOT LIKE '%SULAWESI UTARA%'
+        AND a.jabatan NOT LIKE '%NUSA TENGGARA BARAT%'
+        AND a.jabatan NOT LIKE '%PAPUA%'
+      ");
+    }else if($penempatan == 'JAKARTA'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'JAKARTA' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%JAKARTA%'
+      ");
+    }else if($penempatan == 'SUMATERA BARAT'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'SUMATERA BARAT' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%SUMATERA BARAT%'
+      ");
+    }else if($penempatan == 'KALIMANTAN BARAT'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'KALIMANTAN BARAT' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%KALIMANTAN BARAT%'
+      ");
+    }else if($penempatan == 'SULAWESI SELATAN'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'SULAWESI SELATAN' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%SULAWESI SELATAN%'
+      ");
+    }else if($penempatan == 'SULAWESI UTARA'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'SULAWESI UTARA' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%SULAWESI UTARA%'
+      ");
+    }else if($penempatan == 'NUSA TENGGARA BARAT'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'NUSA TENGGARA BARAT' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%NUSA TENGGARA BARAT%'
+      ");
+    }else if($penempatan == 'PAPUA'){
+      return $this->db->query("SELECT a.*, b.jabatan as jabatan_dosen, 'PAPUA' as penempatan  
+        FROM tbl_pns as a LEFT JOIN tbl_dosen_pddikti as b ON SUBSTR(b.nip, 1, 17) LIKE SUBSTR(a.nip, 1, 17)
+        WHERE a.jabatan LIKE '%PAPUA%'
+      ");
+    }  
+  }
+
   public function get_edit_pns($no)
 	{	
     $result = $this->db->query("SELECT * FROM tbl_pns WHERE NO = $no");

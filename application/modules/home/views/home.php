@@ -234,7 +234,7 @@
 											<div class="widget-list-title">Kepegawaian</div>
 										</div>
 									</a>
-									<a href="<?php echo base_url('d_praja');?>" class="widget-list-item rounded-0 p-t-3">
+									<a href="<?php echo base_url('praja');?>" class="widget-list-item rounded-0 p-t-3">
 										<div class="widget-list-media icon">
 											<i class="fab fas fa-lg fa-fw fa-graduation-cap bg-yellow text-white"></i>
 										</div>
@@ -874,6 +874,11 @@
 							<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Institut Pendidikan Dalam Negeri (IPDN)" data-placement="top" data-content="Data Berdasrkan http://sika.ipdn.ac.id" data-original-title="" title=""></i></span>
 							<div class="text-grey">
 								<i class=""></i> KAMPUS IPDN
+								
+							</div>
+							<div class="text-grey">
+								
+								<?php echo 'Data '.date('Y') ?>
 							</div>
 						</div>
 						<div class="d-flex align-items-center mb-1">
@@ -1077,7 +1082,7 @@
 								Diploma IV
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>6113</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_D4[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1086,7 +1091,7 @@
 								S1
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>148</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S1[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1095,7 +1100,7 @@
 								S2
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>361</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S2[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1104,7 +1109,7 @@
 								S3
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>198</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_S3[0]->total; ?></span></div>
 							</div>
 						</div>
 						<div class="d-flex mb-2">
@@ -1113,7 +1118,7 @@
 							Profesi
 							</div>
 							<div class="d-flex align-items-center ml-auto">
-								<div class="width-50 text-right pl-2 f-w-600"><span>37</span></div>
+								<div class="width-50 text-right pl-2 f-w-600"><span><?php echo $jenjang_profesi[0]->total; ?></span></div>
 							</div>
 						</div>
 						<hr class="bg-white-transparent-2" />
