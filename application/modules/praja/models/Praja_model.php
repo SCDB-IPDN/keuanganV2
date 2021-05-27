@@ -14,7 +14,10 @@ class Praja_model extends CI_Model
 
 	public function get_prod()
 	{
-		return $this->db->query('SELECT DISTINCT left(prodi,2) as prodi from praja_baru group by prodi')->result_array();
+
+		
+
+		return $this->db->query("SELECT DISTINCT substring_index(prodi,' ',1) as prodi from praja_baru group by prodi")->result_array();
 	}
 
 

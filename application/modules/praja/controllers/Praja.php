@@ -93,6 +93,7 @@ class Praja extends CI_Controller
   public function angkat()
   {
     $tmt_list = $this->Praja_model->get_angkatan();
+
     $tmt = [];
     foreach ($tmt_list as $t) {
       $tmt[] =  $t['angkatan'];
@@ -103,7 +104,7 @@ class Praja extends CI_Controller
   public function prod()
   {
     $tmt_list = $this->Praja_model->get_prod();
-    // var_dump($tmt_list);
+
     $tmt = [];
     foreach ($tmt_list as $t) {
       $tmt[] =  $t['prodi'];
