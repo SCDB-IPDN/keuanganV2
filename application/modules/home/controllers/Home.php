@@ -97,6 +97,12 @@ class Home extends CI_Controller {
       $praja = $this->home_model->jumlah_praja();
       $total_praja = $praja[0]->praja;
 
+      $jenjang_D4 = $this->home_model->jenjang_D4();
+      $jenjang_S1 = $this->home_model->jenjang_S1();
+      $jenjang_S2 = $this->home_model->jenjang_S2();
+      $jenjang_S3 = $this->home_model->jenjang_S3();
+      $jenjang_profesi = $this->home_model->jenjang_profesi();
+
       // SPAN
       $span = $this->home_model->get_span()->result();
       $hitung_span= $span[0]->realisasi/$span[0]->pagu*100;
@@ -180,6 +186,13 @@ class Home extends CI_Controller {
       $x['angkatan28'] = $angkatan28;
       $x['jkpraja'] = $jkpraja;
       $x['praja'] = $praja;
+
+      $x['jenjang_D4'] = $jenjang_D4 ;
+      $x['jenjang_S1'] = $jenjang_S1 ;
+      $x['jenjang_S2'] = $jenjang_S2 ;
+      $x['jenjang_S3'] = $jenjang_S3 ;
+      $x['jenjang_profesi'] = $jenjang_profesi ;
+      
 
       $x['ceksas'] = $ceksas;
       $x['cekpok'] = $cekpok;

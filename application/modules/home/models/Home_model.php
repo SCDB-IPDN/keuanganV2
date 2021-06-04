@@ -404,7 +404,7 @@ class Home_model extends CI_Model{
 	
 	public function jumlah_praja()
 	{
-		$praja = $this->db->query("SELECT count(*) as praja from praja_baru WHERE status='aktif'")->result();
+		$praja = $this->db->query("SELECT count(*) as praja from praja_baru WHERE status='aktif' and (angkatan='28' or angkatan='29' or angkatan='30' or angkatan='31')")->result();
 
 		return $praja;
 	}
@@ -428,6 +428,38 @@ class Home_model extends CI_Model{
 
 		return $result;
 	}
+
+	public function jenjang_D4()
+	{
+		$result = $this->db->query(" SELECT COUNT(npp) as total FROM `praja_baru` where prodi like 'D4%' and status='aktif'")->result();
+
+		return $result;
+	}
+	public function jenjang_S1()
+	{
+		$result = $this->db->query(" SELECT COUNT(npp) as total  FROM `praja_baru` where prodi like 'S1%'  and status='aktif'")->result();
+
+		return $result;
+	}
+	public function jenjang_S2()
+	{
+		$result = $this->db->query(" SELECT COUNT(npp) as total  FROM `praja_baru` where prodi like 'S2%' and status='aktif'")->result();
+
+		return $result;
+	}
+	public function jenjang_S3()
+	{
+		$result = $this->db->query(" SELECT COUNT(npp) as total FROM `praja_baru` where prodi like 'S3%' and status='aktif'")->result();
+
+		return $result;
+	}
+	public function jenjang_profesi()
+	{
+		$result = $this->db->query(" SELECT COUNT(npp) as total  FROM `praja_baru` where prodi like 'profesi%' and status='aktif'")->result();
+
+		return $result;
+	}
+
 	
 	public function get_rank_persen() {
 		
