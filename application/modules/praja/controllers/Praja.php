@@ -272,7 +272,6 @@ class Praja extends CI_Controller
       $dataall[] = array(
         $no++,
         $opsi,
-        
         $npp,
         $nama,
         $jk,
@@ -313,7 +312,6 @@ class Praja extends CI_Controller
         $penerima_pks,
         $no_pks,
         $mulai_semester,
-
         $nik_ayah,
         $nama_ayah,
         $tgllahir_ayah,
@@ -328,7 +326,6 @@ class Praja extends CI_Controller
         $pekerjaan_ibu,
         $penghasilan_ibu,
         $tlp_ibu,
-
         $nik_wali,
         $nama_wali,
         $tgllahir_wali,
@@ -564,135 +561,6 @@ class Praja extends CI_Controller
     }
   }
 
-  function export($angkatan = NULL)
-  {
-
-    $semua_pengguna = $this->Praja_model->exportdata($angkatan)->result();
-
-    $spreadsheet = new Spreadsheet;
-
-    $spreadsheet->setActiveSheetIndex(0)
-      ->setCellValue('A1', 'NPP')
-      ->setCellValue('B1', 'NAMA')
-      ->setCellValue('C1', 'TEMPAT LAHIR')
-      ->setCellValue('D1', 'TGL LAHIR')
-      ->setCellValue('E1', 'L/P')
-      ->setCellValue('F1', 'NIK')
-      ->setCellValue('G1', 'AGAMA')
-      ->setCellValue('H1', 'NISN')
-      ->setCellValue('I1', 'JALUR PENDAFTARAN')
-      ->setCellValue('J1', 'NPWP')
-      ->setCellValue('K1', 'KEWARGANEGARAAN')
-      ->setCellValue('L1', 'JENIS PENDAFTARAN')
-      ->setCellValue('M1', 'TANGGAL MASUK KULIAH')
-      ->setCellValue('N1', 'MULAI SEMESTER')
-      ->setCellValue('O1', 'ALAMAT')
-      ->setCellValue('P1', 'RT')
-      ->setCellValue('Q1', 'RW')
-      ->setCellValue('R1', 'NAMA DUSUN')
-      ->setCellValue('S1', 'KELURAHAN')
-      ->setCellValue('T1', 'KECAMATAN')
-      ->setCellValue('U1', 'KODE POS')
-      ->setCellValue('V1', 'JENIS TINGGAL')
-      ->setCellValue('W1', 'ALAT TRANSPORTASI')
-      ->setCellValue('X1', 'TELEPON RUMAH')
-      ->setCellValue('Y1', 'NO HP')
-      ->setCellValue('Z1', 'EMAIL')
-      ->setCellValue('AA1', 'TERIMA KPS')
-      ->setCellValue('AB1', 'NO KPS')
-      ->setCellValue('AC1', 'NIK AYAH')
-      ->setCellValue('AD1', 'NAMA AYAH')
-      ->setCellValue('AE1', 'TGL LAHIR AYAH')
-      ->setCellValue('AF1', 'PENDIDIKAN Ayah')
-      ->setCellValue('AG1', 'PEKERJAAN AYAH')
-      ->setCellValue('AH1', 'PENGHASILAN AYAH')
-      ->setCellValue('AI1', 'NIK IBU')
-      ->setCellValue('AJ1', 'NAMA IBU')
-      ->setCellValue('AK1', 'TGL LAHIR IBU')
-      ->setCellValue('AL1', 'PENDIDIKAN IBU')
-      ->setCellValue('AM1', 'PEKERJAAN IBU')
-      ->setCellValue('AN1', 'PENGHASILAN IBU')
-      ->setCellValue('AO1', 'NAMA WALI')
-      ->setCellValue('AP1', 'TGL LAHIR WALI')
-      ->setCellValue('AQ1', 'PENDIDIKAN WALI')
-      ->setCellValue('AR1', 'PEKERJAAN WALI')
-      ->setCellValue('AS1', 'PENGHASILAN WALI')
-      ->setCellValue('AT1', 'JENIS PEMBIAYAAN')
-      ->setCellValue('AU1', 'JUMLAH BIAYA MASUK')
-      ->setCellValue('AV1', 'PRODI');
-
-
-    $kolom = 2;
-    $nomor = 1;
-
-
-    foreach ($semua_pengguna as $pengguna) {
-      // var_dump($pengguna);exit();
-
-      $spreadsheet->setActiveSheetIndex(0)
-        ->setCellValue('A' . $kolom, $pengguna->npp)
-        ->setCellValue('B' . $kolom, $pengguna->nama)
-        ->setCellValue('C' . $kolom, $pengguna->tmpt_lahir)
-        ->setCellValue('D' . $kolom, $pengguna->tgl_lahir)
-        ->setCellValue('E' . $kolom, $pengguna->jk)
-        ->setCellValue('F' . $kolom, $pengguna->nik_praja)
-        ->setCellValue('G' . $kolom, $pengguna->agama)
-        ->setCellValue('H' . $kolom, $pengguna->nisn)
-        ->setCellValue('I' . $kolom, $pengguna->jalur_masuk)
-        ->setCellValue('J' . $kolom, $pengguna->npwp)
-        ->setCellValue('K' . $kolom, $pengguna->kewarganegaraan)
-        ->setCellValue('L' . $kolom, $pengguna->jenis_pendaftaran)
-        ->setCellValue('M' . $kolom, $pengguna->tgl_masuk_kuliah)
-        ->setCellValue('N' . $kolom, $pengguna->mulai_semester)
-        ->setCellValue('O' . $kolom, $pengguna->alamat)
-        ->setCellValue('P' . $kolom, $pengguna->rt)
-        ->setCellValue('Q' . $kolom, $pengguna->rw)
-        ->setCellValue('R' . $kolom, $pengguna->nama_dusun)
-        ->setCellValue('S' . $kolom, $pengguna->kelurahan)
-        ->setCellValue('T' . $kolom, $pengguna->kecamatan)
-        ->setCellValue('U' . $kolom, $pengguna->kode_pos)
-        ->setCellValue('V' . $kolom, $pengguna->jenis_tinggal)
-        ->setCellValue('W' . $kolom, $pengguna->alat_transport)
-        ->setCellValue('X' . $kolom, $pengguna->tlp_rumah)
-        ->setCellValue('Y' . $kolom, $pengguna->tlp_pribadi)
-        ->setCellValue('Z' . $kolom, $pengguna->email)
-        ->setCellValue('AA' . $kolom, $pengguna->penerima_pks)
-        ->setCellValue('AB' . $kolom, $pengguna->no_pks)
-        ->setCellValue('AC' . $kolom, $pengguna->nik_ayah)
-        ->setCellValue('AD' . $kolom, $pengguna->nama_ayah)
-        ->setCellValue('AE' . $kolom, $pengguna->tgllahir_ayah)
-        ->setCellValue('AF' . $kolom, $pengguna->pendidikan_ayah)
-        ->setCellValue('AG' . $kolom, $pengguna->pekerjaan_ayah)
-        ->setCellValue('AH' . $kolom, $pengguna->penghasilan_ayah)
-        ->setCellValue('AI' . $kolom, $pengguna->nik_ibu)
-        ->setCellValue('AJ' . $kolom, $pengguna->nama_ibu)
-        ->setCellValue('AK' . $kolom, $pengguna->tgllahir_ibu)
-        ->setCellValue('AL' . $kolom, $pengguna->pendidikan_ibu)
-        ->setCellValue('AM' . $kolom, $pengguna->pekerjaan_ibu)
-        ->setCellValue('AN' . $kolom, $pengguna->penghasilan_ibu)
-        ->setCellValue('AO' . $kolom, $pengguna->nama_wali)
-        ->setCellValue('AP' . $kolom, $pengguna->tgllahir_wali)
-        ->setCellValue('AQ' . $kolom, $pengguna->pendidikan_wali)
-        ->setCellValue('AR' . $kolom, $pengguna->pekerjaan_wali)
-        ->setCellValue('AS' . $kolom, $pengguna->penghasilan_wali)
-        ->setCellValue('AT' . $kolom, $pengguna->pembiayaan)
-        ->setCellValue('AU' . $kolom, $pengguna->biaya_masuk)
-        ->setCellValue('AV' . $kolom, $pengguna->prodi);
-
-      $kolom++;
-      $nomor++;
-      // var_dump($pengguna->$no_spcp);exit();
-
-    }
-
-    $writer = new Xlsx($spreadsheet);
-
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="DataPraja.xlsx"');
-    header('Cache-Control: max-age=0');
-
-    $writer->save('php://output');
-  }
 
   //ALUMNI
 

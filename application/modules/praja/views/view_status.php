@@ -104,7 +104,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo base_url('Praja/tambah_status'); ?>" method="POST" enctype="multipart/form-data">
+          <form action="<?php echo base_url('praja/tambah_status'); ?>" method="POST" enctype="multipart/form-data">
         
               <div class="form-group">   
                 <div>
