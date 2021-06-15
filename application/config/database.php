@@ -81,7 +81,7 @@ $db['default'] = array(
 
 	// 'hostname' => '192.168.201.17',
 
-	'hostname' => '192.168.201.20',
+	'hostname' => '192.168.201.2',
 	'username' => 'ipdnacid_scdb',
 	'password' => 'yellowminicooper',
 	'database' => 'ipdnacid_scdb',
